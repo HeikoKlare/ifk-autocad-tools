@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AC47E2BF-DEE1-4D2C-B605-C791E7881791}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AutoCADTools</RootNamespace>
+    <AssemblyName>AutoCAD Tools 2</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <DocumentationFile>AutoCAD Tools 2.XML</DocumentationFile>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <NoWarn>1607</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="acdbmgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2012 - Deutsch\acdbmgd.dll</HintPath>
+    </Reference>
+    <Reference Include="acmgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2012 - Deutsch\acmgd.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.2.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Management\ManageDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ManageDetails.Designer.cs">
+      <DependentUpon>ManageDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\ManageDetailCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ManageDetailCategories.Designer.cs">
+      <DependentUpon>ManageDetailCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Database.cs">
+      <DependentUpon>Database.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Database.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Database.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Management\LocalData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalData.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Management\ManageAnnotationCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ManageAnnotationCategories.Designer.cs">
+      <DependentUpon>ManageAnnotationCategories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\ManageAnnotations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ManageAnnotations.Designer.cs">
+      <DependentUpon>ManageAnnotations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\ManageProjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ManageProjects.Designer.cs">
+      <DependentUpon>ManageProjects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LayoutErstellen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LayoutErstellen.Designer.cs">
+      <DependentUpon>LayoutErstellen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\ManageEmployers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ManageEmployers.Designer.cs">
+      <DependentUpon>ManageEmployers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteTools\AnnotationsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PaletteTools\AnnotationsControl.Designer.cs">
+      <DependentUpon>AnnotationsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteTools\BracingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PaletteTools\BracingControl.Designer.cs">
+      <DependentUpon>BracingControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteTools\BracingPanicleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PaletteTools\BracingPanicleControl.Designer.cs">
+      <DependentUpon>BracingPanicleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\LocalData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalData.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Details.Designer.cs">
+      <DependentUpon>Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Annotations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Annotations.Designer.cs">
+      <DependentUpon>Annotations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaletteTools\Palettes.cs" />
+    <Compile Include="PaletteTools\PanicleControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PaletteTools\PanicleControl.Designer.cs">
+      <DependentUpon>PanicleControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Progress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\Progress.Designer.cs">
+      <DependentUpon>Progress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SqlConnection.cs" />
+    <Compile Include="TrussConImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrussConImport.Designer.cs">
+      <DependentUpon>TrussConImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoCADTools.cs" />
+    <Compile Include="Tools\DrawingArea.cs" />
+    <Compile Include="Tools\DrawingSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\DrawingSettings.Designer.cs">
+      <DependentUpon>DrawingSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NeuerVerband.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NeuerVerband.Designer.cs">
+      <DependentUpon>NeuerVerband.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Panicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\Panicle.Designer.cs">
+      <DependentUpon>Panicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Management\Settings.de.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageDetails.de.resx">
+      <DependentUpon>ManageDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageDetails.resx">
+      <DependentUpon>ManageDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\LocalData.de.resx" />
+    <EmbeddedResource Include="Management\LocalData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageAnnotationCategories.de.resx">
+      <DependentUpon>ManageAnnotationCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageAnnotationCategories.resx">
+      <DependentUpon>ManageAnnotationCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageAnnotations.de.resx">
+      <DependentUpon>ManageAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageAnnotations.resx">
+      <DependentUpon>ManageAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageDetailCategories.de.resx">
+      <DependentUpon>ManageDetailCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageDetailCategories.resx">
+      <DependentUpon>ManageDetailCategories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageEmployers.de.resx">
+      <DependentUpon>ManageEmployers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageProjects.de.resx">
+      <DependentUpon>ManageProjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageProjects.resx">
+      <DependentUpon>ManageProjects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ManageEmployers.resx">
+      <DependentUpon>ManageEmployers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayoutErstellen.resx">
+      <DependentUpon>LayoutErstellen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NeuerVerband.resx">
+      <DependentUpon>NeuerVerband.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Panicle.de.resx">
+      <DependentUpon>Panicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Panicle.resx">
+      <DependentUpon>Panicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaletteTools\AnnotationsControl.resx">
+      <DependentUpon>AnnotationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaletteTools\BracingControl.resx">
+      <DependentUpon>BracingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaletteTools\BracingPanicleControl.resx">
+      <DependentUpon>BracingPanicleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\DrawingSettings.de.resx">
+      <DependentUpon>DrawingSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\LocalData.de.resx" />
+    <EmbeddedResource Include="Tools\LocalData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Details.de.resx">
+      <DependentUpon>Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Details.resx">
+      <DependentUpon>Details.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Annotations.de.resx">
+      <DependentUpon>Annotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\Annotations.resx">
+      <DependentUpon>Annotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaletteTools\PanicleControl.resx">
+      <DependentUpon>PanicleControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\Progress.resx">
+      <DependentUpon>Progress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrussConImport.resx">
+      <DependentUpon>TrussConImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\DrawingSettings.resx">
+      <DependentUpon>DrawingSettings.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Data\Database.xsc">
+      <DependentUpon>Database.xsd</DependentUpon>
+    </None>
+    <None Include="Data\Database.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Database.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Data\Database.xss">
+      <DependentUpon>Database.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Right.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Left.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Truss.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Truss left.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Truss right.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IFK.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IFK.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2012 - Deutsch\"
+xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools 2.resources.dll" "C:\Programme\Autodesk\AutoCAD 2012 - Deutsch\de\"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

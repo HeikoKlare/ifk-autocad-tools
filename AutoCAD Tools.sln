@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCAD Tools", "AutoCAD Tools\AutoCAD Tools.csproj", "{AC47E2BF-DEE1-4D2C-B605-C791E7881791}"
+EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "AutoCAD Tools Installer", "AutoCAD Tools Installer\AutoCAD Tools Installer.isproj", "{B2B745D3-DFC8-4511-A4C1-E21372588DCB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791} = {AC47E2BF-DEE1-4D2C-B605-C791E7881791}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloseAutoCAD", "CloseAutoCAD\CloseAutoCAD.csproj", "{C312C86A-E73A-4507-A69C-91A2594F2BDF}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = AutoCAD Tools1.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		Release|Any CPU = Release|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{AC47E2BF-DEE1-4D2C-B605-C791E7881791}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.Debug|Any CPU.ActiveCfg = DVD-5
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.Debug|Any CPU.Build.0 = DVD-5
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.DVD-5|Any CPU.Build.0 = DVD-5
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.Release|Any CPU.ActiveCfg = SingleImage
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.Release|Any CPU.Build.0 = SingleImage
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{B2B745D3-DFC8-4511-A4C1-E21372588DCB}.SingleImage|Any CPU.Build.0 = SingleImage
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{C312C86A-E73A-4507-A69C-91A2594F2BDF}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

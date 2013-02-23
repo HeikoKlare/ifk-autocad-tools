@@ -1,0 +1,2503 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AutoCAD Tools 2</name>
+    </assembly>
+    <members>
+        <member name="T:AutoCADTools.Management.ManageDetails">
+            <summary>
+            Represents a GUI to modify, add and manage annotations.
+            It can be navigated through categories and annotations, they can be modifed and added.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageDetails.connection">
+            <summary>
+            The Sql connection doing the connection stuff to the global database.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageDetails.detailCategoriesTable">
+            <summary>
+            The table containing the detail categories.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageDetails.detailsTable">
+            <summary>
+            The table containing the details.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.#ctor">
+            <summary>
+            Initates a new GUI for managing details and the needed database connection and data tables.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.DetailCategories_Refresh">
+            <summary>
+            Refreshes the detail categories table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen category is restored.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.Details_Refresh">
+            <summary>
+            Refreshes the details table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen annotation is restored if possible.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.AddDetail">
+            <summary>
+            Adds the current drawing with the input name as a new detail to the details table and updates the
+            global database.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.PrintPng(System.String)">
+            <summary>
+            Provides functionality for printing the current drawing as png to the specified file.
+            </summary>
+            <param name="file">the file to print to</param>
+            <returns>true if successfully printed, false if not</returns>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.ListDetails_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles changing the selection of a detail in the list.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.ButAdd_Click(System.Object,System.EventArgs)">
+            <summary>
+            Adds the current input data as a new detail to the details table and updates the
+            global database.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.ButRemove_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles removing the currently selected row and updates the global database.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.CmbAnnotationCategories_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Refreshes the annotations when the selected category changes.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.ButEditCategories_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the dialog to edit detail categories.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.PicPng_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Rotates the image on mouse clicks.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.ValidateFields">
+            <summary>
+            This method validates the data in this formular, especially the input project number,
+            which has to be not null and does not have to be already used.
+            </summary>
+            <returns>true if everything is okay, false otherweise</returns>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.TsiEditCategory_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles clicking the edit detail button in the context strip of the details list.
+            Opens a new dialog to change the data of the selected detail.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageDetails.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetails.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.ManageDetails.ThreadMethod">
+            <summary>
+            Delegate for parameterless thread method
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.ManageDetails.EditCategory">
+            <summary>
+            A GUI representing some elements for modifying a detail.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.ManageDetailCategories">
+            <summary>
+            Defines a GUI for managing detail categories
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageDetailCategories.connection">
+            <summary>
+            The SqlConnection object doing the server connection stuff.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageDetailCategories.detailCategoriesTable">
+            <summary>
+            The table containing the annotation categories.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.#ctor">
+            <summary>
+            Initiates a new GUI to manage employers.
+            Initializes the Sql connection and fills the table.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.ManageDetailCategories_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Asks user to save changes when closing the window.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.ButSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves changes in global database when clicking the Save-Button.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.ButDiscard_Click(System.Object,System.EventArgs)">
+            <summary>
+            Rejects the changes on the database when clicking the Reject-Button.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.ButUpdate_Click(System.Object,System.EventArgs)">
+            <summary>
+            Updates the local database by copying the global one.
+            Asks user to save changes first to prevent from data loss.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.DgEmployers_DataError(System.Object,System.Windows.Forms.DataGridViewDataErrorEventArgs)">
+            <summary>
+            Handles the data errors in the DataGridView and show a MessageBox to the user
+            describing what he did wrong.
+            </summary>
+            <param name="sender">the ssender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageDetailCategories.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageDetailCategories.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database">
+             <summary>
+            Represents a strongly typed in-memory cache of data.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.EmployerDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.ProjectDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.AnnotationCategoriesDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.AnnotationsDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.DetailCategoriesDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.DetailsDataTable">
+             <summary>
+            Represents the strongly named DataTable class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.EmployerRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.ProjectRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.AnnotationCategoriesRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.AnnotationsRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.DetailCategoriesRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.DetailsRow">
+             <summary>
+            Represents strongly named DataRow class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.EmployerRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.ProjectRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.AnnotationCategoriesRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.AnnotationsRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.DetailCategoriesRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Data.Database.DetailsRowChangeEvent">
+             <summary>
+            Row event argument class
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.LocalData">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.Cancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.Category">
+            <summary>
+              Looks up a localized string similar to Category.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.DataErrorMessage">
+            <summary>
+              Looks up a localized string similar to You made a mistake when changing data. This is the official description:.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.DataErrorTitle">
+            <summary>
+              Looks up a localized string similar to Input Error.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.Description">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.EditDetailTitle">
+            <summary>
+              Looks up a localized string similar to Edit Detail.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.Employer">
+            <summary>
+              Looks up a localized string similar to Employer.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.EmployerShort">
+            <summary>
+              Looks up a localized string similar to Logogram.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ErrorEmptyContent">
+            <summary>
+              Looks up a localized string similar to Content is empty.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ErrorEmptyName">
+            <summary>
+              Looks up a localized string similar to Name is empty.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ErrorEmptyProjectnumber">
+            <summary>
+              Looks up a localized string similar to Projectnumber cannot be empty.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ErrorNoNumber">
+            <summary>
+              Looks up a localized string similar to That is not a number.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ErrorUsedProjectnumber">
+            <summary>
+              Looks up a localized string similar to Projectnumber is already in use.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ModifyAdd">
+            <summary>
+              Looks up a localized string similar to Add.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ModifyEdit">
+            <summary>
+              Looks up a localized string similar to Edit.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.ModifySubmit">
+            <summary>
+              Looks up a localized string similar to Submit.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.Name">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.NoConnectionText">
+            <summary>
+              Looks up a localized string similar to There is no connection to the database possible. Check the settings and make sure the database server is running. Please skip the following error message..
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.NoConnectionTitle">
+            <summary>
+              Looks up a localized string similar to No Database Connection.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.OK">
+            <summary>
+              Looks up a localized string similar to OK.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.PlotRunningText">
+            <summary>
+              Looks up a localized string similar to There is still a plot running.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.PlotRunningTitle">
+            <summary>
+              Looks up a localized string similar to Plot Running.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.PNGPlotCreateLayout">
+            <summary>
+              Looks up a localized string similar to Layout is being created..
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.PNGPlotInitialize">
+            <summary>
+              Looks up a localized string similar to Plot is being initialized..
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.PNGPlotText">
+            <summary>
+              Looks up a localized string similar to PNG Preview is being plotted..
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.PNGPlotTitle">
+            <summary>
+              Looks up a localized string similar to Plotting PNG.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.PNGPlotWaiting">
+            <summary>
+              Looks up a localized string similar to Waiting for plot being finalized..
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.Projectnumber">
+            <summary>
+              Looks up a localized string similar to Projectnumber.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.SaveChangesQuestion">
+            <summary>
+              Looks up a localized string similar to Do you want to save changes?.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Management.LocalData.SaveChangesTitle">
+            <summary>
+              Looks up a localized string similar to Save changes.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.ManageAnnotationCategories">
+            <summary>
+            Defines a GUI for manging annotation categories.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageAnnotationCategories.connection">
+            <summary>
+            The SqlConnection object doing the server connection stuff.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageAnnotationCategories.annotationCategoriesTable">
+            <summary>
+            The table containing the annotation categories.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.#ctor">
+            <summary>
+            Initiates a new GUI to manage annotation categories.
+            Initializes the Sql connection and fills the table.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.ManageAnnotationCategories_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Asks user to save changes when closing the window.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.ButSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves changes in global database when clicking the Save-Button.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.ButDiscard_Click(System.Object,System.EventArgs)">
+            <summary>
+            Rejects the changes on the database when clicking the Reject-Button.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.ButUpdate_Click(System.Object,System.EventArgs)">
+            <summary>
+            Updates the local database by copying the global one.
+            Asks user to save changes first to prevent from data loss.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.DgEmployers_DataError(System.Object,System.Windows.Forms.DataGridViewDataErrorEventArgs)">
+            <summary>
+            Handles the data errors in the DataGridView and show a MessageBox to the user
+            describing what he did wrong.
+            </summary>
+            <param name="sender">the ssender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageAnnotationCategories.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageAnnotationCategories.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.Annotations">
+            <summary>
+            Represents a GUI to modify, add and manage annotations.
+            It can be navigated through categories and annotations, they can be modifed and added.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.Annotations.connection">
+            <summary>
+            The Sql connection doing the connection stuff to the global database.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.Annotations.annotationCategoriesTable">
+            <summary>
+            The table containing the annotation categories.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.Annotations.annotationsTable">
+            <summary>
+            The table containing the annotations.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.Annotations.state">
+            <summary>
+            A flag indicating in which state management is currently.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.Annotations.dataBound">
+            <summary>
+            A flag indicating if data are bound to the fields or not.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.#ctor">
+            <summary>
+            Initates a new GUI for managing projects and the needed database connection and data tables.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.AnnotationCategories_Refresh">
+            <summary>
+            Refreshes the annotation categories table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen category is restored.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.Annotations_Refresh">
+            <summary>
+            Refreshes the annotations table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen annotation is restored if possible.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.UpdateControlStates">
+            <summary>
+            Updates the control states depending on the current state of the management,
+            so there are just the right controls active.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ClearFields">
+            <summary>
+            Clears the content of each field.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.AddAnnotation">
+            <summary>
+            Adds the current input data as a new annotation to the annotations table and updates the
+            global database.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.UpdateDataBindings(System.Boolean)">
+            <summary>
+            Updates the data bindings depending on the current and previous selection.
+            </summary>
+            <param name="newSelection">defines a new annotation was selected</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ListAnnotations_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles changing the selection of a annotation in the list and updates the data bindings.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ButModify_Click(System.Object,System.EventArgs)">
+            <summary>
+            Adds the current input data as a new annotation to the annotations table and updates the
+            global database.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ButRemove_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles removing the currently selected row and updates the global database.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ButNew_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles clicking the "New" button to start inserting a new annotation.
+            The content of all fields is cleared.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ButUseForNew_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles clicking the "Use as new" button, which uses the data of the currently selected
+            annotation to define a new one.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ButEditAnnotationCategories_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the ManageAnnotationCategories dialog when clicking this button and refreshes the annotation categories
+            table and controls afterwards.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.CmbAnnotationCategories_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Refreshes the annotations when the selected category changes.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.TxtNameContent_Validating(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Calls the validate method of this formular when name or content have to be validated.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.TxtNameContent_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Calls the validate mathod of this formular when the name or content is changed.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.ValidateFields">
+            <summary>
+            This method validates the data in this formular, especially the input project number,
+            which has to be not null and does not have to be already used.
+            </summary>
+            <returns>true if everything is okay, false otherweise</returns>
+        </member>
+        <member name="F:AutoCADTools.Management.Annotations.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Annotations.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.Annotations.EditState">
+            <summary>
+            This enum represents the current state of this management GUI.
+            Is defines wheter a annotation is being "input", has a valid project number and so is "addable",
+            if a there is a "annotationSelected" or if the user is "editing" an alrady added project.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.ManageProjects">
+            <summary>
+            Represents a GUI to modify, add and manage projects.
+            There is an overview as well as a region to add new projects provided for the user.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageProjects.connection">
+            <summary>
+            The Sql connection doing the connection stuff to the global database.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageProjects.employersTable">
+            <summary>
+            The table containing the employers.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageProjects.projectsTable">
+            <summary>
+            The table containing the projects.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageProjects.state">
+            <summary>
+            A flag indicating in which state management is currently.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageProjects.dataBound">
+            <summary>
+            A flag indicating if data are bound to the fields or not.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.#ctor">
+            <summary>
+            Initates a new GUI for managing projects and the needed database connection and data tables.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.Employers_Refresh">
+            <summary>
+            Refreshes the employers table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen employer is restored.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.Projects_Refresh">
+            <summary>
+            Refreshed the projects table by getting recent updates from the global database
+            and updates the data bindings for an up-to.date GUI presentation.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.UpdateControlStates">
+            <summary>
+            Updates the control states depending on the current state of the management,
+            so there are just the right controls active.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ClearFields">
+            <summary>
+            Clears the content of each field.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.AddProject">
+            <summary>
+            Adds the current input data as a new project to the projects table and updates the
+            global database.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.UpdateDataBindings(System.Boolean)">
+            <summary>
+            Updates the data bindings depending on the current and previous selection.
+            </summary>
+            <param name="newSelection">defines a new project was selected</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ListProjects_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles changing the selection of a project in the list and updates the data bindings.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ButModify_Click(System.Object,System.EventArgs)">
+            <summary>
+            Adds the current input data as a new project to the projects table and updates the
+            global database.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ButRemove_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles removing the currently selected row and updates the global database
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ButNew_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles clicking the "New" button to start inserting a new project.
+            The content of all fields is cleared.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ButUseForNew_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles clicking the "Use as new" button, which uses the data of the currently selected
+            project except the projectnumber to define a new project.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ButEditEmployers_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the ManageEmployers dialog when clicking this button and refreshes the employers
+            table and controls afterwards.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.TxtNumber_Validating(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Calls the validate method of this formular when the project number has to be validated.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.TxtNumber_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Calls the validate mathod of this formular when the project number is changed.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.ValidateFields">
+            <summary>
+            This method validates the data in this formular, especially the input project number,
+            which has to be not null and does not have to be already used.
+            </summary>
+            <returns>true if everything is okay, false otherweise</returns>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageProjects.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageProjects.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.ManageProjects.EditState">
+            <summary>
+            This enum represents the current state of this management GUI.
+            Is defines wheter a project is being "input", has a valid project number and so is "addable",
+            if a there is a "projectSelected" or if the user is "editing" an alrady added project.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.UFLayoutErstellen">
+            <summary>
+            This class provides the window and methods to create a new layout.
+            There is the possibility to create simple layout or layouts with textfields basing on
+            the database and using existing drawing frames for the layout extends.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.#ctor">
+            <summary>
+            Initiates a new instance of the create layout class. It looks if the user is in modelspace and will
+            otherwise give a message and stop the command.
+            Initiates the components and loads the available printers.
+            Creating this form should just be enabled in ModelSpace, otherwise the results are probably nor as wanted.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.loadPrinters">
+            <summary>
+            Loads all available printers and their paperformats to use them for the dialog
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.BausschnittErstellen_Click(System.Object,System.EventArgs)">
+            <summary>
+            Command to manually create the extends of the wanted layout.
+            The user is asked to choose lower left extend and upper right extend.
+            </summary>
+            <param name="sender">the object sending the event to start the command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.AusschnittErkennen">
+            <summary>
+            Tries to automatically find the wanted extract for the layout.
+            Therefore the drawing area is used. If there is no drawing area created yet it is
+            created using the "ZeichenbereichAuto"-command.
+            </summary>
+            <returns>true if a drawing frame exists, false if not</returns>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.Berstellen_Click(System.Object,System.EventArgs)">
+            <summary>
+            Creates a new layout when clicking the "create" button.
+            This function just calls the "CreateLayout" method.
+            </summary>
+            <param name="sender">the object sending the event to start the command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CreateLayout">
+            <summary>
+            Creates the defined layout.
+            Given error messages if there are mistakes in the drawing unit, the scale, if no corners are defined,
+            if there is no layoutname or no paperformat and then will stop the command.
+            If the layout already exists a warning is given and asked to overwrite it.
+            </summary>
+            <returns>true if successfully created layout</returns>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CBconfig_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the change of the predefined config.
+            Sets data to the predefined settings.
+            </summary>
+            <param name="sender">the object sending the event to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.Breset_Click(System.Object,System.EventArgs)">
+            <summary>
+            Sets the defaults for the active config if its not custom.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+            <see cref="M:AutoCADTools.UFLayoutErstellen.CBconfig_SelectedIndexChanged(System.Object,System.EventArgs)"/>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CBkopf_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Disables the radio buttons for paper orientation of the textfield-button is checked.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CBexakterAusschnitt_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Disables the scale and drawing unit boxes if the exact extract button is checked.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CBdrucker_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Updates the available paperformats if the selected printer is changed.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CBpapierformat_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Updates the enabled boxes if the chosen paperformat is changed.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.NumberedTexBox_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Method validating the input for textboxes for numbered input.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.RBzeichenbereich_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the selection of drawing with manuel bounds or drawing area. Disables or enables several controls
+            and gets the drawing area if selected
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CBoptimiertePapierformate_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Actualizes the paperformats depending on optimized allowed or not
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.UFLayoutErstellen_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Closes the dialog on pressing the escape key.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.CreatePngLayout">
+            <summary>
+            Creates a layout to use for PNG.
+            </summary>
+            <returns>true if successfull</returns>
+        </member>
+        <member name="F:AutoCADTools.UFLayoutErstellen.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.UFLayoutErstellen.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.ManageEmployers">
+            <summary>
+            A GUI representing a DataGridView to modify and manage the employers database.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageEmployers.connection">
+            <summary>
+            The SqlConnection object doing the server connection stuff.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageEmployers.employersTable">
+            <summary>
+            The Table containing the employers.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.#ctor">
+            <summary>
+            Initiates a new GUI to manage employers.
+            Initializes the Sql connection and fills the table.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.ManageEmployers_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Asks user to save changes when closing the window.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.ButSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves changes in global database when clicking the Save-Button.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.ButDiscard_Click(System.Object,System.EventArgs)">
+            <summary>
+            Rejects the changes on the database when clicking the Reject-Button.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.ButUpdate_Click(System.Object,System.EventArgs)">
+            <summary>
+            Updates the local database by copying the global one.
+            Asks user to save changes first to prevent from data loss.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.DgEmployers_DataError(System.Object,System.Windows.Forms.DataGridViewDataErrorEventArgs)">
+            <summary>
+            Handles the data errors in the DataGridView and show a MessageBox to the user
+            describing what he did wrong.
+            </summary>
+            <param name="sender">the ssender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.Management.ManageEmployers.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Management.ManageEmployers.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Management.Settings">
+            <summary>
+            Provides a GUI for changing basic settings like for the database connection
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Settings.#ctor">
+            <summary>
+            Initializes the GUI and loads the data from the current application settings.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Settings.butSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            Saves the changes persistent to the application settings and closes the window.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Settings.butCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Closes the window without saving.
+            </summary>
+            <param name="sender">using</param>
+            <param name="e">using</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Settings.TxtPortValidate(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Validates the input port for being a number.
+            If there is no number input, the error provider is actived and leaving the field is averted.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">the event arguments for validation</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Settings.TxtTimeoutValidate(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            Validates the input timeout value for being a number.
+            If there is no number input, the error provider is actived and leaving the field is averted.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">the event arguments for validation</param>
+        </member>
+        <member name="F:AutoCADTools.Management.Settings.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Management.Settings.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Management.Settings.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.AnnotationsControl.connection">
+            <summary>
+            The Sql connection doing the connection stuff to the global database.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.AnnotationsControl.annotationCategoriesTable">
+            <summary>
+            The table containing the annotation categories.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.AnnotationsControl.annotationsTable">
+            <summary>
+            The table containing the annotations.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.AnnotationsControl.dataBound">
+            <summary>
+            A flag indicating if data are bound to the fields or not.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.#ctor">
+            <summary>
+            Initates a new GUI for managing projects and the needed database connection and data tables.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.AnnotationCategories_Refresh">
+            <summary>
+            Refreshes the annotation categories table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen category is restored.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.Annotations_Refresh">
+            <summary>
+            Refreshes the annotations table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen annotation is restored if possible.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.UpdateDataBindings(System.Boolean)">
+            <summary>
+            Updates the data bindings depending on the current and previous selection.
+            </summary>
+            <param name="newSelection">defines a new annotation was selected</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.ListAnnotations_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles changing the selection of a annotation in the list and updates the data bindings.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.CmbAnnotationCategories_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Refreshes the annotations when the selected category changes.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.butClipboard_Click(System.Object,System.EventArgs)">
+            <summary>
+            Copies the content of the currently selected annotation to the clipboard.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="F:AutoCADTools.Tools.AnnotationsControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.AnnotationsControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.#ctor">
+            <summary>
+            Inititates a new windows to create a bracing.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.butChangeGeometry_Click(System.Object,System.EventArgs)">
+            <summary>
+            Hides the window and asks the user to input the extends for the bracing.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.berechneMaße">
+            <summary>
+            Calculates length and width of the bracing and sets the text of the textboxes
+            for length, width and direction.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.butDraw_Click(System.Object,System.EventArgs)">
+            <summary>
+            Drawing the bracing based on the input data.
+            If the number of field or the points are not valid an error is shown and the command is stopped.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtEaveDistance_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Ensures that the input in Traufabstand and Firstabstand are just numbers
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.NumberedInput(System.Windows.Forms.KeyPressEventArgs,System.Boolean)">
+            <summary>
+            A numbered input validation.
+            If the input key is not a number or comma if allowed by parameter, the event is
+            marked as handled.
+            </summary>
+            <param name="e">the event arguments</param>
+            <param name="commaAllowed">tell if comma is allowed for input</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtEaveDistance_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the input value of Traufabstand to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtRidgeDistance_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the input value of Firstabstand to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtFieldCount_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the number of fields to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtPosition_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the position textbox to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.chkEndMember_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the checked state of the Enstäbe checkbox to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtFieldCount_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Validates the input for the number of fields for numbered input wihout commas.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtEaveDistance_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Sets the Traufabstand to 0.10 if the textbox is left and empty.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.txtRidgeDistance_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Sets the Firstabstand to 0.10 if the textbox is left and empty.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.Tools.BracingControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.BracingPanicleControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingPanicleControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.BracingPanicleControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.LocalData">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.DeleteDrawingAreaText">
+            <summary>
+              Looks up a localized string similar to On changing current drawing unit the current drawing frame will (if existing) be deleted. Continue?.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.DeleteDrawingAreaTitle">
+            <summary>
+              Looks up a localized string similar to Continue?.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.DrawingAreaUnitFirstText">
+            <summary>
+              Looks up a localized string similar to Bitte zuerst in den Zeichnungseigenschaften die Zeichnungseinheit festlegen. Jetzt festlegen?.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.DrawingAreaUnitFirstTitle">
+            <summary>
+              Looks up a localized string similar to No unit specified.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.EmptyDrawingSetting">
+            <summary>
+              Looks up a localized string similar to  .
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.Name">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.PanicleFirstPoint">
+            <summary>
+              Looks up a localized string similar to Specify first point.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.PanicleMissingDescriptionText">
+            <summary>
+              Looks up a localized string similar to Position or description is missing.\nContinue?.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.PanicleMissingDescriptionTitle">
+            <summary>
+              Looks up a localized string similar to Continue?.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.PanicleSecondPoint">
+            <summary>
+              Looks up a localized string similar to Specify second point.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.StandardPosition">
+            <summary>
+              Looks up a localized string similar to P1.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.StandardSegment">
+            <summary>
+              Looks up a localized string similar to Roof: Gangnail-Trusses.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.Details">
+            <summary>
+            Represents a GUI to modify, add and manage annotations.
+            It can be navigated through categories and annotations, they can be modifed and added.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.Details.connection">
+            <summary>
+            The Sql connection doing the connection stuff to the global database.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.Details.detailCategoriesTable">
+            <summary>
+            The table containing the detail categories.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.Details.detailsTable">
+            <summary>
+            The table containing the details.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.#ctor">
+            <summary>
+            Initates a new GUI for managing details and the needed database connection and data tables.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.DetailCategories_Refresh">
+            <summary>
+            Refreshes the detail categories table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen category is restored.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.Details_Refresh">
+            <summary>
+            Refreshes the details table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen annotation is restored if possible.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.ListDetails_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles changing the selection of a detail in the list.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.ButOpen_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the selected detail.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.CmbAnnotationCategories_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Refreshes the annotations when the selected category changes.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.PicPng_MouseClick(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Rotates the image on mouse clicks.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.Tools.Details.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Details.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.Annotations">
+            <summary>
+            Represents a GUI to modify, add and manage annotations.
+            It can be navigated through categories and annotations, they can be modifed and added.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.Annotations.connection">
+            <summary>
+            The Sql connection doing the connection stuff to the global database.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.Annotations.annotationCategoriesTable">
+            <summary>
+            The table containing the annotation categories.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.Annotations.annotationsTable">
+            <summary>
+            The table containing the annotations.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.Annotations.dataBound">
+            <summary>
+            A flag indicating if data are bound to the fields or not.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.#ctor">
+            <summary>
+            Initates a new GUI for managing projects and the needed database connection and data tables.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.AnnotationCategories_Refresh">
+            <summary>
+            Refreshes the annotation categories table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen category is restored.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.Annotations_Refresh">
+            <summary>
+            Refreshes the annotations table by getting recent updates from the global database
+            and updates the data bindings for an up-to-date GUI presentation.
+            Last chosen annotation is restored if possible.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.UpdateDataBindings(System.Boolean)">
+            <summary>
+            Updates the data bindings depending on the current and previous selection.
+            </summary>
+            <param name="newSelection">defines a new annotation was selected</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.ListAnnotations_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles changing the selection of a annotation in the list and updates the data bindings.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.CmbAnnotationCategories_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Refreshes the annotations when the selected category changes.
+            </summary>
+            <param name="sender">the sender invoking this method</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.butClipboard_Click(System.Object,System.EventArgs)">
+            <summary>
+            Copies the content of the currently selected annotation to the clipboard.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.butClose_Click(System.Object,System.EventArgs)">
+            <summary>
+            Closes this form.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.SetForegroundWindow(System.Int32)">
+            <summary>
+            This method provided by the COM-API allows to set the window with the given handle active
+            </summary>
+            <param name="hWnd">the handle of the window to set active</param>
+            <returns>something</returns>
+        </member>
+        <member name="F:AutoCADTools.Tools.Annotations.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Annotations.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.PanicleControl.#ctor">
+            <summary>
+            UFRispe is the UserForm for creating a Rispe that lets the user input a position number and a description which is
+            automatically added to the line of the Rispe.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.PanicleControl.butCreate_Click(System.Object,System.EventArgs)">
+            <summary>
+            Starts creating Rispen based on the made inputs.
+            Asks the user to define start and endpoint for each Rispe.
+            After drawing one, pressing enter lets it start at the last endpoint.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.PanicleControl.Panicle_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Handles the escape and enter keypress to exit the window or start drawing Rispen.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.Tools.PanicleControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.PanicleControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.PanicleControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Utils.UFProgress">
+            <summary>
+            A class representing a progress bar especially for creating a detail.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.#ctor">
+            <summary>
+            A progress bar especially for creating a detail.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.setProgress(System.Int32)">
+            <summary>
+            Sets the progress to the given value from 0 to 100.
+            If the value is higher or lower than allowed it is set to minumum or maximum.
+            </summary>
+            <param name="progress">the progress value between 0 and 100</param>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.setMain(System.String)">
+            <summary>
+            Sets the main text of the progress window.
+            </summary>
+            <param name="text">the text to set</param>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.setDescription(System.String)">
+            <summary>
+            Sets the description text of the progress window.
+            </summary>
+            <param name="text">the text to set</param>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.setName(System.String)">
+            <summary>
+            Sets the name of the progress window
+            </summary>
+            <param name="text">the text to set</param>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.UFProgress_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Provides user from closing this window.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.Utils.UFProgress.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Utils.UFProgress.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.UfTrussConImport">
+            <summary>
+            This class provides the graphical user interface and the functions to import a TrussCon- or MiTeK- Truss-Drawing
+            to the currently open drawing.
+            The rotation and the layers to import can be selected
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.UfTrussConImport.LAYER_WOOD">
+            <summary>
+            The name of the layers in the imported drawing.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.#ctor">
+            <summary>
+            Initializes the graphical user interface for the TrussCon-Truss-Drawing import function
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.CbSuchenClick(System.Object,System.EventArgs)">
+            <summary>
+            Opens a dialog to select the file to import the truss from.
+            </summary>
+            <param name="sender">the object sending invoke to execute this function</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.CbImportierenClick(System.Object,System.EventArgs)">
+            <summary>
+            Imports the objects on the selected layers of the specified drawing to the currently opened drawing.
+            The user is asked to place the imported objects.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.UFTrussConImport_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Handles the escape and enter keypress to exit the window or start drawing Rispen.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.UfTrussConImport.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.UfTrussConImport.BlockJig">
+            <summary>
+            This is a Jig helper class.
+            This can be used to select the position or in case of format bigger than A3 the size of the
+            drawing frame to create.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.BlockJig.#ctor(Autodesk.AutoCAD.DatabaseServices.BlockReference)">
+            <summary>
+            Initiates a new BlockJig for the given BlockReference.
+            </summary>
+            <param name="br">the BlockReference to be positioned (and sized)</param>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.BlockJig.Sampler(Autodesk.AutoCAD.EditorInput.JigPrompts)">
+            <summary>
+            Samples the current jig status.
+            Therefore the user is asked to input insertion point or size and the current mouse
+            position and user inputs are analyzed to update the BlockReference and see wheter the
+            input has ended.
+            </summary>
+            <param name="prompts">the JigPrompts to use</param>
+            <returns>the current SamplerStatus, will be NoChange or OK</returns>
+        </member>
+        <member name="M:AutoCADTools.UfTrussConImport.BlockJig.Update">
+            <summary>
+            Updates this BlockJig.
+            Changes the insertionPoint or the position of the polyline-vertices according to the
+            current user input.
+            </summary>
+            <returns>true if everything is okay</returns>
+        </member>
+        <member name="T:AutoCADTools.AcadTools">
+            <summary>
+            The class Tools handles all the commands that are added to AutoCAD by this library.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.AcadTools.fileToOpen">
+            <summary>
+            A string used as transfer for creating details
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.Settings">
+            <summary>
+            Opens a dialog for changing settings especially on database.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ManageEmployers">
+            <summary>
+            Opens a dialog for managing employers.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ManageProjects">
+            <summary>
+            Opens a dialog for managing projects and employers.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ManageAnnotationCategories">
+            <summary>
+            Opens a dialog for managing annotation categories.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ManageAnnotations">
+            <summary>
+            Opens a dialog for managing annotations.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ManageDetailCategories">
+            <summary>
+            Opens a dialog for managing detail categories.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ManageDetails">
+            <summary>
+            Opens a dialog for managing details.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.Details">
+            <summary>
+            Opens a dialog for opening details.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.Annotations">
+            <summary>
+            Opens a dialog for using annotations.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.DrawingSettings">
+            <summary>
+            DrawingSettings opens a UserForm to edit the drawing properties for the active document.
+            These information are used for the textfields of layouts.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.NeueRispe">
+            <summary>
+            NeueRispe is a command to create a new Rispe in the drawing. It opens a UserForm to input a position 
+            number and description and then lets the user draw Rispen by selecting start and end point. Pressing 
+            RETURN after drawing one Rispe lets the next one begin at the end of the old one.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.VerbandErstellen">
+            <summary>
+            VerbandErstellen is a command to create a new bracing. It opend a UserForm to input the needed data and
+            define the extends.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.LayoutErstellen">
+            <summary>
+            LayoutErstellen opens a UserForm with options and methods to define a new layout. There is the
+            possibility to create simple layouts or layouts with textfields and borders using the data
+            of the drawing properties.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.TrussImport">
+            <summary>
+            TrussImport opens a dialog to select a file and some layers to import to the current document.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.DrawingAreaA4Portrait">
+            <summary>
+            ZeichenbereichA4Hochformat allows to insert a vertical A4 layout in meter-units at a user defined
+            position.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.DrawingAreaA4Landscape">
+            <summary>
+            ZeichenbereichA4Querformat allows to insert a horizontal A4 layout in meter-units at a user defined
+            position.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.DrawingAreaA3">
+            <summary>
+            ZeichenbereichA3 allows to insert a A3 layout in meter-units at a user defined position.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.DrawingAreaCustom">
+            <summary>
+            ZeichenbereichCustom allows to manually create a drawing frame. First the input position is defined
+            and then the size has to be set interactively. Minumum sizes for the drawing frame are
+            automatically applied.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.DrawingAreaAuto">
+            <summary>
+            ZeichenbereichAuto tries to automatically create a drawing frame by analyzing the object currently
+            in the docuemnt's database and calculating their extends.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ModifyDrawingAreaSize">
+            <summary>
+            Allows the user to modify the current drawing area.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.AcadTools.ClearProperties">
+            <summary>
+            Hidden command. Resets all properties to an almost empty string (just contains a whitespace)
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.AcadTools.FileToOpen">
+            <summary>
+            A string used as transfer for creating details
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.DrawingArea">
+            <summary>
+            This class provides methods to create drawing areas for different formats.
+            There are also methods to draw a custom drawing area which take care of the
+            minumum extends of possible drawing areas and there is a method for automatically
+            creating a drawing frame.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.NAME">
+            <summary>
+            The drawing area's name
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CA4">
+            <summary>
+            The constant for format A4
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CA3">
+            <summary>
+            The constant for format A3
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CAX">
+            <summary>
+            The constant for formats bigger than A3
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CAMAX">
+            <summary>
+            The constant for the maximum paper format
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CHORIZONTAL">
+            <summary>
+            The constant for horizontal paperformat
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CVERTICAL">
+            <summary>
+            The constant for vertical paperformat
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CWIDTH">
+            <summary>
+            The constant for the width
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.CHEIGHT">
+            <summary>
+            The constant for the height
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.formats">
+            <summary>
+            An array for the paper formats: first dimension: format as CA4, CA3, CAX, CAMAX, sexond dimension: height and width as CWIDTH, CHEIGHT
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.userDefined">
+            <summary>
+            Indicator if the format is userdefined
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.scale">
+            <summary>
+            The scale depending on annotation scale and the paperunit
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.lineId">
+            <summary>
+            The saved ID for the line of the drawing frame block
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.drawingAreaId">
+            <summary>
+            The saved ID of the drawing frame
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingArea.drawingAreaFormatDir">
+            <summary>
+            The saved format and direction of the current drawing frame; it is the sum of the format and direction constant
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.CalculateScale">
+            <summary>
+            Calculates the scale based on annotation scale and unit and saves it to the static variable
+            </summary>
+            <returns>true, if successfully calculated scale</returns>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.Find">
+            <summary>
+            Finds the current drawing frame (if existing) and saves its ID, format and direction to the veriabled zeichenbereichID and zeichenbereichFormatDir.
+            The result value indicates if there was a drawing area found
+            <returns>true, if there was a drawing area found, false otherwise</returns>
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.CreateAuto">
+            <summary>
+            This methods tries to automatically draw a frame by analyzing the objects that are
+            already in the current drawing and calculating their maximum extends.
+            If there are no objects in the current drawing a message is given to the user.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.Create(System.Int32,System.Int32)">
+            <summary>
+            This method creates a drawing frame of the given format and orientation, whereas the given format
+            must be one of the constant CA4, CA3, CAX. To allow the user to select the insertion point or the
+            extends in case of format bigger than A3, the helper class BlockJig is used.
+            </summary>
+            <param name="format">the format the new drawing frame shell be of</param>
+            <param name="direction">the direction of the drawing frame that shell be created</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.Draw(System.Int32,System.Int32)">
+            <summary>
+            Creates a new block definition using of given format and given orientation.
+            There is no block reference added to modelspace, just the block "Zeichenbereich" is defined.
+            </summary>
+            <param name="format">the format the new drawing frame shell be of</param>
+            <param name="direction">the direction the new drawing frame shell have</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.Delete">
+            <summary>
+            Deletes the current drawing frame.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.Exists">
+            <summary>
+            Returns true if the current drawing has a drawing frame, false if not
+            </summary>
+            <returns>true if the current drawing has a drawing frame, false if not</returns>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.ModifySize">
+            <summary>
+            This function allows the user to change the size of the current drawing area using a jig.
+            If there is no drawing area, nothing is done.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.DrawingArea.Scale">
+            <summary>
+            The scale depending on annotation scale and paperunit
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.DrawingArea.DrawingAreaId">
+            <summary>
+            Getter/Setter access to the saved ID for the drawing frame
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.DrawingArea.DrawingAreaFormatDir">
+            <summary>
+            Getter/Setter access to the saved format and direction of the current drawing frame; it is the sum of the format and direction constant
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.DrawingArea.BlockJig">
+            <summary>
+            This is a Jig helper class.
+            This can be used to select the position or in case of format bigger than A3 the size of the
+            drawing frame to create.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.BlockJig.#ctor(Autodesk.AutoCAD.DatabaseServices.BlockReference)">
+            <summary>
+            Initiates a new BlockJig for the given BlockReference.
+            </summary>
+            <param name="br">the BlockReference to be positioned (and sized)</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.BlockJig.Sampler(Autodesk.AutoCAD.EditorInput.JigPrompts)">
+            <summary>
+            Samples the current jig status.
+            Therefore the user is asked to input insertion point or size and the current mouse
+            position and user inputs are analyzed to update the BlockReference and see wheter the
+            input has ended.
+            </summary>
+            <param name="prompts">the JigPrompts to use</param>
+            <returns>the current SamplerStatus, will be NoChange or OK</returns>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingArea.BlockJig.Update">
+            <summary>
+            Updates this BlockJig.
+            Changes the insertionPoint or the position of the polyline-vertices according to the
+            current user input.
+            </summary>
+            <returns>true if everything is okay</returns>
+        </member>
+        <member name="P:AutoCADTools.Tools.DrawingArea.BlockJig.Counter">
+            <summary>
+            The counter of the current run of the jig
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.DrawingSettings">
+            <summary>
+            This class creates a window to edit the drawing properties of the current document.
+            Projects and employers from the database can be loaded. The data input in this windows
+            are stored in the current document and are used to fill the textfields of the layouts.
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.fields">
+            <summary>
+            The fields saved in the drawing's settings
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.markedUnit">
+            <summary>
+            Saves the marked drawing unit
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.connection">
+            <summary>
+            The sql connection object
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.connected">
+            <summary>
+            A flag indicating if there is a server connection or not
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.projectsTable">
+            <summary>
+            The table containing the project data
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.employersTable">
+            <summary>
+            The table containing the employers data
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.closeByProjects">
+            <summary>
+            Indicated if closing is caused by causing child window "projects" to avoid closing this window
+            </summary>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.updating">
+            <summary>
+            Indicates wheter data are currently updated from database to prevent from overriding data
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.#ctor">
+            <summary>
+            Initiates a new window to edit the drawing properties.
+            The information added here are used in the textfields for the layouts.
+            Projects and employers are loaded from the database.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.UpdateConnectedDate">
+            <summary>
+            Updates the data by calling current information from database.
+            If there is no database connection nothing is done
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.butOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            If the OK-button is clicked, empty textboxes are filled with whitespace to prevent
+            textfields showing "---" and the data are stored in the SummaryInfo of the active document.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.butCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            Exits the dialog when pressing the Cancel-button.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.butEditProjects_Click(System.Object,System.EventArgs)">
+            <summary>
+            Opens the manegement to edit the projects.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.cmbProjects_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            If a project is chosen in the ComboBox the data of this project are loaded
+            and put into the fields for the drawing properties.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.Unit_Click(System.Object,System.EventArgs)">
+            <summary>
+            Handles the click on one of the radio buttons for the drawing unit.
+            If the click changes the sleection a messageBox is shown which asks the user to go on,
+            because then the current drawing frame (if existing) will be deleted.
+            </summary>
+            <param name="sender">the radio button being clicked</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.butStandard_Click(System.Object,System.EventArgs)">
+            <summary>
+            Resets segment and position to standard values.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.chkChanged1Active_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Removes the texts if the change annotation is deactivated or selects the first person if it is activated.
+            Also the fields are enabled.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.chkChanged2Active_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Removes the texts if the change annotation is deactivated or selects the first person if it is activated.
+            Also the fields are enabled
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.chkDate_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Enabled the creation date field depending on the appendant check box.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.DrawingSettings_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            Handles closing this form. If there were the projects opened an unkown failure
+            causes this form to close. This is interrupted.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">the event arguments of the closing event</param>
+        </member>
+        <member name="F:AutoCADTools.Tools.DrawingSettings.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.DrawingSettings.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.UFVerband">
+            <summary>
+            This class provides windows and methods to create a new bracing.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.#ctor">
+            <summary>
+            Inititates a new windows to create a bracing.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.Baendern_Click(System.Object,System.EventArgs)">
+            <summary>
+            Hides the window and asks the user to input the extends for the bracing.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.berechneMaße">
+            <summary>
+            Calculates length and width of the bracing and sets the text of the textboxes
+            for length, width and direction.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.Bzeichnen_Click(System.Object,System.EventArgs)">
+            <summary>
+            Drawing the bracing based on the input data.
+            If the number of field or the points are not valid an error is shown and the command is stopped.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBtraufabstand_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Ensures that the input in Traufabstand and Firstabstand are just numbers
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.NumberedInput(System.Windows.Forms.KeyPressEventArgs,System.Boolean)">
+            <summary>
+            A numbered input validation.
+            If the input key is not a number or comma if allowed by parameter, the event is
+            marked as handled.
+            </summary>
+            <param name="e">the event arguments</param>
+            <param name="commaAllowed">tell if comma is allowed for input</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBtraufabstand_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the input value of Traufabstand to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBfirstabstand_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the input value of Firstabstand to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBfeldzahl_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the number of fields to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBposition_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the position textbox to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.CBendstab_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Saves the checked state of the Enstäbe checkbox to a persistent variable.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBfeldzahl_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Validates the input for the number of fields for numbered input wihout commas.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBtraufabstand_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Sets the Traufabstand to 0.10 if the textbox is left and empty.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.TBfirstabstand_Leave(System.Object,System.EventArgs)">
+            <summary>
+            Sets the Firstabstand to 0.10 if the textbox is left and empty.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.UFVerband_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Closes the dialog on pressing the escape key.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="F:AutoCADTools.UFVerband.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:AutoCADTools.UFVerband.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.Panicle">
+            <summary>
+            UFRispe is the class that handles the UserForm and the progress of drawing Rispen in a drawing.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.#ctor">
+            <summary>
+            UFRispe is the UserForm for creating a Rispe that lets the user input a position number and a description which is
+            automatically added to the line of the Rispe.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.butCreate_Click(System.Object,System.EventArgs)">
+            <summary>
+            Starts creating Rispen based on the made inputs.
+            Asks the user to define start and endpoint for each Rispe.
+            After drawing one, pressing enter lets it start at the last endpoint.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.Panicle_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
+            <summary>
+            Handles the escape and enter keypress to exit the window or start drawing Rispen.
+            </summary>
+            <param name="sender">the object sending invoke to start this command</param>
+            <param name="e">the event arguments</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.chkDouble_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles clicking on the "Double Panicle" button, so the "Horizontal/Vertical" Option is enabled.
+            </summary>
+            <param name="sender">unused</param>
+            <param name="e">unused</param>
+        </member>
+        <member name="F:AutoCADTools.Tools.Panicle.components">
+            <summary>
+            Erforderliche Designervariable.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.Dispose(System.Boolean)">
+            <summary>
+            Verwendete Ressourcen bereinigen.
+            </summary>
+            <param name="disposing">True, wenn verwaltete Ressourcen gelöscht werden sollen; andernfalls False.</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.InitializeComponent">
+            <summary>
+            Erforderliche Methode für die Designerunterstützung.
+            Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+            </summary>
+        </member>
+    </members>
+</doc>
