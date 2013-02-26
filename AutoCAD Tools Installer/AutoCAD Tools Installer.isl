@@ -263,11 +263,9 @@
 		<row><td>NewBinary16</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallFirstUse.ico</td></row>
 		<row><td>NewBinary17</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallPartial.ico</td></row>
 		<row><td>NewBinary18</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\InstallStateMenu.ico</td></row>
-		<row><td>NewBinary19</td><td/><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\AutoCAD Tools Installer\CloseAutoCAD.exe</td></row>
+		<row><td>NewBinary19</td><td/><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\AutoCAD Tools Installer\CloseAutoCAD.exe</td></row>
 		<row><td>NewBinary2</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\New.ibd</td></row>
-		<row><td>NewBinary20</td><td/><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\AutoCAD Tools Installer\CloseAutoCAD.exe</td></row>
-		<row><td>NewBinary21</td><td/><td>D:\Programmierung\Visual Studio\AutoCAD Tools\CloseAutoCAD\bin\Release\CloseAutoCAD.exe</td></row>
-		<row><td>NewBinary22</td><td/><td>D:\Programmierung\Visual Studio\AutoCAD Tools\CloseAutoCAD\bin\Release\CloseAutoCAD.exe</td></row>
+		<row><td>NewBinary20</td><td/><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\AutoCAD Tools Installer\CloseAutoCAD.exe</td></row>
 		<row><td>NewBinary3</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\Up.ibd</td></row>
 		<row><td>NewBinary4</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\WarningIcon.ibd</td></row>
 		<row><td>NewBinary5</td><td/><td>&lt;ISProductFolder&gt;\Support\Themes\InstallShield Blue Theme\welcome.jpg</td></row>
@@ -1097,8 +1095,8 @@
 		<col def="S0">Target</col>
 		<col def="I4">ExtendedType</col>
 		<col def="S255">ISComments</col>
-		<row><td>CloseAutoCADInst</td><td>2</td><td>NewBinary21</td><td/><td/><td/></row>
-		<row><td>CloseAutoCADMain</td><td>2</td><td>NewBinary22</td><td/><td/><td/></row>
+		<row><td>CloseAutoCADInst</td><td>2</td><td>NewBinary19</td><td/><td/><td/></row>
+		<row><td>CloseAutoCADMain</td><td>2</td><td>NewBinary20</td><td/><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
 		<row><td>ISRunSetupTypeAddLocalEvent</td><td>1</td><td>ISExpHlp.dll</td><td>RunSetupTypeAddLocalEvent</td><td/><td>Run the AddLocal events associated with the Next button on the Setup Type dialog.</td></row>
@@ -1202,6 +1200,7 @@
 		<row><td>NEW_DIRECTORY1</td><td>TARGETDIR</td><td>NEW_DIRECTORY1</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY2</td><td>TARGETDIR</td><td>NEW_DIRECTORY2</td><td/><td>0</td><td/></row>
 		<row><td>NEW_DIRECTORY3</td><td>TARGETDIR</td><td>NEW_DIRECTORY3</td><td/><td>0</td><td/></row>
+		<row><td>NEW_DIRECTORY4</td><td>TARGETDIR</td><td>NEW_DIRECTORY4</td><td/><td>0</td><td/></row>
 		<row><td>NetHoodFolder</td><td>TARGETDIR</td><td>.:NetHood</td><td/><td>0</td><td/></row>
 		<row><td>PLOTTERS</td><td>DEU</td><td>Plotters</td><td/><td>0</td><td/></row>
 		<row><td>PMP_FILES</td><td>PLOTTERS</td><td>PMPFIL~1|PMP Files</td><td/><td>0</td><td/></row>
@@ -1953,26 +1952,26 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>a3.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A3.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\A3.bmp</td><td>1</td><td/></row>
-		<row><td>a4h.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A4H.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\A4H.bmp</td><td>1</td><td/></row>
-		<row><td>a4q.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A4Q.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\A4Q.bmp</td><td>1</td><td/></row>
-		<row><td>a_.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A_F360~1.BMP|A+.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\A+.bmp</td><td>1</td><td/></row>
-		<row><td>a__klein.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A_KLEI~1.BMP|A+ klein.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\A+ klein.bmp</td><td>1</td><td/></row>
-		<row><td>auto.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Auto.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\Auto.bmp</td><td>1</td><td/></row>
+		<row><td>a3.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A3.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\A3.bmp</td><td>1</td><td/></row>
+		<row><td>a4h.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A4H.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\A4H.bmp</td><td>1</td><td/></row>
+		<row><td>a4q.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A4Q.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\A4Q.bmp</td><td>1</td><td/></row>
+		<row><td>a_.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A_F360~1.BMP|A+.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\A+.bmp</td><td>1</td><td/></row>
+		<row><td>a__klein.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>A_KLEI~1.BMP|A+ klein.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\A+ klein.bmp</td><td>1</td><td/></row>
+		<row><td>auto.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Auto.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Auto.bmp</td><td>1</td><td/></row>
 		<row><td>autocad_tools.localized_reso</td><td>AutoCAD_Tools.Localized_resources</td><td>AutoCAD Tools.Localized resources</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AutoCAD Tools&gt;|LocalizedResourceDlls</td><td>3</td><td/></row>
 		<row><td>autocad_tools.primary_output</td><td>AutoCAD_Tools.Primary_output</td><td>AutoCAD Tools.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AutoCAD Tools&gt;|Built</td><td>3</td><td/></row>
-		<row><td>binder.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Binder.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\Binder.bmp</td><td>1</td><td/></row>
-		<row><td>ifk.cuix</td><td>ISX_DEFAULTCOMPONENT6</td><td>IFK~1.CUI|ifk.cuix</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Support\ifk.cuix</td><td>1</td><td/></row>
-		<row><td>ifk.dwt</td><td>ISX_DEFAULTCOMPONENT16</td><td>ifk.dwt</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Local\ifk.dwt</td><td>1</td><td/></row>
-		<row><td>konica.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>Konica.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Plotters\Konica.pc3</td><td>1</td><td/></row>
-		<row><td>konica.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>Konica.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\Konica.pmp</td><td>1</td><td/></row>
-		<row><td>layout.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Layout.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\Layout.bmp</td><td>1</td><td/></row>
-		<row><td>plotter.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>Plotter.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Plotters\Plotter.pc3</td><td>1</td><td/></row>
-		<row><td>plotter.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>Plotter.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\Plotter.pmp</td><td>1</td><td/></row>
-		<row><td>png.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>PNG.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Plotters\PNG.pc3</td><td>1</td><td/></row>
-		<row><td>png.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>PNG.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\PNG.pmp</td><td>1</td><td/></row>
-		<row><td>rispe.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Rispe.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\Rispe.bmp</td><td>1</td><td/></row>
-		<row><td>verband.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Verband.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools Installer\Data\Roaming\Icons\Verband.bmp</td><td>1</td><td/></row>
+		<row><td>binder.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Binder.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Binder.bmp</td><td>1</td><td/></row>
+		<row><td>ifk.cuix</td><td>ISX_DEFAULTCOMPONENT6</td><td>IFK~1.CUI|ifk.cuix</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Support\ifk.cuix</td><td>1</td><td/></row>
+		<row><td>ifk.dwt</td><td>ISX_DEFAULTCOMPONENT16</td><td>ifk.dwt</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Local\ifk.dwt</td><td>1</td><td/></row>
+		<row><td>konica.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>Konica.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\Konica.pc3</td><td>1</td><td/></row>
+		<row><td>konica.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>Konica.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\Konica.pmp</td><td>1</td><td/></row>
+		<row><td>layout.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Layout.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Layout.bmp</td><td>1</td><td/></row>
+		<row><td>plotter.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>Plotter.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\Plotter.pc3</td><td>1</td><td/></row>
+		<row><td>plotter.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>Plotter.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\Plotter.pmp</td><td>1</td><td/></row>
+		<row><td>png.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>PNG.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\PNG.pc3</td><td>1</td><td/></row>
+		<row><td>png.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>PNG.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\PNG.pmp</td><td>1</td><td/></row>
+		<row><td>rispe.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Rispe.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Rispe.bmp</td><td>1</td><td/></row>
+		<row><td>verband.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Verband.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Verband.bmp</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -4087,7 +4086,7 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
-		<row><td>ARPPRODUCTICON.exe</td><td/><td>D:\Programmierung\Visual Studio\AutoCAD Tools\AutoCAD Tools\Resources\IFK.ico</td><td>0</td></row>
+		<row><td>ARPPRODUCTICON.exe</td><td/><td>C:\Programmierung\AutoCadTools\AutoCAD Tools\Resources\IFK.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4221,7 +4220,7 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{409573E8-9D74-483C-8D87-E49EC52F24E1}</td></row>
 		<row><td>ISUSSignature</td><td>{60265944-727C-4BCA-94EE-7A5BCDE2A4E5}</td></row>
-		<row><td>ISVisitedViews</td><td>viewProject,viewISToday,viewAssistant,viewUI,viewUpdateService,viewUpgradePaths,viewRealSetupDesign,viewShortcuts,viewRegistry,viewIniFiles,viewFileExtensions,viewEnvironmentVariables,viewVRoots,viewAppFiles,viewObjects,viewDependencies,viewSystemSearch,viewCustomActions,viewRelease,viewTextMessages</td></row>
+		<row><td>ISVisitedViews</td><td>viewProject,viewISToday,viewAssistant,viewUI,viewUpdateService,viewUpgradePaths,viewRealSetupDesign,viewShortcuts,viewRegistry,viewIniFiles,viewFileExtensions,viewEnvironmentVariables,viewVRoots,viewAppFiles,viewObjects,viewDependencies,viewSystemSearch,viewCustomActions,viewRelease,viewTextMessages,viewSupportFiles</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4247,8 +4246,8 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<col def="I4">ISAttributes</col>
 		<row><td>AppSearch</td><td/><td>400</td><td>AppSearch</td><td/></row>
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
-		<row><td>CloseAutoCADInst</td><td>Not Installed</td><td>1209</td><td/><td/></row>
-		<row><td>CloseAutoCADMain</td><td>Installed</td><td>1208</td><td/><td/></row>
+		<row><td>CloseAutoCADInst</td><td>Not Installed</td><td>1208</td><td/><td/></row>
+		<row><td>CloseAutoCADMain</td><td>Installed</td><td>1209</td><td/><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
 		<row><td>ExecuteAction</td><td/><td>1300</td><td>ExecuteAction</td><td/></row>
@@ -4256,7 +4255,7 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>FindRelatedProducts</td><td/><td>430</td><td>FindRelatedProducts</td><td/></row>
 		<row><td>ISPreventDowngrade</td><td>ISFOUNDNEWERPRODUCTVERSION</td><td>450</td><td>ISPreventDowngrade</td><td/></row>
 		<row><td>ISSetAllUsers</td><td>Not Installed</td><td>10</td><td/><td/></row>
-		<row><td>InstallWelcome</td><td>Not Installed</td><td>1210</td><td>InstallWelcome</td><td/></row>
+		<row><td>InstallWelcome</td><td>Not Installed</td><td>1211</td><td>InstallWelcome</td><td/></row>
 		<row><td>IsolateComponents</td><td/><td>950</td><td>IsolateComponents</td><td/></row>
 		<row><td>LaunchConditions</td><td>Not Installed</td><td>410</td><td>LaunchConditions</td><td/></row>
 		<row><td>MaintenanceWelcome</td><td>Installed And Not RESUME And Not Preselected And Not PATCH</td><td>1230</td><td>MaintenanceWelcome</td><td/></row>
