@@ -363,6 +363,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT7</td><td>{82A83670-F61E-4AE5-BC87-92979D624921}</td><td>PMP_FILES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT8</td><td>{18AEF54F-AEEB-4168-A7CF-FC9EA0766189}</td><td>ICONS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT9</td><td>{6DF64F5B-8A4B-42AA-AFBC-5DC34D88C8D8}</td><td>LocalAppDataFolder</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>MySql.Data.dll</td><td>{6002350F-1C76-428B-A01B-C2B66AE0CA2E}</td><td>INSTALLDIR</td><td>2</td><td/><td>mysql.data.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1938,6 +1939,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT7</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT8</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT9</td></row>
+		<row><td>AlwaysInstall</td><td>MySql.Data.dll</td></row>
 	</table>
 
 	<table name="File">
@@ -1966,6 +1968,7 @@
 		<row><td>konica.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>Konica.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\Konica.pc3</td><td>1</td><td/></row>
 		<row><td>konica.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>Konica.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\Konica.pmp</td><td>1</td><td/></row>
 		<row><td>layout.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Layout.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Layout.bmp</td><td>1</td><td/></row>
+		<row><td>mysql.data.dll</td><td>MySql.Data.dll</td><td>MYSQLD~1.DLL|MySql.Data.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\MySql.Data.dll</td><td>1</td><td/></row>
 		<row><td>plotter.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>Plotter.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\Plotter.pc3</td><td>1</td><td/></row>
 		<row><td>plotter.pmp</td><td>ISX_DEFAULTCOMPONENT7</td><td>Plotter.pmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\PMP Files\Plotter.pmp</td><td>1</td><td/></row>
 		<row><td>png.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>PNG.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\PNG.pc3</td><td>1</td><td/></row>
@@ -2250,6 +2253,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT7</td><td/><td/><td>_2A238C53_D665_4C69_BD40_EC67BEA8A032_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT8</td><td/><td/><td>_F47AA599_5AC8_4C49_B728_4C6B98FD52D6_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT9</td><td/><td/><td>_01B96DC7_6264_4F3A_8DF1_B5F667634410_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>MySql.Data.dll</td><td/><td/><td>_FC3EBEF2_2768_437D_A48B_85F52AB26100_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
