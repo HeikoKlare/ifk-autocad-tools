@@ -2,3 +2,5 @@ Rispen: Mindestabstand falls sehr klein
 Tools für: 
 - Laufendes Maß
 - Verbände in Schnitt
+
+Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
