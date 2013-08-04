@@ -4,4 +4,8 @@ Tools für:
 - Verbände in Schnitt
 - Druckhölzer (mit Drehung)
 
+Drittelspunkte Rispen (keine gleichen Start-/Endpunkte
+Layer Import
+Länge Bezeichnung Zeichnungseigenschaften
+
 Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
