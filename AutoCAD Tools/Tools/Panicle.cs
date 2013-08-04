@@ -105,10 +105,10 @@ namespace AutoCADTools.Tools
                         OpenMode.ForWrite) as BlockTableRecord;
 
                     // Look if block definition for current position text length exists
-                    if (!acBlkTbl.Has(BLOCK_PREFIX + pos.Length.ToString()))
+                    if (!acBlkTbl.Has(BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()))
                     {
                         BlockTableRecord textBlockTable = new BlockTableRecord();
-                        textBlockTable.Name = BLOCK_PREFIX + pos.Length.ToString();
+                        textBlockTable.Name = BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString();
                         acBlkTbl.UpgradeOpen();
                         acBlkTbl.Add(textBlockTable);
                         acTrans.AddNewlyCreatedDBObject(textBlockTable, true);
@@ -192,13 +192,13 @@ namespace AutoCADTools.Tools
                     // Add reference to model space and align it
                     BlockTableRecord ms = (BlockTableRecord)acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
                     BlockReference textRef = new BlockReference(new Point3d(line.StartPoint.X + Math.Cos(line.Angle) * (line.Length / 8.0),
-                                        line.StartPoint.Y + Math.Sin(line.Angle) * (line.Length / 8.0), 0), acBlkTbl[BLOCK_PREFIX + pos.Length]);
+                                        line.StartPoint.Y + Math.Sin(line.Angle) * (line.Length / 8.0), 0), acBlkTbl[BLOCK_PREFIX + pos.Length + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()]);
                     textRef.Rotation = line.Angle;
                     ms.AppendEntity(textRef);
                     acTrans.AddNewlyCreatedDBObject(textRef, true);
 
                     // Update attributes
-                    foreach (ObjectId id in (BlockTableRecord)acTrans.GetObject(acBlkTbl[BLOCK_PREFIX + pos.Length], OpenMode.ForRead))
+                    foreach (ObjectId id in (BlockTableRecord)acTrans.GetObject(acBlkTbl[BLOCK_PREFIX + pos.Length + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()], OpenMode.ForRead))
                     {
                         DBObject obj = id.GetObject(OpenMode.ForRead);
                         AttributeDefinition attDef = obj as AttributeDefinition;
