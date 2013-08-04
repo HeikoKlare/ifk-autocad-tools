@@ -148,3 +148,6 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+
+# Documentation XML
+AutoCAD Tools 2.xml
