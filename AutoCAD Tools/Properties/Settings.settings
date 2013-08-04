@@ -33,7 +33,7 @@
       <Value Profile="(Default)">SELECT * FROM Details</Value>
     </Setting>
     <Setting Name="SqlConnectionPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ifk.dyndns-ip.com</Value>
+      <Value Profile="(Default)">ifk.no-ip.biz</Value>
     </Setting>
     <Setting Name="SqlConnectionLogin" Type="System.String" Scope="User">
       <Value Profile="(Default)"></Value>
