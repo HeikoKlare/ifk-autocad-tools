@@ -4224,7 +4224,7 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{409573E8-9D74-483C-8D87-E49EC52F24E1}</td></row>
 		<row><td>ISUSSignature</td><td>{60265944-727C-4BCA-94EE-7A5BCDE2A4E5}</td></row>
-		<row><td>ISVisitedViews</td><td>viewProject,viewISToday,viewAssistant,viewUI,viewUpdateService,viewUpgradePaths,viewRealSetupDesign,viewShortcuts,viewRegistry,viewIniFiles,viewFileExtensions,viewEnvironmentVariables,viewVRoots,viewAppFiles,viewObjects,viewDependencies,viewSystemSearch,viewCustomActions,viewRelease,viewTextMessages,viewSupportFiles</td></row>
+		<row><td>ISVisitedViews</td><td>viewProject,viewISToday,viewAssistant,viewUI,viewUpdateService,viewUpgradePaths,viewRealSetupDesign,viewShortcuts,viewRegistry,viewIniFiles,viewFileExtensions,viewEnvironmentVariables,viewVRoots,viewAppFiles,viewObjects,viewDependencies,viewSystemSearch,viewCustomActions,viewRelease,viewTextMessages,viewSupportFiles,viewSetupTypes,viewFeatureFiles</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4601,9 +4601,9 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{207812AA-DA86-40AF-A7E7-08B9A8DB103E}</td><td/></row>
+		<row><td>ProductCode</td><td>{97A7EC74-1871-427C-A1B5-66C92E3E45B3}</td><td/></row>
 		<row><td>ProductName</td><td>AutoCAD Tools</td><td/></row>
-		<row><td>ProductVersion</td><td>2.1.1</td><td/></row>
+		<row><td>ProductVersion</td><td>2.1.2</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
