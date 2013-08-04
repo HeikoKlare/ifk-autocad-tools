@@ -4,7 +4,6 @@ Tools für:
 - Verbände in Schnitt
 - Druckhölzer (mit Drehung)
 
-Drittelspunkte Rispen (keine gleichen Start-/Endpunkte
 Layer Import
 Länge Bezeichnung Zeichnungseigenschaften
 
