@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
+using Autodesk.AutoCAD.GraphicsSystem;
+using Autodesk.AutoCAD.GraphicsInterface;
 using acadDatabase = Autodesk.AutoCAD.DatabaseServices.Database;
 
 namespace AutoCADTools.Tools
@@ -13,25 +16,49 @@ namespace AutoCADTools.Tools
     /// </summary>
     public partial class Panicle : Form
     {
+        #region Static Members
+
         private static String pos = "3";
-        private static String descr = "RiBd 60/2,0";
+        private static String descr = "RiBd 60/2.0";
+        private static int panicleCount = 1;
+        private static int panicleDistance = 10;
+        private static bool thirdsPoint = true;
+
+        #endregion
+
+        #region Constants
+
+        private const string POSITION_TAG = "POSITION";
+        private const string DESCRIPTION_TAG = "DESCRIPTION";
+        private const string OBJECT_SNAP_MODE = "OSMODE";
+        private const string BLOCK_PREFIX = "Panicle";
+
+        #endregion
+
+        #region Constructor
 
         /// <summary>
-        /// UFRispe is the UserForm for creating a Rispe that lets the user input a position number and a description which is
-        /// automatically added to the line of the Rispe.
+        /// Panicle is the UserForm for creating a Panicle that lets the user input a position number and a description which is
+        /// automatically added to the line of the Panicle.
         /// </summary>
         public Panicle()
         {
             InitializeComponent();
             txtPosition.Text = pos;
             cmbDescription.Text = descr;
+            numCount.Value = panicleCount;
+            txtDistance.Text = panicleDistance.ToString();
+            radThirdsPoint.Checked = thirdsPoint;
+            radMiddlePoint.Checked = !thirdsPoint;
         }
 
+        #endregion
+
+        #region Panicle Creation
 
         /// <summary>
-        /// Starts creating Rispen based on the made inputs.
-        /// Asks the user to define start and endpoint for each Rispe.
-        /// After drawing one, pressing enter lets it start at the last endpoint.
+        /// Starts creating Panicles based on the made inputs.
+        /// Asks the user to define start and endpoint for each Panicle.
         /// </summary>
         /// <param name="sender">the object sending invoke to start this command</param>
         /// <param name="e">the event arguments</param>
@@ -51,208 +78,165 @@ namespace AutoCADTools.Tools
             // Save the value for next time
             pos = txtPosition.Text;
             descr = cmbDescription.Text;
+            panicleCount = (int)numCount.Value;
+            panicleDistance = int.Parse(txtDistance.Text);
+            thirdsPoint = radThirdsPoint.Checked;
 
             // Get the current document and database
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             acadDatabase acCurDb = acDoc.Database;
 
-            Point3d p1, p2;
-            Point3d saved = new Point3d();
-            PromptPointResult getPointResult;
-            PromptPointOptions getPointOptions = new PromptPointOptions("");
-            Boolean draw;
-
-            getPointOptions.AllowArbitraryInput = true;
-            getPointOptions.UseDashedLine = true;
-
-            object oldSnapMode = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("OSMODE");
-            Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("OSMODE", 4135);
+            object oldSnapMode = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable(OBJECT_SNAP_MODE);
+            Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(OBJECT_SNAP_MODE, 4135);
 
             while (true)
             {
-                draw = true;
-                // Prompt for the start point
-                getPointOptions.UseBasePoint = false;
-                getPointOptions.Message = "\n" + LocalData.PanicleFirstPoint + ": ";
-                getPointResult = acDoc.Editor.GetPoint(getPointOptions);
-                // Handle the input
-                switch (getPointResult.Status)
+                // Start a transaction
+                using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
                 {
-                    case PromptStatus.Cancel:
-                        Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("OSMODE", oldSnapMode);
-                        return;
-                    case PromptStatus.OK:
-                        p1 = getPointResult.Value; 
-                        break;
-                    default: 
-                        p1 = saved; 
-                        break;
-                }
-               
-                // Prompt for the end point
-                getPointOptions.Message = "\n" + LocalData.PanicleSecondPoint + ": ";
-                getPointOptions.BasePoint = p1;
-                getPointOptions.UseBasePoint = true;
-                getPointResult = acDoc.Editor.GetPoint(getPointOptions);
-                // Handle the input
-                p2 = new Point3d();
-                switch (getPointResult.Status)
-                {
-                    case PromptStatus.Cancel:
-                        Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("OSMODE", oldSnapMode);
-                        return;
-                    case PromptStatus.OK: 
-                        p2 = getPointResult.Value; 
-                        break;
-                    default: 
-                        if (getPointResult.StringResult.ToLower() == "z")
-                        {
-                            draw = false;
-                        } 
-                        else 
-                        {
-                            return;
-                        }
-                        break;
-                }
+                    // Open the Block table for read
+                    BlockTable acBlkTbl;
+                    acBlkTbl = acTrans.GetObject(acCurDb.BlockTableId,
+                        OpenMode.ForRead) as BlockTable;
 
-                // Save the last point to use as beginning for next Rispe
-                saved = p2;
+                    // Open the Block table record Model space for write
+                    BlockTableRecord acBlkTblRec;
+                    acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
+                        OpenMode.ForWrite) as BlockTableRecord;
 
-                // Swap Points so direction is from bottom left to top right
-                if (p1.X > p2.X || (p1.X == p2.X && p1.Y > p2.Y))
-                {
-                    Point3d temp = p1;
-                    p1 = p2;
-                    p2 = temp;
-                }
-
-                if (draw)
-                {
-                    using (DocumentLock acLckDoc = acDoc.LockDocument())
+                    // Look if block definition for current position text length exists
+                    if (!acBlkTbl.Has(BLOCK_PREFIX + pos.Length.ToString()))
                     {
+                        BlockTableRecord textBlockTable = new BlockTableRecord();
+                        textBlockTable.Name = BLOCK_PREFIX + pos.Length.ToString();
+                        acBlkTbl.UpgradeOpen();
+                        acBlkTbl.Add(textBlockTable);
+                        acTrans.AddNewlyCreatedDBObject(textBlockTable, true);
 
-                        // Start a transaction
-                        using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+                        // dummy text for dimensions
+                        MText dummyText = new MText();
+                        dummyText.Annotative = AnnotativeStates.True;
+                        dummyText.Contents = "1";
+                        acBlkTblRec.AppendEntity(dummyText);
+                        acTrans.AddNewlyCreatedDBObject(dummyText, true);
+
+                        
+                        Double radius = 0.0;
+                        Point3d location = new Point3d(dummyText.ActualHeight * pos.Length / 2, dummyText.ActualHeight * 0.8, 0);
+
+                        // Place and add the position with circle if wanted
+                        if (!String.IsNullOrEmpty(pos))
                         {
-                            // Open the Block table for read
-                            BlockTable acBlkTbl;
-                            acBlkTbl = acTrans.GetObject(acCurDb.BlockTableId,
-                                       OpenMode.ForRead) as BlockTable;
+                            AttributeDefinition attrPos = new AttributeDefinition();
+                            attrPos.Annotative = AnnotativeStates.True;
+                            attrPos.Justify = AttachmentPoint.MiddleCenter;
+                            attrPos.AlignmentPoint = location;
+                            attrPos.Tag = POSITION_TAG;
+                            attrPos.LockPositionInBlock = true;
 
-                            // Open the Block table record Model space for write
-                            BlockTableRecord acBlkTblRec;
-                            acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
-                                          OpenMode.ForWrite) as BlockTableRecord;
+                            textBlockTable.AppendEntity(attrPos);
+                            acTrans.AddNewlyCreatedDBObject(attrPos, true);
 
-
-                            // Define the new line
-                            Line line = null;
-
-                            if (chkDouble.Checked)
+                            // Add the circle
+                            switch (pos.Length)
                             {
-                                if (chkVertical.Checked)
-                                {
-                                    p1 = p1.Subtract(new Vector3d(0, -0.05f, 0));
-                                    p2 = p2.Subtract(new Vector3d(0, -0.05f, 0));
-                                }
-                                else
-                                {
-                                    p1 = p1.Subtract(new Vector3d(0.05f, 0, 0));
-                                    p2 = p2.Subtract(new Vector3d(0.05f, 0, 0));
-                                }
-
-                                line = new Line(p1, p2);
-                                line.SetDatabaseDefaults();
-                                acBlkTblRec.AppendEntity(line);
-                                acTrans.AddNewlyCreatedDBObject(line, true);
-
-                                if (chkVertical.Checked)
-                                {
-                                    p1 = p1.Subtract(new Vector3d(0, 0.1f, 0));
-                                    p2 = p2.Subtract(new Vector3d(0, 0.1f, 0));
-                                }
-                                else
-                                {
-                                    p1 = p1.Subtract(new Vector3d(-0.1f, 0, 0));
-                                    p2 = p2.Subtract(new Vector3d(-0.1f, 0, 0));
-                                }
+                                case 1: radius = dummyText.ActualHeight * 0.9; break;
+                                case 2: radius = dummyText.ActualHeight * 1.3; break;
+                                case 3: radius = dummyText.ActualHeight * 1.5; break;
                             }
-                            
-                            line = new Line(p1, p2);
-                            line.SetDatabaseDefaults();
-                            acBlkTblRec.AppendEntity(line);
-                            acTrans.AddNewlyCreatedDBObject(line, true);
 
-                            // AttachmentPoint for the description and radius for position
-                            MText dummyText = new MText();
-                            dummyText.Annotative = AnnotativeStates.True;
-                            dummyText.Contents = "1,0";
-                            acBlkTblRec.AppendEntity(dummyText);
-                            dummyText.Erase();
-                            p1 = new Point3d(p1.X + Math.Cos(line.Angle) * (line.Length / 8.0) - Math.Sin(line.Angle) * (dummyText.ActualHeight * 0.8),
-                                                p1.Y + Math.Sin(line.Angle) * (line.Length / 8.0) + Math.Cos(line.Angle) * (dummyText.ActualHeight * 0.8), 0);
-                            
+                            Circle circle = new Circle(location, new Vector3d(0, 0, 1), radius);
+                            textBlockTable.AppendEntity(circle);
+                            acTrans.AddNewlyCreatedDBObject(circle, true);
 
-                            Double radius = 0.0;
+                            circle.Dispose();
 
-                            // Place and add the position with circle if wanted
-                            if (!String.IsNullOrEmpty(txtPosition.Text))
+                            location += new Vector3d(radius * 1.3, 0, 0); 
+                        }
+
+                        dummyText.Erase();
+
+                        // Place and add the description if wanted
+                        AttributeDefinition attrDescription = new AttributeDefinition();
+                        attrDescription.Annotative = AnnotativeStates.True;
+                        attrDescription.Justify = AttachmentPoint.MiddleLeft;
+                        attrDescription.AlignmentPoint = location;
+                        attrDescription.Tag = DESCRIPTION_TAG;
+                        attrDescription.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                        attrDescription.LockPositionInBlock = true;
+                        textBlockTable.AppendEntity(attrDescription);
+                        acTrans.AddNewlyCreatedDBObject(attrDescription, true);
+                        attrDescription.Dispose();
+                    }
+
+                    // Initiate jig with lines
+                    PanicleLineJig jig = new PanicleLineJig(thirdsPoint ? 1.0d / 3 : 0.5d, panicleDistance / 100d);
+                    Line line = null;
+                    for (int i = 0; i < panicleCount; i++)
+                    {
+                        Line currentLine = new Line();
+                        currentLine.SetDatabaseDefaults();
+                        acBlkTblRec.AppendEntity(currentLine);
+                        acTrans.AddNewlyCreatedDBObject(currentLine, true);
+                        jig.AddLine(currentLine);
+                        if (i == 0) line = currentLine;
+                    }
+
+                    // Run jig
+                    if (!jig.RunTillComplete(acDoc.Editor, acTrans))
+                    {
+                        acTrans.Commit();
+                        break;
+                    }
+
+                    // Add reference to model space and align it
+                    BlockTableRecord ms = (BlockTableRecord)acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
+                    BlockReference textRef = new BlockReference(new Point3d(line.StartPoint.X + Math.Cos(line.Angle) * (line.Length / 8.0),
+                                        line.StartPoint.Y + Math.Sin(line.Angle) * (line.Length / 8.0), 0), acBlkTbl[BLOCK_PREFIX + pos.Length]);
+                    textRef.Rotation = line.Angle;
+                    ms.AppendEntity(textRef);
+                    acTrans.AddNewlyCreatedDBObject(textRef, true);
+
+                    // Update attributes
+                    foreach (ObjectId id in (BlockTableRecord)acTrans.GetObject(acBlkTbl[BLOCK_PREFIX + pos.Length], OpenMode.ForRead))
+                    {
+                        DBObject obj = id.GetObject(OpenMode.ForRead);
+                        AttributeDefinition attDef = obj as AttributeDefinition;
+                        if ((attDef != null) && (!attDef.Constant))
+                        {
+                            //This is a non-constant AttributeDefinition
+                            //Create a new AttributeReference
+                            using (AttributeReference attRef = new AttributeReference())
                             {
-                                MText position = new MText();
-                                position.Annotative = AnnotativeStates.True;
-                                position.SetAttachmentMovingLocation(AttachmentPoint.MiddleCenter);
-                                position.Location = p1;
-                                position.Width = 1;
-                                position.Contents = txtPosition.Text;
-                                position.Rotation = line.Angle;
+                                attRef.SetAttributeFromBlock(attDef, textRef.BlockTransform);
+                                if (attRef.Tag == POSITION_TAG)
+                                {
+                                    attRef.TextString = pos;
+                                }
+                                else if (attRef.Tag == DESCRIPTION_TAG)
+                                {
+                                    attRef.TextString = panicleCount > 1 ? panicleCount + " x " + cmbDescription.Text :
+                                        cmbDescription.Text;
+                                }
                                 
-                                acBlkTblRec.AppendEntity(position);
-                                acTrans.AddNewlyCreatedDBObject(position, true);
-
-                                // Add the circle
-                                switch (txtPosition.Text.Length)
-                                {
-                                    case 1: radius = position.ActualHeight * 0.9; break;
-                                    case 2: radius = position.ActualHeight * 1.3; break;
-                                    case 3: radius = position.ActualHeight * 1.5; break;
-                                }
-                                Circle circle = new Circle(p1, new Vector3d(0, 0, 1), radius);
-                                acBlkTblRec.AppendEntity(circle);
-                                acTrans.AddNewlyCreatedDBObject(circle, true);
-
-                                position.Dispose();
-                                circle.Dispose();
+                                //Add the AttributeReference to the BlockReference
+                                textRef.AttributeCollection.AppendAttribute(attRef);
+                                acTrans.AddNewlyCreatedDBObject(attRef, true);
                             }
-
-                            // Place and add the description if wanted
-                            if (!String.IsNullOrEmpty(cmbDescription.Text))
-                            {
-                                MText description = new MText();
-                                description.Annotative = AnnotativeStates.True;
-                                description.SetAttachmentMovingLocation(AttachmentPoint.MiddleLeft);
-                                description.Location = new Point3d(p1.X + Math.Cos(line.Angle) * (radius + 0.4 * dummyText.ActualHeight), 
-                                    p1.Y + Math.Sin(line.Angle) * (radius + 0.4 * dummyText.ActualHeight), 0);
-                                description.Width = 10;
-                                description.Contents = chkDouble.Enabled && chkDouble.Checked ? "2 x " + cmbDescription.Text :
-                                    cmbDescription.Text;
-                                description.Rotation = line.Angle;
-                                description.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
-                                acBlkTblRec.AppendEntity(description);
-                                acTrans.AddNewlyCreatedDBObject(description, true);
-                                description.Dispose();
-                            }
-
-                            line.Dispose();
-                            dummyText.Dispose();
-                            acTrans.Commit();
                         }
                     }
-                    Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("OSMODE", oldSnapMode);
+
+                    acTrans.Commit();
                 }
             }
-        }
+            
+            Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(OBJECT_SNAP_MODE, oldSnapMode);
 
+        }
+        
+        #endregion
+
+        #region Handler
 
         /// <summary>
         /// Handles the escape and enter keypress to exit the window or start drawing Rispen.
@@ -267,14 +251,261 @@ namespace AutoCADTools.Tools
             }
         }
 
+
         /// <summary>
-        /// Handles clicking on the "Double Panicle" button, so the "Horizontal/Vertical" Option is enabled.
+        /// Handles the key press in the distance box to allow only numbers
         /// </summary>
-        /// <param name="sender">unused</param>
-        /// <param name="e">unused</param>
-        private void chkDouble_CheckedChanged(object sender, EventArgs e)
+        /// <param name="sender">the sender of the key press</param>
+        /// <param name="e">the event args</param>
+        private void txtDistance_KeyPress(object sender, KeyPressEventArgs e)
         {
-            chkVertical.Enabled = chkDouble.Checked; 
+            if (!char.IsControl(e.KeyChar)
+                && !char.IsDigit(e.KeyChar)
+                && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
         }
+
+        /// <summary>
+        /// Processes the count update. If there is only one panicle needed, disable the distance field.
+        /// </summary>
+        /// <param name="sender">the event sender</param>
+        /// <param name="e">the event args</param>
+        private void numCount_ValueChanged(object sender, EventArgs e)
+        {
+            txtDistance.Enabled = numCount.Value > 1;
+        }
+
+        #endregion
+
+        #region Jig
+
+        /// <summary>
+        /// This is a Jig helper class.
+        /// This can be used to select the position or in case of format bigger than A3 the size of the
+        /// drawing frame to create.
+        /// </summary>
+        class PanicleLineJig : DrawJig
+        {
+            // Set variables for points, the phase counter, width, height and scale of the block
+            public const byte firstPointIndex = 0;
+            public const byte secondPointIndex = 1;
+            public const byte firstEndIndex = 0;
+            public const byte secondEndIndex = 1;
+            private Point3d[,] endPoints;
+            private int currentPointIndex;
+            private int currentEndIndex;
+            private int numberOfPanicles;
+            private double distance;
+            private double pointFactor;
+            private List<Line> lines;
+
+            /// <summary>
+            /// Initiates a new PanicleLineJig for defining a panicle with a specified factor for the start-/endpoint
+            /// as offset to the baseline and with a defined distance between the panicles.
+            /// </summary>
+            /// <param name="pointFactor">factor of base line length at which to start/end panicle</param>
+            /// <param name="distance">the distance between two panicles of there is more than 1</param>
+            public PanicleLineJig(double pointFactor, double distance = 0.0d)
+            {
+                this.endPoints = new Point3d[2,2];
+                this.currentPointIndex = 0;
+                this.currentEndIndex = 0;
+                this.distance = distance;
+                this.lines = new List<Line>();
+                this.pointFactor = pointFactor;
+            }
+
+            /// <summary>
+            /// Adds a line for a panicle to this jug
+            /// </summary>
+            /// <param name="line">the line to add</param>
+            public void AddLine(Line line)
+            {
+                this.lines.Add(line);
+                this.numberOfPanicles = lines.Count;
+            }
+
+            /// <summary>
+            /// Draws the entities
+            /// </summary>
+            /// <param name="draw">the WorldDraw</param>
+            /// <returns>true, if successfull</returns>
+            protected override bool WorldDraw(Autodesk.AutoCAD.GraphicsInterface.WorldDraw draw)
+            {
+                Update();
+
+                WorldGeometry geo = draw.Geometry;
+                if (geo != null)
+                {
+                    foreach (Line ent in lines)
+                    {
+                        geo.Draw(ent);
+                    }
+                }
+
+                return true;
+            }
+
+            /// <summary>
+            /// Samples the current jig status.
+            /// Therefore the user is asked to input the currently needed point
+            /// </summary>
+            /// <param name="prompts">the JigPrompts to use</param>
+            /// <returns>the current SamplerStatus, will be NoChange or OK</returns>
+            protected override SamplerStatus Sampler(JigPrompts prompts)
+            {
+                if (prompts == null) return SamplerStatus.Cancel;
+
+                // Combine the prompt message and options
+                JigPromptPointOptions promptOptions = new JigPromptPointOptions();
+                String queryString = "\n";
+                switch (currentPointIndex)
+                {
+                    case firstPointIndex:
+                        queryString += LocalData.PanicleFirstPoint;
+                        break;
+                    case secondPointIndex:
+                        queryString += LocalData.PanicleSecondPoint;
+                        break;
+                }
+                queryString += " ";
+                switch (currentEndIndex) {
+                    case firstEndIndex:
+                        queryString += LocalData.PanicleFirstAddition;
+                        break;
+                    case secondEndIndex:
+                        queryString += LocalData.PanicleSecondsAddition;
+                        promptOptions.UseBasePoint = true;
+                        promptOptions.BasePoint = endPoints[currentPointIndex, firstPointIndex];
+                        break;
+                }
+                queryString += ": ";
+                
+                promptOptions.Message = queryString;
+                PromptPointResult getPointResult = prompts.AcquirePoint(promptOptions);
+                Point3d oldPoint = endPoints[currentPointIndex, currentEndIndex];
+                endPoints[currentPointIndex, currentEndIndex] = getPointResult.Value;
+                       
+                // Return NoChange if difference is to low to avoid flimmering
+                if (endPoints[currentPointIndex, currentEndIndex].DistanceTo(oldPoint) < 0.001)
+                {
+                    return SamplerStatus.NoChange;
+                }
+
+                // Otherwise return OK
+                return SamplerStatus.OK;
+
+            }
+
+            public void ForceUpdate()
+            {
+                Update();
+            }
+
+            /// <summary>
+            /// Updates this PanicleLineJig.
+            /// Changes the draw panicle draft according to the already input points.
+            /// </summary>
+            /// <returns>true if everything is okay</returns>
+            protected bool Update()
+            {
+                // Get the document
+                Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+
+                if (currentPointIndex == firstPointIndex) return true;
+
+                switch (currentEndIndex) {
+                    case firstEndIndex:
+                        {
+                            Vector3d differenceVector = endPoints[firstPointIndex, secondEndIndex].Subtract(endPoints[firstPointIndex, firstEndIndex].GetAsVector()).GetAsVector();
+                            Vector3d vectorTwoPanicles = differenceVector / differenceVector.Length * distance;
+                            Point3d startPoint = endPoints[secondPointIndex, firstEndIndex].Subtract(vectorTwoPanicles * (numberOfPanicles - 1) / 2);
+                            uint index = 0;
+                            foreach (Line line in lines)
+                            {
+                                line.EndPoint = startPoint + index++ * vectorTwoPanicles;
+                            }
+                            break;
+                        }
+                    case secondPointIndex:
+                        {
+                            Vector3d differenceVector = endPoints[secondPointIndex, secondEndIndex].Subtract(endPoints[secondPointIndex, firstEndIndex].GetAsVector()).GetAsVector();
+                            Vector3d vectorTwoPanicles = differenceVector / differenceVector.Length * distance;
+                            Point3d startPoint = endPoints[secondPointIndex, firstEndIndex].Add(differenceVector * (1 - pointFactor)).Subtract(vectorTwoPanicles * (numberOfPanicles - 1) / 2);
+                            uint index = 0;
+                            foreach (Line line in lines)
+                            {
+                                line.EndPoint = startPoint + index++ * vectorTwoPanicles;
+                            }
+
+                            break;
+                        }
+                }
+
+                // Return that everything is fine
+                return true;
+            }
+
+            /// <summary>
+            /// A method for running the jig until all inputs are done.
+            /// </summary>
+            /// <param name="ed">the editor used</param>
+            /// <param name="tr">the transaction to work in</param>
+            /// <returns></returns>
+            internal bool RunTillComplete(Editor ed, Transaction tr)
+            {
+                // Perform the jig operation in a loop
+                while (true)
+                {
+                    var res = ed.Drag(this);
+             
+                    if (res.Status == PromptStatus.OK)
+                    {
+                        // If start and endpoint are equal, ask again
+                        if (!(currentEndIndex == secondEndIndex && endPoints[currentPointIndex, firstEndIndex] == endPoints[currentPointIndex, secondEndIndex])) 
+                        {
+                            // If we are not at the end, update state
+                            if (!(currentPointIndex == secondPointIndex && currentEndIndex == secondEndIndex))
+                            {
+                                // Progress the phase
+                                if (currentEndIndex == secondEndIndex) {
+                                    currentPointIndex++;
+                                    currentEndIndex = 0;
+                                    Vector3d differenceVector = endPoints[firstPointIndex, secondEndIndex].Subtract(endPoints[firstPointIndex, firstEndIndex].GetAsVector()).GetAsVector();
+                                    Vector3d vectorTwoPanicles = differenceVector / differenceVector.Length * distance;
+                                    Point3d startPoint = endPoints[firstPointIndex, firstEndIndex].Add(differenceVector * pointFactor).Subtract(vectorTwoPanicles * (numberOfPanicles - 1) / 2);
+                                    uint index = 0;
+                                    foreach (Line line in lines)
+                                    {
+                                        line.StartPoint = startPoint + index++ * vectorTwoPanicles;
+                                    }
+                                } else {
+                                    currentEndIndex++;
+                                }
+                            }
+                            else
+                            {
+                                // Everything is done
+                                return true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // The user has cancelled: returning aborts the transaction
+                        foreach (Line l in lines)
+                        {
+                            l.Erase();
+                        }
+                        return false;
+                    }
+                }
+            }
+        }
+
+        #endregion
+
     }
 }

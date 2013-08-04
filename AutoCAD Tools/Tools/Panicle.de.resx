@@ -117,19 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="chkVertical.Text" xml:space="preserve">
-    <value>Vertikal</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chkDouble.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 17</value>
-  </data>
-  <data name="chkDouble.Text" xml:space="preserve">
-    <value>Doppelrispe</value>
-  </data>
   <data name="butcreate.Text" xml:space="preserve">
     <value>Rispen erstellen</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 13</value>
   </data>
@@ -141,6 +132,30 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Positionsnummer:</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 13</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Anzahl:</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 13</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Abstand:</value>
+  </data>
+  <data name="radThirdsPoint.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 17</value>
+  </data>
+  <data name="radThirdsPoint.Text" xml:space="preserve">
+    <value>Drittelspunkt</value>
+  </data>
+  <data name="radMiddlePoint.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 17</value>
+  </data>
+  <data name="radMiddlePoint.Text" xml:space="preserve">
+    <value>Mittelpunkt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

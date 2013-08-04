@@ -129,6 +129,9 @@
   <data name="DrawingAreaUnitFirstTitle" xml:space="preserve">
     <value>Keine Einheit definiert</value>
   </data>
+  <data name="PanicleFirstAddition" xml:space="preserve">
+    <value>(erstes Ende)</value>
+  </data>
   <data name="PanicleFirstPoint" xml:space="preserve">
     <value>Ersten Punkt angeben</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="PanicleSecondPoint" xml:space="preserve">
     <value>Zweiten Punkt angeben</value>
+  </data>
+  <data name="PanicleSecondsAddition" xml:space="preserve">
+    <value>(zweites Ende)</value>
   </data>
   <data name="StandardPosition" xml:space="preserve">
     <value>P1</value>

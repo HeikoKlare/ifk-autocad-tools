@@ -30,27 +30,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Panicle));
-            this.chkVertical = new System.Windows.Forms.CheckBox();
-            this.chkDouble = new System.Windows.Forms.CheckBox();
             this.cmbDescription = new System.Windows.Forms.ComboBox();
             this.butcreate = new System.Windows.Forms.Button();
             this.txtPosition = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numCount = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtDistance = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.radThirdsPoint = new System.Windows.Forms.RadioButton();
+            this.radMiddlePoint = new System.Windows.Forms.RadioButton();
+            ((System.ComponentModel.ISupportInitialize)(this.numCount)).BeginInit();
             this.SuspendLayout();
-            // 
-            // chkVertical
-            // 
-            resources.ApplyResources(this.chkVertical, "chkVertical");
-            this.chkVertical.Name = "chkVertical";
-            this.chkVertical.UseVisualStyleBackColor = true;
-            // 
-            // chkDouble
-            // 
-            resources.ApplyResources(this.chkDouble, "chkDouble");
-            this.chkDouble.Name = "chkDouble";
-            this.chkDouble.UseVisualStyleBackColor = true;
-            this.chkDouble.CheckedChanged += new System.EventHandler(this.chkDouble_CheckedChanged);
             // 
             // cmbDescription
             // 
@@ -85,13 +78,74 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // numCount
+            // 
+            resources.ApplyResources(this.numCount, "numCount");
+            this.numCount.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCount.Name = "numCount";
+            this.numCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCount.ValueChanged += new System.EventHandler(this.numCount_ValueChanged);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // txtDistance
+            // 
+            resources.ApplyResources(this.txtDistance, "txtDistance");
+            this.txtDistance.Name = "txtDistance";
+            this.txtDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDistance_KeyPress);
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // radThirdsPoint
+            // 
+            resources.ApplyResources(this.radThirdsPoint, "radThirdsPoint");
+            this.radThirdsPoint.Checked = true;
+            this.radThirdsPoint.Name = "radThirdsPoint";
+            this.radThirdsPoint.TabStop = true;
+            this.radThirdsPoint.UseVisualStyleBackColor = true;
+            // 
+            // radMiddlePoint
+            // 
+            resources.ApplyResources(this.radMiddlePoint, "radMiddlePoint");
+            this.radMiddlePoint.Name = "radMiddlePoint";
+            this.radMiddlePoint.UseVisualStyleBackColor = true;
+            // 
             // Panicle
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.Controls.Add(this.chkVertical);
-            this.Controls.Add(this.chkDouble);
+            this.Controls.Add(this.radMiddlePoint);
+            this.Controls.Add(this.radThirdsPoint);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtDistance);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.numCount);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbDescription);
             this.Controls.Add(this.butcreate);
             this.Controls.Add(this.txtPosition);
@@ -104,6 +158,7 @@
             this.Name = "Panicle";
             this.ShowInTaskbar = false;
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Panicle_KeyPress);
+            ((System.ComponentModel.ISupportInitialize)(this.numCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,13 +166,18 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox chkVertical;
-        private System.Windows.Forms.CheckBox chkDouble;
         private System.Windows.Forms.ComboBox cmbDescription;
         private System.Windows.Forms.Button butcreate;
         private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numCount;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtDistance;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton radThirdsPoint;
+        private System.Windows.Forms.RadioButton radMiddlePoint;
 
     }
 }

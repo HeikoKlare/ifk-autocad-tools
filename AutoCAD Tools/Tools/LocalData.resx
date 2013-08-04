@@ -124,7 +124,7 @@
     <value>Continue?</value>
   </data>
   <data name="DrawingAreaUnitFirstText" xml:space="preserve">
-    <value>Bitte zuerst in den Zeichnungseigenschaften die Zeichnungseinheit festlegen. Jetzt festlegen?</value>
+    <value>Please specify the drawing unit in the drawing settings first. Specify now?</value>
   </data>
   <data name="DrawingAreaUnitFirstTitle" xml:space="preserve">
     <value>No unit specified</value>
@@ -134,6 +134,9 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="PanicleFirstAddition" xml:space="preserve">
+    <value>(first end)</value>
   </data>
   <data name="PanicleFirstPoint" xml:space="preserve">
     <value>Specify first point</value>
@@ -146,6 +149,9 @@
   </data>
   <data name="PanicleSecondPoint" xml:space="preserve">
     <value>Specify second point</value>
+  </data>
+  <data name="PanicleSecondsAddition" xml:space="preserve">
+    <value>(second end)</value>
   </data>
   <data name="StandardPosition" xml:space="preserve">
     <value>P1</value>

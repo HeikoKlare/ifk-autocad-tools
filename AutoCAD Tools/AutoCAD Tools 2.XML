@@ -1385,78 +1385,88 @@
         </member>
         <member name="T:AutoCADTools.Tools.LocalData">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
+              Eine stark typisierte Ressourcenklasse zum Suchen von lokalisierten Zeichenfolgen usw.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.ResourceManager">
             <summary>
-              Returns the cached ResourceManager instance used by this class.
+              Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.Culture">
             <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
+              Überschreibt die CurrentUICulture-Eigenschaft des aktuellen Threads für alle
+              Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.DeleteDrawingAreaText">
             <summary>
-              Looks up a localized string similar to On changing current drawing unit the current drawing frame will (if existing) be deleted. Continue?.
+              Sucht eine lokalisierte Zeichenfolge, die On changing current drawing unit the current drawing frame will (if existing) be deleted. Continue? ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.DeleteDrawingAreaTitle">
             <summary>
-              Looks up a localized string similar to Continue?.
+              Sucht eine lokalisierte Zeichenfolge, die Continue? ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.DrawingAreaUnitFirstText">
             <summary>
-              Looks up a localized string similar to Bitte zuerst in den Zeichnungseigenschaften die Zeichnungseinheit festlegen. Jetzt festlegen?.
+              Sucht eine lokalisierte Zeichenfolge, die Bitte zuerst in den Zeichnungseigenschaften die Zeichnungseinheit festlegen. Jetzt festlegen? ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.DrawingAreaUnitFirstTitle">
             <summary>
-              Looks up a localized string similar to No unit specified.
+              Sucht eine lokalisierte Zeichenfolge, die No unit specified ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.EmptyDrawingSetting">
             <summary>
-              Looks up a localized string similar to  .
+              Sucht eine lokalisierte Zeichenfolge, die   ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.Name">
             <summary>
-              Looks up a localized string similar to Name.
+              Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.PanicleFirstAddition">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die (first end) ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.PanicleFirstPoint">
             <summary>
-              Looks up a localized string similar to Specify first point.
+              Sucht eine lokalisierte Zeichenfolge, die Specify first point ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.PanicleMissingDescriptionText">
             <summary>
-              Looks up a localized string similar to Position or description is missing.\nContinue?.
+              Sucht eine lokalisierte Zeichenfolge, die Position or description is missing.\nContinue? ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.PanicleMissingDescriptionTitle">
             <summary>
-              Looks up a localized string similar to Continue?.
+              Sucht eine lokalisierte Zeichenfolge, die Continue? ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.PanicleSecondPoint">
             <summary>
-              Looks up a localized string similar to Specify second point.
+              Sucht eine lokalisierte Zeichenfolge, die Specify second point ähnelt.
+            </summary>
+        </member>
+        <member name="P:AutoCADTools.Tools.LocalData.PanicleSecondsAddition">
+            <summary>
+              Sucht eine lokalisierte Zeichenfolge, die (second end) ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.StandardPosition">
             <summary>
-              Looks up a localized string similar to P1.
+              Sucht eine lokalisierte Zeichenfolge, die P1 ähnelt.
             </summary>
         </member>
         <member name="P:AutoCADTools.Tools.LocalData.StandardSegment">
             <summary>
-              Looks up a localized string similar to Roof: Gangnail-Trusses.
+              Sucht eine lokalisierte Zeichenfolge, die Roof: Gangnail-Trusses ähnelt.
             </summary>
         </member>
         <member name="T:AutoCADTools.Tools.Details">
@@ -2485,15 +2495,14 @@
         </member>
         <member name="M:AutoCADTools.Tools.Panicle.#ctor">
             <summary>
-            UFRispe is the UserForm for creating a Rispe that lets the user input a position number and a description which is
-            automatically added to the line of the Rispe.
+            Panicle is the UserForm for creating a Panicle that lets the user input a position number and a description which is
+            automatically added to the line of the Panicle.
             </summary>
         </member>
         <member name="M:AutoCADTools.Tools.Panicle.butCreate_Click(System.Object,System.EventArgs)">
             <summary>
-            Starts creating Rispen based on the made inputs.
-            Asks the user to define start and endpoint for each Rispe.
-            After drawing one, pressing enter lets it start at the last endpoint.
+            Starts creating Panicles based on the made inputs.
+            Asks the user to define start and endpoint for each Panicle.
             </summary>
             <param name="sender">the object sending invoke to start this command</param>
             <param name="e">the event arguments</param>
@@ -2505,12 +2514,19 @@
             <param name="sender">the object sending invoke to start this command</param>
             <param name="e">the event arguments</param>
         </member>
-        <member name="M:AutoCADTools.Tools.Panicle.chkDouble_CheckedChanged(System.Object,System.EventArgs)">
+        <member name="M:AutoCADTools.Tools.Panicle.txtDistance_KeyPress(System.Object,System.Windows.Forms.KeyPressEventArgs)">
             <summary>
-            Handles clicking on the "Double Panicle" button, so the "Horizontal/Vertical" Option is enabled.
+            Handles the key press in the distance box to allow only numbers
             </summary>
-            <param name="sender">unused</param>
-            <param name="e">unused</param>
+            <param name="sender">the sender of the key press</param>
+            <param name="e">the event args</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.numCount_ValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            Processes the count update. If there is only one panicle needed, disable the distance field.
+            </summary>
+            <param name="sender">the event sender</param>
+            <param name="e">the event args</param>
         </member>
         <member name="F:AutoCADTools.Tools.Panicle.components">
             <summary>
@@ -2528,6 +2544,57 @@
             Erforderliche Methode für die Designerunterstützung.
             Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
             </summary>
+        </member>
+        <member name="T:AutoCADTools.Tools.Panicle.PanicleLineJig">
+            <summary>
+            This is a Jig helper class.
+            This can be used to select the position or in case of format bigger than A3 the size of the
+            drawing frame to create.
+            </summary>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.PanicleLineJig.#ctor(System.Double,System.Double)">
+            <summary>
+            Initiates a new PanicleLineJig for defining a panicle with a specified factor for the start-/endpoint
+            as offset to the baseline and with a defined distance between the panicles.
+            </summary>
+            <param name="pointFactor">factor of base line length at which to start/end panicle</param>
+            <param name="distance">the distance between two panicles of there is more than 1</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.PanicleLineJig.AddLine(Autodesk.AutoCAD.DatabaseServices.Line)">
+            <summary>
+            Adds a line for a panicle to this jug
+            </summary>
+            <param name="line">the line to add</param>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.PanicleLineJig.WorldDraw(Autodesk.AutoCAD.GraphicsInterface.WorldDraw)">
+            <summary>
+            Draws the entities
+            </summary>
+            <param name="draw">the WorldDraw</param>
+            <returns>true, if successfull</returns>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.PanicleLineJig.Sampler(Autodesk.AutoCAD.EditorInput.JigPrompts)">
+            <summary>
+            Samples the current jig status.
+            Therefore the user is asked to input the currently needed point
+            </summary>
+            <param name="prompts">the JigPrompts to use</param>
+            <returns>the current SamplerStatus, will be NoChange or OK</returns>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.PanicleLineJig.Update">
+            <summary>
+            Updates this PanicleLineJig.
+            Changes the draw panicle draft according to the already input points.
+            </summary>
+            <returns>true if everything is okay</returns>
+        </member>
+        <member name="M:AutoCADTools.Tools.Panicle.PanicleLineJig.RunTillComplete(Autodesk.AutoCAD.EditorInput.Editor,Autodesk.AutoCAD.DatabaseServices.Transaction)">
+            <summary>
+            A method for running the jig until all inputs are done.
+            </summary>
+            <param name="ed">the editor used</param>
+            <param name="tr">the transaction to work in</param>
+            <returns></returns>
         </member>
     </members>
 </doc>
