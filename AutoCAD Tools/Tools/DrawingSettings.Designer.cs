@@ -99,7 +99,6 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.txtDescriptionShort);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.txtProjectnumber);
@@ -117,6 +116,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -137,9 +137,9 @@
             // 
             // butEditProjects
             // 
-            resources.ApplyResources(this.butEditProjects, "butEditProjects");
             this.butEditProjects.AutoEllipsis = true;
             this.butEditProjects.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.butEditProjects, "butEditProjects");
             this.butEditProjects.Name = "butEditProjects";
             this.butEditProjects.UseVisualStyleBackColor = true;
             this.butEditProjects.Click += new System.EventHandler(this.butEditProjects_Click);
@@ -151,8 +151,8 @@
             // 
             // cmbEmployers
             // 
-            resources.ApplyResources(this.cmbEmployers, "cmbEmployers");
             this.cmbEmployers.FormattingEnabled = true;
+            resources.ApplyResources(this.cmbEmployers, "cmbEmployers");
             this.cmbEmployers.Name = "cmbEmployers";
             // 
             // txtDescription4
@@ -177,9 +177,9 @@
             // 
             // cmbProjects
             // 
-            resources.ApplyResources(this.cmbProjects, "cmbProjects");
             this.cmbProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProjects.FormattingEnabled = true;
+            resources.ApplyResources(this.cmbProjects, "cmbProjects");
             this.cmbProjects.Name = "cmbProjects";
             this.cmbProjects.SelectedIndexChanged += new System.EventHandler(this.cmbProjects_SelectedIndexChanged);
             // 
@@ -225,15 +225,14 @@
             // 
             // tabControl1
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabChanged1);
             this.tabControl1.Controls.Add(this.tabChanged2);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             // 
             // tabChanged1
             // 
-            resources.ApplyResources(this.tabChanged1, "tabChanged1");
             this.tabChanged1.Controls.Add(this.chkChanged1Active);
             this.tabChanged1.Controls.Add(this.dtChanged1Date);
             this.tabChanged1.Controls.Add(this.label16);
@@ -242,6 +241,7 @@
             this.tabChanged1.Controls.Add(this.label11);
             this.tabChanged1.Controls.Add(this.cmbChanged1Name);
             this.tabChanged1.Controls.Add(this.label10);
+            resources.ApplyResources(this.tabChanged1, "tabChanged1");
             this.tabChanged1.Name = "tabChanged1";
             this.tabChanged1.UseVisualStyleBackColor = true;
             // 
@@ -281,10 +281,10 @@
             // 
             // cmbChanged1Name
             // 
-            resources.ApplyResources(this.cmbChanged1Name, "cmbChanged1Name");
             this.cmbChanged1Name.FormattingEnabled = true;
             this.cmbChanged1Name.Items.AddRange(new object[] {
             resources.GetString("cmbChanged1Name.Items")});
+            resources.ApplyResources(this.cmbChanged1Name, "cmbChanged1Name");
             this.cmbChanged1Name.Name = "cmbChanged1Name";
             // 
             // label10
@@ -294,7 +294,6 @@
             // 
             // tabChanged2
             // 
-            resources.ApplyResources(this.tabChanged2, "tabChanged2");
             this.tabChanged2.Controls.Add(this.chkChanged2Active);
             this.tabChanged2.Controls.Add(this.dtChanged2Date);
             this.tabChanged2.Controls.Add(this.txtChanged2Note);
@@ -302,6 +301,7 @@
             this.tabChanged2.Controls.Add(this.label14);
             this.tabChanged2.Controls.Add(this.txtChanged2Name);
             this.tabChanged2.Controls.Add(this.label15);
+            resources.ApplyResources(this.tabChanged2, "tabChanged2");
             this.tabChanged2.Name = "tabChanged2";
             this.tabChanged2.UseVisualStyleBackColor = true;
             // 
@@ -336,10 +336,10 @@
             // 
             // txtChanged2Name
             // 
-            resources.ApplyResources(this.txtChanged2Name, "txtChanged2Name");
             this.txtChanged2Name.FormattingEnabled = true;
             this.txtChanged2Name.Items.AddRange(new object[] {
             resources.GetString("txtChanged2Name.Items")});
+            resources.ApplyResources(this.txtChanged2Name, "txtChanged2Name");
             this.txtChanged2Name.Name = "txtChanged2Name";
             // 
             // label15
@@ -349,8 +349,8 @@
             // 
             // butOK
             // 
-            resources.ApplyResources(this.butOK, "butOK");
             this.butOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.butOK, "butOK");
             this.butOK.Name = "butOK";
             this.butOK.UseVisualStyleBackColor = true;
             this.butOK.Click += new System.EventHandler(this.butOK_Click);
@@ -383,8 +383,8 @@
             // 
             // butCancel
             // 
-            resources.ApplyResources(this.butCancel, "butCancel");
             this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.butCancel, "butCancel");
             this.butCancel.Name = "butCancel";
             this.butCancel.UseVisualStyleBackColor = true;
             this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
