@@ -200,6 +200,7 @@
             this.Controls.Add(this.txtSource);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.KeyPreview = true;
             this.Name = "TrussImportUI";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TrussImportUi_KeyPress);
             this.groupBox1.ResumeLayout(false);
