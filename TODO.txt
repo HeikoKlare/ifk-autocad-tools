@@ -1,10 +1,5 @@
-Rispen: Mindestabstand falls sehr klein
 Tools für: 
 - Laufendes Maß
-- Verbände in Schnitt
 - Druckhölzer (mit Drehung)
-
-Layer Import
-Länge Bezeichnung Zeichnungseigenschaften
 
 Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten

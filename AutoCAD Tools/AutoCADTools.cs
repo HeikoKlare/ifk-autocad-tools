@@ -210,7 +210,7 @@ namespace AutoCADTools
         [CommandMethod("TrussImport")]
         public static void TrussImport()
         {
-            Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(new UfTrussConImport());
+            Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(new TrussImportUI());
         }
 
         #endregion

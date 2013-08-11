@@ -181,6 +181,7 @@
     <Compile Include="PaletteTools\PanicleControl.Designer.cs">
       <DependentUpon>PanicleControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\TrussImport.cs" />
     <Compile Include="Utils\Progress.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,11 +194,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\SqlConnection.cs" />
-    <Compile Include="TrussConImport.cs">
+    <Compile Include="Tools\TrussImportUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrussConImport.Designer.cs">
-      <DependentUpon>TrussConImport.cs</DependentUpon>
+    <Compile Include="Tools\TrussImportUI.Designer.cs">
+      <DependentUpon>TrussImportUI.cs</DependentUpon>
     </Compile>
     <Compile Include="AutoCADTools.cs" />
     <Compile Include="Tools\DrawingArea.cs" />
@@ -318,6 +319,9 @@
     <EmbeddedResource Include="PaletteTools\PanicleControl.resx">
       <DependentUpon>PanicleControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tools\TrussImportUI.de.resx">
+      <DependentUpon>TrussImportUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utils\Progress.resx">
       <DependentUpon>Progress.cs</DependentUpon>
     </EmbeddedResource>
@@ -326,8 +330,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrussConImport.resx">
-      <DependentUpon>TrussConImport.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\TrussImportUI.resx">
+      <DependentUpon>TrussImportUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\DrawingSettings.resx">
       <DependentUpon>DrawingSettings.cs</DependentUpon>
