@@ -4601,9 +4601,9 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{97A7EC74-1871-427C-A1B5-66C92E3E45B3}</td><td/></row>
+		<row><td>ProductCode</td><td>{C94BAEA7-06FF-4EAA-940C-A557EEFB3FCC}</td><td/></row>
 		<row><td>ProductName</td><td>AutoCAD Tools</td><td/></row>
-		<row><td>ProductVersion</td><td>2.1.2</td><td/></row>
+		<row><td>ProductVersion</td><td>2.1.3</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4892,7 +4892,7 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<col def="s72">ActionProperty</col>
 		<col def="S72">ISDisplayName</col>
 		<row><td>{00000000-0000-0000-0000-000000000000}</td><td>***ALL_VERSIONS***</td><td></td><td></td><td>2</td><td/><td>ISFOUNDNEWERPRODUCTVERSION</td><td>ISPreventDowngrade</td></row>
-		<row><td>{50E91210-8484-4E3A-A7A4-F8E9C14741D6}</td><td>2.0.0</td><td>2.1.1</td><td>1031</td><td>768</td><td/><td>ISACTIONPROP1</td><td>Previous Version</td></row>
+		<row><td>{50E91210-8484-4E3A-A7A4-F8E9C14741D6}</td><td>2.0.0</td><td>2.1.2</td><td>1031</td><td>768</td><td/><td>ISACTIONPROP1</td><td>Previous Version</td></row>
 	</table>
 
 	<table name="Verb">
