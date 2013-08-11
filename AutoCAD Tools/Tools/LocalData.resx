@@ -159,4 +159,34 @@
   <data name="StandardSegment" xml:space="preserve">
     <value>Roof: Gangnail-Trusses</value>
   </data>
+  <data name="TrussImportErrorText" xml:space="preserve">
+    <value>An error occured while importing the objects.</value>
+  </data>
+  <data name="TrussImportErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="TrussImportFileNotFoundText" xml:space="preserve">
+    <value>File was not found</value>
+  </data>
+  <data name="TrussImportFileNotFoundTitle" xml:space="preserve">
+    <value>Unknown File</value>
+  </data>
+  <data name="TrussImportInputPoint" xml:space="preserve">
+    <value>Specify input point</value>
+  </data>
+  <data name="TrussImportSuffixBearings" xml:space="preserve">
+    <value>Bearings</value>
+  </data>
+  <data name="TrussImportSuffixBracings" xml:space="preserve">
+    <value>Bracings</value>
+  </data>
+  <data name="TrussImportSuffixDimensions" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="TrussImportSuffixMembers" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="TrussImportSuffixPlates" xml:space="preserve">
+    <value>Plates</value>
+  </data>
 </root>

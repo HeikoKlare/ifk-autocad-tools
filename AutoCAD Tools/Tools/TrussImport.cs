@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
 using System.IO;
 
 using Autodesk.AutoCAD.ApplicationServices;
@@ -13,71 +9,189 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
-
-namespace AutoCADTools
+namespace AutoCADTools.Tools
 {
-    /// <summary>
-    /// This class provides the graphical user interface and the functions to import a TrussCon- or MiTeK- Truss-Drawing
-    /// to the currently open drawing.
-    /// The rotation and the layers to import can be selected
-    /// </summary>
-    public partial class UfTrussConImport : Form
+    class TrussImport
     {
-        /// <summary>
-        /// The name of the layers in the imported drawing.
-        /// </summary>
-        private readonly string[] LAYER_WOOD = {"QUERSCHNITTE", "MEMBERS"};
-        private readonly string[] LAYER_BRACING = { "AUSSTEIFUNG", "WEB_BRACING" };
-        private readonly string[] LAYER_BEARING = { "AUFLAGER", "BEARINGS" };
-        private readonly string[] LAYER_DIMENSIONS = { "MAßLINIEN", "DIMENSIONS" };
-        private readonly string[] LAYER_PLATES = { "PLATTE", "PLATES" };
-
+        #region Enum Types
 
         /// <summary>
-        /// Initializes the graphical user interface for the TrussCon-Truss-Drawing import function
+        /// The different layers that can be imported
         /// </summary>
-        public UfTrussConImport()
+        public enum Layer { Member, Bracings, Bearings, Dimensions, Plates };
+
+        /// <summary>
+        /// The Directions the imported truss can have
+        /// </summary>
+        public enum Direction { LeftRotate, RightRotate, Standard };
+
+
+        #endregion
+
+        #region Attributes
+
+        private string fileName;
+
+        /// <summary>
+        /// The name of the file to import.
+        /// </summary>
+        public string FileName
         {
-            InitializeComponent();
+            get { return fileName; }
+            set { fileName = value; }
         }
 
+        private string layerPrefix = "Schnitt";
 
         /// <summary>
-        /// Opens a dialog to select the file to import the truss from.
+        /// The prefix of the resulting layers.
         /// </summary>
-        /// <param name="sender">the object sending invoke to execute this function</param>
-        /// <param name="e">the event arguments</param>
-        private void CbSuchenClick(object sender, EventArgs e)
+        public string LayerPrefix
         {
-            if (ofdQuelle.ShowDialog() == DialogResult.OK)
+            get { return layerPrefix; }
+            set { layerPrefix = value; }
+        }
+
+        private Dictionary<Layer, bool> layersChecked;
+
+        /// <summary>
+        /// Sets a layer checked for import.
+        /// </summary>
+        /// <param name="layer">the layer to check</param>
+        /// <param name="activated">true if it shell be imported, false if not</param>
+        public void setLayerChecked(Layer layer, bool activated)
+        {
+            layersChecked[layer] = activated;
+        }
+        /// <summary>
+        /// Return is a layer is checked for import.
+        /// </summary>
+        /// <param name="layer">the layer to check</param>
+        /// <returns>true if the layer is checked for import, false if not</returns>
+        public bool isLayerChecked(Layer layer)
+        {
+            return layersChecked[layer];
+        }
+
+        private Direction rotation = Direction.LeftRotate;
+
+        /// <summary>
+        /// The Rotation of the imported truss.
+        /// </summary>
+        public Direction Rotation
+        {
+            get { return rotation; }
+            set { rotation = value; }
+        }
+
+        private Dictionary<string, Layer> originalLayerNameMap;
+        private Dictionary<Layer, string> newLayerNameMap;
+
+        /// <summary>
+        /// Returns the name of the resulting layer.
+        /// </summary>
+        /// <param name="layer">the layer to return the name for</param>
+        /// <returns>the name of the resulting layer</returns>
+        private string getNewLayerName(Layer layer)
+        {
+            return layerPrefix + " - " + newLayerNameMap[layer];
+        }
+
+        private string dummyBlockName = "TrussPreventFromDuplicateBlockName";
+
+        private static TrussImport instance;
+
+        #endregion
+
+        #region Initialisation
+
+        /// <summary>
+        /// Initializes the class
+        /// </summary>
+        private TrussImport()
+        {
+            initialiseLayerNames();
+            initialiseLayerChecks();
+        }
+
+        /// <summary>
+        /// Initialises the checked layers
+        /// </summary>
+        private void initialiseLayerChecks()
+        {
+            layersChecked = new Dictionary<Layer, bool>();
+            layersChecked[Layer.Bearings] = true;
+            layersChecked[Layer.Bracings] = true;
+            layersChecked[Layer.Dimensions] = false;
+            layersChecked[Layer.Member] = true;
+            layersChecked[Layer.Plates] = false;
+        }
+
+        /// <summary>
+        /// Initialises the layer names
+        /// </summary>
+        private void initialiseLayerNames() {
+            originalLayerNameMap = new Dictionary<string, Layer>();
+            // TrussCon Layers
+            originalLayerNameMap.Add("QUERSCHNITTE", Layer.Member);
+            originalLayerNameMap.Add("AUSSTEIFUNG", Layer.Bracings);
+            originalLayerNameMap.Add("AUFLAGER", Layer.Bearings);
+            originalLayerNameMap.Add("MAßLINIEN", Layer.Dimensions);
+            originalLayerNameMap.Add("PLATTE", Layer.Plates);
+            // MiTek Layers
+            originalLayerNameMap.Add("MEMBERS", Layer.Member);
+            originalLayerNameMap.Add("WEB_BRACING", Layer.Bracings);
+            originalLayerNameMap.Add("BEARINGS", Layer.Bearings);
+            originalLayerNameMap.Add("DIMENSIONS", Layer.Dimensions);
+            originalLayerNameMap.Add("PLATES", Layer.Plates);
+
+            // New Layer names
+            newLayerNameMap = new Dictionary<Layer, string>();
+            newLayerNameMap[Layer.Bearings] = LocalData.TrussImportSuffixBearings;
+            newLayerNameMap[Layer.Bracings] = LocalData.TrussImportSuffixBracings;
+            newLayerNameMap[Layer.Dimensions] = LocalData.TrussImportSuffixDimensions;
+            newLayerNameMap[Layer.Member] = LocalData.TrussImportSuffixMembers;
+            newLayerNameMap[Layer.Plates] = LocalData.TrussImportSuffixPlates;
+        }
+
+        /// <summary>
+        /// Returns the singleton instance for this class.
+        /// </summary>
+        /// <returns>the one and only instance</returns>
+        public static TrussImport getInstance()
+        {
+            if (instance == null)
             {
-                tbQuelle.Text = ofdQuelle.FileName;
+                lock (typeof(TrussImport))
+                {
+                    if (instance == null)
+                    {
+                        instance = new TrussImport();
+                    }
+                }
             }
+            return instance;
         }
 
+        #endregion
+
+        #region Import
 
         /// <summary>
         /// Imports the objects on the selected layers of the specified drawing to the currently opened drawing.
         /// The user is asked to place the imported objects.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CbImportierenClick(object sender, EventArgs e)
+        public bool Import()
         {
             // Look if selected file exists, otherwise show error and return
-            if (!File.Exists(tbQuelle.Text))
+            if (!File.Exists(fileName))
             {
-                MessageBox.Show("Datei nicht gefunden.", "Unbekannte Datei", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                throw new FileNotFoundException("File: " + fileName + " not found");
             }
-
-            this.Hide();
-
-            string LAYER_NEW = tbLayer.Text;
 
             // Get the documents of the current one and the one to copy from (open the second one)
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            Document acImportDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.Open(tbQuelle.Text, true);
+            Document acImportDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.Open(fileName, true);
 
             // Save min and max value of the imported objects
             double minX = double.MaxValue;
@@ -101,32 +215,19 @@ namespace AutoCADTools
                     // Open the Block table record Model space for write
                     BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
+                    // Open layer table for creating new layers
+                    LayerTable acLyrTbl = acTrans.GetObject(acImportDoc.Database.LayerTableId, OpenMode.ForRead) as LayerTable;
+                    acLyrTbl.UpgradeOpen();
+
                     // Run through the objects and copy them if wanted
                     foreach (ObjectId obj in acBlkTblRec)
                     {
                         try
                         {
                             Entity ent = (Entity)acTrans.GetObject(obj, OpenMode.ForRead);
-                            // Look if entity is on a layer that shell be copied
-                            if (LAYER_BEARING.Contains(ent.Layer) && cbAuflager.Checked
-                                || LAYER_BRACING.Contains(ent.Layer) && cbAussteifung.Checked
-                                || LAYER_DIMENSIONS.Contains(ent.Layer) && cbMasse.Checked
-                                || LAYER_WOOD.Contains(ent.Layer) && CbHolz.Checked
-                                || LAYER_PLATES.Contains(ent.Layer) && cbPlatten.Checked)
-                            {
-                                // add object to collection, look if new min value
-                                acObjIdColl.Add(ent.ObjectId);
-                                if (ent.Bounds.Value.MinPoint.X < minXall) 
-                                {
-                                    minXall = ent.Bounds.Value.MinPoint.X;
-                                }
-                                if (ent.Bounds.Value.MinPoint.Y < minYall) 
-                                {
-                                    minYall = ent.Bounds.Value.MinPoint.Y;
-                                }
-                            }
+
                             // If object is wood, save its values too
-                            if (LAYER_WOOD.Contains(ent.Layer))
+                            if (originalLayerNameMap.ContainsKey(ent.Layer) && originalLayerNameMap[ent.Layer] == Layer.Member)
                             {
                                 noWood = false;
                                 if (ent.Bounds.Value.MinPoint.X < minX)
@@ -138,10 +239,44 @@ namespace AutoCADTools
                                     minY = ent.Bounds.Value.MinPoint.Y;
                                 }
                             }
+
+                            // Look if entity is on a layer that shell be copied
+                            if (originalLayerNameMap.ContainsKey(ent.Layer) && layersChecked[originalLayerNameMap[ent.Layer]])
+                            {
+                                string newLayerName = getNewLayerName(originalLayerNameMap[ent.Layer]);
+                                if (!acLyrTbl.Has(newLayerName))
+                                {
+                                    // Create the new layer
+                                    using (LayerTableRecord acLyrTblRec = new LayerTableRecord())
+                                    {
+                                        acLyrTblRec.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                                        acLyrTblRec.Name = newLayerName;
+                                        acLyrTbl.Add(acLyrTblRec);
+                                        acTrans.AddNewlyCreatedDBObject(acLyrTblRec, true);
+                                    }
+                                }
+
+                                ent.UpgradeOpen();
+                                ObjectId layer = acLyrTbl[newLayerName];
+                                ent.LayerId = layer;
+
+                                // add object to collection, look if new min value
+                                acObjIdColl.Add(ent.ObjectId);
+                                if (ent.Bounds.Value.MinPoint.X < minXall) 
+                                {
+                                    minXall = ent.Bounds.Value.MinPoint.X;
+                                }
+                                if (ent.Bounds.Value.MinPoint.Y < minYall) 
+                                {
+                                    minYall = ent.Bounds.Value.MinPoint.Y;
+                                }
+                            }
+
+                            
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show("Ein Fehler trat beim Kopieren der Objekte auf.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
                         }
                     }
                     acTrans.Commit();
@@ -172,7 +307,7 @@ namespace AutoCADTools
                     using (BlockTableRecord importBlock = new BlockTableRecord())
                     {
                         // Name the import block and add it to the table record
-                        importBlock.Name = "TrussPreventFromDuplicateName";
+                        importBlock.Name = dummyBlockName;
                         acBlkTbl.UpgradeOpen();
                         acBlkTbl.Add(importBlock);
 
@@ -193,31 +328,16 @@ namespace AutoCADTools
                         try
                         {
                             // Create a new reference of the block to add to model space and create the jig
-                            newBlock = new BlockReference(new Point3d(0, 0, 0), acTrans.GetObject(acBlkTbl["TrussPreventFromDuplicateName"], OpenMode.ForRead).ObjectId);
+                            newBlock = new BlockReference(new Point3d(0, 0, 0), acTrans.GetObject(acBlkTbl[dummyBlockName], OpenMode.ForRead).ObjectId);
                             newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColor(System.Drawing.Color.Black);
-
-                            // Create new layer "TrussCon" if not existing
-                            LayerTable acLyrTbl = acTrans.GetObject(acDoc.Database.LayerTableId, OpenMode.ForRead) as LayerTable;
-                            if (!acLyrTbl.Has(LAYER_NEW))
-                            {
-                                // Create the new layer
-                                using (LayerTableRecord acLyrTblRec = new LayerTableRecord())
-                                {
-                                    acLyrTblRec.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
-                                    acLyrTblRec.Name = LAYER_NEW;
-                                    acLyrTbl.UpgradeOpen();
-                                    acLyrTbl.Add(acLyrTblRec);
-                                    acTrans.AddNewlyCreatedDBObject(acLyrTblRec, true);
-                                }
-                            }
 
                             // Get the wanted rotation and apply to the new block reference
                             double rotate = 0;
-                            if (rbRotateLeft.Checked)
+                            if (rotation == Direction.LeftRotate)
                             {
                                 rotate = Math.PI / 2;
                             }
-                            else if (rbRotateRight.Checked)
+                            else if (rotation == Direction.RightRotate)
                             {
                                 rotate = -Math.PI / 2;
                             }
@@ -236,13 +356,12 @@ namespace AutoCADTools
                                     newBlock.Explode(acDbObjColl);
                                     foreach (Entity acEnt in acDbObjColl)
                                     {
-                                        acEnt.Layer = LAYER_NEW;
                                         acBlkTblRec.AppendEntity(acEnt);
                                         acTrans.AddNewlyCreatedDBObject(acEnt, true);
                                     }
                                 }
                             }
-
+                            
                             importBlock.Erase();
                             newBlock.Dispose();
 
@@ -251,7 +370,7 @@ namespace AutoCADTools
                         }
                         catch (Exception)
                         {
-                            MessageBox.Show("Ein Fehler trat beim Kopieren der Objekte auf.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
                         }
                     }
                 }
@@ -260,17 +379,18 @@ namespace AutoCADTools
             acObjIdColl.Dispose();
             // Close the document the objects were imported from
             acImportDoc.CloseAndDiscard();
+            acDoc.Editor.Regen();
 
-            // Close this dialog
-            this.Close();
+            return true;
         }
 
+        #endregion
 
+        #region BlockJig
 
         /// <summary>
         /// This is a Jig helper class.
-        /// This can be used to select the position or in case of format bigger than A3 the size of the
-        /// drawing frame to create.
+        /// It can be used to place a block reference at some point.
         /// </summary>
         class BlockJig : EntityJig
         {
@@ -293,7 +413,7 @@ namespace AutoCADTools
 
             /// <summary>
             /// Samples the current jig status.
-            /// Therefore the user is asked to input insertion point or size and the current mouse
+            /// Therefore the user is asked to input the insertion point and the current mouse
             /// position and user inputs are analyzed to update the BlockReference and see wheter the
             /// input has ended.
             /// </summary>
@@ -304,9 +424,9 @@ namespace AutoCADTools
                 if (prompts == null) return SamplerStatus.Cancel;
 
                 // Get the insertionPoint
-                PromptPointResult getPointResult0 = prompts.AcquirePoint("\nEinfügepunkt angeben: ");
+                PromptPointResult getPointResult = prompts.AcquirePoint("\n" + LocalData.TrussImportInputPoint + ": ");
                 Point3d oldPoint0 = insertionPoint;
-                insertionPoint = getPointResult0.Value;
+                insertionPoint = getPointResult.Value;
 
                 // Return NoChange if difference is to low to avoid flimmering
                 if (insertionPoint.DistanceTo(oldPoint0) < 0.001)
@@ -321,8 +441,7 @@ namespace AutoCADTools
 
             /// <summary>
             /// Updates this BlockJig.
-            /// Changes the insertionPoint or the position of the polyline-vertices according to the
-            /// current user input.
+            /// Changes the insertionPoint according to the current user input.
             /// </summary>
             /// <returns>true if everything is okay</returns>
             protected override bool Update()
@@ -334,21 +453,8 @@ namespace AutoCADTools
             }
 
         }
-        
 
-        /// <summary>
-        /// Handles the escape and enter keypress to exit the window or start drawing Rispen.
-        /// </summary>
-        /// <param name="sender">the object sending invoke to start this command</param>
-        /// <param name="e">the event arguments</param>
-        private void UFTrussConImport_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == 27)
-            {
-                this.Hide();
-            }
-        }
+        #endregion
 
     }
-
 }

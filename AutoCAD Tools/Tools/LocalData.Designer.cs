@@ -185,5 +185,95 @@ namespace AutoCADTools.Tools {
                 return ResourceManager.GetString("StandardSegment", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An error occured while importing the objects. ähnelt.
+        /// </summary>
+        internal static string TrussImportErrorText {
+            get {
+                return ResourceManager.GetString("TrussImportErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error ähnelt.
+        /// </summary>
+        internal static string TrussImportErrorTitle {
+            get {
+                return ResourceManager.GetString("TrussImportErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die File was not found ähnelt.
+        /// </summary>
+        internal static string TrussImportFileNotFoundText {
+            get {
+                return ResourceManager.GetString("TrussImportFileNotFoundText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unknown File ähnelt.
+        /// </summary>
+        internal static string TrussImportFileNotFoundTitle {
+            get {
+                return ResourceManager.GetString("TrussImportFileNotFoundTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Specify input point ähnelt.
+        /// </summary>
+        internal static string TrussImportInputPoint {
+            get {
+                return ResourceManager.GetString("TrussImportInputPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bearings ähnelt.
+        /// </summary>
+        internal static string TrussImportSuffixBearings {
+            get {
+                return ResourceManager.GetString("TrussImportSuffixBearings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bracings ähnelt.
+        /// </summary>
+        internal static string TrussImportSuffixBracings {
+            get {
+                return ResourceManager.GetString("TrussImportSuffixBracings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dimensions ähnelt.
+        /// </summary>
+        internal static string TrussImportSuffixDimensions {
+            get {
+                return ResourceManager.GetString("TrussImportSuffixDimensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Members ähnelt.
+        /// </summary>
+        internal static string TrussImportSuffixMembers {
+            get {
+                return ResourceManager.GetString("TrussImportSuffixMembers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Plates ähnelt.
+        /// </summary>
+        internal static string TrussImportSuffixPlates {
+            get {
+                return ResourceManager.GetString("TrussImportSuffixPlates", resourceCulture);
+            }
+        }
     }
 }

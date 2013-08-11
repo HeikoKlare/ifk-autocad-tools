@@ -117,7 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ofdQuelle.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="chkMember.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 17</value>
+  </data>
+  <data name="chkMember.Text" xml:space="preserve">
+    <value>Holz</value>
+  </data>
+  <data name="chkBracings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 17</value>
+  </data>
+  <data name="chkBracings.Text" xml:space="preserve">
+    <value>Aussteifung</value>
+  </data>
+  <data name="chkBearings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 17</value>
+  </data>
+  <data name="chkBearings.Text" xml:space="preserve">
+    <value>Auflager</value>
+  </data>
+  <data name="chkPlates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="chkPlates.Text" xml:space="preserve">
+    <value>Platten</value>
+  </data>
+  <data name="chkDimensions.Text" xml:space="preserve">
+    <value>Vermaßung</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Layer kopieren</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 13</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Dateipfad:</value>
+  </data>
+  <data name="butSearchSource.Text" xml:space="preserve">
+    <value>Suchen</value>
+  </data>
+  <data name="butImport.Text" xml:space="preserve">
+    <value>Importieren</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Ausrichtung</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 13</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Ziel-Layer:</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>- #Objektname</value>
+  </data>
 </root>
