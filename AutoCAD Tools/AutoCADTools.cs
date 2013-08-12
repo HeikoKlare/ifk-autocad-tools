@@ -213,6 +213,15 @@ namespace AutoCADTools
             Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(new TrussImportUI());
         }
 
+        /// <summary>
+        /// Enables the user to define a consecutive dimension step by step with optimizing attributes automatically
+        /// </summary>
+        [CommandMethod("ConsecutiveDimension")]
+        public static void ConsecutiveDimension()
+        {
+            Tools.ConsecutiveDimension.Execute();
+        }
+
         #endregion
 
         #region DrawingArea

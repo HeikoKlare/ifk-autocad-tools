@@ -123,6 +123,15 @@
   <data name="DeleteDrawingAreaTitle" xml:space="preserve">
     <value>Fortfahren?</value>
   </data>
+  <data name="DimensionDecimalPlaces" xml:space="preserve">
+    <value>Nachkommastellen</value>
+  </data>
+  <data name="DimensionInsertionPoint" xml:space="preserve">
+    <value>Einfügepunkt</value>
+  </data>
+  <data name="DimensionReferencePoint" xml:space="preserve">
+    <value>Bezugspunkt</value>
+  </data>
   <data name="DrawingAreaUnitFirstText" xml:space="preserve">
     <value>Bitte zuerst in den Zeichnungseigenschaften die Zeichnungseinheit festlegen. Jetzt festlegen?</value>
   </data>

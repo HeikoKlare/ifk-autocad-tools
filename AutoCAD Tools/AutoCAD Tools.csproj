@@ -157,6 +157,7 @@
     <Compile Include="PaletteTools\BracingPanicleControl.Designer.cs">
       <DependentUpon>BracingPanicleControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\ConsecutiveDimension.cs" />
     <Compile Include="Tools\LocalData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

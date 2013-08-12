@@ -79,6 +79,33 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Decimal places ähnelt.
+        /// </summary>
+        internal static string DimensionDecimalPlaces {
+            get {
+                return ResourceManager.GetString("DimensionDecimalPlaces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Insertion point ähnelt.
+        /// </summary>
+        internal static string DimensionInsertionPoint {
+            get {
+                return ResourceManager.GetString("DimensionInsertionPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Reference point ähnelt.
+        /// </summary>
+        internal static string DimensionReferencePoint {
+            get {
+                return ResourceManager.GetString("DimensionReferencePoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Please specify the drawing unit in the drawing settings first. Specify now? ähnelt.
         /// </summary>
         internal static string DrawingAreaUnitFirstText {

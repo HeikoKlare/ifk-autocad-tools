@@ -123,6 +123,15 @@
   <data name="DeleteDrawingAreaTitle" xml:space="preserve">
     <value>Continue?</value>
   </data>
+  <data name="DimensionDecimalPlaces" xml:space="preserve">
+    <value>Decimal places</value>
+  </data>
+  <data name="DimensionInsertionPoint" xml:space="preserve">
+    <value>Insertion point</value>
+  </data>
+  <data name="DimensionReferencePoint" xml:space="preserve">
+    <value>Reference point</value>
+  </data>
   <data name="DrawingAreaUnitFirstText" xml:space="preserve">
     <value>Please specify the drawing unit in the drawing settings first. Specify now?</value>
   </data>
