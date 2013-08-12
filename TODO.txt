@@ -1,5 +1,4 @@
 Tools für: 
-- Laufendes Maß
 - Druckhölzer (mit Drehung)
 
 Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
