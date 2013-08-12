@@ -64,6 +64,7 @@ namespace AutoCADTools.Tools
                 var referencePointString = referencePoint.Value.X + "," + referencePoint.Value.Y + "," + referencePoint.Value.Z;
 
                 // Turn ortho mode on for input point and turn on the layers again
+                object oldAutoSnap = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("AUTOSNAP");
                 bool oldOrtho = acDoc.Database.Orthomode;
                 acDoc.Database.Orthomode = true;
                 foreach (ObjectId layerId in layerTable)
@@ -77,6 +78,7 @@ namespace AutoCADTools.Tools
                 pointOpts.UseBasePoint = true;
                 pointOpts.BasePoint = referencePoint.Value;
                 var insertionPoint = acDoc.Editor.GetPoint(pointOpts);
+                Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("AUTOSNAP", oldAutoSnap);
                 if (insertionPoint.Status != PromptStatus.OK)
                 {
                     acTrans.Abort();
