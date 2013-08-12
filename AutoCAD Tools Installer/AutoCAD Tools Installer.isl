@@ -1963,6 +1963,7 @@
 		<row><td>autocad_tools.localized_reso</td><td>AutoCAD_Tools.Localized_resources</td><td>AutoCAD Tools.Localized resources</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AutoCAD Tools&gt;|LocalizedResourceDlls</td><td>3</td><td/></row>
 		<row><td>autocad_tools.primary_output</td><td>AutoCAD_Tools.Primary_output</td><td>AutoCAD Tools.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;AutoCAD Tools&gt;|Built</td><td>3</td><td/></row>
 		<row><td>binder.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>Binder.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Binder.bmp</td><td>1</td><td/></row>
+		<row><td>druckholz.bmp</td><td>ISX_DEFAULTCOMPONENT8</td><td>DRUCKH~1.BMP|Druckholz.bmp</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Icons\Druckholz.bmp</td><td>1</td><td/></row>
 		<row><td>ifk.cuix</td><td>ISX_DEFAULTCOMPONENT6</td><td>IFK~1.CUI|ifk.cuix</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Support\ifk.cuix</td><td>1</td><td/></row>
 		<row><td>ifk.dwt</td><td>ISX_DEFAULTCOMPONENT16</td><td>ifk.dwt</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Local\ifk.dwt</td><td>1</td><td/></row>
 		<row><td>konica.pc3</td><td>ISX_DEFAULTCOMPONENT5</td><td>Konica.pc3</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Programmierung\AutoCadTools\AutoCAD Tools Installer\Data\Roaming\Plotters\Konica.pc3</td><td>1</td><td/></row>
@@ -4601,9 +4602,9 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>ProductCode</td><td>{AAA8D713-462A-4552-A83B-C56F880BE0AD}</td><td/></row>
+		<row><td>ProductCode</td><td>{27E47333-6B1E-4AC4-866F-AC50BA0F7823}</td><td/></row>
 		<row><td>ProductName</td><td>AutoCAD Tools</td><td/></row>
-		<row><td>ProductVersion</td><td>2.2.0</td><td/></row>
+		<row><td>ProductVersion</td><td>2.2.1</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4892,7 +4893,7 @@ QwBEAF8AUgBPAE0AAQBFAHgAcAByAGUAcwBzAA==
 		<col def="s72">ActionProperty</col>
 		<col def="S72">ISDisplayName</col>
 		<row><td>{00000000-0000-0000-0000-000000000000}</td><td>***ALL_VERSIONS***</td><td></td><td></td><td>2</td><td/><td>ISFOUNDNEWERPRODUCTVERSION</td><td>ISPreventDowngrade</td></row>
-		<row><td>{50E91210-8484-4E3A-A7A4-F8E9C14741D6}</td><td>2.0.0</td><td>2.1.3</td><td>1031</td><td>768</td><td/><td>ISACTIONPROP1</td><td>Previous Version</td></row>
+		<row><td>{50E91210-8484-4E3A-A7A4-F8E9C14741D6}</td><td>2.0.0</td><td>2.2.0</td><td>1031</td><td>768</td><td/><td>ISACTIONPROP1</td><td>Previous Version</td></row>
 	</table>
 
 	<table name="Verb">
