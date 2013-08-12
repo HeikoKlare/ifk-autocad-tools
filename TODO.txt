@@ -1,4 +1,2 @@
-Tools für: 
-- Druckhölzer (mit Drehung)
-
+Druckholz Tool lokalisieren
 Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
