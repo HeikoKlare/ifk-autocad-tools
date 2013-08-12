@@ -214,12 +214,21 @@ namespace AutoCADTools
         }
 
         /// <summary>
-        /// Enables the user to define a consecutive dimension step by step with optimizing attributes automatically
+        /// Enables the user to define a consecutive dimension step by step with optimizing attributes automatically.
         /// </summary>
         [CommandMethod("ConsecutiveDimension")]
         public static void ConsecutiveDimension()
         {
             Tools.ConsecutiveDimension.Execute();
+        }
+
+        /// <summary>
+        /// Enables the user to define a compression wood step by step.
+        /// </summary>
+        [CommandMethod("CompressionWood")]
+        public static void CompressionWood()
+        {
+            Tools.CompressionWood.Execute();
         }
 
         #endregion
