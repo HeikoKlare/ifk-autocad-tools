@@ -23,13 +23,16 @@ namespace AutoCADTools.Tools
         private static int panicleCount = 1;
         private static int panicleDistance = 10;
         private static bool thirdsPoint = true;
+        private static string BlockName {
+            get { return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString(); }
+        }
 
         #endregion
 
         #region Constants
 
         private const string POSITION_TAG = "POSITION";
-        private const string DESCRIPTION_TAG = "DESCRIPTION";
+        private const string DESCRIPTION_TAG = "BESCHREIBUNG";
         private const string OBJECT_SNAP_MODE = "OSMODE";
         private const string BLOCK_PREFIX = "Panicle";
 
@@ -105,10 +108,10 @@ namespace AutoCADTools.Tools
                         OpenMode.ForWrite) as BlockTableRecord;
 
                     // Look if block definition for current position text length exists
-                    if (!acBlkTbl.Has(BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()))
+                    if (!acBlkTbl.Has(BlockName))
                     {
                         BlockTableRecord textBlockTable = new BlockTableRecord();
-                        textBlockTable.Name = BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString();
+                        textBlockTable.Name = BlockName;
                         acBlkTbl.UpgradeOpen();
                         acBlkTbl.Add(textBlockTable);
                         acTrans.AddNewlyCreatedDBObject(textBlockTable, true);
@@ -127,15 +130,17 @@ namespace AutoCADTools.Tools
                         // Place and add the position with circle if wanted
                         if (!String.IsNullOrEmpty(pos))
                         {
-                            AttributeDefinition attrPos = new AttributeDefinition();
-                            attrPos.Annotative = AnnotativeStates.True;
-                            attrPos.Justify = AttachmentPoint.MiddleCenter;
-                            attrPos.AlignmentPoint = location;
-                            attrPos.Tag = POSITION_TAG;
-                            attrPos.LockPositionInBlock = true;
+                            using (AttributeDefinition attrPos = new AttributeDefinition())
+                            {
+                                attrPos.Annotative = AnnotativeStates.True;
+                                attrPos.Justify = AttachmentPoint.MiddleCenter;
+                                attrPos.AlignmentPoint = location;
+                                attrPos.Tag = POSITION_TAG;
+                                attrPos.LockPositionInBlock = true;
 
-                            textBlockTable.AppendEntity(attrPos);
-                            acTrans.AddNewlyCreatedDBObject(attrPos, true);
+                                textBlockTable.AppendEntity(attrPos);
+                                acTrans.AddNewlyCreatedDBObject(attrPos, true);
+                            }
 
                             // Add the circle
                             switch (pos.Length)
@@ -145,16 +150,17 @@ namespace AutoCADTools.Tools
                                 case 3: radius = dummyText.ActualHeight * 1.5; break;
                             }
 
-                            Circle circle = new Circle(location, new Vector3d(0, 0, 1), radius);
-                            textBlockTable.AppendEntity(circle);
-                            acTrans.AddNewlyCreatedDBObject(circle, true);
-
-                            circle.Dispose();
+                            using (Circle circle = new Circle(location, new Vector3d(0, 0, 1), radius))
+                            {
+                                textBlockTable.AppendEntity(circle);
+                                acTrans.AddNewlyCreatedDBObject(circle, true);
+                            }
 
                             location += new Vector3d(radius * 1.3, 0, 0); 
                         }
 
                         dummyText.Erase();
+                        dummyText.Dispose();
 
                         // Place and add the description if wanted
                         AttributeDefinition attrDescription = new AttributeDefinition();
@@ -192,13 +198,13 @@ namespace AutoCADTools.Tools
                     // Add reference to model space and align it
                     BlockTableRecord ms = (BlockTableRecord)acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
                     BlockReference textRef = new BlockReference(new Point3d(line.StartPoint.X + Math.Cos(line.Angle) * (line.Length / 8.0),
-                                        line.StartPoint.Y + Math.Sin(line.Angle) * (line.Length / 8.0), 0), acBlkTbl[BLOCK_PREFIX + pos.Length + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()]);
+                                        line.StartPoint.Y + Math.Sin(line.Angle) * (line.Length / 8.0), 0), acBlkTbl[BlockName]);
                     textRef.Rotation = line.Angle;
                     ms.AppendEntity(textRef);
                     acTrans.AddNewlyCreatedDBObject(textRef, true);
 
                     // Update attributes
-                    foreach (ObjectId id in (BlockTableRecord)acTrans.GetObject(acBlkTbl[BLOCK_PREFIX + pos.Length + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()], OpenMode.ForRead))
+                    foreach (ObjectId id in (BlockTableRecord)acTrans.GetObject(acBlkTbl[BlockName], OpenMode.ForRead))
                     {
                         DBObject obj = id.GetObject(OpenMode.ForRead);
                         AttributeDefinition attDef = obj as AttributeDefinition;
@@ -223,6 +229,8 @@ namespace AutoCADTools.Tools
                                 textRef.AttributeCollection.AppendAttribute(attRef);
                                 acTrans.AddNewlyCreatedDBObject(attRef, true);
                             }
+                            obj.Dispose();
+                            attDef.Dispose();
                         }
                     }
 
@@ -247,7 +255,7 @@ namespace AutoCADTools.Tools
         {
             if (e.KeyChar == 27)
             {
-                this.Hide();
+                this.Close();
             }
         }
 
