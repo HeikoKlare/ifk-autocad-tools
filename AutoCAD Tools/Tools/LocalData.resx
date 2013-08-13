@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CompressionWoodAngle" xml:space="preserve">
+    <value>Angle</value>
+  </data>
+  <data name="CompressionWoodBlockPrefix" xml:space="preserve">
+    <value>CompressionWood</value>
+  </data>
+  <data name="CompressionWoodHeight" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="CompressionWoodWidth" xml:space="preserve">
+    <value>Width</value>
+  </data>
   <data name="DeleteDrawingAreaText" xml:space="preserve">
     <value>On changing current drawing unit the current drawing frame will (if existing) be deleted. Continue?</value>
   </data>

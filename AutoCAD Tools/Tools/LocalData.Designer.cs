@@ -61,6 +61,42 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Angle ähnelt.
+        /// </summary>
+        internal static string CompressionWoodAngle {
+            get {
+                return ResourceManager.GetString("CompressionWoodAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die CompressionWood ähnelt.
+        /// </summary>
+        internal static string CompressionWoodBlockPrefix {
+            get {
+                return ResourceManager.GetString("CompressionWoodBlockPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Height ähnelt.
+        /// </summary>
+        internal static string CompressionWoodHeight {
+            get {
+                return ResourceManager.GetString("CompressionWoodHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Width ähnelt.
+        /// </summary>
+        internal static string CompressionWoodWidth {
+            get {
+                return ResourceManager.GetString("CompressionWoodWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die On changing current drawing unit the current drawing frame will (if existing) be deleted. Continue? ähnelt.
         /// </summary>
         internal static string DeleteDrawingAreaText {

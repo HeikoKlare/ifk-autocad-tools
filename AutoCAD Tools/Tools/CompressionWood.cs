@@ -17,6 +17,11 @@ namespace AutoCADTools.Tools
         private static int WIDTH = 8;
         private static int HEIGHT = 5;
 
+        public static string BlockName
+        {
+            get { return LocalData.CompressionWoodBlockPrefix + " " + WIDTH + "-" + HEIGHT; }
+        }
+
         #endregion
 
         #region Execution
@@ -28,7 +33,7 @@ namespace AutoCADTools.Tools
             using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
             {
                 // Get width from user
-                PromptIntegerOptions intOpts = new PromptIntegerOptions("Breite: ");
+                PromptIntegerOptions intOpts = new PromptIntegerOptions("\n" + LocalData.CompressionWoodWidth + ": ");
                 intOpts.UseDefaultValue = true;
                 intOpts.DefaultValue = WIDTH;
                 var widthResult = acDoc.Editor.GetInteger(intOpts);
@@ -40,7 +45,7 @@ namespace AutoCADTools.Tools
                 WIDTH = widthResult.Value;
 
                 // Get height from user
-                intOpts.Message = "Höhe: ";
+                intOpts.Message = "\n" + LocalData.CompressionWoodHeight + ": ";
                 intOpts.DefaultValue = HEIGHT;
                 var heightResult = acDoc.Editor.GetInteger(intOpts);
                 if (heightResult.Status != PromptStatus.OK)
@@ -51,7 +56,10 @@ namespace AutoCADTools.Tools
                 HEIGHT = heightResult.Value;
 
                 // Get angle from user
-                var angleResult = acDoc.Editor.GetAngle("Winkel: ");
+                PromptAngleOptions angleOpts = new PromptAngleOptions("\n" + LocalData.CompressionWoodAngle + ": ");
+                angleOpts.UseDefaultValue = true;
+                angleOpts.DefaultValue = 0.0;
+                var angleResult = acDoc.Editor.GetAngle(angleOpts);
                 if (angleResult.Status != PromptStatus.OK)
                 {
                     acTrans.Abort();
@@ -61,9 +69,9 @@ namespace AutoCADTools.Tools
                 // Get the block or create it
                 BlockTable blockTable = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForWrite) as BlockTable;
                 BlockTableRecord newBlock = null;
-                if (!blockTable.Has("CompressionWood " + WIDTH.ToString() + "-" + HEIGHT.ToString())) {
+                if (!blockTable.Has(BlockName)) {
                     newBlock = new BlockTableRecord();
-                    newBlock.Name = "CompressionWood " + WIDTH.ToString() + "-" + HEIGHT.ToString();
+                    newBlock.Name = BlockName;
                     blockTable.Add(newBlock);
                     acTrans.AddNewlyCreatedDBObject(newBlock, true);
                     var poly = new Polyline();
@@ -78,7 +86,7 @@ namespace AutoCADTools.Tools
                     newBlock.AppendEntity(poly);
                     acTrans.AddNewlyCreatedDBObject(poly, true);
                 } else {
-                    newBlock = acTrans.GetObject(blockTable["CompressionWood " + WIDTH + "-" + HEIGHT], OpenMode.ForRead) as BlockTableRecord;
+                    newBlock = acTrans.GetObject(blockTable[BlockName], OpenMode.ForRead) as BlockTableRecord;
                 }
 
                 // Get a block reference and rotate it
@@ -100,7 +108,7 @@ namespace AutoCADTools.Tools
                 acTrans.Commit();
             }
         }
-
+        
         #endregion
 
         #region Jig

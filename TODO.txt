@@ -1,2 +1,2 @@
-Druckholz Tool lokalisieren
+Verbände Jig
 Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
