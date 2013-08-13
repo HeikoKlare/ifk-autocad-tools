@@ -168,6 +168,15 @@
   <data name="PanicleSecondsAddition" xml:space="preserve">
     <value>(zweites Ende)</value>
   </data>
+  <data name="ReinforcingBondFirstEave" xml:space="preserve">
+    <value>Erster Traufpunkt</value>
+  </data>
+  <data name="ReinforcingBondRidge" xml:space="preserve">
+    <value>Firstpunkt (in Richtung des ersten Traufpunktes)</value>
+  </data>
+  <data name="ReinforcingBondSecondEave" xml:space="preserve">
+    <value>Zweiter Traufpunkt</value>
+  </data>
   <data name="StandardPosition" xml:space="preserve">
     <value>P1</value>
   </data>
