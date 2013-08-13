@@ -183,6 +183,13 @@
     <Compile Include="PaletteTools\PanicleControl.Designer.cs">
       <DependentUpon>PanicleControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\ReinforcingBondUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tools\ReinforcingBondUI.Designer.cs">
+      <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\ReinforcingBond.cs" />
     <Compile Include="Tools\TrussImport.cs" />
     <Compile Include="Utils\Progress.cs">
       <SubType>Form</SubType>
@@ -209,12 +216,6 @@
     </Compile>
     <Compile Include="Tools\DrawingSettings.Designer.cs">
       <DependentUpon>DrawingSettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NeuerVerband.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NeuerVerband.Designer.cs">
-      <DependentUpon>NeuerVerband.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\Panicle.cs">
       <SubType>Form</SubType>
@@ -277,8 +278,11 @@
     <EmbeddedResource Include="LayoutErstellen.resx">
       <DependentUpon>LayoutErstellen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NeuerVerband.resx">
-      <DependentUpon>NeuerVerband.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\ReinforcingBondUI.de.resx">
+      <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tools\ReinforcingBondUI.resx">
+      <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\Panicle.de.resx">
       <DependentUpon>Panicle.cs</DependentUpon>

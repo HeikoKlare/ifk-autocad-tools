@@ -196,7 +196,7 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Position or description is missing.\nContinue? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Position or description is missing. Continue? ähnelt.
         /// </summary>
         internal static string PanicleMissingDescriptionText {
             get {
@@ -228,6 +228,33 @@ namespace AutoCADTools.Tools {
         internal static string PanicleSecondsAddition {
             get {
                 return ResourceManager.GetString("PanicleSecondsAddition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die First point at eave ähnelt.
+        /// </summary>
+        internal static string ReinforcingBondFirstEave {
+            get {
+                return ResourceManager.GetString("ReinforcingBondFirstEave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Point at ridge (in direction of first eave point) ähnelt.
+        /// </summary>
+        internal static string ReinforcingBondRidge {
+            get {
+                return ResourceManager.GetString("ReinforcingBondRidge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Second point at eave ähnelt.
+        /// </summary>
+        internal static string ReinforcingBondSecondEave {
+            get {
+                return ResourceManager.GetString("ReinforcingBondSecondEave", resourceCulture);
             }
         }
         

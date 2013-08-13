@@ -163,7 +163,7 @@
     <value>Specify first point</value>
   </data>
   <data name="PanicleMissingDescriptionText" xml:space="preserve">
-    <value>Position or description is missing.\nContinue?</value>
+    <value>Position or description is missing. Continue?</value>
   </data>
   <data name="PanicleMissingDescriptionTitle" xml:space="preserve">
     <value>Continue?</value>
@@ -173,6 +173,15 @@
   </data>
   <data name="PanicleSecondsAddition" xml:space="preserve">
     <value>(second end)</value>
+  </data>
+  <data name="ReinforcingBondFirstEave" xml:space="preserve">
+    <value>First point at eave</value>
+  </data>
+  <data name="ReinforcingBondRidge" xml:space="preserve">
+    <value>Point at ridge (in direction of first eave point)</value>
+  </data>
+  <data name="ReinforcingBondSecondEave" xml:space="preserve">
+    <value>Second point at eave</value>
   </data>
   <data name="StandardPosition" xml:space="preserve">
     <value>P1</value>

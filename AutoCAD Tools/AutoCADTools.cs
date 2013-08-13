@@ -164,29 +164,29 @@ namespace AutoCADTools
         }
         
         /// <summary>
-        /// NeueRispe is a command to create a new Rispe in the drawing. It opens a UserForm to input a position 
-        /// number and description and then lets the user draw Rispen by selecting start and end point. Pressing 
-        /// RETURN after drawing one Rispe lets the next one begin at the end of the old one.
+        /// Panicle is a command to create a new panicle in the drawing. It opens a UserForm to input a position 
+        /// number and description and then lets the user draw panicles by selecting start and end point. Pressing 
+        /// RETURN after drawing one panicle lets the next one begin at the end of the old one.
         /// </summary>
-        [CommandMethod("NeueRispe", CommandFlags.NoPaperSpace)]
-        public static void NeueRispe()
+        [CommandMethod("Panicle", CommandFlags.NoPaperSpace)]
+        public static void Panicle()
         {
-            using (Form UFRispe = new Panicle())
+            using (Form Form = new Panicle())
             {
-                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(UFRispe);
+                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(Form);
             }
         }
 
         /// <summary>
-        /// VerbandErstellen is a command to create a new bracing. It opend a UserForm to input the needed data and
+        /// ReinforcingBond is a command to create a new bracing. It opend a UserForm to input the needed data and
         /// define the extends.
         /// </summary>
-        [CommandMethod("VerbandErstellen", CommandFlags.NoPaperSpace)]
-        public static void VerbandErstellen()
+        [CommandMethod("ReinforcingBond", CommandFlags.NoPaperSpace)]
+        public static void ReinforcingBond()
         {
-            using (Form UFVerband = new UFVerband())
+            using (Form Form = new ReinforcingBondUI())
             {
-                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(UFVerband);
+                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(Form);
             }
         }
         
