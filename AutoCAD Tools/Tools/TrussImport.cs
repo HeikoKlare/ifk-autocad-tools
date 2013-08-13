@@ -394,7 +394,6 @@ namespace AutoCADTools.Tools
         /// </summary>
         class BlockJig : EntityJig
         {
-            // Set variables for points, the phase counter, width, height and scale of the block
             private Point3d insertionPoint;
             
             /// <summary>
@@ -403,9 +402,6 @@ namespace AutoCADTools.Tools
             /// <param name="br">the BlockReference to be positioned (and sized)</param>
             public BlockJig(BlockReference br) : base(br)
             {
-                // Get the document
-                Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
                 // Set the insertionPoint at a position
                 insertionPoint = br.Position;
             }
