@@ -5,3 +5,5 @@ Druckholz: Poly statt Block, sonst Farbe vom 1. layer
 Laufmaﬂ: anderer Maﬂstab - anderer Abstand
 
 ‹berall: Block Bezug zum Layer wegen Farbe
+
+Zeichenbereich: Unabh‰ngiger Layer, sonst unpassende Linientypen/-st‰rken
