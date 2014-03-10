@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="AutoCAD Tools für AutoCAD 2012" Language="1031" Version="2.3.1" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{50E91210-8484-4E3A-A7A4-F8E9C14741D6}">
+	<Product Id="*" Name="AutoCAD Tools für AutoCAD 2013" Language="1031" Version="2.3.2" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{5E4C5CD1-67AE-4E91-A1EB-713CCE7CA718}">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64"/>
 
 		<MajorUpgrade DowngradeErrorMessage="Eine neuere Version von [ProductName] ist bereits installiert." />
@@ -12,10 +12,14 @@
 
     <!-- AUTOCAD DATA -->
     <!-- AUTOCAD 2012 -->
-    <Property Id="AutoCadVersionString" Value="R18.2\ACAD-A001:407" />
-    <Property Id="AutoCadVersion" Value="AutoCAD 2012" />
+    <!-- <Property Id="AutoCadVersionString" Value="R18.2\ACAD-A001:407" />
+    <Property Id="AutoCadVersion" Value="AutoCAD 2012" />-->
+    
+    <!-- AUTOCAD 2013 -->
+    <Property Id="AutoCadVersionString" Value="R19.0\ACAD-B001:407" />
+    <Property Id="AutoCadVersion" Value="AutoCAD 2013" />
 
-    <!-- AUTOCAD 2012 -->
+    <!-- AUTOCAD 2014 -->
     <!--<Property Id="AutoCadVersionString" Value="R19.1\ACAD-D001:407" />
     <Property Id="AutoCadVersion" Value="AutoCAD 2014" />-->
     

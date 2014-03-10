@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Autodesk.AutoCAD.Runtime;
+using Autodesk.AutoCAD.ApplicationServices;
 using AutoCADTools.Tools;
 
 [assembly: CLSCompliant(true)]

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AutoCADTools</RootNamespace>
     <AssemblyName>AutoCAD Tools 2</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -54,16 +54,37 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\IFK.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>AutoCAD Tools 2.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>1607</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>BasicCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="acdbmgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2012 - Deutsch\acdbmgd.dll</HintPath>
+    <Reference Include="accoremgd">
+      <HintPath>..\..\..\Program Files\Autodesk\AutoCAD 2013\accoremgd.dll</HintPath>
     </Reference>
-    <Reference Include="acmgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2012 - Deutsch\acmgd.dll</HintPath>
+    <Reference Include="acdbmgd">
+      <HintPath>..\..\..\Program Files\Autodesk\AutoCAD 2013\acdbmgd.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="acmgd">
+      <HintPath>..\..\..\Program Files\Autodesk\AutoCAD 2013\acmgd.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ReachFramework" />
@@ -72,6 +93,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
@@ -345,6 +367,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="AutoCadToolsKey.pfx" />
     <None Include="Data\Database.xsc">
       <DependentUpon>Database.xsd</DependentUpon>
     </None>
@@ -395,8 +418,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2012 - Deutsch\"
-xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools 2.resources.dll" "C:\Programme\Autodesk\AutoCAD 2012 - Deutsch\de\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2013\"
+xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools 2.resources.dll" "C:\Programme\Autodesk\AutoCAD 2013\de\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
