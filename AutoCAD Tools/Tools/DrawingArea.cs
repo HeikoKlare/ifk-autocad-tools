@@ -533,8 +533,11 @@ namespace AutoCADTools.Tools
                     // Create a new reference of the block to add to model space and create the jig
                     newBlock = new BlockReference(new Point3d(0, 0, 0),
                         acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead).ObjectId);
-                    newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColor(System.Drawing.Color.Black);
-                    
+                    newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                    newBlock.Layer = "0";
+                    newBlock.Linetype = "Continuous";
+                    newBlock.LineWeight = LineWeight.ByLineWeightDefault;
+
                     BlockJig jig = new BlockJig(newBlock);
                     PromptResult getPromptResult;
 
@@ -662,7 +665,7 @@ namespace AutoCADTools.Tools
                     {
                         newBlockDef.Origin = new Point3d(0, 0, 0);
                     }
-
+                    
                     // Create a polyline as the drawing frame
                     using (Polyline poly = new Polyline())
                     {
@@ -681,6 +684,9 @@ namespace AutoCADTools.Tools
                         poly.AddVertexAt(poly.NumberOfVertices, new Point2d(0, height / scale), 0, 0, 0);
                         poly.Closed = true;
                         poly.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                        poly.Linetype = "Continuous";
+                        poly.LineWeight = LineWeight.ByLineWeightDefault;
+                        poly.Layer = "0";
 
                         // Append the polyline to the block
                         newBlockDef.AppendEntity(poly);
@@ -773,7 +779,10 @@ namespace AutoCADTools.Tools
                     // Create a new reference of the block to add to model space and create the jig
                     newBlock = new BlockReference(new Point3d(0, 0, 0),
                         acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead).ObjectId);
-                    newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColor(System.Drawing.Color.Black);
+                    newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                    newBlock.Layer = "0";
+                    newBlock.Linetype = "Continuous";
+                    newBlock.LineWeight = LineWeight.ByLineWeightDefault;
 
                     BlockJig jig = new BlockJig(newBlock);
                     jig.InsertionPoint = oldPosition.Subtract(new Vector3d(185.0 / Scale, -77.0 / Scale, 0));
