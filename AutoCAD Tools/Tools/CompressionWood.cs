@@ -68,44 +68,34 @@ namespace AutoCADTools.Tools
 
                 // Get the block or create it
                 BlockTable blockTable = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForWrite) as BlockTable;
-                BlockTableRecord newBlock = null;
-                if (!blockTable.Has(BlockName)) {
-                    newBlock = new BlockTableRecord();
-                    newBlock.Name = BlockName;
-                    blockTable.Add(newBlock);
-                    acTrans.AddNewlyCreatedDBObject(newBlock, true);
-                    var poly = new Polyline();
-                    poly.AddVertexAt(0, new Point2d(0, 0), 0 ,0 ,0);
-                    poly.AddVertexAt(1, new Point2d(0, HEIGHT * 0.01), 0, 0, 0);
-                    poly.AddVertexAt(2, new Point2d(WIDTH * 0.01, HEIGHT * 0.01), 0, 0, 0);
-                    poly.AddVertexAt(3, new Point2d(0, 0), 0, 0, 0);
-                    poly.AddVertexAt(4, new Point2d(WIDTH * 0.01, 0), 0, 0, 0);
-                    poly.AddVertexAt(5, new Point2d(0, HEIGHT * 0.01), 0, 0, 0);
-                    poly.AddVertexAt(6, new Point2d(WIDTH * 0.01, HEIGHT * 0.01), 0, 0, 0);
-                    poly.AddVertexAt(7, new Point2d(WIDTH * 0.01, 0), 0, 0, 0);
-                    newBlock.AppendEntity(poly);
-                    acTrans.AddNewlyCreatedDBObject(poly, true);
-                } else {
-                    newBlock = acTrans.GetObject(blockTable[BlockName], OpenMode.ForRead) as BlockTableRecord;
-                }
 
-                // Get a block reference and rotate it
-                BlockReference blockRef = new BlockReference(new Point3d(0, 0, 0), newBlock.ObjectId);
-                blockRef.TransformBy(Matrix3d.Rotation(angleResult.Value, Vector3d.ZAxis, new Point3d(0, 0, 0)));
+                var poly = new Polyline();
+                poly.AddVertexAt(0, new Point2d(0, 0), 0, 0, 0);
+                poly.AddVertexAt(1, new Point2d(0, HEIGHT * 0.01), 0, 0, 0);
+                poly.AddVertexAt(2, new Point2d(WIDTH * 0.01, HEIGHT * 0.01), 0, 0, 0);
+                poly.AddVertexAt(3, new Point2d(0, 0), 0, 0, 0);
+                poly.AddVertexAt(4, new Point2d(WIDTH * 0.01, 0), 0, 0, 0);
+                poly.AddVertexAt(5, new Point2d(0, HEIGHT * 0.01), 0, 0, 0);
+                poly.AddVertexAt(6, new Point2d(WIDTH * 0.01, HEIGHT * 0.01), 0, 0, 0);
+                poly.AddVertexAt(7, new Point2d(WIDTH * 0.01, 0), 0, 0, 0);
+                poly.TransformBy(Matrix3d.Rotation(angleResult.Value, Vector3d.ZAxis, new Point3d(0, 0, 0)));
 
                 // Get the user insertion point input
-                BlockJig jig = new BlockJig(blockRef);
+                PolylineJig jig = new PolylineJig(poly);
                 var res = acDoc.Editor.Drag(jig);
 
                 // If everything is okay, fix it
                 if (res.Status == PromptStatus.OK)
                 {
                     BlockTableRecord modelSpace = acTrans.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
-                    modelSpace.AppendEntity(blockRef);
-                    acTrans.AddNewlyCreatedDBObject(blockRef, true);
+                    modelSpace.AppendEntity(poly);
+                    acTrans.AddNewlyCreatedDBObject(poly, true);
+                    acTrans.Commit();
                 }
-                
-                acTrans.Commit();
+                else
+                {
+                    acTrans.Abort();
+                }
             }
         }
         
@@ -115,31 +105,30 @@ namespace AutoCADTools.Tools
 
         /// <summary>
         /// This is a Jig helper class.
-        /// It can be used to place a block reference at some point.
+        /// It can be used to place a polyline at some point.
         /// </summary>
-        class BlockJig : EntityJig
+        class PolylineJig : EntityJig
         {
             // Set variables for points, the phase counter, width, height and scale of the block
             private Point3d insertionPoint;
-            
-            /// <summary>
-            /// Initiates a new BlockJig for the given BlockReference.
-            /// </summary>
-            /// <param name="br">the BlockReference to be positioned (and sized)</param>
-            public BlockJig(BlockReference br) : base(br)
-            {
-                // Get the document
-                Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            private Point3d oldPoint;
 
+            /// <summary>
+            /// Initiates a new PolylineJig for the given Polyline.
+            /// </summary>
+            /// <param name="poly">the Polyline to be positioned (and sized)</param>
+            public PolylineJig(Polyline poly) : base(poly)
+            {
                 // Set the insertionPoint at a position
-                insertionPoint = br.Position;
+                insertionPoint = poly.StartPoint;
+                oldPoint = poly.StartPoint;
             }
 
 
             /// <summary>
             /// Samples the current jig status.
             /// Therefore the user is asked to input the insertion point and the current mouse
-            /// position and user inputs are analyzed to update the BlockReference and see wheter the
+            /// position and user inputs are analyzed to update the Polyline and see wheter the
             /// input has ended.
             /// </summary>
             /// <param name="prompts">the JigPrompts to use</param>
@@ -151,13 +140,15 @@ namespace AutoCADTools.Tools
                 // Get the insertionPoint
                 PromptPointResult getPointResult = prompts.AcquirePoint("\n" + LocalData.TrussImportInputPoint + ": ");
                 Point3d oldPoint0 = insertionPoint;
-                insertionPoint = getPointResult.Value;
+                Point3d currentPoint = getPointResult.Value;
 
                 // Return NoChange if difference is to low to avoid flimmering
-                if (insertionPoint.DistanceTo(oldPoint0) < 0.001)
+                if (currentPoint.DistanceTo(oldPoint0) < 0.001)
                 {
                     return SamplerStatus.NoChange;
                 }
+
+                insertionPoint = currentPoint;
 
                 // Otherwise return OK
                 return SamplerStatus.OK;
@@ -165,14 +156,18 @@ namespace AutoCADTools.Tools
 
 
             /// <summary>
-            /// Updates this BlockJig.
+            /// Updates this PolylineJig.
             /// Changes the insertionPoint according to the current user input.
             /// </summary>
             /// <returns>true if everything is okay</returns>
             protected override bool Update()
             {
-                ((BlockReference)this.Entity).Position = insertionPoint;
-
+                if (insertionPoint.DistanceTo(oldPoint) >= 0.001)
+                {
+                    ((Polyline)this.Entity).TransformBy(Matrix3d.Displacement(oldPoint.GetVectorTo(insertionPoint)));
+                    oldPoint = insertionPoint;
+                }
+                    
                 // Return that everything is fine
                 return true;
             }
