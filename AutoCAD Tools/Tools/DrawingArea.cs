@@ -534,7 +534,7 @@ namespace AutoCADTools.Tools
                     newBlock = new BlockReference(new Point3d(0, 0, 0),
                         acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead).ObjectId);
                     newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
-                    newBlock.Layer = "0";
+                    newBlock.LayerId = acDoc.Database.LayerZero;
                     newBlock.Linetype = "Continuous";
                     newBlock.LineWeight = LineWeight.ByLineWeightDefault;
 
@@ -686,7 +686,7 @@ namespace AutoCADTools.Tools
                         poly.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
                         poly.Linetype = "Continuous";
                         poly.LineWeight = LineWeight.ByLineWeightDefault;
-                        poly.Layer = "0";
+                        poly.LayerId = acDoc.Database.LayerZero;
 
                         // Append the polyline to the block
                         newBlockDef.AppendEntity(poly);
@@ -780,7 +780,7 @@ namespace AutoCADTools.Tools
                     newBlock = new BlockReference(new Point3d(0, 0, 0),
                         acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead).ObjectId);
                     newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
-                    newBlock.Layer = "0";
+                    newBlock.LayerId = acDoc.Database.LayerZero;
                     newBlock.Linetype = "Continuous";
                     newBlock.LineWeight = LineWeight.ByLineWeightDefault;
 
