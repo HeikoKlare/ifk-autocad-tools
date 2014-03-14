@@ -5,6 +5,7 @@ using System.Linq;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
 
 namespace AutoCADTools.Tools
 {
@@ -49,10 +50,26 @@ namespace AutoCADTools.Tools
                 }
                 // Create a handle string for the objects
                 string handleString = "";
+                Point3d minimum = new Point3d(double.MaxValue, double.MaxValue, 0);
+                Point3d maximum = new Point3d(double.MinValue, double.MinValue, 0);
                 foreach (SelectedObject obj in selection.Value)
                 {
                     handleString += "(handent \"" + obj.ObjectId.Handle + "\")" + "\r";
+                    try
+                    {
+                        Line l = acTrans.GetObject(obj.ObjectId, OpenMode.ForRead) as Line;
+                        if (l.StartPoint.X < minimum.X) minimum = new Point3d(l.StartPoint.X, minimum.Y, 0);
+                        if (l.StartPoint.X > maximum.X) maximum = new Point3d(l.StartPoint.X, maximum.Y, 0);
+                        if (l.EndPoint.X < minimum.X) minimum = new Point3d(l.EndPoint.X, minimum.Y, 0);
+                        if (l.EndPoint.X > maximum.X) maximum = new Point3d(l.EndPoint.X, maximum.Y, 0);
+                        if (l.StartPoint.Y < minimum.Y) minimum = new Point3d(minimum.X, l.StartPoint.Y, 0);
+                        if (l.StartPoint.Y > maximum.Y) maximum = new Point3d(maximum.X, l.StartPoint.Y, 0);
+                        if (l.EndPoint.Y < minimum.Y) minimum = new Point3d(minimum.X, l.EndPoint.Y, 0);
+                        if (l.EndPoint.Y > maximum.Y) maximum = new Point3d(maximum.X, l.EndPoint.Y, 0);
+                    }
+                    catch (Exception) { };
                 }
+                Point3d average = new Point3d((maximum.X + minimum.X) / 2, (maximum.Y + minimum.Y) / 2, 0);
 
                 // Let the user select the reference point
                 var referencePoint = acDoc.Editor.GetPoint("\n" + LocalData.DimensionReferencePoint + ": ");
@@ -61,8 +78,7 @@ namespace AutoCADTools.Tools
                     acTrans.Abort();
                     return;
                 }
-                var referencePointString = referencePoint.Value.X + "," + referencePoint.Value.Y + "," + referencePoint.Value.Z;
-
+                
                 // Turn ortho mode on for input point and turn on the layers again
                 object oldAutoSnap = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("AUTOSNAP");
                 bool oldOrtho = acDoc.Database.Orthomode;
@@ -110,20 +126,33 @@ namespace AutoCADTools.Tools
                     acDoc.Database.Dimstyle = dimStyleTable[STYLENAME];
                     var rec = acTrans.GetObject(dimStyleTable[STYLENAME], OpenMode.ForRead) as DimStyleTableRecord;
                     acDoc.Database.SetDimstyleData(rec);
-                    acDoc.Database.Dimexo = dist * 0.01 - 0.002;
+                    acDoc.Database.Dimexo = dist * double.Parse(Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()) - 0.002;
                 }
                 else if (dimStyleTable.Has(OLDSTYLENAME))
                 {
                     acDoc.Database.Dimstyle = dimStyleTable[OLDSTYLENAME];
                     var rec = acTrans.GetObject(dimStyleTable[OLDSTYLENAME], OpenMode.ForRead) as DimStyleTableRecord;
                     acDoc.Database.SetDimstyleData(rec);
-                    acDoc.Database.Dimexo = dist * 0.01 - 0.002;
+                    acDoc.Database.Dimexo = dist * double.Parse(Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()) - 0.002;
                 }
                 acDoc.Database.Dimdec = decimalPlaces.Value;
                 acDoc.Database.Dimdli = 0.0;
 
+                // Move reference point a little bit from the center, so it is correctly recognized
+                bool horizontal = Math.Abs(insertionPoint.Value.X - referencePoint.Value.X) < Math.Abs(insertionPoint.Value.Y - referencePoint.Value.Y);
+                Point3d refPoint = referencePoint.Value;
+                if (horizontal)
+                {
+                    refPoint = refPoint.Add(new Vector3d(referencePoint.Value.X < average.X ? -0.001 : 0.001, 0, 0));
+                }
+                else
+                {
+                    refPoint = refPoint.Add(new Vector3d(0, referencePoint.Value.Y < average.Y ? -0.001 : 0.001, 0));
+                }
+                var referencePointString = refPoint.X + "," + refPoint.Y + "," + refPoint.Z;
+                
                 // Execute command
-                acDoc.SendStringToExecute("SBEM " + handleString + "\r BA \r P " + referencePointString + "\r" + insertionPointString + "\r", true, false, false);
+                acDoc.SendStringToExecute("SBEM " + handleString + " BA P " + referencePointString + "\r" + insertionPointString + " ", true, false, true);
                 acTrans.Commit();
             }
         }

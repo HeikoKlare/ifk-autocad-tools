@@ -1,6 +1,3 @@
 Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
 
-Rispe: Direkteingabe statt Mittelpunkt (oder 2. Punkt default), einzeln Transaktion für jede Rispe
-Laufmaß: anderer Maßstab - anderer Abstand
-
-Überall: Block Bezug zum Layer wegen Farbe
+Rispe: einzeln Transaktion für jede Rispe (tut irgendwie nicht)
