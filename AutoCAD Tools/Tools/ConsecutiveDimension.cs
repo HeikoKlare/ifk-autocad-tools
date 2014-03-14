@@ -115,11 +115,27 @@ namespace AutoCADTools.Tools
                     return;
                 }
 
+                // Move reference point a little bit from the center, so it is correctly recognized
+                bool horizontal = Math.Abs(insertionPoint.Value.X - referencePoint.Value.X) < Math.Abs(insertionPoint.Value.Y - referencePoint.Value.Y);
+                Point3d refPoint = referencePoint.Value;
+                Point3d calcRefPoint = referencePoint.Value;
+                if (horizontal)
+                {
+                    refPoint = refPoint.Add(new Vector3d(referencePoint.Value.X < average.X ? -0.001 : 0.001, 0, 0));
+                    calcRefPoint = new Point3d(referencePoint.Value.X, referencePoint.Value.Y < average.Y ? minimum.Y : maximum.Y, 0);
+                }
+                else
+                {
+                    refPoint = refPoint.Add(new Vector3d(0, referencePoint.Value.Y < average.Y ? -0.001 : 0.001, 0));
+                    calcRefPoint = new Point3d(referencePoint.Value.X < average.X ? minimum.X : maximum.X, referencePoint.Value.Y, 0);
+                }
+                var referencePointString = refPoint.X + "," + refPoint.Y + "," + refPoint.Z;
+
                 // Restore old ortho mode
                 acDoc.Database.Orthomode = oldOrtho;
 
                 // Get and activate the style and calculate the base line distance
-                double dist = insertionPoint.Value.Subtract(referencePoint.Value.GetAsVector()).GetAsVector().Length;
+                double dist = insertionPoint.Value.Subtract(calcRefPoint.GetAsVector()).GetAsVector().Length;
                 DimStyleTable dimStyleTable = (DimStyleTable)acTrans.GetObject(acDoc.Database.DimStyleTableId, OpenMode.ForWrite);
                 if (dimStyleTable.Has(STYLENAME))
                 {
@@ -138,18 +154,7 @@ namespace AutoCADTools.Tools
                 acDoc.Database.Dimdec = decimalPlaces.Value;
                 acDoc.Database.Dimdli = 0.0;
 
-                // Move reference point a little bit from the center, so it is correctly recognized
-                bool horizontal = Math.Abs(insertionPoint.Value.X - referencePoint.Value.X) < Math.Abs(insertionPoint.Value.Y - referencePoint.Value.Y);
-                Point3d refPoint = referencePoint.Value;
-                if (horizontal)
-                {
-                    refPoint = refPoint.Add(new Vector3d(referencePoint.Value.X < average.X ? -0.001 : 0.001, 0, 0));
-                }
-                else
-                {
-                    refPoint = refPoint.Add(new Vector3d(0, referencePoint.Value.Y < average.Y ? -0.001 : 0.001, 0));
-                }
-                var referencePointString = refPoint.X + "," + refPoint.Y + "," + refPoint.Z;
+
                 
                 // Execute command
                 acDoc.SendStringToExecute("SBEM " + handleString + " BA P " + referencePointString + "\r" + insertionPointString + " ", true, false, true);
