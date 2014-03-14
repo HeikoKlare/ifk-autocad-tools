@@ -112,50 +112,56 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="butCreate.Text" xml:space="preserve">
     <value>Rispen erstellen</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 13</value>
+    <value>117, 20</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Beschreibung:</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 13</value>
+    <value>144, 20</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Positionsnummer:</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 13</value>
+    <value>62, 20</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Anzahl:</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 13</value>
+    <value>73, 20</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Abstand:</value>
   </data>
   <data name="radThirdsPoint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 17</value>
+    <value>124, 24</value>
   </data>
   <data name="radThirdsPoint.Text" xml:space="preserve">
     <value>Drittelspunkt</value>
   </data>
   <data name="radMiddlePoint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 17</value>
+    <value>112, 24</value>
   </data>
   <data name="radMiddlePoint.Text" xml:space="preserve">
     <value>Mittelpunkt</value>
+  </data>
+  <data name="radDirectInput.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 24</value>
+  </data>
+  <data name="radDirectInput.Text" xml:space="preserve">
+    <value>Direkteingabe</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -88,7 +88,8 @@ namespace AutoCADTools.Tools
         /// Returns the resulting block name for the text block
         /// </summary>
         private string BlockName {
-            get { return BLOCK_PREFIX + position.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString(); }
+            get { return BLOCK_PREFIX + position.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString() 
+                + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer; }
         }
 
         #endregion

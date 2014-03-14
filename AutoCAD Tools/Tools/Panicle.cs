@@ -18,13 +18,16 @@ namespace AutoCADTools.Tools
     {
         #region Static Members
 
+        private enum InputType { MiddlePoint, ThirdsPoint, DirectInput };
+
         private static String pos = "3";
         private static String descr = "RiBd 60/2.0";
         private static int panicleCount = 1;
         private static int panicleDistance = 10;
-        private static bool thirdsPoint = true;
+        private static InputType inputType = InputType.ThirdsPoint;
         private static string BlockName {
-            get { return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString(); }
+            get { return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()
+                + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer; }
         }
 
         #endregion
@@ -51,8 +54,9 @@ namespace AutoCADTools.Tools
             cmbDescription.Text = descr;
             numCount.Value = panicleCount;
             txtDistance.Text = panicleDistance.ToString();
-            radThirdsPoint.Checked = thirdsPoint;
-            radMiddlePoint.Checked = !thirdsPoint;
+            radThirdsPoint.Checked = inputType == InputType.ThirdsPoint;
+            radMiddlePoint.Checked = inputType == InputType.MiddlePoint;
+            radDirectInput.Checked = inputType == InputType.DirectInput;
         }
 
         #endregion
@@ -83,7 +87,7 @@ namespace AutoCADTools.Tools
             descr = cmbDescription.Text;
             panicleCount = (int)numCount.Value;
             panicleDistance = int.Parse(txtDistance.Text);
-            thirdsPoint = radThirdsPoint.Checked;
+            inputType = radThirdsPoint.Checked ? InputType.ThirdsPoint : (radMiddlePoint.Checked ? InputType.MiddlePoint : InputType.DirectInput);
 
             // Get the current document and database
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
@@ -176,7 +180,8 @@ namespace AutoCADTools.Tools
                     }
 
                     // Initiate jig with lines
-                    PanicleLineJig jig = new PanicleLineJig(thirdsPoint ? 1.0d / 3 : 0.5d, panicleDistance / 100d);
+                    PanicleLineJig jig = new PanicleLineJig(inputType == InputType.ThirdsPoint ? 1.0d / 3 : 0.5d, panicleDistance / 100d, inputType != InputType.DirectInput);
+
                     Line line = null;
                     for (int i = 0; i < panicleCount; i++)
                     {
@@ -285,6 +290,21 @@ namespace AutoCADTools.Tools
             txtDistance.Enabled = numCount.Value > 1;
         }
 
+        /// <summary>
+        /// Processes that direct input selection changed. If direct input is selected, disable the selector for the number of panicles and reset the number to 1.
+        /// </summary>
+        /// <param name="sender">the event sender</param>
+        /// <param name="e">the event args</param>
+        private void radDirectInput_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radDirectInput.Checked)
+            {
+                numCount.Value = 1;
+            }
+
+            numCount.Enabled = !radDirectInput.Enabled;
+        }
+
         #endregion
 
         #region Jig
@@ -308,21 +328,25 @@ namespace AutoCADTools.Tools
             private double distance;
             private double pointFactor;
             private List<Line> lines;
+            private bool interpolatedInput;
 
             /// <summary>
             /// Initiates a new PanicleLineJig for defining a panicle with a specified factor for the start-/endpoint
             /// as offset to the baseline and with a defined distance between the panicles.
             /// </summary>
             /// <param name="pointFactor">factor of base line length at which to start/end panicle</param>
-            /// <param name="distance">the distance between two panicles of there is more than 1</param>
-            public PanicleLineJig(double pointFactor, double distance = 0.0d)
+            /// <param name="distance">the distance between two panicles if there is more than 1</param>
+            /// <param name="interpolatedInput">specifies if there shell be used two points that are interpolated according to the pointfactor. If false, the pointFactor is not used.</param>
+            public PanicleLineJig(double pointFactor, double distance = 0.0d, bool interpolatedInput = true)
             {
                 this.endPoints = new Point3d[2,2];
                 this.currentPointIndex = 0;
                 this.currentEndIndex = 0;
-                this.distance = distance;
+                this.distance = interpolatedInput ? distance : 1;
                 this.lines = new List<Line>();
                 this.pointFactor = pointFactor;
+                this.interpolatedInput = interpolatedInput;
+                if (interpolatedInput && distance < 0.00001) throw new ArgumentException("Distance is too small.");
             }
 
             /// <summary>
@@ -395,7 +419,7 @@ namespace AutoCADTools.Tools
                 PromptPointResult getPointResult = prompts.AcquirePoint(promptOptions);
                 Point3d oldPoint = endPoints[currentPointIndex, currentEndIndex];
                 endPoints[currentPointIndex, currentEndIndex] = getPointResult.Value;
-                       
+                                       
                 // Return NoChange if difference is to low to avoid flimmering
                 if (endPoints[currentPointIndex, currentEndIndex].DistanceTo(oldPoint) < 0.001)
                 {
@@ -475,7 +499,7 @@ namespace AutoCADTools.Tools
                         if (!(currentEndIndex == secondEndIndex && endPoints[currentPointIndex, firstEndIndex] == endPoints[currentPointIndex, secondEndIndex])) 
                         {
                             // If we are not at the end, update state
-                            if (!(currentPointIndex == secondPointIndex && currentEndIndex == secondEndIndex))
+                            if (!(currentPointIndex == secondPointIndex && currentEndIndex == secondEndIndex) && !(!interpolatedInput && currentPointIndex == secondPointIndex))
                             {
                                 // Progress the phase
                                 if (currentEndIndex == secondEndIndex) {
@@ -489,7 +513,17 @@ namespace AutoCADTools.Tools
                                     {
                                         line.StartPoint = startPoint + index++ * vectorTwoPanicles;
                                     }
-                                } else {
+                                }
+                                else if (!interpolatedInput)
+                                {
+                                    currentPointIndex++;
+                                    foreach (Line line in lines)
+                                    {
+                                        line.StartPoint = endPoints[firstPointIndex, firstEndIndex];
+                                    }
+                                }
+                                else
+                                {
                                     currentEndIndex++;
                                 }
                             }

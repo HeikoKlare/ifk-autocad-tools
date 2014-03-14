@@ -42,6 +42,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.radThirdsPoint = new System.Windows.Forms.RadioButton();
             this.radMiddlePoint = new System.Windows.Forms.RadioButton();
+            this.radDirectInput = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.numCount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,12 +135,20 @@
             this.radMiddlePoint.Name = "radMiddlePoint";
             this.radMiddlePoint.UseVisualStyleBackColor = true;
             // 
+            // radDirectInput
+            // 
+            resources.ApplyResources(this.radDirectInput, "radDirectInput");
+            this.radDirectInput.Name = "radDirectInput";
+            this.radDirectInput.UseVisualStyleBackColor = true;
+            this.radDirectInput.CheckedChanged += new System.EventHandler(this.radDirectInput_CheckedChanged);
+            // 
             // Panicle
             // 
             this.AcceptButton = this.butCreate;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.Controls.Add(this.radDirectInput);
             this.Controls.Add(this.radMiddlePoint);
             this.Controls.Add(this.radThirdsPoint);
             this.Controls.Add(this.label5);
@@ -179,6 +188,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radThirdsPoint;
         private System.Windows.Forms.RadioButton radMiddlePoint;
+        private System.Windows.Forms.RadioButton radDirectInput;
 
     }
 }
