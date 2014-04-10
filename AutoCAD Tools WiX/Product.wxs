@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="AutoCAD Tools für AutoCAD 2013" Language="1031" Version="2.3.3" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{5E4C5CD1-67AE-4E91-A1EB-713CCE7CA718}">
+	<Product Id="*" Name="AutoCAD Tools für AutoCAD 2015" Language="1031" Version="2.3.3" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{6E78AB5F-8167-43D7-B7F7-8FD1A7BB6E14}">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64"/>
 
 		<MajorUpgrade DowngradeErrorMessage="Eine neuere Version von [ProductName] ist bereits installiert." AllowSameVersionUpgrades="no" AllowDowngrades="no" />
@@ -16,12 +16,16 @@
     <Property Id="AutoCadVersion" Value="AutoCAD 2012" />-->
     
     <!-- AUTOCAD 2013 -->
-    <Property Id="AutoCadVersionString" Value="R19.0\ACAD-B001:407" />
-    <Property Id="AutoCadVersion" Value="AutoCAD 2013" />
+    <!-- <Property Id="AutoCadVersionString" Value="R19.0\ACAD-B001:407" />
+    <Property Id="AutoCadVersion" Value="AutoCAD 2013" />-->
 
     <!-- AUTOCAD 2014 -->
     <!--<Property Id="AutoCadVersionString" Value="R19.1\ACAD-D001:407" />
     <Property Id="AutoCadVersion" Value="AutoCAD 2014" />-->
+
+    <!-- AUTOCAD 2015 -->
+    <Property Id="AutoCadVersionString" Value="R20.0\ACAD-E001:407" />
+    <Property Id="AutoCadVersion" Value="AutoCAD 2015" />
     
     <Property Id="AssemblyName" Value="AutoCAD Tools 2.dll" />
             

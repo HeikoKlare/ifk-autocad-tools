@@ -418,8 +418,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2013\"
-xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools 2.resources.dll" "C:\Programme\Autodesk\AutoCAD 2013\de\"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2015\"
+xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools 2.resources.dll" "C:\Programme\Autodesk\AutoCAD 2015\de\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
