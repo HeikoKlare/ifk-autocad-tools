@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
@@ -370,6 +371,7 @@ namespace AutoCADTools.Tools
                         }
                         catch (Exception)
                         {
+                            MessageBox.Show("Exception");
                             return false;
                         }
                     }
@@ -418,9 +420,8 @@ namespace AutoCADTools.Tools
             protected override SamplerStatus Sampler(JigPrompts prompts)
             {
                 if (prompts == null) return SamplerStatus.Cancel;
-
                 // Get the insertionPoint
-                PromptPointResult getPointResult = prompts.AcquirePoint("\n" + LocalData.TrussImportInputPoint + ": ");
+                PromptPointResult getPointResult = prompts.AcquirePoint(LocalData.TrussImportInputPoint + ": ");
                 Point3d oldPoint0 = insertionPoint;
                 insertionPoint = getPointResult.Value;
 

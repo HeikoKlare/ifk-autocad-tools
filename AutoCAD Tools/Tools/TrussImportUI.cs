@@ -86,10 +86,10 @@ namespace AutoCADTools.Tools
 
             this.Close();
             
-            if (!trussImport.Import())
-            {
-                MessageBox.Show(LocalData.TrussImportErrorText, LocalData.TrussImportErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if (!trussImport.Import())
+            //{
+            //    MessageBox.Show(LocalData.TrussImportErrorText, LocalData.TrussImportErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void txtSource_TextChanged(object sender, EventArgs e)
