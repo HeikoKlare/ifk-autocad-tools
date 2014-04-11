@@ -50,5 +50,8 @@
     <Setting Name="SqlConnectionDatabase" Type="System.String" Scope="User">
       <Value Profile="(Default)">AutoCAD</Value>
     </Setting>
+    <Setting Name="PanicleDescriptionBlack" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

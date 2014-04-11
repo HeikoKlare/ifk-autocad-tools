@@ -184,5 +184,17 @@ namespace AutoCADTools.Properties {
                 this["SqlConnectionDatabase"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PanicleDescriptionBlack {
+            get {
+                return ((bool)(this["PanicleDescriptionBlack"]));
+            }
+            set {
+                this["PanicleDescriptionBlack"] = value;
+            }
+        }
     }
 }

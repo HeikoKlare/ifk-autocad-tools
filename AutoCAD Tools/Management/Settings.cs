@@ -24,6 +24,7 @@ namespace AutoCADTools.Management
             txtDbPassword.Text = Properties.Settings.Default.SqlConnectionPassword;
             txtDbTimeout.Text = Properties.Settings.Default.SqlConnectionTimeout;
             txtDbDatabase.Text = Properties.Settings.Default.SqlConnectionDatabase;
+            cbPanicleDescriptionBlack.Checked = Properties.Settings.Default.PanicleDescriptionBlack;
         }
 
         #endregion
@@ -43,6 +44,7 @@ namespace AutoCADTools.Management
             Properties.Settings.Default.SqlConnectionPassword = txtDbPassword.Text;
             Properties.Settings.Default.SqlConnectionTimeout = txtDbTimeout.Text;
             Properties.Settings.Default.SqlConnectionDatabase = txtDbDatabase.Text;
+            Properties.Settings.Default.PanicleDescriptionBlack = cbPanicleDescriptionBlack.Checked;
             Properties.Settings.Default.Save();
             this.Close();
         }
@@ -98,6 +100,7 @@ namespace AutoCADTools.Management
         }
 
         #endregion
+
 
     }
 }
