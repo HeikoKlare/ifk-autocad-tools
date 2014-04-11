@@ -1,3 +1,5 @@
 Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
 
 Rispe: einzeln Transaktion für jede Rispe (tut irgendwie nicht)
+
+Quick Create Layout: Layout mit Default Settings erstellen ohne den Dialog anzuzeigen. 
