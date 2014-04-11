@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ingenieurbüro Klare")]
 [assembly: AssemblyProduct("AutoCAD Tools 2")]
-[assembly: AssemblyCopyright("Copyright © IFK 2013")]
+[assembly: AssemblyCopyright("Copyright © IFK 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +33,6 @@ using System.Resources;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.3.0.0")]
-[assembly: AssemblyFileVersion("2.3.0.0")]
+[assembly: AssemblyVersion("2.3.4.0")]
+[assembly: AssemblyFileVersion("2.3.4.0")]
 [assembly: NeutralResourcesLanguageAttribute("")]
