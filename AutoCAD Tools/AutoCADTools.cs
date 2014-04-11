@@ -206,6 +206,20 @@ namespace AutoCADTools
         }
 
         /// <summary>
+        /// LayoutErstellen opens a UserForm with options and methods to define a new layout. There is the
+        /// possibility to create simple layouts or layouts with textfields and borders using the data
+        /// of the drawing properties.
+        /// </summary>
+        [CommandMethod("CreateLayoutQuick", CommandFlags.NoPaperSpace)]
+        public static void CreateLayoutQuick()
+        {
+            using (Form UFLayoutErstellen = new UFLayoutErstellen(true))
+            {
+                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(UFLayoutErstellen);
+            }
+        }
+
+        /// <summary>
         /// TrussImport opens a dialog to select a file and some layers to import to the current document.
         /// </summary>
         [CommandMethod("TrussImport")]

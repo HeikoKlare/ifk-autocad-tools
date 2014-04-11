@@ -69,26 +69,29 @@
             // 
             this.CBconfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBconfig.FormattingEnabled = true;
-            this.CBconfig.Location = new System.Drawing.Point(145, 21);
+            this.CBconfig.Location = new System.Drawing.Point(218, 32);
+            this.CBconfig.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBconfig.Name = "CBconfig";
-            this.CBconfig.Size = new System.Drawing.Size(204, 21);
+            this.CBconfig.Size = new System.Drawing.Size(304, 28);
             this.CBconfig.TabIndex = 0;
             this.CBconfig.SelectedIndexChanged += new System.EventHandler(this.CBconfig_SelectedIndexChanged);
             // 
             // Lconfig
             // 
             this.Lconfig.AutoSize = true;
-            this.Lconfig.Location = new System.Drawing.Point(21, 24);
+            this.Lconfig.Location = new System.Drawing.Point(32, 37);
+            this.Lconfig.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lconfig.Name = "Lconfig";
-            this.Lconfig.Size = new System.Drawing.Size(118, 13);
+            this.Lconfig.Size = new System.Drawing.Size(178, 20);
             this.Lconfig.TabIndex = 1;
             this.Lconfig.Text = "Standard-Konfiguration:";
             // 
             // Breset
             // 
-            this.Breset.Location = new System.Drawing.Point(362, 21);
+            this.Breset.Location = new System.Drawing.Point(543, 32);
+            this.Breset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Breset.Name = "Breset";
-            this.Breset.Size = new System.Drawing.Size(75, 23);
+            this.Breset.Size = new System.Drawing.Size(112, 35);
             this.Breset.TabIndex = 2;
             this.Breset.Text = "Reset";
             this.Breset.UseVisualStyleBackColor = true;
@@ -101,9 +104,11 @@
             this.GBausschnitt.Controls.Add(this.RBzeichenbereich);
             this.GBausschnitt.Controls.Add(this.BausschnittErstellen);
             this.GBausschnitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBausschnitt.Location = new System.Drawing.Point(24, 57);
+            this.GBausschnitt.Location = new System.Drawing.Point(36, 88);
+            this.GBausschnitt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GBausschnitt.Name = "GBausschnitt";
-            this.GBausschnitt.Size = new System.Drawing.Size(413, 85);
+            this.GBausschnitt.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GBausschnitt.Size = new System.Drawing.Size(620, 131);
             this.GBausschnitt.TabIndex = 3;
             this.GBausschnitt.TabStop = false;
             this.GBausschnitt.Text = "Ausschnitt";
@@ -113,9 +118,10 @@
             this.Lausschnitt.AutoSize = true;
             this.Lausschnitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lausschnitt.ForeColor = System.Drawing.Color.Red;
-            this.Lausschnitt.Location = new System.Drawing.Point(221, 55);
+            this.Lausschnitt.Location = new System.Drawing.Point(332, 85);
+            this.Lausschnitt.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lausschnitt.Name = "Lausschnitt";
-            this.Lausschnitt.Size = new System.Drawing.Size(131, 13);
+            this.Lausschnitt.Size = new System.Drawing.Size(207, 20);
             this.Lausschnitt.TabIndex = 9;
             this.Lausschnitt.Text = "Ausschnitt nicht festgelegt";
             // 
@@ -123,9 +129,10 @@
             // 
             this.RBmanuell.AutoSize = true;
             this.RBmanuell.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RBmanuell.Location = new System.Drawing.Point(29, 51);
+            this.RBmanuell.Location = new System.Drawing.Point(44, 78);
+            this.RBmanuell.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RBmanuell.Name = "RBmanuell";
-            this.RBmanuell.Size = new System.Drawing.Size(123, 17);
+            this.RBmanuell.Size = new System.Drawing.Size(191, 24);
             this.RBmanuell.TabIndex = 8;
             this.RBmanuell.Text = "Manueller Ausschnitt";
             this.RBmanuell.UseVisualStyleBackColor = true;
@@ -135,9 +142,10 @@
             this.RBzeichenbereich.AutoSize = true;
             this.RBzeichenbereich.Checked = true;
             this.RBzeichenbereich.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RBzeichenbereich.Location = new System.Drawing.Point(29, 28);
+            this.RBzeichenbereich.Location = new System.Drawing.Point(44, 43);
+            this.RBzeichenbereich.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RBzeichenbereich.Name = "RBzeichenbereich";
-            this.RBzeichenbereich.Size = new System.Drawing.Size(149, 17);
+            this.RBzeichenbereich.Size = new System.Drawing.Size(223, 24);
             this.RBzeichenbereich.TabIndex = 7;
             this.RBzeichenbereich.TabStop = true;
             this.RBzeichenbereich.Text = "Zeichnbereich verwenden";
@@ -147,9 +155,10 @@
             // BausschnittErstellen
             // 
             this.BausschnittErstellen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BausschnittErstellen.Location = new System.Drawing.Point(212, 19);
+            this.BausschnittErstellen.Location = new System.Drawing.Point(318, 29);
+            this.BausschnittErstellen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BausschnittErstellen.Name = "BausschnittErstellen";
-            this.BausschnittErstellen.Size = new System.Drawing.Size(163, 26);
+            this.BausschnittErstellen.Size = new System.Drawing.Size(244, 40);
             this.BausschnittErstellen.TabIndex = 4;
             this.BausschnittErstellen.Text = "Neu festlegen";
             this.BausschnittErstellen.UseVisualStyleBackColor = true;
@@ -166,9 +175,11 @@
             this.GBmassstab.Controls.Add(this.Lunit);
             this.GBmassstab.Controls.Add(this.Lscale);
             this.GBmassstab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBmassstab.Location = new System.Drawing.Point(24, 148);
+            this.GBmassstab.Location = new System.Drawing.Point(36, 228);
+            this.GBmassstab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GBmassstab.Name = "GBmassstab";
-            this.GBmassstab.Size = new System.Drawing.Size(242, 128);
+            this.GBmassstab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GBmassstab.Size = new System.Drawing.Size(363, 197);
             this.GBmassstab.TabIndex = 4;
             this.GBmassstab.TabStop = false;
             this.GBmassstab.Text = "Maßstab";
@@ -177,9 +188,10 @@
             // 
             this.CBexakterAusschnitt.AutoSize = true;
             this.CBexakterAusschnitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBexakterAusschnitt.Location = new System.Drawing.Point(25, 102);
+            this.CBexakterAusschnitt.Location = new System.Drawing.Point(38, 157);
+            this.CBexakterAusschnitt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBexakterAusschnitt.Name = "CBexakterAusschnitt";
-            this.CBexakterAusschnitt.Size = new System.Drawing.Size(185, 17);
+            this.CBexakterAusschnitt.Size = new System.Drawing.Size(286, 24);
             this.CBexakterAusschnitt.TabIndex = 7;
             this.CBexakterAusschnitt.Text = "Exakter Ausschnitt ohne Maßstab";
             this.CBexakterAusschnitt.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -190,9 +202,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(207, 77);
+            this.label8.Location = new System.Drawing.Point(310, 118);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(23, 13);
+            this.label8.Size = new System.Drawing.Size(37, 20);
             this.label8.TabIndex = 6;
             this.label8.Text = "mm";
             // 
@@ -200,19 +213,21 @@
             // 
             this.LunitText.AutoSize = true;
             this.LunitText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LunitText.Location = new System.Drawing.Point(32, 73);
+            this.LunitText.Location = new System.Drawing.Point(48, 112);
+            this.LunitText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LunitText.Name = "LunitText";
-            this.LunitText.Size = new System.Drawing.Size(97, 13);
+            this.LunitText.Size = new System.Drawing.Size(153, 20);
             this.LunitText.TabIndex = 5;
             this.LunitText.Text = "1 Einheit entspricht";
             // 
             // TBeinheit
             // 
             this.TBeinheit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBeinheit.Location = new System.Drawing.Point(135, 70);
+            this.TBeinheit.Location = new System.Drawing.Point(202, 108);
+            this.TBeinheit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TBeinheit.MaxLength = 6;
             this.TBeinheit.Name = "TBeinheit";
-            this.TBeinheit.Size = new System.Drawing.Size(66, 20);
+            this.TBeinheit.Size = new System.Drawing.Size(97, 26);
             this.TBeinheit.TabIndex = 4;
             this.TBeinheit.Text = "1000";
             this.TBeinheit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberedTexBox_KeyPress);
@@ -221,10 +236,11 @@
             // 
             this.CBmassstab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBmassstab.FormattingEnabled = true;
-            this.CBmassstab.Location = new System.Drawing.Point(135, 24);
+            this.CBmassstab.Location = new System.Drawing.Point(202, 37);
+            this.CBmassstab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBmassstab.MaxLength = 3;
             this.CBmassstab.Name = "CBmassstab";
-            this.CBmassstab.Size = new System.Drawing.Size(66, 21);
+            this.CBmassstab.Size = new System.Drawing.Size(97, 28);
             this.CBmassstab.TabIndex = 3;
             this.CBmassstab.Text = "100";
             this.CBmassstab.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberedTexBox_KeyPress);
@@ -233,9 +249,10 @@
             // 
             this.LscaleText.AutoSize = true;
             this.LscaleText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LscaleText.Location = new System.Drawing.Point(113, 27);
+            this.LscaleText.Location = new System.Drawing.Point(170, 42);
+            this.LscaleText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LscaleText.Name = "LscaleText";
-            this.LscaleText.Size = new System.Drawing.Size(16, 13);
+            this.LscaleText.Size = new System.Drawing.Size(23, 20);
             this.LscaleText.TabIndex = 2;
             this.LscaleText.Text = "1:";
             // 
@@ -243,9 +260,10 @@
             // 
             this.Lunit.AutoSize = true;
             this.Lunit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lunit.Location = new System.Drawing.Point(20, 55);
+            this.Lunit.Location = new System.Drawing.Point(30, 85);
+            this.Lunit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lunit.Name = "Lunit";
-            this.Lunit.Size = new System.Drawing.Size(97, 13);
+            this.Lunit.Size = new System.Drawing.Size(148, 20);
             this.Lunit.TabIndex = 1;
             this.Lunit.Text = "Zeichnungseinheit:";
             // 
@@ -253,9 +271,10 @@
             // 
             this.Lscale.AutoSize = true;
             this.Lscale.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lscale.Location = new System.Drawing.Point(20, 27);
+            this.Lscale.Location = new System.Drawing.Point(30, 42);
+            this.Lscale.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lscale.Name = "Lscale";
-            this.Lscale.Size = new System.Drawing.Size(79, 13);
+            this.Lscale.Size = new System.Drawing.Size(124, 20);
             this.Lscale.TabIndex = 0;
             this.Lscale.Text = "Druckmaßstab:";
             // 
@@ -270,9 +289,11 @@
             this.GBblatt.Controls.Add(this.Lpapierformat);
             this.GBblatt.Controls.Add(this.CBoptimiertePapierformate);
             this.GBblatt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBblatt.Location = new System.Drawing.Point(281, 148);
+            this.GBblatt.Location = new System.Drawing.Point(422, 228);
+            this.GBblatt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GBblatt.Name = "GBblatt";
-            this.GBblatt.Size = new System.Drawing.Size(156, 247);
+            this.GBblatt.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GBblatt.Size = new System.Drawing.Size(234, 380);
             this.GBblatt.TabIndex = 5;
             this.GBblatt.TabStop = false;
             this.GBblatt.Text = "Blatt";
@@ -281,9 +302,10 @@
             // 
             this.LFehlerFormat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LFehlerFormat.ForeColor = System.Drawing.Color.Red;
-            this.LFehlerFormat.Location = new System.Drawing.Point(15, 99);
+            this.LFehlerFormat.Location = new System.Drawing.Point(22, 152);
+            this.LFehlerFormat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LFehlerFormat.Name = "LFehlerFormat";
-            this.LFehlerFormat.Size = new System.Drawing.Size(126, 35);
+            this.LFehlerFormat.Size = new System.Drawing.Size(189, 54);
             this.LFehlerFormat.TabIndex = 14;
             this.LFehlerFormat.Text = "Kein passendes Format bei diesem Drucker.";
             // 
@@ -291,9 +313,10 @@
             // 
             this.CBdrehen.AutoSize = true;
             this.CBdrehen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBdrehen.Location = new System.Drawing.Point(18, 188);
+            this.CBdrehen.Location = new System.Drawing.Point(27, 289);
+            this.CBdrehen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBdrehen.Name = "CBdrehen";
-            this.CBdrehen.Size = new System.Drawing.Size(97, 17);
+            this.CBdrehen.Size = new System.Drawing.Size(147, 24);
             this.CBdrehen.TabIndex = 13;
             this.CBdrehen.Text = "Um 90° drehen";
             this.CBdrehen.UseVisualStyleBackColor = true;
@@ -304,9 +327,10 @@
             this.CBkopf.Checked = true;
             this.CBkopf.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBkopf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBkopf.Location = new System.Drawing.Point(18, 215);
+            this.CBkopf.Location = new System.Drawing.Point(27, 331);
+            this.CBkopf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBkopf.Name = "CBkopf";
-            this.CBkopf.Size = new System.Drawing.Size(100, 17);
+            this.CBkopf.Size = new System.Drawing.Size(151, 24);
             this.CBkopf.TabIndex = 12;
             this.CBkopf.Text = "Kopf + Rahmen";
             this.CBkopf.UseVisualStyleBackColor = true;
@@ -316,9 +340,10 @@
             // 
             this.RBhochformat.AutoSize = true;
             this.RBhochformat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RBhochformat.Location = new System.Drawing.Point(41, 159);
+            this.RBhochformat.Location = new System.Drawing.Point(62, 245);
+            this.RBhochformat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RBhochformat.Name = "RBhochformat";
-            this.RBhochformat.Size = new System.Drawing.Size(80, 17);
+            this.RBhochformat.Size = new System.Drawing.Size(122, 24);
             this.RBhochformat.TabIndex = 11;
             this.RBhochformat.Text = "Hochformat";
             this.RBhochformat.UseVisualStyleBackColor = true;
@@ -328,9 +353,10 @@
             this.RBquerformat.AutoSize = true;
             this.RBquerformat.Checked = true;
             this.RBquerformat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RBquerformat.Location = new System.Drawing.Point(41, 137);
+            this.RBquerformat.Location = new System.Drawing.Point(62, 211);
+            this.RBquerformat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RBquerformat.Name = "RBquerformat";
-            this.RBquerformat.Size = new System.Drawing.Size(77, 17);
+            this.RBquerformat.Size = new System.Drawing.Size(119, 24);
             this.RBquerformat.TabIndex = 10;
             this.RBquerformat.TabStop = true;
             this.RBquerformat.Text = "Querformat";
@@ -342,9 +368,10 @@
             this.CBpapierformat.DropDownWidth = 60;
             this.CBpapierformat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CBpapierformat.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.CBpapierformat.Location = new System.Drawing.Point(90, 65);
+            this.CBpapierformat.Location = new System.Drawing.Point(135, 100);
+            this.CBpapierformat.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBpapierformat.Name = "CBpapierformat";
-            this.CBpapierformat.Size = new System.Drawing.Size(51, 21);
+            this.CBpapierformat.Size = new System.Drawing.Size(74, 28);
             this.CBpapierformat.TabIndex = 9;
             this.CBpapierformat.SelectedIndexChanged += new System.EventHandler(this.CBpapierformat_SelectedIndexChanged);
             // 
@@ -352,9 +379,10 @@
             // 
             this.Lpapierformat.AutoSize = true;
             this.Lpapierformat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lpapierformat.Location = new System.Drawing.Point(15, 68);
+            this.Lpapierformat.Location = new System.Drawing.Point(22, 105);
+            this.Lpapierformat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lpapierformat.Name = "Lpapierformat";
-            this.Lpapierformat.Size = new System.Drawing.Size(69, 13);
+            this.Lpapierformat.Size = new System.Drawing.Size(110, 20);
             this.Lpapierformat.TabIndex = 8;
             this.Lpapierformat.Text = "Papierformat:";
             // 
@@ -364,9 +392,10 @@
             this.CBoptimiertePapierformate.Checked = true;
             this.CBoptimiertePapierformate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CBoptimiertePapierformate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBoptimiertePapierformate.Location = new System.Drawing.Point(18, 19);
+            this.CBoptimiertePapierformate.Location = new System.Drawing.Point(27, 29);
+            this.CBoptimiertePapierformate.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBoptimiertePapierformate.Name = "CBoptimiertePapierformate";
-            this.CBoptimiertePapierformate.Size = new System.Drawing.Size(132, 40);
+            this.CBoptimiertePapierformate.Size = new System.Drawing.Size(198, 62);
             this.CBoptimiertePapierformate.TabIndex = 0;
             this.CBoptimiertePapierformate.Text = "Nur optimierte Papier formate nutzen";
             this.CBoptimiertePapierformate.UseVisualStyleBackColor = true;
@@ -375,18 +404,20 @@
             // Lprinter
             // 
             this.Lprinter.AutoSize = true;
-            this.Lprinter.Location = new System.Drawing.Point(34, 293);
+            this.Lprinter.Location = new System.Drawing.Point(51, 451);
+            this.Lprinter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lprinter.Name = "Lprinter";
-            this.Lprinter.Size = new System.Drawing.Size(48, 13);
+            this.Lprinter.Size = new System.Drawing.Size(69, 20);
             this.Lprinter.TabIndex = 6;
             this.Lprinter.Text = "Drucker:";
             // 
             // Llayoutname
             // 
             this.Llayoutname.AutoSize = true;
-            this.Llayoutname.Location = new System.Drawing.Point(34, 327);
+            this.Llayoutname.Location = new System.Drawing.Point(51, 503);
+            this.Llayoutname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Llayoutname.Name = "Llayoutname";
-            this.Llayoutname.Size = new System.Drawing.Size(68, 13);
+            this.Llayoutname.Size = new System.Drawing.Size(101, 20);
             this.Llayoutname.TabIndex = 7;
             this.Llayoutname.Text = "Layoutname:";
             // 
@@ -394,26 +425,29 @@
             // 
             this.CBdrucker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBdrucker.FormattingEnabled = true;
-            this.CBdrucker.Location = new System.Drawing.Point(88, 290);
+            this.CBdrucker.Location = new System.Drawing.Point(132, 446);
+            this.CBdrucker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CBdrucker.Name = "CBdrucker";
-            this.CBdrucker.Size = new System.Drawing.Size(178, 21);
+            this.CBdrucker.Size = new System.Drawing.Size(265, 28);
             this.CBdrucker.TabIndex = 8;
             this.CBdrucker.SelectedIndexChanged += new System.EventHandler(this.CBdrucker_SelectedIndexChanged);
             // 
             // TBlayout
             // 
-            this.TBlayout.Location = new System.Drawing.Point(108, 324);
+            this.TBlayout.Location = new System.Drawing.Point(162, 498);
+            this.TBlayout.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TBlayout.Name = "TBlayout";
-            this.TBlayout.Size = new System.Drawing.Size(158, 20);
+            this.TBlayout.Size = new System.Drawing.Size(235, 26);
             this.TBlayout.TabIndex = 9;
             this.TBlayout.Text = "Plot";
             // 
             // Berstellen
             // 
             this.Berstellen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Berstellen.Location = new System.Drawing.Point(24, 360);
+            this.Berstellen.Location = new System.Drawing.Point(36, 554);
+            this.Berstellen.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Berstellen.Name = "Berstellen";
-            this.Berstellen.Size = new System.Drawing.Size(242, 35);
+            this.Berstellen.Size = new System.Drawing.Size(363, 54);
             this.Berstellen.TabIndex = 10;
             this.Berstellen.Text = "Layout erstellen";
             this.Berstellen.UseVisualStyleBackColor = true;
@@ -421,9 +455,9 @@
             // 
             // UFLayoutErstellen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 414);
+            this.ClientSize = new System.Drawing.Size(688, 637);
             this.Controls.Add(this.Berstellen);
             this.Controls.Add(this.TBlayout);
             this.Controls.Add(this.CBdrucker);
@@ -437,6 +471,7 @@
             this.Controls.Add(this.CBconfig);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UFLayoutErstellen";
             this.Text = "LayoutErstellen";
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UFLayoutErstellen_KeyPress);

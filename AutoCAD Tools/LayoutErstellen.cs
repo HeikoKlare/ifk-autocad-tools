@@ -16,6 +16,7 @@ namespace AutoCADTools
     /// </summary>
     public partial class UFLayoutErstellen : Form
     {
+        private bool silent;
         private Point3d startpoint;
         private Point3d endpoint;
         private const int CA4 = 0;
@@ -201,12 +202,22 @@ namespace AutoCADTools
         private bool standardTemplate = true;
 
         /// <summary>
+        /// Initiates a new instance of the create layout class. If silent is checked, the command will be executed without showing a dialog.
+        /// </summary>
+        /// <param name="silent">if true, default parameters are used and no dialog is shown</param>
+        public UFLayoutErstellen(bool silent = false)
+        {
+            Initialize();
+            this.silent = silent;
+        }
+
+        /// <summary>
         /// Initiates a new instance of the create layout class. It looks if the user is in modelspace and will
         /// otherwise give a message and stop the command.
         /// Initiates the components and loads the available printers.
         /// Creating this form should just be enabled in ModelSpace, otherwise the results are probably nor as wanted.
         /// </summary>
-        public UFLayoutErstellen()
+        public void Initialize()
         {
             InitializeComponent();
             
@@ -236,6 +247,14 @@ namespace AutoCADTools
             this.dfFormat = "";
             DrawingArea.Find();
 
+            // Load the printers if not done this session and add them
+            if (printer == null) loadPrinters();
+            for (int i = 0; i < printer.Length; i++)
+            {
+                CBdrucker.Items.Add(printer[i].Name);
+            }
+            if (CBdrucker.Items.Count > 0) CBdrucker.SelectedIndex = 0;
+
             // Look for drawing frame and textfields to enable the right options
             using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
             {
@@ -260,15 +279,6 @@ namespace AutoCADTools
                 }
             }
             
-            // Load the printers if not done this session and add them
-            if (printer == null) loadPrinters();
-            for (int i = 0; i < printer.Length; i++)
-            {
-                CBdrucker.Items.Add(printer[i].Name);
-            }
-            if (CBdrucker.Items.Count > 0) CBdrucker.SelectedIndex = 0;
-            
-
             // Get the current scale
             scale = DrawingArea.Scale;
             if (scale == 0.0)
@@ -408,28 +418,33 @@ namespace AutoCADTools
 
                 if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CVERTICAL)
                 {
+                    CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = false;
                 }
                 else if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CHORIZONTAL)
                 {
+                    CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = true;
                 }
                 else if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CA3 + DrawingArea.CHORIZONTAL)
                 {
+                    CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBquerformat.Checked = true;
                     this.dfFormat = "A3";
                     CBdrehen.Checked = false;
                 }
                 else
                 {
+                    CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Plotter");
                     RBquerformat.Checked = true;
                     this.dfFormat = "A0";
-                    CBdrehen.Checked = false;
+                    CBdrehen.Checked = false; 
                 }
+                CBdrucker_SelectedIndexChanged(null, null);
                                 
                 using (Transaction acTrans = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.TransactionManager.StartTransaction())
                 {
@@ -1311,7 +1326,6 @@ namespace AutoCADTools
 
             return true;
         }
-
 
     }
 }
