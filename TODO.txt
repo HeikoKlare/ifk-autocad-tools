@@ -3,3 +3,20 @@ Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
 Rispe: einzeln Transaktion für jede Rispe (tut irgendwie nicht)
 
 Quick Create Layout: Layout mit Default Settings erstellen ohne den Dialog anzuzeigen. 
+
+Verband: Tab Reihenfolge
+Import: File not found bei Escape
+
+Nach Laufmaß kein zurücksetzen des Vermaßungsstils (sporadisch?)
+
+Template anpassen: unnötige Maßstile entfernen
+
+Länge Änderungsvermerk erhöhen
+
+Neue Vorlage ohne Änderungsvermerke?
+
+Rispen Zahl zentriert statt unten links
+
+Skalierung nicht gefunden beim Layout erstellen, Maßstab 1:15
+
+Fang für Formate
