@@ -83,7 +83,8 @@ namespace AutoCADTools.Tools
                 MessageBox.Show(LocalData.TrussImportFileNotFoundText + ": " + trussImport.FileName, LocalData.TrussImportFileNotFoundTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            
+            this.DialogResult = DialogResult.OK;
             this.Close();
             
             //if (!trussImport.Import())
@@ -137,7 +138,8 @@ namespace AutoCADTools.Tools
         {
             if (e.KeyChar == 27)
             {
-                this.Hide();
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
             }
         }
 
