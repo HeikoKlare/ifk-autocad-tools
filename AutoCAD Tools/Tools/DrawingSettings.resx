@@ -690,7 +690,7 @@
     <value>65, 17</value>
   </data>
   <data name="chkChanged1Active.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>36</value>
   </data>
   <data name="chkChanged1Active.Text" xml:space="preserve">
     <value>Enabled</value>
@@ -717,7 +717,7 @@
     <value>97, 20</value>
   </data>
   <data name="dtChanged1Date.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>38</value>
   </data>
   <data name="&gt;&gt;dtChanged1Date.Name" xml:space="preserve">
     <value>dtChanged1Date</value>
@@ -762,7 +762,7 @@
     <value>76, 67</value>
   </data>
   <data name="txtChanged1Note.MaxLength" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>50</value>
   </data>
   <data name="txtChanged1Note.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 20</value>
@@ -849,7 +849,7 @@
     <value>204, 21</value>
   </data>
   <data name="cmbChanged1Name.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>37</value>
   </data>
   <data name="&gt;&gt;cmbChanged1Name.Name" xml:space="preserve">
     <value>cmbChanged1Name</value>
@@ -970,7 +970,7 @@
     <value>76, 67</value>
   </data>
   <data name="txtChanged2Note.MaxLength" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>50</value>
   </data>
   <data name="txtChanged2Note.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 20</value>
