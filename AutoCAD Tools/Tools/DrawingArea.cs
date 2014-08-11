@@ -656,15 +656,8 @@ namespace AutoCADTools.Tools
                         height = temp;
                     }
 
-                    // Set the input origin lower left if normal drawing frame or lower right if custom
-                    if (userDefined)
-                    {
-                        newBlockDef.Origin = new Point3d(width / scale, 0, 0);
-                    }
-                    else
-                    {
-                        newBlockDef.Origin = new Point3d(0, 0, 0);
-                    }
+                    // Set the input origin lower right
+                    newBlockDef.Origin = new Point3d(width / scale, 0, 0);
                     
                     // Create a polyline as the drawing frame
                     using (Polyline poly = new Polyline())
