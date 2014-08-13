@@ -137,6 +137,14 @@ namespace AutoCADTools.Tools
                 // Get and activate the style and calculate the base line distance
                 double dist = insertionPoint.Value.Subtract(calcRefPoint.GetAsVector()).GetAsVector().Length;
                 DimStyleTable dimStyleTable = (DimStyleTable)acTrans.GetObject(acDoc.Database.DimStyleTableId, OpenMode.ForWrite);
+
+                // Save old values
+                var oldDimStyle = acDoc.Database.Dimstyle;
+                var oldDimStyleData = acDoc.Database.GetDimstyleData();
+                var oldDimexo = acDoc.Database.Dimexo;
+                var oldDimdec = acDoc.Database.Dimdec;
+                var oldDimdli = acDoc.Database.Dimdli;
+
                 if (dimStyleTable.Has(STYLENAME))
                 {
                     acDoc.Database.Dimstyle = dimStyleTable[STYLENAME];
@@ -153,12 +161,17 @@ namespace AutoCADTools.Tools
                 }
                 acDoc.Database.Dimdec = decimalPlaces.Value;
                 acDoc.Database.Dimdli = 0.0;
-
-
-                
+                                               
                 // Execute command
                 acDoc.SendStringToExecute("SBEM " + handleString + " BA P " + referencePointString + "\r" + insertionPointString + " ", true, false, true);
                 acTrans.Commit();
+
+                // Restore old values
+                acDoc.Database.Dimstyle = oldDimStyle;
+                acDoc.Database.SetDimstyleData(oldDimStyleData);
+                acDoc.Database.Dimexo = oldDimexo;
+                acDoc.Database.Dimdec = oldDimdec;
+                acDoc.Database.Dimdli = oldDimdli;
             }
         }
     }
