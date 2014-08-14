@@ -14,12 +14,24 @@ namespace AutoCADTools.Tools
     /// minumum extends of possible drawing areas and there is a method for automatically
     /// creating a drawing frame.
     /// </summary>
-    public static class DrawingArea
+    public class DrawingArea
     {
+        #region Constants
+
         /// <summary>
         /// The drawing area's name
         /// </summary>
         public const string NAME = "Zeichenbereich";
+
+        /// <summary>
+        /// Constant for the Xrecord name that the new textfield is used
+        /// </summary>
+        public const string ATTRIBUTE_NEW_TEXTFIELD_USED = "NewTextfieldSizeUsed";
+
+        /// <summary>
+        /// Constant for the Xrecord name that specified the scale value
+        /// </summary>
+        public const string ATTRIBUTE_SCALE = "Scale";
 
         /// <summary>
         /// The constant for format A4
@@ -67,38 +79,66 @@ namespace AutoCADTools.Tools
         private static double[,] formats = new double[,] { { 171.37, 250.5 }, { 287.0, 395.0 }, { 287.0, 395.0 }, { 1189.0, 841.0 } };
 
         /// <summary>
+        /// Size of the textfield
+        /// </summary>
+        private static readonly double[] textfieldSize = new double [] { 185.0, 57.5 };
+
+        /// <summary>
+        /// Size of the old textfield
+        /// </summary>
+        private static readonly double[] textfieldSizeOld = new double[] { 185.0, 77.0 };
+
+        #endregion
+
+        #region Attributes
+
+        /// <summary>
         /// Indicator if the format is userdefined
         /// </summary>
-        private static bool userDefined;
+        private bool userDefined;
 
         /// <summary>
         /// The scale depending on annotation scale and the paperunit
         /// </summary>
-        private static double scale;
+        private double scale;
 
         /// <summary>
         /// The scale depending on annotation scale and paperunit
         /// </summary>
-        public static double Scale
+        public double Scale
         {
-            get { return DrawingArea.scale; }
-            set { DrawingArea.scale = value; }
+            get { return scale; }
+            set { scale = value; }
+        }
+
+        /// <summary>
+        /// Specifies if the new text field size is used
+        /// </summary>
+        private bool newTextfieldUsed;
+
+        /// <summary>
+        /// Specifies if the new text field size is used
+        /// </summary>
+        public bool NewTextfieldUsed
+        {
+            get { return newTextfieldUsed; }
+            set { newTextfieldUsed = value; }
         }
 
         /// <summary>
         /// The saved ID for the line of the drawing frame block
         /// </summary>
-        private static ObjectId lineId;
+        private ObjectId lineId;
 
         /// <summary>
         /// The saved ID of the drawing frame
         /// </summary>
-        private static ObjectId drawingAreaId;
+        private ObjectId drawingAreaId;
         
         /// <summary>
         /// Getter/Setter access to the saved ID for the drawing frame
         /// </summary>
-        public static ObjectId DrawingAreaId
+        public ObjectId DrawingAreaId
         {
             get { return drawingAreaId; }
             set { drawingAreaId = value; }
@@ -107,15 +147,148 @@ namespace AutoCADTools.Tools
         /// <summary>
         /// The saved format and direction of the current drawing frame; it is the sum of the format and direction constant
         /// </summary>
-        private static int drawingAreaFormatDir;
+        private int drawingAreaFormatDir;
 
         /// <summary>
         /// Getter/Setter access to the saved format and direction of the current drawing frame; it is the sum of the format and direction constant
         /// </summary>
-        public static int DrawingAreaFormatDir
+        public int DrawingAreaFormatDir
         {
-            get { return DrawingArea.drawingAreaFormatDir; }
-            set { DrawingArea.drawingAreaFormatDir = value; }
+            get { return drawingAreaFormatDir; }
+            set { drawingAreaFormatDir = value; }
+        }
+
+        #endregion
+
+        #region Singleton Specification
+
+        private static DrawingArea instance;
+
+        /// <summary>
+        /// The singleton instance of the drawing area. If there is no drawing frame, null is returned!
+        /// </summary>
+        public static DrawingArea Instance
+        {
+            get {
+                instance = FindDrawingArea();
+                return instance; 
+            }
+            set { instance = value; }
+        }
+
+        private DrawingArea() { }
+
+        #endregion
+
+        /// <summary>
+        /// Finds the current drawing frame (if existing) and returns it.
+        /// <returns>the drawing area if found, null otherwise</returns>
+        /// </summary>
+        private static DrawingArea FindDrawingArea()
+        {
+            DrawingArea drawingArea = new DrawingArea();
+            bool found = false;
+            
+            // Get the current document
+            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            using (DocumentLock acLock = acDoc.LockDocument())
+            {
+                // Save layout and set to modelspace
+                String saveLayout = LayoutManager.Current.CurrentLayout;
+                LayoutManager.Current.CurrentLayout = "Model";
+
+                // Start the Transaction
+                using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
+                {
+                    // Get active BlockTable and BlockTableRecord
+                    BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                    BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForRead) as BlockTableRecord;
+
+                    // Look if block does alread exist
+                    if (acBlkTbl.Has(DrawingArea.NAME))
+                    {
+                        foreach (ObjectId objId in acBlkTblRec)
+                        {
+                            BlockReference block = acTrans.GetObject(objId, OpenMode.ForRead) as BlockReference;
+                            try
+                            {
+                                if (block != null && block.Name == DrawingArea.NAME)
+                                    drawingArea.drawingAreaId = objId;
+                                found = true;
+
+                                double scale;
+                                // Get the scale
+                                if (block.ExtensionDictionary.IsNull)
+                                {
+                                    // If block has no data, get the current scale
+                                    if (!DrawingArea.CalculateScale(out scale)) return null;
+                                    drawingArea.scale = scale;
+                                    drawingArea.newTextfieldUsed = false;
+                                }
+                                else
+                                {
+                                    // If the block has data, get its scale
+                                    DBDictionary dict = acTrans.GetObject(block.ExtensionDictionary, OpenMode.ForRead) as DBDictionary;
+                                    Xrecord xRecScale = acTrans.GetObject(dict.GetAt(ATTRIBUTE_SCALE), OpenMode.ForRead) as Xrecord;
+                                    TypedValue[] valuesScale = xRecScale.Data.AsArray();
+                                    Xrecord xRecTextField = acTrans.GetObject(dict.GetAt(ATTRIBUTE_NEW_TEXTFIELD_USED), OpenMode.ForRead) as Xrecord;
+                                    TypedValue[] valuesTextField = xRecTextField.Data.AsArray();
+                                    try
+                                    {
+                                        scale = double.Parse(valuesScale[0].Value.ToString());
+                                        drawingArea.scale = scale;
+                                        drawingArea.newTextfieldUsed = bool.Parse(valuesTextField[0].Value.ToString());
+                                    }
+                                    catch (Exception)
+                                    {
+                                        if (!DrawingArea.CalculateScale(out scale)) return null;
+                                        drawingArea.scale = scale;
+                                        drawingArea.newTextfieldUsed = false;
+                                    }
+                                }
+
+                                Double width = block.Bounds.Value.MaxPoint.X - block.Bounds.Value.MinPoint.X;
+                                Double height = block.Bounds.Value.MaxPoint.Y - block.Bounds.Value.MinPoint.Y;
+
+
+                                // Case A4 vertical
+                                if (Math.Abs(width - formats[CA4, CWIDTH] / scale) < 0.01
+                                    && Math.Abs(height - formats[CA4, CHEIGHT] / scale) < 0.01)
+                                {
+                                    drawingArea.drawingAreaFormatDir = DrawingArea.CA4 + DrawingArea.CVERTICAL;
+                                }
+                                // Case A4 horizontal
+                                else if (Math.Abs(width - formats[CA4, CHEIGHT] / scale) < 0.01
+                                    && Math.Abs(height - formats[CA4, CWIDTH] / scale) < 0.01)
+                                {
+                                    drawingArea.drawingAreaFormatDir = DrawingArea.CA4 + DrawingArea.CHORIZONTAL;
+                                }
+                                // Case A3
+                                else if (Math.Abs(width - formats[CA3, CHEIGHT] / scale) < 0.01
+                                    && Math.Abs(height - formats[CA3, CWIDTH] / scale) < 0.01)
+                                {
+                                    drawingArea.drawingAreaFormatDir = DrawingArea.CA3 + DrawingArea.CHORIZONTAL;
+                                }
+                                // Case bigger than A3
+                                else
+                                {
+                                    drawingArea.drawingAreaFormatDir = DrawingArea.CAX + DrawingArea.CHORIZONTAL;
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                // Just catch an exception for all the other objects
+                            }
+                        }
+                    }
+                }
+
+                // Return to old layout
+                LayoutManager.Current.CurrentLayout = saveLayout;
+            }
+
+            if (!found) drawingArea = null;
+            return drawingArea;
         }
 
 
@@ -123,10 +296,11 @@ namespace AutoCADTools.Tools
         /// Calculates the scale based on annotation scale and unit and saves it to the static variable
         /// </summary>
         /// <returns>true, if successfully calculated scale</returns>
-        private static bool CalculateScale()
+        private static bool CalculateScale(out double scale)
         {
             // Look if the drawing unit is already set or otherwise as to it. If not doing return
             bool found = false;
+            scale = 0.0d;
             do
             {
                 System.Collections.IDictionaryEnumerator enumer = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.
@@ -161,120 +335,50 @@ namespace AutoCADTools.Tools
         }
 
 
-        /// <summary>
-        /// Finds the current drawing frame (if existing) and saves its ID, format and direction to the veriabled zeichenbereichID and zeichenbereichFormatDir.
-        /// The result value indicates if there was a drawing area found
-        /// <returns>true, if there was a drawing area found, false otherwise</returns>
-        /// </summary>
-        public static bool Find()
-        {
-            DrawingArea.DrawingAreaId = new ObjectId();
-            bool found = false;
-
-            // Get the current document
-            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            using (DocumentLock acLock = acDoc.LockDocument())
-            {
-                // Save layout and set to modelspace
-                String saveLayout = LayoutManager.Current.CurrentLayout;
-                LayoutManager.Current.CurrentLayout = "Model";
-
-                // Start the Transaction
-                using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
-                {
-                    // Get active BlockTable and BlockTableRecord
-                    BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
-                    BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
-                        OpenMode.ForRead) as BlockTableRecord;
-
-                    // Look if block does alread exist and delete it
-                    if (acBlkTbl.Has(DrawingArea.NAME))
-                    {
-                        foreach (ObjectId objId in acBlkTblRec)
-                        {
-                            BlockReference block = acTrans.GetObject(objId, OpenMode.ForRead) as BlockReference;
-                            if (block != null) 
-                            {
-                                try
-                                {
-                                    if (block.Name == DrawingArea.NAME)
-                                    {
-                                        found = true;
-
-                                        // Get the scale
-                                        if (block.ExtensionDictionary.IsNull)
-                                        {
-                                            // If block has no data, get the current scale
-                                            DrawingArea.CalculateScale();
-                                        }
-                                        else
-                                        {
-                                            // If the block has data, get its scale
-                                            DBDictionary dict = acTrans.GetObject(block.ExtensionDictionary, OpenMode.ForRead) as DBDictionary;
-                                            Xrecord xRec = acTrans.GetObject(dict.GetAt("Scale"), OpenMode.ForRead) as Xrecord;
-                                            TypedValue[] values = xRec.Data.AsArray();
-                                            try
-                                            {
-                                                scale = double.Parse(values[0].Value.ToString());
-                                            }
-                                            catch (Exception)
-                                            {
-                                                DrawingArea.CalculateScale();
-                                            }
-                                        }
-
-                                        DrawingArea.drawingAreaId = objId;
-                                        Double width = block.Bounds.Value.MaxPoint.X - block.Bounds.Value.MinPoint.X;
-                                        Double height = block.Bounds.Value.MaxPoint.Y - block.Bounds.Value.MinPoint.Y;
-
-
-                                        // Case A4 vertical
-                                        if (Math.Abs(width - formats[CA4, CWIDTH] / scale) < 0.01
-                                            && Math.Abs(height - formats[CA4, CHEIGHT] / scale) < 0.01)
-                                        {
-                                            DrawingArea.drawingAreaFormatDir = DrawingArea.CA4 + DrawingArea.CVERTICAL;
-                                        }
-                                        // Case A4 horizontal
-                                        else if (Math.Abs(width - formats[CA4, CHEIGHT] / scale) < 0.01
-                                            && Math.Abs(height - formats[CA4, CWIDTH] / scale) < 0.01)
-                                        {
-                                            DrawingArea.drawingAreaFormatDir = DrawingArea.CA4 + DrawingArea.CHORIZONTAL;
-                                        }
-                                        // Case A3
-                                        else if (Math.Abs(width - formats[CA3, CHEIGHT] / scale) < 0.01
-                                            && Math.Abs(height - formats[CA3, CWIDTH] / scale) < 0.01)
-                                        {
-                                            DrawingArea.drawingAreaFormatDir = DrawingArea.CA3 + DrawingArea.CHORIZONTAL;
-                                        }
-                                        // Case bigger than A3
-                                        else
-                                        {
-                                            DrawingArea.drawingAreaFormatDir = DrawingArea.CAX + DrawingArea.CHORIZONTAL;
-                                        }
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                    // Just catch the exception if a corrupt block is tried to be accessed
-                                }
-                            }
-                        }
-                    }
-                }
-                // Return to old layout
-                LayoutManager.Current.CurrentLayout = saveLayout;
-            }
-
-            return found;
-        }
         
+
+        /// <summary>
+        /// Create an entry in the specified dictionary with the specified scale
+        /// </summary>
+        /// <param name="dictionary">the dictionary to create the entry in</param>
+        /// <param name="scale">the scale to be put in the dictionary</param>
+        /// <returns>the record added to the dictionary</returns>
+        private static Xrecord CreateScaleRecord(DBDictionary dictionary, double scale)
+        {
+            Xrecord xRec = new Xrecord();
+            using (ResultBuffer data = new ResultBuffer())
+            {
+                data.Add(new TypedValue((int)TypeCode.Int32, scale));
+                xRec.Data = data;
+                dictionary.SetAt(ATTRIBUTE_SCALE, xRec);
+            }
+            return xRec;
+        }
+
+        /// <summary>
+        /// Create an entry in the specified dictionary which specifies if the new text field size is used
+        /// </summary>
+        /// <param name="dictionary">the dictionary to create the entry in</param>
+        /// <param name="newTextFieldUsed">specifies if the new text field is used</param>
+        /// <returns>the record added to the dictionary</returns>
+        private static Xrecord CreateTextfieldRecord(DBDictionary dictionary, bool newTextFieldUsed)
+        {
+            Xrecord xRec = new Xrecord();
+            using (ResultBuffer data = new ResultBuffer())
+            {
+                data.Add(new TypedValue((int)TypeCode.Boolean, newTextFieldUsed));
+                xRec.Data = data;
+                dictionary.SetAt(ATTRIBUTE_NEW_TEXTFIELD_USED, xRec);
+            }
+            return xRec;
+        }
 
         /// <summary>
         /// This methods tries to automatically draw a frame by analyzing the objects that are
         /// already in the current drawing and calculating their maximum extends.
         /// If there are no objects in the current drawing a message is given to the user.
         /// </summary>
-        [System.CodeDom.Compiler.GeneratedCode("Winform Designer", "VS2010")]
+        /*[System.CodeDom.Compiler.GeneratedCode("Winform Designer", "VS2010")]
         public static void CreateAuto()
         {
             if (!DrawingArea.CalculateScale())
@@ -490,7 +594,7 @@ namespace AutoCADTools.Tools
                     MessageBox.Show("Keine Objekte als Berechnungsgrundlage gefunden.");
                 }
             }
-        }
+        }*/
 
 
         /// <summary>
@@ -500,15 +604,17 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="format">the format the new drawing frame shell be of</param>
         /// <param name="direction">the direction of the drawing frame that shell be created</param>
-        public static void Create(int format, int direction)
+        /// <param name="oldTextFieldSize">specifies of the old (bigger) text field size shell be used</param>
+        public static void Create(int format, int direction, bool oldTextFieldSize = false)
         {
-            Find();
-
+            DrawingArea drawingArea = new DrawingArea();
             // Calculate the scale
-            if (!DrawingArea.CalculateScale())
+            double scale;
+            if (!DrawingArea.CalculateScale(out scale))
             {
                 return;
             }
+            drawingArea.scale = scale;
 
             // Get Document
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
@@ -522,10 +628,14 @@ namespace AutoCADTools.Tools
                 BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
                 // Set flag if its userDefined input
-                userDefined = (format == CAX);
+                drawingArea.userDefined = (format == CAX);
 
+                // Delete the current drawing frame
+
+                if (Instance != null) Instance.Delete();
+                
                 // Get the needed drawing frame to the BlockTable
-                Draw(format, direction);
+                drawingArea.Draw(format, direction, oldTextFieldSize);
 
                 BlockReference newBlock = null;
                 try
@@ -538,7 +648,7 @@ namespace AutoCADTools.Tools
                     newBlock.Linetype = "Continuous";
                     newBlock.LineWeight = LineWeight.ByLineWeightDefault;
 
-                    BlockJig jig = new BlockJig(newBlock);
+                    BlockJig jig = new BlockJig(newBlock, drawingArea, oldTextFieldSize);
                     PromptResult getPromptResult;
 
                     // Save the old cross width
@@ -548,7 +658,7 @@ namespace AutoCADTools.Tools
                     for (int i = 0; i < 2; i++)
                     {
                         // Rescale the cursor if custom input
-                        if (i == 0 && userDefined)
+                        if (i == 0 && drawingArea.userDefined)
                         {
                             Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", 100);
                         }
@@ -558,7 +668,6 @@ namespace AutoCADTools.Tools
                         }
 
 
-                        int oldFormatDir = DrawingArea.drawingAreaFormatDir;
                         // Set the phase counter of the jig and get it started
                         jig.Counter = i;
                         getPromptResult = acDoc.Editor.Drag(jig);
@@ -566,13 +675,12 @@ namespace AutoCADTools.Tools
                         // Handle Cancel or Error
                         if (getPromptResult.Status == PromptStatus.Cancel || getPromptResult.Status == PromptStatus.Error)
                         {
-                            DrawingArea.drawingAreaFormatDir = oldFormatDir;
                             return;
                         }
                         // Stop after one run if no custom input
-                        else if (!userDefined)
+                        else if (!drawingArea.userDefined)
                         {
-                            DrawingArea.drawingAreaFormatDir = format + direction;
+                            drawingArea.drawingAreaFormatDir = format + direction;
                             break;
                         }
                     }
@@ -582,21 +690,13 @@ namespace AutoCADTools.Tools
                     acTrans.AddNewlyCreatedDBObject(newBlock, true);
 
                     // Save ID and format + direction
-                    DrawingArea.drawingAreaId = newBlock.ObjectId;
+                    drawingArea.drawingAreaId = newBlock.ObjectId;
 
                     // Add an xRec with the scale
                     newBlock.CreateExtensionDictionary();
                     DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
-                    using (Xrecord xRec = new Xrecord())
-                    {
-                        using (ResultBuffer data = new ResultBuffer())
-                        {// new TypedValue((int)DxfCode.Int16, scale));
-                            data.Add(new TypedValue((int)TypeCode.Int32, scale));
-                            xRec.Data = data;
-                            extensionDict.SetAt("Scale", xRec);
-                            acTrans.AddNewlyCreatedDBObject(xRec, true);
-                        }
-                    }
+                    acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, scale), true);
+                    acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !oldTextFieldSize), true);
                 }
                 finally
                 {
@@ -605,10 +705,11 @@ namespace AutoCADTools.Tools
 
                 // Close transaction
                 acTrans.Commit();
+                instance = drawingArea;
             }
 
             // Reset variable
-            userDefined = false;
+            drawingArea.userDefined = false;
         }
 
 
@@ -618,13 +719,11 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="format">the format the new drawing frame shell be of</param>
         /// <param name="direction">the direction the new drawing frame shell have</param>
-        private static void Draw(int format, int direction)
+        /// <param name="oldTextfieldSize">specifies if the old (bigger) text field size shell be used</param>
+        private void Draw(int format, int direction, bool oldTextfieldSize)
         {
             // Get Document and Database
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
-            // Delete the current drawing frame
-            Delete();
             
             // Start the Transaction
             using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
@@ -669,9 +768,10 @@ namespace AutoCADTools.Tools
                         }
                         else
                         {
-                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d((width - 185.0) / scale, 0), 0, 0, 0);
-                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d((width - 185.0) / scale, 77.0 / scale), 0, 0, 0);
-                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(width / scale, 77.0 / scale), 0, 0, 0);
+                            double[] tfSize = oldTextfieldSize ? textfieldSizeOld : textfieldSize;
+                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d((width - tfSize[CWIDTH]) / scale, 0), 0, 0, 0);
+                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d((width - tfSize[CWIDTH]) / scale, tfSize[CHEIGHT] / scale), 0, 0, 0);
+                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(width / scale, tfSize[CHEIGHT] / scale), 0, 0, 0);
                         }
                         poly.AddVertexAt(poly.NumberOfVertices, new Point2d(width / scale, height / scale), 0, 0, 0);
                         poly.AddVertexAt(poly.NumberOfVertices, new Point2d(0, height / scale), 0, 0, 0);
@@ -699,7 +799,7 @@ namespace AutoCADTools.Tools
         /// <summary>
         /// Deletes the current drawing frame.
         /// </summary>
-        public static void Delete()
+        public void Delete()
         {
             // Get the current document
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
@@ -709,9 +809,9 @@ namespace AutoCADTools.Tools
             {
                 BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
 
-                if (DrawingArea.drawingAreaId != new ObjectId() && !DrawingArea.drawingAreaId.IsErased)
+                if (drawingAreaId.IsValid && !drawingAreaId.IsErased)
                 {
-                    DrawingArea.drawingAreaId.GetObject(OpenMode.ForWrite).Erase();
+                    acTrans.GetObject(drawingAreaId, OpenMode.ForWrite).Erase();
                     acTrans.TransactionManager.QueueForGraphicsFlush();
                 }
 
@@ -725,25 +825,17 @@ namespace AutoCADTools.Tools
                 acTrans.Commit();
             }
         }
-
-
-        /// <summary>
-        /// Returns true if the current drawing has a drawing frame, false if not
-        /// </summary>
-        /// <returns>true if the current drawing has a drawing frame, false if not</returns>
-        public static bool Exists()
-        {
-            return ((DrawingArea.drawingAreaId != new ObjectId()) && !DrawingArea.drawingAreaId.IsErased);
-        }
-
+                
         /// <summary>
         /// This function allows the user to change the size of the current drawing area using a jig.
         /// If there is no drawing area, nothing is done.
         /// </summary>
-        public static void ModifySize()
+        /// <param name="oldTextfieldSize">specifies if the old (bigger) text field size shell be used</param>
+        public static void ModifySize(bool oldTextfieldSize = false)
         {
             // Get the old drawing area, if there is none, return
-            if (!Find())
+            DrawingArea drawingArea = Instance;
+            if (drawingArea == null)
             {
                 return;
             }
@@ -758,13 +850,15 @@ namespace AutoCADTools.Tools
                 BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
                 BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
-                BlockReference oldBlock = acTrans.GetObject(DrawingArea.drawingAreaId, OpenMode.ForRead) as BlockReference;
+                BlockReference oldBlock = acTrans.GetObject(drawingArea.drawingAreaId, OpenMode.ForRead) as BlockReference;
                 Point3d oldPosition = oldBlock.Position;
 
                 // Set flag if its userDefined input
-                userDefined = true;
-
-                Draw(CAX, CHORIZONTAL);
+                drawingArea.userDefined = true;
+                
+                // Delete the current drawing frame
+                if (Instance != null) Instance.Delete();
+                drawingArea.Draw(CAX, CHORIZONTAL, oldTextfieldSize);
 
                 BlockReference newBlock = null;
                 try
@@ -777,21 +871,22 @@ namespace AutoCADTools.Tools
                     newBlock.Linetype = "Continuous";
                     newBlock.LineWeight = LineWeight.ByLineWeightDefault;
 
-                    BlockJig jig = new BlockJig(newBlock);
-                    jig.InsertionPoint = oldPosition.Subtract(new Vector3d(185.0 / Scale, -77.0 / Scale, 0));
+                    BlockJig jig = new BlockJig(newBlock, drawingArea, oldTextfieldSize);
+                    double[] tfSize = oldTextfieldSize ? textfieldSizeOld : textfieldSize;
+                    jig.InsertionPoint = oldPosition.Subtract(new Vector3d(tfSize[CWIDTH] / drawingArea.Scale, -tfSize[CHEIGHT] / drawingArea.Scale, 0));
                     jig.ForceUpdate();
                     jig.Counter = 1;
 
                     PromptResult getPromptResult;
 
-                    int oldFormatDir = DrawingArea.drawingAreaFormatDir;
+                    int oldFormatDir = drawingArea.drawingAreaFormatDir;
                     // Set the phase counter of the jig and get it started
                     getPromptResult = acDoc.Editor.Drag(jig);
 
                     // Handle Cancel or Error
                     if (getPromptResult.Status == PromptStatus.Cancel || getPromptResult.Status == PromptStatus.Error)
                     {
-                        DrawingArea.drawingAreaFormatDir = oldFormatDir;
+                        drawingArea.drawingAreaFormatDir = oldFormatDir;
                         return;
                     }
 
@@ -800,21 +895,13 @@ namespace AutoCADTools.Tools
                     acTrans.AddNewlyCreatedDBObject(newBlock, true);
 
                     // Save ID and format + direction
-                    DrawingArea.drawingAreaId = newBlock.ObjectId;
+                    drawingArea.drawingAreaId = newBlock.ObjectId;
 
                     // Add an xRec with the scale
                     newBlock.CreateExtensionDictionary();
                     DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
-                    using (Xrecord xRec = new Xrecord())
-                    {
-                        using (ResultBuffer data = new ResultBuffer())
-                        {// new TypedValue((int)DxfCode.Int16, scale));
-                            data.Add(new TypedValue((int)TypeCode.Int32, scale));
-                            xRec.Data = data;
-                            extensionDict.SetAt("Scale", xRec);
-                            acTrans.AddNewlyCreatedDBObject(xRec, true);
-                        }
-                    }
+                    acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, drawingArea.Scale), true);
+                    acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !oldTextfieldSize), true);
                 }
                 finally
                 {
@@ -826,7 +913,7 @@ namespace AutoCADTools.Tools
             }
 
             // Reset variable
-            userDefined = false;
+            drawingArea.userDefined = false;
 
         }
 
@@ -859,14 +946,19 @@ namespace AutoCADTools.Tools
             }
             private double initialWidth = 0.0;
             private bool isA4 = false;
-
+            private double[] tfSize;
+            private DrawingArea drawingArea;
 
             /// <summary>
             /// Initiates a new BlockJig for the given BlockReference.
             /// </summary>
             /// <param name="br">the BlockReference to be positioned (and sized)</param>
-            public BlockJig(BlockReference br) : base(br)
+            /// <param name="oldTextfieldSize">specifies if the old (bigger) text field size shell be used</param>
+            public BlockJig(BlockReference br, DrawingArea drawingArea, bool oldTextfieldSize) : base(br)
             {
+                tfSize = oldTextfieldSize ? textfieldSizeOld : textfieldSize;
+                this.drawingArea = drawingArea;
+
                 // Get the document
                 Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
 
@@ -874,11 +966,11 @@ namespace AutoCADTools.Tools
                 insertionPoint = br.Position;
 
                 // Get width, height and scale if custom input
-                if (userDefined)
+                if (drawingArea.userDefined)
                 {
                     using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
                     {
-                        Polyline poly = acTrans.GetObject(lineId, OpenMode.ForRead) as Polyline;
+                        Polyline poly = acTrans.GetObject(drawingArea.lineId, OpenMode.ForRead) as Polyline;
                         initialWidth = poly.GetPoint2dAt(3).X - poly.GetPoint2dAt(0).X;
                     }
                 }
@@ -924,9 +1016,9 @@ namespace AutoCADTools.Tools
                         Point3d oldPoint1 = targetPoint;
                         targetPoint = getPointResult1.Value;
 
-                        if (userDefined)
+                        if (drawingArea.userDefined)
                         {
-                            targetPoint = new Point3d(targetPoint.X - 185.0 / Scale, targetPoint.Y + 77.0 / Scale, 0);
+                            targetPoint = new Point3d(targetPoint.X - tfSize[CWIDTH] / drawingArea.Scale, targetPoint.Y + tfSize[CHEIGHT] / drawingArea.Scale, 0);
                         }
 
                         // Return NoChange if difference is to low to avoid flimmering
@@ -936,52 +1028,52 @@ namespace AutoCADTools.Tools
                         }
 
                         // Make a lot of decisions to show the right minimum size of the drawing frame
-                        if (insertionPoint.X - targetPoint.X < formats[CA4, CHEIGHT] / Scale
-                            && targetPoint.Y - insertionPoint.Y < formats[CA4, CWIDTH] / Scale)
+                        if (insertionPoint.X - targetPoint.X < formats[CA4, CHEIGHT] / drawingArea.Scale
+                            && targetPoint.Y - insertionPoint.Y < formats[CA4, CWIDTH] / drawingArea.Scale)
                         {
-                            DrawingArea.drawingAreaFormatDir = CA4 + CHORIZONTAL;
+                            drawingArea.drawingAreaFormatDir = CA4 + CHORIZONTAL;
                             targetPoint = new Point3d(
-                                insertionPoint.X - formats[CA4, CHEIGHT] / Scale,
-                                insertionPoint.Y + formats[CA4, CWIDTH] / Scale, 0);
+                                insertionPoint.X - formats[CA4, CHEIGHT] / drawingArea.Scale,
+                                insertionPoint.Y + formats[CA4, CWIDTH] / drawingArea.Scale, 0);
                             isA4 = true;
                         }
-                        else if (insertionPoint.X - targetPoint.X < formats[CA4, CWIDTH] / Scale
-                            && targetPoint.Y - insertionPoint.Y < formats[CA4, CHEIGHT] / Scale)
+                        else if (insertionPoint.X - targetPoint.X < formats[CA4, CWIDTH] / drawingArea.Scale
+                            && targetPoint.Y - insertionPoint.Y < formats[CA4, CHEIGHT] / drawingArea.Scale)
                         {
-                            DrawingArea.drawingAreaFormatDir = CA4 + CVERTICAL;
+                            drawingArea.drawingAreaFormatDir = CA4 + CVERTICAL;
                             targetPoint = new Point3d(
-                                insertionPoint.X - formats[CA4, CWIDTH] / Scale,
-                                insertionPoint.Y + formats[CA4, CHEIGHT] / Scale, 0);
+                                insertionPoint.X - formats[CA4, CWIDTH] / drawingArea.Scale,
+                                insertionPoint.Y + formats[CA4, CHEIGHT] / drawingArea.Scale, 0);
                             isA4 = true;
                         }
-                        else if (insertionPoint.X - targetPoint.X < formats[CA3, CHEIGHT] / Scale
-                            && targetPoint.Y - insertionPoint.Y < formats[CA3, CWIDTH] / Scale)
+                        else if (insertionPoint.X - targetPoint.X < formats[CA3, CHEIGHT] / drawingArea.Scale
+                            && targetPoint.Y - insertionPoint.Y < formats[CA3, CWIDTH] / drawingArea.Scale)
                         {
-                            DrawingArea.drawingAreaFormatDir = CA3 + CHORIZONTAL;
+                            drawingArea.drawingAreaFormatDir = CA3 + CHORIZONTAL;
                             targetPoint = new Point3d(
-                                insertionPoint.X - formats[CA3, CHEIGHT] / Scale,
-                                insertionPoint.Y + formats[CA3, CWIDTH] / Scale, 0);
+                                insertionPoint.X - formats[CA3, CHEIGHT] / drawingArea.Scale,
+                                insertionPoint.Y + formats[CA3, CWIDTH] / drawingArea.Scale, 0);
                         }
-                        else if (targetPoint.Y - insertionPoint.Y < formats[CA3, CWIDTH] / Scale)
+                        else if (targetPoint.Y - insertionPoint.Y < formats[CA3, CWIDTH] / drawingArea.Scale)
                         {
-                            DrawingArea.drawingAreaFormatDir = CAX + CHORIZONTAL;
+                            drawingArea.drawingAreaFormatDir = CAX + CHORIZONTAL;
                             targetPoint = new Point3d(targetPoint.X,
-                                insertionPoint.Y + formats[CA3, CWIDTH] / Scale, 0);
+                                insertionPoint.Y + formats[CA3, CWIDTH] / drawingArea.Scale, 0);
                         }
-                        else if (insertionPoint.X - targetPoint.X < formats[CA3, CHEIGHT] / Scale)
+                        else if (insertionPoint.X - targetPoint.X < formats[CA3, CHEIGHT] / drawingArea.Scale)
                         {
-                            DrawingArea.drawingAreaFormatDir = CAX + CHORIZONTAL;
-                            targetPoint = new Point3d(insertionPoint.X - formats[CA3, CHEIGHT] / Scale,
+                            drawingArea.drawingAreaFormatDir = CAX + CHORIZONTAL;
+                            targetPoint = new Point3d(insertionPoint.X - formats[CA3, CHEIGHT] / drawingArea.Scale,
                                 targetPoint.Y, 0);
                         }
-                        
-                        if (insertionPoint.X - targetPoint.X > formats[CAMAX, CWIDTH] / Scale)
+
+                        if (insertionPoint.X - targetPoint.X > formats[CAMAX, CWIDTH] / drawingArea.Scale)
                         {
-                            targetPoint = new Point3d(insertionPoint.X - formats[CAMAX, CWIDTH] / Scale, targetPoint.Y, 0);
+                            targetPoint = new Point3d(insertionPoint.X - formats[CAMAX, CWIDTH] / drawingArea.Scale, targetPoint.Y, 0);
                         }
-                        if (targetPoint.Y - insertionPoint.Y > formats[CAMAX, CHEIGHT] / Scale)
+                        if (targetPoint.Y - insertionPoint.Y > formats[CAMAX, CHEIGHT] / drawingArea.Scale)
                         {
-                            targetPoint = new Point3d(targetPoint.X, insertionPoint.Y + formats[CAMAX, CHEIGHT] / Scale, 0);
+                            targetPoint = new Point3d(targetPoint.X, insertionPoint.Y + formats[CAMAX, CHEIGHT] / drawingArea.Scale, 0);
                         }
                         
 
@@ -1015,14 +1107,14 @@ namespace AutoCADTools.Tools
                 {
                     case 0:
                         // Set the new cursor position as insertionPoint
-                        if (!userDefined)
+                        if (!drawingArea.userDefined)
                         {
                             ((BlockReference)this.Entity).Position = insertionPoint;
                         }
                         else
                         {
-                            ((BlockReference)this.Entity).Position = new Point3d(insertionPoint.X + 185.0 / Scale,
-                                insertionPoint.Y - 77.0 / Scale, 0);
+                            ((BlockReference)this.Entity).Position = new Point3d(insertionPoint.X + tfSize[CWIDTH] / drawingArea.Scale,
+                                insertionPoint.Y - tfSize[CHEIGHT] / drawingArea.Scale, 0);
                         }
 
                         break;
@@ -1031,7 +1123,7 @@ namespace AutoCADTools.Tools
                         // Update the block data depending on the current format (A4 or bigger) and set the new size
                         using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
                         {
-                            Polyline poly = acTrans.GetObject(lineId, OpenMode.ForWrite) as Polyline;
+                            Polyline poly = acTrans.GetObject(drawingArea.lineId, OpenMode.ForWrite) as Polyline;
                             poly.SetPointAt(0, new Point2d(targetPoint.X - insertionPoint.X + initialWidth, 0));
                             poly.SetPointAt(4, new Point2d(initialWidth, targetPoint.Y - insertionPoint.Y));
                             poly.SetPointAt(5, new Point2d(targetPoint.X - insertionPoint.X + initialWidth,
@@ -1043,8 +1135,8 @@ namespace AutoCADTools.Tools
                             }
                             else
                             {
-                                poly.SetPointAt(2, new Point2d(initialWidth - 185.0 / Scale, 77.0 / Scale));
-                                poly.SetPointAt(1, new Point2d(initialWidth - 185.0 / Scale, 0));
+                                poly.SetPointAt(2, new Point2d(initialWidth - tfSize[CWIDTH] / drawingArea.Scale, tfSize[CHEIGHT] / drawingArea.Scale));
+                                poly.SetPointAt(1, new Point2d(initialWidth - tfSize[CWIDTH] / drawingArea.Scale, 0));
                             }
                             acTrans.Commit();
                         }

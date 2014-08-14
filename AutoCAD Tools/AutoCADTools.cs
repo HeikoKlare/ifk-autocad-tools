@@ -1,12 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
 using AutoCADTools.Tools;
 
 [assembly: CLSCompliant(true)]
 [assembly: CommandClass(typeof(AutoCADTools.AcadTools))]
+
 
 namespace AutoCADTools
 {
@@ -255,7 +257,7 @@ namespace AutoCADTools
         #region DrawingArea
 
         /// <summary>
-        /// ZeichenbereichA4Hochformat allows to insert a vertical A4 layout in meter-units at a user defined
+        /// DrawingAreaA4Portrait allows to insert a vertical A4 layout in meter-units at a user defined
         /// position.
         /// </summary>
         [CommandMethod("DrawingAreaA4Portrait", CommandFlags.NoPaperSpace)]
@@ -265,7 +267,7 @@ namespace AutoCADTools
         }
 
         /// <summary>
-        /// ZeichenbereichA4Querformat allows to insert a horizontal A4 layout in meter-units at a user defined
+        /// DrawingAreaA4Landscape allows to insert a horizontal A4 layout in meter-units at a user defined
         /// position.
         /// </summary>
         [CommandMethod("DrawingAreaA4Landscape", CommandFlags.NoPaperSpace)]
@@ -275,7 +277,7 @@ namespace AutoCADTools
         }
 
         /// <summary>
-        /// ZeichenbereichA3 allows to insert a A3 layout in meter-units at a user defined position.
+        /// DrawingAreaA3 allows to insert a A3 layout in meter-units at a user defined position.
         /// </summary>
         [CommandMethod("DrawingAreaA3", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA3()
@@ -284,7 +286,7 @@ namespace AutoCADTools
         }
 
         /// <summary>
-        /// ZeichenbereichCustom allows to manually create a drawing frame. First the input position is defined
+        /// DrawingAreaCustom allows to manually create a drawing frame. First the input position is defined
         /// and then the size has to be set interactively. Minumum sizes for the drawing frame are
         /// automatically applied.
         /// </summary>
@@ -298,11 +300,11 @@ namespace AutoCADTools
         /// ZeichenbereichAuto tries to automatically create a drawing frame by analyzing the object currently
         /// in the docuemnt's database and calculating their extends.
         /// </summary>
-        [CommandMethod("DrawingAreaAuto", CommandFlags.NoPaperSpace)]
+        /*[CommandMethod("DrawingAreaAuto", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaAuto()
         {
             DrawingArea.CreateAuto();
-        }
+        }*/
 
         /// <summary>
         /// Allows the user to modify the current drawing area.
@@ -311,6 +313,69 @@ namespace AutoCADTools
         public static void ModifyDrawingAreaSize()
         {
             DrawingArea.ModifySize();
+        }
+
+        #endregion
+
+        #region DrawingAreaLegacy
+
+        /// <summary>
+        /// DrawingAreaA4PortraitOld allows to insert a vertical A4 layout in meter-units at a user defined
+        /// position.
+        /// </summary>
+        [CommandMethod("DrawingAreaA4PortraitOld", CommandFlags.NoPaperSpace)]
+        public static void DrawingAreaA4PortraitOld()
+        {
+            DrawingArea.Create(DrawingArea.CA4, DrawingArea.CVERTICAL, true);
+        }
+
+        /// <summary>
+        /// DrawingAreaA4LandscapeOld allows to insert a horizontal A4 layout in meter-units at a user defined
+        /// position.
+        /// </summary>
+        [CommandMethod("DrawingAreaA4LandscapeOld", CommandFlags.NoPaperSpace)]
+        public static void DrawingAreaA4LandscapeOld()
+        {
+            DrawingArea.Create(DrawingArea.CA4, DrawingArea.CHORIZONTAL, true);
+        }
+
+        /// <summary>
+        /// DrawingAreaA3Old allows to insert a A3 layout in meter-units at a user defined position.
+        /// </summary>
+        [CommandMethod("DrawingAreaA3Old", CommandFlags.NoPaperSpace)]
+        public static void DrawingAreaA3Old()
+        {
+            DrawingArea.Create(DrawingArea.CA3, DrawingArea.CHORIZONTAL, true);
+        }
+
+        /// <summary>
+        /// DrawingAreaCustomOld allows to manually create a drawing frame. First the input position is defined
+        /// and then the size has to be set interactively. Minumum sizes for the drawing frame are
+        /// automatically applied.
+        /// </summary>
+        [CommandMethod("DrawingAreaCustomOld", CommandFlags.NoPaperSpace)]
+        public static void DrawingAreaCustomOld()
+        {
+            DrawingArea.Create(DrawingArea.CAX, DrawingArea.CHORIZONTAL, true);
+        }
+
+        /// <summary>
+        /// ZeichenbereichAuto tries to automatically create a drawing frame by analyzing the object currently
+        /// in the docuemnt's database and calculating their extends.
+        /// </summary>
+        /*[CommandMethod("DrawingAreaAuto", CommandFlags.NoPaperSpace)]
+        public static void DrawingAreaAuto()
+        {
+            DrawingArea.CreateAuto();
+        }*/
+
+        /// <summary>
+        /// Allows the user to modify the current drawing area.
+        /// </summary>
+        [CommandMethod("ModifyDrawingAreaSizeOld", CommandFlags.NoPaperSpace)]
+        public static void ModifyDrawingAreaSizeOld()
+        {
+            DrawingArea.ModifySize(true);
         }
 
         #endregion
