@@ -245,7 +245,7 @@ namespace AutoCADTools
             
             // Reset drawing frame format and try to find it
             this.dfFormat = "";
-            DrawingArea.Find();
+            DrawingArea drawingArea = DrawingArea.Instance;
 
             // Load the printers if not done this session and add them
             if (printer == null) loadPrinters();
@@ -280,7 +280,7 @@ namespace AutoCADTools
             }
             
             // Get the current scale
-            scale = DrawingArea.Scale;
+            scale = drawingArea.Scale;
             if (scale == 0.0)
             {
                 scale = double.Parse(Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable(
@@ -411,26 +411,28 @@ namespace AutoCADTools
             // A bool to indicate wheather a drawing frame already exists or not
             bool dfExists = false;
 
-            if (!DrawingArea.DrawingAreaId.IsErased && DrawingArea.DrawingAreaId != new ObjectId())
+            DrawingArea drawingArea = DrawingArea.Instance;
+
+            if (drawingArea != null && !drawingArea.DrawingAreaId.IsErased)
             {
                 // Found so set return value true
                 dfExists = true;
 
-                if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CVERTICAL)
+                if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CVERTICAL)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = false;
                 }
-                else if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CHORIZONTAL)
+                else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CHORIZONTAL)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = true;
                 }
-                else if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CA3 + DrawingArea.CHORIZONTAL)
+                else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA3 + DrawingArea.CHORIZONTAL)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBquerformat.Checked = true;
@@ -449,7 +451,7 @@ namespace AutoCADTools
                 using (Transaction acTrans = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.TransactionManager.StartTransaction())
                 {
                     // Get the block an the bounds
-                    BlockReference block = acTrans.GetObject(DrawingArea.DrawingAreaId, OpenMode.ForRead) as BlockReference;
+                    BlockReference block = acTrans.GetObject(drawingArea.DrawingAreaId, OpenMode.ForRead) as BlockReference;
                     startpoint = block.Bounds.Value.MinPoint;
                     endpoint = block.Bounds.Value.MaxPoint;
                 }
@@ -466,6 +468,7 @@ namespace AutoCADTools
         /// <param name="e">the event arguments</param>
         private void Berstellen_Click(object sender, EventArgs e)
         {
+            DrawingArea drawingArea = DrawingArea.Instance;
             // An indicator wheter an error occured
             bool error = false;
             try
@@ -507,20 +510,20 @@ namespace AutoCADTools
                 // Look if paperformat fits drawing frame
                 else if (RBzeichenbereich.Checked)
                 {
-                    if ((DrawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CVERTICAL
-                        || DrawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CHORIZONTAL)
+                    if ((drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CVERTICAL
+                        || drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CHORIZONTAL)
                         && CBpapierformat.Text != "A4")
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss \"A4\" sein");
                         error = true;
                     }
-                    else if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CA3 + DrawingArea.CHORIZONTAL
+                    else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA3 + DrawingArea.CHORIZONTAL
                         && CBpapierformat.Text != "A3")
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss \"A3\" sein");
                         error = true;
                     }
-                    else if (DrawingArea.DrawingAreaFormatDir == DrawingArea.CAX + DrawingArea.CHORIZONTAL
+                    else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CAX + DrawingArea.CHORIZONTAL
                         && (CBpapierformat.Text == "A4" || CBpapierformat.Text == "A3"))
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss größer als \"A3\" sein");
@@ -1284,6 +1287,7 @@ namespace AutoCADTools
         /// <returns>true if successfull</returns>
         public bool CreatePngLayout()
         {
+            DrawingArea drawingArea = DrawingArea.Instance;
             if (!RBzeichenbereich.Enabled)
             {
                 MessageBox.Show("Diese Zeichnung enthält keinen gültigen Zeichenbereich");
@@ -1298,14 +1302,14 @@ namespace AutoCADTools
 
             CBdrucker.SelectedIndex = CBdrucker.Items.IndexOf("PNG");
 
-            if ((DrawingArea.DrawingAreaFormatDir - DrawingArea.CA4 == DrawingArea.CHORIZONTAL
-                || DrawingArea.DrawingAreaFormatDir - DrawingArea.CA4 == DrawingArea.CVERTICAL)
+            if ((drawingArea.DrawingAreaFormatDir - DrawingArea.CA4 == DrawingArea.CHORIZONTAL
+                || drawingArea.DrawingAreaFormatDir - DrawingArea.CA4 == DrawingArea.CVERTICAL)
                 && !CBpapierformat.Items.Contains("A4"))
             {
                 MessageBox.Show("Für den PLotter ist kein A4-Papierformat definiert");
                 return false;
             }
-            else if (DrawingArea.DrawingAreaFormatDir - DrawingArea.CA3 == DrawingArea.CHORIZONTAL
+            else if (drawingArea.DrawingAreaFormatDir - DrawingArea.CA3 == DrawingArea.CHORIZONTAL
                 && !CBpapierformat.Items.Contains("A3"))
             {
                 MessageBox.Show("Für den Plotter ist kein A3-Papierformat definiert");
