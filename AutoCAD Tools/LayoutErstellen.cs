@@ -240,7 +240,7 @@ namespace AutoCADTools
             ObjectContextCollection occ = acDoc.Database.ObjectContextManager.GetContextCollection("ACDB_ANNOTATIONSCALES");
             foreach (AnnotationScale annoScale in occ)
             {
-                CBmassstab.Items.Add(annoScale.PaperUnits.ToString());
+                CBmassstab.Items.Add(annoScale.DrawingUnits.ToString());
             }
             
             // Reset drawing frame format and try to find it
@@ -292,7 +292,7 @@ namespace AutoCADTools
             }
 
             // Set the predefined scale to the calculated one
-            CBmassstab.Text = ((int)(1.0 / scale)).ToString();
+            CBmassstab.Text = Math.Round(1.0 / scale).ToString();
         }
 
 
