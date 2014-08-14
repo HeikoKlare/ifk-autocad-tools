@@ -54,7 +54,8 @@
             resources.GetString("cmbDescription.Items"),
             resources.GetString("cmbDescription.Items1"),
             resources.GetString("cmbDescription.Items2"),
-            resources.GetString("cmbDescription.Items3")});
+            resources.GetString("cmbDescription.Items3"),
+            resources.GetString("cmbDescription.Items4")});
             this.cmbDescription.Name = "cmbDescription";
             // 
             // butCreate
