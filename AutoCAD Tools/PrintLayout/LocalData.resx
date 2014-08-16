@@ -117,100 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CompressionWoodAngle" xml:space="preserve">
-    <value>Angle</value>
-  </data>
-  <data name="CompressionWoodBlockPrefix" xml:space="preserve">
-    <value>CompressionWood</value>
-  </data>
-  <data name="CompressionWoodHeight" xml:space="preserve">
-    <value>Height</value>
-  </data>
-  <data name="CompressionWoodWidth" xml:space="preserve">
-    <value>Width</value>
-  </data>
-  <data name="DeleteDrawingAreaText" xml:space="preserve">
-    <value>On changing current drawing unit the current drawing frame will (if existing) be deleted. Continue?</value>
-  </data>
-  <data name="DeleteDrawingAreaTitle" xml:space="preserve">
-    <value>Continue?</value>
-  </data>
-  <data name="DimensionDecimalPlaces" xml:space="preserve">
-    <value>Decimal places</value>
-  </data>
-  <data name="DimensionInsertionPoint" xml:space="preserve">
+  <data name="DrawingAreaInsertionText" xml:space="preserve">
     <value>Insertion point</value>
   </data>
-  <data name="DimensionReferencePoint" xml:space="preserve">
-    <value>Reference point</value>
+  <data name="DrawingAreaModificationText" xml:space="preserve">
+    <value>Target point</value>
   </data>
-  <data name="EmptyDrawingSetting" xml:space="preserve">
-    <value> </value>
+  <data name="DrawingAreaUnitFirstText" xml:space="preserve">
+    <value>Please specify the drawing unit in the drawing settings first. Specify now?</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="PanicleFirstAddition" xml:space="preserve">
-    <value>(first end)</value>
-  </data>
-  <data name="PanicleFirstPoint" xml:space="preserve">
-    <value>Specify first point</value>
-  </data>
-  <data name="PanicleMissingDescriptionText" xml:space="preserve">
-    <value>Position or description is missing. Continue?</value>
-  </data>
-  <data name="PanicleMissingDescriptionTitle" xml:space="preserve">
-    <value>Continue?</value>
-  </data>
-  <data name="PanicleSecondPoint" xml:space="preserve">
-    <value>Specify second point</value>
-  </data>
-  <data name="PanicleSecondsAddition" xml:space="preserve">
-    <value>(second end)</value>
-  </data>
-  <data name="ReinforcingBondFirstEave" xml:space="preserve">
-    <value>First point at eave</value>
-  </data>
-  <data name="ReinforcingBondRidge" xml:space="preserve">
-    <value>Point at ridge (in direction of first eave point)</value>
-  </data>
-  <data name="ReinforcingBondSecondEave" xml:space="preserve">
-    <value>Second point at eave</value>
-  </data>
-  <data name="StandardPosition" xml:space="preserve">
-    <value>P1</value>
-  </data>
-  <data name="StandardSegment" xml:space="preserve">
-    <value>Roof: Gangnail-Trusses</value>
-  </data>
-  <data name="TrussImportErrorText" xml:space="preserve">
-    <value>An error occured while importing the objects.</value>
-  </data>
-  <data name="TrussImportErrorTitle" xml:space="preserve">
-    <value>Error</value>
-  </data>
-  <data name="TrussImportFileNotFoundText" xml:space="preserve">
-    <value>File was not found</value>
-  </data>
-  <data name="TrussImportFileNotFoundTitle" xml:space="preserve">
-    <value>Unknown File</value>
-  </data>
-  <data name="TrussImportInputPoint" xml:space="preserve">
-    <value>Specify input point</value>
-  </data>
-  <data name="TrussImportSuffixBearings" xml:space="preserve">
-    <value>Bearings</value>
-  </data>
-  <data name="TrussImportSuffixBracings" xml:space="preserve">
-    <value>Bracings</value>
-  </data>
-  <data name="TrussImportSuffixDimensions" xml:space="preserve">
-    <value>Dimensions</value>
-  </data>
-  <data name="TrussImportSuffixMembers" xml:space="preserve">
-    <value>Members</value>
-  </data>
-  <data name="TrussImportSuffixPlates" xml:space="preserve">
-    <value>Plates</value>
+  <data name="DrawingAreaUnitFirstTitle" xml:space="preserve">
+    <value>No unit specified</value>
   </data>
 </root>

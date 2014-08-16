@@ -142,24 +142,6 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Please specify the drawing unit in the drawing settings first. Specify now? ähnelt.
-        /// </summary>
-        internal static string DrawingAreaUnitFirstText {
-            get {
-                return ResourceManager.GetString("DrawingAreaUnitFirstText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die No unit specified ähnelt.
-        /// </summary>
-        internal static string DrawingAreaUnitFirstTitle {
-            get {
-                return ResourceManager.GetString("DrawingAreaUnitFirstTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die   ähnelt.
         /// </summary>
         internal static string EmptyDrawingSetting {

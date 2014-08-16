@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
 using AutoCADTools.Tools;
+using AutoCADTools.PrintLayout;
 
 [assembly: CLSCompliant(true)]
 [assembly: CommandClass(typeof(AutoCADTools.AcadTools))]
@@ -263,7 +264,7 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4Portrait", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4Portrait()
         {
-            DrawingArea.Create(DrawingArea.CA4, DrawingArea.CVERTICAL);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL));
         }
 
         /// <summary>
@@ -273,7 +274,7 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4Landscape", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4Landscape()
         {
-            DrawingArea.Create(DrawingArea.CA4, DrawingArea.CHORIZONTAL);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL));
         }
 
         /// <summary>
@@ -282,7 +283,7 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA3", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA3()
         {
-            DrawingArea.Create(DrawingArea.CA3, DrawingArea.CHORIZONTAL);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
         }
 
         /// <summary>
@@ -293,18 +294,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaCustom", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaCustom()
         {
-            DrawingArea.Create(DrawingArea.CAX, DrawingArea.CHORIZONTAL);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
+            DrawingArea.ModifySize();
         }
-
-        /// <summary>
-        /// ZeichenbereichAuto tries to automatically create a drawing frame by analyzing the object currently
-        /// in the docuemnt's database and calculating their extends.
-        /// </summary>
-        /*[CommandMethod("DrawingAreaAuto", CommandFlags.NoPaperSpace)]
-        public static void DrawingAreaAuto()
-        {
-            DrawingArea.CreateAuto();
-        }*/
 
         /// <summary>
         /// Allows the user to modify the current drawing area.
@@ -326,7 +318,7 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4PortraitOld", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4PortraitOld()
         {
-            DrawingArea.Create(DrawingArea.CA4, DrawingArea.CVERTICAL, true);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL, true, true));
         }
 
         /// <summary>
@@ -336,7 +328,7 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4LandscapeOld", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4LandscapeOld()
         {
-            DrawingArea.Create(DrawingArea.CA4, DrawingArea.CHORIZONTAL, true);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL, true, true));
         }
 
         /// <summary>
@@ -345,7 +337,7 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA3Old", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA3Old()
         {
-            DrawingArea.Create(DrawingArea.CA3, DrawingArea.CHORIZONTAL, true);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
         }
 
         /// <summary>
@@ -356,18 +348,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaCustomOld", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaCustomOld()
         {
-            DrawingArea.Create(DrawingArea.CAX, DrawingArea.CHORIZONTAL, true);
+            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
+            DrawingArea.ModifySize(true);
         }
-
-        /// <summary>
-        /// ZeichenbereichAuto tries to automatically create a drawing frame by analyzing the object currently
-        /// in the docuemnt's database and calculating their extends.
-        /// </summary>
-        /*[CommandMethod("DrawingAreaAuto", CommandFlags.NoPaperSpace)]
-        public static void DrawingAreaAuto()
-        {
-            DrawingArea.CreateAuto();
-        }*/
 
         /// <summary>
         /// Allows the user to modify the current drawing area.

@@ -5,6 +5,7 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using AutoCADTools.Data;
 using AutoCADTools.Management;
+using AutoCADTools.PrintLayout;
 using Database = AutoCADTools.Data.Database;
 using AcDatabase = Autodesk.AutoCAD.DatabaseServices.Database;
 

@@ -107,6 +107,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrintLayout\Formats.cs" />
+    <Compile Include="PrintLayout\LocalData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalData.resx</DependentUpon>
+    </Compile>
     <Compile Include="Management\ManageDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,24 +174,6 @@
     <Compile Include="Management\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="PaletteTools\AnnotationsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PaletteTools\AnnotationsControl.Designer.cs">
-      <DependentUpon>AnnotationsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PaletteTools\BracingControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PaletteTools\BracingControl.Designer.cs">
-      <DependentUpon>BracingControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PaletteTools\BracingPanicleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PaletteTools\BracingPanicleControl.Designer.cs">
-      <DependentUpon>BracingPanicleControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tools\CompressionWood.cs" />
     <Compile Include="Tools\ConsecutiveDimension.cs" />
     <Compile Include="Tools\LocalData.Designer.cs">
@@ -204,13 +192,6 @@
     </Compile>
     <Compile Include="Tools\Annotations.Designer.cs">
       <DependentUpon>Annotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PaletteTools\Palettes.cs" />
-    <Compile Include="PaletteTools\PanicleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="PaletteTools\PanicleControl.Designer.cs">
-      <DependentUpon>PanicleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\ReinforcingBondUI.cs">
       <SubType>Form</SubType>
@@ -239,7 +220,7 @@
       <DependentUpon>TrussImportUI.cs</DependentUpon>
     </Compile>
     <Compile Include="AutoCADTools.cs" />
-    <Compile Include="Tools\DrawingArea.cs" />
+    <Compile Include="PrintLayout\DrawingArea.cs" />
     <Compile Include="Tools\DrawingSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +241,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PrintLayout\LocalData.de.resx" />
+    <EmbeddedResource Include="PrintLayout\LocalData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Management\Settings.de.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
@@ -322,15 +308,6 @@
     <EmbeddedResource Include="Management\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PaletteTools\AnnotationsControl.resx">
-      <DependentUpon>AnnotationsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PaletteTools\BracingControl.resx">
-      <DependentUpon>BracingControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PaletteTools\BracingPanicleControl.resx">
-      <DependentUpon>BracingPanicleControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Tools\DrawingSettings.de.resx">
       <DependentUpon>DrawingSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -350,9 +327,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\Annotations.resx">
       <DependentUpon>Annotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PaletteTools\PanicleControl.resx">
-      <DependentUpon>PanicleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\TrussImportUI.de.resx">
       <DependentUpon>TrussImportUI.cs</DependentUpon>

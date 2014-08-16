@@ -6,6 +6,7 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 using AutoCADTools.Tools;
+using AutoCADTools.PrintLayout;
 
 namespace AutoCADTools
 {
@@ -47,17 +48,17 @@ namespace AutoCADTools
                 get { return name; }
             }
 
-            public Paperformat[] paperformats;
+            public PrinterPaperformat[] paperformats;
 
-            public Paperformat[] Paperformats
+            public PrinterPaperformat[] Paperformats
             {
                 get { return paperformats; }
                 set { paperformats = value; }
             }
 
-            public Paperformat[] optimizedFormats;
+            public PrinterPaperformat[] optimizedFormats;
 
-            public Paperformat[] OptimizedFormats
+            public PrinterPaperformat[] OptimizedFormats
             {
                 get { return optimizedFormats; }
                 set { optimizedFormats = value; }
@@ -72,8 +73,8 @@ namespace AutoCADTools
 
                 this.name = name;
 
-                Paperformat[] formats = new Paperformat[5];
-                Paperformat[] optFormats = new Paperformat[5];
+                PrinterPaperformat[] formats = new PrinterPaperformat[5];
+                PrinterPaperformat[] optFormats = new PrinterPaperformat[5];
                 // Set the new plotter and get the available media names
 
                 bool found;
@@ -108,15 +109,15 @@ namespace AutoCADTools
                             {
                                 if (paperFormats[k].ToString() == "UserDefinedRaster (2100.00 x 2970.00Pixel)")
                                 {
-                                    formats[counter] = new Paperformat("A4", paperFormats[k].ToString());
-                                    optFormats[counter] = new Paperformat("A4", paperFormats[k].ToString());
+                                    formats[counter] = new PrinterPaperformat("A4", paperFormats[k].ToString());
+                                    optFormats[counter] = new PrinterPaperformat("A4", paperFormats[k].ToString());
                                     counter++;
                                     counterOpt++;
                                 }
                                 else if (paperFormats[k].ToString() == "UserDefinedRaster (2970.00 x 4200.00Pixel)")
                                 {
-                                    formats[counter] = new Paperformat("A3", paperFormats[k].ToString());
-                                    optFormats[counter] = new Paperformat("A3", paperFormats[k].ToString());
+                                    formats[counter] = new PrinterPaperformat("A3", paperFormats[k].ToString());
+                                    optFormats[counter] = new PrinterPaperformat("A3", paperFormats[k].ToString());
                                     counter++;
                                     counterOpt++;
                                 }
@@ -145,18 +146,18 @@ namespace AutoCADTools
                         // If format (optimal) found, add it to formats
                         if (found)
                         {
-                            formats[counter] = new Paperformat("A" + i.ToString(), savedFormat);
+                            formats[counter] = new PrinterPaperformat("A" + i.ToString(), savedFormat);
                             counter++;
                             if (optFound)
                             {
-                                optFormats[counterOpt] = new Paperformat("A" + i.ToString(), savedFormat);
+                                optFormats[counterOpt] = new PrinterPaperformat("A" + i.ToString(), savedFormat);
                                 counterOpt++;
                             }
                         }
                     }
 
-                    this.Paperformats = new Paperformat[counter];
-                    this.OptimizedFormats = new Paperformat[counterOpt];
+                    this.Paperformats = new PrinterPaperformat[counter];
+                    this.OptimizedFormats = new PrinterPaperformat[counterOpt];
 
                     if (counter > 0)
                     {
@@ -173,7 +174,7 @@ namespace AutoCADTools
             
         
 
-        private class Paperformat
+        private class PrinterPaperformat
         {
             private String name;
 
@@ -191,7 +192,7 @@ namespace AutoCADTools
                 set { format = value; }
             }
 
-            public Paperformat(String name, String format)
+            public PrinterPaperformat(String name, String format)
             {
                 this.Name = name;
                 this.Format = format;
@@ -280,7 +281,7 @@ namespace AutoCADTools
             }
             
             // Get the current scale
-            scale = drawingArea.Scale;
+            scale = drawingArea != null ? drawingArea.Scale : 0.0d;
             if (scale == 0.0)
             {
                 scale = double.Parse(Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable(
@@ -418,21 +419,22 @@ namespace AutoCADTools
                 // Found so set return value true
                 dfExists = true;
 
-                if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CVERTICAL)
+                SpecificFormat format = drawingArea.Format;
+                if (format.Format == Paperformat.A4 && format.Orientation == PrintLayout.Orientation.VERTICAL)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = false;
                 }
-                else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CHORIZONTAL)
+                else if (format.Format == Paperformat.A4 && format.Orientation == PrintLayout.Orientation.HORIZONTAL)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = true;
                 }
-                else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA3 + DrawingArea.CHORIZONTAL)
+                else if (format.Format == Paperformat.A3 && format.Orientation == PrintLayout.Orientation.HORIZONTAL)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBquerformat.Checked = true;
@@ -510,20 +512,19 @@ namespace AutoCADTools
                 // Look if paperformat fits drawing frame
                 else if (RBzeichenbereich.Checked)
                 {
-                    if ((drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CVERTICAL
-                        || drawingArea.DrawingAreaFormatDir == DrawingArea.CA4 + DrawingArea.CHORIZONTAL)
-                        && CBpapierformat.Text != "A4")
+                    SpecificFormat format = drawingArea.Format;
+                    if (format.Format == Paperformat.A4 && CBpapierformat.Text != "A4")
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss \"A4\" sein");
                         error = true;
                     }
-                    else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CA3 + DrawingArea.CHORIZONTAL
+                    else if (format.Format == Paperformat.A3 && format.Orientation == PrintLayout.Orientation.HORIZONTAL
                         && CBpapierformat.Text != "A3")
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss \"A3\" sein");
                         error = true;
                     }
-                    else if (drawingArea.DrawingAreaFormatDir == DrawingArea.CAX + DrawingArea.CHORIZONTAL
+                    else if (format.Format == Paperformat.AMAX && format.Orientation == PrintLayout.Orientation.HORIZONTAL
                         && (CBpapierformat.Text == "A4" || CBpapierformat.Text == "A3"))
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss größer als \"A3\" sein");
@@ -1089,7 +1090,7 @@ namespace AutoCADTools
                 if (pr.Name == CBdrucker.SelectedItem.ToString())
                 {
                     CBpapierformat.Items.Clear();
-                    Paperformat[] formats;
+                    PrinterPaperformat[] formats;
                     if (CBoptimiertePapierformate.Checked)
                     {
                         formats = pr.OptimizedFormats;
@@ -1098,7 +1099,7 @@ namespace AutoCADTools
                     {
                         formats = pr.Paperformats;
                     }
-                    foreach (Paperformat paper in formats)
+                    foreach (PrinterPaperformat paper in formats)
                     {
                         CBpapierformat.Items.Add(paper.Name);
                     }
@@ -1302,14 +1303,13 @@ namespace AutoCADTools
 
             CBdrucker.SelectedIndex = CBdrucker.Items.IndexOf("PNG");
 
-            if ((drawingArea.DrawingAreaFormatDir - DrawingArea.CA4 == DrawingArea.CHORIZONTAL
-                || drawingArea.DrawingAreaFormatDir - DrawingArea.CA4 == DrawingArea.CVERTICAL)
-                && !CBpapierformat.Items.Contains("A4"))
+            SpecificFormat format = drawingArea.Format;
+            if (format.Format == Paperformat.A4 && !CBpapierformat.Items.Contains("A4"))
             {
                 MessageBox.Show("Für den PLotter ist kein A4-Papierformat definiert");
                 return false;
             }
-            else if (drawingArea.DrawingAreaFormatDir - DrawingArea.CA3 == DrawingArea.CHORIZONTAL
+            else if (format.Format == Paperformat.A3 && format.Orientation == PrintLayout.Orientation.HORIZONTAL
                 && !CBpapierformat.Items.Contains("A3"))
             {
                 MessageBox.Show("Für den Plotter ist kein A3-Papierformat definiert");
