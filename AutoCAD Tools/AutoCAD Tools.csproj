@@ -107,6 +107,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrintLayout\DrawingAreaDocumentWrapper.cs" />
     <Compile Include="PrintLayout\Formats.cs" />
     <Compile Include="PrintLayout\LocalData.Designer.cs">
       <AutoGen>True</AutoGen>

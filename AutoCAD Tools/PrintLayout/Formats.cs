@@ -365,19 +365,19 @@ namespace AutoCADTools.PrintLayout
         public SpecificFormat GetNextBiggerFormat(double width, double height)
         {
             SpecificFormat result = new SpecificFormat(Paperformat.AMAX, Orientation.HORIZONTAL, true);
-            if (width < formats[(int)Paperformat.A4].ViewportModel.X
-                && height < formats[(int)Paperformat.A4].ViewportModel.Y)
+            if (width <= formats[(int)Paperformat.A4].ViewportModel.X
+                && height <= formats[(int)Paperformat.A4].ViewportModel.Y)
             {
                 result.Format = Paperformat.A4;
             }
-            else if (width < formats[(int)Paperformat.A4].ViewportModel.Y
-                && height < formats[(int)Paperformat.A4].ViewportModel.X)
+            else if (width <= formats[(int)Paperformat.A4].ViewportModel.Y
+                && height <= formats[(int)Paperformat.A4].ViewportModel.X)
             {
                 result.Format = Paperformat.A4;
                 result.Orientation = Orientation.VERTICAL;
             }
-            else if (width < formats[(int)Paperformat.A3].ViewportModel.X
-                && height < formats[(int)Paperformat.A3].ViewportModel.Y)
+            else if (width <= formats[(int)Paperformat.A3].ViewportModel.X
+                && height <= formats[(int)Paperformat.A3].ViewportModel.Y)
             {
                 result.Format = Paperformat.A3;
             }

@@ -228,17 +228,17 @@ namespace AutoCADTools
             CBconfig.Text = "IFK";
 
             // Get the current document
-            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            Document document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
                                     
             // Set the coordinate system to WCS
-            if (!(acDoc.Editor.CurrentUserCoordinateSystem.Equals(Matrix3d.Identity)))
+            if (!(document.Editor.CurrentUserCoordinateSystem.Equals(Matrix3d.Identity)))
             {
-                acDoc.Editor.CurrentUserCoordinateSystem = Matrix3d.Identity;
+                document.Editor.CurrentUserCoordinateSystem = Matrix3d.Identity;
                 MessageBox.Show("Koordinatensystem auf WCS zurückgesetzt");
             }
             
             // Get the annotation scales an add them to the scale combobox
-            ObjectContextCollection occ = acDoc.Database.ObjectContextManager.GetContextCollection("ACDB_ANNOTATIONSCALES");
+            ObjectContextCollection occ = document.Database.ObjectContextManager.GetContextCollection("ACDB_ANNOTATIONSCALES");
             foreach (AnnotationScale annoScale in occ)
             {
                 CBmassstab.Items.Add(annoScale.DrawingUnits.ToString());
@@ -246,7 +246,9 @@ namespace AutoCADTools
             
             // Reset drawing frame format and try to find it
             this.dfFormat = "";
-            DrawingArea drawingArea = DrawingArea.Instance;
+            
+            var drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            DrawingArea drawingArea = drawingAreaWrapper.DrawingArea;
 
             // Load the printers if not done this session and add them
             if (printer == null) loadPrinters();
@@ -257,10 +259,10 @@ namespace AutoCADTools
             if (CBdrucker.Items.Count > 0) CBdrucker.SelectedIndex = 0;
 
             // Look for drawing frame and textfields to enable the right options
-            using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
+            using (Transaction acTrans = document.Database.TransactionManager.StartTransaction())
             {
                 // Get BlockTable and the BlockTableRecord of the active layout
-                BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                BlockTable acBlkTbl = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
 
                 // If there is no drawing frame or the textfields are not defined, disable the option
                 if (!AusschnittErkennen() || !acBlkTbl.Has("Textfeld A4") || !acBlkTbl.Has("Textfeld A3+"))
@@ -412,7 +414,9 @@ namespace AutoCADTools
             // A bool to indicate wheather a drawing frame already exists or not
             bool dfExists = false;
 
-            DrawingArea drawingArea = DrawingArea.Instance;
+            var document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            DrawingArea drawingArea = drawingAreaWrapper.DrawingArea;
 
             if (drawingArea != null && !drawingArea.DrawingAreaId.IsErased)
             {
@@ -470,7 +474,10 @@ namespace AutoCADTools
         /// <param name="e">the event arguments</param>
         private void Berstellen_Click(object sender, EventArgs e)
         {
-            DrawingArea drawingArea = DrawingArea.Instance;
+            var document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            DrawingArea drawingArea = drawingAreaWrapper.DrawingArea;
+
             // An indicator wheter an error occured
             bool error = false;
             try
@@ -1288,7 +1295,9 @@ namespace AutoCADTools
         /// <returns>true if successfull</returns>
         public bool CreatePngLayout()
         {
-            DrawingArea drawingArea = DrawingArea.Instance;
+            var document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            DrawingArea drawingArea = drawingAreaWrapper.DrawingArea;
             if (!RBzeichenbereich.Enabled)
             {
                 MessageBox.Show("Diese Zeichnung enthält keinen gültigen Zeichenbereich");

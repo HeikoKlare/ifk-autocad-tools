@@ -4,6 +4,7 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Runtime;
 using AutoCADTools.PrintLayout;
 using AutoCADTools.Tools;
 
@@ -21,7 +22,9 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The drawing area's name
         /// </summary>
-        public const string NAME = "Zeichenbereich";
+        public const string OLD_NAME = "Zeichenbereich";
+
+        public const string NAME = "DrawingArea";
 
         /// <summary>
         /// Constant for the Xrecord name that the new textfield is used
@@ -37,6 +40,16 @@ namespace AutoCADTools.PrintLayout
 
         #region Attributes
 
+        private bool isValid;
+        /// <summary>
+        /// Specifies if the data of this drawing area are currently valid
+        /// </summary>
+        public bool IsValid
+        {
+            get { return isValid && !drawingAreaId.IsErased && drawingAreaId.IsValid; }
+            set { isValid = value; }
+        }
+        
         /// <summary>
         /// The scale depending on annotation scale and the paperunit
         /// </summary>
@@ -49,6 +62,16 @@ namespace AutoCADTools.PrintLayout
         {
             get { return scale; }
             set { scale = value; }
+        }
+
+        private Document document;
+
+        /// <summary>
+        /// The document this drawing area belongs to
+        /// </summary>
+        public Document Document
+        {
+            get { return document; }
         }
 
         /// <summary>
@@ -80,178 +103,250 @@ namespace AutoCADTools.PrintLayout
             get { return format; }
             set { format = value; }
         }
-
+                
         #endregion
 
-        #region Singleton Specification
+        #region Constructors
 
-        private static DrawingArea instance;
-
-        /// <summary>
-        /// The singleton instance of the drawing area. If there is no drawing frame, null is returned!
-        /// </summary>
-        public static DrawingArea Instance
+        private DrawingArea(Document doc)
         {
-            get
-            {
-                instance = FindDrawingArea();
-                return instance;
-            }
-            set { instance = value; }
+            this.isValid = false;
+            this.document = doc;
+            this.drawingAreaId = ObjectId.Null;
+            this.format = new SpecificFormat();
+            this.lineId = ObjectId.Null;
         }
 
-        private DrawingArea() { }
-
         #endregion
 
         /// <summary>
-        /// Finds the current drawing frame (if existing) and returns it.
+        /// Finds the current drawing frame in the specified document (if existing) and returns it.
+        /// <param name="doc">the document to search for the drawing area in</param>
         /// <returns>the drawing area if found, null otherwise</returns>
         /// </summary>
-        private static DrawingArea FindDrawingArea()
+        public static DrawingArea FindDrawingArea(Document doc)
         {
-            DrawingArea drawingArea = new DrawingArea();
-            bool found = false;
+            if (LayoutManager.Current.CurrentLayout != "Model") return null;
 
-            // Get the current document
-            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            using (DocumentLock acLock = acDoc.LockDocument())
+            DrawingArea drawingArea = new DrawingArea(doc);
+
+            using (DocumentLock acLock = doc.LockDocument())
             {
-                // Save layout and set to modelspace
-                String saveLayout = LayoutManager.Current.CurrentLayout;
-                LayoutManager.Current.CurrentLayout = "Model";
-
                 // Start the Transaction
-                using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
+                using (Transaction acTrans = doc.TransactionManager.StartTransaction())
                 {
                     // Get active BlockTable and BlockTableRecord
-                    BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                    BlockTable acBlkTbl = acTrans.GetObject(doc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
                     BlockTableRecord modelRecord = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForRead) as BlockTableRecord;
-                    
+                    if (acBlkTbl.Has(DrawingArea.OLD_NAME))
+                    {
+                        ConvertOldArea(doc);
+                    }
+
                     // Look if block does alread exist
                     if (acBlkTbl.Has(DrawingArea.NAME))
                     {
                         BlockTableRecord drawingAreaRecord = acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead) as BlockTableRecord;
                         foreach (ObjectId objId in modelRecord)
                         {
-                            BlockReference block = acTrans.GetObject(objId, OpenMode.ForRead) as BlockReference;
-                            try
-                            {
+                            if (objId.ObjectClass == RXClass.GetClass(typeof(BlockReference))) {
+                                BlockReference block = acTrans.GetObject(objId, OpenMode.ForRead) as BlockReference;
                                 if (block != null && block.Name == DrawingArea.NAME)
+                                {
                                     drawingArea.drawingAreaId = objId;
-                                found = true;
+                                    drawingArea.isValid = true;
 
-                                double scale;
-                                bool oldTextfieldUsed = false;
-                                // Get the scale
-                                if (block.ExtensionDictionary.IsNull)
-                                {
-                                    // If block has no data, get the current scale
-                                    if (!DrawingArea.CalculateScale(out scale)) return null;
-                                    drawingArea.scale = scale;
-                                    oldTextfieldUsed = true;
-                                }
-                                else
-                                {
-                                    // If the block has data, get its scale
-                                    DBDictionary dict = acTrans.GetObject(block.ExtensionDictionary, OpenMode.ForRead) as DBDictionary;
-                                    Xrecord xRecScale = acTrans.GetObject(dict.GetAt(ATTRIBUTE_SCALE), OpenMode.ForRead) as Xrecord;
-                                    TypedValue[] valuesScale = xRecScale.Data.AsArray();
-                                    Xrecord xRecTextField = acTrans.GetObject(dict.GetAt(ATTRIBUTE_NEW_TEXTFIELD_USED), OpenMode.ForRead) as Xrecord;
-                                    TypedValue[] valuesTextField = xRecTextField.Data.AsArray();
-                                    try
+                                    double scale;
+                                    bool oldTextfieldUsed = false;
+                                    // Get the scale
+                                    if (block.ExtensionDictionary.IsNull)
                                     {
-                                        scale = double.Parse(valuesScale[0].Value.ToString());
-                                        drawingArea.scale = scale;
-                                        oldTextfieldUsed = !bool.Parse(valuesTextField[0].Value.ToString());
-                                    }
-                                    catch (Exception)
-                                    {
-                                        if (!DrawingArea.CalculateScale(out scale)) return null;
+                                        // If block has no data, get the current scale
+                                        if (!drawingArea.CalculateScale(out scale)) return null;
                                         drawingArea.scale = scale;
                                         oldTextfieldUsed = true;
                                     }
+                                    else
+                                    {
+                                        // If the block has data, get its scale
+                                        DBDictionary dict = acTrans.GetObject(block.ExtensionDictionary, OpenMode.ForRead) as DBDictionary;
+                                        Xrecord xRecScale = acTrans.GetObject(dict.GetAt(ATTRIBUTE_SCALE), OpenMode.ForRead) as Xrecord;
+                                        TypedValue[] valuesScale = xRecScale.Data.AsArray();
+                                        Xrecord xRecTextField = acTrans.GetObject(dict.GetAt(ATTRIBUTE_NEW_TEXTFIELD_USED), OpenMode.ForRead) as Xrecord;
+                                        TypedValue[] valuesTextField = xRecTextField.Data.AsArray();
+                                        try
+                                        {
+                                            scale = double.Parse(valuesScale[0].Value.ToString());
+                                            drawingArea.scale = scale;
+                                            oldTextfieldUsed = !bool.Parse(valuesTextField[0].Value.ToString());
+                                        }
+                                        catch (System.Exception)
+                                        {
+                                            if (!drawingArea.CalculateScale(out scale)) return null;
+                                            drawingArea.scale = scale;
+                                            oldTextfieldUsed = true;
+                                        }
+                                    }
+
+                                    Double width = block.Bounds.Value.MaxPoint.X - block.Bounds.Value.MinPoint.X;
+                                    Double height = block.Bounds.Value.MaxPoint.Y - block.Bounds.Value.MinPoint.Y;
+
+                                    SpecificFormat calculatedFormat = SpecificFormat.GetProperViewportFormat(width * scale, height * scale);
+                                    drawingArea.format = calculatedFormat;
+                                    drawingArea.format.OldTextfieldUsed = oldTextfieldUsed;
                                 }
-
-                                Double width = block.Bounds.Value.MaxPoint.X - block.Bounds.Value.MinPoint.X;
-                                Double height = block.Bounds.Value.MaxPoint.Y - block.Bounds.Value.MinPoint.Y;
-
-                                SpecificFormat calculatedFormat = SpecificFormat.GetProperViewportFormat(width * scale, height * scale);
-                                drawingArea.format = calculatedFormat;
-                                drawingArea.format.OldTextfieldUsed = oldTextfieldUsed;
-                            }
-                            catch (Exception)
-                            {
-                                // Just catch an exception for all the other objects
                             }
                         }
-                        foreach (ObjectId objId in drawingAreaRecord)
+                        // Get the polyline if there is a drawing area, otherwise clear the block definition
+                        if (drawingArea.IsValid)
                         {
-                            Polyline line = acTrans.GetObject(objId, OpenMode.ForRead) as Polyline;
-                            try
+                            foreach (ObjectId objId in drawingAreaRecord)
                             {
-                                if (line != null)
+                                if (objId.ObjectClass == RXObject.GetClass(typeof(Polyline)))
                                 {
                                     drawingArea.lineId = objId;
                                 }
                             }
-                            catch (Exception)
-                            {
-                                // Just catch an exception for possible other objects
-                            }
+                        }
+                        else
+                        {
+                            drawingAreaRecord.UpgradeOpen();
+                            drawingAreaRecord.Erase();
                         }
                     }
+                    acTrans.Commit();
                 }
-
-                // Return to old layout
-                LayoutManager.Current.CurrentLayout = saveLayout;
             }
 
-            if (!found) drawingArea = null;
             return drawingArea;
         }
 
+        private static void ConvertOldArea(Document document) {
+            using (DocumentLock acLock = document.LockDocument())
+            {
+                using (Transaction acTrans = document.TransactionManager.StartTransaction())
+                {
+                    // Get active BlockTable and BlockTableRecord
+                    BlockTable acBlkTbl = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                    BlockTableRecord modelRecord = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
+
+                    // Look if block does alread exist
+                    if (acBlkTbl.Has(DrawingArea.OLD_NAME))
+                    {
+                        DrawingArea drawingArea = new DrawingArea(document);
+                        Point3d insertionPoint = Point3d.Origin;
+                        Point dimension = new Point(0, 0);
+
+                        BlockTableRecord drawingAreaRecord = acTrans.GetObject(acBlkTbl[DrawingArea.OLD_NAME], OpenMode.ForWrite) as BlockTableRecord;
+                        foreach (ObjectId objId in modelRecord)
+                        {
+                            if (objId.ObjectClass == RXClass.GetClass(typeof(BlockReference)))
+                            {
+                                BlockReference block = acTrans.GetObject(objId, OpenMode.ForWrite) as BlockReference;
+                                if (block != null && block.Name == DrawingArea.OLD_NAME)
+                                {
+                                    Point3d min = block.Bounds.Value.MinPoint;
+                                    Point3d max = block.Bounds.Value.MaxPoint;
+                                    dimension = new Point(max.X - min.X, max.Y - min.Y);
+                                    insertionPoint = new Point3d(max.X, min.Y, 0);
+                                    drawingArea.CalculateScale(out drawingArea.scale);
+                                    if (!block.ExtensionDictionary.IsNull)
+                                    {
+                                        // If the block has data, get its scale
+                                        DBDictionary dict = acTrans.GetObject(block.ExtensionDictionary, OpenMode.ForRead) as DBDictionary;
+                                        Xrecord xRecScale = acTrans.GetObject(dict.GetAt(ATTRIBUTE_SCALE), OpenMode.ForRead) as Xrecord;
+                                        TypedValue[] valuesScale = xRecScale.Data.AsArray();
+                                        try
+                                        {
+                                            drawingArea.scale = double.Parse(valuesScale[0].Value.ToString());
+                                        }
+                                        catch (System.Exception)
+                                        {
+                                        }
+                                    }
+                                    block.Erase();
+                                    break;
+                                }
+                            }
+                        }
+
+                        drawingArea.Format = SpecificFormat.GetProperViewportFormat(dimension.X * drawingArea.Scale, dimension.Y * drawingArea.Scale);
+                        drawingArea.format.OldTextfieldUsed = true;
+                        drawingAreaRecord.Erase();
+                        drawingArea.CreateBlock();
+
+                        using (BlockReference newBlock = new BlockReference(Point3d.Origin, acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForWrite).ObjectId))
+                        {
+                            newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                            newBlock.LayerId = document.Database.LayerZero;
+                            newBlock.Linetype = "Continuous";
+                            newBlock.LineWeight = LineWeight.ByLineWeightDefault;
+                            newBlock.Position = insertionPoint;
+
+                            // Append the new block to the TableRecord and tell the transaction
+                            modelRecord.AppendEntity(newBlock);
+                            acTrans.AddNewlyCreatedDBObject(newBlock, true);
+
+                            // Add an xRec with the scale
+                            newBlock.CreateExtensionDictionary();
+                            DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
+                            acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, drawingArea.scale), true);
+                            acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !drawingArea.format.OldTextfieldUsed), true);
+
+
+                            drawingArea.Resize(newBlock, dimension);
+                        }
+                    }
+                    acTrans.Commit();
+                }
+            }
+        }
 
         /// <summary>
         /// Calculates the scale based on annotation scale and unit and saves it to the static variable
         /// </summary>
         /// <returns>true, if successfully calculated scale</returns>
-        private static bool CalculateScale(out double scale)
+        private bool CalculateScale(out double scale)
         {
-            // Look if the drawing unit is already set or otherwise as to it. If not doing return
             bool found = false;
-            scale = 0.0d;
-            do
+
+            using (document.LockDocument())
             {
-                System.Collections.IDictionaryEnumerator enumer = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.
-                    Database.SummaryInfo.CustomProperties;
-                while (enumer.MoveNext())
+
+                scale = document.Database.Cannoscale.PaperUnits / document.Database.Cannoscale.DrawingUnits;
+
+                var enumer = document.Database.SummaryInfo.CustomProperties;
+                do
                 {
-                    if (enumer.Key.ToString() == "Zeichnungseinheit")
+                    while (enumer.MoveNext())
                     {
-                        found = true;
-                        // set the scale
-                        scale = double.Parse(Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString())
-                            * int.Parse(enumer.Value.ToString());
-                    }
-                }
-                if (!found)
-                {
-                    if (MessageBox.Show(LocalData.DrawingAreaUnitFirstText, LocalData.DrawingAreaUnitFirstTitle,
-                        MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        using (Form settings = new DrawingSettings())
+                        if (enumer.Key.ToString() == "Zeichnungseinheit")
                         {
-                            Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(settings);
+                            found = true;
+                            // set the scale
+                            scale *= int.Parse(enumer.Value.ToString());
                         }
                     }
-                    else
+
+                    if (!found)
                     {
-                        return false;
+                        if (MessageBox.Show(LocalData.DrawingAreaUnitFirstText, LocalData.DrawingAreaUnitFirstTitle,
+                            MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            using (Form settings = new DrawingSettings())
+                            {
+                                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(settings);
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
-                }
-            } while (!found);
-            return true;
+                } while (!found);
+            }
+
+            return found;
         }
 
 
@@ -298,76 +393,80 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         /// <param name="format">the format the drawing area shell be created for</param>
         /// <returns>the created drawing area</returns>
-        public static DrawingArea Create(SpecificFormat format)
+        public DrawingArea Create(SpecificFormat format)
         {
-            DrawingArea drawingArea = new DrawingArea();
+            DrawingArea drawingArea = new DrawingArea(this.document);
             // Calculate the scale
             double scale;
-            if (!DrawingArea.CalculateScale(out scale))
+            if (!drawingArea.CalculateScale(out scale))
             {
                 return null;
             }
             drawingArea.scale = scale;
             drawingArea.format = format;
-            
-            // Get Document
-            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
 
-            // Delete the current drawing frame
-            if (Instance != null) Instance.Delete();
-
-            // Get the needed drawing frame to the BlockTable
-            drawingArea.CreateBlock();
-
-            // Start the Transaction
-            using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
+            using (document.LockDocument())
             {
-                BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
-                BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
-
-                using (BlockReference newBlock = new BlockReference(new Point3d(0, 0, 0), acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead).ObjectId))
+                // Start the Transaction
+                using (Transaction acTrans = document.TransactionManager.StartTransaction())
                 {
-                    newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
-                    newBlock.LayerId = acDoc.Database.LayerZero;
-                    newBlock.Linetype = "Continuous";
-                    newBlock.LineWeight = LineWeight.ByLineWeightDefault;
-
-                    var jig = new DrawingAreaInsertionJig(newBlock, drawingArea);
-                    PromptResult getPromptResult;
-                    object oldCrossWidth = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CURSORSIZE");
-                    Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", 100);
-                    getPromptResult = acDoc.Editor.Drag(jig);
-                    Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", oldCrossWidth);
-                    // Handle Cancel or Error
-                    if (getPromptResult.Status == PromptStatus.Cancel || getPromptResult.Status == PromptStatus.Error)
+                    // Delete the current drawing frame
+                    if (this.IsValid)
                     {
-                        return null;
+                        Delete();
                     }
 
-                    // Append the new block to the TableRecord and tell the transaction
-                    acBlkTblRec.AppendEntity(newBlock);
-                    acTrans.AddNewlyCreatedDBObject(newBlock, true);
+                    // Get the needed drawing frame to the BlockTable
+                    drawingArea.CreateBlock();
 
-                    // Save ID and format + direction
-                    drawingArea.drawingAreaId = newBlock.ObjectId;
+                    BlockTable acBlkTbl = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                    BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
-                    // Add an xRec with the scale
-                    newBlock.CreateExtensionDictionary();
-                    DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
-                    acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, scale), true);
-                    acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !format.OldTextfieldUsed), true);
+                    using (BlockReference newBlock = new BlockReference(Point3d.Origin, acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead).ObjectId))
+                    {
+                        newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                        newBlock.LayerId = document.Database.LayerZero;
+                        newBlock.Linetype = "Continuous";
+                        newBlock.LineWeight = LineWeight.ByLineWeightDefault;
+
+                        var jig = new DrawingAreaInsertionJig(newBlock, drawingArea);
+                        PromptResult getPromptResult;
+                        object oldCrossWidth = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CURSORSIZE");
+                        Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", 100);
+                        getPromptResult = document.Editor.Drag(jig);
+                        Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", oldCrossWidth);
+                        // Handle Cancel or Error
+                        if (getPromptResult.Status == PromptStatus.Cancel || getPromptResult.Status == PromptStatus.Error)
+                        {
+                            acTrans.Abort();
+                            return null;
+                        }
+
+                        // Append the new block to the TableRecord and tell the transaction
+                        acBlkTblRec.AppendEntity(newBlock);
+                        acTrans.AddNewlyCreatedDBObject(newBlock, true);
+
+                        // Save ID and format + direction
+                        drawingArea.drawingAreaId = newBlock.ObjectId;
+                        drawingArea.isValid = true;
+
+                        // Add an xRec with the scale
+                        newBlock.CreateExtensionDictionary();
+                        DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
+                        acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, scale), true);
+                        acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !format.OldTextfieldUsed), true);
+                    }
+
+                    // Close transaction
+                    acTrans.Commit();
                 }
-
-                // Close transaction
-                acTrans.Commit();
-                instance = drawingArea;
             }
             return drawingArea;
         }
 
         
         /// <summary>
-        /// Defines a block for this drawing area accord to the specified parameters.
+        /// Defines a block for this drawing area accord to the specified parameters. Erases the old block definition if existing
         /// Indicies of the polyline are as follows:
         /// 5-----------4
         /// |           |
@@ -377,18 +476,16 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         private void CreateBlock()
         {
-            // Get Document and Database
-            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
             // Start the Transaction
-            using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
+            using (Transaction acTrans = document.TransactionManager.StartTransaction())
             {
                 // Get active BlockTable and BlockTableRecord
-                BlockTable blockTable = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForWrite) as BlockTable;
+                BlockTable blockTable = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForWrite) as BlockTable;
 
                 if (blockTable.Has(DrawingArea.NAME))
                 {
                     acTrans.GetObject(blockTable[DrawingArea.NAME], OpenMode.ForWrite).Erase();
+                    acTrans.TransactionManager.QueueForGraphicsFlush();
                 }
 
                 // Generate the new block
@@ -427,7 +524,7 @@ namespace AutoCADTools.PrintLayout
                         poly.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
                         poly.Linetype = "Continuous";
                         poly.LineWeight = LineWeight.ByLineWeightDefault;
-                        poly.LayerId = acDoc.Database.LayerZero;
+                        poly.LayerId = document.Database.LayerZero;
 
                         // Append the polyline to the block
                         newBlockDef.AppendEntity(poly);
@@ -448,13 +545,10 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public void Delete()
         {
-            // Get the current document
-            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
             // Start the Transaction
-            using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
+            using (Transaction acTrans = document.TransactionManager.StartTransaction())
             {
-                BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                BlockTable acBlkTbl = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
 
                 if (drawingAreaId.IsValid && !drawingAreaId.IsErased)
                 {
@@ -478,44 +572,72 @@ namespace AutoCADTools.PrintLayout
         /// If there is no drawing area, nothing is done.
         /// </summary>
         /// <param name="oldTextfieldSize">specifies if the old (bigger) text field size shell be used</param>
-        public static void ModifySize(bool oldTextfieldSize = false)
+        /// <returns>true if area was resized, false otherwise</returns>
+        public bool Resize(bool oldTextfieldSize = false)
         {
-            // Get the old drawing area, if there is none, return
-            DrawingArea drawingArea = Instance;
-            if (drawingArea == null)
+            if (!IsValid)
             {
-                return;
+                return false;
             }
-            SpecificFormat oldFormat = drawingArea.format;
-            drawingArea.Format.OldTextfieldUsed = oldTextfieldSize;
-
-            // Get Document
-            Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            // No copy done here
+            SpecificFormat oldFormat = format;
+            Format.OldTextfieldUsed = oldTextfieldSize;
 
             // Start the Transaction
-            using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
+            using (Transaction acTrans = document.TransactionManager.StartTransaction())
             {
                 // Get active BlockTable and BlockTableRecord
-                BlockReference blockReference = acTrans.GetObject(drawingArea.drawingAreaId, OpenMode.ForRead) as BlockReference;
+                BlockReference blockReference = acTrans.GetObject(drawingAreaId, OpenMode.ForRead) as BlockReference;
                 
-                DrawingAreaModificationJig jig = new DrawingAreaModificationJig(blockReference, drawingArea);
+                DrawingAreaModificationJig jig = new DrawingAreaModificationJig(blockReference, this);
                 PromptResult getPromptResult;
 
                 // Set the phase counter of the jig and get it started
-                getPromptResult = acDoc.Editor.Drag(jig);
+                getPromptResult = document.Editor.Drag(jig);
                 // Handle Cancel or Error
                 if (getPromptResult.Status == PromptStatus.Cancel || getPromptResult.Status == PromptStatus.Error)
                 {
-                    drawingArea.format = oldFormat;
+                    format = oldFormat;
                     acTrans.Abort();
-                    return;
+                    return false;
                 }
 
                 // Close transaction
                 acTrans.Commit();
             }
+            return true;
         }
 
+        private void Resize(BlockReference reference, Point size)
+        {
+            using (Transaction acTrans = document.Database.TransactionManager.StartTransaction())
+            {
+                Polyline poly = acTrans.GetObject(lineId, OpenMode.ForWrite) as Polyline;
+                poly.SetPointAt(0, new Point2d(-size.X, 0));
+                poly.SetPointAt(4, new Point2d(0, size.Y));
+                poly.SetPointAt(5, new Point2d(-size.X, size.Y));
+                if (Format.Format == Paperformat.A4)
+                {
+                    poly.SetPointAt(3, new Point2d(0, 0));
+                    poly.SetPointAt(2, new Point2d(0, 0));
+                    poly.SetPointAt(1, new Point2d(0, 0));
+                }
+                else
+                {
+                    poly.SetPointAt(3, new Point2d(0, Format.TextfieldSize.Y / Scale));
+                    poly.SetPointAt(2, new Point2d(-Format.TextfieldSize.X / Scale, Format.TextfieldSize.Y / Scale));
+                    poly.SetPointAt(1, new Point2d(-Format.TextfieldSize.X / Scale, 0));
+                }
+                BlockTable blockTable = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                BlockTableRecord drawingAreaRecord = acTrans.GetObject(blockTable[DrawingArea.NAME], OpenMode.ForRead) as BlockTableRecord;
+                reference.UpgradeOpen();
+                reference.BlockTableRecord = drawingAreaRecord.ObjectId;
+                acTrans.TransactionManager.QueueForGraphicsFlush();
+                acTrans.Commit();
+            }
+        }
 
         class DrawingAreaInsertionJig : EntityJig
         {
@@ -575,8 +697,7 @@ namespace AutoCADTools.PrintLayout
                 this.insertionPoint = br.Position;
                 this.reference = br;
                 
-                Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-                using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
+                using (Transaction acTrans = drawingArea.Document.Database.TransactionManager.StartTransaction())
                 {
                     Polyline poly = acTrans.GetObject(drawingArea.lineId, OpenMode.ForRead) as Polyline;
                     targetPoint = poly.GetPoint3dAt(5);
@@ -646,34 +767,7 @@ namespace AutoCADTools.PrintLayout
 
             protected override bool Update()
             {
-                Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
-                using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
-                {
-                    Polyline poly = acTrans.GetObject(drawingArea.lineId, OpenMode.ForWrite) as Polyline;
-                    poly.SetPointAt(0, new Point2d(targetPoint.X - insertionPoint.X, 0));
-                    poly.SetPointAt(4, new Point2d(0, targetPoint.Y - insertionPoint.Y));
-                    poly.SetPointAt(5, new Point2d(targetPoint.X - insertionPoint.X,
-                        targetPoint.Y - insertionPoint.Y));
-                    if (drawingArea.Format.Format == Paperformat.A4)
-                    {
-                        poly.SetPointAt(3, new Point2d(0, 0));
-                        poly.SetPointAt(2, new Point2d(0, 0));
-                        poly.SetPointAt(1, new Point2d(0, 0));
-                    }
-                    else
-                    {
-                        poly.SetPointAt(3, new Point2d(0, drawingArea.Format.TextfieldSize.Y / drawingArea.Scale));
-                        poly.SetPointAt(2, new Point2d(-drawingArea.Format.TextfieldSize.X / drawingArea.Scale, drawingArea.Format.TextfieldSize.Y / drawingArea.Scale));
-                        poly.SetPointAt(1, new Point2d(-drawingArea.Format.TextfieldSize.X / drawingArea.Scale, 0));
-                    }
-                    BlockTable blockTable = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
-                    BlockTableRecord drawingAreaRecord = acTrans.GetObject(blockTable[DrawingArea.NAME], OpenMode.ForRead) as BlockTableRecord;
-                    reference.UpgradeOpen();
-                    reference.BlockTableRecord = drawingAreaRecord.ObjectId;
-                    acTrans.TransactionManager.QueueForGraphicsFlush();
-                    acTrans.Commit();
-                }
+                drawingArea.Resize(reference, new Point(insertionPoint.X - targetPoint.X, targetPoint.Y - insertionPoint.Y));
 
                 return true;
             }

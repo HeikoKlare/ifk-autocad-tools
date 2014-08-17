@@ -372,7 +372,11 @@ namespace AutoCADTools.Tools
         /// <param name="e">unused</param>
         private void Unit_Click(object sender, EventArgs e)
         {
-            if (DrawingArea.Instance != null)
+            var document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            DrawingArea drawingArea = drawingAreaWrapper.DrawingArea;
+
+            if (drawingArea != null)
             {
                 if (markedUnit != sender)
                 {
@@ -381,7 +385,7 @@ namespace AutoCADTools.Tools
                         MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         // Delete the current drawing frame
-                        DrawingArea.Instance.Delete();
+                        drawingArea.Delete();
 
                         // Set new markedUnit
                         markedUnit = (RadioButton)sender;

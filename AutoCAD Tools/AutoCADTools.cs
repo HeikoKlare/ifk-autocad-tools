@@ -264,7 +264,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4Portrait", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4Portrait()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL));
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL));
         }
 
         /// <summary>
@@ -274,7 +276,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4Landscape", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4Landscape()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL));
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL));
         }
 
         /// <summary>
@@ -283,7 +287,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA3", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA3()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
         }
 
         /// <summary>
@@ -294,8 +300,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaCustom", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaCustom()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
-            DrawingArea.ModifySize();
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.CreateAndResize(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
         }
 
         /// <summary>
@@ -304,7 +311,9 @@ namespace AutoCADTools
         [CommandMethod("ModifyDrawingAreaSize", CommandFlags.NoPaperSpace)]
         public static void ModifyDrawingAreaSize()
         {
-            DrawingArea.ModifySize();
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Resize();
         }
 
         #endregion
@@ -318,7 +327,10 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4PortraitOld", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4PortraitOld()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL, true, true));
+
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL, true, true));
         }
 
         /// <summary>
@@ -328,7 +340,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA4LandscapeOld", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA4LandscapeOld()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL, true, true));
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL, true, true));
         }
 
         /// <summary>
@@ -337,7 +351,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaA3Old", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaA3Old()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
         }
 
         /// <summary>
@@ -348,8 +364,9 @@ namespace AutoCADTools
         [CommandMethod("DrawingAreaCustomOld", CommandFlags.NoPaperSpace)]
         public static void DrawingAreaCustomOld()
         {
-            DrawingArea.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
-            DrawingArea.ModifySize(true);
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.CreateAndResize(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
         }
 
         /// <summary>
@@ -358,7 +375,9 @@ namespace AutoCADTools
         [CommandMethod("ModifyDrawingAreaSizeOld", CommandFlags.NoPaperSpace)]
         public static void ModifyDrawingAreaSizeOld()
         {
-            DrawingArea.ModifySize(true);
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            drawingAreaWrapper.Resize(true);
         }
 
         #endregion
