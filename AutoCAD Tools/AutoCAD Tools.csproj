@@ -398,6 +398,9 @@
   <ItemGroup>
     <None Include="Resources\IFK.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2015\"
