@@ -27,7 +27,7 @@ namespace AutoCADTools.PrintLayout
             LayoutManager.Current.CurrentLayout = "Model";
             try
             {
-                this.drawingArea = DrawingArea.FindDrawingArea(doc);
+                this.drawingArea = DrawingArea.FindDrawingArea(doc, 0);
             }
             catch (System.Exception)
             {
@@ -38,7 +38,7 @@ namespace AutoCADTools.PrintLayout
         }
 
         public bool Create(SpecificFormat format) {
-            var createdArea = drawingArea.Create(format);
+            var createdArea = drawingArea.Create(format, 0);
             if (createdArea != null)
             {
                 this.drawingArea = createdArea;
@@ -47,7 +47,7 @@ namespace AutoCADTools.PrintLayout
         }
 
         public bool Resize(bool oldTextfieldUsed = false) {
-            if (!this.drawingArea.IsValid) this.drawingArea = DrawingArea.FindDrawingArea(drawingArea.Document);
+            if (!this.drawingArea.IsValid) this.drawingArea = DrawingArea.FindDrawingArea(drawingArea.Document, 0);
             return this.drawingArea.Resize(oldTextfieldUsed);
         }
 
@@ -55,7 +55,7 @@ namespace AutoCADTools.PrintLayout
         {
             using (var trans = drawingArea.Document.TransactionManager.StartTransaction())
             {
-                var createdArea = drawingArea.Create(format);
+                var createdArea = drawingArea.Create(format, 0);
                 if (createdArea != null && createdArea.Resize(format.OldTextfieldUsed))
                 {
                     this.drawingArea = createdArea;

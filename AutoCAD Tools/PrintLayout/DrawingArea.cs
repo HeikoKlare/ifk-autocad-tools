@@ -20,11 +20,14 @@ namespace AutoCADTools.PrintLayout
         #region Constants
 
         /// <summary>
-        /// The drawing area's name
+        /// The old drawing area's name
         /// </summary>
         public const string OLD_NAME = "Zeichenbereich";
 
-        public const string NAME = "DrawingArea";
+        /// <summary>
+        /// The new drawing area's name
+        /// </summary>
+        private const string NAME = "DrawingArea";
 
         /// <summary>
         /// Constant for the Xrecord name that the new textfield is used
@@ -103,18 +106,32 @@ namespace AutoCADTools.PrintLayout
             get { return format; }
             set { format = value; }
         }
+
+        /// <summary>
+        /// The id of this drawing area, unique per document
+        /// </summary>
+        private int id;
+
+        /// <summary>
+        /// The Name of this drawing area, concatenated from a generic name and the id
+        /// </summary>
+        public string Name
+        {
+            get { return NAME + id.ToString(); }
+        }
                 
         #endregion
 
         #region Constructors
 
-        private DrawingArea(Document doc)
+        private DrawingArea(Document doc, int id)
         {
             this.isValid = false;
             this.document = doc;
             this.drawingAreaId = ObjectId.Null;
             this.format = new SpecificFormat();
             this.lineId = ObjectId.Null;
+            this.id = id;
         }
 
         #endregion
@@ -124,11 +141,11 @@ namespace AutoCADTools.PrintLayout
         /// <param name="doc">the document to search for the drawing area in</param>
         /// <returns>the drawing area if found, null otherwise</returns>
         /// </summary>
-        public static DrawingArea FindDrawingArea(Document doc)
+        public static DrawingArea FindDrawingArea(Document doc, int id)
         {
             if (LayoutManager.Current.CurrentLayout != "Model") return null;
 
-            DrawingArea drawingArea = new DrawingArea(doc);
+            DrawingArea drawingArea = new DrawingArea(doc, id);
 
             using (DocumentLock acLock = doc.LockDocument())
             {
@@ -144,14 +161,14 @@ namespace AutoCADTools.PrintLayout
                     }
 
                     // Look if block does alread exist
-                    if (acBlkTbl.Has(DrawingArea.NAME))
+                    if (acBlkTbl.Has(drawingArea.Name))
                     {
-                        BlockTableRecord drawingAreaRecord = acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead) as BlockTableRecord;
+                        BlockTableRecord drawingAreaRecord = acTrans.GetObject(acBlkTbl[drawingArea.Name], OpenMode.ForRead) as BlockTableRecord;
                         foreach (ObjectId objId in modelRecord)
                         {
                             if (objId.ObjectClass == RXClass.GetClass(typeof(BlockReference))) {
                                 BlockReference block = acTrans.GetObject(objId, OpenMode.ForRead) as BlockReference;
-                                if (block != null && block.Name == DrawingArea.NAME)
+                                if (block != null && block.Name == drawingArea.Name)
                                 {
                                     drawingArea.drawingAreaId = objId;
                                     drawingArea.isValid = true;
@@ -233,7 +250,7 @@ namespace AutoCADTools.PrintLayout
                     // Look if block does alread exist
                     if (acBlkTbl.Has(DrawingArea.OLD_NAME))
                     {
-                        DrawingArea drawingArea = new DrawingArea(document);
+                        DrawingArea drawingArea = new DrawingArea(document, 0);
                         Point3d insertionPoint = Point3d.Origin;
                         Point dimension = new Point(0, 0);
 
@@ -275,7 +292,7 @@ namespace AutoCADTools.PrintLayout
                         drawingAreaRecord.Erase();
                         drawingArea.CreateBlock();
 
-                        using (BlockReference newBlock = new BlockReference(Point3d.Origin, acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForWrite).ObjectId))
+                        using (BlockReference newBlock = new BlockReference(Point3d.Origin, acTrans.GetObject(acBlkTbl[drawingArea.Name], OpenMode.ForWrite).ObjectId))
                         {
                             newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
                             newBlock.LayerId = document.Database.LayerZero;
@@ -393,9 +410,9 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         /// <param name="format">the format the drawing area shell be created for</param>
         /// <returns>the created drawing area</returns>
-        public DrawingArea Create(SpecificFormat format)
+        public DrawingArea Create(SpecificFormat format, int id)
         {
-            DrawingArea drawingArea = new DrawingArea(this.document);
+            DrawingArea drawingArea = new DrawingArea(this.document, id);
             // Calculate the scale
             double scale;
             if (!drawingArea.CalculateScale(out scale))
@@ -422,7 +439,7 @@ namespace AutoCADTools.PrintLayout
                     BlockTable acBlkTbl = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
                     BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
-                    using (BlockReference newBlock = new BlockReference(Point3d.Origin, acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForRead).ObjectId))
+                    using (BlockReference newBlock = new BlockReference(Point3d.Origin, acTrans.GetObject(acBlkTbl[drawingArea.Name], OpenMode.ForRead).ObjectId))
                     {
                         newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
                         newBlock.LayerId = document.Database.LayerZero;
@@ -482,16 +499,16 @@ namespace AutoCADTools.PrintLayout
                 // Get active BlockTable and BlockTableRecord
                 BlockTable blockTable = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForWrite) as BlockTable;
 
-                if (blockTable.Has(DrawingArea.NAME))
+                if (blockTable.Has(Name))
                 {
-                    acTrans.GetObject(blockTable[DrawingArea.NAME], OpenMode.ForWrite).Erase();
+                    acTrans.GetObject(blockTable[Name], OpenMode.ForWrite).Erase();
                     acTrans.TransactionManager.QueueForGraphicsFlush();
                 }
 
                 // Generate the new block
                 using (BlockTableRecord newBlockDef = new BlockTableRecord())
                 {
-                    newBlockDef.Name = DrawingArea.NAME;
+                    newBlockDef.Name = Name;
 
                     // Add the new block to the BlockTable
                     blockTable.Add(newBlockDef);
@@ -556,9 +573,9 @@ namespace AutoCADTools.PrintLayout
                     acTrans.TransactionManager.QueueForGraphicsFlush();
                 }
 
-                if (acBlkTbl.Has(DrawingArea.NAME))
+                if (acBlkTbl.Has(Name))
                 {
-                    acTrans.GetObject(acBlkTbl[DrawingArea.NAME], OpenMode.ForWrite).Erase();
+                    acTrans.GetObject(acBlkTbl[Name], OpenMode.ForWrite).Erase();
                 }
 
                 acTrans.TransactionManager.QueueForGraphicsFlush();
@@ -631,7 +648,7 @@ namespace AutoCADTools.PrintLayout
                     poly.SetPointAt(1, new Point2d(-Format.TextfieldSize.X / Scale, 0));
                 }
                 BlockTable blockTable = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
-                BlockTableRecord drawingAreaRecord = acTrans.GetObject(blockTable[DrawingArea.NAME], OpenMode.ForRead) as BlockTableRecord;
+                BlockTableRecord drawingAreaRecord = acTrans.GetObject(blockTable[Name], OpenMode.ForRead) as BlockTableRecord;
                 reference.UpgradeOpen();
                 reference.BlockTableRecord = drawingAreaRecord.ObjectId;
                 acTrans.TransactionManager.QueueForGraphicsFlush();
