@@ -61,6 +61,24 @@ namespace AutoCADTools.PrintLayout {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An error occured while finding the drawing area. Please create a new one and delete the old one if existing. ähnelt.
+        /// </summary>
+        internal static string DrawingAreaFindErrorMessage {
+            get {
+                return ResourceManager.GetString("DrawingAreaFindErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Drawing Area Error ähnelt.
+        /// </summary>
+        internal static string DrawingAreaFindErrorTitle {
+            get {
+                return ResourceManager.GetString("DrawingAreaFindErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Insertion point ähnelt.
         /// </summary>
         internal static string DrawingAreaInsertionText {

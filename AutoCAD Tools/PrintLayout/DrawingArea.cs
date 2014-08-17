@@ -139,6 +139,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// Finds the current drawing frame in the specified document (if existing) and returns it.
         /// <param name="doc">the document to search for the drawing area in</param>
+        /// <param name="id">the id of the drawing frame to be found</param>
         /// <returns>the drawing area if found, null otherwise</returns>
         /// </summary>
         public static DrawingArea FindDrawingArea(Document doc, int id)
@@ -409,6 +410,7 @@ namespace AutoCADTools.PrintLayout
         /// Creates a drawing frame according to the specified format.
         /// </summary>
         /// <param name="format">the format the drawing area shell be created for</param>
+        /// <param name="id">the id of the drawing area to be created</param>
         /// <returns>the created drawing area</returns>
         public DrawingArea Create(SpecificFormat format, int id)
         {
