@@ -72,7 +72,7 @@ namespace AutoCADTools.Tools
                 Point3d average = new Point3d((maximum.X + minimum.X) / 2, (maximum.Y + minimum.Y) / 2, 0);
 
                 // Let the user select the reference point
-                var referencePoint = acDoc.Editor.GetPoint("\n" + LocalData.DimensionReferencePoint + ": ");
+                var referencePoint = acDoc.Editor.GetPoint(Environment.NewLine + LocalData.DimensionReferencePoint);
                 if (referencePoint.Status != PromptStatus.OK)
                 {
                     acTrans.Abort();
@@ -90,7 +90,7 @@ namespace AutoCADTools.Tools
                 }
 
                 // Let the user select the insertion point
-                PromptPointOptions pointOpts = new PromptPointOptions("\n" + LocalData.DimensionInsertionPoint + ": ");
+                PromptPointOptions pointOpts = new PromptPointOptions(Environment.NewLine + LocalData.DimensionInsertionPoint);
                 pointOpts.UseBasePoint = true;
                 pointOpts.BasePoint = referencePoint.Value;
                 var insertionPoint = acDoc.Editor.GetPoint(pointOpts);
@@ -103,7 +103,7 @@ namespace AutoCADTools.Tools
                 var insertionPointString = insertionPoint.Value.X + "," + insertionPoint.Value.Y + "," + insertionPoint.Value.Z;
 
                 // Let the user define the number of decimal places
-                PromptIntegerOptions intOpts = new PromptIntegerOptions("\n" + LocalData.DimensionDecimalPlaces + ": ");
+                PromptIntegerOptions intOpts = new PromptIntegerOptions(Environment.NewLine + LocalData.DimensionDecimalPlaces);
                 intOpts.DefaultValue = 2;
                 intOpts.LowerLimit = 1;
                 intOpts.UpperLimit = 4;

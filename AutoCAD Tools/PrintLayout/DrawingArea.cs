@@ -675,7 +675,7 @@ namespace AutoCADTools.PrintLayout
                 if (prompts == null) return SamplerStatus.Cancel;
 
                 // Get the insertionPoint
-                PromptPointResult getPointResult = prompts.AcquirePoint("\n" + LocalData.DrawingAreaInsertionText + ": ");
+                PromptPointResult getPointResult = prompts.AcquirePoint(Environment.NewLine + LocalData.DrawingAreaInsertionText);
                 Point3d oldPoint = insertionPoint;
                 insertionPoint = getPointResult.Value;
 
@@ -727,7 +727,7 @@ namespace AutoCADTools.PrintLayout
             {
                 if (prompts == null) return SamplerStatus.Cancel;
 
-                PromptPointResult getPointResult = prompts.AcquirePoint("\n" + LocalData.DrawingAreaModificationText + ": ");
+                PromptPointResult getPointResult = prompts.AcquirePoint(Environment.NewLine + LocalData.DrawingAreaModificationText);
                 Point3d oldPoint = targetPoint;
                 targetPoint = getPointResult.Value;
                 

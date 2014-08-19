@@ -186,7 +186,7 @@ namespace AutoCADTools.Tools
                 BlockTableRecord modelSpace = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
                 // Get first eave point
-                PromptPointOptions pointOpts = new PromptPointOptions("\n" + LocalData.ReinforcingBondFirstEave + ": ");
+                PromptPointOptions pointOpts = new PromptPointOptions(Environment.NewLine + LocalData.ReinforcingBondFirstEave);
                 var firstEavePointResult = acDoc.Editor.GetPoint(pointOpts);
                 if (firstEavePointResult.Status != PromptStatus.OK)
                 {
@@ -196,7 +196,7 @@ namespace AutoCADTools.Tools
                 Point2d firstEavePoint = firstEavePointResult.Value.Convert2d(plane);
 
                 // Get second eave point
-                pointOpts.Message = "\n" + LocalData.ReinforcingBondSecondEave + ": ";
+                pointOpts.Message = Environment.NewLine + LocalData.ReinforcingBondSecondEave;
                 pointOpts.UseBasePoint = true;
                 pointOpts.BasePoint = firstEavePointResult.Value;
                 var secondEavePointResult = acDoc.Editor.GetPoint(pointOpts);
@@ -476,7 +476,7 @@ namespace AutoCADTools.Tools
                 if (prompts == null) return SamplerStatus.Cancel;
 
                 // Get the insertionPoint
-                PromptPointResult getPointResult = prompts.AcquirePoint("\n" + LocalData.ReinforcingBondRidge + ": ");
+                PromptPointResult getPointResult = prompts.AcquirePoint(Environment.NewLine + LocalData.ReinforcingBondRidge);
                 Point3d oldPoint0 = ridgePoint;
                 ridgePoint = getPointResult.Value;
 

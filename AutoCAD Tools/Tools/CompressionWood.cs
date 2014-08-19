@@ -33,7 +33,7 @@ namespace AutoCADTools.Tools
             using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
             {
                 // Get width from user
-                PromptIntegerOptions intOpts = new PromptIntegerOptions("\n" + LocalData.CompressionWoodWidth + ": ");
+                PromptIntegerOptions intOpts = new PromptIntegerOptions(Environment.NewLine + LocalData.CompressionWoodWidth);
                 intOpts.UseDefaultValue = true;
                 intOpts.DefaultValue = WIDTH;
                 var widthResult = acDoc.Editor.GetInteger(intOpts);
@@ -45,7 +45,7 @@ namespace AutoCADTools.Tools
                 WIDTH = widthResult.Value;
 
                 // Get height from user
-                intOpts.Message = "\n" + LocalData.CompressionWoodHeight + ": ";
+                intOpts.Message = Environment.NewLine + LocalData.CompressionWoodHeight;
                 intOpts.DefaultValue = HEIGHT;
                 var heightResult = acDoc.Editor.GetInteger(intOpts);
                 if (heightResult.Status != PromptStatus.OK)
@@ -56,7 +56,7 @@ namespace AutoCADTools.Tools
                 HEIGHT = heightResult.Value;
 
                 // Get angle from user
-                PromptAngleOptions angleOpts = new PromptAngleOptions("\n" + LocalData.CompressionWoodAngle + ": ");
+                PromptAngleOptions angleOpts = new PromptAngleOptions(Environment.NewLine + LocalData.CompressionWoodAngle);
                 angleOpts.UseDefaultValue = true;
                 angleOpts.DefaultValue = 0.0;
                 var angleResult = acDoc.Editor.GetAngle(angleOpts);
@@ -138,7 +138,7 @@ namespace AutoCADTools.Tools
                 if (prompts == null) return SamplerStatus.Cancel;
 
                 // Get the insertionPoint
-                PromptPointResult getPointResult = prompts.AcquirePoint("\n" + LocalData.TrussImportInputPoint + ": ");
+                PromptPointResult getPointResult = prompts.AcquirePoint(Environment.NewLine + LocalData.TrussImportInputPoint);
                 Point3d oldPoint0 = insertionPoint;
                 Point3d currentPoint = getPointResult.Value;
 

@@ -421,7 +421,7 @@ namespace AutoCADTools.Tools
             {
                 if (prompts == null) return SamplerStatus.Cancel;
                 // Get the insertionPoint
-                PromptPointResult getPointResult = prompts.AcquirePoint(LocalData.TrussImportInputPoint + ": ");
+                PromptPointResult getPointResult = prompts.AcquirePoint(LocalData.TrussImportInputPoint);
                 Point3d oldPoint0 = insertionPoint;
                 insertionPoint = getPointResult.Value;
 

@@ -393,7 +393,7 @@ namespace AutoCADTools.Tools
 
                 // Combine the prompt message and options
                 JigPromptPointOptions promptOptions = new JigPromptPointOptions();
-                String queryString = "\n";
+                String queryString = Environment.NewLine;
                 switch (currentPointIndex)
                 {
                     case firstPointIndex:
@@ -414,7 +414,6 @@ namespace AutoCADTools.Tools
                         promptOptions.BasePoint = endPoints[currentPointIndex, firstPointIndex];
                         break;
                 }
-                queryString += ": ";
                 
                 promptOptions.Message = queryString;
                 PromptPointResult getPointResult = prompts.AcquirePoint(promptOptions);
