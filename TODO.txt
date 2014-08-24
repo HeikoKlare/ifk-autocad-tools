@@ -1,21 +1,13 @@
-Auto Speichern: Datum + Nummer für Datum, Revisionsnummer in Zeichnungsdaten
-
-Rispe: einzeln Transaktion für jede Rispe (tut irgendwie nicht)
-
 Quick Create Layout: Layout mit Default Settings erstellen ohne den Dialog anzuzeigen. 
 
-Nach Laufmaß kein zurücksetzen des Vermaßungsstils (sporadisch?)
+LayoutErstellen überarbeiten
 
-Template anpassen: unnötige Maßstile entfernen
+Position erzeugen (zentrierte Zahl)
 
-Neue Vorlage ohne Änderungsvermerke?
+Blöcke Standardtexte falsch (Basispunkt und EinfEinheit Meter!)
 
-Rispen Zahl zentriert statt unten links
+Auftraggeber nicht als Fremdschlüssel sondern als Kopie!
 
-Skalierung nicht gefunden beim Layout erstellen, Maßstab 1:15
+Projektbearbeitnug Spalten größer (Dialog größer / Sizeable)
 
-Fang für Formate
-
-editor.StartUserInteraction from modeless dialog
-
-Standbemerkungen als Block
+Anmerkungen überarbeiten, irgendwie....
