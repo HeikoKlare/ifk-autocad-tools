@@ -266,7 +266,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL));
+            drawingAreaWrapper.Create(new PaperformatTextfieldA4Vertical(false));
         }
 
         /// <summary>
@@ -278,7 +278,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL));
+            drawingAreaWrapper.Create(new PaperformatTextfieldA4Horizontal(false));
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
+            drawingAreaWrapper.Create(new PaperformatTextfieldA3(false));
         }
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.CreateAndResize(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL));
+            drawingAreaWrapper.CreateAndResize(new PaperformatTextfieldA3(false));
         }
 
         /// <summary>
@@ -330,7 +330,7 @@ namespace AutoCADTools
 
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.VERTICAL, true, true));
+            drawingAreaWrapper.Create(new PaperformatTextfieldA4Vertical(true));
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A4, PrintLayout.Orientation.HORIZONTAL, true, true));
+            drawingAreaWrapper.Create(new PaperformatTextfieldA4Horizontal(true));
         }
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
+            drawingAreaWrapper.Create(new PaperformatTextfieldA3(true));
         }
 
         /// <summary>
@@ -366,7 +366,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.CreateAndResize(new SpecificFormat(Paperformat.A3, PrintLayout.Orientation.HORIZONTAL, true, true));
+            drawingAreaWrapper.CreateAndResize(new PaperformatTextfieldA3(true));
         }
 
         /// <summary>

@@ -56,7 +56,7 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         /// <param name="format">the format the new drawing area should have</param>
         /// <returns>true if the drawing area was successfully created, false otherwise</returns>
-        public bool Create(SpecificFormat format) {
+        public bool Create(PaperformatTextfield format) {
             var createdArea = drawingArea.Create(format, 0);
             if (createdArea != null)
             {
@@ -81,12 +81,12 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         /// <param name="format">the format the new drawing area should have initially</param>
         /// <returns>true if the drawing area was successfully created, false otherwise</returns>
-        public bool CreateAndResize(SpecificFormat format)
+        public bool CreateAndResize(PaperformatTextfield format)
         {
             using (var trans = drawingArea.Document.TransactionManager.StartTransaction())
             {
                 var createdArea = drawingArea.Create(format, 0);
-                if (createdArea != null && createdArea.Resize(format.OldTextfieldUsed))
+                if (createdArea != null && createdArea.Resize(format.OldTextfieldSize))
                 {
                     this.drawingArea = createdArea;
                     trans.Commit();

@@ -176,6 +176,23 @@
     <Compile Include="Management\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="PrintLayout\IPaperformat.cs" />
+    <Compile Include="PrintLayout\PaperformatsPlain\PaperformatA3.cs" />
+    <Compile Include="PrintLayout\PaperformatsPlain\PaperformatA4.cs" />
+    <Compile Include="PrintLayout\PaperformatsPlain\PaperformatA4Horizontal.cs" />
+    <Compile Include="PrintLayout\PaperformatsPlain\PaperformatA4Vertical.cs" />
+    <Compile Include="PrintLayout\PaperformatsPlain\PaperformatCustom.cs" />
+    <Compile Include="PrintLayout\PaperformatsPlain\PaperformatPlain.cs" />
+    <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfield.cs" />
+    <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldA3.cs" />
+    <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldA4.cs" />
+    <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldA4Horizontal.cs" />
+    <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldA4Vertical.cs" />
+    <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldCustom.cs" />
+    <Compile Include="PrintLayout\PaperformatFactory.cs" />
+    <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldFullTextfield.cs" />
+    <Compile Include="PrintLayout\Point.cs" />
+    <Compile Include="PrintLayout\Size.cs" />
     <Compile Include="Tools\CompressionWood.cs" />
     <Compile Include="Tools\ConsecutiveDimension.cs" />
     <Compile Include="Tools\LocalData.Designer.cs">
@@ -399,6 +416,7 @@
   <ItemGroup>
     <None Include="Resources\IFK.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2015\"

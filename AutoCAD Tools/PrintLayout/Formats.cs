@@ -41,7 +41,7 @@ namespace AutoCADTools.PrintLayout
         VERTICAL
     }
 
-    /// <summary>
+/*    /// <summary>
     /// A 2D Point
     /// </summary>
     public struct Point {
@@ -74,7 +74,7 @@ namespace AutoCADTools.PrintLayout
         public Point Swap() {
             return new Point(y, x);
         }
-    }
+    }*/
 
     #endregion
 
@@ -287,7 +287,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns></returns>
         private Point ApplyOrientation(Point p)
         {
-            if (Orientation == Orientation.VERTICAL) p = p.Swap();
+            if (Orientation == Orientation.VERTICAL) p = p.Rotate();
             return p;
         }
 

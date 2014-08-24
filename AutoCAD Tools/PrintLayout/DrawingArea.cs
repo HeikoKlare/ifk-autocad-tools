@@ -96,12 +96,12 @@ namespace AutoCADTools.PrintLayout
             set { drawingAreaId = value; }
         }
 
-        private SpecificFormat format;
+        private PaperformatTextfield format;
 
         /// <summary>
         /// The format of this drawing area, includes data about papersize, orientation, etc.
         /// </summary>
-        public SpecificFormat Format
+        public PaperformatTextfield Format
         {
             get { return format; }
             set { format = value; }
@@ -129,7 +129,7 @@ namespace AutoCADTools.PrintLayout
             this.isValid = false;
             this.document = doc;
             this.drawingAreaId = ObjectId.Null;
-            this.format = new SpecificFormat();
+            this.format = PaperformatFactory.GetPaperformatTextfield(new Size(0, 0));
             this.lineId = ObjectId.Null;
             this.id = id;
         }
@@ -209,9 +209,7 @@ namespace AutoCADTools.PrintLayout
                                     Double width = block.Bounds.Value.MaxPoint.X - block.Bounds.Value.MinPoint.X;
                                     Double height = block.Bounds.Value.MaxPoint.Y - block.Bounds.Value.MinPoint.Y;
 
-                                    SpecificFormat calculatedFormat = SpecificFormat.GetProperViewportFormat(width * scale, height * scale);
-                                    drawingArea.format = calculatedFormat;
-                                    drawingArea.format.OldTextfieldUsed = oldTextfieldUsed;
+                                    drawingArea.format = PaperformatFactory.GetPaperformatTextfield(new Size(width * scale, height * scale), oldTextfieldUsed);
                                 }
                             }
                         }
@@ -253,7 +251,7 @@ namespace AutoCADTools.PrintLayout
                     {
                         DrawingArea drawingArea = new DrawingArea(document, 0);
                         Point3d insertionPoint = Point3d.Origin;
-                        Point dimension = new Point(0, 0);
+                        Size dimension = Size.Zero;
 
                         BlockTableRecord drawingAreaRecord = acTrans.GetObject(acBlkTbl[DrawingArea.OLD_NAME], OpenMode.ForWrite) as BlockTableRecord;
                         foreach (ObjectId objId in modelRecord)
@@ -265,7 +263,7 @@ namespace AutoCADTools.PrintLayout
                                 {
                                     Point3d min = block.Bounds.Value.MinPoint;
                                     Point3d max = block.Bounds.Value.MaxPoint;
-                                    dimension = new Point(max.X - min.X, max.Y - min.Y);
+                                    dimension = new Size(max.X - min.X, max.Y - min.Y);
                                     insertionPoint = new Point3d(max.X, min.Y, 0);
                                     drawingArea.CalculateScale(out drawingArea.scale);
                                     if (!block.ExtensionDictionary.IsNull)
@@ -288,8 +286,7 @@ namespace AutoCADTools.PrintLayout
                             }
                         }
 
-                        drawingArea.Format = SpecificFormat.GetProperViewportFormat(dimension.X * drawingArea.Scale, dimension.Y * drawingArea.Scale);
-                        drawingArea.format.OldTextfieldUsed = true;
+                        drawingArea.Format = PaperformatFactory.GetPaperformatTextfield(new Size(dimension.Width * drawingArea.Scale, dimension.Height * drawingArea.Scale), true);
                         drawingAreaRecord.Erase();
                         drawingArea.CreateBlock();
 
@@ -309,8 +306,7 @@ namespace AutoCADTools.PrintLayout
                             newBlock.CreateExtensionDictionary();
                             DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
                             acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, drawingArea.scale), true);
-                            acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !drawingArea.format.OldTextfieldUsed), true);
-
+                            acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !drawingArea.format.OldTextfieldSize), true);
 
                             drawingArea.Resize(newBlock, dimension);
                         }
@@ -412,7 +408,7 @@ namespace AutoCADTools.PrintLayout
         /// <param name="format">the format the drawing area shell be created for</param>
         /// <param name="id">the id of the drawing area to be created</param>
         /// <returns>the created drawing area</returns>
-        public DrawingArea Create(SpecificFormat format, int id)
+        public DrawingArea Create(PaperformatTextfield format, int id)
         {
             DrawingArea drawingArea = new DrawingArea(this.document, id);
             // Calculate the scale
@@ -473,7 +469,7 @@ namespace AutoCADTools.PrintLayout
                         newBlock.CreateExtensionDictionary();
                         DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
                         acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, scale), true);
-                        acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !format.OldTextfieldUsed), true);
+                        acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !format.OldTextfieldSize), true);
                     }
 
                     // Close transaction
@@ -517,14 +513,14 @@ namespace AutoCADTools.PrintLayout
                     acTrans.AddNewlyCreatedDBObject(newBlockDef, true);
 
                     // Get some data: width and height
-                    double width = format.ViewportModel.X;
-                    double height = format.ViewportModel.Y;
+                    double width = format.ViewportSizeModel.Width;
+                    double height = format.ViewportSizeModel.Height;
 
                     // Create a polyline as the drawing frame
                     using (Polyline poly = new Polyline())
                     {
                         poly.AddVertexAt(poly.NumberOfVertices, new Point2d(-width / scale, 0), 0, 0, 0);
-                        if (format.Format == Paperformat.A4)
+                        if (!format.FullTextfieldUsed)
                         {
                             poly.AddVertexAt(poly.NumberOfVertices, new Point2d(0, 0), 0, 0, 0);
                             poly.AddVertexAt(poly.NumberOfVertices, new Point2d(0, 0), 0, 0, 0);
@@ -532,10 +528,10 @@ namespace AutoCADTools.PrintLayout
                         }
                         else
                         {
-                            Point textfieldSize = Format.TextfieldSize;
-                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(-textfieldSize.X / scale, 0), 0, 0, 0);
-                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(-textfieldSize.X / scale, textfieldSize.Y / scale), 0, 0, 0);
-                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(0, textfieldSize.Y / scale), 0, 0, 0);
+                            Size textfieldSize = Format.TextfieldSize;
+                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(-textfieldSize.Width / scale, 0), 0, 0, 0);
+                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(-textfieldSize.Width / scale, textfieldSize.Height / scale), 0, 0, 0);
+                            poly.AddVertexAt(poly.NumberOfVertices, new Point2d(0, textfieldSize.Height / scale), 0, 0, 0);
                         }
                         poly.AddVertexAt(poly.NumberOfVertices, new Point2d(0, height / scale), 0, 0, 0);
                         poly.AddVertexAt(poly.NumberOfVertices, new Point2d(-width / scale, height / scale), 0, 0, 0);
@@ -601,8 +597,8 @@ namespace AutoCADTools.PrintLayout
             
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // No copy done here
-            SpecificFormat oldFormat = format;
-            Format.OldTextfieldUsed = oldTextfieldSize;
+            PaperformatTextfield oldFormat = format;
+            Format.OldTextfieldSize = oldTextfieldSize;
 
             // Start the Transaction
             using (Transaction acTrans = document.TransactionManager.StartTransaction())
@@ -629,15 +625,15 @@ namespace AutoCADTools.PrintLayout
             return true;
         }
 
-        private void Resize(BlockReference reference, Point size)
+        private void Resize(BlockReference reference, Size size)
         {
             using (Transaction acTrans = document.Database.TransactionManager.StartTransaction())
             {
                 Polyline poly = acTrans.GetObject(lineId, OpenMode.ForWrite) as Polyline;
-                poly.SetPointAt(0, new Point2d(-size.X, 0));
-                poly.SetPointAt(4, new Point2d(0, size.Y));
-                poly.SetPointAt(5, new Point2d(-size.X, size.Y));
-                if (Format.Format == Paperformat.A4)
+                poly.SetPointAt(0, new Point2d(-size.Width, 0));
+                poly.SetPointAt(4, new Point2d(0, size.Height));
+                poly.SetPointAt(5, new Point2d(-size.Width, size.Height));
+                if (!Format.FullTextfieldUsed)
                 {
                     poly.SetPointAt(3, new Point2d(0, 0));
                     poly.SetPointAt(2, new Point2d(0, 0));
@@ -645,9 +641,9 @@ namespace AutoCADTools.PrintLayout
                 }
                 else
                 {
-                    poly.SetPointAt(3, new Point2d(0, Format.TextfieldSize.Y / Scale));
-                    poly.SetPointAt(2, new Point2d(-Format.TextfieldSize.X / Scale, Format.TextfieldSize.Y / Scale));
-                    poly.SetPointAt(1, new Point2d(-Format.TextfieldSize.X / Scale, 0));
+                    poly.SetPointAt(3, new Point2d(0, Format.TextfieldSize.Height / Scale));
+                    poly.SetPointAt(2, new Point2d(-Format.TextfieldSize.Width / Scale, Format.TextfieldSize.Height / Scale));
+                    poly.SetPointAt(1, new Point2d(-Format.TextfieldSize.Width / Scale, 0));
                 }
                 BlockTable blockTable = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
                 BlockTableRecord drawingAreaRecord = acTrans.GetObject(blockTable[Name], OpenMode.ForRead) as BlockTableRecord;
@@ -680,9 +676,9 @@ namespace AutoCADTools.PrintLayout
                 insertionPoint = getPointResult.Value;
 
                 // If there is a format with a textfield, change the pick point to upper left of the textfield
-                if (drawingArea.Format.Format != Paperformat.A4)
+                if (drawingArea.Format.FullTextfieldUsed)
                 {
-                    insertionPoint = insertionPoint.Add(new Vector3d(drawingArea.Format.TextfieldSize.X / drawingArea.Scale, -drawingArea.Format.TextfieldSize.Y / drawingArea.Scale, 0));
+                    insertionPoint = insertionPoint.Add(new Vector3d(drawingArea.Format.TextfieldSize.Width / drawingArea.Scale, -drawingArea.Format.TextfieldSize.Height / drawingArea.Scale, 0));
                 }
 
                 // Return NoChange if difference is to low to avoid flimmering
@@ -740,12 +736,12 @@ namespace AutoCADTools.PrintLayout
                 double width = insertionPoint.X - targetPoint.X;
                 double height = targetPoint.Y - insertionPoint.Y;
 
-                SpecificFormat format = drawingArea.Format.GetNextBiggerFormat(width * drawingArea.Scale, height * drawingArea.Scale);
+                PaperformatTextfield format = drawingArea.Format.ChangeSize(new Size(width * drawingArea.Scale, height * drawingArea.Scale));
                 SpecificFormat formatA3 = new SpecificFormat(Paperformat.A3);
                 drawingArea.format = format;
 
                 // Make a lot of decisions to show the right minimum size of the drawing frame
-                if (format.Format != Paperformat.AMAX)
+                /*if (format.Format != Paperformat.AMAX)
                 {
                     targetPoint = new Point3d(
                         insertionPoint.X - format.ViewportModel.X / drawingArea.Scale,
@@ -778,15 +774,15 @@ namespace AutoCADTools.PrintLayout
                 {
                     Point newPoint = SpecificFormat.IncreaseToNextBiggerFormat(width * drawingArea.Scale, height * drawingArea.Scale);
                     targetPoint = insertionPoint.Add(new Vector3d(-newPoint.X / drawingArea.Scale, newPoint.Y / drawingArea.Scale, 0));
-                }
-
+                }*/
+                targetPoint = new Point3d(insertionPoint.X - format.ViewportSizeModel.Width / drawingArea.Scale, insertionPoint.Y + format.ViewportSizeModel.Height / drawingArea.Scale, 0);
                 // Return that everything is fine
                 return SamplerStatus.OK;
             }
 
             protected override bool Update()
             {
-                drawingArea.Resize(reference, new Point(insertionPoint.X - targetPoint.X, targetPoint.Y - insertionPoint.Y));
+                drawingArea.Resize(reference, new Size(insertionPoint.X - targetPoint.X, targetPoint.Y - insertionPoint.Y));
 
                 return true;
             }

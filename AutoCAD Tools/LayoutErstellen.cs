@@ -503,22 +503,22 @@ namespace AutoCADTools
                 // Found so set return value true
                 dfExists = true;
 
-                SpecificFormat format = drawingArea.Format;
-                if (format.Format == Paperformat.A4 && format.Orientation == PrintLayout.Orientation.VERTICAL)
+                PaperformatTextfield format = drawingArea.Format;
+                if (format is PaperformatTextfieldA4Vertical)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = false;
                 }
-                else if (format.Format == Paperformat.A4 && format.Orientation == PrintLayout.Orientation.HORIZONTAL)
+                else if (format is PaperformatTextfieldA4Horizontal)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBhochformat.Checked = true;
                     this.dfFormat = "A4";
                     CBdrehen.Checked = true;
                 }
-                else if (format.Format == Paperformat.A3 && format.Orientation == PrintLayout.Orientation.HORIZONTAL)
+                else if (format is PaperformatTextfieldCustom)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBquerformat.Checked = true;
@@ -599,20 +599,18 @@ namespace AutoCADTools
                 // Look if paperformat fits drawing frame
                 else if (RBzeichenbereich.Checked)
                 {
-                    SpecificFormat format = drawingArea.Format;
-                    if (format.Format == Paperformat.A4 && CBpapierformat.Text != "A4")
+                    PaperformatTextfield format = drawingArea.Format;
+                    if (format is PaperformatTextfieldA4 && CBpapierformat.Text != "A4")
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss \"A4\" sein");
                         error = true;
                     }
-                    else if (format.Format == Paperformat.A3 && format.Orientation == PrintLayout.Orientation.HORIZONTAL
-                        && CBpapierformat.Text != "A3")
+                    else if (format is PaperformatTextfieldA3 && CBpapierformat.Text != "A3")
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss \"A3\" sein");
                         error = true;
                     }
-                    else if (format.Format == Paperformat.AMAX && format.Orientation == PrintLayout.Orientation.HORIZONTAL
-                        && (CBpapierformat.Text == "A4" || CBpapierformat.Text == "A3"))
+                    else if (format is PaperformatTextfieldCustom && (CBpapierformat.Text == "A4" || CBpapierformat.Text == "A3"))
                     {
                         MessageBox.Show("Papierformat entspricht nicht dem Zeichenbereich. Muss größer als \"A3\" sein");
                         error = true;
@@ -1395,14 +1393,13 @@ namespace AutoCADTools
 
             CBdrucker.SelectedIndex = CBdrucker.Items.IndexOf("PNG");
 
-            SpecificFormat format = drawingArea.Format;
-            if (format.Format == Paperformat.A4 && !CBpapierformat.Items.Contains("A4"))
+            PaperformatTextfield format = drawingArea.Format;
+            if (format is PaperformatTextfieldA4 && !CBpapierformat.Items.Contains("A4"))
             {
                 MessageBox.Show("Für den PLotter ist kein A4-Papierformat definiert");
                 return false;
             }
-            else if (format.Format == Paperformat.A3 && format.Orientation == PrintLayout.Orientation.HORIZONTAL
-                && !CBpapierformat.Items.Contains("A3"))
+            else if (format is PaperformatTextfieldA3 && !CBpapierformat.Items.Contains("A3"))
             {
                 MessageBox.Show("Für den Plotter ist kein A3-Papierformat definiert");
                 return false;
