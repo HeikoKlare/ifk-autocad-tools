@@ -65,7 +65,7 @@ namespace AutoCADTools.PrintLayout
                             foldLine.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
                             foldLine.LayerId = document.Database.LayerZero;
                             foldLine.StartPoint = new Point3d(paperformat.BorderBasePoint.X / unit - margin.Width,
-                                    paperformat.BorderBasePoint.Y + counter * PaperformatTextfieldCustom.foldPeriod.Y - margin.Height, 0);
+                                    (paperformat.BorderBasePoint.Y + counter * PaperformatTextfieldCustom.foldPeriod.Y) / unit - margin.Height, 0);
                             foldLine.EndPoint = foldLine.StartPoint.Add(new Vector3d((paperformat.ViewportBasePoint.X - paperformat.BorderBasePoint.X) / unit, 0, 0));
                             layoutRecord.AppendEntity(foldLine);
                             trans.AddNewlyCreatedDBObject(foldLine, true);
