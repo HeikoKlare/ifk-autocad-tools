@@ -266,7 +266,8 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new PaperformatTextfieldA4Vertical(false));
+            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+            drawingAreaWrapper.Create(new PaperformatTextfieldA4Vertical(drawingData.Version < 2));
         }
 
         /// <summary>
@@ -278,7 +279,8 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new PaperformatTextfieldA4Horizontal(false));
+            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+            drawingAreaWrapper.Create(new PaperformatTextfieldA4Horizontal(drawingData.Version < 2));
         }
 
         /// <summary>
@@ -289,7 +291,8 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Create(new PaperformatTextfieldA3(false));
+            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+            drawingAreaWrapper.Create(new PaperformatTextfieldA3(drawingData.Version < 2));
         }
 
         /// <summary>
@@ -302,7 +305,8 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.CreateAndResize(new PaperformatTextfieldA3(false));
+            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+            drawingAreaWrapper.CreateAndResize(new PaperformatTextfieldA3(drawingData.Version < 2));
         }
 
         /// <summary>
@@ -313,7 +317,8 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            drawingAreaWrapper.Resize();
+            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+            drawingAreaWrapper.Resize(drawingData.Version < 2);
         }
 
         #endregion
@@ -392,6 +397,7 @@ namespace AutoCADTools
         {
             Autodesk.AutoCAD.DatabaseServices.DatabaseSummaryInfoBuilder dbSumBuilder = new Autodesk.AutoCAD.DatabaseServices.DatabaseSummaryInfoBuilder();
             System.Collections.IDictionary prop = dbSumBuilder.CustomPropertyTable;
+            prop.Add("Version", "2");
             prop.Add("Auftraggeber", " ");
             prop.Add("BV1", " ");
             prop.Add("BV2", " ");
@@ -402,12 +408,6 @@ namespace AutoCADTools
             prop.Add("Statiknummer", " ");
             prop.Add("Bauteil", " ");
             prop.Add("Plannummer", " ");
-            prop.Add("AE1Name", " ");
-            prop.Add("AE1Datum", " ");
-            prop.Add("AE1Vermerk", " ");
-            prop.Add("AE2Name", " ");
-            prop.Add("AE2Datum", " ");
-            prop.Add("AE2Vermerk", " ");
             String unit = "1000";
             prop.Add("Zeichnungseinheit", unit);
             Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.SummaryInfo
