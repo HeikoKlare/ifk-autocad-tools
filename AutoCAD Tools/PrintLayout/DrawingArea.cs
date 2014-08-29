@@ -563,9 +563,7 @@ namespace AutoCADTools.PrintLayout
                 return false;
             }
 
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // No copy done here
-            PaperformatTextfield oldFormat = format;
+            PaperformatTextfield oldFormat = PaperformatFactory.GetPaperformatTextfield(format.ViewportSizeModel, format.OldTextfieldSize);
             Format.OldTextfieldSize = oldTextfieldSize;
 
             // Start the Transaction
@@ -704,46 +702,9 @@ namespace AutoCADTools.PrintLayout
                 double width = insertionPoint.X - targetPoint.X;
                 double height = targetPoint.Y - insertionPoint.Y;
 
-                PaperformatTextfield format = drawingArea.Format.ChangeSize(new Size(width * drawingArea.Scale, height * drawingArea.Scale));
-                //SpecificFormat formatA3 = new SpecificFormat(Paperformat.A3);
-                drawingArea.format = format;
+                drawingArea.format = drawingArea.Format.ChangeSize(new Size(width * drawingArea.Scale, height * drawingArea.Scale));
 
-                // Make a lot of decisions to show the right minimum size of the drawing frame
-                /*if (format.Format != Paperformat.AMAX)
-                {
-                    targetPoint = new Point3d(
-                        insertionPoint.X - format.ViewportModel.X / drawingArea.Scale,
-                        insertionPoint.Y + format.ViewportModel.Y / drawingArea.Scale, 0);
-                }
-                else if (height < formatA3.ViewportModel.Y / drawingArea.Scale)
-                {
-                    targetPoint = new Point3d(targetPoint.X,
-                        insertionPoint.Y + formatA3.ViewportModel.Y / drawingArea.Scale, 0);
-                }
-                else if (width < formatA3.ViewportModel.X / drawingArea.Scale)
-                {
-                    targetPoint = new Point3d(insertionPoint.X - formatA3.ViewportModel.X / drawingArea.Scale,
-                        targetPoint.Y, 0);
-                }
-
-                if (width > format.ViewportModel.X / drawingArea.Scale)
-                {
-                    targetPoint = new Point3d(insertionPoint.X - format.ViewportModel.X / drawingArea.Scale, targetPoint.Y, 0);
-                }
-                if (height > format.ViewportModel.Y / drawingArea.Scale)
-                {
-                    targetPoint = new Point3d(targetPoint.X, insertionPoint.Y + format.ViewportModel.Y / drawingArea.Scale, 0);
-                }
-
-                width = insertionPoint.X - targetPoint.X;
-                height = targetPoint.Y - insertionPoint.Y;
-
-                if (format.Format == Paperformat.AMAX)
-                {
-                    Point newPoint = SpecificFormat.IncreaseToNextBiggerFormat(width * drawingArea.Scale, height * drawingArea.Scale);
-                    targetPoint = insertionPoint.Add(new Vector3d(-newPoint.X / drawingArea.Scale, newPoint.Y / drawingArea.Scale, 0));
-                }*/
-                targetPoint = new Point3d(insertionPoint.X - format.ViewportSizeModel.Width / drawingArea.Scale, insertionPoint.Y + format.ViewportSizeModel.Height / drawingArea.Scale, 0);
+                targetPoint = new Point3d(insertionPoint.X - drawingArea.format.ViewportSizeModel.Width / drawingArea.Scale, insertionPoint.Y + drawingArea.format.ViewportSizeModel.Height / drawingArea.Scale, 0);
                 // Return that everything is fine
                 return SamplerStatus.OK;
             }
