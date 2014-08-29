@@ -5,8 +5,7 @@ namespace AutoCADTools.PrintLayout
     /// Defines a paperformat with the viewports and borders extends and insertion point.
     /// The values are defined through a specified viewport in model space.
     /// </summary>
-    /// <typeparam name="T">the type that is returned when changing the size, should be a subclass of this</typeparam>
-    public abstract class IPaperformat<T>
+    public abstract class IPaperformat
     {
         /// <summary>
         /// The maximum size of this paperformat.
@@ -77,15 +76,5 @@ namespace AutoCADTools.PrintLayout
         {
             viewportSizeModel = Size.Zero;
         }
-
-        /// <summary>
-        /// Changes the size of the viewport according to the specified value. The paperformat that fits the size is returned.
-        /// </summary>
-        /// <param name="size">The size of the viewport in model space.</param>
-        /// <returns>
-        /// The paperformat that fits the specified viewport size
-        /// </returns>
-        public abstract T ChangeSize(Size size);
-
     }
 }

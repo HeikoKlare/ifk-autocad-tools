@@ -135,4 +135,7 @@
   <data name="DrawingAreaUnitFirstTitle" xml:space="preserve">
     <value>No unit specified</value>
   </data>
+  <data name="PrinterNameException" xml:space="preserve">
+    <value>A printer with the specified name does not exist: </value>
+  </data>
 </root>

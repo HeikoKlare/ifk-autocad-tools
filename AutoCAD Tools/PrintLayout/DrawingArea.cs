@@ -5,7 +5,6 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Runtime;
-using AutoCADTools.PrintLayout;
 using AutoCADTools.Tools;
 
 namespace AutoCADTools.PrintLayout
@@ -52,7 +51,7 @@ namespace AutoCADTools.PrintLayout
             get { return isValid && !drawingAreaId.IsErased && drawingAreaId.IsValid; }
             set { isValid = value; }
         }
-        
+
         /// <summary>
         /// The scale depending on annotation scale and the paperunit
         /// </summary>
@@ -119,7 +118,7 @@ namespace AutoCADTools.PrintLayout
         {
             get { return NAME + id.ToString(); }
         }
-                
+
         #endregion
 
         #region Constructors
@@ -167,7 +166,8 @@ namespace AutoCADTools.PrintLayout
                         BlockTableRecord drawingAreaRecord = acTrans.GetObject(acBlkTbl[drawingArea.Name], OpenMode.ForRead) as BlockTableRecord;
                         foreach (ObjectId objId in modelRecord)
                         {
-                            if (objId.ObjectClass == RXClass.GetClass(typeof(BlockReference))) {
+                            if (objId.ObjectClass == RXClass.GetClass(typeof(BlockReference)))
+                            {
                                 BlockReference block = acTrans.GetObject(objId, OpenMode.ForRead) as BlockReference;
                                 if (block != null && block.Name == drawingArea.Name)
                                 {
@@ -180,7 +180,7 @@ namespace AutoCADTools.PrintLayout
                                     if (block.ExtensionDictionary.IsNull)
                                     {
                                         // If block has no data, get the current scale
-                                        if (!drawingArea.CalculateScale(out scale)) return null;
+                                        scale = drawingArea.CalculateScale();
                                         drawingArea.scale = scale;
                                         oldTextfieldUsed = true;
                                     }
@@ -200,7 +200,7 @@ namespace AutoCADTools.PrintLayout
                                         }
                                         catch (System.Exception)
                                         {
-                                            if (!drawingArea.CalculateScale(out scale)) return null;
+                                            scale = drawingArea.CalculateScale();
                                             drawingArea.scale = scale;
                                             oldTextfieldUsed = true;
                                         }
@@ -237,7 +237,8 @@ namespace AutoCADTools.PrintLayout
             return drawingArea;
         }
 
-        private static void ConvertOldArea(Document document) {
+        private static void ConvertOldArea(Document document)
+        {
             using (DocumentLock acLock = document.LockDocument())
             {
                 using (Transaction acTrans = document.TransactionManager.StartTransaction())
@@ -265,7 +266,7 @@ namespace AutoCADTools.PrintLayout
                                     Point3d max = block.Bounds.Value.MaxPoint;
                                     dimension = new Size(max.X - min.X, max.Y - min.Y);
                                     insertionPoint = new Point3d(max.X, min.Y, 0);
-                                    drawingArea.CalculateScale(out drawingArea.scale);
+                                    drawingArea.scale = drawingArea.CalculateScale();
                                     if (!block.ExtensionDictionary.IsNull)
                                     {
                                         // If the block has data, get its scale
@@ -320,47 +321,19 @@ namespace AutoCADTools.PrintLayout
         /// Calculates the scale based on annotation scale and unit and saves it to the static variable
         /// </summary>
         /// <returns>true, if successfully calculated scale</returns>
-        private bool CalculateScale(out double scale)
+        private double CalculateScale()
         {
-            bool found = false;
-
+            double scale = 1.0;
             using (document.LockDocument())
             {
-
-                scale = document.Database.Cannoscale.PaperUnits / document.Database.Cannoscale.DrawingUnits;
-
-                var enumer = document.Database.SummaryInfo.CustomProperties;
-                do
-                {
-                    while (enumer.MoveNext())
-                    {
-                        if (enumer.Key.ToString() == "Zeichnungseinheit")
-                        {
-                            found = true;
-                            // set the scale
-                            scale *= int.Parse(enumer.Value.ToString());
-                        }
-                    }
-
-                    if (!found)
-                    {
-                        if (MessageBox.Show(LocalData.DrawingAreaUnitFirstText, LocalData.DrawingAreaUnitFirstTitle,
-                            MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            using (Form settings = new DrawingSettings())
-                            {
-                                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(settings);
-                            }
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                } while (!found);
+                var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+                if (drawingData == null) {
+                    drawingData = DrawingData.Create(document);
+                }
+                scale = document.Database.Cannoscale.PaperUnits / document.Database.Cannoscale.DrawingUnits *
+                    drawingData.DrawingUnit;
             }
-
-            return found;
+            return scale;
         }
 
 
@@ -412,12 +385,7 @@ namespace AutoCADTools.PrintLayout
         {
             DrawingArea drawingArea = new DrawingArea(this.document, id);
             // Calculate the scale
-            double scale;
-            if (!drawingArea.CalculateScale(out scale))
-            {
-                return null;
-            }
-            drawingArea.scale = scale;
+            drawingArea.scale = drawingArea.CalculateScale();
             drawingArea.format = format;
 
             using (document.LockDocument())
@@ -479,7 +447,7 @@ namespace AutoCADTools.PrintLayout
             return drawingArea;
         }
 
-        
+
         /// <summary>
         /// Defines a block for this drawing area accord to the specified parameters. Erases the old block definition if existing
         /// Indicies of the polyline are as follows:
@@ -594,7 +562,7 @@ namespace AutoCADTools.PrintLayout
             {
                 return false;
             }
-            
+
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             // No copy done here
             PaperformatTextfield oldFormat = format;
@@ -605,7 +573,7 @@ namespace AutoCADTools.PrintLayout
             {
                 // Get active BlockTable and BlockTableRecord
                 BlockReference blockReference = acTrans.GetObject(drawingAreaId, OpenMode.ForRead) as BlockReference;
-                
+
                 DrawingAreaModificationJig jig = new DrawingAreaModificationJig(blockReference, this);
                 PromptResult getPromptResult;
 
@@ -711,7 +679,7 @@ namespace AutoCADTools.PrintLayout
                 this.drawingArea = drawingArea;
                 this.insertionPoint = br.Position;
                 this.reference = br;
-                
+
                 using (Transaction acTrans = drawingArea.Document.Database.TransactionManager.StartTransaction())
                 {
                     Polyline poly = acTrans.GetObject(drawingArea.lineId, OpenMode.ForRead) as Polyline;
@@ -726,7 +694,7 @@ namespace AutoCADTools.PrintLayout
                 PromptPointResult getPointResult = prompts.AcquirePoint(Environment.NewLine + LocalData.DrawingAreaModificationText);
                 Point3d oldPoint = targetPoint;
                 targetPoint = getPointResult.Value;
-                
+
                 // Return NoChange if difference is to low to avoid flimmering
                 if (targetPoint.DistanceTo(oldPoint) < 0.001)
                 {
@@ -737,7 +705,7 @@ namespace AutoCADTools.PrintLayout
                 double height = targetPoint.Y - insertionPoint.Y;
 
                 PaperformatTextfield format = drawingArea.Format.ChangeSize(new Size(width * drawingArea.Scale, height * drawingArea.Scale));
-                SpecificFormat formatA3 = new SpecificFormat(Paperformat.A3);
+                //SpecificFormat formatA3 = new SpecificFormat(Paperformat.A3);
                 drawingArea.format = format;
 
                 // Make a lot of decisions to show the right minimum size of the drawing frame

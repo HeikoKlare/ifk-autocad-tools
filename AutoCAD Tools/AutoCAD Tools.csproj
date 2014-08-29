@@ -110,6 +110,7 @@
     <Compile Include="PrintLayout\DrawingAreaDocumentWrapper.cs" />
     <Compile Include="PrintLayout\Formats.cs" />
     <Compile Include="PrintLayout\LayoutCreation.cs" />
+    <Compile Include="PrintLayout\LayoutTextfield.cs" />
     <Compile Include="PrintLayout\LocalData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -192,9 +193,12 @@
     <Compile Include="PrintLayout\PaperformatFactory.cs" />
     <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldFullTextfield.cs" />
     <Compile Include="PrintLayout\Point.cs" />
+    <Compile Include="PrintLayout\Printer.cs" />
+    <Compile Include="PrintLayout\PrinterCache.cs" />
     <Compile Include="PrintLayout\Size.cs" />
     <Compile Include="Tools\CompressionWood.cs" />
     <Compile Include="Tools\ConsecutiveDimension.cs" />
+    <Compile Include="Tools\DrawingData.cs" />
     <Compile Include="Tools\LocalData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

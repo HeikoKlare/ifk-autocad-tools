@@ -19,13 +19,13 @@ namespace AutoCADTools.PrintLayout
         /// </value>
         public override Size TextfieldSize
         {
-            get { return OldTextfieldSize ? new Size(185.0, 75.0) : new Size(185.0, 57.5); }
+            get { return OldTextfieldSize ? new Size(185.0, 77.0) : new Size(185.0, 57.0); }
         }
 
         /// <inheritdoc />
         public override Point TextfieldBasePoint
         {
-            get { return BorderBasePoint + BorderSize + new Size(-TextfieldSize.Width, TextfieldSize.Height) + new Size(-5.0, 5.0) + offset; }
+            get { return BorderBasePoint + new Size(BorderSize.Width, 0) + new Size(-TextfieldSize.Width, TextfieldSize.Height) + new Size(-5.0, 5.0); }
         }
 
         /// <inheritdoc />
@@ -68,5 +68,12 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         /// <param name="oldTextfieldSize">if set to <c>true</c> the old textfield size is used.</param>
         public PaperformatTextfieldFullTextfield(bool oldTextfieldSize) : base(oldTextfieldSize) { }
+
+        /// <inheritdoc/>
+        public override string TextfieldBlockName
+        {
+            get { return "Textfeld A3+"; }
+        }
+
     }
 }

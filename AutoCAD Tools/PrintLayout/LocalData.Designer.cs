@@ -113,5 +113,14 @@ namespace AutoCADTools.PrintLayout {
                 return ResourceManager.GetString("DrawingAreaUnitFirstTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die A printer with the specified name does not exist:  ähnelt.
+        /// </summary>
+        internal static string PrinterNameException {
+            get {
+                return ResourceManager.GetString("PrinterNameException", resourceCulture);
+            }
+        }
     }
 }

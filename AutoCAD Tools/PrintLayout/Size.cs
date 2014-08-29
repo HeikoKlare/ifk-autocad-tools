@@ -92,7 +92,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns><c>true</c> if this size contains the specified one, <c>false</c> otherwise</returns>
         public bool Contains(Size size)
         {
-            return size.width <= this.width && size.height <= this.height;
+            return size.width <= this.width + 0.001 && size.height <= this.height + 0.001;
         }
 
         #endregion

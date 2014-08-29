@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 namespace AutoCADTools
 {
@@ -43,246 +44,7 @@ namespace AutoCADTools
                                                         { 0.0, 0.0 }, { 0.0, 0.0 }, { 20.0, 20.0 } };
         private String dfFormat;
         
-        private class Printer
-        {
-            private String name;
-
-            public String Name
-            {
-                get { return name; }
-            }
-
-            public List<PrinterPaperformat> paperformats;
-
-            public List<PrinterPaperformat> Paperformats
-            {
-                get { return paperformats; }
-                set { paperformats = value; }
-            }
-
-            public List<PrinterPaperformat> optimizedFormats;
-
-            public List<PrinterPaperformat> OptimizedFormats
-            {
-                get { return optimizedFormats; }
-                set { optimizedFormats = value; }
-            }
-
-            public Printer(String name)
-            {
-                if (String.IsNullOrEmpty(name))
-                {
-                    throw new System.ArgumentException("Leerer Name");
-                }
-
-                this.name = name;
-                this.paperformats = new List<PrinterPaperformat>();
-                this.optimizedFormats = new List<PrinterPaperformat>();
-                // Set the new plotter and get the available media names
-
-                bool found;
-                bool optFound;
-
-
-                    PlotSettingsValidator psv = PlotSettingsValidator.Current;
-
-                    using (PlotSettings acPlSet = new PlotSettings(true))
-                    {
-                        //MessageBox.Show("Initial");
-                        psv.SetPlotConfigurationName(acPlSet, name + ".pc3", null);
-                        //psv.RefreshLists(acPlSet);
-                                                
-                        var paperFormats = psv.GetCanonicalMediaNameList(acPlSet);
-                        //MessageBox.Show("Begin calc");
-                        
-                        Parallel.For(0, 5, i =>
-                        {
-                            // Look if the paperformat is optimized or if its usable and not optimed
-                            found = false;
-                            optFound = false;
-                            String savedFormat = "";
-
-                            var formats = paperFormats;//(from format in paperFormats.Cast<string>() where format.Contains("A" + i) select format).ToArray();
-                            
-                            for (int k = 0; k < formats.Count && !optFound; k++)
-                            {
-                                // Add the PNG formats
-                                if (i == 0)
-                                {
-                                    if (formats[k].ToString() == "UserDefinedRaster (2100.00 x 2970.00Pixel)")
-                                    {
-                                        paperformats.Add(new PrinterPaperformat("A4", formats[k].ToString()));
-                                        optimizedFormats.Add(new PrinterPaperformat("A4", formats[k].ToString()));
-
-                                    }
-                                    else if (formats[k].ToString() == "UserDefinedRaster (2970.00 x 4200.00Pixel)")
-                                    {
-                                        paperformats.Add(new PrinterPaperformat("A3", formats[k].ToString()));
-                                        optimizedFormats.Add(new PrinterPaperformat("A3", formats[k].ToString()));
-
-                                    }
-                                }
-
-                                lock (this) { 
-                                if (psv.GetLocaleMediaName(acPlSet, formats[k]).Contains("A" + i.ToString()) && !optFound)
-                                {
-                                    psv.SetCanonicalMediaName(acPlSet, formats[k]);
-                                    
-                                    found = true;
-                                    Extents2d margins = acPlSet.PlotPaperMargins;
-                                    if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
-                                        && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
-                                        && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
-                                        && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
-                                    {
-                                        optFound = true;
-                                    }
-                                    savedFormat = formats[k].ToString();
-                                }
-                            }
-                                
-                            }
-                            // If format (optimal) found, add it to formats
-                            if (found)
-                            {
-                                paperformats.Add(new PrinterPaperformat("A" + i.ToString(), savedFormat));
-
-                                if (optFound)
-                                {
-                                    optimizedFormats.Add(new PrinterPaperformat("A" + i.ToString(), savedFormat));
-
-                                }
-                            }
-                        });
-                        //MessageBox.Show("End calc");
-                    }
-
-            }
         
-            
-
-            public void newctorPrinter(String name)
-            {
-                if (String.IsNullOrEmpty(name))
-                {
-                    throw new System.ArgumentException("Leerer Name");
-                }
-
-                this.name = name;
-                this.paperformats = new List<PrinterPaperformat>();
-                this.optimizedFormats = new List<PrinterPaperformat>();
-                // Set the new plotter and get the available media names
-
-                //bool found;
-                //bool optFound;
-
-
-                    PlotSettingsValidator psv = PlotSettingsValidator.Current;
-
-                    using (PlotSettings acPlSet = new PlotSettings(true))
-                    {
-                        MessageBox.Show("Initial");
-                        psv.SetPlotConfigurationName(acPlSet, name + ".pc3", null);
-                        psv.RefreshLists(acPlSet);
-                        
-                        var paperFormats = psv.GetCanonicalMediaNameList(acPlSet);
-                        MessageBox.Show("Begin calc");
-
-                        int[] optMapping = new int[5];
-                        int[] mapping = new int[5];
-                        int found = 0;
-                        for (int i = 0; i <= 4; i++) {
-                            mapping[i] = -1;
-                            optMapping[i] = -1;
-                        }
-                        foreach (string format in paperFormats)
-                        {
-                            bool optFormat = false;
-                            psv.SetCanonicalMediaName(acPlSet, format);
-                            Extents2d margins = acPlSet.PlotPaperMargins;
-                            if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
-                                && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
-                                && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
-                                && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
-                                optFormat = true;
-                        for (int i = 0; i <= 4; i++)
-                        {
-                            // Look if the paperformat is optimized or if its usable and not optimed
-                            //found = false;
-                            //optFound = false;
-                            //String savedFormat = "";
-                            //for (int k = 0; k < paperFormats.Count && !optFound; k++)
-                            //{
-                                // Add the PNG formats
-                                if (i == 0)
-                                {
-                                    if (format == "UserDefinedRaster (2100.00 x 2970.00Pixel)")
-                                    {
-                                        paperformats.Add(new PrinterPaperformat("A4", format));
-                                        optimizedFormats.Add(new PrinterPaperformat("A4", format));
-
-                                    }
-                                    else if (format == "UserDefinedRaster (2970.00 x 4200.00Pixel)")
-                                    {
-                                        paperformats.Add(new PrinterPaperformat("A3", format));
-                                        optimizedFormats.Add(new PrinterPaperformat("A3", format));
-
-                                    }
-                                }
-
-                                if (psv.GetLocaleMediaName(acPlSet, format).Contains("A" + i.ToString()) && optMapping[i] == -1)
-                                {
-                                    if (optFormat) {
-                                        found++;
-                                        optimizedFormats.Add(new PrinterPaperformat("A" + i, format));
-                                        optMapping[i] = optimizedFormats.Count - 1;
-                                        if (mapping[i] == -1)
-                                        {
-                                            paperformats.Add(new PrinterPaperformat("A" + i, format));
-                                            mapping[i] = paperformats.Count - 1;
-                                        }
-                                        else
-                                        {
-                                            paperformats[mapping[i]] = new PrinterPaperformat("A" + i, format);
-                                        }
-                                    }
-                                }
-                            }
-                            // If format (optimal) found, add it to formats
-                        if (found == 4) break;
-                        }
-                        MessageBox.Show("End calc");
-                    }
-
-            }
-        }
-        
-
-        private class PrinterPaperformat
-        {
-            private String name;
-
-            public String Name
-            {
-                get { return name; }
-                set { name = value; }
-            }
-            
-            private String format;
-
-            public String Format
-            {
-                get { return format; }
-                set { format = value; }
-            }
-
-            public PrinterPaperformat(String name, String format)
-            {
-                this.Name = name;
-                this.Format = format;
-            }
-        }
-
         private static List<string> printerNames;
         private static Printer printer;
         private bool standardTemplate = true;
@@ -350,9 +112,9 @@ namespace AutoCADTools
                 BlockTable acBlkTbl = acTrans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
 
                 // If there is no drawing frame or the textfields are not defined, disable the option
-                if (!AusschnittErkennen() || !acBlkTbl.Has("Textfeld A4") || !acBlkTbl.Has("Textfeld A3+"))
+                if (!AusschnittErkennen() || !acBlkTbl.Has("Textfeld A4") || !(acBlkTbl.Has("Textfeld A3+") || acBlkTbl.Has("Textfeld A3+ klein")))
                 {
-                    if (!acBlkTbl.Has("Textfeld A4") || !acBlkTbl.Has("Textfeld A3+"))
+                    if (!acBlkTbl.Has("Textfeld A4") || !(acBlkTbl.Has("Textfeld A3+") || acBlkTbl.Has("Textfeld A3+ klein")))
                     {
                         standardTemplate = false;
                         CBkopf.Visible = false;
@@ -404,7 +166,7 @@ namespace AutoCADTools
                     try
                     {
                         printerNames.Add(device.Substring(0, device.Length - 4));
-                        //printer.Add(new Printer(device.Substring(0, device.Length - 4)));
+                        //printer.Add(ÜP(device.Substring(0, device.Length - 4)));
                     }
                     catch (System.ArgumentException)
                     {
@@ -518,7 +280,7 @@ namespace AutoCADTools
                     this.dfFormat = "A4";
                     CBdrehen.Checked = true;
                 }
-                else if (format is PaperformatTextfieldCustom)
+                else if (format is PaperformatTextfieldA3)
                 {
                     CBdrucker.SelectedIndex = CBdrucker.FindStringExact("Konica");
                     RBquerformat.Checked = true;
@@ -564,13 +326,13 @@ namespace AutoCADTools
             {
                 // Look if there is some error with the printer or the paperformat
                 if (CBoptimiertePapierformate.Checked 
-                    && printer.OptimizedFormats[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
+                    && printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
                 {
                     MessageBox.Show("Das ausgewählte Papierformat kann nicht gefunden werden.");
                     error = true;
                 }
-                else if (CBoptimiertePapierformate.Checked 
-                    && printer.OptimizedFormats[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
+                else if (CBoptimiertePapierformate.Checked
+                    && printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
                 {
                     MessageBox.Show("Das ausgewählte Papierformat kann nicht gefunden werden.");
                     error = true;
@@ -641,7 +403,14 @@ namespace AutoCADTools
                 this.Hide();
                 try
                 {
-                    CreateLayout();
+                    Point3d pos = Point3d.Origin;
+                    using (Transaction trans = document.TransactionManager.StartTransaction())
+                    {
+                        pos = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
+                    }
+                    LayoutCreation cr = new LayoutTextfield(TBlayout.Text, drawingArea.Format, new PrintLayout.Point(pos.X, pos.Y), new PrinterPaperformat(CBpapierformat.Text, printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].FormatName, PrinterCache.Instance[CBdrucker.Text]), double.Parse(TBeinheit.Text), 1.0 / double.Parse(CBmassstab.Text), CBdrehen.Checked);
+                    cr.CreateLayout();
+                    //CreateLayout();
                 }
                 catch (Exception ex)
                 {
@@ -681,24 +450,20 @@ namespace AutoCADTools
                 Layout acLayout = acTrans.GetObject(LayoutManager.Current.GetLayoutId(LayoutManager.Current.CurrentLayout),
                     OpenMode.ForWrite) as Layout;
                 
-                using (PlotSettings acPlSet = new PlotSettings(acLayout.ModelType))
-                {
-                    acPlSet.CopyFrom(acLayout);
-
                     // Get the paperformat
                     String paperformat;
                     if (CBoptimiertePapierformate.Checked)
                     {
-                        paperformat = printer.OptimizedFormats[CBpapierformat.SelectedIndex].Format;
+                        paperformat = printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].FormatName;
                     }
                     else
                     {
-                        paperformat = printer.Paperformats[CBpapierformat.SelectedIndex].Format;
+                        paperformat = printer.UnoptimizedPaperformats[CBpapierformat.SelectedIndex].FormatName;
                     }
 
                     // Get current PlotSettingsValidator and set printer and format
                     PlotSettingsValidator psv = PlotSettingsValidator.Current;
-                    psv.SetPlotConfigurationName(acPlSet, CBdrucker.Text + ".pc3", paperformat);
+                    psv.SetPlotConfigurationName(acLayout, CBdrucker.Text + ".pc3", paperformat);
 
                     // Erase the existing object in the new layout (especially the automatically created viewport)
                     foreach (ObjectId id in layout)
@@ -711,20 +476,19 @@ namespace AutoCADTools
                     scale = 1.0 / double.Parse(CBmassstab.Text);
 
                     // Set the plot settings and validate them
-                    psv.RefreshLists(acPlSet);
+                    psv.RefreshLists(acLayout);
                     if (CBdrucker.Text == "PNG")
                     {
-                        psv.SetPlotPaperUnits(acPlSet, PlotPaperUnit.Pixels);
-                        psv.SetCustomPrintScale(acPlSet, new CustomScale(unit * 10, 1));
+                        psv.SetPlotPaperUnits(acLayout, PlotPaperUnit.Pixels);
+                        psv.SetCustomPrintScale(acLayout, new CustomScale(unit * 10, 1));
                     }
                     else
                     {
-                        psv.SetPlotPaperUnits(acPlSet, PlotPaperUnit.Millimeters);
-                        psv.SetCustomPrintScale(acPlSet, new CustomScale(unit, 1));
+                        psv.SetPlotPaperUnits(acLayout, PlotPaperUnit.Millimeters);
+                        psv.SetCustomPrintScale(acLayout, new CustomScale(unit, 1));
                     }
-                    psv.SetPlotType(acPlSet, Autodesk.AutoCAD.DatabaseServices.PlotType.Layout);
+                    psv.SetPlotType(acLayout, Autodesk.AutoCAD.DatabaseServices.PlotType.Layout);
                     
-                    acLayout.CopyFrom(acPlSet);
 
                     // Regenerate the layout after setting plot settings
                     //acDoc.Editor.Regen();
@@ -796,11 +560,11 @@ namespace AutoCADTools
                     // Get the right rotation and switch width and height if needed
                     if ((width < height && RBhochformat.Checked) || (height < width && RBquerformat.Checked))
                     {
-                        psv.SetPlotRotation(acPlSet, PlotRotation.Degrees000);
+                        psv.SetPlotRotation(acLayout, PlotRotation.Degrees000);
                     }
                     else
                     {
-                        psv.SetPlotRotation(acPlSet, PlotRotation.Degrees090);
+                        psv.SetPlotRotation(acLayout, PlotRotation.Degrees090);
                         Double temp = width;
                         width = height;
                         height = temp;
@@ -821,7 +585,7 @@ namespace AutoCADTools
                     }
 
                     // Set plot settings again after changing rotation
-                    acLayout.CopyFrom(acPlSet);
+                    acLayout.CopyFrom(acLayout);
 
                     // Create new viewport and a polyline to use as viewport
                     Viewport PVport = new Viewport();
@@ -1072,7 +836,7 @@ namespace AutoCADTools
                     PVport.Dispose();
                     pViewport.Dispose();
 
-                } // using acPlSet
+                // using acPlSet
 
                 // Close everything and commit changes
                 acTrans.Commit();
@@ -1174,18 +938,18 @@ namespace AutoCADTools
             //foreach (Printer pr in printer)
             //{
             //MessageBox.Show("Creating printer");
-                printer = new Printer(CBdrucker.SelectedItem.ToString());
+                printer = PrinterCache.Instance[CBdrucker.SelectedItem.ToString()];
                 //if (pr.Name == CBdrucker.SelectedItem.ToString())
                 //{
                     CBpapierformat.Items.Clear();
                     List<PrinterPaperformat> formats;
                     if (CBoptimiertePapierformate.Checked)
                     {
-                        formats = printer.OptimizedFormats;
+                        formats = printer.OptimizedPaperformats;
                     }
                     else
                     {
-                        formats = printer.Paperformats;
+                        formats = printer.UnoptimizedPaperformats;
                     }
                     foreach (PrinterPaperformat paper in formats)
                     {

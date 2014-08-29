@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace AutoCADTools.PrintLayout
 {
     /// <summary>
@@ -15,7 +10,7 @@ namespace AutoCADTools.PrintLayout
         /// The maximum viewport size.
         /// </summary>
         protected static new readonly Size MAX_VIEWPORT_SIZE = new Size(250.5, 171.37);
-        
+
         /// <inheritdoc/>
         public override Size ViewportSizeLayout
         {
@@ -43,7 +38,7 @@ namespace AutoCADTools.PrintLayout
             get { return borderBasePoint; }
         }
 
-        private readonly Size textfieldSize = new Size(180.0, 20.0);
+        private readonly Size textfieldSize = new Size(0.0, 0.0);
         /// <inheritdoc/>
         public override Size TextfieldSize
         {
@@ -70,6 +65,12 @@ namespace AutoCADTools.PrintLayout
         public PaperformatTextfieldA4(bool oldTextfieldSize)
             : base(oldTextfieldSize)
         {
+        }
+
+        /// <inheritdoc/>
+        public override string TextfieldBlockName
+        {
+            get { return "Textfeld A4"; }
         }
 
     }

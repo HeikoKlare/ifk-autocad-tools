@@ -4,7 +4,7 @@ namespace AutoCADTools.PrintLayout
     /// <summary>
     /// A paperformat with a textfield and borders.
     /// </summary>
-    public abstract class PaperformatTextfield : IPaperformat<PaperformatTextfield>
+    public abstract class PaperformatTextfield : IPaperformat
     {
         #region Fields
 
@@ -48,6 +48,17 @@ namespace AutoCADTools.PrintLayout
             get;
         }
 
+        /// <summary>
+        /// Gets the name of the textfield block.
+        /// </summary>
+        /// <value>
+        /// The name of the textfield block.
+        /// </value>
+        public abstract string TextfieldBlockName
+        {
+            get;
+        }
+
         #endregion
 
         #region Constructors
@@ -63,5 +74,13 @@ namespace AutoCADTools.PrintLayout
 
         #endregion
 
+        /// <summary>
+        /// Changes the size of the viewport according to the specified value. The paperformat that fits the size is returned.
+        /// </summary>
+        /// <param name="size">The size of the viewport in model space.</param>
+        /// <returns>
+        /// The paperformat that fits the specified viewport size
+        /// </returns>
+        public abstract PaperformatTextfield ChangeSize(Size size);
     }
 }

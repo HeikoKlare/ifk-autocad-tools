@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutoCADTools.PrintLayout
+namespace AutoCADTools.PrintLayout.Deprecated
 {
     #region Enums and Structs
 

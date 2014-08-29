@@ -43,11 +43,11 @@ namespace AutoCADTools.PrintLayout
             {
                 this.drawingArea = DrawingArea.FindDrawingArea(doc, 0);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                MessageBox.Show(LocalData.DrawingAreaFindErrorMessage, LocalData.DrawingAreaFindErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(LocalData.DrawingAreaFindErrorMessage + ex.StackTrace, LocalData.DrawingAreaFindErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            doc.UserData.Add(DICTIONARY_NAME, this);
+            if (!doc.UserData.ContainsKey(DICTIONARY_NAME)) doc.UserData.Add(DICTIONARY_NAME, this);
             LayoutManager.Current.CurrentLayout = saveLayout;
         }
 

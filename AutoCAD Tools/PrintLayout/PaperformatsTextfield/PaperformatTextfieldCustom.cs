@@ -16,7 +16,7 @@ namespace AutoCADTools.PrintLayout
         /// The threshold for increasing the size to the next fold size
         /// </summary>
         private static double foldThreshold = 20.0;
-        private static readonly Point foldPeriod = new Point(190, 297);
+        public  static readonly Point foldPeriod = new Point(190, 297);
         private static readonly Point foldMargin = new Point(185, 287);
 
         /// <summary>
