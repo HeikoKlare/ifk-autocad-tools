@@ -5,7 +5,7 @@ namespace AutoCADTools.PrintLayout
     /// Defines a paperformat with the viewports and borders extends and insertion point.
     /// The values are defined through a specified viewport in model space.
     /// </summary>
-    public abstract class IPaperformat
+    public abstract class Paperformat
     {
         /// <summary>
         /// The maximum size of this paperformat.
@@ -72,7 +72,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// Initializes a new instance of the <see cref="IPaperformat{T}"/> class with the initial size Zero.
         /// </summary>
-        public IPaperformat()
+        public Paperformat()
         {
             viewportSizeModel = Size.Zero;
         }

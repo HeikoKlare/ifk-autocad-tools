@@ -4,7 +4,7 @@ namespace AutoCADTools.PrintLayout
     /// <summary>
     /// A paperformat with a textfield and borders.
     /// </summary>
-    public abstract class PaperformatTextfield : IPaperformat
+    public abstract class PaperformatTextfield : Paperformat
     {
         #region Fields
 

@@ -13,7 +13,7 @@ namespace AutoCADTools.PrintLayout
 {
     public abstract class LayoutCreation
     {
-        protected IPaperformat paperformat;
+        protected Paperformat paperformat;
         protected double unit;
         protected PrinterPaperformat printerformat;
         protected Point lowerLeftPoint;
@@ -22,7 +22,7 @@ namespace AutoCADTools.PrintLayout
         protected bool rotateViewport;
         protected Document document;
 
-        public LayoutCreation(string name, IPaperformat paperformat, Point lowerLeftPoint, PrinterPaperformat printerformat, double unit, double scale, bool rotateViewport)
+        public LayoutCreation(string name, Paperformat paperformat, Point lowerLeftPoint, PrinterPaperformat printerformat, double unit, double scale, bool rotateViewport)
         {
             this.paperformat = paperformat;
             this.unit = unit;
