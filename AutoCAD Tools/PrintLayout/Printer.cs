@@ -24,30 +24,17 @@ namespace AutoCADTools.PrintLayout
         }
 
         private List<PrinterPaperformat> unoptimizedPaperformats;
-
-        /// <summary>
-        /// Gets the unoptimized paperformats available for this printer.
-        /// </summary>
-        /// <value>
-        /// The unoptimized paperformats.
-        /// </value>
-        public List<PrinterPaperformat> UnoptimizedPaperformats
-        {
-            get { return unoptimizedPaperformats; }
-        }
-
         private List<PrinterPaperformat> optimizedPaperformats;
-
+        
         /// <summary>
-        /// Gets the optimized paperformats available for this printer.
-        /// Paperformats are optimized if their margins are 4 mm.
+        /// Gets the optimized or unoptimized paperformats for this printer, depending on the specified parameter. Formats are optimized if their margins
+        /// are all nearly 4 mm.
         /// </summary>
-        /// <value>
-        /// The optimized paperformats.
-        /// </value>
-        public List<PrinterPaperformat> OptimizedPaperformats
+        /// <param name="optimized">if set to <c>true</c> optimized formats are returned.</param>
+        /// <returns>A list the (un)optmized paperformats for this printer</returns>
+        public IReadOnlyList<PrinterPaperformat> GetPaperformats(bool optimized)
         {
-            get { return optimizedPaperformats; }
+            return optimized ? optimizedPaperformats.AsReadOnly() : unoptimizedPaperformats.AsReadOnly();
         }
 
         /// <summary>
@@ -143,6 +130,31 @@ namespace AutoCADTools.PrintLayout
                         }
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets the list of printer names.
+        /// </summary>
+        /// <value>
+        /// The printer names list.
+        /// </value>
+        public static List<string> PrinterNamesList
+        {
+            get
+            {
+                PlotSettingsValidator psv = PlotSettingsValidator.Current;
+                var devicelist = psv.GetPlotDeviceList();
+                List<string> result = new List<string>();
+                foreach (string device in devicelist)
+                {
+                    if (!device.Contains("Default")
+                       && device.Length > 4 && device.Substring(device.Length - 4, 4) == ".pc3")
+                    {
+                        result.Add(device.Substring(0, device.Length - 4));
+                    }
+                }
+                return result;
             }
         }
     }

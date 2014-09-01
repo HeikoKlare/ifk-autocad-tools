@@ -326,13 +326,13 @@ namespace AutoCADTools
             {
                 // Look if there is some error with the printer or the paperformat
                 if (CBoptimiertePapierformate.Checked 
-                    && printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
+                    && printer.GetPaperformats(true)[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
                 {
                     MessageBox.Show("Das ausgewählte Papierformat kann nicht gefunden werden.");
                     error = true;
                 }
                 else if (CBoptimiertePapierformate.Checked
-                    && printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
+                    && printer.GetPaperformats(true)[CBpapierformat.SelectedIndex].Name != CBpapierformat.Text)
                 {
                     MessageBox.Show("Das ausgewählte Papierformat kann nicht gefunden werden.");
                     error = true;
@@ -408,7 +408,7 @@ namespace AutoCADTools
                     {
                         pos = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
                     }
-                    LayoutCreation cr = new LayoutTextfield(TBlayout.Text, drawingArea.Format, new PrintLayout.Point(pos.X, pos.Y), new PrinterPaperformat(CBpapierformat.Text, printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].FormatName, PrinterCache.Instance[CBdrucker.Text]), double.Parse(TBeinheit.Text), 1.0 / double.Parse(CBmassstab.Text), CBdrehen.Checked);
+                    LayoutCreation cr = new LayoutTextfield(TBlayout.Text, drawingArea.Format, new PrintLayout.Point(pos.X, pos.Y), new PrinterPaperformat(CBpapierformat.Text, printer.GetPaperformats(true)[CBpapierformat.SelectedIndex].FormatName, PrinterCache.Instance[CBdrucker.Text]), double.Parse(TBeinheit.Text), 1.0 / double.Parse(CBmassstab.Text), CBdrehen.Checked);
                     cr.CreateLayout();
                     //CreateLayout();
                 }
@@ -452,14 +452,7 @@ namespace AutoCADTools
                 
                     // Get the paperformat
                     String paperformat;
-                    if (CBoptimiertePapierformate.Checked)
-                    {
-                        paperformat = printer.OptimizedPaperformats[CBpapierformat.SelectedIndex].FormatName;
-                    }
-                    else
-                    {
-                        paperformat = printer.UnoptimizedPaperformats[CBpapierformat.SelectedIndex].FormatName;
-                    }
+                    paperformat = printer.GetPaperformats(CBoptimiertePapierformate.Checked)[CBpapierformat.SelectedIndex].FormatName;
 
                     // Get current PlotSettingsValidator and set printer and format
                     PlotSettingsValidator psv = PlotSettingsValidator.Current;
@@ -942,15 +935,7 @@ namespace AutoCADTools
                 //if (pr.Name == CBdrucker.SelectedItem.ToString())
                 //{
                     CBpapierformat.Items.Clear();
-                    List<PrinterPaperformat> formats;
-                    if (CBoptimiertePapierformate.Checked)
-                    {
-                        formats = printer.OptimizedPaperformats;
-                    }
-                    else
-                    {
-                        formats = printer.UnoptimizedPaperformats;
-                    }
+                    var formats = printer.GetPaperformats(CBoptimiertePapierformate.Checked);
                     foreach (PrinterPaperformat paper in formats)
                     {
                         CBpapierformat.Items.Add(paper.Name);
