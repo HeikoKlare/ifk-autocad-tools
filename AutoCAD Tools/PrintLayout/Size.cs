@@ -100,7 +100,7 @@ namespace AutoCADTools.PrintLayout
         #region Operators
 
         /// <summary>
-        /// Implements the operator + as the component-wise sum of two sizes
+        /// Implements the operator + as the component-wise sum of two sizes.
         /// </summary>
         /// <param name="s1">The first size.</param>
         /// <param name="s2">The seconds size.</param>
@@ -110,6 +110,18 @@ namespace AutoCADTools.PrintLayout
         public static Size operator +(Size s1, Size s2)
         {
             return new Size(s1.width + s2.width, s1.height + s2.height);
+        }
+
+        /// <summary>
+        /// Implements the operator * as the component-wise scaled size by the specified scalar.
+        /// </summary>
+        /// <param name="scalar">The scalar to multiply the size with.</param>
+        /// <param name="size">The size to scale.</param>
+        /// <returns>
+        /// The component-wise scaled Size.
+        /// </returns>
+        public static Size operator *(double scalar, Size size) {
+            return new Size(size.width * scalar, size.height * scalar);
         }
 
         #endregion
