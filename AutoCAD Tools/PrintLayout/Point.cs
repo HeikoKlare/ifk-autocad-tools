@@ -123,7 +123,7 @@ namespace AutoCADTools.PrintLayout
         /// </returns>
         public static Size operator -(Point point1, Point point2)
         {
-            return new Point(point1.x - point2.x, point1.y - point2.y);
+            return new Size(point1.x - point2.x, point1.y - point2.y);
         }
 
         #endregion
