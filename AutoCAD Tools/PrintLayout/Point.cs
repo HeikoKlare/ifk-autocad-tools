@@ -113,6 +113,19 @@ namespace AutoCADTools.PrintLayout
             return new Point(point.x - size.Width, point.y - size.Height);
         }
 
+        /// <summary>
+        /// Returns the size as the difference between the specified points.
+        /// </summary>
+        /// <param name="point1">The point to subtract the other one from.</param>
+        /// <param name="point2">The point to subtract from the first one.</param>
+        /// <returns>
+        /// The size representing the difference between the specified points.
+        /// </returns>
+        public static Size operator -(Point point1, Point point2)
+        {
+            return new Point(point1.x - point2.x, point1.y - point2.y);
+        }
+
         #endregion
 
     }
