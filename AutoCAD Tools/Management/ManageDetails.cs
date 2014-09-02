@@ -398,7 +398,7 @@ namespace AutoCADTools.Management
         /// <param name="e">the event arguments</param>
         private void ButEditCategories_Click(object sender, EventArgs e)
         {
-            using (ManageDetailCategories management = new ManageDetailCategories())
+            using (FrmManageDetailCategories management = new FrmManageDetailCategories())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }

@@ -129,11 +129,11 @@
     <Compile Include="Management\ManageDetails.Designer.cs">
       <DependentUpon>ManageDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Management\ManageDetailCategories.cs">
+    <Compile Include="Management\FrmManageDetailCategories.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\ManageDetailCategories.Designer.cs">
-      <DependentUpon>ManageDetailCategories.cs</DependentUpon>
+    <Compile Include="Management\FrmManageDetailCategories.Designer.cs">
+      <DependentUpon>FrmManageDetailCategories.cs</DependentUpon>
     </Compile>
     <Compile Include="Data\Database.cs">
       <DependentUpon>Database.xsd</DependentUpon>
@@ -267,6 +267,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Management\FrmManageDetailCategories.de.resx">
+      <DependentUpon>FrmManageDetailCategories.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintLayout\LayoutUI.de.resx">
       <DependentUpon>LayoutUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,11 +308,8 @@
     <EmbeddedResource Include="Management\FrmManageAnnotations.resx">
       <DependentUpon>FrmManageAnnotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageDetailCategories.de.resx">
-      <DependentUpon>ManageDetailCategories.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageDetailCategories.resx">
-      <DependentUpon>ManageDetailCategories.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageDetailCategories.resx">
+      <DependentUpon>FrmManageDetailCategories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management\ManageEmployers.de.resx">
       <DependentUpon>ManageEmployers.cs</DependentUpon>

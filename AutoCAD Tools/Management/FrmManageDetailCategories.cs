@@ -13,7 +13,7 @@ namespace AutoCADTools.Management
     /// <summary>
     /// Defines a GUI for managing detail categories
     /// </summary>
-    public partial class ManageDetailCategories : Form
+    public partial class FrmManageDetailCategories : Form
     {
         #region Attributes
         
@@ -35,7 +35,7 @@ namespace AutoCADTools.Management
         /// Initiates a new GUI to manage employers.
         /// Initializes the Sql connection and fills the table.
         /// </summary>
-        public ManageDetailCategories()
+        public FrmManageDetailCategories()
         {
             InitializeComponent();
 
@@ -46,10 +46,10 @@ namespace AutoCADTools.Management
             connection.FillDetailCategories(detailCategoriesTable);
 
             // Initialize the DataGridView
-            DgAnnotationCategories.DataSource = detailCategoriesTable;
-            DgAnnotationCategories.Columns[0].Visible = false;
-            DgAnnotationCategories.Columns[1].HeaderText = LocalData.Category;
-            DgAnnotationCategories.Columns[1].Width = 400;
+            dgdAnnotationCategories.DataSource = detailCategoriesTable;
+            dgdAnnotationCategories.Columns[0].Visible = false;
+            dgdAnnotationCategories.Columns[1].HeaderText = LocalData.Category;
+            dgdAnnotationCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         #endregion
@@ -110,6 +110,15 @@ namespace AutoCADTools.Management
             connection.FillDetailCategories(detailCategoriesTable);
         }
 
+        private void FrmManageDetailCategories_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
+            }
+        }
+
         #endregion
 
         #region ErrorHandling
@@ -128,6 +137,7 @@ namespace AutoCADTools.Management
         }
 
         #endregion
+
 
     }
 }
