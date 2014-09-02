@@ -139,7 +139,7 @@
     <value>93, 25</value>
   </data>
   <data name="chkTextfield.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>20</value>
   </data>
   <data name="chkTextfield.Text" xml:space="preserve">
     <value>Textfield</value>
@@ -172,7 +172,7 @@
     <value>84, 25</value>
   </data>
   <data name="optPortrait.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>19</value>
   </data>
   <data name="optPortrait.Text" xml:space="preserve">
     <value>Portrait</value>
@@ -205,7 +205,7 @@
     <value>112, 25</value>
   </data>
   <data name="optLandscape.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>18</value>
   </data>
   <data name="optLandscape.Text" xml:space="preserve">
     <value>Landscape</value>
@@ -235,7 +235,7 @@
     <value>113, 28</value>
   </data>
   <data name="cboPaperformat.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;cboPaperformat.Name" xml:space="preserve">
     <value>cboPaperformat</value>
@@ -295,7 +295,7 @@
     <value>198, 62</value>
   </data>
   <data name="chkOptimizedPaperformats.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>16</value>
   </data>
   <data name="chkOptimizedPaperformats.Text" xml:space="preserve">
     <value>Use optimized paperformats only</value>
@@ -325,7 +325,7 @@
     <value>281, 244</value>
   </data>
   <data name="grpPaperformat.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>15</value>
   </data>
   <data name="grpPaperformat.Text" xml:space="preserve">
     <value>Paperformat</value>
@@ -355,7 +355,7 @@
     <value>97, 26</value>
   </data>
   <data name="updDrawingUnit.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;updDrawingUnit.Name" xml:space="preserve">
     <value>updDrawingUnit</value>
@@ -385,7 +385,7 @@
     <value>222, 25</value>
   </data>
   <data name="chkExactExtract.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="chkExactExtract.Text" xml:space="preserve">
     <value>Exact extract without scale</value>
@@ -589,7 +589,7 @@
     <value>363, 163</value>
   </data>
   <data name="grpScale.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="grpScale.Text" xml:space="preserve">
     <value>Scale</value>
@@ -700,7 +700,7 @@
     <value>281, 52</value>
   </data>
   <data name="butCreate.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>30</value>
   </data>
   <data name="butCreate.Text" xml:space="preserve">
     <value>Create Layout</value>
@@ -736,7 +736,7 @@
     <value>163, 25</value>
   </data>
   <data name="chkUseDrawingArea.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>12</value>
   </data>
   <data name="chkUseDrawingArea.Text" xml:space="preserve">
     <value>Use Drawing Area</value>
@@ -763,7 +763,7 @@
     <value>147, 52</value>
   </data>
   <data name="butDefineExtract.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>13</value>
   </data>
   <data name="butDefineExtract.Text" xml:space="preserve">
     <value>Define Extract</value>
@@ -790,7 +790,7 @@
     <value>236, 26</value>
   </data>
   <data name="txtLayoutName.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="txtLayoutName.Text" xml:space="preserve">
     <value>Plot</value>
@@ -820,7 +820,7 @@
     <value>278, 28</value>
   </data>
   <data name="cboPrinter.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;cboPrinter.Name" xml:space="preserve">
     <value>cboPrinter</value>
