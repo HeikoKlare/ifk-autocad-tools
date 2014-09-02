@@ -11,7 +11,7 @@ namespace AutoCADTools.Management
     /// Represents a GUI to modify, add and manage projects.
     /// There is an overview as well as a region to add new projects provided for the user.
     /// </summary>
-    public partial class ManageProjects : Form
+    public partial class FrmManageProjects : Form
     {
         #region Attributes
         
@@ -47,7 +47,7 @@ namespace AutoCADTools.Management
         /// <summary>
         /// Initates a new GUI for managing projects and the needed database connection and data tables.
         /// </summary>
-        public ManageProjects()
+        public FrmManageProjects()
         {
             InitializeComponent();
 
@@ -60,9 +60,9 @@ namespace AutoCADTools.Management
             projectsTable = new Database.ProjectDataTable();
 
             // Add colums to the projects list
-            ListProjects.Columns.Add(LocalData.Projectnumber, 50);
-            ListProjects.Columns.Add(LocalData.Employer, 70);
-            ListProjects.Columns.Add(LocalData.Description, 170);
+            lvwProjects.Columns.Add(LocalData.Projectnumber, 60);
+            lvwProjects.Columns.Add(LocalData.Employer, 70);
+            lvwProjects.Columns.Add(LocalData.Description, 170);
 
             // Refresh (fill) employer and project tables
             Employers_Refresh();
@@ -81,20 +81,20 @@ namespace AutoCADTools.Management
         private void Employers_Refresh()
         {
             // Save employer, clear table and refill employers table
-            String saveEmployer = CmbEmployer.Text;
+            String saveEmployer = cboEmployer.Text;
             employersTable.Clear();
             connection.FillEmployers(employersTable);
             
             // Reset data binding of employers list
-            CmbEmployer.BeginUpdate();
-            CmbEmployer.DataSource = null;
-            CmbEmployer.DataSource = employersTable;
-            CmbEmployer.DisplayMember = "name";
-            CmbEmployer.ValueMember = "id";
-            CmbEmployer.EndUpdate();
+            cboEmployer.BeginUpdate();
+            cboEmployer.DataSource = null;
+            cboEmployer.DataSource = employersTable;
+            cboEmployer.DisplayMember = "name";
+            cboEmployer.ValueMember = "id";
+            cboEmployer.EndUpdate();
 
             // Restore last chosen employer
-            CmbEmployer.Text = saveEmployer;
+            cboEmployer.Text = saveEmployer;
         }
 
         /// <summary>
@@ -105,13 +105,13 @@ namespace AutoCADTools.Management
         {
             // Save last project, clear table and refill it
             String lastProject = null;
-            if (state == EditState.projectSelected || state == EditState.editing) lastProject = TxtNumber.Text;
+            if (state == EditState.projectSelected || state == EditState.editing) lastProject = txtNumber.Text;
             projectsTable.Clear();
             connection.FillProjects(projectsTable);
             
             // Refill the projects list
-            ListProjects.BeginUpdate();
-            ListProjects.Items.Clear();
+            lvwProjects.BeginUpdate();
+            lvwProjects.Items.Clear();
             foreach (Database.ProjectRow row in projectsTable.Rows)
             {
                 if (row.RowState != DataRowState.Deleted)
@@ -119,14 +119,18 @@ namespace AutoCADTools.Management
                     ListViewItem lvi = new ListViewItem(row.number);
                     lvi.SubItems.Add(row.employer);
                     lvi.SubItems.Add(row.descriptionShort);
-                    ListProjects.Items.Add(lvi);
+                    lvwProjects.Items.Add(lvi);
                 }
             }
-            ListProjects.EndUpdate();
+            lvwProjects.Columns[0].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lvwProjects.Columns[1].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lvwProjects.Columns[2].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
+                        
+            lvwProjects.EndUpdate();
             
             // Restore last chosen project
             if (state == EditState.projectSelected || state == EditState.editing) 
-                ListProjects.SelectedIndices.Add(projectsTable.Rows.IndexOf(projectsTable.Rows.Find(lastProject)));
+                lvwProjects.SelectedIndices.Add(projectsTable.Rows.IndexOf(projectsTable.Rows.Find(lastProject)));
         }
 
         /// <summary>
@@ -135,26 +139,26 @@ namespace AutoCADTools.Management
         /// </summary>
         private void UpdateControlStates()
         {
-            TxtNumber.ReadOnly = (state == EditState.projectSelected || state == EditState.editing);
-            TxtDescription1.ReadOnly = (state == EditState.projectSelected);
-            TxtDescription2.ReadOnly = (state == EditState.projectSelected);
-            TxtDescription3.ReadOnly = (state == EditState.projectSelected);
-            TxtDescription4.ReadOnly = (state == EditState.projectSelected);
-            TxtDescriptionShort.ReadOnly = (state == EditState.projectSelected);
-            CmbEmployer.Enabled = (state != EditState.projectSelected);
-            ButModify.Enabled = (state != EditState.input);
-            ButUseForNew.Enabled = (state == EditState.projectSelected);
-            ButRemove.Enabled = (state == EditState.projectSelected || state == EditState.editing);
+            txtNumber.ReadOnly = (state == EditState.projectSelected || state == EditState.editing);
+            txtDescription1.ReadOnly = (state == EditState.projectSelected);
+            txtDescription2.ReadOnly = (state == EditState.projectSelected);
+            txtDescription3.ReadOnly = (state == EditState.projectSelected);
+            txtDescription4.ReadOnly = (state == EditState.projectSelected);
+            txtDescriptionShort.ReadOnly = (state == EditState.projectSelected);
+            cboEmployer.Enabled = (state != EditState.projectSelected);
+            butModify.Enabled = (state != EditState.input);
+            butUseForNew.Enabled = (state == EditState.projectSelected);
+            butRemove.Enabled = (state == EditState.projectSelected || state == EditState.editing);
             switch (state) 
             {
                 case EditState.projectSelected:
-                    ButModify.Text = LocalData.ModifyEdit;
+                    butModify.Text = LocalData.ModifyEdit;
                     break;
                 case EditState.editing:
-                    ButModify.Text = LocalData.ModifySubmit;
+                    butModify.Text = LocalData.ModifySubmit;
                     break;
                 default:
-                    ButModify.Text = LocalData.ModifyAdd;
+                    butModify.Text = LocalData.ModifyAdd;
                     break;
             }
         }
@@ -164,14 +168,14 @@ namespace AutoCADTools.Management
         /// </summary>
         private void ClearFields()
         {
-            TxtNumber.Text = String.Empty;
-            TxtDescription1.Text = String.Empty;
-            TxtDescription2.Text = String.Empty;
-            TxtDescription3.Text = String.Empty;
-            TxtDescription4.Text = String.Empty;
-            TxtDescriptionShort.Text = String.Empty;
-            LblProjectCreatedAt.Text = String.Empty;
-            CmbEmployer.SelectedIndex = 0;
+            txtNumber.Text = String.Empty;
+            txtDescription1.Text = String.Empty;
+            txtDescription2.Text = String.Empty;
+            txtDescription3.Text = String.Empty;
+            txtDescription4.Text = String.Empty;
+            txtDescriptionShort.Text = String.Empty;
+            lblProjectCreatedAt.Text = String.Empty;
+            cboEmployer.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -181,17 +185,17 @@ namespace AutoCADTools.Management
         private void AddProject()
         {
             // Save the new projects number
-            String saveNumber = TxtNumber.Text;
+            String saveNumber = txtNumber.Text;
 
             // Initiate a new row and add it to the projects table
             Database.ProjectRow newRow = projectsTable.NewProjectRow();
-            newRow.number = TxtNumber.Text;
-            newRow.description1 = TxtDescription1.Text;
-            newRow.description2 = TxtDescription2.Text;
-            newRow.description3 = TxtDescription3.Text;
-            newRow.description4 = TxtDescription4.Text;
-            newRow.descriptionShort = TxtDescriptionShort.Text;
-            newRow.employer = CmbEmployer.SelectedValue as String;
+            newRow.number = txtNumber.Text;
+            newRow.description1 = txtDescription1.Text;
+            newRow.description2 = txtDescription2.Text;
+            newRow.description3 = txtDescription3.Text;
+            newRow.description4 = txtDescription4.Text;
+            newRow.descriptionShort = txtDescriptionShort.Text;
+            newRow.employer = cboEmployer.SelectedValue as String;
             newRow.createdAt = DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString();
             projectsTable.AddProjectRow(newRow);
 
@@ -200,8 +204,8 @@ namespace AutoCADTools.Management
 
             // Refresh projects and select the added project
             Projects_Refresh();
-            ListProjects.SelectedIndices.Clear();
-            ListProjects.SelectedIndices.Add(projectsTable.Rows.IndexOf(projectsTable.Rows.Find(saveNumber)));
+            lvwProjects.SelectedIndices.Clear();
+            lvwProjects.SelectedIndices.Add(projectsTable.Rows.IndexOf(projectsTable.Rows.Find(saveNumber)));
         }
 
         /// <summary>
@@ -216,29 +220,29 @@ namespace AutoCADTools.Management
                 dataBound = true;
 
                 CurrencyManager cm = this.BindingContext[projectsTable] as CurrencyManager;
-                cm.Position = ListProjects.SelectedIndices[0];
+                cm.Position = lvwProjects.SelectedIndices[0];
 
-                TxtNumber.DataBindings.Add("Text", projectsTable, "number");
-                TxtDescription1.DataBindings.Add("Text", projectsTable, "description1");
-                TxtDescription2.DataBindings.Add("Text", projectsTable, "description2");
-                TxtDescription3.DataBindings.Add("Text", projectsTable, "description3");
-                TxtDescription4.DataBindings.Add("Text", projectsTable, "description4");
-                TxtDescriptionShort.DataBindings.Add("Text", projectsTable, "descriptionShort");
-                CmbEmployer.DataBindings.Add("SelectedValue", projectsTable, "employer");
-                LblProjectCreatedAt.DataBindings.Add("Text", projectsTable, "createdAt");
+                txtNumber.DataBindings.Add("Text", projectsTable, "number");
+                txtDescription1.DataBindings.Add("Text", projectsTable, "description1");
+                txtDescription2.DataBindings.Add("Text", projectsTable, "description2");
+                txtDescription3.DataBindings.Add("Text", projectsTable, "description3");
+                txtDescription4.DataBindings.Add("Text", projectsTable, "description4");
+                txtDescriptionShort.DataBindings.Add("Text", projectsTable, "descriptionShort");
+                cboEmployer.DataBindings.Add("SelectedValue", projectsTable, "employer");
+                lblProjectCreatedAt.DataBindings.Add("Text", projectsTable, "createdAt");
             }
             else if (!newSelection && dataBound)
             {
                 // if a project was deselected, update the controls and unbind them from data sources
                 dataBound = false;
-                TxtNumber.DataBindings.Clear();
-                TxtDescription1.DataBindings.Clear();
-                TxtDescription2.DataBindings.Clear();
-                TxtDescription3.DataBindings.Clear();
-                TxtDescription4.DataBindings.Clear();
-                TxtDescriptionShort.DataBindings.Clear();
-                CmbEmployer.DataBindings.Clear();
-                LblProjectCreatedAt.DataBindings.Clear();
+                txtNumber.DataBindings.Clear();
+                txtDescription1.DataBindings.Clear();
+                txtDescription2.DataBindings.Clear();
+                txtDescription3.DataBindings.Clear();
+                txtDescription4.DataBindings.Clear();
+                txtDescriptionShort.DataBindings.Clear();
+                cboEmployer.DataBindings.Clear();
+                lblProjectCreatedAt.DataBindings.Clear();
             }
         }
 
@@ -253,12 +257,12 @@ namespace AutoCADTools.Management
         /// <param name="e">the event arguments</param>
         private void ListProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListProjects.SelectedIndices.Count > 0)
+            if (lvwProjects.SelectedIndices.Count > 0)
             {
                 state = EditState.projectSelected;
                 UpdateControlStates();
                 UpdateDataBindings(true);
-                errorProvider.SetError(TxtNumber, String.Empty);
+                errorProvider.SetError(txtNumber, String.Empty);
             }
             else
             {
@@ -300,7 +304,7 @@ namespace AutoCADTools.Management
                 // and refresh controls
                 state = EditState.projectSelected;
                 UpdateControlStates();
-                projectsTable.Rows[ListProjects.SelectedIndices[0]].EndEdit();
+                projectsTable.Rows[lvwProjects.SelectedIndices[0]].EndEdit();
                 connection.UpdateProjects(projectsTable);
                 Projects_Refresh();
             }
@@ -315,12 +319,12 @@ namespace AutoCADTools.Management
         {
             // Delete the selected row, update data binding and update global database and controls
             state = EditState.input;
-            projectsTable.Rows.Find(TxtNumber.Text).Delete();
+            projectsTable.Rows.Find(txtNumber.Text).Delete();
             UpdateDataBindings(false);
             ClearFields();
             connection.UpdateProjects(projectsTable);
             Projects_Refresh();
-            ListProjects.SelectedIndices.Clear();
+            lvwProjects.SelectedIndices.Clear();
             this.ValidateFields();
         }
 
@@ -334,7 +338,7 @@ namespace AutoCADTools.Management
         {
             state = EditState.input;
             ClearFields();
-            ListProjects.SelectedIndices.Clear();
+            lvwProjects.SelectedIndices.Clear();
             UpdateDataBindings(false);
             UpdateControlStates();
             this.ValidateFields();
@@ -351,7 +355,7 @@ namespace AutoCADTools.Management
             state = EditState.input;
             UpdateControlStates();
             UpdateDataBindings(false);
-            TxtNumber.Text = "";
+            txtNumber.Text = String.Empty;
             this.ValidateFields();
         }
 
@@ -403,18 +407,18 @@ namespace AutoCADTools.Management
         {
             bool result = true;
 
-            errorProvider.SetError(TxtNumber, String.Empty);
+            errorProvider.SetError(txtNumber, String.Empty);
 
-            if ((state == EditState.addable || state== EditState.input) && String.IsNullOrEmpty(TxtNumber.Text))
+            if ((state == EditState.addable || state== EditState.input) && String.IsNullOrEmpty(txtNumber.Text))
             {
-                errorProvider.SetError(TxtNumber, LocalData.ErrorEmptyProjectnumber);
+                errorProvider.SetError(txtNumber, LocalData.ErrorEmptyProjectnumber);
                 state = EditState.input;
                 UpdateControlStates();
                 result = false;
             }
-            else if ((state == EditState.addable || state== EditState.input) && projectsTable.Rows.Contains(TxtNumber.Text))
+            else if ((state == EditState.addable || state== EditState.input) && projectsTable.Rows.Contains(txtNumber.Text))
             {
-                errorProvider.SetError(TxtNumber, LocalData.ErrorUsedProjectnumber);
+                errorProvider.SetError(txtNumber, LocalData.ErrorUsedProjectnumber);
                 state = EditState.input;
                 UpdateControlStates();
                 result = false;
@@ -446,5 +450,6 @@ namespace AutoCADTools.Management
         }
 
         #endregion
+
     }
 }

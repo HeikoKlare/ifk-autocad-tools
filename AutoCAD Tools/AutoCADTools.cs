@@ -68,7 +68,7 @@ namespace AutoCADTools
         [CommandMethod("ManageProjects")]
         public static void ManageProjects()
         {
-            using (Form management = new Management.ManageProjects())
+            using (Form management = new Management.FrmManageProjects())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }

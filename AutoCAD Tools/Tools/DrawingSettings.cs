@@ -206,7 +206,7 @@ namespace AutoCADTools.Tools
         /// <param name="e">unused</param>
         private void butEditProjects_Click(object sender, EventArgs e)
         {
-            using (ManageProjects management = new ManageProjects())
+            using (FrmManageProjects management = new FrmManageProjects())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }

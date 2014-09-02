@@ -112,109 +112,55 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="ButEditEmployers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 20</value>
-  </data>
-  <data name="ButEditEmployers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 34</value>
-  </data>
-  <data name="ButEditEmployers.Text" xml:space="preserve">
+  <data name="butEditEmployers.Text" xml:space="preserve">
     <value>Auftraggeber bearbeiten</value>
   </data>
-  <data name="LblProjectCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 352</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblProjectCreatedAtPreamble.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 20</value>
   </data>
-  <data name="LblProjectCreatedAtPreamble.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 13</value>
-  </data>
-  <data name="LblProjectCreatedAtPreamble.Text" xml:space="preserve">
+  <data name="lblProjectCreatedAtPreamble.Text" xml:space="preserve">
     <value>Projekt erstellt am:</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 13</value>
+  <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 20</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
+  <data name="lblNumber.Text" xml:space="preserve">
     <value>Statiknummer:</value>
   </data>
-  <data name="ButRemove.Text" xml:space="preserve">
+  <data name="butRemove.Text" xml:space="preserve">
     <value>Entfernen</value>
   </data>
-  <data name="ButUseForNew.Text" xml:space="preserve">
+  <data name="butUseForNew.Text" xml:space="preserve">
     <value>Als neu nutzen</value>
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
+  <data name="lblEmployer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 20</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>BV 4:</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>BV 3:</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>BV 2:</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="lblEmployer.Text" xml:space="preserve">
     <value>Auftraggeber:</value>
   </data>
-  <data name="ButNew.Text" xml:space="preserve">
+  <data name="butNew.Text" xml:space="preserve">
     <value>Neu</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 13</value>
+  <data name="lblDescription1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>BV 1:</value>
+  <data name="lblDescription1.Text" xml:space="preserve">
+    <value>BV:</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 13</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>BV (kurz):</value>
-  </data>
-  <data name="ButModify.Text" xml:space="preserve">
+  <data name="butModify.Text" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
-  <data name="GrpProjectData.Text" xml:space="preserve">
+  <data name="grpProjectData.Text" xml:space="preserve">
     <value>Projektdaten</value>
   </data>
-  <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Entfernen</value>
-  </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>Bearbeiten</value>
-  </data>
-  <data name="useForNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="useForNewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Als neu nutzen</value>
-  </data>
-  <data name="ConProjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 70</value>
-  </data>
-  <data name="GrpProjects.Text" xml:space="preserve">
+  <data name="grpProjects.Text" xml:space="preserve">
     <value>Projekte</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -278,5 +224,11 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Projekteverwaltung</value>
+  </data>
+  <data name="lblDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
+  </data>
+  <data name="lblDescriptionShort.Text" xml:space="preserve">
+    <value>BV kurz:</value>
   </data>
 </root>
