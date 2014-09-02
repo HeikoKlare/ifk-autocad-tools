@@ -97,20 +97,74 @@ namespace AutoCADTools.PrintLayout {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Please specify the drawing unit in the drawing settings first. Specify now? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die The layout name is already used. Override? ähnelt.
         /// </summary>
-        internal static string DrawingAreaUnitFirstText {
+        internal static string DuplicateLayoutNameText {
             get {
-                return ResourceManager.GetString("DrawingAreaUnitFirstText", resourceCulture);
+                return ResourceManager.GetString("DuplicateLayoutNameText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die No unit specified ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Duplicate Layout Name ähnelt.
         /// </summary>
-        internal static string DrawingAreaUnitFirstTitle {
+        internal static string DuplicateLayoutNameTitle {
             get {
-                return ResourceManager.GetString("DrawingAreaUnitFirstTitle", resourceCulture);
+                return ResourceManager.GetString("DuplicateLayoutNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die End point ähnelt.
+        /// </summary>
+        internal static string ExtractEndPointText {
+            get {
+                return ResourceManager.GetString("ExtractEndPointText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Start point ähnelt.
+        /// </summary>
+        internal static string ExtractStartPointText {
+            get {
+                return ResourceManager.GetString("ExtractStartPointText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Layoutname must not be empty. ähnelt.
+        /// </summary>
+        internal static string LayoutNameEmptyError {
+            get {
+                return ResourceManager.GetString("LayoutNameEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There is no extract defined yet. ähnelt.
+        /// </summary>
+        internal static string NoExtractDefinedError {
+            get {
+                return ResourceManager.GetString("NoExtractDefinedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are no paperformats avaiblable for this printer. ähnelt.
+        /// </summary>
+        internal static string PaperformatListEmptyError {
+            get {
+                return ResourceManager.GetString("PaperformatListEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The selected paperformat does not fit the specified extract. ähnelt.
+        /// </summary>
+        internal static string PaperformatNotFitting {
+            get {
+                return ResourceManager.GetString("PaperformatNotFitting", resourceCulture);
             }
         }
         
@@ -120,6 +174,24 @@ namespace AutoCADTools.PrintLayout {
         internal static string PrinterNameException {
             get {
                 return ResourceManager.GetString("PrinterNameException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scale factor must not be empty. ähnelt.
+        /// </summary>
+        internal static string ScaleEmptyError {
+            get {
+                return ResourceManager.GetString("ScaleEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Scale factor must be a number. ähnelt.
+        /// </summary>
+        internal static string ScaleNoNumberError {
+            get {
+                return ResourceManager.GetString("ScaleNoNumberError", resourceCulture);
             }
         }
     }

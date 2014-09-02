@@ -129,10 +129,37 @@
   <data name="DrawingAreaModificationText" xml:space="preserve">
     <value>Zielpunkt</value>
   </data>
-  <data name="DrawingAreaUnitFirstText" xml:space="preserve">
-    <value>Bitte zuerst in den Zeichnungseigenschaften die Zeichnungseinheit festlegen. Jetzt festlegen?</value>
+  <data name="DuplicateLayoutNameText" xml:space="preserve">
+    <value>Der Layoutname wird bereits verwendet. Überschreiben?</value>
   </data>
-  <data name="DrawingAreaUnitFirstTitle" xml:space="preserve">
-    <value>Keine Einheit definiert</value>
+  <data name="DuplicateLayoutNameTitle" xml:space="preserve">
+    <value>Doppelte Layoutname</value>
+  </data>
+  <data name="ExtractEndPointText" xml:space="preserve">
+    <value>Endpunkt</value>
+  </data>
+  <data name="ExtractStartPointText" xml:space="preserve">
+    <value>Startpunkt</value>
+  </data>
+  <data name="LayoutNameEmptyError" xml:space="preserve">
+    <value>Layoutname darf nicht leer sein.</value>
+  </data>
+  <data name="NoExtractDefinedError" xml:space="preserve">
+    <value>Es wurde noch kein Ausschnitt definiert.</value>
+  </data>
+  <data name="PaperformatListEmptyError" xml:space="preserve">
+    <value>Für den gewählten Drucker sind keine Papierformate verfügbar</value>
+  </data>
+  <data name="PaperformatNotFitting" xml:space="preserve">
+    <value>Das ausgewählte Papierformat passt nicht zum festgelegten Ausschnitt.</value>
+  </data>
+  <data name="PrinterNameException" xml:space="preserve">
+    <value>Es existiert kein Drucker mit dem angegebenen Namen:</value>
+  </data>
+  <data name="ScaleEmptyError" xml:space="preserve">
+    <value>Der Maßstab darf nicht null sein.</value>
+  </data>
+  <data name="ScaleNoNumberError" xml:space="preserve">
+    <value>Der Maßstab muss eine Zahl sein.</value>
   </data>
 </root>

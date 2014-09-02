@@ -69,10 +69,16 @@ namespace AutoCADTools.PrintLayout
         /// <param name="oldTextfieldSize">if set to <c>true</c> the old textfield size is used.</param>
         public PaperformatTextfieldFullTextfield(bool oldTextfieldSize) : base(oldTextfieldSize) { }
 
+
+        /// <summary>
+        /// The textfield block name for paper bigger or equal to A3.
+        /// </summary>
+        public static readonly string TEXTFIELD_BLOCK_NAME = "Textfeld A3+";
+
         /// <inheritdoc/>
         public override string TextfieldBlockName
         {
-            get { return "Textfeld A3+"; }
+            get { return TEXTFIELD_BLOCK_NAME; }
         }
 
     }

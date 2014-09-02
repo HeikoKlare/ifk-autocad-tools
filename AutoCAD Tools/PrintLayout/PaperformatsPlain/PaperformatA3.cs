@@ -49,7 +49,7 @@ namespace AutoCADTools.PrintLayout
         /// <inheritdoc />
         public override PaperformatPlain ChangeSize(Size size)
         {
-            this.ViewportSizeModel = size;
+            this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
             
             if (PaperformatA4Vertical.MAX_VIEWPORT_SIZE.Contains(size))
             {
@@ -69,6 +69,18 @@ namespace AutoCADTools.PrintLayout
         public PaperformatA3()
         {
             this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
+        }
+
+        /// <inheritdoc/>
+        public override Printer GetDefaultPrinter()
+        {
+            return PaperformatPrinterMapping.GetDefaultPrinter(this);
+        }
+
+        /// <inheritdoc/>
+        public override PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats)
+        {
+            return PaperformatPrinterMapping.GetFittingPaperformat(printer, optimizedPaperformats, this);
         }
     }
 }

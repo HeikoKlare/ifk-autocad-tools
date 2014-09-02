@@ -14,7 +14,7 @@ namespace AutoCADTools.PrintLayout
         /// <inheritdoc />
         public override PaperformatPlain ChangeSize(Size size)
         {
-            this.ViewportSizeModel = size;
+            this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
             if (!MAX_VIEWPORT_SIZE.Contains(size))
             {
                 return new PaperformatA4Vertical().ChangeSize(size);

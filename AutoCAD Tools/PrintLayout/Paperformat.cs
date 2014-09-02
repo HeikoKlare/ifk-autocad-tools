@@ -68,6 +68,20 @@ namespace AutoCADTools.PrintLayout
         {
             get;
         }
+        
+        /// <summary>
+        /// Gets the default printer for this paperformat.
+        /// </summary>
+        /// <returns>The default printer for this paperformat or <c>null</c> if none is found.</returns>
+        public abstract Printer GetDefaultPrinter();
+
+        /// <summary>
+        /// Gets the fitting paperformat for the specified printer.
+        /// </summary>
+        /// <param name="printer">The printer to get the paperformat for.</param>
+        /// <param name="optimizedPaperformats">if set to <c>true</c> only optimized paperformats are used.</param>
+        /// <returns>The paperformat for the specified printer fitting this paperformat or <c>null</c> if none is found.</returns>
+        public abstract PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IPaperformat{T}"/> class with the initial size Zero.

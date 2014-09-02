@@ -47,5 +47,16 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
+        /// <inheritdoc/>
+        public override Printer GetDefaultPrinter()
+        {
+            return PaperformatPrinterMapping.GetDefaultPrinter(this);
+        }
+
+        /// <inheritdoc/>
+        public override PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats)
+        {
+            return PaperformatPrinterMapping.GetFittingPaperformat(printer, optimizedPaperformats, this);
+        }
     }
 }

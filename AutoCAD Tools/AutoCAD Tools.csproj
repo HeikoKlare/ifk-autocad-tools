@@ -110,7 +110,14 @@
     <Compile Include="PrintLayout\DrawingAreaDocumentWrapper.cs" />
     <Compile Include="PrintLayout\Formats.cs" />
     <Compile Include="PrintLayout\LayoutCreation.cs" />
+    <Compile Include="PrintLayout\LayoutPlain.cs" />
     <Compile Include="PrintLayout\LayoutTextfield.cs" />
+    <Compile Include="PrintLayout\LayoutUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintLayout\LayoutUI.Designer.cs">
+      <DependentUpon>LayoutUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="PrintLayout\LocalData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,7 +184,8 @@
     <Compile Include="Management\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrintLayout\IPaperformat.cs" />
+    <Compile Include="PrintLayout\Paperformat.cs" />
+    <Compile Include="PrintLayout\PaperformatPrinterMapping.cs" />
     <Compile Include="PrintLayout\PaperformatsPlain\PaperformatA3.cs" />
     <Compile Include="PrintLayout\PaperformatsPlain\PaperformatA4.cs" />
     <Compile Include="PrintLayout\PaperformatsPlain\PaperformatA4Horizontal.cs" />
@@ -264,6 +272,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="PrintLayout\LayoutUI.de.resx">
+      <DependentUpon>LayoutUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintLayout\LayoutUI.resx">
+      <DependentUpon>LayoutUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintLayout\LocalData.de.resx" />
     <EmbeddedResource Include="PrintLayout\LocalData.resx">
       <Generator>ResXFileCodeGenerator</Generator>

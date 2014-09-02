@@ -67,11 +67,27 @@ namespace AutoCADTools.PrintLayout
         {
         }
 
+        /// <summary>
+        /// The textfield block name for A4 paper
+        /// </summary>
+        public static readonly string TEXTFIELD_BLOCK_NAME = "Textfeld A4";
+
         /// <inheritdoc/>
         public override string TextfieldBlockName
         {
-            get { return "Textfeld A4"; }
+            get { return TEXTFIELD_BLOCK_NAME; }
         }
 
+        /// <inheritdoc/>
+        public override Printer GetDefaultPrinter()
+        {
+            return PaperformatPrinterMapping.GetDefaultPrinter(this);
+        }
+
+        /// <inheritdoc/>
+        public override PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats)
+        {
+            return PaperformatPrinterMapping.GetFittingPaperformat(printer, optimizedPaperformats, this);
+        }
     }
 }

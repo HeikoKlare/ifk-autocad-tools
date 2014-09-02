@@ -53,5 +53,14 @@
     <Setting Name="PanicleDescriptionBlack" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="DefaultPrinterA4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Konica</Value>
+    </Setting>
+    <Setting Name="DefaultPrinterA3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Konica</Value>
+    </Setting>
+    <Setting Name="DefaultPrinterCustom" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Plotter</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -196,5 +196,41 @@ namespace AutoCADTools.Properties {
                 this["PanicleDescriptionBlack"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Konica")]
+        public string DefaultPrinterA4 {
+            get {
+                return ((string)(this["DefaultPrinterA4"]));
+            }
+            set {
+                this["DefaultPrinterA4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Konica")]
+        public string DefaultPrinterA3 {
+            get {
+                return ((string)(this["DefaultPrinterA3"]));
+            }
+            set {
+                this["DefaultPrinterA3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Plotter")]
+        public string DefaultPrinterCustom {
+            get {
+                return ((string)(this["DefaultPrinterCustom"]));
+            }
+            set {
+                this["DefaultPrinterCustom"] = value;
+            }
+        }
     }
 }

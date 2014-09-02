@@ -129,13 +129,37 @@
   <data name="DrawingAreaModificationText" xml:space="preserve">
     <value>Target point</value>
   </data>
-  <data name="DrawingAreaUnitFirstText" xml:space="preserve">
-    <value>Please specify the drawing unit in the drawing settings first. Specify now?</value>
+  <data name="DuplicateLayoutNameText" xml:space="preserve">
+    <value>The layout name is already used. Override?</value>
   </data>
-  <data name="DrawingAreaUnitFirstTitle" xml:space="preserve">
-    <value>No unit specified</value>
+  <data name="DuplicateLayoutNameTitle" xml:space="preserve">
+    <value>Duplicate Layout Name</value>
+  </data>
+  <data name="ExtractEndPointText" xml:space="preserve">
+    <value>End point</value>
+  </data>
+  <data name="ExtractStartPointText" xml:space="preserve">
+    <value>Start point</value>
+  </data>
+  <data name="LayoutNameEmptyError" xml:space="preserve">
+    <value>Layoutname must not be empty.</value>
+  </data>
+  <data name="NoExtractDefinedError" xml:space="preserve">
+    <value>There is no extract defined yet.</value>
+  </data>
+  <data name="PaperformatListEmptyError" xml:space="preserve">
+    <value>There are no paperformats avaiblable for this printer.</value>
+  </data>
+  <data name="PaperformatNotFitting" xml:space="preserve">
+    <value>The selected paperformat does not fit the specified extract.</value>
   </data>
   <data name="PrinterNameException" xml:space="preserve">
     <value>A printer with the specified name does not exist: </value>
+  </data>
+  <data name="ScaleEmptyError" xml:space="preserve">
+    <value>Scale factor must not be empty.</value>
+  </data>
+  <data name="ScaleNoNumberError" xml:space="preserve">
+    <value>Scale factor must be a number.</value>
   </data>
 </root>
