@@ -48,7 +48,11 @@ namespace AutoCADTools.PrintLayout
                 if (char.IsDigit(lastSymbol))
                 {
                     int number = int.Parse(lastSymbol.ToString());
-                    if (number <= formatNumber && number > bestFormatFound) result = format;
+                    if (number <= formatNumber && number > bestFormatFound)
+                    {
+                        bestFormatFound = number;
+                        result = format;
+                    }
                 }
             }
             return result;
