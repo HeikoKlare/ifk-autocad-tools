@@ -18,14 +18,14 @@ namespace AutoCADTools.PrintLayout
             
             if (!drawingArea.IsValid)
             {
-                doc.Editor.WriteMessage(LocalData.NoDrawingAreaMessage);
+                doc.Editor.WriteMessage(Environment.NewLine + LocalData.NoDrawingAreaMessage);
                 return false;
             }
             
             var paperformat = drawingArea.Format;
             if (paperformat.GetDefaultPrinter() == null)
             {
-                doc.Editor.WriteMessage(LocalData.DefaultPrinterInvalid);
+                doc.Editor.WriteMessage(Environment.NewLine + LocalData.DefaultPrinterInvalid);
                 return false;
             }
 
