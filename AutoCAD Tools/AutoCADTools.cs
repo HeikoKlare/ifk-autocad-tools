@@ -195,20 +195,6 @@ namespace AutoCADTools
         }
         
         /// <summary>
-        /// LayoutErstellen opens a UserForm with options and methods to define a new layout. There is the
-        /// possibility to create simple layouts or layouts with textfields and borders using the data
-        /// of the drawing properties.
-        /// </summary>
-        [CommandMethod("LayoutErstellen", CommandFlags.NoPaperSpace)]
-        public static void LayoutErstellen()
-        {
-            using (Form UFLayoutErstellen = new LayoutUI(false))
-            {
-                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(UFLayoutErstellen);
-            }
-        }
-
-        /// <summary>
         /// Opens a dialog for creating a layout using the LayoutUI dialog.
         /// </summary>
         [CommandMethod("CreateLayout", CommandFlags.NoPaperSpace)]
