@@ -403,14 +403,7 @@ namespace AutoCADTools
                 this.Hide();
                 try
                 {
-                    Point3d pos = Point3d.Origin;
-                    using (Transaction trans = document.TransactionManager.StartTransaction())
-                    {
-                        pos = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
-                    }
-                    LayoutCreation cr = new LayoutTextfield(TBlayout.Text, drawingArea.Format, new PrintLayout.Point(pos.X, pos.Y), new PrinterPaperformat(CBpapierformat.Text, printer.GetPaperformats(true)[CBpapierformat.SelectedIndex].FormatName, PrinterCache.Instance[CBdrucker.Text]), double.Parse(TBeinheit.Text), 1.0 / double.Parse(CBmassstab.Text), CBdrehen.Checked);
-                    cr.CreateLayout();
-                    //CreateLayout();
+                    CreateLayout();
                 }
                 catch (Exception ex)
                 {

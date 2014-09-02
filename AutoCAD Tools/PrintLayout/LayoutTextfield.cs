@@ -1,5 +1,6 @@
 ﻿using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
+using System;
 using System.Drawing;
 
 namespace AutoCADTools.PrintLayout
@@ -8,17 +9,23 @@ namespace AutoCADTools.PrintLayout
     {
         private PaperformatTextfield paperformat;
 
-        public LayoutTextfield(string name, PaperformatTextfield paperformat, Point lowerLeftPoint, PrinterPaperformat printerformat, double unit, double scale, bool rotateViewport)
-            : base(name, paperformat, lowerLeftPoint, printerformat, unit, scale, rotateViewport)
+        public LayoutTextfield(string name, PaperformatTextfield paperformat, Point extractLowerRightPoint, PrinterPaperformat printerformat, PaperOrientation orientation, double unit, double scale)
+            : base(name, paperformat, extractLowerRightPoint, printerformat, orientation, unit, scale)
         {
             this.paperformat = paperformat;
         }
 
-        protected override void DrawLayout(Size margin, BlockTableRecord layoutRecord)
+        protected override bool DrawLayoutAdditions(Size margin, BlockTableRecord layoutRecord)
         {
             using (Transaction trans = document.Database.TransactionManager.StartTransaction())
             {
                 BlockTable blockTable = trans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+                if (!blockTable.Has(paperformat.TextfieldBlockName))
+                {
+                    trans.Abort();
+                    return false;
+                }
 
                 // Create polyline and add the vertices
                 Polyline pBorder = new Polyline();
@@ -117,7 +124,7 @@ namespace AutoCADTools.PrintLayout
                             // Set scale or date in the textfield
                             if (attRef.Tag == "MAßSTÄBE")
                             {
-                                attRef.TextString = "1:" + (1.0 / scale).ToString();
+                                attRef.TextString = "1:" + Math.Round(1.0 / scale).ToString();
                             }
 
                             // Append the attribute and tell transaction about it
@@ -132,6 +139,7 @@ namespace AutoCADTools.PrintLayout
                 textfield.Dispose();
                 trans.Commit();
             }
+            return true;
         }
     }
 }
