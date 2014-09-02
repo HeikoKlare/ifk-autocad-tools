@@ -148,11 +148,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Management\ManageAnnotationCategories.cs">
+    <Compile Include="Management\FrmManageAnnotationCategories.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\ManageAnnotationCategories.Designer.cs">
-      <DependentUpon>ManageAnnotationCategories.cs</DependentUpon>
+    <Compile Include="Management\FrmManageAnnotationCategories.Designer.cs">
+      <DependentUpon>FrmManageAnnotationCategories.cs</DependentUpon>
     </Compile>
     <Compile Include="Management\ManageAnnotations.cs">
       <SubType>Form</SubType>
@@ -292,12 +292,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageAnnotationCategories.de.resx">
-      <DependentUpon>ManageAnnotationCategories.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageAnnotationCategories.de.resx">
+      <DependentUpon>FrmManageAnnotationCategories.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageAnnotationCategories.resx">
-      <DependentUpon>ManageAnnotationCategories.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageAnnotationCategories.resx">
+      <DependentUpon>FrmManageAnnotationCategories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management\ManageAnnotations.de.resx">
       <DependentUpon>ManageAnnotations.cs</DependentUpon>

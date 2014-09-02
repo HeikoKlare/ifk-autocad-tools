@@ -8,7 +8,7 @@ namespace AutoCADTools.Management
     /// <summary>
     /// Defines a GUI for manging annotation categories.
     /// </summary>
-    public partial class ManageAnnotationCategories : Form
+    public partial class FrmManageAnnotationCategories : Form
     {
         #region Attributes
         
@@ -30,7 +30,7 @@ namespace AutoCADTools.Management
         /// Initiates a new GUI to manage annotation categories.
         /// Initializes the Sql connection and fills the table.
         /// </summary>
-        public ManageAnnotationCategories()
+        public FrmManageAnnotationCategories()
         {
             InitializeComponent();
 
@@ -41,10 +41,10 @@ namespace AutoCADTools.Management
             connection.FillAnnotationCategories(annotationCategoriesTable);
 
             // Initialize the DataGridView
-            DgAnnotationCategories.DataSource = annotationCategoriesTable;
-            DgAnnotationCategories.Columns[0].Visible = false;
-            DgAnnotationCategories.Columns[1].HeaderText = LocalData.Category;
-            DgAnnotationCategories.Columns[1].Width = 400;
+            dgdAnnotationCategories.DataSource = annotationCategoriesTable;
+            dgdAnnotationCategories.Columns[0].Visible = false;
+            dgdAnnotationCategories.Columns[1].HeaderText = LocalData.Category;
+            dgdAnnotationCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         #endregion
@@ -105,6 +105,15 @@ namespace AutoCADTools.Management
             connection.FillAnnotationCategories(annotationCategoriesTable);
         }
 
+        private void FrmManageAnnotationCategories_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
+            }
+        }
+
         #endregion
 
         #region ErrorHandling
@@ -123,6 +132,7 @@ namespace AutoCADTools.Management
         }
 
         #endregion
+          
 
     }
 }

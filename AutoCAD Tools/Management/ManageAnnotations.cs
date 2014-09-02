@@ -331,7 +331,7 @@ namespace AutoCADTools.Management
         /// <param name="e">the event arguments</param>
         private void ButEditAnnotationCategories_Click(object sender, EventArgs e)
         {
-            using (ManageAnnotationCategories management = new ManageAnnotationCategories())
+            using (FrmManageAnnotationCategories management = new FrmManageAnnotationCategories())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }
