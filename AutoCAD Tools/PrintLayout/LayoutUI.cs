@@ -40,7 +40,9 @@ namespace AutoCADTools.PrintLayout
             printerNames = Printer.PrinterNamesList;
             cboPrinter.DataSource = printerNames;
 
-            this.currentPaperformat = new PaperformatTextfieldA4Vertical(oldTextfieldUsed);
+            txtLayoutName.Text = Properties.Settings.Default.DefaultLayoutName;
+
+            currentPaperformat = new PaperformatTextfieldA4Vertical(oldTextfieldUsed);
             SelectDefaultPrinter();
 
             // Get the annotation scales an add them to the scale combobox

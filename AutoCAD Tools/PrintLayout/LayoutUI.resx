@@ -792,9 +792,6 @@
   <data name="txtLayoutName.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="txtLayoutName.Text" xml:space="preserve">
-    <value>Plot</value>
-  </data>
   <data name="&gt;&gt;txtLayoutName.Name" xml:space="preserve">
     <value>txtLayoutName</value>
   </data>
