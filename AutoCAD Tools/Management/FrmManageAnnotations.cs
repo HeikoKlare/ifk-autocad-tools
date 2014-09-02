@@ -11,7 +11,7 @@ namespace AutoCADTools.Management
     /// Represents a GUI to modify, add and manage annotations.
     /// It can be navigated through categories and annotations, they can be modifed and added.
     /// </summary>
-    public partial class Annotations : Form
+    public partial class FrmManageAnnotations : Form
     {
         #region Attributes
         
@@ -47,7 +47,7 @@ namespace AutoCADTools.Management
         /// <summary>
         /// Initates a new GUI for managing projects and the needed database connection and data tables.
         /// </summary>
-        public Annotations()
+        public FrmManageAnnotations()
         {
             InitializeComponent();
 
@@ -58,7 +58,7 @@ namespace AutoCADTools.Management
              // Initialize annotation categories and annotation table
             annotationCategoriesTable = new Database.AnnotationCategoriesDataTable();
             annotationsTable = new Database.AnnotationsDataTable();
-            ListAnnotations.Columns.Add(LocalData.Name, 240);
+            lvwAnnotations.Columns.Add(LocalData.Name, 240);
 
             AnnotationCategories_Refresh();
             Annotations_Refresh();
@@ -76,20 +76,20 @@ namespace AutoCADTools.Management
         private void AnnotationCategories_Refresh()
         {
             // Save category, clear table and refill category table
-            String saveCategory = CmbAnnotationCategories.Text;
+            String saveCategory = cboAnnotationCategories.Text;
             annotationCategoriesTable.Clear();
             connection.FillAnnotationCategories(annotationCategoriesTable);
 
             // Reset data binding of categories list
-            CmbAnnotationCategories.BeginUpdate();
-            CmbAnnotationCategories.DataSource = null;
-            CmbAnnotationCategories.DataSource = annotationCategoriesTable;
-            CmbAnnotationCategories.ValueMember = "id";
-            CmbAnnotationCategories.DisplayMember = "name";
-            CmbAnnotationCategories.EndUpdate();
+            cboAnnotationCategories.BeginUpdate();
+            cboAnnotationCategories.DataSource = null;
+            cboAnnotationCategories.DataSource = annotationCategoriesTable;
+            cboAnnotationCategories.ValueMember = "id";
+            cboAnnotationCategories.DisplayMember = "name";
+            cboAnnotationCategories.EndUpdate();
 
             // Restore last chosen category
-            CmbAnnotationCategories.Text = saveCategory;
+            cboAnnotationCategories.Text = saveCategory;
         }
 
         /// <summary>
@@ -100,29 +100,29 @@ namespace AutoCADTools.Management
         private void Annotations_Refresh()
         {
             // If no category is selected, just clear the annotations list
-            if (CmbAnnotationCategories.SelectedIndex == -1)
+            if (cboAnnotationCategories.SelectedIndex == -1)
             {
-                ListAnnotations.Items.Clear();
+                lvwAnnotations.Items.Clear();
                 return;
             }
 
             // Clear table and refill annotations table
             annotationsTable.Clear();
-            int categoryId = int.Parse(CmbAnnotationCategories.SelectedValue.ToString());
+            int categoryId = int.Parse(cboAnnotationCategories.SelectedValue.ToString());
             connection.FillAnnotations(annotationsTable, categoryId);
 
             // Reset data binding of annotations list
-            ListAnnotations.BeginUpdate();
-            ListAnnotations.Clear();
+            lvwAnnotations.BeginUpdate();
+            lvwAnnotations.Clear();
             foreach (Database.AnnotationsRow row in annotationsTable.Rows)
             {
                 if (row.RowState != DataRowState.Deleted)
                 {
                     ListViewItem lvi = new ListViewItem(row.name);
-                    ListAnnotations.Items.Add(lvi);
+                    lvwAnnotations.Items.Add(lvi);
                 }
             }
-            ListAnnotations.EndUpdate();
+            lvwAnnotations.EndUpdate();
         }
 
         /// <summary>
@@ -131,21 +131,21 @@ namespace AutoCADTools.Management
         /// </summary>
         private void UpdateControlStates()
         {
-            TxtName.ReadOnly = (state == EditState.annotationSelected);
-            TxtContent.ReadOnly = (state == EditState.annotationSelected);
-            ButModify.Enabled = (state != EditState.input);
-            ButUseForNew.Enabled = (state == EditState.annotationSelected);
-            ButRemove.Enabled = (state == EditState.annotationSelected || state == EditState.editing);
+            txtAnnotationName.ReadOnly = (state == EditState.annotationSelected);
+            txtAnnotationText.ReadOnly = (state == EditState.annotationSelected);
+            butModify.Enabled = (state != EditState.input);
+            butUseForNew.Enabled = (state == EditState.annotationSelected);
+            butRemove.Enabled = (state == EditState.annotationSelected || state == EditState.editing);
             switch (state) 
             {
                 case EditState.annotationSelected:
-                    ButModify.Text = LocalData.ModifyEdit;
+                    butModify.Text = LocalData.ModifyEdit;
                     break;
                 case EditState.editing:
-                    ButModify.Text = LocalData.ModifySubmit;
+                    butModify.Text = LocalData.ModifySubmit;
                     break;
                 default:
-                    ButModify.Text = LocalData.ModifyAdd;
+                    butModify.Text = LocalData.ModifyAdd;
                     break;
             }
         }
@@ -155,8 +155,8 @@ namespace AutoCADTools.Management
         /// </summary>
         private void ClearFields()
         {
-            TxtName.Text = "";
-            TxtContent.Text = "";
+            txtAnnotationName.Text = "";
+            txtAnnotationText.Text = "";
         }
 
         /// <summary>
@@ -167,9 +167,9 @@ namespace AutoCADTools.Management
         {
             // Initiate a new row and add it to the projects table
             Database.AnnotationsRow newRow = annotationsTable.NewAnnotationsRow();
-            newRow.name = TxtName.Text;
-            newRow.content = TxtContent.Text;
-            newRow.categoryId = (int)CmbAnnotationCategories.SelectedValue;
+            newRow.name = txtAnnotationName.Text;
+            newRow.content = txtAnnotationText.Text;
+            newRow.categoryId = (int)cboAnnotationCategories.SelectedValue;
             annotationsTable.AddAnnotationsRow(newRow);
 
             // Update the global database
@@ -191,17 +191,17 @@ namespace AutoCADTools.Management
                 dataBound = true;
 
                 CurrencyManager cm = this.BindingContext[annotationsTable] as CurrencyManager;
-                cm.Position = ListAnnotations.SelectedIndices[0];
+                cm.Position = lvwAnnotations.SelectedIndices[0];
 
-                TxtName.DataBindings.Add("Text", annotationsTable, "name");
-                TxtContent.DataBindings.Add("Text", annotationsTable, "content");
+                txtAnnotationName.DataBindings.Add("Text", annotationsTable, "name");
+                txtAnnotationText.DataBindings.Add("Text", annotationsTable, "content");
             }
             else if (!newSelection && dataBound)
             {
                 // if a project was deselected, update the controls and unbind them from data sources
                 dataBound = false;
-                TxtName.DataBindings.Clear();
-                TxtContent.DataBindings.Clear();
+                txtAnnotationName.DataBindings.Clear();
+                txtAnnotationText.DataBindings.Clear();
             }
         }
 
@@ -216,13 +216,13 @@ namespace AutoCADTools.Management
         /// <param name="e">the event arguments</param>
         private void ListAnnotations_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListAnnotations.SelectedIndices.Count > 0)
+            if (lvwAnnotations.SelectedIndices.Count > 0)
             {
                 state = EditState.annotationSelected;
                 UpdateControlStates();
                 UpdateDataBindings(true);
-                errorProvider.SetError(TxtName, String.Empty);
-                errorProvider.SetError(TxtContent, String.Empty);
+                errorProvider.SetError(txtAnnotationName, String.Empty);
+                errorProvider.SetError(txtAnnotationText, String.Empty);
             }
             else
             {
@@ -264,11 +264,11 @@ namespace AutoCADTools.Management
                 // and refresh controls
                 state = EditState.input;
                 UpdateControlStates();
-                annotationsTable.Rows[ListAnnotations.SelectedIndices[0]].EndEdit();
+                annotationsTable.Rows[lvwAnnotations.SelectedIndices[0]].EndEdit();
                 connection.UpdateAnnotations(annotationsTable);
                 Annotations_Refresh();
                 ClearFields();
-                ListAnnotations.SelectedIndices.Clear();
+                lvwAnnotations.SelectedIndices.Clear();
                 UpdateDataBindings(false);
             }
         }
@@ -288,7 +288,7 @@ namespace AutoCADTools.Management
             ClearFields();
             connection.UpdateAnnotations(annotationsTable);
             Annotations_Refresh();
-            ListAnnotations.SelectedIndices.Clear();
+            lvwAnnotations.SelectedIndices.Clear();
             this.ValidateFields();
         }
 
@@ -302,7 +302,7 @@ namespace AutoCADTools.Management
         {
             state = EditState.input;
             ClearFields();
-            ListAnnotations.SelectedIndices.Clear();
+            lvwAnnotations.SelectedIndices.Clear();
             UpdateDataBindings(false);
             UpdateControlStates();
             this.ValidateFields();
@@ -319,7 +319,7 @@ namespace AutoCADTools.Management
             state = EditState.input;
             UpdateControlStates();
             UpdateDataBindings(false);
-            ListAnnotations.SelectedIndices.Clear();
+            lvwAnnotations.SelectedIndices.Clear();
             this.ValidateFields();
         }
 
@@ -346,6 +346,15 @@ namespace AutoCADTools.Management
         private void CmbAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Annotations_Refresh();
+        }
+
+        private void FrmManageAnnotations_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
+            }
         }
 
         #endregion
@@ -381,19 +390,19 @@ namespace AutoCADTools.Management
         {
             bool result = true;
 
-            errorProvider.SetError(TxtName, String.Empty);
-            errorProvider.SetError(TxtContent, String.Empty);
+            errorProvider.SetError(txtAnnotationName, String.Empty);
+            errorProvider.SetError(txtAnnotationText, String.Empty);
 
-            if ((state == EditState.addable || state== EditState.input) && String.IsNullOrEmpty(TxtName.Text))
+            if ((state == EditState.addable || state== EditState.input) && String.IsNullOrEmpty(txtAnnotationName.Text))
             {
-                errorProvider.SetError(TxtName, LocalData.ErrorEmptyName);
+                errorProvider.SetError(txtAnnotationName, LocalData.ErrorEmptyName);
                 state = EditState.input;
                 UpdateControlStates();
                 result = false;
             }
-            else if ((state == EditState.addable || state == EditState.input) && String.IsNullOrEmpty(TxtContent.Text))
+            else if ((state == EditState.addable || state == EditState.input) && String.IsNullOrEmpty(txtAnnotationText.Text))
             {
-                errorProvider.SetError(TxtContent, LocalData.ErrorEmptyContent);
+                errorProvider.SetError(txtAnnotationText, LocalData.ErrorEmptyContent);
                 state = EditState.input;
                 UpdateControlStates();
                 result = false;

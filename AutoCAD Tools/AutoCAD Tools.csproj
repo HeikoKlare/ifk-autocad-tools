@@ -154,11 +154,11 @@
     <Compile Include="Management\FrmManageAnnotationCategories.Designer.cs">
       <DependentUpon>FrmManageAnnotationCategories.cs</DependentUpon>
     </Compile>
-    <Compile Include="Management\ManageAnnotations.cs">
+    <Compile Include="Management\FrmManageAnnotations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\ManageAnnotations.Designer.cs">
-      <DependentUpon>ManageAnnotations.cs</DependentUpon>
+    <Compile Include="Management\FrmManageAnnotations.Designer.cs">
+      <DependentUpon>FrmManageAnnotations.cs</DependentUpon>
     </Compile>
     <Compile Include="Management\FrmManageProjects.cs">
       <SubType>Form</SubType>
@@ -299,11 +299,11 @@
     <EmbeddedResource Include="Management\FrmManageAnnotationCategories.resx">
       <DependentUpon>FrmManageAnnotationCategories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageAnnotations.de.resx">
-      <DependentUpon>ManageAnnotations.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageAnnotations.de.resx">
+      <DependentUpon>FrmManageAnnotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageAnnotations.resx">
-      <DependentUpon>ManageAnnotations.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageAnnotations.resx">
+      <DependentUpon>FrmManageAnnotations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management\ManageDetailCategories.de.resx">
       <DependentUpon>ManageDetailCategories.cs</DependentUpon>

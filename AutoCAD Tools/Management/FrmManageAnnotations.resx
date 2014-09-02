@@ -112,348 +112,408 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblAnnotationText.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 41</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblAnnotationText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 60</value>
   </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 13</value>
+  <data name="lblAnnotationText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 20</value>
   </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblAnnotationText.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
+  <data name="lblAnnotationText.Text" xml:space="preserve">
     <value>Text:</value>
   </data>
-  <data name="label9.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="lblAnnotationText.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
+  <data name="&gt;&gt;lblAnnotationText.Name" xml:space="preserve">
+    <value>lblAnnotationText</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblAnnotationText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblAnnotationText.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblAnnotationText.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblAnnotationName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>273, 15</value>
+  <data name="lblAnnotationName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 28</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 13</value>
+  <data name="lblAnnotationName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 20</value>
   </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblAnnotationName.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
+  <data name="lblAnnotationName.Text" xml:space="preserve">
     <value>Name:</value>
   </data>
-  <data name="label8.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="lblAnnotationName.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
+  <data name="&gt;&gt;lblAnnotationName.Name" xml:space="preserve">
+    <value>lblAnnotationName</value>
   </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblAnnotationName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblAnnotationName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblAnnotationName.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="TxtContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 38</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtAnnotationText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="TxtContent.MaxLength" type="System.Int32, mscorlib">
+  <data name="txtAnnotationText.Location" type="System.Drawing.Point, System.Drawing">
+    <value>460, 57</value>
+  </data>
+  <data name="txtAnnotationText.MaxLength" type="System.Int32, mscorlib">
     <value>30000</value>
   </data>
-  <data name="TxtContent.Multiline" type="System.Boolean, mscorlib">
+  <data name="txtAnnotationText.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="TxtContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 159</value>
+  <data name="txtAnnotationText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>423, 268</value>
   </data>
-  <data name="TxtContent.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtAnnotationText.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;TxtContent.Name" xml:space="preserve">
-    <value>TxtContent</value>
+  <data name="&gt;&gt;txtAnnotationText.Name" xml:space="preserve">
+    <value>txtAnnotationText</value>
   </data>
-  <data name="&gt;&gt;TxtContent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtAnnotationText.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;TxtContent.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtAnnotationText.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;TxtContent.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;txtAnnotationText.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="TxtName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>317, 12</value>
+  <data name="txtAnnotationName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="TxtName.MaxLength" type="System.Int32, mscorlib">
+  <data name="txtAnnotationName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>460, 25</value>
+  </data>
+  <data name="txtAnnotationName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 16, 3, 3</value>
+  </data>
+  <data name="txtAnnotationName.MaxLength" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
-  <data name="TxtName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 20</value>
+  <data name="txtAnnotationName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>423, 26</value>
   </data>
-  <data name="TxtName.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtAnnotationName.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;TxtName.Name" xml:space="preserve">
-    <value>TxtName</value>
+  <data name="&gt;&gt;txtAnnotationName.Name" xml:space="preserve">
+    <value>txtAnnotationName</value>
   </data>
-  <data name="&gt;&gt;TxtName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtAnnotationName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;TxtName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtAnnotationName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;TxtName.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;txtAnnotationName.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="CmbAnnotationCategories.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cboAnnotationCategories.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="cboAnnotationCategories.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
   </data>
-  <data name="CmbAnnotationCategories.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 21</value>
+  <data name="cboAnnotationCategories.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 28</value>
   </data>
-  <data name="CmbAnnotationCategories.TabIndex" type="System.Int32, mscorlib">
+  <data name="cboAnnotationCategories.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;CmbAnnotationCategories.Name" xml:space="preserve">
-    <value>CmbAnnotationCategories</value>
+  <data name="&gt;&gt;cboAnnotationCategories.Name" xml:space="preserve">
+    <value>cboAnnotationCategories</value>
   </data>
-  <data name="&gt;&gt;CmbAnnotationCategories.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;cboAnnotationCategories.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CmbAnnotationCategories.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cboAnnotationCategories.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CmbAnnotationCategories.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cboAnnotationCategories.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="ButRemove.Enabled" type="System.Boolean, mscorlib">
+  <data name="butRemove.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="butRemove.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ButRemove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="butRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="butRemove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="ButRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>283, 241</value>
+  <data name="butRemove.Location" type="System.Drawing.Point, System.Drawing">
+    <value>460, 392</value>
   </data>
-  <data name="ButRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 23</value>
+  <data name="butRemove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
   </data>
-  <data name="ButRemove.TabIndex" type="System.Int32, mscorlib">
+  <data name="butRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 35</value>
+  </data>
+  <data name="butRemove.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="ButRemove.Text" xml:space="preserve">
+  <data name="butRemove.Text" xml:space="preserve">
     <value>Remove</value>
   </data>
-  <data name="&gt;&gt;ButRemove.Name" xml:space="preserve">
-    <value>ButRemove</value>
+  <data name="&gt;&gt;butRemove.Name" xml:space="preserve">
+    <value>butRemove</value>
   </data>
-  <data name="&gt;&gt;ButRemove.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;butRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ButRemove.Parent" xml:space="preserve">
+  <data name="&gt;&gt;butRemove.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ButRemove.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;butRemove.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="ButNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="butNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="butNew.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="butNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="ButNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>382, 212</value>
+  <data name="butNew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 341</value>
   </data>
-  <data name="ButNew.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 23</value>
+  <data name="butNew.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
   </data>
-  <data name="ButNew.TabIndex" type="System.Int32, mscorlib">
+  <data name="butNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 35</value>
+  </data>
+  <data name="butNew.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="ButNew.Text" xml:space="preserve">
+  <data name="butNew.Text" xml:space="preserve">
     <value>New</value>
   </data>
-  <data name="&gt;&gt;ButNew.Name" xml:space="preserve">
-    <value>ButNew</value>
+  <data name="&gt;&gt;butNew.Name" xml:space="preserve">
+    <value>butNew</value>
   </data>
-  <data name="&gt;&gt;ButNew.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;butNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ButNew.Parent" xml:space="preserve">
+  <data name="&gt;&gt;butNew.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ButNew.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;butNew.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="ButModify.Enabled" type="System.Boolean, mscorlib">
+  <data name="butModify.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="butModify.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="ButModify.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="butModify.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="butModify.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="ButModify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>283, 212</value>
+  <data name="butModify.Location" type="System.Drawing.Point, System.Drawing">
+    <value>460, 341</value>
   </data>
-  <data name="ButModify.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 23</value>
+  <data name="butModify.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
   </data>
-  <data name="ButModify.TabIndex" type="System.Int32, mscorlib">
+  <data name="butModify.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 35</value>
+  </data>
+  <data name="butModify.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="ButModify.Text" xml:space="preserve">
+  <data name="butModify.Text" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="&gt;&gt;ButModify.Name" xml:space="preserve">
-    <value>ButModify</value>
+  <data name="&gt;&gt;butModify.Name" xml:space="preserve">
+    <value>butModify</value>
   </data>
-  <data name="&gt;&gt;ButModify.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;butModify.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ButModify.Parent" xml:space="preserve">
+  <data name="&gt;&gt;butModify.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ButModify.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;butModify.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 280</value>
+    <value>895, 444</value>
   </data>
-  <data name="ButUseForNew.Enabled" type="System.Boolean, mscorlib">
+  <data name="butUseForNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="butUseForNew.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="ButUseForNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="butUseForNew.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="butUseForNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="ButUseForNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>382, 241</value>
+  <data name="butUseForNew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 392</value>
   </data>
-  <data name="ButUseForNew.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 23</value>
+  <data name="butUseForNew.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 8, 8, 8</value>
   </data>
-  <data name="ButUseForNew.TabIndex" type="System.Int32, mscorlib">
+  <data name="butUseForNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 35</value>
+  </data>
+  <data name="butUseForNew.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
   </data>
-  <data name="ButUseForNew.Text" xml:space="preserve">
+  <data name="butUseForNew.Text" xml:space="preserve">
     <value>Use for new</value>
   </data>
-  <data name="&gt;&gt;ButUseForNew.Name" xml:space="preserve">
-    <value>ButUseForNew</value>
+  <data name="&gt;&gt;butUseForNew.Name" xml:space="preserve">
+    <value>butUseForNew</value>
   </data>
-  <data name="&gt;&gt;ButUseForNew.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;butUseForNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ButUseForNew.Parent" xml:space="preserve">
+  <data name="&gt;&gt;butUseForNew.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ButUseForNew.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;butUseForNew.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <metadata name="conAnnotations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <data name="lvwAnnotations.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <metadata name="conAnnotations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>140, 17</value>
   </metadata>
   <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>178, 30</value>
   </data>
   <data name="removeToolStripMenuItem.Text" xml:space="preserve">
     <value>Remove</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>178, 30</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
   <data name="useForNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>178, 30</value>
   </data>
   <data name="useForNewToolStripMenuItem.Text" xml:space="preserve">
     <value>Use for new</value>
   </data>
   <data name="conAnnotations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 70</value>
+    <value>179, 94</value>
   </data>
   <data name="&gt;&gt;conAnnotations.Name" xml:space="preserve">
     <value>conAnnotations</value>
   </data>
   <data name="&gt;&gt;conAnnotations.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ListAnnotations.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 45</value>
+  <data name="lvwAnnotations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 46</value>
   </data>
-  <data name="ListAnnotations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 223</value>
+  <data name="lvwAnnotations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>370, 386</value>
   </data>
-  <data name="ListAnnotations.TabIndex" type="System.Int32, mscorlib">
+  <data name="lvwAnnotations.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;ListAnnotations.Name" xml:space="preserve">
-    <value>ListAnnotations</value>
+  <data name="&gt;&gt;lvwAnnotations.Name" xml:space="preserve">
+    <value>lvwAnnotations</value>
   </data>
-  <data name="&gt;&gt;ListAnnotations.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lvwAnnotations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ListAnnotations.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lvwAnnotations.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ListAnnotations.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lvwAnnotations.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="ButEditCategories.Location" type="System.Drawing.Point, System.Drawing">
-    <value>490, 212</value>
+  <data name="butEditCategories.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="ButEditCategories.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 52</value>
+  <data name="butEditCategories.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
-  <data name="ButEditCategories.TabIndex" type="System.Int32, mscorlib">
+  <data name="butEditCategories.Location" type="System.Drawing.Point, System.Drawing">
+    <value>755, 341</value>
+  </data>
+  <data name="butEditCategories.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 13, 3, 8</value>
+  </data>
+  <data name="butEditCategories.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 86</value>
+  </data>
+  <data name="butEditCategories.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="ButEditCategories.Text" xml:space="preserve">
+  <data name="butEditCategories.Text" xml:space="preserve">
     <value>Edit Categories</value>
   </data>
-  <data name="&gt;&gt;ButEditCategories.Name" xml:space="preserve">
-    <value>ButEditCategories</value>
+  <data name="&gt;&gt;butEditCategories.Name" xml:space="preserve">
+    <value>butEditCategories</value>
   </data>
-  <data name="&gt;&gt;ButEditCategories.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;butEditCategories.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ButEditCategories.Parent" xml:space="preserve">
+  <data name="&gt;&gt;butEditCategories.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;ButEditCategories.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;butEditCategories.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -515,6 +575,12 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>917, 400</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
@@ -525,30 +591,30 @@
     <value>errorProvider</value>
   </data>
   <data name="&gt;&gt;errorProvider.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;removeToolStripMenuItem.Name" xml:space="preserve">
     <value>removeToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;removeToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;editToolStripMenuItem.Name" xml:space="preserve">
     <value>editToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;editToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;useForNewToolStripMenuItem.Name" xml:space="preserve">
     <value>useForNewToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;useForNewToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Annotations</value>
+    <value>FrmManageAnnotations</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

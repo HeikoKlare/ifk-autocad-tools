@@ -117,39 +117,146 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ButUseForNew.Text" xml:space="preserve">
+  <data name="butUseForNew.Error" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="butUseForNew.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="butUseForNew.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butUseForNew.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="butUseForNew.Text" xml:space="preserve">
     <value>Als neu nutzen</value>
+  </data>
+  <data name="conAnnotations.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="conAnnotations.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="conAnnotations.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>200, 30</value>
   </data>
   <data name="removeToolStripMenuItem.Text" xml:space="preserve">
     <value>Entfernen</value>
   </data>
   <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>200, 30</value>
   </data>
   <data name="editToolStripMenuItem.Text" xml:space="preserve">
     <value>Bearbeiten</value>
   </data>
   <data name="useForNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>200, 30</value>
   </data>
   <data name="useForNewToolStripMenuItem.Text" xml:space="preserve">
     <value>Als neu nutzen</value>
   </data>
-  <data name="ButEditCategories.Text" xml:space="preserve">
+  <data name="conAnnotations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 94</value>
+  </data>
+  <data name="lvwAnnotations.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lvwAnnotations.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lvwAnnotations.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butEditCategories.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butEditCategories.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butEditCategories.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butEditCategories.Text" xml:space="preserve">
     <value>Kategorien bearbeiten</value>
   </data>
-  <data name="ButRemove.Text" xml:space="preserve">
+  <data name="butRemove.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butRemove.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butRemove.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butRemove.Text" xml:space="preserve">
     <value>Entfernen</value>
   </data>
-  <data name="ButNew.Text" xml:space="preserve">
+  <data name="butNew.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butNew.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butNew.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butNew.Text" xml:space="preserve">
     <value>Neu</value>
   </data>
-  <data name="ButModify.Text" xml:space="preserve">
+  <data name="butModify.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butModify.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butModify.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butModify.Text" xml:space="preserve">
     <value>Hinzufügen</value>
+  </data>
+  <data name="cboAnnotationCategories.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cboAnnotationCategories.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="cboAnnotationCategories.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblAnnotationName.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAnnotationName.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblAnnotationName.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="txtAnnotationText.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAnnotationText.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtAnnotationText.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="txtAnnotationName.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAnnotationName.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtAnnotationName.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -212,5 +319,14 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Anmerkungen verwalten</value>
+  </data>
+  <data name="lblAnnotationText.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAnnotationText.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblAnnotationText.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
 </root>

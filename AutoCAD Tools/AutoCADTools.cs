@@ -92,7 +92,7 @@ namespace AutoCADTools
         [CommandMethod("ManageAnnotations")]
         public static void ManageAnnotations()
         {
-            using (Form management = new Management.Annotations())
+            using (Form management = new Management.FrmManageAnnotations())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }
