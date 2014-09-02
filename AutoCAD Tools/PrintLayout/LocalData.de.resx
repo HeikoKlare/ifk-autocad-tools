@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DefaultPrinterInvalid" xml:space="preserve">
+    <value>Der Standarddrucker wurde nicht gefunden.</value>
+  </data>
   <data name="DrawingAreaFindErrorMessage" xml:space="preserve">
     <value>Beim Suchen des Zeichenbereiches ist ein Fehler aufgetreten. Bitte Erstellen Sie einen neuen Zeichenbereich und löschen Sie den alten, falls vorhanden.</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="LayoutNameEmptyError" xml:space="preserve">
     <value>Layoutname darf nicht leer sein.</value>
+  </data>
+  <data name="NoDrawingAreaMessage" xml:space="preserve">
+    <value>Kein Zeichenbereich gefunden.</value>
   </data>
   <data name="NoExtractDefinedError" xml:space="preserve">
     <value>Es wurde noch kein Ausschnitt definiert.</value>

@@ -156,14 +156,23 @@ namespace AutoCADTools.PrintLayout
                 extractLowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
             }
 
+            LayoutCreation creation = null;
             if (chkTextfield.Checked)
             {
-                new LayoutTextfield(txtLayoutName.Text, (PaperformatTextfield)currentPaperformat, extractLowerRightPoint, printerformat, orientation, drawingUnit, scale).CreateLayout();
+                creation = new LayoutTextfield((PaperformatTextfield)currentPaperformat);
             }
             else
             {
-                new LayoutPlain(txtLayoutName.Text, currentPaperformat, extractLowerRightPoint, printerformat, orientation, drawingUnit, scale).CreateLayout();
+                creation = new LayoutPlain(currentPaperformat);
             }
+            creation.DrawingUnit = drawingUnit;
+            creation.ExtractLowerRightPoint = extractLowerRightPoint;
+            creation.LayoutName = txtLayoutName.Text;
+            creation.Orientation = orientation;
+            creation.Printerformat = printerformat;
+            creation.Scale = scale;
+
+            creation.CreateLayout();
         }
 
         private double SetPaperformatForExactExtract()

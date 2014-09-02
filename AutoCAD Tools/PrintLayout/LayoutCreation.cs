@@ -13,15 +13,69 @@ namespace AutoCADTools.PrintLayout
 {
     public abstract class LayoutCreation
     {
-        protected Paperformat paperformat;
-        protected double unit;
-        protected PrinterPaperformat printerformat;
-        protected Point extractLowerRightPoint;
-        protected string name;
-        protected double scale;
+        private Paperformat paperformat;
+
+        public Paperformat Paperformat
+        {
+            get { return paperformat; }
+        }
+
+        private double drawingUnit;
+
+        public double DrawingUnit
+        {
+            get { return drawingUnit; }
+            set { drawingUnit = value; }
+        }
+
+        private PrinterPaperformat printerformat;
+
+        public PrinterPaperformat Printerformat
+        {
+            get { return printerformat; }
+            set { printerformat = value; }
+        }
+
+        private Point extractLowerRightPoint;
+
+        public Point ExtractLowerRightPoint
+        {
+            get { return extractLowerRightPoint; }
+            set { extractLowerRightPoint = value; }
+        }
+
+        private string layoutName;
+
+        public string LayoutName
+        {
+            get { return layoutName; }
+            set { layoutName = value; }
+        }
+
+        private double scale;
+
+        public double Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
+
         protected bool rotateViewport;
-        protected Document document;
-        protected PaperOrientation orientation;
+
+        private Document document;
+
+        public Document Document
+        {
+            get { return document; }
+        }
+
+        private PaperOrientation orientation;
+
+        public PaperOrientation Orientation
+        {
+            get { return orientation; }
+            set { orientation = rotateViewport ? PaperOrientation.Portrait : value; }
+        }
 
         public enum PaperOrientation
         {
@@ -29,21 +83,18 @@ namespace AutoCADTools.PrintLayout
             Landscape
         }
 
-        public LayoutCreation(string name, Paperformat paperformat, Point extractLowerRightPoint, PrinterPaperformat printerformat, PaperOrientation orientation, double unit, double scale)
+        public LayoutCreation(Paperformat paperformat)
         {
             this.paperformat = paperformat;
-            this.unit = unit;
-            this.printerformat = printerformat;
-            this.extractLowerRightPoint = extractLowerRightPoint;
-            this.name = name;
-            this.scale = scale;
-            this.rotateViewport = paperformat is PaperformatTextfieldA4Horizontal;
-            this.orientation = rotateViewport ? PaperOrientation.Portrait : orientation;
+            rotateViewport = paperformat is PaperformatTextfieldA4Horizontal;
+            orientation = rotateViewport ? PaperOrientation.Portrait : PaperOrientation.Landscape;
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
         }
 
         public bool CreateLayout()
         {
+            ValidateProperties();
+
             using (document.LockDocument())
             {
                 var oldCos = document.Editor.CurrentUserCoordinateSystem;
@@ -53,14 +104,14 @@ namespace AutoCADTools.PrintLayout
                     document.Editor.CurrentUserCoordinateSystem = Matrix3d.Identity;
                 }
 
-                if (!LayoutManager.Current.GetLayoutId(name).IsNull)
+                if (!LayoutManager.Current.GetLayoutId(layoutName).IsNull)
                 {
-                    LayoutManager.Current.DeleteLayout(name);
+                    LayoutManager.Current.DeleteLayout(layoutName);
                 }
 
                 // Create the new layout and activate it
-                LayoutManager.Current.CreateLayout(name);
-                LayoutManager.Current.CurrentLayout = name;
+                LayoutManager.Current.CreateLayout(layoutName);
+                LayoutManager.Current.CurrentLayout = layoutName;
 
                 // Start the transaction
                 using (Transaction trans = document.Database.TransactionManager.StartTransaction())
@@ -88,19 +139,19 @@ namespace AutoCADTools.PrintLayout
                     if (printerformat.Printer.Name == "PNG")
                     {
                         psv.SetPlotPaperUnits(layout, PlotPaperUnit.Pixels);
-                        psv.SetCustomPrintScale(layout, new CustomScale(unit * 10, 1));
+                        psv.SetCustomPrintScale(layout, new CustomScale(drawingUnit * 10, 1));
                     }
                     else
                     {
                         psv.SetPlotPaperUnits(layout, PlotPaperUnit.Millimeters);
-                        psv.SetCustomPrintScale(layout, new CustomScale(unit, 1));
+                        psv.SetCustomPrintScale(layout, new CustomScale(drawingUnit, 1));
                     }
                     psv.SetPlotType(layout, Autodesk.AutoCAD.DatabaseServices.PlotType.Layout);
 
                     // Get size and margins of the layout
                     Double width = layout.PlotPaperSize.X;
                     Double height = layout.PlotPaperSize.Y;
-                    Size margin = new Size(layout.PlotPaperMargins.MinPoint.X / unit, layout.PlotPaperMargins.MinPoint.Y / unit);
+                    Size margin = new Size(layout.PlotPaperMargins.MinPoint.X / drawingUnit, layout.PlotPaperMargins.MinPoint.Y / drawingUnit);
 
                     // Get the right rotation and switch width and height if needed
                     if ((width < height && orientation == PaperOrientation.Portrait) ||
@@ -157,14 +208,14 @@ namespace AutoCADTools.PrintLayout
                     if (rotateViewport)
                     {
                         // Take care of the turned viewport, x-axis is the original y and the y-axis is the inverted original x
-                        PVport.ViewCenter = new Point2d(-(extractLowerRightPoint.Y + paperformat.ViewportSizeModel.Height / unit / scale / 2), extractLowerRightPoint.X - paperformat.ViewportSizeModel.Width / unit / scale / 2);
-                        PVport.ViewHeight = paperformat.ViewportSizeModel.Width / unit / scale;
+                        PVport.ViewCenter = new Point2d(-(extractLowerRightPoint.Y + paperformat.ViewportSizeModel.Height / drawingUnit / scale / 2), extractLowerRightPoint.X - paperformat.ViewportSizeModel.Width / drawingUnit / scale / 2);
+                        PVport.ViewHeight = paperformat.ViewportSizeModel.Width / drawingUnit / scale;
                     }
                     else
                     {
                         // Set the view of the viewport
-                        PVport.ViewCenter = new Point2d(extractLowerRightPoint.X - paperformat.ViewportSizeModel.Width / unit / scale / 2, extractLowerRightPoint.Y + paperformat.ViewportSizeModel.Height / unit / scale / 2);
-                        PVport.ViewHeight = paperformat.ViewportSizeModel.Height / unit / scale;
+                        PVport.ViewCenter = new Point2d(extractLowerRightPoint.X - paperformat.ViewportSizeModel.Width / drawingUnit / scale / 2, extractLowerRightPoint.Y + paperformat.ViewportSizeModel.Height / drawingUnit / scale / 2);
+                        PVport.ViewHeight = paperformat.ViewportSizeModel.Height / drawingUnit / scale;
                     }
 
                     //PVport.StandardScale = StandardScaleType.CustomScale;
@@ -179,7 +230,7 @@ namespace AutoCADTools.PrintLayout
 
                     // Switch to modelspace and back to prevent unwanted situations
                     LayoutManager.Current.CurrentLayout = "Model";
-                    LayoutManager.Current.CurrentLayout = name;
+                    LayoutManager.Current.CurrentLayout = layoutName;
 
                     // Set the annotation scale for the viewport
                     ObjectContextCollection occ = document.Database.ObjectContextManager.GetContextCollection("ACDB_ANNOTATIONSCALES");
@@ -206,6 +257,22 @@ namespace AutoCADTools.PrintLayout
             return true;
         }
 
+        private void ValidateProperties()
+        {
+            if (drawingUnit == 0 || scale == 0)
+            {
+                throw new ArgumentException("Drawing Unit or scale must not be null");
+            }
+            if (extractLowerRightPoint == null || printerformat == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (String.IsNullOrWhiteSpace(layoutName))
+            {
+                throw new ArgumentException("Layout name must not be null or empty");
+            }
+        }
+
 
         protected abstract bool DrawLayoutAdditions(Size margin, BlockTableRecord layoutRecord);
 
@@ -214,36 +281,36 @@ namespace AutoCADTools.PrintLayout
             Polyline viewport = new Polyline();
             viewport.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
             viewport.LayerId = document.Database.LayerZero;
-            
+
             // Set the vertices of the viewport poly
             viewport.AddVertexAt(viewport.NumberOfVertices,
-                new Point2d(paperformat.ViewportBasePoint.X / unit - margin.Width,
-                    paperformat.ViewportBasePoint.Y/ unit - margin.Height), 0, 0, 0);
+                new Point2d(paperformat.ViewportBasePoint.X / drawingUnit - margin.Width,
+                    paperformat.ViewportBasePoint.Y / drawingUnit - margin.Height), 0, 0, 0);
             if (paperformat is PaperformatTextfieldFullTextfield)
             {
                 PaperformatTextfield ppTextfield = paperformat as PaperformatTextfield;
                 viewport.AddVertexAt(viewport.NumberOfVertices,
-                    new Point2d(ppTextfield.TextfieldBasePoint.X / unit - margin.Width,
-                     ppTextfield.ViewportBasePoint.Y / unit - margin.Height), 0, 0, 0);
+                    new Point2d(ppTextfield.TextfieldBasePoint.X / drawingUnit - margin.Width,
+                     ppTextfield.ViewportBasePoint.Y / drawingUnit - margin.Height), 0, 0, 0);
                 viewport.AddVertexAt(viewport.NumberOfVertices,
-                    new Point2d(ppTextfield.TextfieldBasePoint.X / unit - margin.Width,
-                        ppTextfield.TextfieldBasePoint.Y / unit - margin.Height), 0, 0, 0);
+                    new Point2d(ppTextfield.TextfieldBasePoint.X / drawingUnit - margin.Width,
+                        ppTextfield.TextfieldBasePoint.Y / drawingUnit - margin.Height), 0, 0, 0);
                 viewport.AddVertexAt(viewport.NumberOfVertices,
-                    new Point2d((ppTextfield.TextfieldBasePoint.X + ppTextfield.TextfieldSize.Width) / unit - margin.Width,
-                        ppTextfield.TextfieldBasePoint.Y / unit - margin.Height), 0, 0, 0);
+                    new Point2d((ppTextfield.TextfieldBasePoint.X + ppTextfield.TextfieldSize.Width) / drawingUnit - margin.Width,
+                        ppTextfield.TextfieldBasePoint.Y / drawingUnit - margin.Height), 0, 0, 0);
             }
             else
             {
                 viewport.AddVertexAt(viewport.NumberOfVertices,
-                   new Point2d((paperformat.ViewportBasePoint.X + paperformat.ViewportSizeLayout.Width) / unit - margin.Width,
-                       paperformat.ViewportBasePoint.Y / unit - margin.Height), 0, 0, 0);
+                   new Point2d((paperformat.ViewportBasePoint.X + paperformat.ViewportSizeLayout.Width) / drawingUnit - margin.Width,
+                       paperformat.ViewportBasePoint.Y / drawingUnit - margin.Height), 0, 0, 0);
             }
             viewport.AddVertexAt(viewport.NumberOfVertices,
-                new Point2d((paperformat.ViewportBasePoint.X + paperformat.ViewportSizeLayout.Width) / unit - margin.Width,
-                    (paperformat.ViewportBasePoint.Y + paperformat.ViewportSizeLayout.Height) / unit - margin.Height), 0, 0, 0);
+                new Point2d((paperformat.ViewportBasePoint.X + paperformat.ViewportSizeLayout.Width) / drawingUnit - margin.Width,
+                    (paperformat.ViewportBasePoint.Y + paperformat.ViewportSizeLayout.Height) / drawingUnit - margin.Height), 0, 0, 0);
             viewport.AddVertexAt(viewport.NumberOfVertices,
-                new Point2d(paperformat.ViewportBasePoint.X / unit - margin.Width,
-                    (paperformat.ViewportBasePoint.Y + paperformat.ViewportSizeLayout.Height) / unit - margin.Height), 0, 0, 0);
+                new Point2d(paperformat.ViewportBasePoint.X / drawingUnit - margin.Width,
+                    (paperformat.ViewportBasePoint.Y + paperformat.ViewportSizeLayout.Height) / drawingUnit - margin.Height), 0, 0, 0);
             viewport.Closed = true;
             viewport.LineWeight = LineWeight.LineWeight050;
 

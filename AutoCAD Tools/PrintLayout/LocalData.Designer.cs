@@ -61,6 +61,15 @@ namespace AutoCADTools.PrintLayout {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The specified default printer is not found. ähnelt.
+        /// </summary>
+        internal static string DefaultPrinterInvalid {
+            get {
+                return ResourceManager.GetString("DefaultPrinterInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die An error occured while finding the drawing area. Please create a new one and delete the old one if existing. ähnelt.
         /// </summary>
         internal static string DrawingAreaFindErrorMessage {
@@ -138,6 +147,15 @@ namespace AutoCADTools.PrintLayout {
         internal static string LayoutNameEmptyError {
             get {
                 return ResourceManager.GetString("LayoutNameEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die No drawing area detected. ähnelt.
+        /// </summary>
+        internal static string NoDrawingAreaMessage {
+            get {
+                return ResourceManager.GetString("NoDrawingAreaMessage", resourceCulture);
             }
         }
         

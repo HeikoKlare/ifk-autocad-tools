@@ -9,11 +9,12 @@ namespace AutoCADTools.PrintLayout
 {
     public class LayoutPlain : LayoutCreation
     {
-        public LayoutPlain(string name, Paperformat paperformat, Point extractLowerRightPoint, PrinterPaperformat printerformat, PaperOrientation orientation, double unit, double scale)
-            : base(name, paperformat, extractLowerRightPoint, printerformat, orientation, unit, scale)
+        public LayoutPlain(Paperformat paperformat)
+            : base(paperformat)
         {
 
         }
+
         protected override bool DrawLayoutAdditions(Size margin, BlockTableRecord layoutRecord)
         {
             return true;

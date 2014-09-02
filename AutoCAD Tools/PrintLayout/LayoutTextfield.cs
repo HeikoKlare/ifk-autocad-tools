@@ -9,17 +9,22 @@ namespace AutoCADTools.PrintLayout
     {
         private PaperformatTextfield paperformat;
 
-        public LayoutTextfield(string name, PaperformatTextfield paperformat, Point extractLowerRightPoint, PrinterPaperformat printerformat, PaperOrientation orientation, double unit, double scale)
-            : base(name, paperformat, extractLowerRightPoint, printerformat, orientation, unit, scale)
+        public new PaperformatTextfield Paperformat
+        {
+            get { return paperformat; }
+        }
+
+        public LayoutTextfield(PaperformatTextfield paperformat)
+            : base(paperformat)
         {
             this.paperformat = paperformat;
         }
 
         protected override bool DrawLayoutAdditions(Size margin, BlockTableRecord layoutRecord)
         {
-            using (Transaction trans = document.Database.TransactionManager.StartTransaction())
+            using (Transaction trans = Document.Database.TransactionManager.StartTransaction())
             {
-                BlockTable blockTable = trans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                BlockTable blockTable = trans.GetObject(Document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
 
                 if (!blockTable.Has(paperformat.TextfieldBlockName))
                 {
@@ -32,17 +37,17 @@ namespace AutoCADTools.PrintLayout
                 pBorder.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
 
                 pBorder.AddVertexAt(pBorder.NumberOfVertices,
-                    new Point2d(paperformat.BorderBasePoint.X / unit - margin.Width,
-                        paperformat.BorderBasePoint.Y / unit - margin.Height), 0, 0, 0);
+                    new Point2d(paperformat.BorderBasePoint.X / DrawingUnit - margin.Width,
+                        paperformat.BorderBasePoint.Y / DrawingUnit - margin.Height), 0, 0, 0);
                 pBorder.AddVertexAt(pBorder.NumberOfVertices,
-                    new Point2d((paperformat.BorderBasePoint.X + paperformat.BorderSize.Width) / unit - margin.Width,
-                        paperformat.BorderBasePoint.Y / unit - margin.Height), 0, 0, 0);
+                    new Point2d((paperformat.BorderBasePoint.X + paperformat.BorderSize.Width) / DrawingUnit - margin.Width,
+                        paperformat.BorderBasePoint.Y / DrawingUnit - margin.Height), 0, 0, 0);
                 pBorder.AddVertexAt(pBorder.NumberOfVertices,
-                    new Point2d((paperformat.BorderBasePoint.X + paperformat.BorderSize.Width) / unit - margin.Width,
-                        (paperformat.BorderBasePoint.Y + paperformat.BorderSize.Height) / unit - margin.Height), 0, 0, 0);
+                    new Point2d((paperformat.BorderBasePoint.X + paperformat.BorderSize.Width) / DrawingUnit - margin.Width,
+                        (paperformat.BorderBasePoint.Y + paperformat.BorderSize.Height) / DrawingUnit - margin.Height), 0, 0, 0);
                 pBorder.AddVertexAt(pBorder.NumberOfVertices,
-                    new Point2d(paperformat.BorderBasePoint.X / unit - margin.Width,
-                    (paperformat.BorderBasePoint.Y + paperformat.BorderSize.Height) / unit - margin.Height), 0, 0, 0);
+                    new Point2d(paperformat.BorderBasePoint.X / DrawingUnit - margin.Width,
+                    (paperformat.BorderBasePoint.Y + paperformat.BorderSize.Height) / DrawingUnit - margin.Height), 0, 0, 0);
                 pBorder.Closed = true;
 
                 // Append polyline and tell transaction about it
@@ -53,12 +58,12 @@ namespace AutoCADTools.PrintLayout
                 // Create a line for the nippel and set start- and endpoint depending on format
                 Line halfSizeMark = new Line();
                 halfSizeMark.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
-                halfSizeMark.LayerId = document.Database.LayerZero;
+                halfSizeMark.LayerId = Document.Database.LayerZero;
 
                 if (paperformat is PaperformatTextfieldA4)
                 {
-                    halfSizeMark.StartPoint = new Point3d((paperformat.BorderBasePoint.X - 10.0) / unit - margin.Width,
-                        (paperformat.BorderBasePoint.Y + paperformat.BorderSize.Height / 2) / unit - margin.Height, 0);
+                    halfSizeMark.StartPoint = new Point3d((paperformat.BorderBasePoint.X - 10.0) / DrawingUnit - margin.Width,
+                        (paperformat.BorderBasePoint.Y + paperformat.BorderSize.Height / 2) / DrawingUnit - margin.Height, 0);
                 }
                 else
                 {
@@ -70,20 +75,20 @@ namespace AutoCADTools.PrintLayout
                         using (Line foldLine = new Line())
                         {
                             foldLine.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
-                            foldLine.LayerId = document.Database.LayerZero;
-                            foldLine.StartPoint = new Point3d(paperformat.BorderBasePoint.X / unit - margin.Width,
-                                    (paperformat.BorderBasePoint.Y + counter * PaperformatTextfieldCustom.foldPeriod.Y) / unit - margin.Height, 0);
-                            foldLine.EndPoint = foldLine.StartPoint.Add(new Vector3d((paperformat.ViewportBasePoint.X - paperformat.BorderBasePoint.X) / unit, 0, 0));
+                            foldLine.LayerId = Document.Database.LayerZero;
+                            foldLine.StartPoint = new Point3d(paperformat.BorderBasePoint.X / DrawingUnit - margin.Width,
+                                    (paperformat.BorderBasePoint.Y + counter * PaperformatTextfieldCustom.foldPeriod.Y) / DrawingUnit - margin.Height, 0);
+                            foldLine.EndPoint = foldLine.StartPoint.Add(new Vector3d((paperformat.ViewportBasePoint.X - paperformat.BorderBasePoint.X) / DrawingUnit, 0, 0));
                             layoutRecord.AppendEntity(foldLine);
                             trans.AddNewlyCreatedDBObject(foldLine, true);
                         }
                         remainingHeight -= PaperformatTextfieldCustom.foldPeriod.Y;
                     }
-                    halfSizeMark.StartPoint = new Point3d((paperformat.ViewportBasePoint.X - 10.0) / unit - margin.Width,
-                        (paperformat.BorderBasePoint.Y + PaperformatTextfieldCustom.foldPeriod.Y / 2) / unit - margin.Height, 0);
+                    halfSizeMark.StartPoint = new Point3d((paperformat.ViewportBasePoint.X - 10.0) / DrawingUnit - margin.Width,
+                        (paperformat.BorderBasePoint.Y + PaperformatTextfieldCustom.foldPeriod.Y / 2) / DrawingUnit - margin.Height, 0);
                 }
 
-                halfSizeMark.EndPoint = halfSizeMark.StartPoint.Add(new Vector3d(10.0 / unit, 0, 0));
+                halfSizeMark.EndPoint = halfSizeMark.StartPoint.Add(new Vector3d(10.0 / DrawingUnit, 0, 0));
 
                 // Append nippel polyline and tell transaction about it
                 layoutRecord.AppendEntity(halfSizeMark);
@@ -92,17 +97,17 @@ namespace AutoCADTools.PrintLayout
 
                 // Create a new BlockReference of the right textfield and get the record of the block
                 BlockTableRecord textfieldBlock = trans.GetObject(blockTable[paperformat.TextfieldBlockName], OpenMode.ForRead) as BlockTableRecord;
-                BlockReference textfield = new BlockReference(new Point3d(paperformat.TextfieldBasePoint.X / unit - margin.Width, 
-                    paperformat.TextfieldBasePoint.Y / unit - margin.Height, 0), blockTable[paperformat.TextfieldBlockName]);
+                BlockReference textfield = new BlockReference(new Point3d(paperformat.TextfieldBasePoint.X / DrawingUnit - margin.Width,
+                    paperformat.TextfieldBasePoint.Y / DrawingUnit - margin.Height, 0), blockTable[paperformat.TextfieldBlockName]);
                 textfield.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
-                textfield.LayerId = document.Database.LayerZero;
+                textfield.LayerId = Document.Database.LayerZero;
 
                 // Set right scalefactor (should be 0.01)
                 textfield.ScaleFactors = new Scale3d(textfield.UnitFactor);
                 if (paperformat.OldTextfieldSize)
                 {
-                    textfield.ScaleFactors = new Scale3d(10 / unit);
-                    textfield.Position = textfield.Position.Add(new Vector3d(paperformat.TextfieldSize.Width / unit, - paperformat.TextfieldSize.Height / unit, 0));
+                    textfield.ScaleFactors = new Scale3d(10 / DrawingUnit);
+                    textfield.Position = textfield.Position.Add(new Vector3d(paperformat.TextfieldSize.Width / DrawingUnit, -paperformat.TextfieldSize.Height / DrawingUnit, 0));
                 }
 
                 // Append the textfield and tell transaction about it
@@ -124,7 +129,7 @@ namespace AutoCADTools.PrintLayout
                             // Set scale or date in the textfield
                             if (attRef.Tag == "MAßSTÄBE")
                             {
-                                attRef.TextString = "1:" + Math.Round(1.0 / scale).ToString();
+                                attRef.TextString = "1:" + Math.Round(1.0 / Scale).ToString();
                             }
 
                             // Append the attribute and tell transaction about it
