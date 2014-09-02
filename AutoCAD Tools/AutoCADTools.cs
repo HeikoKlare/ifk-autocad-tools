@@ -202,24 +202,34 @@ namespace AutoCADTools
         [CommandMethod("LayoutErstellen", CommandFlags.NoPaperSpace)]
         public static void LayoutErstellen()
         {
-            using (Form UFLayoutErstellen = new UFLayoutErstellen())
+            using (Form UFLayoutErstellen = new LayoutUI(false))
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(UFLayoutErstellen);
             }
         }
 
         /// <summary>
-        /// LayoutErstellen opens a UserForm with options and methods to define a new layout. There is the
-        /// possibility to create simple layouts or layouts with textfields and borders using the data
-        /// of the drawing properties.
+        /// Opens a dialog for creating a layout using the LayoutUI dialog.
+        /// </summary>
+        [CommandMethod("CreateLayout", CommandFlags.NoPaperSpace)]
+        public static void CreateLayout()
+        {
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+            using (Form createLayout = new LayoutUI(drawingData.Version < 2))
+            {
+
+                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(createLayout);
+            }
+        }
+
+        /// <summary>
+        /// Creates a layout based on the drawing area and the default printer.
         /// </summary>
         [CommandMethod("CreateLayoutQuick", CommandFlags.NoPaperSpace)]
         public static void CreateLayoutQuick()
         {
-            using (Form UFLayoutErstellen = new UFLayoutErstellen(true))
-            {
-                Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(UFLayoutErstellen);
-            }
+            QuickLayoutCreation.CreateDefaultLayout();
         }
 
         /// <summary>

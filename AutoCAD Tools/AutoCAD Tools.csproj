@@ -166,12 +166,6 @@
     <Compile Include="Management\ManageProjects.Designer.cs">
       <DependentUpon>ManageProjects.cs</DependentUpon>
     </Compile>
-    <Compile Include="LayoutErstellen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LayoutErstellen.Designer.cs">
-      <DependentUpon>LayoutErstellen.cs</DependentUpon>
-    </Compile>
     <Compile Include="Management\ManageEmployers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +197,7 @@
     <Compile Include="PrintLayout\Point.cs" />
     <Compile Include="PrintLayout\Printer.cs" />
     <Compile Include="PrintLayout\PrinterCache.cs" />
+    <Compile Include="PrintLayout\QuickLayoutCreation.cs" />
     <Compile Include="PrintLayout\Size.cs" />
     <Compile Include="Tools\CompressionWood.cs" />
     <Compile Include="Tools\ConsecutiveDimension.cs" />
@@ -327,9 +322,6 @@
     <EmbeddedResource Include="Management\ManageEmployers.resx">
       <DependentUpon>ManageEmployers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LayoutErstellen.resx">
-      <DependentUpon>LayoutErstellen.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Tools\ReinforcingBondUI.de.resx">
       <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -385,7 +377,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="AutoCadToolsKey.pfx" />
     <None Include="Data\Database.xsc">
       <DependentUpon>Database.xsd</DependentUpon>
     </None>

@@ -232,5 +232,17 @@ namespace AutoCADTools.Properties {
                 this["DefaultPrinterCustom"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Plot")]
+        public string DefaultLayoutName {
+            get {
+                return ((string)(this["DefaultLayoutName"]));
+            }
+            set {
+                this["DefaultLayoutName"] = value;
+            }
+        }
     }
 }

@@ -213,18 +213,16 @@ namespace AutoCADTools.Management
                 if (LayoutManager.Current.CurrentLayout != "Model") LayoutManager.Current.CurrentLayout = "Model";
 
                 // Create the layout using the function of the UFlayout form
-                using (UFLayoutErstellen UFlayout = new UFLayoutErstellen())
-                {
-                    progress.setProgress(5);
-                    progress.Update();
+                progress.setProgress(5);
+                progress.Update();
 
-                    if (!UFlayout.CreatePngLayout())
-                    {
-                        progress.Hide();
-                        this.Show();
-                        return false;
-                    }
+                if (!PrintLayout.QuickLayoutCreation.CreatePngLayout())
+                {
+                    progress.Hide();
+                    this.Show();
+                    return false;
                 }
+                
 
                 progress.setDescription(LocalData.PNGPlotInitialize);
                 progress.setProgress(20);
