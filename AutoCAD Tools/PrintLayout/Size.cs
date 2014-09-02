@@ -113,6 +113,19 @@ namespace AutoCADTools.PrintLayout
         }
 
         /// <summary>
+        /// Implements the operator - as the component-wise difference of two sizes.
+        /// </summary>
+        /// <param name="s1">The first size.</param>
+        /// <param name="s2">The seconds size.</param>
+        /// <returns>
+        /// The component-wise difference of the two sizes.
+        /// </returns>
+        public static Size operator -(Size s1, Size s2)
+        {
+            return new Size(s1.width - s2.width, s1.height - s2.height);
+        }
+
+        /// <summary>
         /// Implements the operator * as the component-wise scaled size by the specified scalar.
         /// </summary>
         /// <param name="scalar">The scalar to multiply the size with.</param>
