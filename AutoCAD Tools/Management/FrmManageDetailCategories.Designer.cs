@@ -77,6 +77,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmManageDetailCategories";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ManageDetailCategories_FormClosing);
+            this.Load += new System.EventHandler(this.FrmManageDetailCategories_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmManageDetailCategories_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.dgdAnnotationCategories)).EndInit();
             this.ResumeLayout(false);

@@ -257,8 +257,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(grpProjectData);
             this.Controls.Add(grpProjects);
+            this.KeyPreview = true;
             this.MinimizeBox = false;
             this.Name = "FrmManageProjects";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmManageProjects_FormClosing);
+            this.Load += new System.EventHandler(this.FrmManageProjects_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmManageProjects_KeyPress);
             grpProjects.ResumeLayout(false);
             this.mnuProjects.ResumeLayout(false);
             grpProjectData.ResumeLayout(false);

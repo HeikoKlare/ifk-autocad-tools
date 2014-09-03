@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using AutoCADTools.Data;
 
@@ -29,7 +23,7 @@ namespace AutoCADTools.Management
 
         #endregion
 
-        #region Constructors
+        #region Load/Unload
         
         /// <summary>
         /// Initiates a new GUI to manage employers.
@@ -38,7 +32,10 @@ namespace AutoCADTools.Management
         public FrmManageDetailCategories()
         {
             InitializeComponent();
+        }
 
+        private void FrmManageDetailCategories_Load(object sender, EventArgs e)
+        {
             connection = new SqlConnection();
 
             // Fille the detail categories table
@@ -52,10 +49,6 @@ namespace AutoCADTools.Management
             dgdAnnotationCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        #endregion
-
-        #region EventHandler
-        
         /// <summary>
         /// Asks user to save changes when closing the window.
         /// </summary>
@@ -64,13 +57,18 @@ namespace AutoCADTools.Management
         private void ManageDetailCategories_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (detailCategoriesTable.GetChanges() != null &&
-                MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle, 
+                MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 connection.UpdateDetailCategories(detailCategoriesTable);
             }
+            connection.Dispose();
         }
 
+        #endregion
+
+        #region EventHandler
+        
         /// <summary>
         /// Saves changes in global database when clicking the Save-Button.
         /// </summary>
@@ -137,7 +135,6 @@ namespace AutoCADTools.Management
         }
 
         #endregion
-
 
     }
 }

@@ -50,7 +50,10 @@ namespace AutoCADTools.Management
         public FrmManageProjects()
         {
             InitializeComponent();
+        }
 
+        private void FrmManageProjects_Load(object sender, EventArgs e)
+        {
             state = EditState.input;
             dataBound = false;
             connection = new SqlConnection();
@@ -67,6 +70,11 @@ namespace AutoCADTools.Management
             // Refresh (fill) employer and project tables
             Employers_Refresh();
             Projects_Refresh();
+        }
+
+        private void FrmManageProjects_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            connection.Dispose();
         }
 
         #endregion
@@ -374,6 +382,15 @@ namespace AutoCADTools.Management
             Employers_Refresh();
         }
 
+        private void FrmManageProjects_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
+            }
+        }
+
         #endregion
 
         #region ErrorHandling
@@ -450,6 +467,6 @@ namespace AutoCADTools.Management
         }
 
         #endregion
-
+        
     }
 }

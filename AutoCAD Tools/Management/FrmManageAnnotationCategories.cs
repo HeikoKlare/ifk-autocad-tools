@@ -24,7 +24,7 @@ namespace AutoCADTools.Management
 
         #endregion
 
-        #region Constructors
+        #region Load/Unload
         
         /// <summary>
         /// Initiates a new GUI to manage annotation categories.
@@ -33,9 +33,12 @@ namespace AutoCADTools.Management
         public FrmManageAnnotationCategories()
         {
             InitializeComponent();
+        }
 
+        private void FrmManageAnnotationCategories_Load(object sender, EventArgs e)
+        {
             connection = new SqlConnection();
-          
+            
             // Fille the annotation categories table
             annotationCategoriesTable = new Database.AnnotationCategoriesDataTable();
             connection.FillAnnotationCategories(annotationCategoriesTable);
@@ -47,25 +50,27 @@ namespace AutoCADTools.Management
             dgdAnnotationCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        #endregion
-
-        #region EventHandler
-        
         /// <summary>
         /// Asks user to save changes when closing the window.
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ManageAnnotationCategories_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmManageAnnotationCategories_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (annotationCategoriesTable.GetChanges() != null &&
-                MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle, 
+                MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 connection.UpdateAnnotationCategories(annotationCategoriesTable);
             }
+            connection.Dispose();
         }
+          
 
+        #endregion
+
+        #region EventHandler
+        
         /// <summary>
         /// Saves changes in global database when clicking the Save-Button.
         /// </summary>
@@ -132,7 +137,6 @@ namespace AutoCADTools.Management
         }
 
         #endregion
-          
 
     }
 }

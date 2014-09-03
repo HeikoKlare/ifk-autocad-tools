@@ -181,6 +181,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmManageAnnotations";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmManageAnnotations_FormClosing);
+            this.Load += new System.EventHandler(this.FrmManageAnnotations_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmManageAnnotations_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.conAnnotations.ResumeLayout(false);

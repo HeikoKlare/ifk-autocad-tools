@@ -42,7 +42,7 @@ namespace AutoCADTools.Management
 
         #endregion
 
-        #region Constructors
+        #region Load/Unload
         
         /// <summary>
         /// Initates a new GUI for managing projects and the needed database connection and data tables.
@@ -50,12 +50,15 @@ namespace AutoCADTools.Management
         public FrmManageAnnotations()
         {
             InitializeComponent();
-
+        }
+        
+        private void FrmManageAnnotations_Load(object sender, EventArgs e)
+        {
             state = EditState.input;
             dataBound = false;
             connection = new SqlConnection();
 
-             // Initialize annotation categories and annotation table
+            // Initialize annotation categories and annotation table
             annotationCategoriesTable = new Database.AnnotationCategoriesDataTable();
             annotationsTable = new Database.AnnotationsDataTable();
             lvwAnnotations.Columns.Add(LocalData.Name, 240);
@@ -63,7 +66,12 @@ namespace AutoCADTools.Management
             AnnotationCategories_Refresh();
             Annotations_Refresh();
         }
-       
+
+        private void FrmManageAnnotations_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            connection.Dispose();
+        }
+
         #endregion
 
         #region Methods
@@ -108,7 +116,12 @@ namespace AutoCADTools.Management
 
             // Clear table and refill annotations table
             annotationsTable.Clear();
-            int categoryId = int.Parse(cboAnnotationCategories.SelectedValue.ToString());
+            int categoryId = 0;
+            if (!int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out categoryId))
+            {
+                lvwAnnotations.Items.Clear();
+                return;
+            }
             connection.FillAnnotations(annotationsTable, categoryId);
 
             // Reset data binding of annotations list
