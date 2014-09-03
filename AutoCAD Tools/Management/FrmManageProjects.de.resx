@@ -117,8 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="butEditEmployers.Error" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="butEditEmployers.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="butEditEmployers.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="butEditEmployers.Text" xml:space="preserve">
     <value>Auftraggeber bearbeiten</value>
+  </data>
+  <data name="lblProjectCreatedAt.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblProjectCreatedAt.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblProjectCreatedAt.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblProjectCreatedAtPreamble.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblProjectCreatedAtPreamble.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblProjectCreatedAtPreamble.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblProjectCreatedAtPreamble.Size" type="System.Drawing.Size, System.Drawing">
@@ -127,17 +156,98 @@
   <data name="lblProjectCreatedAtPreamble.Text" xml:space="preserve">
     <value>Projekt erstellt am:</value>
   </data>
+  <data name="lblNumber.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblNumber.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblNumber.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 20</value>
   </data>
   <data name="lblNumber.Text" xml:space="preserve">
     <value>Statiknummer:</value>
   </data>
+  <data name="txtDescription4.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescription4.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtDescription4.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butRemove.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butRemove.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butRemove.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="butRemove.Text" xml:space="preserve">
     <value>Entfernen</value>
   </data>
+  <data name="txtNumber.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtNumber.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtNumber.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butUseForNew.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butUseForNew.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butUseForNew.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="butUseForNew.Text" xml:space="preserve">
     <value>Als neu nutzen</value>
+  </data>
+  <data name="txtDescription1.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescription1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtDescription1.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="txtDescription3.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescription3.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtDescription3.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="txtDescriptionShort.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescriptionShort.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtDescriptionShort.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblEmployer.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEmployer.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblEmployer.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lblEmployer.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 20</value>
@@ -145,8 +255,26 @@
   <data name="lblEmployer.Text" xml:space="preserve">
     <value>Auftraggeber:</value>
   </data>
+  <data name="butNew.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butNew.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butNew.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="butNew.Text" xml:space="preserve">
     <value>Neu</value>
+  </data>
+  <data name="lblDescription1.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDescription1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblDescription1.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lblDescription1.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 20</value>
@@ -154,11 +282,95 @@
   <data name="lblDescription1.Text" xml:space="preserve">
     <value>BV:</value>
   </data>
+  <data name="cboEmployer.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cboEmployer.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="cboEmployer.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="butModify.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butModify.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butModify.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="butModify.Text" xml:space="preserve">
     <value>Hinzufügen</value>
   </data>
+  <data name="txtDescription2.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescription2.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="txtDescription2.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grpProjectData.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grpProjectData.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="grpProjectData.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="grpProjectData.Text" xml:space="preserve">
     <value>Projektdaten</value>
+  </data>
+  <data name="mnuProjects.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mnuProjects.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="mnuProjects.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="mnuProjectsRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 30</value>
+  </data>
+  <data name="mnuProjectsRemove.Text" xml:space="preserve">
+    <value>Entfernen</value>
+  </data>
+  <data name="mnuProjectsEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 30</value>
+  </data>
+  <data name="mnuProjectsEdit.Text" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="mnuProjectsUseForNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>220, 30</value>
+  </data>
+  <data name="mnuProjectsUseForNew.Text" xml:space="preserve">
+    <value>Als neu benutzen</value>
+  </data>
+  <data name="mnuProjects.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 127</value>
+  </data>
+  <data name="lvwProjects.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lvwProjects.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lvwProjects.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grpProjects.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grpProjects.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="grpProjects.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="grpProjects.Text" xml:space="preserve">
     <value>Projekte</value>
@@ -224,6 +436,15 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Projekteverwaltung</value>
+  </data>
+  <data name="lblDescriptionShort.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDescriptionShort.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="lblDescriptionShort.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lblDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 20</value>
