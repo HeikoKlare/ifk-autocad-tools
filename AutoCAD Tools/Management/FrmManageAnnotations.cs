@@ -61,7 +61,7 @@ namespace AutoCADTools.Management
             // Initialize annotation categories and annotation table
             annotationCategoriesTable = new Database.AnnotationCategoriesDataTable();
             annotationsTable = new Database.AnnotationsDataTable();
-            lvwAnnotations.Columns.Add(LocalData.Name, 240);
+            lvwAnnotations.Columns.Add(new ColumnHeader());
 
             AnnotationCategories_Refresh();
             Annotations_Refresh();
@@ -107,10 +107,11 @@ namespace AutoCADTools.Management
         /// </summary>
         private void Annotations_Refresh()
         {
+            lvwAnnotations.SelectedIndices.Clear();
+            lvwAnnotations.Items.Clear();
             // If no category is selected, just clear the annotations list
             if (cboAnnotationCategories.SelectedIndex == -1)
             {
-                lvwAnnotations.Items.Clear();
                 return;
             }
 
@@ -119,14 +120,12 @@ namespace AutoCADTools.Management
             int categoryId = 0;
             if (!int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out categoryId))
             {
-                lvwAnnotations.Items.Clear();
                 return;
             }
             connection.FillAnnotations(annotationsTable, categoryId);
 
             // Reset data binding of annotations list
             lvwAnnotations.BeginUpdate();
-            lvwAnnotations.Clear();
             foreach (Database.AnnotationsRow row in annotationsTable.Rows)
             {
                 if (row.RowState != DataRowState.Deleted)
@@ -135,6 +134,7 @@ namespace AutoCADTools.Management
                     lvwAnnotations.Items.Add(lvi);
                 }
             }
+            lvwAnnotations.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             lvwAnnotations.EndUpdate();
         }
 
@@ -227,7 +227,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ListAnnotations_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwAnnotations_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwAnnotations.SelectedIndices.Count > 0)
             {
@@ -253,7 +253,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButModify_Click(object sender, EventArgs e)
+        private void butModify_Click(object sender, EventArgs e)
         {
             // Validate the fields
             if (!this.ValidateFields()) return;
@@ -291,7 +291,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButRemove_Click(object sender, EventArgs e)
+        private void butRemove_Click(object sender, EventArgs e)
         {
             // Delete the selected row, update data binding and update global database and controls
             state = EditState.input;
@@ -311,7 +311,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButNew_Click(object sender, EventArgs e)
+        private void butNew_Click(object sender, EventArgs e)
         {
             state = EditState.input;
             ClearFields();
@@ -327,7 +327,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButUseForNew_Click(object sender, EventArgs e)
+        private void butUseForNew_Click(object sender, EventArgs e)
         {
             state = EditState.input;
             UpdateControlStates();
@@ -342,7 +342,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButEditAnnotationCategories_Click(object sender, EventArgs e)
+        private void butEditAnnotationCategories_Click(object sender, EventArgs e)
         {
             using (FrmManageAnnotationCategories management = new FrmManageAnnotationCategories())
             {
@@ -356,7 +356,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void CmbAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Annotations_Refresh();
         }

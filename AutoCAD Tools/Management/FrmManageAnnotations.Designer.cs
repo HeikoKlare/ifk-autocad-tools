@@ -81,28 +81,28 @@
             resources.ApplyResources(this.cboAnnotationCategories, "cboAnnotationCategories");
             this.cboAnnotationCategories.FormattingEnabled = true;
             this.cboAnnotationCategories.Name = "cboAnnotationCategories";
-            this.cboAnnotationCategories.SelectedIndexChanged += new System.EventHandler(this.CmbAnnotationCategories_SelectedIndexChanged);
+            this.cboAnnotationCategories.SelectedIndexChanged += new System.EventHandler(this.cboAnnotationCategories_SelectedIndexChanged);
             // 
             // butRemove
             // 
             resources.ApplyResources(this.butRemove, "butRemove");
             this.butRemove.Name = "butRemove";
             this.butRemove.UseVisualStyleBackColor = true;
-            this.butRemove.Click += new System.EventHandler(this.ButRemove_Click);
+            this.butRemove.Click += new System.EventHandler(this.butRemove_Click);
             // 
             // butNew
             // 
             resources.ApplyResources(this.butNew, "butNew");
             this.butNew.Name = "butNew";
             this.butNew.UseVisualStyleBackColor = true;
-            this.butNew.Click += new System.EventHandler(this.ButNew_Click);
+            this.butNew.Click += new System.EventHandler(this.butNew_Click);
             // 
             // butModify
             // 
             resources.ApplyResources(this.butModify, "butModify");
             this.butModify.Name = "butModify";
             this.butModify.UseVisualStyleBackColor = true;
-            this.butModify.Click += new System.EventHandler(this.ButModify_Click);
+            this.butModify.Click += new System.EventHandler(this.butModify_Click);
             // 
             // errorProvider
             // 
@@ -115,18 +115,19 @@
             resources.ApplyResources(this.butEditCategories, "butEditCategories");
             this.butEditCategories.Name = "butEditCategories";
             this.butEditCategories.UseVisualStyleBackColor = true;
-            this.butEditCategories.Click += new System.EventHandler(this.ButEditAnnotationCategories_Click);
+            this.butEditCategories.Click += new System.EventHandler(this.butEditAnnotationCategories_Click);
             // 
             // lvwAnnotations
             // 
             resources.ApplyResources(this.lvwAnnotations, "lvwAnnotations");
             this.lvwAnnotations.ContextMenuStrip = this.conAnnotations;
+            this.lvwAnnotations.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwAnnotations.HideSelection = false;
             this.lvwAnnotations.MultiSelect = false;
             this.lvwAnnotations.Name = "lvwAnnotations";
             this.lvwAnnotations.UseCompatibleStateImageBehavior = false;
-            this.lvwAnnotations.View = System.Windows.Forms.View.List;
-            this.lvwAnnotations.SelectedIndexChanged += new System.EventHandler(this.ListAnnotations_SelectedIndexChanged);
+            this.lvwAnnotations.View = System.Windows.Forms.View.Details;
+            this.lvwAnnotations.SelectedIndexChanged += new System.EventHandler(this.lvwAnnotations_SelectedIndexChanged);
             // 
             // conAnnotations
             // 
@@ -141,26 +142,26 @@
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
             resources.ApplyResources(this.removeToolStripMenuItem, "removeToolStripMenuItem");
-            this.removeToolStripMenuItem.Click += new System.EventHandler(this.ButRemove_Click);
+            this.removeToolStripMenuItem.Click += new System.EventHandler(this.butRemove_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             resources.ApplyResources(this.editToolStripMenuItem, "editToolStripMenuItem");
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.ButModify_Click);
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.butModify_Click);
             // 
             // useForNewToolStripMenuItem
             // 
             this.useForNewToolStripMenuItem.Name = "useForNewToolStripMenuItem";
             resources.ApplyResources(this.useForNewToolStripMenuItem, "useForNewToolStripMenuItem");
-            this.useForNewToolStripMenuItem.Click += new System.EventHandler(this.ButUseForNew_Click);
+            this.useForNewToolStripMenuItem.Click += new System.EventHandler(this.butUseForNew_Click);
             // 
             // butUseForNew
             // 
             resources.ApplyResources(this.butUseForNew, "butUseForNew");
             this.butUseForNew.Name = "butUseForNew";
             this.butUseForNew.UseVisualStyleBackColor = true;
-            this.butUseForNew.Click += new System.EventHandler(this.ButUseForNew_Click);
+            this.butUseForNew.Click += new System.EventHandler(this.butUseForNew_Click);
             // 
             // FrmManageAnnotations
             // 
