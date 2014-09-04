@@ -42,7 +42,7 @@ namespace AutoCADTools.Management
 
         #endregion
 
-        #region Constructors
+        #region Load/Unload
         
         /// <summary>
         /// Initates a new GUI for managing projects and the needed database connection and data tables.
@@ -375,7 +375,7 @@ namespace AutoCADTools.Management
         /// <param name="e">the event arguments</param>
         private void ButEditEmployers_Click(object sender, EventArgs e)
         {
-            using (ManageEmployers management = new ManageEmployers())
+            using (FrmManageEmployers management = new FrmManageEmployers())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }
