@@ -56,7 +56,7 @@ namespace AutoCADTools
         [CommandMethod("ManageEmployers")]
         public static void ManageEmployers()
         {
-            using (Form management = new Management.ManageEmployers())
+            using (Form management = new Management.FrmManageEmployers())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }

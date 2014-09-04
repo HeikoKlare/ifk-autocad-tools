@@ -169,11 +169,11 @@
     <Compile Include="Management\FrmManageProjects.Designer.cs">
       <DependentUpon>FrmManageProjects.cs</DependentUpon>
     </Compile>
-    <Compile Include="Management\ManageEmployers.cs">
+    <Compile Include="Management\FrmManageEmployers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\ManageEmployers.Designer.cs">
-      <DependentUpon>ManageEmployers.cs</DependentUpon>
+    <Compile Include="Management\FrmManageEmployers.Designer.cs">
+      <DependentUpon>FrmManageEmployers.cs</DependentUpon>
     </Compile>
     <Compile Include="Management\Settings.cs">
       <SubType>Form</SubType>
@@ -273,6 +273,9 @@
     <EmbeddedResource Include="Management\FrmManageDetailCategories.de.resx">
       <DependentUpon>FrmManageDetailCategories.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Management\FrmManageEmployers.de.resx">
+      <DependentUpon>FrmManageEmployers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintLayout\LayoutUI.de.resx">
       <DependentUpon>LayoutUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -314,17 +317,14 @@
     <EmbeddedResource Include="Management\FrmManageDetailCategories.resx">
       <DependentUpon>FrmManageDetailCategories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageEmployers.de.resx">
-      <DependentUpon>ManageEmployers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Management\FrmManageProjects.de.resx">
       <DependentUpon>FrmManageProjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management\FrmManageProjects.resx">
       <DependentUpon>FrmManageProjects.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageEmployers.resx">
-      <DependentUpon>ManageEmployers.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageEmployers.resx">
+      <DependentUpon>FrmManageEmployers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\ReinforcingBondUI.de.resx">
       <DependentUpon>ReinforcingBondUI.cs</DependentUpon>

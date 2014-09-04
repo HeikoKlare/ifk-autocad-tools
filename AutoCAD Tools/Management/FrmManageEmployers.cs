@@ -2,16 +2,15 @@
 using System.Windows.Forms;
 using AutoCADTools.Data;
 
-
 namespace AutoCADTools.Management
 {
     /// <summary>
     /// A GUI representing a DataGridView to modify and manage the employers database.
     /// </summary>
-    public partial class ManageEmployers : Form
+    public partial class FrmManageEmployers : Form
     {
         #region Attributes
-        
+
         /// <summary>
         /// The SqlConnection object doing the server connection stuff.
         /// </summary>
@@ -24,16 +23,19 @@ namespace AutoCADTools.Management
 
         #endregion
 
-        #region Constructors
-        
+        #region Load/Unload
+
         /// <summary>
         /// Initiates a new GUI to manage employers.
         /// Initializes the Sql connection and fills the table.
         /// </summary>
-        public ManageEmployers()
+        public FrmManageEmployers()
         {
             InitializeComponent();
+        }
 
+        private void FrmManageEmployers_Load(object sender, EventArgs e)
+        {
             connection = new SqlConnection();
 
             // Fille the employers table
@@ -41,17 +43,13 @@ namespace AutoCADTools.Management
             connection.FillEmployers(employersTable);
 
             // Initialize the DataGridView
-            DgEmployers.DataSource = employersTable;
-            DgEmployers.Columns[0].HeaderText = LocalData.EmployerShort;
-            DgEmployers.Columns[0].Width = 120;
-            DgEmployers.Columns[1].HeaderText = LocalData.Employer;
-            DgEmployers.Columns[1].Width = 260;
+            dgdEmployers.DataSource = employersTable;
+            dgdEmployers.Columns[0].HeaderText = LocalData.EmployerShort;
+            dgdEmployers.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgdEmployers.Columns[1].HeaderText = LocalData.Employer;
+            dgdEmployers.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        #endregion
-
-        #region EventHandler
-        
         /// <summary>
         /// Asks user to save changes when closing the window.
         /// </summary>
@@ -60,19 +58,24 @@ namespace AutoCADTools.Management
         private void ManageEmployers_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (employersTable.GetChanges() != null &&
-                MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle, 
+                MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle,
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 connection.UpdateEmployers(employersTable);
             }
+            connection.Dispose();
         }
+
+        #endregion
+
+        #region EventHandler
 
         /// <summary>
         /// Saves changes in global database when clicking the Save-Button.
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButSave_Click(object sender, EventArgs e)
+        private void butSave_Click(object sender, EventArgs e)
         {
             connection.UpdateEmployers(employersTable);
         }
@@ -82,7 +85,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButDiscard_Click(object sender, EventArgs e)
+        private void butDiscard_Click(object sender, EventArgs e)
         {
             employersTable.RejectChanges();
         }
@@ -93,7 +96,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButUpdate_Click(object sender, EventArgs e)
+        private void butUpdate_Click(object sender, EventArgs e)
         {
             if (employersTable.GetChanges() != null &&
                 MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle,
@@ -106,17 +109,26 @@ namespace AutoCADTools.Management
             connection.FillEmployers(employersTable);
         }
 
+        private void FrmManageEmployers_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
+            }
+        }
+
         #endregion
 
         #region ErrorHandling
-        
+
         /// <summary>
         /// Handles the data errors in the DataGridView and show a MessageBox to the user
         /// describing what he did wrong.
         /// </summary>
         /// <param name="sender">the ssender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void DgEmployers_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void dgdEmployers_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
             MessageBox.Show(LocalData.DataErrorMessage + Environment.NewLine + e.Exception.Message,
