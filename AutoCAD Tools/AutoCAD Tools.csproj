@@ -126,11 +126,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Management\ManageDetails.cs">
+    <Compile Include="Management\FrmManageDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\ManageDetails.Designer.cs">
-      <DependentUpon>ManageDetails.cs</DependentUpon>
+    <Compile Include="Management\FrmManageDetails.Designer.cs">
+      <DependentUpon>FrmManageDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Management\FrmManageDetailCategories.cs">
       <SubType>Form</SubType>
@@ -287,11 +287,11 @@
     <EmbeddedResource Include="Management\Settings.de.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageDetails.de.resx">
-      <DependentUpon>ManageDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageDetails.de.resx">
+      <DependentUpon>FrmManageDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\ManageDetails.resx">
-      <DependentUpon>ManageDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmManageDetails.resx">
+      <DependentUpon>FrmManageDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management\LocalData.de.resx" />
     <EmbeddedResource Include="Management\LocalData.resx">

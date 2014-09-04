@@ -116,7 +116,7 @@ namespace AutoCADTools
         [CommandMethod("ManageDetails")]
         public static void ManageDetails()
         {
-            using (Form management = new Management.ManageDetails())
+            using (Form management = new Management.FrmManageDetails())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(management);
             }

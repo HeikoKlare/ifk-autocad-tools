@@ -16,7 +16,7 @@ namespace AutoCADTools.Management
     /// Represents a GUI to modify, add and manage annotations.
     /// It can be navigated through categories and annotations, they can be modifed and added.
     /// </summary>
-    public partial class ManageDetails : Form
+    public partial class FrmManageDetails : Form
     {
         #region Attributes
 
@@ -29,7 +29,7 @@ namespace AutoCADTools.Management
         /// The table containing the detail categories.
         /// </summary>
         private Database.DetailCategoriesDataTable detailCategoriesTable;
-        
+
         /// <summary>
         /// The table containing the details.
         /// </summary>
@@ -37,26 +37,35 @@ namespace AutoCADTools.Management
 
         #endregion
 
-        #region Constructors
-        
+        #region Load/Unload
+
         /// <summary>
         /// Initates a new GUI for managing details and the needed database connection and data tables.
         /// </summary>
-        public ManageDetails()
+        public FrmManageDetails()
         {
             InitializeComponent();
+        }
 
+        private void FrmManageDetails_Load(object sender, EventArgs e)
+        {
             connection = new SqlConnection();
 
-             // Initialize annotation categories and annotation table
+            // Initialize annotation categories and annotation table
             detailCategoriesTable = new Database.DetailCategoriesDataTable();
             detailsTable = new Database.DetailsDataTable();
-            ListDetails.Columns.Add(LocalData.Name, 280);
+
+            lvwDetails.Columns.Add(new ColumnHeader());
 
             DetailCategories_Refresh();
             Details_Refresh();
         }
-       
+
+        private void FrmManageDetails_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            connection.Dispose();
+        }
+
         #endregion
 
         #region Methods
@@ -69,20 +78,20 @@ namespace AutoCADTools.Management
         private void DetailCategories_Refresh()
         {
             // Save category, clear table and refill category table
-            String saveCategory = CmbDetailCategories.Text;
+            String saveCategory = cboDetailCategories.Text;
             detailCategoriesTable.Clear();
             connection.FillDetailCategories(detailCategoriesTable);
 
             // Reset data binding of categories list
-            CmbDetailCategories.BeginUpdate();
-            CmbDetailCategories.DataSource = null;
-            CmbDetailCategories.DataSource = detailCategoriesTable;
-            CmbDetailCategories.ValueMember = "id";
-            CmbDetailCategories.DisplayMember = "name";
-            CmbDetailCategories.EndUpdate();
+            cboDetailCategories.BeginUpdate();
+            cboDetailCategories.DataSource = null;
+            cboDetailCategories.DataSource = detailCategoriesTable;
+            cboDetailCategories.ValueMember = "id";
+            cboDetailCategories.DisplayMember = "name";
+            cboDetailCategories.EndUpdate();
 
             // Restore last chosen category
-            CmbDetailCategories.Text = saveCategory;
+            cboDetailCategories.Text = saveCategory;
         }
 
         /// <summary>
@@ -92,30 +101,35 @@ namespace AutoCADTools.Management
         /// </summary>
         private void Details_Refresh()
         {
+            lvwDetails.SelectedIndices.Clear();
+            lvwDetails.Items.Clear();
             // If no category is selected, just clear the annotations list
-            if (CmbDetailCategories.SelectedIndex == -1)
+            if (cboDetailCategories.SelectedIndex == -1)
             {
-                ListDetails.Items.Clear();
                 return;
             }
 
             // Clear table and refill annotations table
             detailsTable.Clear();
-            int categoryId = int.Parse(CmbDetailCategories.SelectedValue.ToString());
+            int categoryId = 0;
+            if (!int.TryParse(cboDetailCategories.SelectedValue.ToString(), out categoryId))
+            {
+                return;
+            }
             connection.FillDetails(detailsTable, categoryId);
 
             // Reset data binding of annotations list
-            ListDetails.BeginUpdate();
-            ListDetails.Clear();
+            lvwDetails.BeginUpdate();
             foreach (Database.DetailsRow row in detailsTable.Rows)
             {
                 if (row.RowState != DataRowState.Deleted)
                 {
                     ListViewItem lvi = new ListViewItem(row.name);
-                    ListDetails.Items.Add(lvi);
+                    lvwDetails.Items.Add(lvi);
                 }
             }
-            ListDetails.EndUpdate();
+            lvwDetails.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lvwDetails.EndUpdate();
         }
 
         /// <summary>
@@ -131,15 +145,15 @@ namespace AutoCADTools.Management
         {
             // Initiate a new row
             Database.DetailsRow newRow = detailsTable.NewDetailsRow();
-            newRow.name = TxtName.Text;
-            newRow.categoryId = (int)CmbDetailCategories.SelectedValue;
+            newRow.name = txtName.Text;
+            newRow.categoryId = (int)cboDetailCategories.SelectedValue;
 
             // Get the temporary file paths
-            String templateFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) 
+            String templateFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
                 + Properties.Settings.Default.TemplateFileName;
             String presentationFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
                 + Properties.Settings.Default.PresentationFileName;
-            
+
             // Delete template and presentation file if existing
             File.Delete(templateFile);
             File.Delete(presentationFile);
@@ -178,7 +192,7 @@ namespace AutoCADTools.Management
 
             // Refresh projects and show window again
             Details_Refresh();
-            TxtName.Text = "";
+            txtName.Text = "";
             this.Show();
         }
 
@@ -193,7 +207,7 @@ namespace AutoCADTools.Management
             if (PlotFactory.ProcessPlotState != ProcessPlotState.NotPlotting)
             {
                 // Show error if a plot is running
-                MessageBox.Show(LocalData.PlotRunningText, LocalData.PlotRunningTitle, 
+                MessageBox.Show(LocalData.PlotRunningText, LocalData.PlotRunningTitle,
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
             }
@@ -222,7 +236,7 @@ namespace AutoCADTools.Management
                     this.Show();
                     return false;
                 }
-                
+
 
                 progress.setDescription(LocalData.PNGPlotInitialize);
                 progress.setProgress(20);
@@ -317,18 +331,17 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ListDetails_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListDetails.SelectedIndices.Count == 0)
+            butRemove.Enabled = lvwDetails.SelectedIndices.Count != 0;
+            butEdit.Enabled = lvwDetails.SelectedIndices.Count != 0;
+            if (lvwDetails.SelectedIndices.Count == 0)
             {
-                PicPng.Image = null;
-                ButRemove.Enabled = false;
+                picPng.Image = null;
             }
             else
             {
-                ButRemove.Enabled = true;
-
-                Database.DetailsDataTable table = connection.GetDetail(detailsTable[ListDetails.SelectedIndices[0]].id);
+                Database.DetailsDataTable table = connection.GetDetail(detailsTable[lvwDetails.SelectedIndices[0]].id);
                 if (table.Rows.Count != 1) return;
 
                 System.Drawing.Image im = null;
@@ -346,7 +359,7 @@ namespace AutoCADTools.Management
                     im.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
 
-                PicPng.Image = im;
+                picPng.Image = im;
             }
         }
 
@@ -356,7 +369,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButAdd_Click(object sender, EventArgs e)
+        private void butAdd_Click(object sender, EventArgs e)
         {
             // Validate the fields
             if (!this.ValidateFields()) return;
@@ -370,15 +383,13 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButRemove_Click(object sender, EventArgs e)
+        private void butRemove_Click(object sender, EventArgs e)
         {
             // Delete the selected row, update data binding and update global database and controls
             CurrencyManager cm = this.BindingContext[detailsTable] as CurrencyManager;
-            detailsTable.Rows[ListDetails.SelectedIndices[0]].Delete();
+            detailsTable.Rows[lvwDetails.SelectedIndices[0]].Delete();
             connection.UpdateDetails(detailsTable);
             Details_Refresh();
-            ListDetails.SelectedIndices.Clear();
-            ListDetails_SelectedIndexChanged(this, null);
         }
 
         /// <summary>
@@ -386,7 +397,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void CmbAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Details_Refresh();
         }
@@ -396,7 +407,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButEditCategories_Click(object sender, EventArgs e)
+        private void butEditCategories_Click(object sender, EventArgs e)
         {
             using (FrmManageDetailCategories management = new FrmManageDetailCategories())
             {
@@ -410,11 +421,11 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void PicPng_MouseClick(object sender, MouseEventArgs e)
+        private void picPng_MouseClick(object sender, MouseEventArgs e)
         {
-            if (PicPng.Image != null)
+            if (picPng.Image != null)
             {
-                System.Drawing.Image im = PicPng.Image;
+                System.Drawing.Image im = picPng.Image;
                 if (e.Button == MouseButtons.Left)
                 {
                     im.RotateFlip(RotateFlipType.Rotate270FlipNone);
@@ -423,14 +434,38 @@ namespace AutoCADTools.Management
                 {
                     im.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
-                PicPng.Image = im;
+                picPng.Image = im;
+            }
+        }
+
+        private void FrmanageDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
+            }
+        }
+
+        private void butEdit_Click(object sender, EventArgs e)
+        {
+            if (lvwDetails.SelectedIndices.Count > 0)
+            {
+                using (EditCategory editForm = new EditCategory(detailsTable, detailCategoriesTable,
+                    lvwDetails.SelectedIndices[0], cboDetailCategories.SelectedIndex))
+                {
+                    Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(editForm);
+                }
+
+                connection.UpdateDetails(detailsTable);
+                Details_Refresh();
             }
         }
 
         #endregion
 
         #region ErrorHandling
-        
+
         /// <summary>
         /// This method validates the data in this formular, especially the input project number,
         /// which has to be not null and does not have to be already used.
@@ -440,11 +475,11 @@ namespace AutoCADTools.Management
         {
             bool result = true;
 
-            errorProvider.SetError(TxtName, String.Empty);
+            errorProvider.SetError(txtName, String.Empty);
 
-            if (String.IsNullOrEmpty(TxtName.Text))
+            if (String.IsNullOrEmpty(txtName.Text))
             {
-                errorProvider.SetError(TxtName, LocalData.ErrorEmptyName);
+                errorProvider.SetError(txtName, LocalData.ErrorEmptyName);
                 result = false;
             }
 
@@ -454,27 +489,6 @@ namespace AutoCADTools.Management
         #endregion
 
         #region ChangeDetail
-        
-        /// <summary>
-        /// Handles clicking the edit detail button in the context strip of the details list.
-        /// Opens a new dialog to change the data of the selected detail.
-        /// </summary>
-        /// <param name="sender">unused</param>
-        /// <param name="e">unused</param>
-        private void TsiEditCategory_Click(object sender, EventArgs e)
-        {
-            if (ListDetails.SelectedIndices.Count > 0)
-            {
-                using (EditCategory editForm = new EditCategory(detailsTable, detailCategoriesTable,
-                    ListDetails.SelectedIndices[0], CmbDetailCategories.SelectedIndex))
-                {
-                    Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(editForm);
-                }
-
-                connection.UpdateDetails(detailsTable);
-                Details_Refresh();
-            }
-        }
 
         /// <summary>
         /// A GUI representing some elements for modifying a detail.
@@ -485,13 +499,13 @@ namespace AutoCADTools.Management
             Database.DetailCategoriesDataTable detailCategoriesTable;
 
             TextBox txtName;
-            ComboBox cmbEdit;
+            ComboBox cboEdit;
             Button butOk;
             Button butCancel;
             int selectedIndex;
             int selectedCategory;
 
-            public EditCategory(Database.DetailsDataTable detailsTable, 
+            public EditCategory(Database.DetailsDataTable detailsTable,
                 Database.DetailCategoriesDataTable detailCategoriesTable,
                 int selectedDetail, int selectedCategory)
             {
@@ -502,50 +516,60 @@ namespace AutoCADTools.Management
 
                 this.StartPosition = FormStartPosition.CenterParent;
                 this.Size = new Size(300, 150);
-                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+                this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+                this.AutoSize = true;
+                this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 
                 txtName = new TextBox();
-                txtName.Size = new Size(240, 20);
-                txtName.Location = new Point(30, 20);
+                txtName.Size = new Size(400, 26);
+                txtName.Location = new Point(12, 12);
                 txtName.Text = detailsTable[selectedDetail].name;
+                txtName.Margin = new Padding(3);
                 this.Controls.Add(txtName);
 
-                cmbEdit = new ComboBox();
-                cmbEdit.DataSource = detailCategoriesTable;
-                cmbEdit.DisplayMember = "name";
-                cmbEdit.ValueMember = "id";
-                cmbEdit.Size = new Size(240, 20);
-                cmbEdit.Location = new Point(30, 55);
-                cmbEdit.DropDownStyle = ComboBoxStyle.DropDownList;
-                this.Controls.Add(cmbEdit);
-                
+                cboEdit = new ComboBox();
+                cboEdit.FlatStyle = FlatStyle.System;
+                cboEdit.DataSource = detailCategoriesTable;
+                cboEdit.DisplayMember = "name";
+                cboEdit.ValueMember = "id";
+                cboEdit.Size = new Size(400, 28);
+                cboEdit.Location = new Point(12, 44);
+                cboEdit.Margin = new Padding(3);
+                cboEdit.DropDownStyle = ComboBoxStyle.DropDownList;
+                this.Controls.Add(cboEdit);
 
                 butOk = new Button();
-                butOk.Size = new Size(100, 20);
-                butOk.Location = new Point(30, 90);
+                butOk.FlatStyle = FlatStyle.System;
+                butOk.Size = new Size(197, 35);
+                butOk.Location = new Point(12, 78);
+                butOk.Margin = new Padding(3);
                 butOk.Text = LocalData.OK;
                 butOk.Click += new EventHandler(EditCategory_ButOk_Click);
                 this.Controls.Add(butOk);
 
                 butCancel = new Button();
-                butCancel.Size = new Size(100, 20);
-                butCancel.Location = new Point(170, 90);
+                butCancel.FlatStyle = FlatStyle.System;
+                butCancel.Size = new Size(197, 35);
+                butCancel.Location = new Point(215, 78);
                 butCancel.Text = LocalData.Cancel;
+                butCancel.Margin = new Padding(3, 3, 12, 12);
                 butCancel.Click += new EventHandler(EditCategory_ButCancel_Click);
                 this.Controls.Add(butCancel);
 
+                this.CancelButton = butCancel;
+                this.AcceptButton = butOk;
                 this.Text = LocalData.EditDetailTitle;
                 this.Load += EditCategory_Load;
             }
 
             private void EditCategory_Load(Object sender, EventArgs e)
             {
-                cmbEdit.SelectedValue = detailsTable[selectedIndex].categoryId;
+                cboEdit.SelectedValue = detailsTable[selectedIndex].categoryId;
             }
 
             private void EditCategory_ButOk_Click(Object sender, EventArgs e)
             {
-                detailsTable[selectedIndex].categoryId = (int)cmbEdit.SelectedValue;
+                detailsTable[selectedIndex].categoryId = (int)cboEdit.SelectedValue;
                 detailsTable[selectedIndex].name = txtName.Text;
                 detailsTable[selectedIndex].EndEdit();
                 this.Close();
