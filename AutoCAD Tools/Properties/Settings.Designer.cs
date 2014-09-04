@@ -188,12 +188,12 @@ namespace AutoCADTools.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool PanicleDescriptionBlack {
+        public bool DiagonalBracingDescriptionBlack {
             get {
-                return ((bool)(this["PanicleDescriptionBlack"]));
+                return ((bool)(this["DiagonalBracingDescriptionBlack"]));
             }
             set {
-                this["PanicleDescriptionBlack"] = value;
+                this["DiagonalBracingDescriptionBlack"] = value;
             }
         }
         

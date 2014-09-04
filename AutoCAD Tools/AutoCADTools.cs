@@ -44,7 +44,7 @@ namespace AutoCADTools
         [CommandMethod("Settings")]
         public static void Settings()
         {
-            using (Form settings = new Management.Settings())
+            using (Form settings = new Management.FrmSettings())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(settings);
             }

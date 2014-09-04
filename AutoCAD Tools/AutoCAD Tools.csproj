@@ -175,11 +175,11 @@
     <Compile Include="Management\FrmManageEmployers.Designer.cs">
       <DependentUpon>FrmManageEmployers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Management\Settings.cs">
+    <Compile Include="Management\FrmSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Management\Settings.Designer.cs">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <Compile Include="Management\FrmSettings.Designer.cs">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintLayout\Paperformat.cs" />
     <Compile Include="PrintLayout\PaperformatPrinterMapping.cs" />
@@ -276,6 +276,9 @@
     <EmbeddedResource Include="Management\FrmManageEmployers.de.resx">
       <DependentUpon>FrmManageEmployers.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Management\FrmSettings.de.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintLayout\LayoutUI.de.resx">
       <DependentUpon>LayoutUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -286,9 +289,6 @@
     <EmbeddedResource Include="PrintLayout\LocalData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Management\Settings.de.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management\FrmManageDetails.de.resx">
       <DependentUpon>FrmManageDetails.cs</DependentUpon>
@@ -338,8 +338,8 @@
     <EmbeddedResource Include="Tools\Panicle.resx">
       <DependentUpon>Panicle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Management\Settings.resx">
-      <DependentUpon>Settings.cs</DependentUpon>
+    <EmbeddedResource Include="Management\FrmSettings.resx">
+      <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\DrawingSettings.de.resx">
       <DependentUpon>DrawingSettings.cs</DependentUpon>
@@ -380,7 +380,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Data\Database.xsc">
       <DependentUpon>Database.xsd</DependentUpon>
     </None>

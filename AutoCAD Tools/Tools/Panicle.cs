@@ -27,7 +27,7 @@ namespace AutoCADTools.Tools
         private static InputType inputType = InputType.ThirdsPoint;
         private static string BlockName {
             get { return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()
-                + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer + Properties.Settings.Default.PanicleDescriptionBlack; }
+                + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer + Properties.Settings.Default.DiagonalBracingDescriptionBlack; }
         }
 
         #endregion
@@ -172,7 +172,7 @@ namespace AutoCADTools.Tools
                         attrDescription.Justify = AttachmentPoint.MiddleLeft;
                         attrDescription.AlignmentPoint = location;
                         attrDescription.Tag = DESCRIPTION_TAG;
-                        if (Properties.Settings.Default.PanicleDescriptionBlack) 
+                        if (Properties.Settings.Default.DiagonalBracingDescriptionBlack) 
                             attrDescription.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
                         attrDescription.LockPositionInBlock = true;
                         textBlockTable.AppendEntity(attrDescription);
