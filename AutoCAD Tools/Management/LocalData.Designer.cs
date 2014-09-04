@@ -205,15 +205,6 @@ namespace AutoCADTools.Management {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
-        /// </summary>
-        internal static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die There is no connection to the database possible. Check the settings and make sure the database server is running. Please skip the following error message. ähnelt.
         /// </summary>
         internal static string NoConnectionText {
