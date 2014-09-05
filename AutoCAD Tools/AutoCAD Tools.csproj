@@ -256,11 +256,11 @@
     <Compile Include="Tools\FrmDrawingSettings.Designer.cs">
       <DependentUpon>FrmDrawingSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\Panicle.cs">
+    <Compile Include="Tools\FrmDiagonalBracing.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tools\Panicle.Designer.cs">
-      <DependentUpon>Panicle.cs</DependentUpon>
+    <Compile Include="Tools\FrmDiagonalBracing.Designer.cs">
+      <DependentUpon>FrmDiagonalBracing.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -332,11 +332,11 @@
     <EmbeddedResource Include="Tools\ReinforcingBondUI.resx">
       <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\Panicle.de.resx">
-      <DependentUpon>Panicle.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmDiagonalBracing.de.resx">
+      <DependentUpon>FrmDiagonalBracing.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\Panicle.resx">
-      <DependentUpon>Panicle.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmDiagonalBracing.resx">
+      <DependentUpon>FrmDiagonalBracing.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Management\FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>

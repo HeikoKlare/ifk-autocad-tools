@@ -175,7 +175,7 @@ namespace AutoCADTools
         [CommandMethod("Panicle", CommandFlags.NoPaperSpace)]
         public static void Panicle()
         {
-            using (Form Form = new Panicle())
+            using (Form Form = new FrmDiagonalBracing())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(Form);
             }
