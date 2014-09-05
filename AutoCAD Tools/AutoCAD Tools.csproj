@@ -210,11 +210,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Tools\Details.cs">
+    <Compile Include="Tools\FrmDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tools\Details.Designer.cs">
-      <DependentUpon>Details.cs</DependentUpon>
+    <Compile Include="Tools\FrmDetails.Designer.cs">
+      <DependentUpon>FrmDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\FrmAnnotations.cs">
       <SubType>Form</SubType>
@@ -349,11 +349,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\Details.de.resx">
-      <DependentUpon>Details.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmDetails.de.resx">
+      <DependentUpon>FrmDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\Details.resx">
-      <DependentUpon>Details.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmDetails.resx">
+      <DependentUpon>FrmDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\FrmAnnotations.de.resx">
       <DependentUpon>FrmAnnotations.cs</DependentUpon>

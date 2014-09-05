@@ -4,10 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using AutoCADTools.Data;
-using AutoCADTools.Utils;
-using Autodesk.AutoCAD.ApplicationServices;
-using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.PlottingServices;
 using Database = AutoCADTools.Data.Database;
 
 namespace AutoCADTools.Tools
@@ -16,7 +12,7 @@ namespace AutoCADTools.Tools
     /// Represents a GUI to modify, add and manage annotations.
     /// It can be navigated through categories and annotations, they can be modifed and added.
     /// </summary>
-    public partial class Details : Form
+    public partial class FrmDetails : Form
     {
         #region Attributes
 
@@ -37,26 +33,34 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        #region Constructors
+        #region Load/Unload
         
         /// <summary>
         /// Initates a new GUI for managing details and the needed database connection and data tables.
         /// </summary>
-        public Details()
+        public FrmDetails()
         {
             InitializeComponent();
+        }
 
+        private void FrmDetails_Load(object sender, EventArgs e)
+        {
             connection = new SqlConnection();
 
-             // Initialize annotation categories and annotation table
+            // Initialize annotation categories and annotation table
             detailCategoriesTable = new Database.DetailCategoriesDataTable();
             detailsTable = new Database.DetailsDataTable();
-            ListDetails.Columns.Add(LocalData.Name, 280);
 
             DetailCategories_Refresh();
             Details_Refresh();
         }
-       
+
+        private void FrmDetails_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            connection.Dispose();
+        }
+
+
         #endregion
 
         #region Methods
@@ -69,20 +73,20 @@ namespace AutoCADTools.Tools
         private void DetailCategories_Refresh()
         {
             // Save category, clear table and refill category table
-            String saveCategory = CmbDetailCategories.Text;
+            String saveCategory = cboDetailCategories.Text;
             detailCategoriesTable.Clear();
             connection.FillDetailCategories(detailCategoriesTable);
 
             // Reset data binding of categories list
-            CmbDetailCategories.BeginUpdate();
-            CmbDetailCategories.DataSource = null;
-            CmbDetailCategories.DataSource = detailCategoriesTable;
-            CmbDetailCategories.ValueMember = "id";
-            CmbDetailCategories.DisplayMember = "name";
-            CmbDetailCategories.EndUpdate();
+            cboDetailCategories.BeginUpdate();
+            cboDetailCategories.DataSource = null;
+            cboDetailCategories.DataSource = detailCategoriesTable;
+            cboDetailCategories.ValueMember = "id";
+            cboDetailCategories.DisplayMember = "name";
+            cboDetailCategories.EndUpdate();
 
             // Restore last chosen category
-            CmbDetailCategories.Text = saveCategory;
+            cboDetailCategories.Text = saveCategory;
         }
 
         /// <summary>
@@ -92,30 +96,35 @@ namespace AutoCADTools.Tools
         /// </summary>
         private void Details_Refresh()
         {
+            lvwDetails.SelectedIndices.Clear();
+            lvwDetails.Items.Clear();
             // If no category is selected, just clear the annotations list
-            if (CmbDetailCategories.SelectedIndex == -1)
+            if (cboDetailCategories.SelectedIndex == -1)
             {
-                ListDetails.Items.Clear();
                 return;
             }
 
             // Clear table and refill annotations table
             detailsTable.Clear();
-            int categoryId = int.Parse(CmbDetailCategories.SelectedValue.ToString());
+            int categoryId = 0;
+            if (!int.TryParse(cboDetailCategories.SelectedValue.ToString(), out categoryId))
+            {
+                return;
+            }
             connection.FillDetails(detailsTable, categoryId);
 
             // Reset data binding of annotations list
-            ListDetails.BeginUpdate();
-            ListDetails.Clear();
+            lvwDetails.BeginUpdate();
             foreach (Database.DetailsRow row in detailsTable.Rows)
             {
                 if (row.RowState != DataRowState.Deleted)
                 {
                     ListViewItem lvi = new ListViewItem(row.name);
-                    ListDetails.Items.Add(lvi);
+                    lvwDetails.Items.Add(lvi);
                 }
             }
-            ListDetails.EndUpdate();
+            lvwDetails.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lvwDetails.EndUpdate();
         }
 
         #endregion
@@ -127,18 +136,16 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ListDetails_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListDetails.SelectedIndices.Count == 0)
+            butOpen.Enabled = lvwDetails.SelectedIndices.Count != 0;
+            if (lvwDetails.SelectedIndices.Count == 0)
             {
-                PicPng.Image = null;
-                ButOpen.Enabled = false;
+                picPng.Image = null;
             }
             else
             {
-                ButOpen.Enabled = true;
-
-                Database.DetailsDataTable table = connection.GetDetail(detailsTable[ListDetails.SelectedIndices[0]].id);
+                Database.DetailsDataTable table = connection.GetDetail(detailsTable[lvwDetails.SelectedIndices[0]].id);
                 if (table.Rows.Count != 1) return;
 
                 System.Drawing.Image im;
@@ -156,7 +163,7 @@ namespace AutoCADTools.Tools
                     im.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
 
-                PicPng.Image = im;
+                picPng.Image = im;
             }
         }
 
@@ -165,9 +172,9 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ButOpen_Click(object sender, EventArgs e)
+        private void butOpen_Click(object sender, EventArgs e)
         {
-            Database.DetailsDataTable table = connection.GetDetail(detailsTable[ListDetails.SelectedIndices[0]].id);
+            Database.DetailsDataTable table = connection.GetDetail(detailsTable[lvwDetails.SelectedIndices[0]].id);
             if (table.Rows.Count != 1) return;
 
             String file = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
@@ -187,7 +194,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void CmbAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Details_Refresh();
         }
@@ -197,11 +204,11 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void PicPng_MouseClick(object sender, MouseEventArgs e)
+        private void picPng_MouseClick(object sender, MouseEventArgs e)
         {
-            if (PicPng.Image != null)
+            if (picPng.Image != null)
             {
-                System.Drawing.Image im = PicPng.Image;
+                System.Drawing.Image im = picPng.Image;
                 if (e.Button == MouseButtons.Left)
                 {
                     im.RotateFlip(RotateFlipType.Rotate270FlipNone);
@@ -210,7 +217,16 @@ namespace AutoCADTools.Tools
                 {
                     im.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 }
-                PicPng.Image = im;
+                picPng.Image = im;
+            }
+        }
+
+        private void FrmDetails_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
             }
         }
 

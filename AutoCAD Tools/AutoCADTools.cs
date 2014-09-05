@@ -132,7 +132,7 @@ namespace AutoCADTools
         [CommandMethod("Details")]
         public static void Details()
         {
-            using (Form details = new Tools.Details())
+            using (Form details = new Tools.FrmDetails())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(details);
             }

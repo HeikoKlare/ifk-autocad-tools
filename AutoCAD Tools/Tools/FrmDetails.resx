@@ -112,23 +112,31 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="PicPng.Size" type="System.Drawing.Size, System.Drawing">
-    <value>840, 594</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="butOpen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Details</value>
+  <data name="butOpen.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="&gt;&gt;lvwDetails.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;ListDetails.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cboDetailCategories.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="picPng.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lvwDetails.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 46</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -189,117 +197,130 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="&gt;&gt;ButOpen.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="ButOpen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 575</value>
-  </data>
-  <data name="&gt;&gt;ListDetails.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;butOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ListDetails.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;picPng.Name" xml:space="preserve">
+    <value>picPng</value>
   </data>
-  <data name="&gt;&gt;CmbDetailCategories.Parent" xml:space="preserve">
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FrmDetails</value>
+  </data>
+  <data name="butOpen.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;butOpen.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="ButOpen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 32</value>
+  <data name="butOpen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 668</value>
   </data>
-  <data name="ListDetails.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 45</value>
+  <data name="&gt;&gt;cboDetailCategories.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="ButOpen.Text" xml:space="preserve">
+  <data name="&gt;&gt;butOpen.Name" xml:space="preserve">
+    <value>butOpen</value>
+  </data>
+  <data name="butOpen.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="picPng.Size" type="System.Drawing.Size, System.Drawing">
+    <value>997, 705</value>
+  </data>
+  <data name="butOpen.Text" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="&gt;&gt;CmbDetailCategories.Name" xml:space="preserve">
-    <value>CmbDetailCategories</value>
+  <data name="picPng.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
-  <data name="&gt;&gt;ButOpen.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;picPng.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1183, 620</value>
+  <data name="lvwDetails.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
-  <data name="PicPng.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="&gt;&gt;Dummy.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ListDetails.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 523</value>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1500, 785</value>
   </data>
-  <data name="ButOpen.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="&gt;&gt;CmbDetailCategories.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CmbDetailCategories.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="ListDetails.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="CmbDetailCategories.TabIndex" type="System.Int32, mscorlib">
+  <data name="cboDetailCategories.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;PicPng.Parent" xml:space="preserve">
+  <data name="&gt;&gt;Dummy.Name" xml:space="preserve">
+    <value>Dummy</value>
+  </data>
+  <data name="&gt;&gt;lvwDetails.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="PicPng.Location" type="System.Drawing.Point, System.Drawing">
-    <value>326, 12</value>
+  <data name="&gt;&gt;picPng.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ListDetails.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cboDetailCategories.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1478, 729</value>
+  </data>
+  <data name="cboDetailCategories.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 28</value>
+  </data>
+  <data name="&gt;&gt;cboDetailCategories.Name" xml:space="preserve">
+    <value>cboDetailCategories</value>
+  </data>
+  <data name="picPng.Location" type="System.Drawing.Point, System.Drawing">
+    <value>469, 12</value>
+  </data>
+  <data name="lvwDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 616</value>
+  </data>
+  <data name="&gt;&gt;butOpen.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cboDetailCategories.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="picPng.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;lvwDetails.Name" xml:space="preserve">
+    <value>lvwDetails</value>
+  </data>
+  <data name="&gt;&gt;picPng.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="butOpen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 49</value>
+  </data>
+  <data name="lvwDetails.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="ButOpen.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;lvwDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ListDetails.Name" xml:space="preserve">
-    <value>ListDetails</value>
-  </data>
-  <data name="&gt;&gt;ButOpen.Name" xml:space="preserve">
-    <value>ButOpen</value>
-  </data>
-  <data name="&gt;&gt;PicPng.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="PicPng.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="&gt;&gt;PicPng.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PicPng.Name" xml:space="preserve">
-    <value>PicPng</value>
-  </data>
-  <data name="&gt;&gt;ButOpen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="ButOpen.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="CmbDetailCategories.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 21</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>9, 20</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Details</value>
   </data>
-  <data name="PicPng.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="&gt;&gt;cboDetailCategories.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CmbDetailCategories.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="Dummy.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
 </root>
