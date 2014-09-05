@@ -58,7 +58,7 @@
             this.optMillimeters = new System.Windows.Forms.RadioButton();
             this.butCancel = new System.Windows.Forms.Button();
             this.dtpCreationDate = new System.Windows.Forms.DateTimePicker();
-            this.butStandard = new System.Windows.Forms.Button();
+            this.butDefaultValues = new System.Windows.Forms.Button();
             lblEmployer = new System.Windows.Forms.Label();
             lblDescription = new System.Windows.Forms.Label();
             grpProject = new System.Windows.Forms.GroupBox();
@@ -255,12 +255,12 @@
             this.dtpCreationDate.Name = "dtpCreationDate";
             this.dtpCreationDate.Value = new System.DateTime(2012, 1, 1, 0, 0, 0, 0);
             // 
-            // butStandard
+            // butDefaultValues
             // 
-            resources.ApplyResources(this.butStandard, "butStandard");
-            this.butStandard.Name = "butStandard";
-            this.butStandard.UseVisualStyleBackColor = true;
-            this.butStandard.Click += new System.EventHandler(this.butStandard_Click);
+            resources.ApplyResources(this.butDefaultValues, "butDefaultValues");
+            this.butDefaultValues.Name = "butDefaultValues";
+            this.butDefaultValues.UseVisualStyleBackColor = true;
+            this.butDefaultValues.Click += new System.EventHandler(this.butStandard_Click);
             // 
             // FrmDrawingSettings
             // 
@@ -268,7 +268,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.butCancel;
-            this.Controls.Add(this.butStandard);
+            this.Controls.Add(this.butDefaultValues);
             this.Controls.Add(this.dtpCreationDate);
             this.Controls.Add(lblCreationDate);
             this.Controls.Add(this.butCancel);
@@ -314,6 +314,6 @@
         private System.Windows.Forms.Button butCancel;
         private System.Windows.Forms.Button butEditProjects;
         private System.Windows.Forms.DateTimePicker dtpCreationDate;
-        private System.Windows.Forms.Button butStandard;
+        private System.Windows.Forms.Button butDefaultValues;
     }
 }
