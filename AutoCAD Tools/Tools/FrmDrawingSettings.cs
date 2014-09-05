@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
-using Autodesk.AutoCAD.ApplicationServices;
-using Autodesk.AutoCAD.DatabaseServices;
 using AutoCADTools.Data;
 using AutoCADTools.Management;
 using AutoCADTools.PrintLayout;
 using Database = AutoCADTools.Data.Database;
-using AcDatabase = Autodesk.AutoCAD.DatabaseServices.Database;
 
 namespace AutoCADTools.Tools
 {
@@ -16,18 +12,10 @@ namespace AutoCADTools.Tools
     /// Projects and employers from the database can be loaded. The data input in this windows
     /// are stored in the current document and are used to fill the textfields of the layouts.
     /// </summary>
-    public partial class DrawingSettings : Form
+    public partial class FrmDrawingSettings : Form
     {
         #region Attributes
 
-        /// <summary>
-        /// The fields saved in the drawing's settings
-        /// </summary>
-        private static String[] fields = {"Auftraggeber", "BV1", "BV2", "BV3", "BV4", "BVK", "Statiknummer",
-                                           "Bauteil", "Plannummer", "CheckErstellungsdatum", "Erstellungsdatum", 
-                                           "CheckAE1", "AE1Name", "AE1Datum", "AE1Vermerk", "CheckAE2", "AE2Name", 
-                                           "AE2Datum", "AE2Vermerk", "Zeichnungseinheit"};
-        
         /// <summary>
         /// Saves the marked drawing unit
         /// </summary>
@@ -65,17 +53,21 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        #region Constructors
+        #region Load/Unload
 
         /// <summary>
         /// Initiates a new window to edit the drawing properties.
         /// The information added here are used in the textfields for the layouts.
         /// Projects and employers are loaded from the database.
         /// </summary>
-        public DrawingSettings()
+        public FrmDrawingSettings()
         {
             InitializeComponent();
-            markedUnit = rbMeters;
+        }
+
+        private void FrmDrawingSettings_Load(object sender, EventArgs e)
+        {
+            markedUnit = optMeters;
 
             // Try to connect to database
             try
@@ -102,7 +94,7 @@ namespace AutoCADTools.Tools
 
             // Load the data already stored for this file
             var data = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-            cmbEmployers.Text = data.Employer;
+            cboEmployers.Text = data.Employer;
             txtDescription1.Text = data.ProjectDescription1;
             txtDescription2.Text = data.ProjectDescription2;
             txtDescription3.Text = data.ProjectDescription3;
@@ -111,8 +103,38 @@ namespace AutoCADTools.Tools
             txtProjectnumber.Text = data.ProjectNumber;
             txtSegment.Text = data.DrawingDescription;
             txtPage.Text = data.DrawingNumber;
-            dtCreation.Value = data.CreationTime;
+            dtpCreationDate.Value = data.CreationTime;
+            switch (data.DrawingUnit)
+            {
+                case 1000:
+                    optMeters.Checked = true;
+                    markedUnit = optMeters;
+                    break;
+                case 10:
+                    optCentimeters.Checked = true;
+                    markedUnit = optCentimeters;
+                    break;
+                case 1:
+                    optMillimeters.Checked = true;
+                    markedUnit = optMillimeters;
+                    break;
+            }
+        }
 
+        /// <summary>
+        /// Handles closing this form. If there were the projects opened an unkown failure
+        /// causes this form to close. This is interrupted.
+        /// </summary>
+        /// <param name="sender">unused</param>
+        /// <param name="e">the event arguments of the closing event</param>
+        private void DrawingSettings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (closeByProjects)
+            {
+                closeByProjects = false;
+                e.Cancel = true;
+            }
+            if (connection != null) connection.Dispose();
         }
 
         #endregion
@@ -133,25 +155,25 @@ namespace AutoCADTools.Tools
             // Update projects
             projectsTable.Clear();
             connection.FillProjects(projectsTable);
-            
-            cmbProjects.BeginUpdate();
-            cmbProjects.DataSource = null;
-            cmbProjects.DataSource = projectsTable;
-            cmbProjects.DisplayMember = "Descr";
-            cmbProjects.EndUpdate();
-            cmbProjects.SelectedIndex = -1;
+
+            cboProjects.BeginUpdate();
+            cboProjects.DataSource = null;
+            cboProjects.DataSource = projectsTable;
+            cboProjects.DisplayMember = "Descr";
+            cboProjects.EndUpdate();
+            cboProjects.SelectedIndex = -1;
 
             // Update employers
-            String saveEmployer = cmbEmployers.Text;
+            String saveEmployer = cboEmployers.Text;
             employersTable.Clear();
             connection.FillEmployers(employersTable);
 
-            cmbEmployers.BeginUpdate();
-            cmbEmployers.DataSource = null;
-            cmbEmployers.DataSource = employersTable;
-            cmbEmployers.DisplayMember = "name";
-            cmbEmployers.EndUpdate();
-            cmbEmployers.Text = saveEmployer;
+            cboEmployers.BeginUpdate();
+            cboEmployers.DataSource = null;
+            cboEmployers.DataSource = employersTable;
+            cboEmployers.DisplayMember = "name";
+            cboEmployers.EndUpdate();
+            cboEmployers.Text = saveEmployer;
 
             // Unmark updating
             updating = false;
@@ -159,8 +181,8 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        #region ButtonHandler
-        
+        #region EventHandler
+
         /// <summary>
         /// If the OK-button is clicked, empty textboxes are filled with whitespace to prevent
         /// textfields showing "---" and the data are stored in the SummaryInfo of the active document.
@@ -170,19 +192,20 @@ namespace AutoCADTools.Tools
         private void butOK_Click(object sender, EventArgs e)
         {
             var data = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-            data.CreationTime = dtCreation.Value;
+            data.CreationTime = dtpCreationDate.Value;
             data.DrawingDescription = txtSegment.Text;
             data.DrawingNumber = txtPage.Text;
-            data.Employer = cmbEmployers.Text;
+            data.Employer = cboEmployers.Text;
             data.ProjectDescription1 = txtDescription1.Text;
             data.ProjectDescription2 = txtDescription2.Text;
             data.ProjectDescription3 = txtDescription3.Text;
             data.ProjectDescription4 = txtDescription4.Text;
             data.ProjectDescriptionShort = txtDescriptionShort.Text;
             data.ProjectNumber = txtProjectnumber.Text;
+            data.DrawingUnit = optMeters.Checked ? 1000 : (optCentimeters.Checked ? 10 : 1);
 
             data.SaveValues();
-            
+
             this.Close();
 
             // Regenerate textfields
@@ -215,26 +238,23 @@ namespace AutoCADTools.Tools
             UpdateConnectedDate();
         }
 
-
-
-        
         /// <summary>
         /// If a project is chosen in the ComboBox the data of this project are loaded
         /// and put into the fields for the drawing properties.
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void cmbProjects_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbProjects.SelectedIndex >= 0 && !updating)
+            if (cboProjects.SelectedIndex >= 0 && !updating)
             {
-                cmbEmployers.Text = (employersTable.Rows.Find(projectsTable[cmbProjects.SelectedIndex].employer) as Database.EmployerRow).name;
-                txtDescription1.Text = projectsTable[cmbProjects.SelectedIndex].description1;
-                txtDescription2.Text = projectsTable[cmbProjects.SelectedIndex].description2;
-                txtDescription3.Text = projectsTable[cmbProjects.SelectedIndex].description3;
-                txtDescription4.Text = projectsTable[cmbProjects.SelectedIndex].description4;
-                txtDescriptionShort.Text = projectsTable[cmbProjects.SelectedIndex].descriptionShort;
-                txtProjectnumber.Text = projectsTable[cmbProjects.SelectedIndex].number;
+                cboEmployers.Text = (employersTable.Rows.Find(projectsTable[cboProjects.SelectedIndex].employer) as Database.EmployerRow).name;
+                txtDescription1.Text = projectsTable[cboProjects.SelectedIndex].description1;
+                txtDescription2.Text = projectsTable[cboProjects.SelectedIndex].description2;
+                txtDescription3.Text = projectsTable[cboProjects.SelectedIndex].description3;
+                txtDescription4.Text = projectsTable[cboProjects.SelectedIndex].description4;
+                txtDescriptionShort.Text = projectsTable[cboProjects.SelectedIndex].descriptionShort;
+                txtProjectnumber.Text = projectsTable[cboProjects.SelectedIndex].number;
             }
         }
 
@@ -286,80 +306,7 @@ namespace AutoCADTools.Tools
         }
 
         #endregion
-
-        #region Other Handlers
         
-        /// <summary>
-        /// Removes the texts if the change annotation is deactivated or selects the first person if it is activated.
-        /// Also the fields are enabled.
-        /// </summary>
-        /// <param name="sender">unused</param>
-        /// <param name="e">unused</param>
-        private void chkChanged1Active_CheckedChanged(object sender, EventArgs e)
-        {
-            dtChanged1Date.Enabled = chkChanged1Active.Checked;
-            cmbChanged1Name.Enabled = chkChanged1Active.Checked;
-            txtChanged1Note.Enabled = chkChanged1Active.Checked;
-            if (!chkChanged1Active.Checked)
-            {
-                cmbChanged1Name.Text = "";
-                txtChanged1Note.Text = "";
-            }
-            else if (cmbChanged1Name.Items.Count > 0)
-            {
-                cmbChanged1Name.SelectedIndex = 0;
-            }
-        }
-        
-        /// <summary>
-        /// Removes the texts if the change annotation is deactivated or selects the first person if it is activated.
-        /// Also the fields are enabled
-        /// </summary>
-        /// <param name="sender">unused</param>
-        /// <param name="e">unused</param>
-        private void chkChanged2Active_CheckedChanged(object sender, EventArgs e)
-        {
-            dtChanged2Date.Enabled = chkChanged2Active.Checked;
-            txtChanged2Name.Enabled = chkChanged2Active.Checked;
-            txtChanged2Note.Enabled = chkChanged2Active.Checked;
-            if (!chkChanged2Active.Checked)
-            {
-                txtChanged2Name.Text = "";
-                txtChanged2Note.Text = "";
-            }
-            else if (txtChanged2Name.Items.Count > 0)
-            {
-                txtChanged2Name.SelectedIndex = 0;
-            }
-        }
-        
-        /// <summary>
-        /// Enabled the creation date field depending on the appendant check box.
-        /// </summary>
-        /// <param name="sender">unused</param>
-        /// <param name="e">unused</param>
-        private void chkDate_CheckedChanged(object sender, EventArgs e)
-        {
-            dtCreation.Enabled = chkDate.Checked;
-        }
-
-        /// <summary>
-        /// Handles closing this form. If there were the projects opened an unkown failure
-        /// causes this form to close. This is interrupted.
-        /// </summary>
-        /// <param name="sender">unused</param>
-        /// <param name="e">the event arguments of the closing event</param>
-        private void DrawingSettings_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (closeByProjects)
-            {
-                closeByProjects = false;
-                e.Cancel = true;
-            }
-        }
-
-        #endregion
-
     }
 
 }

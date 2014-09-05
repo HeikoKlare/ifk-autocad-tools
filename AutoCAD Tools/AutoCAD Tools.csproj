@@ -250,11 +250,11 @@
     </Compile>
     <Compile Include="AutoCADTools.cs" />
     <Compile Include="PrintLayout\DrawingArea.cs" />
-    <Compile Include="Tools\DrawingSettings.cs">
+    <Compile Include="Tools\FrmDrawingSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tools\DrawingSettings.Designer.cs">
-      <DependentUpon>DrawingSettings.cs</DependentUpon>
+    <Compile Include="Tools\FrmDrawingSettings.Designer.cs">
+      <DependentUpon>FrmDrawingSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\Panicle.cs">
       <SubType>Form</SubType>
@@ -341,8 +341,8 @@
     <EmbeddedResource Include="Management\FrmSettings.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\DrawingSettings.de.resx">
-      <DependentUpon>DrawingSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmDrawingSettings.de.resx">
+      <DependentUpon>FrmDrawingSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\LocalData.de.resx" />
     <EmbeddedResource Include="Tools\LocalData.resx">
@@ -375,8 +375,8 @@
     <EmbeddedResource Include="Tools\TrussImportUI.resx">
       <DependentUpon>TrussImportUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\DrawingSettings.resx">
-      <DependentUpon>DrawingSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmDrawingSettings.resx">
+      <DependentUpon>FrmDrawingSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

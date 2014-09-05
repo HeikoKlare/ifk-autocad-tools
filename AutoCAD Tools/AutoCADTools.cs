@@ -161,7 +161,7 @@ namespace AutoCADTools
         [CommandMethod("DrawingSettings")]
         public static void DrawingSettings()
         {
-            using (Form settings = new Tools.DrawingSettings())
+            using (Form settings = new Tools.FrmDrawingSettings())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(settings);
             }
