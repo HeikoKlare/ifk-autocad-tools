@@ -121,12 +121,19 @@
   <data name="chkMember.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="chkMember.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkMember.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 27</value>
+    <value>34, 42</value>
+  </data>
+  <data name="chkMember.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="chkMember.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 17</value>
+    <value>92, 25</value>
   </data>
   <data name="chkMember.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -141,7 +148,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkMember.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>grpCopyLayer</value>
   </data>
   <data name="&gt;&gt;chkMember.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -149,11 +156,17 @@
   <data name="chkBracings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="chkBracings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
   <data name="chkBracings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 50</value>
+    <value>34, 77</value>
+  </data>
+  <data name="chkBracings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="chkBracings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
+    <value>96, 25</value>
   </data>
   <data name="chkBracings.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -168,7 +181,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkBracings.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>grpCopyLayer</value>
   </data>
   <data name="&gt;&gt;chkBracings.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -176,11 +189,17 @@
   <data name="chkBearings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="chkBearings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
   <data name="chkBearings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 73</value>
+    <value>34, 112</value>
+  </data>
+  <data name="chkBearings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="chkBearings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 17</value>
+    <value>97, 25</value>
   </data>
   <data name="chkBearings.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -195,7 +214,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkBearings.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>grpCopyLayer</value>
   </data>
   <data name="&gt;&gt;chkBearings.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -203,11 +222,17 @@
   <data name="chkPlates.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="chkPlates.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
   <data name="chkPlates.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 96</value>
+    <value>34, 148</value>
+  </data>
+  <data name="chkPlates.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="chkPlates.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 17</value>
+    <value>78, 25</value>
   </data>
   <data name="chkPlates.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -222,7 +247,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkPlates.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>grpCopyLayer</value>
   </data>
   <data name="&gt;&gt;chkPlates.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -230,11 +255,17 @@
   <data name="chkDimensions.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="chkDimensions.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
   <data name="chkDimensions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 119</value>
+    <value>34, 183</value>
+  </data>
+  <data name="chkDimensions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="chkDimensions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 17</value>
+    <value>117, 25</value>
   </data>
   <data name="chkDimensions.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -249,33 +280,39 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkDimensions.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+    <value>grpCopyLayer</value>
   </data>
   <data name="&gt;&gt;chkDimensions.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 48</value>
+  <data name="grpCopyLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 74</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 149</value>
+  <data name="grpCopyLayer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+  <data name="grpCopyLayer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="grpCopyLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 229</value>
+  </data>
+  <data name="grpCopyLayer.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
+  <data name="grpCopyLayer.Text" xml:space="preserve">
     <value>Copy layer</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;grpCopyLayer.Name" xml:space="preserve">
+    <value>grpCopyLayer</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpCopyLayer.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpCopyLayer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;grpCopyLayer.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <metadata name="ofdSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -285,10 +322,13 @@
     <value>Zeichnungsdateien (*.dxf, *.dwg)|*.dwg;*.dxf</value>
   </data>
   <data name="txtSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>83, 14</value>
+    <value>124, 22</value>
+  </data>
+  <data name="txtSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="txtSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 20</value>
+    <value>376, 26</value>
   </data>
   <data name="txtSource.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -305,38 +345,44 @@
   <data name="&gt;&gt;txtSource.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblFilePath.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 17</value>
+  <data name="lblFilePath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 26</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 13</value>
+  <data name="lblFilePath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblFilePath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="lblFilePath.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="lblFilePath.Text" xml:space="preserve">
     <value>File path:</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="&gt;&gt;lblFilePath.Name" xml:space="preserve">
+    <value>lblFilePath</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblFilePath.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblFilePath.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblFilePath.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="butSearchSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 12</value>
+    <value>512, 18</value>
+  </data>
+  <data name="butSearchSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="butSearchSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 23</value>
+    <value>124, 35</value>
   </data>
   <data name="butSearchSource.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -356,14 +402,20 @@
   <data name="&gt;&gt;butSearchSource.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="butImport.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
   <data name="butImport.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
   </data>
   <data name="butImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 209</value>
+    <value>276, 301</value>
+  </data>
+  <data name="butImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="butImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 36</value>
+    <value>360, 55</value>
   </data>
   <data name="butImport.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -383,107 +435,128 @@
   <data name="&gt;&gt;butImport.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="butRotateRight.AutoSize" type="System.Boolean, mscorlib">
+  <data name="optRotateRight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="butRotateRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>166, 20</value>
+  <data name="optRotateRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>257, 40</value>
   </data>
-  <data name="butRotateRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 60</value>
+  <data name="optRotateRight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
-  <data name="butRotateRight.TabIndex" type="System.Int32, mscorlib">
+  <data name="optRotateRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 60</value>
+  </data>
+  <data name="optRotateRight.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;butRotateRight.Name" xml:space="preserve">
-    <value>butRotateRight</value>
+  <data name="&gt;&gt;optRotateRight.Name" xml:space="preserve">
+    <value>optRotateRight</value>
   </data>
-  <data name="&gt;&gt;butRotateRight.Type" xml:space="preserve">
+  <data name="&gt;&gt;optRotateRight.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;butRotateRight.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;optRotateRight.Parent" xml:space="preserve">
+    <value>grpRotation</value>
   </data>
-  <data name="&gt;&gt;butRotateRight.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;optRotateRight.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="butRotateLeft.AutoSize" type="System.Boolean, mscorlib">
+  <data name="optRotateLeft.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="butRotateLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 20</value>
+  <data name="optRotateLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 40</value>
   </data>
-  <data name="butRotateLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 60</value>
+  <data name="optRotateLeft.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
-  <data name="butRotateLeft.TabIndex" type="System.Int32, mscorlib">
+  <data name="optRotateLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 60</value>
+  </data>
+  <data name="optRotateLeft.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;butRotateLeft.Name" xml:space="preserve">
-    <value>butRotateLeft</value>
+  <data name="&gt;&gt;optRotateLeft.Name" xml:space="preserve">
+    <value>optRotateLeft</value>
   </data>
-  <data name="&gt;&gt;butRotateLeft.Type" xml:space="preserve">
+  <data name="&gt;&gt;optRotateLeft.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;butRotateLeft.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;optRotateLeft.Parent" xml:space="preserve">
+    <value>grpRotation</value>
   </data>
-  <data name="&gt;&gt;butRotateLeft.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;optRotateLeft.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="butRotateNo.AutoSize" type="System.Boolean, mscorlib">
+  <data name="optRotateNo.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="butRotateNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 32</value>
+  <data name="optRotateNo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 52</value>
   </data>
-  <data name="butRotateNo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 36</value>
+  <data name="optRotateNo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
-  <data name="butRotateNo.TabIndex" type="System.Int32, mscorlib">
+  <data name="optRotateNo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 36</value>
+  </data>
+  <data name="optRotateNo.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;butRotateNo.Name" xml:space="preserve">
-    <value>butRotateNo</value>
+  <data name="&gt;&gt;optRotateNo.Name" xml:space="preserve">
+    <value>optRotateNo</value>
   </data>
-  <data name="&gt;&gt;butRotateNo.Type" xml:space="preserve">
+  <data name="&gt;&gt;optRotateNo.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;butRotateNo.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;optRotateNo.Parent" xml:space="preserve">
+    <value>grpRotation</value>
   </data>
-  <data name="&gt;&gt;butRotateNo.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;optRotateNo.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 107</value>
+  <metadata name="grpRotation.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="grpRotation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 154</value>
   </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 90</value>
+  <data name="grpRotation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+  <data name="grpRotation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="grpRotation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 127</value>
+  </data>
+  <data name="grpRotation.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="groupBox2.Text" xml:space="preserve">
+  <data name="grpRotation.Text" xml:space="preserve">
     <value>Rotation</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;grpRotation.Name" xml:space="preserve">
+    <value>grpRotation</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpRotation.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpRotation.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;grpRotation.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="txtLayerPrefix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 75</value>
+    <value>276, 104</value>
+  </data>
+  <data name="txtLayerPrefix.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="txtLayerPrefix.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 20</value>
+    <value>234, 26</value>
   </data>
   <data name="txtLayerPrefix.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -500,68 +573,136 @@
   <data name="&gt;&gt;txtLayerPrefix.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblTargetLayer.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 55</value>
+  <data name="lblTargetLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>272, 74</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+  <data name="lblTargetLayer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblTargetLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
+  </data>
+  <data name="lblTargetLayer.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
+  <data name="lblTargetLayer.Text" xml:space="preserve">
     <value>Target-Layer:</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="&gt;&gt;lblTargetLayer.Name" xml:space="preserve">
+    <value>lblTargetLayer</value>
   </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblTargetLayer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblTargetLayer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblTargetLayer.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblLayerSuffix.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 78</value>
+  <data name="lblLayerSuffix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>520, 109</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 13</value>
+  <data name="lblLayerSuffix.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblLayerSuffix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 20</value>
+  </data>
+  <data name="lblLayerSuffix.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
+  <data name="lblLayerSuffix.Text" xml:space="preserve">
     <value>- #Objectname</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="&gt;&gt;lblLayerSuffix.Name" xml:space="preserve">
+    <value>lblLayerSuffix</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblLayerSuffix.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblLayerSuffix.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblLayerSuffix.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+    <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>438, 257</value>
+    <value>657, 380</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAEAGACoDAAAFgAAACgAAAAgAAAAQAAAAAEAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AADv8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+719vX7+/v7+/v7/Pv6+/r6+/r6+/rx
+        8vHv8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/19fWysrKEhYSVlpWEhISIiIiVlZV/gH/e397x8vHv8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/w8PD5+vlBQUEAAACk
+        pKRzc3MAAABHRkf9/v3w8PDv8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+74+fi/v78AAAB0dHRGRkYAAADi4uL09fTv8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7w8fD///8AAAAQEBAAAAAGBgb////u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O////82NzYAAAAAAAB2dnb////u
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/9/f2JiYkAAABeXl4PDw/8/fz7/Pvw8PDv8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/7+/uYmJgA
+        AAAODg7Nzc0AAACcnJzx8vHw8PDv8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/29/asrayrq6unqKeZmZmpqqmRkZHn5+fx8fHv8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/v8O/29/b5+fn4+fj4+fj4+fj4+fjx8fHv8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7x8vH6+vr6+vr6+vry8vLv7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/x8fHh4eGHiIehoqGT
+        k5PR0tHy8vLv7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/v8O/19vWCgoIAAAAkJCT7+/vx8vHv7+/u7+7v8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7x8fH///8AAAAAAAD////s7ez09PTu7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O////8/Pz8AAADv8O81NjXj5OPy
+        8vLv8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/8/fyLi4sAAAAUFBQAAACQkJD////v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/09fTb3NsA
+        AAA+Pj7///+AgYCkpKT9/f3v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/y8vL3+PcAAAAAAAC+v76mpqYAAADc3dzz9PPv8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/19vWvr6+cnJyfoJ+LjIuOjo6YmJjV1dXy8/Lv8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/v8O/19vX6+vr5+vn5+vn5+vn5
+        +vnz8/Pv8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+739/f9/v39/v39
+        /v3u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/29vakpKRra2t9fn1dXl39/f3v7+/v7+/u7+7v8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/v
+        7+////9DREMAAACYmJj7/Pvv7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+73+Pe/v78AAABVVVX////v7+/v7+/u
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7w8fD///8AAAAAAAD////v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O////81NjUA
+        AADa29r09PTv7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/8/fyUlJQAAACGhob////v7+/u7+7v8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/9/f17e3sAAAAAAADS0tLz9PPu7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/u8O7u8O7u8O7u8O7v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/29va1tbXFxcW9vb3Hx8fz8/Pu
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u7+7u7+7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/v8O/29vb29/b29vbz8/Pv7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Truss Import</value>
@@ -573,7 +714,7 @@
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>TrussImportUI</value>
+    <value>FrmTrussImport</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System.IO;
 
-
 using Direction = AutoCADTools.Tools.TrussImport.Direction;
 using Layer = AutoCADTools.Tools.TrussImport.Layer;
 
@@ -13,7 +12,7 @@ namespace AutoCADTools.Tools
     /// to the currently open drawing.
     /// The rotation and the layers to import can be selected
     /// </summary>
-    public partial class TrussImportUI : Form
+    public partial class FrmTrussImport : Form
     {
         #region Attributes
 
@@ -21,27 +20,31 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        #region Constructor
+        #region Loading
 
         /// <summary>
         /// Initializes the graphical user interface for the TrussCon-Truss-Drawing import function
         /// </summary>
-        public TrussImportUI()
+        public FrmTrussImport()
         {
             InitializeComponent();
+        }
+
+        private void FrmTrussImport_Load(object sender, EventArgs e)
+        {
             trussImport = Tools.TrussImport.getInstance();
 
             txtLayerPrefix.Text = trussImport.LayerPrefix;
             switch (trussImport.Rotation)
             {
                 case Direction.LeftRotate:
-                    butRotateLeft.Checked = true;
+                    optRotateLeft.Checked = true;
                     break;
                 case Direction.Standard:
-                    butRotateNo.Checked = true;
+                    optRotateNo.Checked = true;
                     break;
                 case Direction.RightRotate:
-                    butRotateLeft.Checked = true;
+                    optRotateLeft.Checked = true;
                     break;
             }
 
@@ -105,11 +108,11 @@ namespace AutoCADTools.Tools
 
         private void butRotate_CheckedChanged(object sender, EventArgs e)
         {
-            if (butRotateLeft.Checked)
+            if (optRotateLeft.Checked)
             {
                 trussImport.Rotation = Direction.LeftRotate;
             }
-            else if (butRotateRight.Checked)
+            else if (optRotateRight.Checked)
             {
                 trussImport.Rotation = Direction.RightRotate;
             }
@@ -134,10 +137,11 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the object sending invoke to start this command</param>
         /// <param name="e">the event arguments</param>
-        private void TrussImportUi_KeyPress(object sender, KeyPressEventArgs e)
+        private void FrmTrussImport_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 27)
             {
+                e.Handled = true;
                 this.DialogResult = DialogResult.Cancel;
                 this.Close();
             }

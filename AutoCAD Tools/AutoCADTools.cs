@@ -225,7 +225,7 @@ namespace AutoCADTools
         public static void TrussImport()
         {
             bool import = false;
-            using (Form trussImportUi = new TrussImportUI()) {
+            using (Form trussImportUi = new FrmTrussImport()) {
                 import = Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(trussImportUi) == DialogResult.OK;
             }
             if (import) Tools.TrussImport.getInstance().Import();

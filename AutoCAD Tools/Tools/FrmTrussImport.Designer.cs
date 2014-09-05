@@ -1,6 +1,6 @@
 ﻿namespace AutoCADTools.Tools
 {
-    partial class TrussImportUI
+    partial class FrmTrussImport
     {
         /// <summary>
         /// Required designer variable.
@@ -29,27 +29,28 @@
         [System.CodeDom.Compiler.GeneratedCode("Winform Designer", "VS2010")]
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrussImportUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTrussImport));
+            System.Windows.Forms.GroupBox grpRotation;
             this.chkMember = new System.Windows.Forms.CheckBox();
             this.chkBracings = new System.Windows.Forms.CheckBox();
             this.chkBearings = new System.Windows.Forms.CheckBox();
             this.chkPlates = new System.Windows.Forms.CheckBox();
             this.chkDimensions = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpCopyLayer = new System.Windows.Forms.GroupBox();
             this.ofdSource = new System.Windows.Forms.OpenFileDialog();
             this.txtSource = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblFilePath = new System.Windows.Forms.Label();
             this.butSearchSource = new System.Windows.Forms.Button();
             this.butImport = new System.Windows.Forms.Button();
-            this.butRotateRight = new System.Windows.Forms.RadioButton();
-            this.butRotateLeft = new System.Windows.Forms.RadioButton();
-            this.butRotateNo = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.optRotateRight = new System.Windows.Forms.RadioButton();
+            this.optRotateLeft = new System.Windows.Forms.RadioButton();
+            this.optRotateNo = new System.Windows.Forms.RadioButton();
             this.txtLayerPrefix = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.lblTargetLayer = new System.Windows.Forms.Label();
+            this.lblLayerSuffix = new System.Windows.Forms.Label();
+            grpRotation = new System.Windows.Forms.GroupBox();
+            this.grpCopyLayer.SuspendLayout();
+            grpRotation.SuspendLayout();
             this.SuspendLayout();
             // 
             // chkMember
@@ -93,16 +94,17 @@
             this.chkDimensions.UseVisualStyleBackColor = true;
             this.chkDimensions.CheckedChanged += new System.EventHandler(this.layerChecked_CheckedChanged);
             // 
-            // groupBox1
+            // grpCopyLayer
             // 
-            this.groupBox1.Controls.Add(this.chkBracings);
-            this.groupBox1.Controls.Add(this.chkDimensions);
-            this.groupBox1.Controls.Add(this.chkMember);
-            this.groupBox1.Controls.Add(this.chkPlates);
-            this.groupBox1.Controls.Add(this.chkBearings);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
+            this.grpCopyLayer.Controls.Add(this.chkBracings);
+            this.grpCopyLayer.Controls.Add(this.chkDimensions);
+            this.grpCopyLayer.Controls.Add(this.chkMember);
+            this.grpCopyLayer.Controls.Add(this.chkPlates);
+            this.grpCopyLayer.Controls.Add(this.chkBearings);
+            this.grpCopyLayer.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(this.grpCopyLayer, "grpCopyLayer");
+            this.grpCopyLayer.Name = "grpCopyLayer";
+            this.grpCopyLayer.TabStop = false;
             // 
             // ofdSource
             // 
@@ -115,10 +117,11 @@
             this.txtSource.ReadOnly = true;
             this.txtSource.TextChanged += new System.EventHandler(this.txtSource_TextChanged);
             // 
-            // label1
+            // lblFilePath
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.lblFilePath, "lblFilePath");
+            this.lblFilePath.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblFilePath.Name = "lblFilePath";
             // 
             // butSearchSource
             // 
@@ -134,40 +137,41 @@
             this.butImport.UseVisualStyleBackColor = true;
             this.butImport.Click += new System.EventHandler(this.butImport_Click);
             // 
-            // butRotateRight
+            // optRotateRight
             // 
-            resources.ApplyResources(this.butRotateRight, "butRotateRight");
-            this.butRotateRight.Image = global::AutoCADTools.Properties.Resources.Truss_right;
-            this.butRotateRight.Name = "butRotateRight";
-            this.butRotateRight.UseVisualStyleBackColor = true;
-            this.butRotateRight.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            resources.ApplyResources(this.optRotateRight, "optRotateRight");
+            this.optRotateRight.Image = global::AutoCADTools.Properties.Resources.Truss_right;
+            this.optRotateRight.Name = "optRotateRight";
+            this.optRotateRight.UseVisualStyleBackColor = true;
+            this.optRotateRight.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
             // 
-            // butRotateLeft
+            // optRotateLeft
             // 
-            resources.ApplyResources(this.butRotateLeft, "butRotateLeft");
-            this.butRotateLeft.Checked = true;
-            this.butRotateLeft.Image = global::AutoCADTools.Properties.Resources.Truss_left;
-            this.butRotateLeft.Name = "butRotateLeft";
-            this.butRotateLeft.TabStop = true;
-            this.butRotateLeft.UseVisualStyleBackColor = true;
-            this.butRotateLeft.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            resources.ApplyResources(this.optRotateLeft, "optRotateLeft");
+            this.optRotateLeft.Checked = true;
+            this.optRotateLeft.Image = global::AutoCADTools.Properties.Resources.Truss_left;
+            this.optRotateLeft.Name = "optRotateLeft";
+            this.optRotateLeft.TabStop = true;
+            this.optRotateLeft.UseVisualStyleBackColor = true;
+            this.optRotateLeft.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
             // 
-            // butRotateNo
+            // optRotateNo
             // 
-            resources.ApplyResources(this.butRotateNo, "butRotateNo");
-            this.butRotateNo.Image = global::AutoCADTools.Properties.Resources.Truss;
-            this.butRotateNo.Name = "butRotateNo";
-            this.butRotateNo.UseVisualStyleBackColor = true;
-            this.butRotateNo.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            resources.ApplyResources(this.optRotateNo, "optRotateNo");
+            this.optRotateNo.Image = global::AutoCADTools.Properties.Resources.Truss;
+            this.optRotateNo.Name = "optRotateNo";
+            this.optRotateNo.UseVisualStyleBackColor = true;
+            this.optRotateNo.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
             // 
-            // groupBox2
+            // grpRotation
             // 
-            this.groupBox2.Controls.Add(this.butRotateLeft);
-            this.groupBox2.Controls.Add(this.butRotateRight);
-            this.groupBox2.Controls.Add(this.butRotateNo);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
+            grpRotation.Controls.Add(this.optRotateLeft);
+            grpRotation.Controls.Add(this.optRotateRight);
+            grpRotation.Controls.Add(this.optRotateNo);
+            grpRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(grpRotation, "grpRotation");
+            grpRotation.Name = "grpRotation";
+            grpRotation.TabStop = false;
             // 
             // txtLayerPrefix
             // 
@@ -175,38 +179,43 @@
             this.txtLayerPrefix.Name = "txtLayerPrefix";
             this.txtLayerPrefix.TextChanged += new System.EventHandler(this.txtLayerPrefix_TextChanged);
             // 
-            // label2
+            // lblTargetLayer
             // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
+            resources.ApplyResources(this.lblTargetLayer, "lblTargetLayer");
+            this.lblTargetLayer.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblTargetLayer.Name = "lblTargetLayer";
             // 
-            // label3
+            // lblLayerSuffix
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.lblLayerSuffix, "lblLayerSuffix");
+            this.lblLayerSuffix.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblLayerSuffix.Name = "lblLayerSuffix";
             // 
-            // TrussImportUI
+            // FrmTrussImport
             // 
             this.AcceptButton = this.butImport;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblLayerSuffix);
+            this.Controls.Add(this.lblTargetLayer);
             this.Controls.Add(this.txtLayerPrefix);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(grpRotation);
             this.Controls.Add(this.butImport);
             this.Controls.Add(this.butSearchSource);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblFilePath);
             this.Controls.Add(this.txtSource);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpCopyLayer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
-            this.Name = "TrussImportUI";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TrussImportUi_KeyPress);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmTrussImport";
+            this.Load += new System.EventHandler(this.FrmTrussImport_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmTrussImport_KeyPress);
+            this.grpCopyLayer.ResumeLayout(false);
+            this.grpCopyLayer.PerformLayout();
+            grpRotation.ResumeLayout(false);
+            grpRotation.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,19 +228,18 @@
         private System.Windows.Forms.CheckBox chkBearings;
         private System.Windows.Forms.CheckBox chkPlates;
         private System.Windows.Forms.CheckBox chkDimensions;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpCopyLayer;
         private System.Windows.Forms.OpenFileDialog ofdSource;
         private System.Windows.Forms.TextBox txtSource;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblFilePath;
         private System.Windows.Forms.Button butSearchSource;
         private System.Windows.Forms.Button butImport;
-        private System.Windows.Forms.RadioButton butRotateNo;
-        private System.Windows.Forms.RadioButton butRotateLeft;
-        private System.Windows.Forms.RadioButton butRotateRight;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton optRotateNo;
+        private System.Windows.Forms.RadioButton optRotateLeft;
+        private System.Windows.Forms.RadioButton optRotateRight;
         private System.Windows.Forms.TextBox txtLayerPrefix;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblTargetLayer;
+        private System.Windows.Forms.Label lblLayerSuffix;
 
     }
 }

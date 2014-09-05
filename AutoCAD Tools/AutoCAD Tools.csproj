@@ -242,11 +242,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Data\SqlConnection.cs" />
-    <Compile Include="Tools\TrussImportUI.cs">
+    <Compile Include="Tools\FrmTrussImport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tools\TrussImportUI.Designer.cs">
-      <DependentUpon>TrussImportUI.cs</DependentUpon>
+    <Compile Include="Tools\FrmTrussImport.Designer.cs">
+      <DependentUpon>FrmTrussImport.cs</DependentUpon>
     </Compile>
     <Compile Include="AutoCADTools.cs" />
     <Compile Include="PrintLayout\DrawingArea.cs" />
@@ -361,8 +361,8 @@
     <EmbeddedResource Include="Tools\FrmAnnotations.resx">
       <DependentUpon>FrmAnnotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\TrussImportUI.de.resx">
-      <DependentUpon>TrussImportUI.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmTrussImport.de.resx">
+      <DependentUpon>FrmTrussImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Utils\Progress.resx">
       <DependentUpon>Progress.cs</DependentUpon>
@@ -372,8 +372,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\TrussImportUI.resx">
-      <DependentUpon>TrussImportUI.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmTrussImport.resx">
+      <DependentUpon>FrmTrussImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\FrmDrawingSettings.resx">
       <DependentUpon>FrmDrawingSettings.cs</DependentUpon>
