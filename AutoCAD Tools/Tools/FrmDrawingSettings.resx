@@ -441,6 +441,9 @@
   <data name="cboProjects.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
+  <data name="cboProjects.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="cboProjects.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 35</value>
   </data>
@@ -523,7 +526,7 @@
     <value>True</value>
   </data>
   <data name="lblObject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 42</value>
+    <value>548, 32</value>
   </data>
   <data name="lblObject.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 20</value>
@@ -553,7 +556,7 @@
     <value>True</value>
   </data>
   <data name="lblNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 108</value>
+    <value>548, 98</value>
   </data>
   <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 20</value>
@@ -613,7 +616,7 @@
     <value>True</value>
   </data>
   <data name="lblCreationDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 172</value>
+    <value>548, 162</value>
   </data>
   <data name="lblCreationDate.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 20</value>
@@ -637,7 +640,7 @@
     <value>2</value>
   </data>
   <data name="txtSegment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 65</value>
+    <value>552, 55</value>
   </data>
   <data name="txtSegment.MaxLength" type="System.Int32, mscorlib">
     <value>60</value>
@@ -664,7 +667,7 @@
     <value>11</value>
   </data>
   <data name="txtPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 131</value>
+    <value>552, 121</value>
   </data>
   <data name="txtPage.MaxLength" type="System.Int32, mscorlib">
     <value>5</value>
@@ -838,7 +841,7 @@
     <value />
   </data>
   <data name="dtpCreationDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 195</value>
+    <value>552, 185</value>
   </data>
   <data name="dtpCreationDate.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 26</value>
@@ -865,7 +868,7 @@
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
   <data name="butDefaultValues.Location" type="System.Drawing.Point, System.Drawing">
-    <value>774, 108</value>
+    <value>774, 98</value>
   </data>
   <data name="butDefaultValues.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 35</value>

@@ -163,7 +163,9 @@
             // 
             // cboProjects
             // 
+            this.cboProjects.DropDownHeight = 250;
             this.cboProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboProjects.DropDownWidth = 600;
             resources.ApplyResources(this.cboProjects, "cboProjects");
             this.cboProjects.FormattingEnabled = true;
             this.cboProjects.Name = "cboProjects";
