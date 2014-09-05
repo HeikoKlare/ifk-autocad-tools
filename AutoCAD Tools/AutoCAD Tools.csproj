@@ -115,11 +115,11 @@
     <Compile Include="PrintLayout\LayoutCreation.cs" />
     <Compile Include="PrintLayout\LayoutPlain.cs" />
     <Compile Include="PrintLayout\LayoutTextfield.cs" />
-    <Compile Include="PrintLayout\LayoutUI.cs">
+    <Compile Include="PrintLayout\FrmLayout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrintLayout\LayoutUI.Designer.cs">
-      <DependentUpon>LayoutUI.cs</DependentUpon>
+    <Compile Include="PrintLayout\FrmLayout.Designer.cs">
+      <DependentUpon>FrmLayout.cs</DependentUpon>
     </Compile>
     <Compile Include="PrintLayout\LocalData.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -279,11 +279,11 @@
     <EmbeddedResource Include="Management\FrmSettings.de.resx">
       <DependentUpon>FrmSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintLayout\LayoutUI.de.resx">
-      <DependentUpon>LayoutUI.cs</DependentUpon>
+    <EmbeddedResource Include="PrintLayout\FrmLayout.de.resx">
+      <DependentUpon>FrmLayout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintLayout\LayoutUI.resx">
-      <DependentUpon>LayoutUI.cs</DependentUpon>
+    <EmbeddedResource Include="PrintLayout\FrmLayout.resx">
+      <DependentUpon>FrmLayout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PrintLayout\LocalData.de.resx" />
     <EmbeddedResource Include="PrintLayout\LocalData.resx">

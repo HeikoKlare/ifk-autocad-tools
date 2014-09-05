@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace AutoCADTools.PrintLayout
 {
-    public partial class LayoutUI : Form
+    public partial class FrmLayout : Form
     {
         #region Fields
 
@@ -29,11 +29,15 @@ namespace AutoCADTools.PrintLayout
 
         #endregion
 
-        #region Constructor
+        #region Loading
 
-        public LayoutUI(bool oldTextfieldUsed)
+        public FrmLayout(bool oldTextfieldUsed)
         {
             InitializeComponent();
+        }
+        
+        private void FrmLayout_Load(object sender, EventArgs e)
+        {
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             this.oldTextfieldUsed = oldTextfieldUsed;
 

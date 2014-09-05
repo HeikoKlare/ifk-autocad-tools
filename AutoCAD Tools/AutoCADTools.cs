@@ -202,7 +202,7 @@ namespace AutoCADTools
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-            using (Form createLayout = new LayoutUI(drawingData.Version < 2))
+            using (Form createLayout = new FrmLayout(drawingData.Version < 2))
             {
 
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(createLayout);

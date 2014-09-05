@@ -1,6 +1,6 @@
 ﻿namespace AutoCADTools.PrintLayout
 {
-    partial class LayoutUI
+    partial class FrmLayout
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.GroupBox grpPaperformat;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayoutUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLayout));
             System.Windows.Forms.GroupBox grpScale;
             System.Windows.Forms.Label lblDrawingUnitMm;
             System.Windows.Forms.Label lblDrawingUnit;
@@ -244,7 +244,7 @@
             this.chkUseDrawingArea.UseVisualStyleBackColor = true;
             this.chkUseDrawingArea.CheckedChanged += new System.EventHandler(this.chkUseDrawingArea_CheckedChanged);
             // 
-            // LayoutUI
+            // FrmLayout
             // 
             this.AcceptButton = this.butCreate;
             resources.ApplyResources(this, "$this");
@@ -262,7 +262,8 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "LayoutUI";
+            this.Name = "FrmLayout";
+            this.Load += new System.EventHandler(this.FrmLayout_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LayoutUI_KeyPress);
             grpPaperformat.ResumeLayout(false);
             grpPaperformat.PerformLayout();
