@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Data;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -11,7 +10,7 @@ namespace AutoCADTools.Tools
     /// Represents a GUI to modify, add and manage annotations.
     /// It can be navigated through categories and annotations, they can be modifed and added.
     /// </summary>
-    public partial class Annotations : Form
+    public partial class FrmAnnotations : Form
     {
         #region Attributes
         
@@ -37,25 +36,32 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        #region Constructors
+        #region Load/Unload
         
         /// <summary>
         /// Initates a new GUI for managing projects and the needed database connection and data tables.
         /// </summary>
-        public Annotations()
+        public FrmAnnotations()
         {
             InitializeComponent();
+        }
 
+        private void FrmAnnotations_Load(object sender, EventArgs e)
+        {
             dataBound = false;
             connection = new SqlConnection();
 
-             // Initialize annotation categories and annotation table
+            // Initialize annotation categories and annotation table
             annotationCategoriesTable = new Database.AnnotationCategoriesDataTable();
             annotationsTable = new Database.AnnotationsDataTable();
-            ListAnnotations.Columns.Add("Name", 240);
 
             AnnotationCategories_Refresh();
             Annotations_Refresh();
+        }
+
+        private void FrmAnnotations_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            connection.Dispose();
         }
        
         #endregion
@@ -70,20 +76,20 @@ namespace AutoCADTools.Tools
         private void AnnotationCategories_Refresh()
         {
             // Save category, clear table and refill category table
-            String saveCategory = CmbAnnotationCategories.Text;
+            String saveCategory = cboAnnotationCategories.Text;
             annotationCategoriesTable.Clear();
             connection.FillAnnotationCategories(annotationCategoriesTable);
 
             // Reset data binding of categories list
-            CmbAnnotationCategories.BeginUpdate();
-            CmbAnnotationCategories.DataSource = null;
-            CmbAnnotationCategories.DataSource = annotationCategoriesTable;
-            CmbAnnotationCategories.ValueMember = "id";
-            CmbAnnotationCategories.DisplayMember = "name";
-            CmbAnnotationCategories.EndUpdate();
+            cboAnnotationCategories.BeginUpdate();
+            cboAnnotationCategories.DataSource = null;
+            cboAnnotationCategories.DataSource = annotationCategoriesTable;
+            cboAnnotationCategories.ValueMember = "id";
+            cboAnnotationCategories.DisplayMember = "name";
+            cboAnnotationCategories.EndUpdate();
 
             // Restore last chosen category
-            CmbAnnotationCategories.Text = saveCategory;
+            cboAnnotationCategories.Text = saveCategory;
         }
 
         /// <summary>
@@ -93,31 +99,32 @@ namespace AutoCADTools.Tools
         /// </summary>
         private void Annotations_Refresh()
         {
+            lvwAnnotations.SelectedIndices.Clear();
+            lvwAnnotations.Items.Clear();
             // If no category is selected, just clear the annotations list
-            if (CmbAnnotationCategories.SelectedIndex == -1)
+            if (cboAnnotationCategories.SelectedIndex == -1)
             {
-                ListAnnotations.Items.Clear();
                 return;
             }
 
             // Clear table and refill annotations table
             annotationsTable.Clear();
             int categoryId = 0;
-            int.TryParse(CmbAnnotationCategories.SelectedValue.ToString(), out categoryId);
+            int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out categoryId);
             connection.FillAnnotations(annotationsTable, categoryId);
 
             // Reset data binding of annotations list
-            ListAnnotations.BeginUpdate();
-            ListAnnotations.Clear();
+            lvwAnnotations.BeginUpdate();
             foreach (Database.AnnotationsRow row in annotationsTable.Rows)
             {
                 if (row.RowState != DataRowState.Deleted)
                 {
                     ListViewItem lvi = new ListViewItem(row.name);
-                    ListAnnotations.Items.Add(lvi);
+                    lvwAnnotations.Items.Add(lvi);
                 }
             }
-            ListAnnotations.EndUpdate();
+            lvwAnnotations.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lvwAnnotations.EndUpdate();
         }
 
         /// <summary>
@@ -132,15 +139,16 @@ namespace AutoCADTools.Tools
                 dataBound = true;
 
                 CurrencyManager cm = this.BindingContext[annotationsTable] as CurrencyManager;
-                cm.Position = ListAnnotations.SelectedIndices[0];
+                cm.Position = lvwAnnotations.SelectedIndices[0];
 
-                TxtContent.DataBindings.Add("Text", annotationsTable, "content");
+                txtContent.DataBindings.Add("Text", annotationsTable, "content");
             }
             else if (!newSelection && dataBound)
             {
                 // if a project was deselected, update the controls and unbind them from data sources
                 dataBound = false;
-                TxtContent.DataBindings.Clear();
+                txtContent.DataBindings.Clear();
+                txtContent.Text = String.Empty;
             }
         }
 
@@ -153,9 +161,9 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void ListAnnotations_SelectedIndexChanged(object sender, EventArgs e)
+        private void lvwAnnotations_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListAnnotations.SelectedIndices.Count > 0)
+            if (lvwAnnotations.SelectedIndices.Count > 0)
             {
                 butClipboard.Enabled = true;
                 UpdateDataBindings(true);
@@ -172,7 +180,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void CmbAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Annotations_Refresh();
         }
@@ -184,7 +192,7 @@ namespace AutoCADTools.Tools
         /// <param name="e">unused</param>
         private void butClipboard_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Clipboard.SetDataObject(TxtContent.Text, true);
+            System.Windows.Forms.Clipboard.SetDataObject(txtContent.Text, true);
             SetForegroundWindow(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
         }
 
@@ -211,5 +219,6 @@ namespace AutoCADTools.Tools
         private static extern int SetForegroundWindow(int hWnd);
 
         #endregion
+
     }
 }

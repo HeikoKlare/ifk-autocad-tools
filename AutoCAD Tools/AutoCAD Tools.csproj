@@ -216,11 +216,11 @@
     <Compile Include="Tools\Details.Designer.cs">
       <DependentUpon>Details.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\Annotations.cs">
+    <Compile Include="Tools\FrmAnnotations.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tools\Annotations.Designer.cs">
-      <DependentUpon>Annotations.cs</DependentUpon>
+    <Compile Include="Tools\FrmAnnotations.Designer.cs">
+      <DependentUpon>FrmAnnotations.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\ReinforcingBondUI.cs">
       <SubType>Form</SubType>
@@ -355,11 +355,11 @@
     <EmbeddedResource Include="Tools\Details.resx">
       <DependentUpon>Details.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\Annotations.de.resx">
-      <DependentUpon>Annotations.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmAnnotations.de.resx">
+      <DependentUpon>FrmAnnotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\Annotations.resx">
-      <DependentUpon>Annotations.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmAnnotations.resx">
+      <DependentUpon>FrmAnnotations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\TrussImportUI.de.resx">
       <DependentUpon>TrussImportUI.cs</DependentUpon>

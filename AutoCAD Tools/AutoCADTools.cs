@@ -150,7 +150,7 @@ namespace AutoCADTools
         [CommandMethod("Annotations")]
         public static void Annotations()
         {
-            Form annotations = new Tools.Annotations();
+            Form annotations = new Tools.FrmAnnotations();
             Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(annotations);
         }
 
