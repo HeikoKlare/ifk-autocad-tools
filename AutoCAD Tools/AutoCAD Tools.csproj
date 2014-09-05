@@ -222,11 +222,11 @@
     <Compile Include="Tools\FrmAnnotations.Designer.cs">
       <DependentUpon>FrmAnnotations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tools\ReinforcingBondUI.cs">
+    <Compile Include="Tools\FrmReinforcingBond.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Tools\ReinforcingBondUI.Designer.cs">
-      <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
+    <Compile Include="Tools\FrmReinforcingBond.Designer.cs">
+      <DependentUpon>FrmReinforcingBond.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools\ReinforcingBond.cs" />
     <Compile Include="Tools\TrussImport.cs" />
@@ -326,11 +326,11 @@
     <EmbeddedResource Include="Management\FrmManageEmployers.resx">
       <DependentUpon>FrmManageEmployers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\ReinforcingBondUI.de.resx">
-      <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmReinforcingBond.de.resx">
+      <DependentUpon>FrmReinforcingBond.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\ReinforcingBondUI.resx">
-      <DependentUpon>ReinforcingBondUI.cs</DependentUpon>
+    <EmbeddedResource Include="Tools\FrmReinforcingBond.resx">
+      <DependentUpon>FrmReinforcingBond.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\FrmDiagonalBracing.de.resx">
       <DependentUpon>FrmDiagonalBracing.cs</DependentUpon>

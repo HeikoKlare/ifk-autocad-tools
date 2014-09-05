@@ -188,7 +188,7 @@ namespace AutoCADTools
         [CommandMethod("ReinforcingBond", CommandFlags.NoPaperSpace)]
         public static void ReinforcingBond()
         {
-            using (Form Form = new ReinforcingBondUI())
+            using (Form Form = new FrmReinforcingBond())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(Form);
             }

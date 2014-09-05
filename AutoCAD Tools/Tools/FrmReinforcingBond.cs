@@ -6,27 +6,30 @@ namespace AutoCADTools.Tools
     /// <summary>
     /// This class provides windows and methods to create a new bracing.
     /// </summary>
-    public partial class ReinforcingBondUI : Form
+    public partial class FrmReinforcingBond : Form
     {
         private ReinforcingBond bond;
 
-        #region Initialisation
+        #region Loading
 
         /// <summary>
         /// Inititates a new windows to create a bracing.
         /// </summary>
-        public ReinforcingBondUI()
+        public FrmReinforcingBond()
         {
             InitializeComponent();
+        }
 
+        private void FrmReinforcingBond_Load(object sender, EventArgs e)
+        {
             bond = ReinforcingBond.getInstance();
             txtDistanceRidge.Text = bond.DistanceToRidge.ToString();
             txtDistanceEave.Text = bond.DistanceToEave.ToString();
-            numHalfFields.Value = bond.HalfFieldCount;
+            updHalfFields.Value = bond.HalfFieldCount;
             txtPosition.Text = bond.Position;
-            butDrawVerticalMembers.Checked = bond.DrawVerticalMembers;
-            butDrawChords.Checked = bond.DrawChords;
-            butDrawChords.Enabled = bond.DrawVerticalMembers;
+            chkDrawVerticalMembers.Checked = bond.DrawVerticalMembers;
+            chkDrawChords.Checked = bond.DrawChords;
+            chkDrawChords.Enabled = bond.DrawVerticalMembers;
         }
 
         #endregion
@@ -38,21 +41,22 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the object sending invoke to start this command</param>
         /// <param name="e">the event arguments</param>
-        private void ReinforcedBondUi_KeyPress(object sender, KeyPressEventArgs e)
+        private void FrmReinforcedBond_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 27)
             {
+                e.Handled = true;
                 this.Close();
             }
         }
 
-        private void butDrawVerticalMembers_CheckedChanged(object sender, EventArgs e)
+        private void chkDrawVerticalMembers_CheckedChanged(object sender, EventArgs e)
         {
-            bond.DrawVerticalMembers = butDrawVerticalMembers.Checked;
-            txtDistanceEave.Enabled = butDrawVerticalMembers.Checked;
-            txtDistanceRidge.Enabled = butDrawVerticalMembers.Checked;
-            butDrawChords.Enabled = butDrawVerticalMembers.Checked;
-            if (!butDrawVerticalMembers.Checked) butDrawChords.Checked = false;
+            bond.DrawVerticalMembers = chkDrawVerticalMembers.Checked;
+            txtDistanceEave.Enabled = chkDrawVerticalMembers.Checked;
+            txtDistanceRidge.Enabled = chkDrawVerticalMembers.Checked;
+            chkDrawChords.Enabled = chkDrawVerticalMembers.Checked;
+            if (!chkDrawVerticalMembers.Checked) chkDrawChords.Checked = false;
         }
 
         private void txtDecimal_KeyPress(object sender, KeyPressEventArgs e)
@@ -95,9 +99,9 @@ namespace AutoCADTools.Tools
             bond.Position = txtPosition.Text;
         }
 
-        private void numHalfFields_ValueChanged(object sender, EventArgs e)
+        private void updHalfFields_ValueChanged(object sender, EventArgs e)
         {
-            bond.HalfFieldCount = (int)numHalfFields.Value;
+            bond.HalfFieldCount = (int)updHalfFields.Value;
         }
 
         private void butDraw_Click(object sender, EventArgs e)
@@ -116,7 +120,7 @@ namespace AutoCADTools.Tools
 
         private void butDrawChords_CheckedChanged(object sender, EventArgs e)
         {
-            bond.DrawChords = butDrawChords.Checked;
+            bond.DrawChords = chkDrawChords.Checked;
         }
 
         #endregion

@@ -112,49 +112,49 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="butDrawVerticalMembers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 17</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="chkDrawVerticalMembers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 25</value>
   </data>
-  <data name="butDrawVerticalMembers.Text" xml:space="preserve">
+  <data name="chkDrawVerticalMembers.Text" xml:space="preserve">
     <value>Endstäbe zeichnen</value>
   </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 13</value>
+  <data name="lblHalfFieldCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 20</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
+  <data name="lblHalfFieldCount.Text" xml:space="preserve">
     <value>Anzahl halber Felder:</value>
   </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
+  <data name="lblDistanceRidge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 20</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
+  <data name="lblDistanceRidge.Text" xml:space="preserve">
     <value>Abstand First:</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 13</value>
+  <data name="lblDistanceEave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 20</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
+  <data name="lblDistanceEave.Text" xml:space="preserve">
     <value>Abstand Traufe:</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 13</value>
+  <data name="lblPositionnumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Positionsnummer:</value>
+  <data name="lblPositionnumber.Text" xml:space="preserve">
+    <value>Position:</value>
   </data>
   <data name="butDraw.Text" xml:space="preserve">
     <value>Verband zeichnen</value>
   </data>
-  <data name="butDrawChords.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 17</value>
+  <data name="chkDrawChords.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 25</value>
   </data>
-  <data name="butDrawChords.Text" xml:space="preserve">
+  <data name="chkDrawChords.Text" xml:space="preserve">
     <value>Gurte zeichnen</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
