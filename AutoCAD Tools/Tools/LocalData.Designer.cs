@@ -347,5 +347,14 @@ namespace AutoCADTools.Tools {
                 return ResourceManager.GetString("TrussImportSuffixPlates", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die   ähnelt.
+        /// </summary>
+        internal static string Whitespace {
+            get {
+                return ResourceManager.GetString("Whitespace", resourceCulture);
+            }
+        }
     }
 }

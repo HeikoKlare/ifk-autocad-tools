@@ -24,9 +24,13 @@ namespace AutoCADTools.Tools
         private static int panicleCount = 1;
         private static int panicleDistance = 10;
         private static InputType inputType = InputType.ThirdsPoint;
-        private static string BlockName {
-            get { return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()
-                + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer + Properties.Settings.Default.DiagonalBracingDescriptionBlack; }
+        private static string BlockName
+        {
+            get
+            {
+                return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()
+                    + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer + Properties.Settings.Default.DiagonalBracingDescriptionBlack;
+            }
         }
 
         #endregion
@@ -48,7 +52,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         public FrmDiagonalBracing()
         {
-            InitializeComponent();   
+            InitializeComponent();
         }
 
         private void FrmDiagonalBracing_Load(object sender, EventArgs e)
@@ -76,7 +80,7 @@ namespace AutoCADTools.Tools
         {
             if (String.IsNullOrEmpty(txtPosition.Text) || String.IsNullOrEmpty(cboDescription.Text))
             {
-                if (MessageBox.Show(LocalData.PanicleMissingDescriptionText, LocalData.PanicleMissingDescriptionTitle, 
+                if (MessageBox.Show(LocalData.PanicleMissingDescriptionText, LocalData.PanicleMissingDescriptionTitle,
                     MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     return;
@@ -130,7 +134,7 @@ namespace AutoCADTools.Tools
                         acBlkTblRec.AppendEntity(dummyText);
                         acTrans.AddNewlyCreatedDBObject(dummyText, true);
 
-                        
+
                         Double radius = 0.0;
                         Point3d location = new Point3d(dummyText.ActualHeight * pos.Length / 2, dummyText.ActualHeight * 0.8, 0);
 
@@ -163,7 +167,7 @@ namespace AutoCADTools.Tools
                                 acTrans.AddNewlyCreatedDBObject(circle, true);
                             }
 
-                            location += new Vector3d(radius * 1.3, 0, 0); 
+                            location += new Vector3d(radius * 1.3, 0, 0);
                         }
 
                         dummyText.Erase();
@@ -175,7 +179,7 @@ namespace AutoCADTools.Tools
                         attrDescription.Justify = AttachmentPoint.MiddleLeft;
                         attrDescription.AlignmentPoint = location;
                         attrDescription.Tag = DESCRIPTION_TAG;
-                        if (Properties.Settings.Default.DiagonalBracingDescriptionBlack) 
+                        if (Properties.Settings.Default.DiagonalBracingDescriptionBlack)
                             attrDescription.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
                         attrDescription.LockPositionInBlock = true;
                         textBlockTable.AppendEntity(attrDescription);
@@ -215,42 +219,41 @@ namespace AutoCADTools.Tools
                     // Update attributes
                     foreach (ObjectId id in (BlockTableRecord)acTrans.GetObject(acBlkTbl[BlockName], OpenMode.ForRead))
                     {
-                        DBObject obj = id.GetObject(OpenMode.ForRead);
-                        AttributeDefinition attDef = obj as AttributeDefinition;
-                        if ((attDef != null) && (!attDef.Constant))
+                        using (AttributeDefinition attDef = id.GetObject(OpenMode.ForRead) as AttributeDefinition)
                         {
-                            //This is a non-constant AttributeDefinition
-                            //Create a new AttributeReference
-                            using (AttributeReference attRef = new AttributeReference())
+                            if ((attDef != null) && (!attDef.Constant))
                             {
-                                attRef.SetAttributeFromBlock(attDef, textRef.BlockTransform);
-                                if (attRef.Tag == POSITION_TAG)
+                                //This is a non-constant AttributeDefinition
+                                //Create a new AttributeReference
+                                using (AttributeReference attRef = new AttributeReference())
                                 {
-                                    attRef.TextString = pos;
+                                    attRef.SetAttributeFromBlock(attDef, textRef.BlockTransform);
+                                    if (attRef.Tag == POSITION_TAG)
+                                    {
+                                        attRef.TextString = pos;
+                                    }
+                                    else if (attRef.Tag == DESCRIPTION_TAG)
+                                    {
+                                        attRef.TextString = panicleCount > 1 ? panicleCount + " x " + cboDescription.Text :
+                                            cboDescription.Text;
+                                    }
+
+                                    //Add the AttributeReference to the BlockReference
+                                    textRef.AttributeCollection.AppendAttribute(attRef);
+                                    acTrans.AddNewlyCreatedDBObject(attRef, true);
                                 }
-                                else if (attRef.Tag == DESCRIPTION_TAG)
-                                {
-                                    attRef.TextString = panicleCount > 1 ? panicleCount + " x " + cboDescription.Text :
-                                        cboDescription.Text;
-                                }
-                                
-                                //Add the AttributeReference to the BlockReference
-                                textRef.AttributeCollection.AppendAttribute(attRef);
-                                acTrans.AddNewlyCreatedDBObject(attRef, true);
                             }
-                            obj.Dispose();
-                            attDef.Dispose();
                         }
                     }
 
                     acTrans.Commit();
                 }
             }
-            
+
             Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(OBJECT_SNAP_MODE, oldSnapMode);
 
         }
-        
+
         #endregion
 
         #region Handler
@@ -344,7 +347,7 @@ namespace AutoCADTools.Tools
             /// <param name="interpolatedInput">specifies if there shell be used two points that are interpolated according to the pointfactor. If false, the pointFactor is not used.</param>
             public PanicleLineJig(double pointFactor, double distance = 0.0d, bool interpolatedInput = true)
             {
-                this.endPoints = new Point3d[2,2];
+                this.endPoints = new Point3d[2, 2];
                 this.currentPointIndex = 0;
                 this.currentEndIndex = 0;
                 this.distance = interpolatedInput ? distance : 1;
@@ -407,8 +410,9 @@ namespace AutoCADTools.Tools
                         queryString += LocalData.PanicleSecondPoint;
                         break;
                 }
-                queryString += " ";
-                switch (currentEndIndex) {
+                queryString += LocalData.Whitespace;
+                switch (currentEndIndex)
+                {
                     case firstEndIndex:
                         queryString += LocalData.PanicleFirstAddition;
                         break;
@@ -418,12 +422,12 @@ namespace AutoCADTools.Tools
                         promptOptions.BasePoint = endPoints[currentPointIndex, firstPointIndex];
                         break;
                 }
-                
+
                 promptOptions.Message = queryString;
                 PromptPointResult getPointResult = prompts.AcquirePoint(promptOptions);
                 Point3d oldPoint = endPoints[currentPointIndex, currentEndIndex];
                 endPoints[currentPointIndex, currentEndIndex] = getPointResult.Value;
-                                       
+
                 // Return NoChange if difference is to low to avoid flimmering
                 if (endPoints[currentPointIndex, currentEndIndex].DistanceTo(oldPoint) < 0.001)
                 {
@@ -452,7 +456,8 @@ namespace AutoCADTools.Tools
 
                 if (currentPointIndex == firstPointIndex) return true;
 
-                switch (currentEndIndex) {
+                switch (currentEndIndex)
+                {
                     case firstEndIndex:
                         {
                             Vector3d differenceVector = endPoints[firstPointIndex, secondEndIndex].Subtract(endPoints[firstPointIndex, firstEndIndex].GetAsVector()).GetAsVector();
@@ -496,17 +501,18 @@ namespace AutoCADTools.Tools
                 while (true)
                 {
                     var res = ed.Drag(this);
-             
+
                     if (res.Status == PromptStatus.OK)
                     {
                         // If start and endpoint are equal, ask again
-                        if (!(currentEndIndex == secondEndIndex && endPoints[currentPointIndex, firstEndIndex] == endPoints[currentPointIndex, secondEndIndex])) 
+                        if (!(currentEndIndex == secondEndIndex && endPoints[currentPointIndex, firstEndIndex] == endPoints[currentPointIndex, secondEndIndex]))
                         {
                             // If we are not at the end, update state
                             if (!(currentPointIndex == secondPointIndex && currentEndIndex == secondEndIndex) && !(!interpolatedInput && currentPointIndex == secondPointIndex))
                             {
                                 // Progress the phase
-                                if (currentEndIndex == secondEndIndex) {
+                                if (currentEndIndex == secondEndIndex)
+                                {
                                     currentPointIndex++;
                                     currentEndIndex = 0;
                                     Vector3d differenceVector = endPoints[firstPointIndex, secondEndIndex].Subtract(endPoints[firstPointIndex, firstEndIndex].GetAsVector()).GetAsVector();

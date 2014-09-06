@@ -213,4 +213,7 @@
   <data name="TrussImportSuffixPlates" xml:space="preserve">
     <value>Plates</value>
   </data>
+  <data name="Whitespace" xml:space="preserve">
+    <value> </value>
+  </data>
 </root>
