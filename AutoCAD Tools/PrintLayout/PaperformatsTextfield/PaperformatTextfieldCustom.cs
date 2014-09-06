@@ -9,8 +9,15 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The maximum viewport size
         /// </summary>
-        public static new readonly Size MAX_VIEWPORT_SIZE = new Size(1140.0, 810.0);
-        private static readonly Size MIN_VIEWPORT_SIZE = new Size(395, 287.0);
+        public static new Size MaximumViewportSize
+        {
+            get { return new Size(1140.0, 810.0); }
+        }
+
+        private static Size MinimumViewportSize
+        {
+            get { return new Size(395, 287.0); }
+        }
 
         /// <summary>
         /// The threshold for increasing the size to the next fold size
@@ -20,8 +27,15 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The fold sizes in each dimension. After the specified value the paper is folded.
         /// </summary>
-        public  static readonly Point foldPeriod = new Point(190, 297);
-        private static readonly Point foldMargin = new Point(185, 287);
+        public static Point FoldPeriod
+        {
+            get { return new Point(190, 297); }
+        }
+
+        private static Point FoldMargin
+        {
+            get { return new Point(185, 287); }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaperformatTextfieldCustom"/> class with the maximum possible size.
@@ -30,7 +44,7 @@ namespace AutoCADTools.PrintLayout
         public PaperformatTextfieldCustom(bool oldTextfieldSize)
             : base(oldTextfieldSize)
         {
-            this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
+            this.ViewportSizeModel = MaximumViewportSize;
             this.offset = new Size(10.0, 10.0);
         }
 
@@ -41,7 +55,7 @@ namespace AutoCADTools.PrintLayout
             IncreaseToNextBiggerFormat();
             Crop();
 
-            if (PaperformatTextfieldA3.MAX_VIEWPORT_SIZE.Contains(size))
+            if (PaperformatTextfieldA3.MaximumViewportSize.Contains(size))
             {
                 return new PaperformatTextfieldA3(OldTextfieldSize).ChangeSize(size);
             }
@@ -56,11 +70,11 @@ namespace AutoCADTools.PrintLayout
             double width = ViewportSizeModel.Width;
             double height = ViewportSizeModel.Height;
 
-            width = MAX_VIEWPORT_SIZE.Width < ViewportSizeModel.Width ? MAX_VIEWPORT_SIZE.Width : width;
-            width = MIN_VIEWPORT_SIZE.Width > ViewportSizeModel.Width ? MIN_VIEWPORT_SIZE.Width : width;
+            width = MaximumViewportSize.Width < ViewportSizeModel.Width ? MaximumViewportSize.Width : width;
+            width = MinimumViewportSize.Width > ViewportSizeModel.Width ? MinimumViewportSize.Width : width;
 
-            height = MAX_VIEWPORT_SIZE.Height < ViewportSizeModel.Height ? MAX_VIEWPORT_SIZE.Height : height;
-            height = MIN_VIEWPORT_SIZE.Height > ViewportSizeModel.Height ? MIN_VIEWPORT_SIZE.Height : height;
+            height = MaximumViewportSize.Height < ViewportSizeModel.Height ? MaximumViewportSize.Height : height;
+            height = MinimumViewportSize.Height > ViewportSizeModel.Height ? MinimumViewportSize.Height : height;
 
             this.ViewportSizeModel = new Size(width, height);
         }
@@ -72,13 +86,13 @@ namespace AutoCADTools.PrintLayout
         public void IncreaseToNextBiggerFormat()
         {
             Size result = new Size(ViewportSizeModel.Width, ViewportSizeModel.Height);
-            if ((ViewportSizeModel.Width - foldMargin.X) % foldPeriod.X > (foldPeriod.X - foldThreshold))
+            if ((ViewportSizeModel.Width - FoldMargin.X) % FoldPeriod.X > (FoldPeriod.X - foldThreshold))
             {
-                result = new Size(((int)(ViewportSizeModel.Width - foldMargin.X) / (int)foldPeriod.X + 1) * foldPeriod.X + foldMargin.X, result.Height);
+                result = new Size(((int)(ViewportSizeModel.Width - FoldMargin.X) / (int)FoldPeriod.X + 1) * FoldPeriod.X + FoldMargin.X, result.Height);
             }
-            if ((ViewportSizeModel.Height - foldMargin.Y) % foldPeriod.Y > (foldPeriod.Y - foldThreshold))
+            if ((ViewportSizeModel.Height - FoldMargin.Y) % FoldPeriod.Y > (FoldPeriod.Y - foldThreshold))
             {
-                result = new Size(result.Width, ((int)(ViewportSizeModel.Height - foldMargin.Y) / (int)foldPeriod.Y + 1) * foldPeriod.Y + foldMargin.Y);
+                result = new Size(result.Width, ((int)(ViewportSizeModel.Height - FoldMargin.Y) / (int)FoldPeriod.Y + 1) * FoldPeriod.Y + FoldMargin.Y);
             }
             ViewportSizeModel = result;
         }

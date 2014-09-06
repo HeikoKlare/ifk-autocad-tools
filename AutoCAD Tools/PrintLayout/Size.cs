@@ -8,7 +8,7 @@ namespace AutoCADTools.PrintLayout
     {
         #region Fields
 
-        private double width;
+        private readonly double width;
         /// <summary>
         /// The width of the size instance.
         /// </summary>
@@ -20,7 +20,7 @@ namespace AutoCADTools.PrintLayout
             get { return width; }
         }
 
-        private double height;
+        private readonly double height;
         /// <summary>
         /// The height of the size instance.
         /// </summary>
@@ -32,7 +32,7 @@ namespace AutoCADTools.PrintLayout
             get { return height; }
         }
 
-        private static Size zero = new Size(0, 0);
+        private static readonly Size zero = new Size(0, 0);
         /// <summary>
         /// The zero size.
         /// </summary>

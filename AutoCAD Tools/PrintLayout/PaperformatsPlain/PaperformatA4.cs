@@ -9,14 +9,17 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The maximum possible viewport size.
         /// </summary>
-        public static new readonly Size MAX_VIEWPORT_SIZE = new Size(297, 210);
+        public static new Size MaximumViewportSize
+        {
+            get { return new Size(297, 210); }
+        }
 
         /// <inheritdoc />
         public override Size ViewportSizeLayout
         {
             get
             {
-                return MAX_VIEWPORT_SIZE;
+                return MaximumViewportSize;
             }
         }
 
@@ -25,7 +28,7 @@ namespace AutoCADTools.PrintLayout
         {
             get
             {
-                return MAX_VIEWPORT_SIZE;
+                return MaximumViewportSize;
             }
         }
 

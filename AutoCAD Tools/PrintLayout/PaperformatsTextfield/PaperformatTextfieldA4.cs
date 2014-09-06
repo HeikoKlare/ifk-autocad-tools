@@ -9,12 +9,15 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The maximum viewport size.
         /// </summary>
-        protected static new readonly Size MAX_VIEWPORT_SIZE = new Size(250.5, 171.37);
+        protected static new Size MaximumViewportSize
+        {
+            get { return new Size(250.5, 171.37); }
+        }
 
         /// <inheritdoc/>
         public override Size ViewportSizeLayout
         {
-            get { return MAX_VIEWPORT_SIZE.Rotate() + new Size(-0.342, -0.5); }
+            get { return MaximumViewportSize.Rotate() + new Size(-0.342, -0.5); }
         }
 
         private readonly Point viewportBasePoint = new Point(26.986, 11.0);

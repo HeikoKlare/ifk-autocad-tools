@@ -9,7 +9,10 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The maximum viewport size.
         /// </summary>
-        public static new readonly Size MAX_VIEWPORT_SIZE = PaperformatTextfieldA4.MAX_VIEWPORT_SIZE;
+        public static new Size MaximumViewportSize
+        {
+            get { return PaperformatTextfieldA4.MaximumViewportSize; }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaperformatTextfieldA4Horizontal"/> class with the maximum possible size.
@@ -18,14 +21,14 @@ namespace AutoCADTools.PrintLayout
         public PaperformatTextfieldA4Horizontal(bool oldTextfieldSize)
             : base(oldTextfieldSize)
         {
-            this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
+            this.ViewportSizeModel = MaximumViewportSize;
         }
 
         /// <inheritdoc/>
         public override PaperformatTextfield ChangeSize(Size size)
         {
-            this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
-            if (!MAX_VIEWPORT_SIZE.Contains(size))
+            this.ViewportSizeModel = MaximumViewportSize;
+            if (!MaximumViewportSize.Contains(size))
             {
                 return new PaperformatTextfieldA4Vertical(OldTextfieldSize).ChangeSize(size);
             }

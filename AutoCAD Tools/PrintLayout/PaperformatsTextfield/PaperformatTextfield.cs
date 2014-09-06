@@ -9,6 +9,14 @@ namespace AutoCADTools.PrintLayout
         #region Fields
 
         /// <summary>
+        /// The maximum viewport size.
+        /// </summary>
+        public static Size MaximumViewportSize
+        {
+            get { return new Size(1140, 810); }
+        }
+
+        /// <summary>
         /// Gets the size of the textfield.
         /// </summary>
         /// <value>

@@ -97,7 +97,7 @@ namespace AutoCADTools.PrintLayout
                 {
                     double remainingHeight = paperformat.BorderSize.Height;
                     int counter = 0;
-                    while (remainingHeight > PaperformatTextfieldCustom.foldPeriod.Y)
+                    while (remainingHeight > PaperformatTextfieldCustom.FoldPeriod.Y)
                     {
                         counter++;
                         using (Line foldLine = new Line())
@@ -105,15 +105,15 @@ namespace AutoCADTools.PrintLayout
                             foldLine.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
                             foldLine.LayerId = Document.Database.LayerZero;
                             foldLine.StartPoint = new Point3d(paperformat.BorderBasePoint.X / DrawingUnit - margin.Width,
-                                    (paperformat.BorderBasePoint.Y + counter * PaperformatTextfieldCustom.foldPeriod.Y) / DrawingUnit - margin.Height, 0);
+                                    (paperformat.BorderBasePoint.Y + counter * PaperformatTextfieldCustom.FoldPeriod.Y) / DrawingUnit - margin.Height, 0);
                             foldLine.EndPoint = foldLine.StartPoint.Add(new Vector3d((paperformat.ViewportBasePoint.X - paperformat.BorderBasePoint.X) / DrawingUnit, 0, 0));
                             layoutRecord.AppendEntity(foldLine);
                             trans.AddNewlyCreatedDBObject(foldLine, true);
                         }
-                        remainingHeight -= PaperformatTextfieldCustom.foldPeriod.Y;
+                        remainingHeight -= PaperformatTextfieldCustom.FoldPeriod.Y;
                     }
                     halfSizeMark.StartPoint = new Point3d((paperformat.ViewportBasePoint.X - 10.0) / DrawingUnit - margin.Width,
-                        (paperformat.BorderBasePoint.Y + PaperformatTextfieldCustom.foldPeriod.Y / 2) / DrawingUnit - margin.Height, 0);
+                        (paperformat.BorderBasePoint.Y + PaperformatTextfieldCustom.FoldPeriod.Y / 2) / DrawingUnit - margin.Height, 0);
                 }
 
                 halfSizeMark.EndPoint = halfSizeMark.StartPoint.Add(new Vector3d(10.0 / DrawingUnit, 0, 0));

@@ -9,13 +9,17 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The maximum viewport size.
         /// </summary>
-        public static new readonly Size MAX_VIEWPORT_SIZE = new Size(420, 297);
+        public static new Size MaximumViewportSize
+        {
+            get { return new Size(420, 297); }
+        }
 
         /// <inheritdoc />
-        public override Size ViewportSizeLayout {
+        public override Size ViewportSizeLayout
+        {
             get
             {
-                return MAX_VIEWPORT_SIZE;
+                return MaximumViewportSize;
             }
         }
 
@@ -24,7 +28,7 @@ namespace AutoCADTools.PrintLayout
         {
             get
             {
-                return MAX_VIEWPORT_SIZE;
+                return MaximumViewportSize;
             }
         }
 
@@ -49,13 +53,13 @@ namespace AutoCADTools.PrintLayout
         /// <inheritdoc />
         public override PaperformatPlain ChangeSize(Size size)
         {
-            this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
-            
-            if (PaperformatA4Vertical.MAX_VIEWPORT_SIZE.Contains(size))
+            this.ViewportSizeModel = MaximumViewportSize;
+
+            if (PaperformatA4Vertical.MaximumViewportSize.Contains(size))
             {
                 return new PaperformatA4Vertical().ChangeSize(size);
             }
-            if (!MAX_VIEWPORT_SIZE.Contains(size))
+            if (!MaximumViewportSize.Contains(size))
             {
                 return new PaperformatCustom().ChangeSize(size);
             }
@@ -68,7 +72,7 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public PaperformatA3()
         {
-            this.ViewportSizeModel = MAX_VIEWPORT_SIZE;
+            this.ViewportSizeModel = MaximumViewportSize;
         }
 
         /// <inheritdoc/>

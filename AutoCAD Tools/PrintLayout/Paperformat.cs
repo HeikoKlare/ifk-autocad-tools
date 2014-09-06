@@ -10,7 +10,6 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The maximum size of this paperformat.
         /// </summary>
-        protected static readonly Size MAX_VIEWPORT_SIZE;
 
         private Size viewportSizeModel;
         /// <summary>
