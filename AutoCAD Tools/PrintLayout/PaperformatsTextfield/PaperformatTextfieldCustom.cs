@@ -16,6 +16,10 @@ namespace AutoCADTools.PrintLayout
         /// The threshold for increasing the size to the next fold size
         /// </summary>
         private static double foldThreshold = 20.0;
+
+        /// <summary>
+        /// The fold sizes in each dimension. After the specified value the paper is folded.
+        /// </summary>
         public  static readonly Point foldPeriod = new Point(190, 297);
         private static readonly Point foldMargin = new Point(185, 287);
 

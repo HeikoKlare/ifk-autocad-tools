@@ -8,21 +8,39 @@ using System.Globalization;
 
 namespace AutoCADTools.Tools
 {
+    /// <summary>
+    /// This class encapsulates the data specified for a drawing like Version, Project, Creation date etc.
+    /// </summary>
     public class DrawingData
     {
+        #region Attributes
+
+        /// <summary>
+        /// The name of the data in the UserData dictionary of the document
+        /// </summary>
         public const string DICTIONARY_NAME = "DrawingData";
-        Document document;
+        private Document document;
 
         private int version;
 
+        /// <summary>
+        /// Gets the version of the drawing.
+        /// </summary>
+        /// <value>
+        /// The version of the drawing.
+        /// </value>
         public int Version
         {
             get { return version; }
-            set { version = value; }
         }
 
         private string employer;
-
+        /// <summary>
+        /// Gets or sets the employer who ordered this drawing.
+        /// </summary>
+        /// <value>
+        /// The employer who ordered this drawing.
+        /// </value>
         public string Employer
         {
             get { return employer; }
@@ -30,7 +48,12 @@ namespace AutoCADTools.Tools
         }
 
         private string projectNumber;
-
+        /// <summary>
+        /// Gets or sets the project number of the project this drawing belongs to.
+        /// </summary>
+        /// <value>
+        /// The project number of the project this drawing belongs to.
+        /// </value>
         public string ProjectNumber
         {
             get { return projectNumber; }
@@ -38,35 +61,64 @@ namespace AutoCADTools.Tools
         }
 
         private string projectDescription1;
-
+        /// <summary>
+        /// Gets or sets the first line of the description of the project this drawing belongs to.
+        /// </summary>
+        /// <value>
+        /// The first line of the description of the project this drawing belongs to.
+        /// </value>
         public string ProjectDescription1
         {
             get { return projectDescription1; }
             set { projectDescription1 = value; }
         }
-        private string projectDescription2;
 
+        private string projectDescription2;
+        /// <summary>
+        /// Gets or sets the second line of the description of the project this drawing belongs to.
+        /// </summary>
+        /// <value>
+        /// The second line of the description of the project this drawing belongs to.
+        /// </value>
         public string ProjectDescription2
         {
             get { return projectDescription2; }
             set { projectDescription2 = value; }
         }
-        private string projectDescription3;
 
+        private string projectDescription3;
+        /// <summary>
+        /// Gets or sets the third line of the description of the project this drawing belongs to.
+        /// </summary>
+        /// <value>
+        /// The third line of the description of the project this drawing belongs to.
+        /// </value>
         public string ProjectDescription3
         {
             get { return projectDescription3; }
             set { projectDescription3 = value; }
         }
-        private string projectDescription4;
 
+        private string projectDescription4;
+        /// <summary>
+        /// Gets or sets the forth line of the description of the project this drawing belongs to.
+        /// </summary>
+        /// <value>
+        /// The forth line of the description of the project this drawing belongs to.
+        /// </value>
         public string ProjectDescription4
         {
             get { return projectDescription4; }
             set { projectDescription4 = value; }
         }
-        private string projectDescriptionShort;
 
+        private string projectDescriptionShort;
+        /// <summary>
+        /// Gets or sets the short description of the project this drawing belongs to.
+        /// </summary>
+        /// <value>
+        /// The short description of the project this drawing belongs to.
+        /// </value>
         public string ProjectDescriptionShort
         {
             get { return projectDescriptionShort; }
@@ -74,7 +126,12 @@ namespace AutoCADTools.Tools
         }
 
         private string drawingDescription;
-
+        /// <summary>
+        /// Gets or sets the description of the drawing.
+        /// </summary>
+        /// <value>
+        /// The description of the drawing.
+        /// </value>
         public string DrawingDescription
         {
             get { return drawingDescription; }
@@ -82,34 +139,58 @@ namespace AutoCADTools.Tools
         }
 
         private string drawingNumber;
-
+        /// <summary>
+        /// Gets or sets the drawing number (page number).
+        /// </summary>
+        /// <value>
+        /// The drawing number (page number).
+        /// </value>
         public string DrawingNumber
         {
             get { return drawingNumber; }
             set { drawingNumber = value; }
         }
 
-        private DateTime creationTime;
-
-        public DateTime CreationTime
+        private DateTime creationDate;
+        /// <summary>
+        /// Gets or sets the date this drawing was created at.
+        /// </summary>
+        /// <value>
+        /// The date this drawing was created at.
+        /// </value>
+        public DateTime CreationDate
         {
-            get { return creationTime; }
-            set { creationTime = value; }
+            get { return creationDate; }
+            set { creationDate = value; }
         }
 
         private int drawingUnit;
-
+        /// <summary>
+        /// Gets or sets the drawing unit (number of millimeters a drawing unit represents).
+        /// </summary>
+        /// <value>
+        /// The drawing unit (number of millimeters a drawing unit represents).
+        /// </value>
         public int DrawingUnit
         {
             get { return drawingUnit; }
             set { drawingUnit = value; }
         }
 
+        #endregion
+
+        #region Initialisation
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DrawingData"/> class for the specified document with default values and 
+        /// loads values from drawing if available. If the version is outdated the drawing area is updated
+        /// </summary>
+        /// <param name="document">The document to create the data for.</param>
         public DrawingData(Document document)
         {
             this.document = document;
             this.version = 0;
-            this.creationTime = DateTime.Now;
+            this.creationDate = DateTime.Now;
             this.drawingUnit = 1000;
 
             LoadValues();
@@ -121,12 +202,24 @@ namespace AutoCADTools.Tools
             if (!document.UserData.ContainsKey(DICTIONARY_NAME)) document.UserData.Add(DICTIONARY_NAME, this);
         }
 
+        /// <summary>
+        /// Creates the data for the specified docoument by calling the constructor.
+        /// </summary>
+        /// <param name="document">The document to create the data for.</param>
+        /// <returns>The created document data object.</returns>
         public static DrawingData Create(Document document)
         {
             var dd = new DrawingData(document);
             return dd;
         }
 
+        #endregion
+
+        #region Load/Save
+
+        /// <summary>
+        /// Loads the values from the drawing.
+        /// </summary>
         private void LoadValues()
         {
             System.Collections.IDictionaryEnumerator enumer = document.Database.SummaryInfo.CustomProperties;
@@ -147,18 +240,24 @@ namespace AutoCADTools.Tools
                     case "Statiknummer": projectNumber = val; break;
                     case "Bauteil": drawingDescription = val; break;
                     case "Plannummer": drawingNumber = val; break;
-                    case "Erstellungsdatum": if (!DateTime.TryParseExact(val, "d", CultureInfo.CurrentCulture, DateTimeStyles.None, out creationTime)) creationTime = DateTime.Now; break;
+                    case "Erstellungsdatum": if (!DateTime.TryParseExact(val, "d", CultureInfo.CurrentCulture, DateTimeStyles.None, out creationDate)) creationDate = DateTime.Now; break;
                     case "Zeichnungseinheit": if (!int.TryParse(val, out drawingUnit)) drawingUnit = 1000; break;
                 }
             }
             if (counter == 0) version = -1;
         }
 
+        /// <summary>
+        /// Clears the changes made by loading the values saved in the drawing.
+        /// </summary>
         public void ClearChanges()
         {
             LoadValues();
         }
 
+        /// <summary>
+        /// Saves the values specified in this object in the drawing.
+        /// </summary>
         public void SaveValues()
         {
             // If textboxes are empty fill with a whitespace so there is no "---" in the textfields
@@ -182,7 +281,7 @@ namespace AutoCADTools.Tools
             prop.Add("BV3", projectDescription3);
             prop.Add("BV4", projectDescription4);
             prop.Add("BVK", projectDescriptionShort);
-            prop.Add("Erstellungsdatum", creationTime.ToShortDateString());
+            prop.Add("Erstellungsdatum", creationDate.ToShortDateString());
             prop.Add("Statiknummer", projectNumber);
             prop.Add("Bauteil", drawingDescription);
             prop.Add("Plannummer", drawingNumber);
@@ -191,6 +290,13 @@ namespace AutoCADTools.Tools
             document.Database.SummaryInfo = dbSumBuilder.ToDatabaseSummaryInfo();
         }
 
+        #endregion
+
+        #region Old Conversion
+
+        /// <summary>
+        /// Converts the old textfields by removing date field from A4 textfield and changes from bigger textfield.
+        /// </summary>
         private void ConvertOldTextfields()
         {
             version = 1;
@@ -287,5 +393,8 @@ namespace AutoCADTools.Tools
             }
 
         }
+
+        #endregion
+
     }
 }

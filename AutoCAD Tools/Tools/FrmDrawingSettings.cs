@@ -103,7 +103,7 @@ namespace AutoCADTools.Tools
             txtProjectnumber.Text = data.ProjectNumber;
             txtSegment.Text = data.DrawingDescription;
             txtPage.Text = data.DrawingNumber;
-            dtpCreationDate.Value = data.CreationTime;
+            dtpCreationDate.Value = data.CreationDate;
             switch (data.DrawingUnit)
             {
                 case 1000:
@@ -192,7 +192,7 @@ namespace AutoCADTools.Tools
         private void butOK_Click(object sender, EventArgs e)
         {
             var data = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-            data.CreationTime = dtpCreationDate.Value;
+            data.CreationDate = dtpCreationDate.Value;
             data.DrawingDescription = txtSegment.Text;
             data.DrawingNumber = txtPage.Text;
             data.Employer = cboEmployers.Text;

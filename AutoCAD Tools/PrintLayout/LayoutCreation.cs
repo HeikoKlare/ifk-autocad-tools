@@ -2,26 +2,56 @@
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace AutoCADTools.PrintLayout
 {
+    /// <summary>
+    /// This class implements the basic layout creation process. It can be extended by implementing the hook DrawLayoutAdditions.
+    /// </summary>
     public abstract class LayoutCreation
     {
-        private Paperformat paperformat;
+        #region Enums
 
+        /// <summary>
+        /// Specifies an orientation of paper.
+        /// </summary>
+        public enum PaperOrientation
+        {
+            /// <summary>
+            /// Portrait format.
+            /// </summary>
+            /// 
+            Portrait,
+            /// <summary>
+            /// Landscape format.
+            /// </summary>
+            Landscape
+        }
+
+        #endregion
+
+        #region Attributes
+
+        private Paperformat paperformat;
+        /// <summary>
+        /// Gets the paperformat specified in the constructor.
+        /// </summary>
+        /// <value>
+        /// The paperformat.
+        /// </value>
         public Paperformat Paperformat
         {
             get { return paperformat; }
         }
 
         private double drawingUnit;
-
+        /// <summary>
+        /// Gets or sets the drawing unit (millimeters represented by a unit in the drawing).
+        /// </summary>
+        /// <value>
+        /// The drawing unit (millimeters represented by a unit in the drawing).
+        /// </value>
         public double DrawingUnit
         {
             get { return drawingUnit; }
@@ -29,7 +59,12 @@ namespace AutoCADTools.PrintLayout
         }
 
         private PrinterPaperformat printerformat;
-
+        /// <summary>
+        /// Gets or sets the format used for printing.
+        /// </summary>
+        /// <value>
+        /// The format used for printing.
+        /// </value>
         public PrinterPaperformat Printerformat
         {
             get { return printerformat; }
@@ -37,7 +72,12 @@ namespace AutoCADTools.PrintLayout
         }
 
         private Point extractLowerRightPoint;
-
+        /// <summary>
+        /// Gets or sets the lower right point of the extract to create the layout for.
+        /// </summary>
+        /// <value>
+        /// The lower right point of the extract to create the layout for.
+        /// </value>
         public Point ExtractLowerRightPoint
         {
             get { return extractLowerRightPoint; }
@@ -45,7 +85,12 @@ namespace AutoCADTools.PrintLayout
         }
 
         private string layoutName;
-
+        /// <summary>
+        /// Gets or sets the name of the layout to create.
+        /// </summary>
+        /// <value>
+        /// The name of the layout to create.
+        /// </value>
         public string LayoutName
         {
             get { return layoutName; }
@@ -53,36 +98,56 @@ namespace AutoCADTools.PrintLayout
         }
 
         private double scale;
-
+        /// <summary>
+        /// Gets or sets the scale factor the extract shell be printed with.
+        /// </summary>
+        /// <value>
+        /// The scale factor the extract shell be printed with.
+        /// </value>
         public double Scale
         {
             get { return scale; }
             set { scale = value; }
         }
 
+        /// <summary>
+        /// Specifies if the viewport has to be rotated.
+        /// </summary>
         protected bool rotateViewport;
 
         private Document document;
-
+        /// <summary>
+        /// Gets the document the layout is created in.
+        /// </summary>
+        /// <value>
+        /// The document the layout is created in.
+        /// </value>
         public Document Document
         {
             get { return document; }
         }
 
         private PaperOrientation orientation;
-
+        /// <summary>
+        /// Gets or sets the orientation for the paper.
+        /// </summary>
+        /// <value>
+        /// The orientation for the paper.
+        /// </value>
         public PaperOrientation Orientation
         {
             get { return orientation; }
             set { orientation = rotateViewport ? PaperOrientation.Portrait : value; }
         }
 
-        public enum PaperOrientation
-        {
-            Portrait,
-            Landscape
-        }
+        #endregion
 
+        #region Initialisation
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LayoutCreation"/> class for the specified paperformat.
+        /// </summary>
+        /// <param name="paperformat">The paperformat to create the layout for.</param>
         public LayoutCreation(Paperformat paperformat)
         {
             this.paperformat = paperformat;
@@ -91,6 +156,14 @@ namespace AutoCADTools.PrintLayout
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
         }
 
+        #endregion
+
+        #region Creation
+
+        /// <summary>
+        /// Creates the layout with the specified attributes. If a layout with the specified name already exists, it is removed.
+        /// </summary>
+        /// <returns><c>true</c> if the layout was successfully created, <c>false</c> otherwise.</returns>
         public bool CreateLayout()
         {
             ValidateProperties();
@@ -257,6 +330,15 @@ namespace AutoCADTools.PrintLayout
             return true;
         }
 
+        /// <summary>
+        /// Validates the specified properties.
+        /// </summary>
+        /// <exception cref="System.ArgumentException">
+        /// Drawing Unit or scale must not be null
+        /// or
+        /// Layout name must not be null or empty
+        /// </exception>
+        /// <exception cref="System.ArgumentNullException">No argument should be null</exception>
         private void ValidateProperties()
         {
             if (drawingUnit == 0 || scale == 0)
@@ -272,11 +354,21 @@ namespace AutoCADTools.PrintLayout
                 throw new ArgumentException("Layout name must not be null or empty");
             }
         }
-
-
+        
+        /// <summary>
+        /// Draws additional parts in the layout.
+        /// </summary>
+        /// <param name="margin">The margin of the used paper.</param>
+        /// <param name="layoutRecord">The layout record of the created layout.</param>
+        /// <returns></returns>
         protected abstract bool DrawLayoutAdditions(Size margin, BlockTableRecord layoutRecord);
 
-        protected Polyline CreateViewportPolyline(Size margin)
+        /// <summary>
+        /// Creates the polyline to use as the viewport.
+        /// </summary>
+        /// <param name="margin">The margin of the paper used.</param>
+        /// <returns>The created polyline.</returns>
+        private Polyline CreateViewportPolyline(Size margin)
         {
             Polyline viewport = new Polyline();
             viewport.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
@@ -317,6 +409,6 @@ namespace AutoCADTools.PrintLayout
             return viewport;
         }
 
-
+        #endregion
     }
 }

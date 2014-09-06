@@ -84,7 +84,7 @@ namespace AutoCADTools.PrintLayout
         public abstract PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IPaperformat{T}"/> class with the initial size Zero.
+        /// Initializes a new instance of the <see cref="Paperformat"/> class with the initial size Zero.
         /// </summary>
         public Paperformat()
         {

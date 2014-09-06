@@ -1,16 +1,18 @@
 ﻿using AutoCADTools.Tools;
 using Autodesk.AutoCAD.DatabaseServices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace AutoCADTools.PrintLayout
 {
+    /// <summary>
+    /// This class provides functionalities for a quick creation of layouts using default values and a specified drawing area.
+    /// </summary>
     public static class QuickLayoutCreation
     {
+        /// <summary>
+        /// Creates a layout based in the specified <see cref="DrawingArea"/> in this drawing using default values for layout name and printers.
+        /// </summary>
+        /// <returns><c>true</c> if the layout was created successfully, <c>false</c> otherwise</returns>
         public static bool CreateDefaultLayout()
         {
             var drawingArea = GetDrawingArea();
@@ -37,6 +39,10 @@ namespace AutoCADTools.PrintLayout
             return creation.CreateLayout();
         }
 
+        /// <summary>
+        /// Creates a PNG layout based in the specified <see cref="DrawingArea"/> in this drawing.
+        /// </summary>
+        /// <returns><c>true</c> if the layout was created successfully, <c>false</c> otherwise</returns>
         public static bool CreatePngLayout()
         {
             var drawingArea = GetDrawingArea();
@@ -56,6 +62,10 @@ namespace AutoCADTools.PrintLayout
             return creation.CreateLayout();
         }
 
+        /// <summary>
+        /// Gets the drawing area in the drawing.
+        /// </summary>
+        /// <returns>The drawing area in the drawing.</returns>
         private static DrawingArea GetDrawingArea()
         {
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
@@ -63,6 +73,12 @@ namespace AutoCADTools.PrintLayout
             return drawingAreaWrapper.DrawingArea;
         }
 
+        /// <summary>
+        /// Sets the default values for the specified drawing area in the given creation process.
+        /// </summary>
+        /// <param name="creation">The creation process object.</param>
+        /// <param name="drawingArea">The drawing area.</param>
+        /// <exception cref="System.ArgumentNullException">Is thrown if an argument is null</exception>
         private static void SetDrawingArea(LayoutCreation creation, DrawingArea drawingArea)
         {
             if (creation == null || drawingArea == null || !drawingArea.IsValid)

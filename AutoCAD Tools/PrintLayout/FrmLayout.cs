@@ -11,6 +11,9 @@ using System.Windows.Forms;
 
 namespace AutoCADTools.PrintLayout
 {
+    /// <summary>
+    /// A UI for creating a layout with different attributes.
+    /// </summary>
     public partial class FrmLayout : Form
     {
         #region Fields
@@ -31,15 +34,19 @@ namespace AutoCADTools.PrintLayout
 
         #region Loading
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FrmLayout"/> class.
+        /// </summary>
+        /// <param name="oldTextfieldUsed">if set to <c>true</c> the old textfield is used.</param>
         public FrmLayout(bool oldTextfieldUsed)
         {
             InitializeComponent();
+            this.oldTextfieldUsed = oldTextfieldUsed;
         }
         
         private void FrmLayout_Load(object sender, EventArgs e)
         {
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            this.oldTextfieldUsed = oldTextfieldUsed;
 
             printerNames = Printer.PrinterNamesList;
             cboPrinter.DataSource = printerNames;

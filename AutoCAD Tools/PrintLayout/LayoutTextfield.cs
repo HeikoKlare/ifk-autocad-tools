@@ -5,21 +5,49 @@ using System.Drawing;
 
 namespace AutoCADTools.PrintLayout
 {
+    /// <summary>
+    /// Implements the layout creation process for a layout with textfield and borders.
+    /// </summary>
     public class LayoutTextfield : LayoutCreation
     {
-        private PaperformatTextfield paperformat;
+        #region Attributes
 
+        private PaperformatTextfield paperformat;
+        /// <summary>
+        /// Gets the paperformat specified in the constructor.
+        /// </summary>
+        /// <value>
+        /// The paperformat.
+        /// </value>
         public new PaperformatTextfield Paperformat
         {
             get { return paperformat; }
         }
 
+        #endregion
+
+        #region Initialisation
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LayoutTextfield"/> class for the specified paperformat.
+        /// </summary>
+        /// <param name="paperformat">The paperformat to create the layout for.</param>
         public LayoutTextfield(PaperformatTextfield paperformat)
             : base(paperformat)
         {
             this.paperformat = paperformat;
         }
 
+        #endregion
+
+        #region Creation
+
+        /// <summary>
+        /// Draws additional parts in the layout: textfield, borders and fold lines.
+        /// </summary>
+        /// <param name="margin">The margin of the used paper.</param>
+        /// <param name="layoutRecord">The layout record of the created layout.</param>
+        /// <returns></returns>
         protected override bool DrawLayoutAdditions(Size margin, BlockTableRecord layoutRecord)
         {
             using (Transaction trans = Document.Database.TransactionManager.StartTransaction())
@@ -146,5 +174,8 @@ namespace AutoCADTools.PrintLayout
             }
             return true;
         }
+
+        #endregion
+
     }
 }
