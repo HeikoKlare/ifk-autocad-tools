@@ -286,7 +286,7 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die File was not found ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die File was not found:  ähnelt.
         /// </summary>
         internal static string TrussImportFileNotFoundText {
             get {

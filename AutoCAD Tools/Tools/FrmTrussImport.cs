@@ -83,7 +83,7 @@ namespace AutoCADTools.Tools
             // Look if selected file exists, otherwise show error and return
             if (!File.Exists(trussImport.FileName))
             {
-                MessageBox.Show(LocalData.TrussImportFileNotFoundText + ": " + trussImport.FileName, LocalData.TrussImportFileNotFoundTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(LocalData.TrussImportFileNotFoundText + trussImport.FileName, LocalData.TrussImportFileNotFoundTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             

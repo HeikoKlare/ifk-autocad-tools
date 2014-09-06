@@ -193,7 +193,7 @@
     <value>Error</value>
   </data>
   <data name="TrussImportFileNotFoundText" xml:space="preserve">
-    <value>File was not found</value>
+    <value>File was not found: </value>
   </data>
   <data name="TrussImportFileNotFoundTitle" xml:space="preserve">
     <value>Unknown File</value>
