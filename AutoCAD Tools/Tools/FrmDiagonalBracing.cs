@@ -80,7 +80,7 @@ namespace AutoCADTools.Tools
         {
             if (String.IsNullOrEmpty(txtPosition.Text) || String.IsNullOrEmpty(cboDescription.Text))
             {
-                if (MessageBox.Show(LocalData.PanicleMissingDescriptionText, LocalData.PanicleMissingDescriptionTitle,
+                if (MessageBox.Show(LocalData.DiagonalBracingMissingDescriptionText, LocalData.DiagonalBracingMissingDescriptionTitle,
                     MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     return;
@@ -404,20 +404,20 @@ namespace AutoCADTools.Tools
                 switch (currentPointIndex)
                 {
                     case firstPointIndex:
-                        queryString += LocalData.PanicleFirstPoint;
+                        queryString += LocalData.DiagonalBracingFirstPoint;
                         break;
                     case secondPointIndex:
-                        queryString += LocalData.PanicleSecondPoint;
+                        queryString += LocalData.DiagonalBracingSecondPoint;
                         break;
                 }
                 queryString += LocalData.Whitespace;
                 switch (currentEndIndex)
                 {
                     case firstEndIndex:
-                        queryString += LocalData.PanicleFirstAddition;
+                        queryString += LocalData.DiagonalBracingFirstAddition;
                         break;
                     case secondEndIndex:
-                        queryString += LocalData.PanicleSecondsAddition;
+                        queryString += LocalData.DiagonalBracingSecondsAddition;
                         promptOptions.UseBasePoint = true;
                         promptOptions.BasePoint = endPoints[currentPointIndex, firstPointIndex];
                         break;

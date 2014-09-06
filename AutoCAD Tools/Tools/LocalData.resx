@@ -135,6 +135,24 @@
   <data name="DeleteDrawingAreaTitle" xml:space="preserve">
     <value>Continue?</value>
   </data>
+  <data name="DiagonalBracingFirstAddition" xml:space="preserve">
+    <value>(first end)</value>
+  </data>
+  <data name="DiagonalBracingFirstPoint" xml:space="preserve">
+    <value>Specify first point</value>
+  </data>
+  <data name="DiagonalBracingMissingDescriptionText" xml:space="preserve">
+    <value>Position or description is missing. Continue?</value>
+  </data>
+  <data name="DiagonalBracingMissingDescriptionTitle" xml:space="preserve">
+    <value>Continue?</value>
+  </data>
+  <data name="DiagonalBracingSecondPoint" xml:space="preserve">
+    <value>Specify second point</value>
+  </data>
+  <data name="DiagonalBracingSecondsAddition" xml:space="preserve">
+    <value>(second end)</value>
+  </data>
   <data name="DimensionDecimalPlaces" xml:space="preserve">
     <value>Decimal places</value>
   </data>
@@ -149,24 +167,6 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
-  </data>
-  <data name="PanicleFirstAddition" xml:space="preserve">
-    <value>(first end)</value>
-  </data>
-  <data name="PanicleFirstPoint" xml:space="preserve">
-    <value>Specify first point</value>
-  </data>
-  <data name="PanicleMissingDescriptionText" xml:space="preserve">
-    <value>Position or description is missing. Continue?</value>
-  </data>
-  <data name="PanicleMissingDescriptionTitle" xml:space="preserve">
-    <value>Continue?</value>
-  </data>
-  <data name="PanicleSecondPoint" xml:space="preserve">
-    <value>Specify second point</value>
-  </data>
-  <data name="PanicleSecondsAddition" xml:space="preserve">
-    <value>(second end)</value>
   </data>
   <data name="ReinforcingBondDefaultDistance" xml:space="preserve">
     <value>0.10</value>

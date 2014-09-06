@@ -115,6 +115,60 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (first end) ähnelt.
+        /// </summary>
+        internal static string DiagonalBracingFirstAddition {
+            get {
+                return ResourceManager.GetString("DiagonalBracingFirstAddition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Specify first point ähnelt.
+        /// </summary>
+        internal static string DiagonalBracingFirstPoint {
+            get {
+                return ResourceManager.GetString("DiagonalBracingFirstPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Position or description is missing. Continue? ähnelt.
+        /// </summary>
+        internal static string DiagonalBracingMissingDescriptionText {
+            get {
+                return ResourceManager.GetString("DiagonalBracingMissingDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Continue? ähnelt.
+        /// </summary>
+        internal static string DiagonalBracingMissingDescriptionTitle {
+            get {
+                return ResourceManager.GetString("DiagonalBracingMissingDescriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Specify second point ähnelt.
+        /// </summary>
+        internal static string DiagonalBracingSecondPoint {
+            get {
+                return ResourceManager.GetString("DiagonalBracingSecondPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die (second end) ähnelt.
+        /// </summary>
+        internal static string DiagonalBracingSecondsAddition {
+            get {
+                return ResourceManager.GetString("DiagonalBracingSecondsAddition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Decimal places ähnelt.
         /// </summary>
         internal static string DimensionDecimalPlaces {
@@ -156,60 +210,6 @@ namespace AutoCADTools.Tools {
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die (first end) ähnelt.
-        /// </summary>
-        internal static string PanicleFirstAddition {
-            get {
-                return ResourceManager.GetString("PanicleFirstAddition", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Specify first point ähnelt.
-        /// </summary>
-        internal static string PanicleFirstPoint {
-            get {
-                return ResourceManager.GetString("PanicleFirstPoint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Position or description is missing. Continue? ähnelt.
-        /// </summary>
-        internal static string PanicleMissingDescriptionText {
-            get {
-                return ResourceManager.GetString("PanicleMissingDescriptionText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Continue? ähnelt.
-        /// </summary>
-        internal static string PanicleMissingDescriptionTitle {
-            get {
-                return ResourceManager.GetString("PanicleMissingDescriptionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Specify second point ähnelt.
-        /// </summary>
-        internal static string PanicleSecondPoint {
-            get {
-                return ResourceManager.GetString("PanicleSecondPoint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die (second end) ähnelt.
-        /// </summary>
-        internal static string PanicleSecondsAddition {
-            get {
-                return ResourceManager.GetString("PanicleSecondsAddition", resourceCulture);
             }
         }
         
