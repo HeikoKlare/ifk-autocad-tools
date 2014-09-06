@@ -214,6 +214,15 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 0.10 ähnelt.
+        /// </summary>
+        internal static string ReinforcingBondDefaultDistance {
+            get {
+                return ResourceManager.GetString("ReinforcingBondDefaultDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die First point at eave ähnelt.
         /// </summary>
         internal static string ReinforcingBondFirstEave {

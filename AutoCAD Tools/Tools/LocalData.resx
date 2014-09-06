@@ -168,6 +168,9 @@
   <data name="PanicleSecondsAddition" xml:space="preserve">
     <value>(second end)</value>
   </data>
+  <data name="ReinforcingBondDefaultDistance" xml:space="preserve">
+    <value>0.10</value>
+  </data>
   <data name="ReinforcingBondFirstEave" xml:space="preserve">
     <value>First point at eave</value>
   </data>

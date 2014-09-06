@@ -74,12 +74,12 @@ namespace AutoCADTools.Tools
 
         private void txtDistanceEave_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtDistanceEave.Text)) txtDistanceEave.Text = "0.10";
+            if (String.IsNullOrEmpty(txtDistanceEave.Text)) txtDistanceEave.Text = LocalData.ReinforcingBondDefaultDistance;
         }
 
         private void txtDistanceRidge_Leave(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtDistanceRidge.Text)) txtDistanceRidge.Text = "0.10";
+            if (String.IsNullOrEmpty(txtDistanceRidge.Text)) txtDistanceRidge.Text = LocalData.ReinforcingBondDefaultDistance;
         }
 
         private void txtDistance_TextChanged(object sender, EventArgs e)
