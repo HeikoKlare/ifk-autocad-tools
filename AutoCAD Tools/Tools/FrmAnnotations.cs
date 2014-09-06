@@ -196,7 +196,7 @@ namespace AutoCADTools.Tools
         private void butClipboard_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Clipboard.SetDataObject(txtContent.Text, true);
-            Utils.NativeMethods.SetForegroundWindow(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
+            Utils.NativeMethods.SetWindowsToForeground(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
         }
 
         /// <summary>

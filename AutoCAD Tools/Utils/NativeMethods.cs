@@ -11,8 +11,17 @@ namespace AutoCADTools.Utils
         /// This method provided by the COM-API allows to set the window with the given handle active
         /// </summary>
         /// <param name="hWnd">the handle of the window to set active</param>
+        public static void SetWindowsToForeground(int hWnd)
+        {
+            SetForegroundWindow(hWnd);
+        }
+
+        /// <summary>
+        /// This method provided by the COM-API allows to set the window with the given handle active
+        /// </summary>
+        /// <param name="hWnd">the handle of the window to set active</param>
         /// <returns>something</returns>
         [DllImport("User32.dll", CharSet = CharSet.Unicode)]
-        public static extern int SetForegroundWindow(int hWnd);
+        private static extern int SetForegroundWindow(int hWnd);
     }
 }
