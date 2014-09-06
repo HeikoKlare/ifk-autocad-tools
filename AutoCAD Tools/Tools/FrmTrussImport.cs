@@ -32,7 +32,7 @@ namespace AutoCADTools.Tools
 
         private void FrmTrussImport_Load(object sender, EventArgs e)
         {
-            trussImport = Tools.TrussImport.getInstance();
+            trussImport = TrussImport.Instance;
 
             txtLayerPrefix.Text = trussImport.LayerPrefix;
             switch (trussImport.Rotation)

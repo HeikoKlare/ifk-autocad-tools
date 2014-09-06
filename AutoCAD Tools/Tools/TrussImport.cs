@@ -100,25 +100,23 @@ namespace AutoCADTools.Tools
 
         private string dummyBlockName = "TrussPreventFromDuplicateBlockName";
 
-        private static TrussImport instance;
-
         #endregion
 
-        #region Initialisation
+        #region Initialisation / Singleton
 
         /// <summary>
         /// Initializes the class
         /// </summary>
         private TrussImport()
         {
-            initialiseLayerNames();
-            initialiseLayerChecks();
+            InitialiseLayerNames();
+            InitialiseLayerChecks();
         }
 
         /// <summary>
         /// Initialises the checked layers
         /// </summary>
-        private void initialiseLayerChecks()
+        private void InitialiseLayerChecks()
         {
             layersChecked = new Dictionary<Layer, bool>();
             layersChecked[Layer.Bearings] = true;
@@ -131,7 +129,7 @@ namespace AutoCADTools.Tools
         /// <summary>
         /// Initialises the layer names
         /// </summary>
-        private void initialiseLayerNames() {
+        private void InitialiseLayerNames() {
             originalLayerNameMap = new Dictionary<string, Layer>();
             // TrussCon Layers
             originalLayerNameMap.Add("QUERSCHNITTE", Layer.Member);
@@ -155,23 +153,16 @@ namespace AutoCADTools.Tools
             newLayerNameMap[Layer.Plates] = LocalData.TrussImportSuffixPlates;
         }
 
+        private static TrussImport instance = new TrussImport();
         /// <summary>
         /// Returns the singleton instance for this class.
         /// </summary>
-        /// <returns>the one and only instance</returns>
-        public static TrussImport getInstance()
+        /// <value>
+        /// The singleton instance.
+        /// </value>
+        public static TrussImport Instance
         {
-            if (instance == null)
-            {
-                lock (typeof(TrussImport))
-                {
-                    if (instance == null)
-                    {
-                        instance = new TrussImport();
-                    }
-                }
-            }
-            return instance;
+            get { return instance; }
         }
 
         #endregion
@@ -369,9 +360,9 @@ namespace AutoCADTools.Tools
                             // Save the copied objects to the database
                             acTrans.Commit();
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
-                            MessageBox.Show("Exception");
+                            MessageBox.Show(LocalData.TrussImportErrorText + e.StackTrace, LocalData.TrussImportErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return false;
                         }
                     }
