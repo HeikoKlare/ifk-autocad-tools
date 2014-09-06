@@ -13,7 +13,6 @@ namespace AutoCADTools.Tools
 {
     class ReinforcingBond
     {
-
         #region Attributes
 
         private int halfFieldCount;
@@ -82,14 +81,16 @@ namespace AutoCADTools.Tools
             set { drawChords = value; if (drawChords) drawVerticalMembers = true; }
         }
 
-        private static ReinforcingBond instance;
-
         /// <summary>
         /// Returns the resulting block name for the text block
         /// </summary>
-        private string BlockName {
-            get { return BLOCK_PREFIX + position.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString() 
-                + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer; }
+        private string BlockName
+        {
+            get
+            {
+                return BLOCK_PREFIX + position.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()
+                    + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer;
+            }
         }
 
         #endregion
@@ -99,7 +100,7 @@ namespace AutoCADTools.Tools
         private const string POSITION_TAG = "POSITION";
         private const string BLOCK_PREFIX = "ReinforcingBond";
         private static readonly Plane plane = new Plane(new Point3d(0, 0, 0), Vector3d.ZAxis);
-        
+
         #endregion
 
         #region Bounds Struct
@@ -129,7 +130,7 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        #region Initialisation
+        #region Initialisation / Singleton
 
         /// <summary>
         /// Initializes the class
@@ -144,23 +145,18 @@ namespace AutoCADTools.Tools
             drawChords = false;
         }
 
+        private static ReinforcingBond instance = new ReinforcingBond();
+
+
         /// <summary>
-        /// Returns the singleton instance for this class.
+        /// Gets the singleton instance.
         /// </summary>
-        /// <returns>the one and only instance</returns>
-        public static ReinforcingBond getInstance()
+        /// <value>
+        /// The singleton instance.
+        /// </value>
+        public static ReinforcingBond Instance
         {
-            if (instance == null)
-            {
-                lock (typeof(ReinforcingBond))
-                {
-                    if (instance == null)
-                    {
-                        instance = new ReinforcingBond();
-                    }
-                }
-            }
-            return instance;
+            get { return instance; }
         }
 
         #endregion
@@ -206,7 +202,7 @@ namespace AutoCADTools.Tools
                     return false;
                 }
                 Point2d secondEavePoint = secondEavePointResult.Value.Convert2d(plane);
-                
+
                 // Create the polyline
                 Polyline poly = new Polyline();
                 int numberOfVertices = halfFieldCount + 1;
@@ -216,7 +212,7 @@ namespace AutoCADTools.Tools
                 {
                     poly.AddVertexAt(i, new Point2d(0, 0), 0, 0, 0);
                 }
-                
+
                 // Start the jig
                 var jig = new ReinforcingBondJig(poly, firstEavePoint, secondEavePoint);
 
@@ -238,7 +234,7 @@ namespace AutoCADTools.Tools
             return true;
         }
 
-        
+
         /// <summary>
         /// Updates the polyline according the specified points
         /// </summary>
@@ -249,7 +245,7 @@ namespace AutoCADTools.Tools
         private void updatePolyline(Polyline poly, Point2d firstEavePoint, Point2d secondEavePoint, Point2d ridgePoint)
         {
             Bounds bounds = new Bounds(firstEavePoint, secondEavePoint, ridgePoint, distanceToEave, distanceToRidge);
-            
+
             // Calculate first index of the cross bars depending on drawing vertical members
             int firstIndex = 1;
             if (drawVerticalMembers) firstIndex++;
@@ -308,7 +304,7 @@ namespace AutoCADTools.Tools
         private void FinaliseBond(Point2d firstEavePoint, Point2d secondEavePoint, Point2d ridgePoint)
         {
             Bounds bounds = new Bounds(firstEavePoint, secondEavePoint, ridgePoint, distanceToEave, distanceToRidge);
-            
+
             // Get the active Document
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
 
@@ -393,26 +389,25 @@ namespace AutoCADTools.Tools
                     // Update attributes
                     foreach (ObjectId id in (BlockTableRecord)acTrans.GetObject(blockTable[BlockName], OpenMode.ForRead))
                     {
-                        DBObject obj = id.GetObject(OpenMode.ForRead);
-                        AttributeDefinition attDef = obj as AttributeDefinition;
-                        if ((attDef != null) && (!attDef.Constant))
+                        using (AttributeDefinition attDef = id.GetObject(OpenMode.ForRead) as AttributeDefinition)
                         {
-                            //This is a non-constant AttributeDefinition
-                            //Create a new AttributeReference
-                            using (AttributeReference attRef = new AttributeReference())
+                            if ((attDef != null) && (!attDef.Constant))
                             {
-                                attRef.SetAttributeFromBlock(attDef, blockRef.BlockTransform);
-                                if (attRef.Tag == POSITION_TAG)
+                                //This is a non-constant AttributeDefinition
+                                //Create a new AttributeReference
+                                using (AttributeReference attRef = new AttributeReference())
                                 {
-                                    attRef.TextString = position;
-                                }
+                                    attRef.SetAttributeFromBlock(attDef, blockRef.BlockTransform);
+                                    if (attRef.Tag == POSITION_TAG)
+                                    {
+                                        attRef.TextString = position;
+                                    }
 
-                                //Add the AttributeReference to the BlockReference
-                                blockRef.AttributeCollection.AppendAttribute(attRef);
-                                acTrans.AddNewlyCreatedDBObject(attRef, true);
+                                    //Add the AttributeReference to the BlockReference
+                                    blockRef.AttributeCollection.AppendAttribute(attRef);
+                                    acTrans.AddNewlyCreatedDBObject(attRef, true);
+                                }
                             }
-                            obj.Dispose();
-                            attDef.Dispose();
                         }
                     }
                 }
@@ -422,7 +417,7 @@ namespace AutoCADTools.Tools
         }
 
         #endregion
-        
+
         #region Jig
 
         /// <summary>
@@ -452,14 +447,15 @@ namespace AutoCADTools.Tools
             /// <param name="poly">the polyline the ridge shell be defined for</param>
             /// <param name="firstEavePoint">the first eave point of the reinforcing bond</param>
             /// <param name="secondEavePoint">the second eave point of the reinforcing bond</param>
-            public ReinforcingBondJig(Polyline poly, Point2d firstEavePoint, Point2d secondEavePoint) : base(poly)
+            public ReinforcingBondJig(Polyline poly, Point2d firstEavePoint, Point2d secondEavePoint)
+                : base(poly)
             {
                 this.poly = poly;
                 this.firstEavePoint = firstEavePoint;
                 this.secondEavePoint = secondEavePoint;
                 // Set the insertionPoint at a position
                 ridgePoint = new Point3d(secondEavePoint.X, secondEavePoint.Y, 0);
-                bond = ReinforcingBond.getInstance();
+                bond = ReinforcingBond.Instance;
 
                 //MessageBox.Show(bond.HalfFieldCount + "");
             }
@@ -499,7 +495,7 @@ namespace AutoCADTools.Tools
             protected override bool Update()
             {
                 bond.updatePolyline(poly, firstEavePoint, secondEavePoint, ridgePoint.Convert2d(plane));
-            
+
                 // Return that everything is fine
                 return true;
             }

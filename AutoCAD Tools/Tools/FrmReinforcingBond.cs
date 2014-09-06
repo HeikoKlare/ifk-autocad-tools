@@ -22,7 +22,7 @@ namespace AutoCADTools.Tools
 
         private void FrmReinforcingBond_Load(object sender, EventArgs e)
         {
-            bond = ReinforcingBond.getInstance();
+            bond = ReinforcingBond.Instance;
             txtDistanceRidge.Text = bond.DistanceToRidge.ToString();
             txtDistanceEave.Text = bond.DistanceToEave.ToString();
             updHalfFields.Value = bond.HalfFieldCount;
