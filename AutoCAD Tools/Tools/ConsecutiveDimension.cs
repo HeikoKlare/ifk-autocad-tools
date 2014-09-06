@@ -153,14 +153,14 @@ namespace AutoCADTools.Tools
                     acDoc.Database.Dimstyle = dimStyleTable[STYLENAME];
                     var rec = acTrans.GetObject(dimStyleTable[STYLENAME], OpenMode.ForWrite) as DimStyleTableRecord;
                     acDoc.Database.SetDimstyleData(rec);
-                    acDoc.Database.Dimexo = dist * double.Parse(Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()) - 0.002;
+                    acDoc.Database.Dimexo = dist * acDoc.Database.Cannoscale.Scale - 0.002;
                 }
                 else if (dimStyleTable.Has(OLDSTYLENAME))
                 {
                     acDoc.Database.Dimstyle = dimStyleTable[OLDSTYLENAME];
                     var rec = acTrans.GetObject(dimStyleTable[OLDSTYLENAME], OpenMode.ForRead) as DimStyleTableRecord;
                     acDoc.Database.SetDimstyleData(rec);
-                    acDoc.Database.Dimexo = dist * double.Parse(Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()) - 0.002;
+                    acDoc.Database.Dimexo = dist * acDoc.Database.Cannoscale.Scale - 0.002;
                 }
                 acDoc.Database.Dimdec = decimalPlaces.Value;
                 acDoc.Database.Dimdli = 0.0;
