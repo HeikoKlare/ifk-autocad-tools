@@ -2,6 +2,9 @@
 
 namespace AutoCADTools.Utils
 {
+    /// <summary>
+    /// Collection a extern native method definition.
+    /// </summary>
     public static class NativeMethods
     {
         /// <summary>
