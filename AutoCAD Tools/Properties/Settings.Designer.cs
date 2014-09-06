@@ -25,60 +25,6 @@ namespace AutoCADTools.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT * FROM Employer ORDER BY id")]
-        public string SelectEmployersCommand {
-            get {
-                return ((string)(this["SelectEmployersCommand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT * FROM Projects ORDER BY number DESC")]
-        public string SelectProjectsCommand {
-            get {
-                return ((string)(this["SelectProjectsCommand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT * FROM Annotations")]
-        public string SelectAnnotationsCommand {
-            get {
-                return ((string)(this["SelectAnnotationsCommand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT * FROM AnnotationCategories ORDER BY name")]
-        public string SelectAnnotationCategoriesCommand {
-            get {
-                return ((string)(this["SelectAnnotationCategoriesCommand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT id, name, categoryId FROM Details")]
-        public string SelectDetailsReducedCommand {
-            get {
-                return ((string)(this["SelectDetailsReducedCommand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT * FROM DetailCategories ORDER BY name")]
-        public string SelectDetailCategoriesCommand {
-            get {
-                return ((string)(this["SelectDetailCategoriesCommand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("\\AutoCAD Tools\\temp.dwt")]
         public string TemplateFileName {
             get {
@@ -92,24 +38,6 @@ namespace AutoCADTools.Properties {
         public string PresentationFileName {
             get {
                 return ((string)(this["PresentationFileName"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT * FROM Details WHERE id = ?id")]
-        public string SelectSpecificDetailCommand {
-            get {
-                return ((string)(this["SelectSpecificDetailCommand"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SELECT * FROM Details")]
-        public string SelectDetailsCommand {
-            get {
-                return ((string)(this["SelectDetailsCommand"]));
             }
         }
         

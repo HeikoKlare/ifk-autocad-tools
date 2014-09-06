@@ -2,35 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AutoCADTools.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="SelectEmployersCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT * FROM Employer ORDER BY id</Value>
-    </Setting>
-    <Setting Name="SelectProjectsCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT * FROM Projects ORDER BY number DESC</Value>
-    </Setting>
-    <Setting Name="SelectAnnotationsCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT * FROM Annotations</Value>
-    </Setting>
-    <Setting Name="SelectAnnotationCategoriesCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT * FROM AnnotationCategories ORDER BY name</Value>
-    </Setting>
-    <Setting Name="SelectDetailsReducedCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT id, name, categoryId FROM Details</Value>
-    </Setting>
-    <Setting Name="SelectDetailCategoriesCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT * FROM DetailCategories ORDER BY name</Value>
-    </Setting>
     <Setting Name="TemplateFileName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">\AutoCAD Tools\temp.dwt</Value>
     </Setting>
     <Setting Name="PresentationFileName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">\AutoCAD Tools\temp.png</Value>
-    </Setting>
-    <Setting Name="SelectSpecificDetailCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT * FROM Details WHERE id = ?id</Value>
-    </Setting>
-    <Setting Name="SelectDetailsCommand" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SELECT * FROM Details</Value>
     </Setting>
     <Setting Name="SqlConnectionPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">ifk.no-ip.biz</Value>

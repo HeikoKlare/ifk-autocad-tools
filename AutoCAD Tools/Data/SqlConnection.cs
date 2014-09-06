@@ -61,7 +61,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectEmployersCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Employer ORDER BY id", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Fill(employersTable);
@@ -74,7 +74,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectEmployersCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Employer ORDER BY id", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(employersTable);
@@ -91,7 +91,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
             ReconnectWhenClosed();
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectProjectsCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Projects ORDER BY number DESC", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Fill(projectsTable);
@@ -104,7 +104,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectProjectsCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Projects ORDER BY number DESC", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(projectsTable);
@@ -121,7 +121,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectAnnotationsCommand + " WHERE categoryId = " + id + " ORDER BY name", connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Annotations WHERE categoryId = " + id + " ORDER BY name", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Fill(annotationsTable);
@@ -134,7 +134,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectAnnotationsCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Annotations", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(annotationsTable);
@@ -151,7 +151,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectAnnotationCategoriesCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM AnnotationCategories ORDER BY name", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Fill(annotationCategoriesTable);
@@ -164,7 +164,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectAnnotationCategoriesCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM AnnotationCategories ORDER BY name", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(annotationCategoriesTable);
@@ -181,7 +181,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectDetailsReducedCommand + " WHERE categoryId = " + id + " ORDER BY name", connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT id, name, categoryId FROM Details WHERE categoryId = " + id + " ORDER BY name", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 //System.Windows.MessageBox.Show(dataAdapter.UpdateCommand.CommandText);
@@ -195,7 +195,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectDetailsReducedCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT id, name, categoryId FROM Details", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(detailsTable);
@@ -206,7 +206,7 @@ namespace AutoCADTools.Data
         {
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectSpecificDetailCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Details WHERE id = ?id", connection);
             dataAdapter.SelectCommand.Parameters.AddWithValue("?id", id);
             Database.DetailsDataTable table = new Database.DetailsDataTable();
             dataAdapter.Fill(table);
@@ -220,7 +220,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectDetailsCommand + " WHERE categoryId = " + id + " ORDER BY name", connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Details WHERE categoryId = " + id + " ORDER BY name", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 //System.Windows.MessageBox.Show(dataAdapter.UpdateCommand.CommandText);
@@ -234,7 +234,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectDetailsCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Details", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(detailsTable);
@@ -251,7 +251,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectDetailCategoriesCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM DetailCategories ORDER BY name", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Fill(detailCategoriesTable);
@@ -264,7 +264,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand(Properties.Settings.Default.SelectDetailCategoriesCommand, connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM DetailCategories ORDER BY name", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(detailCategoriesTable);
