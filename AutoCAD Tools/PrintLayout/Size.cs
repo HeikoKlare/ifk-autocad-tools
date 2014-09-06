@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace AutoCADTools.PrintLayout
 {
     /// <summary>
@@ -137,6 +138,34 @@ namespace AutoCADTools.PrintLayout
             return new Size(size.width * scalar, size.height * scalar);
         }
 
+        /// <summary>
+        /// Implements the operator ==. Is true if sizes are component-wise equal.
+        /// </summary>
+        /// <param name="left">The first size.</param>
+        /// <param name="right">The second size.</param>
+        /// <returns>
+        /// <c>true</c> if both sizes are component wise equal, <c>false</c> otherweise.
+        /// </returns>
+        public static bool operator ==(Size left, Size right)
+        {
+            if (Object.ReferenceEquals(left, null))
+                return Object.ReferenceEquals(right, null);
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Implements the operator !=. Is true if sizes are unequal in at least one component.
+        /// </summary>
+        /// <param name="left">The first size.</param>
+        /// <param name="right">The second size.</param>
+        /// <returns>
+        /// <c>true</c> if both sizes are unequal in at least one component, <c>false</c> otherweise.
+        /// </returns>
+        public static bool operator !=(Size left, Size right)
+        {
+            return !(left == right);
+        }
+
         #endregion
 
         #region Standard Methods
@@ -145,15 +174,19 @@ namespace AutoCADTools.PrintLayout
         /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
         /// Two sizes are equal if they are equal in all components.
         /// </summary>
-        /// <param name="size">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <param name="other">The <see cref="System.Object" /> to compare with this instance.</param>
         /// <returns>
         ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
-        public override bool Equals(object size)
+        public override bool Equals(object other)
         {
-            return size is Size && ((Size)size).Width == width && ((Size)size).Height == height;
+            Size otherSize = other as Size;
+            if (otherSize == null)
+            {
+                return false;
+            }
+            return otherSize.width == width && otherSize.height == height;
         }
-
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance in the format: WIDTH, HEIGHT.

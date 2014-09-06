@@ -1,4 +1,5 @@
 ﻿
+using System;
 namespace AutoCADTools.PrintLayout
 {
     /// <summary>
@@ -124,6 +125,78 @@ namespace AutoCADTools.PrintLayout
         public static Size operator -(Point point1, Point point2)
         {
             return new Size(point1.x - point2.x, point1.y - point2.y);
+        }
+
+        /// <summary>
+        /// Implements the operator ==. Is true if points are component-wise equal.
+        /// </summary>
+        /// <param name="left">The first point.</param>
+        /// <param name="right">The second point.</param>
+        /// <returns>
+        /// <c>true</c> if both points are component wise equal, <c>false</c> otherweise.
+        /// </returns>
+        public static bool operator ==(Point left, Point right)
+        {
+            if (Object.ReferenceEquals(left, null))
+                return Object.ReferenceEquals(right, null);
+            return left.Equals(right);
+        }
+
+        /// <summary>
+        /// Implements the operator !=. Is true if points are unequal in at least one component.
+        /// </summary>
+        /// <param name="left">The first point.</param>
+        /// <param name="right">The first point.</param>
+        /// <returns>
+        /// <c>true</c> if both points are unequal in at least one component, <c>false</c> otherweise.
+        /// </returns>
+        public static bool operator !=(Point left, Point right)
+        {
+            return !(left == right);
+        }
+
+        #endregion
+
+        #region Standard Methods
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object" /> is equal to this instance.
+        /// Two points are equal if they are equal in all components.
+        /// </summary>
+        /// <param name="other">The <see cref="System.Object" /> to compare with this instance.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object other)
+        {
+            Point otherPoint = other as Point;
+            if (otherPoint == null)
+            {
+                return false;
+            }
+            return otherPoint.x == x && otherPoint.y == y;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance in the format: X, Y.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return x + ", " + y;
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return (int)(this.x * (int)this.x * this.y);
         }
 
         #endregion
