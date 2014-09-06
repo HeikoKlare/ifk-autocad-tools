@@ -22,6 +22,7 @@ namespace AutoCADTools.Data {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("Database")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
+    [global::System.CodeDom.Compiler.GeneratedCode("DataSet Generator", "")]
     public partial class Database : global::System.Data.DataSet {
         
         private EmployerDataTable tableEmployer;
