@@ -230,6 +230,7 @@
     </Compile>
     <Compile Include="Tools\ReinforcingBond.cs" />
     <Compile Include="Tools\TrussImport.cs" />
+    <Compile Include="Utils\NativeMethods.cs" />
     <Compile Include="Utils\Progress.cs">
       <SubType>Form</SubType>
     </Compile>

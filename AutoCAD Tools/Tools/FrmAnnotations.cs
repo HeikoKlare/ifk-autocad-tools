@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using System.Runtime.InteropServices;
+
 using System.Windows.Forms;
 using AutoCADTools.Data;
 
@@ -110,7 +110,10 @@ namespace AutoCADTools.Tools
             // Clear table and refill annotations table
             annotationsTable.Clear();
             int categoryId = 0;
-            int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out categoryId);
+            if (!int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out categoryId))
+            {
+                return;
+            }
             connection.FillAnnotations(annotationsTable, categoryId);
 
             // Reset data binding of annotations list
@@ -193,7 +196,7 @@ namespace AutoCADTools.Tools
         private void butClipboard_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Clipboard.SetDataObject(txtContent.Text, true);
-            SetForegroundWindow(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
+            Utils.NativeMethods.SetForegroundWindow(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
         }
 
         /// <summary>
@@ -205,18 +208,6 @@ namespace AutoCADTools.Tools
         {
             this.Close();
         }
-
-        #endregion
-
-        #region WinAPI SetForeground
-
-        /// <summary>
-        /// This method provided by the COM-API allows to set the window with the given handle active
-        /// </summary>
-        /// <param name="hWnd">the handle of the window to set active</param>
-        /// <returns>something</returns>
-        [DllImport("User32.dll", CharSet = CharSet.Unicode)]
-        private static extern int SetForegroundWindow(int hWnd);
 
         #endregion
 
