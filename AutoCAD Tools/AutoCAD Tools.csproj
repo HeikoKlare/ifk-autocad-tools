@@ -365,6 +365,9 @@
     <EmbeddedResource Include="Tools\FrmTrussImport.de.resx">
       <DependentUpon>FrmTrussImport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utils\Progress.de.resx">
+      <DependentUpon>Progress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Utils\Progress.resx">
       <DependentUpon>Progress.cs</DependentUpon>
     </EmbeddedResource>
