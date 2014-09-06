@@ -22,6 +22,6 @@ namespace AutoCADTools.Utils
         /// <param name="hWnd">the handle of the window to set active</param>
         /// <returns>something</returns>
         [DllImport("User32.dll", CharSet = CharSet.Unicode)]
-        private static extern int SetForegroundWindow(int hWnd);
+        private static extern bool SetForegroundWindow(int hWnd);
     }
 }
