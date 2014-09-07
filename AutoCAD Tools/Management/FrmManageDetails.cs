@@ -149,10 +149,8 @@ namespace AutoCADTools.Management
             newRow.categoryId = (int)cboDetailCategories.SelectedValue;
 
             // Get the temporary file paths
-            String templateFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                + Properties.Settings.Default.TemplateFileName;
-            String presentationFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                + Properties.Settings.Default.PresentationFileName;
+            String templateFile = Path.GetTempPath() + "Detail.dwt";
+            String presentationFile = Path.GetTempPath() + "Detail.png";
 
             // Delete template and presentation file if existing
             File.Delete(templateFile);

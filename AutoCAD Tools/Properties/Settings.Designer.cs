@@ -23,24 +23,6 @@ namespace AutoCADTools.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\AutoCAD Tools\\temp.dwt")]
-        public string TemplateFileName {
-            get {
-                return ((string)(this["TemplateFileName"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\AutoCAD Tools\\temp.png")]
-        public string PresentationFileName {
-            get {
-                return ((string)(this["PresentationFileName"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ifk.no-ip.biz")]

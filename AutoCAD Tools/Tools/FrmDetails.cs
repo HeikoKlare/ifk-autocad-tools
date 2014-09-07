@@ -177,8 +177,7 @@ namespace AutoCADTools.Tools
             Database.DetailsDataTable table = connection.GetDetail(detailsTable[lvwDetails.SelectedIndices[0]].id);
             if (table.Rows.Count != 1) return;
 
-            String file = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-                + Properties.Settings.Default.TemplateFileName;
+            String file = Path.GetTempPath() + "Detail.dwt";
             File.Delete(file);
             using (FileStream fs = new FileStream(file, FileMode.Create))
             {
