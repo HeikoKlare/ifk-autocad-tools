@@ -163,12 +163,16 @@
             // 
             // cboProjects
             // 
-            this.cboProjects.DropDownHeight = 250;
+            this.cboProjects.BackColor = System.Drawing.SystemColors.Window;
+            this.cboProjects.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cboProjects.DropDownHeight = 400;
             this.cboProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProjects.DropDownWidth = 600;
+            this.cboProjects.DropDownWidth = 450;
             resources.ApplyResources(this.cboProjects, "cboProjects");
             this.cboProjects.FormattingEnabled = true;
             this.cboProjects.Name = "cboProjects";
+            this.cboProjects.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cboProjects_DrawItem);
+            this.cboProjects.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.cboProjects_MeasureItem);
             this.cboProjects.SelectedIndexChanged += new System.EventHandler(this.cboProjects_SelectedIndexChanged);
             // 
             // lblProjectCopyFrom
@@ -284,7 +288,7 @@
             this.Controls.Add(this.txtSegment);
             this.Controls.Add(lblObject);
             this.Controls.Add(grpProject);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmDrawingSettings";

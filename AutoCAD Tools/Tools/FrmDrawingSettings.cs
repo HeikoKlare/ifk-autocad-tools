@@ -4,6 +4,9 @@ using AutoCADTools.Data;
 using AutoCADTools.Management;
 using AutoCADTools.PrintLayout;
 using Database = AutoCADTools.Data.Database;
+using System.Drawing;
+using System.Data;
+using System.Linq;
 
 namespace AutoCADTools.Tools
 {
@@ -87,7 +90,7 @@ namespace AutoCADTools.Tools
 
             projectsTable = new Database.ProjectDataTable();
             employersTable = new Database.EmployerDataTable();
-            projectsTable.Columns.Add("Descr", typeof(String), "number + ' - ' + employer + ' - ' + descriptionShort");
+            projectsTable.Columns.Add("Descr", typeof(String), "number + ' - ' + employer + ' # ' + descriptionShort");
 
             // Update the data bindings
             UpdateConnectedDate();
@@ -248,7 +251,8 @@ namespace AutoCADTools.Tools
         {
             if (cboProjects.SelectedIndex >= 0 && !updating)
             {
-                cboEmployers.Text = (employersTable.Rows.Find(projectsTable[cboProjects.SelectedIndex].employer) as Database.EmployerRow).name;
+                Database.EmployerRow empRow = employersTable.Rows.Find(projectsTable[cboProjects.SelectedIndex].employer) as Database.EmployerRow;
+                cboEmployers.Text = empRow != null ? empRow.name : String.Empty;
                 txtDescription1.Text = projectsTable[cboProjects.SelectedIndex].description1;
                 txtDescription2.Text = projectsTable[cboProjects.SelectedIndex].description2;
                 txtDescription3.Text = projectsTable[cboProjects.SelectedIndex].description3;
@@ -306,6 +310,62 @@ namespace AutoCADTools.Tools
         }
 
         #endregion
+
+        private void cboProjects_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            Brush fontBrush; //Brush To Be used
+
+            //Set Appropriate Brush
+            if ((e.State & DrawItemState.Selected) ==
+            DrawItemState.Selected)
+            {
+                fontBrush = SystemBrushes.HighlightText;
+            }
+            else
+            {
+                fontBrush = new SolidBrush(e.ForeColor);
+            }
+
+            //Current item's Font
+            e.DrawBackground(); //Redraw Item Background
+
+            //Draw Current Font
+            if (e.Index >= 0 && e.Index < cboProjects.Items.Count)
+            {
+                Font font = e.Font;
+                Font boldFont = new Font(e.Font, FontStyle.Bold);
+                Font italicFont = new Font(e.Font, FontStyle.Italic);
+                var row = ((AutoCADTools.Data.Database.ProjectRow)((DataRowView)cboProjects.Items[e.Index]).Row);
+                SizeF numberSize = e.Graphics.MeasureString(row.number, boldFont);
+                SizeF minSize = e.Graphics.MeasureString("99999", boldFont);
+                float leftHang = Math.Max(numberSize.Width, minSize.Width);
+
+                e.Graphics.DrawString(row.number, boldFont, fontBrush, e.Bounds.X, e.Bounds.Y);
+                Database.EmployerRow empRow = employersTable.Rows.Find(projectsTable[e.Index].employer) as Database.EmployerRow;
+                string employerName = empRow != null ? empRow.name : String.Empty;
+
+                e.Graphics.DrawString(employerName, italicFont, fontBrush, e.Bounds.X + leftHang + 10, e.Bounds.Y);
+                e.Graphics.DrawString(row.descriptionShort, e.Font, fontBrush, e.Bounds.X + leftHang + 10, (int)(e.Bounds.Y + e.Bounds.Height / 2.2));
+            }
+            e.DrawFocusRectangle(); //Draw Focus Rectangle Around 
+        }
+
+        private void cboProjects_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            //Get Current Font In ComboBox
+            Font font = cboProjects.Font;
+                        
+            //determine Its Size
+            if (e.Index >= 0 && e.Index < cboProjects.Items.Count)
+            {
+                SizeF stringSize = e.Graphics.MeasureString(((AutoCADTools.Data.Database.ProjectRow)((DataRowView)cboProjects.Items[e.Index]).Row).descriptionShort, font);
+
+                //Set Appropriate Height
+                e.ItemHeight = (int)(2.2 * stringSize.Height);
+                //Set Appropriate Width
+                e.ItemWidth = (int)stringSize.Width;
+            }
+        }
         
     }
 

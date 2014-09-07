@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AutoCADTools</RootNamespace>
-    <AssemblyName>AutoCAD Tools 2</AssemblyName>
+    <AssemblyName>AutoCAD Tools</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
@@ -69,7 +69,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>AutoCAD Tools 2.XML</DocumentationFile>
+    <DocumentationFile>AutoCAD Tools.XML</DocumentationFile>
     <Optimize>true</Optimize>
     <NoWarn>1607</NoWarn>
     <DebugType>pdbonly</DebugType>
@@ -454,7 +454,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y  "$(ProjectDir)$(OutDir)$(TargetFileName)" "C:\Programme\Autodesk\AutoCAD 2015\"
-xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools 2.resources.dll" "C:\Programme\Autodesk\AutoCAD 2015\de\"</PostBuildEvent>
+xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools.resources.dll" "C:\Programme\Autodesk\AutoCAD 2015\de\"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

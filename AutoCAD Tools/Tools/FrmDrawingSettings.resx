@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblEmployer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 82</value>
+    <value>21, 106</value>
   </data>
   <data name="lblEmployer.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -156,7 +156,7 @@
     <value>True</value>
   </data>
   <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 122</value>
+    <value>21, 146</value>
   </data>
   <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 20</value>
@@ -183,13 +183,13 @@
     <value>False</value>
   </metadata>
   <data name="txtDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 257</value>
+    <value>147, 281</value>
   </data>
   <data name="txtDescriptionShort.MaxLength" type="System.Int32, mscorlib">
     <value>45</value>
   </data>
   <data name="txtDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 26</value>
+    <value>450, 26</value>
   </data>
   <data name="txtDescriptionShort.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
@@ -213,7 +213,7 @@
     <value>True</value>
   </data>
   <data name="lblDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 258</value>
+    <value>21, 282</value>
   </data>
   <data name="lblDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 20</value>
@@ -237,13 +237,13 @@
     <value>1</value>
   </data>
   <data name="txtProjectnumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 297</value>
+    <value>147, 321</value>
   </data>
   <data name="txtProjectnumber.MaxLength" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
   <data name="txtProjectnumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 26</value>
+    <value>169, 26</value>
   </data>
   <data name="txtProjectnumber.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -265,10 +265,10 @@
     <value>System</value>
   </data>
   <data name="butEditProjects.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 293</value>
+    <value>396, 317</value>
   </data>
   <data name="butEditProjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 35</value>
+    <value>201, 35</value>
   </data>
   <data name="butEditProjects.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
@@ -295,7 +295,7 @@
     <value>True</value>
   </data>
   <data name="lblProjectNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 298</value>
+    <value>21, 322</value>
   </data>
   <data name="lblProjectNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 20</value>
@@ -319,13 +319,13 @@
     <value>4</value>
   </data>
   <data name="cboEmployers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 81</value>
+    <value>147, 105</value>
   </data>
   <data name="cboEmployers.MaxLength" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
   <data name="cboEmployers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 28</value>
+    <value>450, 28</value>
   </data>
   <data name="cboEmployers.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -343,13 +343,13 @@
     <value>5</value>
   </data>
   <data name="txtDescription4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 217</value>
+    <value>147, 241</value>
   </data>
   <data name="txtDescription4.MaxLength" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
   <data name="txtDescription4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 26</value>
+    <value>450, 26</value>
   </data>
   <data name="txtDescription4.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -367,13 +367,13 @@
     <value>6</value>
   </data>
   <data name="txtDescription3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 185</value>
+    <value>147, 209</value>
   </data>
   <data name="txtDescription3.MaxLength" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
   <data name="txtDescription3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 26</value>
+    <value>450, 26</value>
   </data>
   <data name="txtDescription3.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -391,13 +391,13 @@
     <value>7</value>
   </data>
   <data name="txtDescription2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 153</value>
+    <value>147, 177</value>
   </data>
   <data name="txtDescription2.MaxLength" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
   <data name="txtDescription2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 26</value>
+    <value>450, 26</value>
   </data>
   <data name="txtDescription2.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -415,13 +415,13 @@
     <value>8</value>
   </data>
   <data name="txtDescription1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 121</value>
+    <value>147, 145</value>
   </data>
   <data name="txtDescription1.MaxLength" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
   <data name="txtDescription1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 26</value>
+    <value>450, 26</value>
   </data>
   <data name="txtDescription1.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
@@ -444,11 +444,14 @@
   <data name="cboProjects.IntegralHeight" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="cboProjects.ItemHeight" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
   <data name="cboProjects.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 35</value>
   </data>
   <data name="cboProjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 28</value>
+    <value>450, 51</value>
   </data>
   <data name="cboProjects.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -499,7 +502,7 @@
     <value>13, 14</value>
   </data>
   <data name="grpProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>507, 351</value>
+    <value>620, 375</value>
   </data>
   <data name="grpProject.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -526,7 +529,7 @@
     <value>True</value>
   </data>
   <data name="lblObject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 32</value>
+    <value>661, 32</value>
   </data>
   <data name="lblObject.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 20</value>
@@ -556,7 +559,7 @@
     <value>True</value>
   </data>
   <data name="lblNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 98</value>
+    <value>661, 98</value>
   </data>
   <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>122, 20</value>
@@ -586,7 +589,7 @@
     <value>True</value>
   </data>
   <data name="lblDrawingUnit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>556, 263</value>
+    <value>669, 283</value>
   </data>
   <data name="lblDrawingUnit.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 20</value>
@@ -616,7 +619,7 @@
     <value>True</value>
   </data>
   <data name="lblCreationDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 162</value>
+    <value>661, 162</value>
   </data>
   <data name="lblCreationDate.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 20</value>
@@ -640,7 +643,7 @@
     <value>2</value>
   </data>
   <data name="txtSegment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 55</value>
+    <value>665, 55</value>
   </data>
   <data name="txtSegment.MaxLength" type="System.Int32, mscorlib">
     <value>60</value>
@@ -667,7 +670,7 @@
     <value>11</value>
   </data>
   <data name="txtPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 121</value>
+    <value>665, 121</value>
   </data>
   <data name="txtPage.MaxLength" type="System.Int32, mscorlib">
     <value>5</value>
@@ -697,7 +700,7 @@
     <value>System</value>
   </data>
   <data name="butOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>561, 311</value>
+    <value>674, 331</value>
   </data>
   <data name="butOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 43</value>
@@ -727,7 +730,7 @@
     <value>System</value>
   </data>
   <data name="optMeters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>708, 262</value>
+    <value>821, 282</value>
   </data>
   <data name="optMeters.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 25</value>
@@ -757,7 +760,7 @@
     <value>System</value>
   </data>
   <data name="optCentimeters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>796, 262</value>
+    <value>909, 282</value>
   </data>
   <data name="optCentimeters.Size" type="System.Drawing.Size, System.Drawing">
     <value>119, 25</value>
@@ -787,7 +790,7 @@
     <value>System</value>
   </data>
   <data name="optMillimeters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>920, 262</value>
+    <value>1033, 282</value>
   </data>
   <data name="optMillimeters.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 25</value>
@@ -814,7 +817,7 @@
     <value>System</value>
   </data>
   <data name="butCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>814, 311</value>
+    <value>927, 331</value>
   </data>
   <data name="butCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 43</value>
@@ -841,7 +844,7 @@
     <value />
   </data>
   <data name="dtpCreationDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>552, 185</value>
+    <value>665, 185</value>
   </data>
   <data name="dtpCreationDate.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 26</value>
@@ -868,7 +871,7 @@
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
   <data name="butDefaultValues.Location" type="System.Drawing.Point, System.Drawing">
-    <value>774, 98</value>
+    <value>887, 98</value>
   </data>
   <data name="butDefaultValues.Size" type="System.Drawing.Size, System.Drawing">
     <value>234, 35</value>
@@ -898,7 +901,7 @@
     <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1047, 379</value>
+    <value>1160, 403</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
