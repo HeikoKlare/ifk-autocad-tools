@@ -202,6 +202,7 @@
     <Compile Include="PrintLayout\PrinterCache.cs" />
     <Compile Include="PrintLayout\QuickLayoutCreation.cs" />
     <Compile Include="PrintLayout\Size.cs" />
+    <Compile Include="ToolsInitialization.cs" />
     <Compile Include="Tools\CompressionWood.cs" />
     <Compile Include="Tools\ConsecutiveDimension.cs" />
     <Compile Include="Tools\DrawingData.cs" />
@@ -404,6 +405,24 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="AutoCAD">
+      <Guid>{4E3F492A-FB57-4439-9BF0-1567ED84A3A9}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AXDBLib">
+      <Guid>{594E795C-1019-46CC-969B-121BE08917B2}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="stdole">
       <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>2</VersionMajor>
