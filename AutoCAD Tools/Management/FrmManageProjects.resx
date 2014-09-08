@@ -150,20 +150,20 @@
   <data name="txtDescriptionShort.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="txtDescriptionShort.Error" xml:space="preserve">
-    <value />
-  </data>
   <data name="&gt;&gt;txtDescription1.Name" xml:space="preserve">
     <value>txtDescription1</value>
   </data>
   <data name="&gt;&gt;butNew.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="&gt;&gt;butNew.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblProjectCreatedAtPreamble.Parent" xml:space="preserve">
     <value>grpProjectData</value>
   </data>
-  <data name="lblDescription1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 20</value>
+  <data name="txtDescription1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>145, 143</value>
+  </data>
+  <data name="txtDescription1.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;butNew.Name" xml:space="preserve">
     <value>butNew</value>
@@ -171,11 +171,14 @@
   <data name="grpProjects.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt, style=Bold</value>
   </data>
+  <data name="txtDescription1.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
   <data name="grpProjects.Error" xml:space="preserve">
     <value />
   </data>
-  <data name="butUseForNew.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 35</value>
+  <data name="&gt;&gt;lblProjectCreatedAtPreamble.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblProjectCreatedAtPreamble.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -188,9 +191,6 @@
   </data>
   <data name="lblEmployer.Error" xml:space="preserve">
     <value />
-  </data>
-  <data name="&gt;&gt;txtDescription2.Name" xml:space="preserve">
-    <value>txtDescription2</value>
   </data>
   <data name="&gt;&gt;lblProjectCreatedAt.Name" xml:space="preserve">
     <value>lblProjectCreatedAt</value>
@@ -205,10 +205,10 @@
     <value />
   </data>
   <data name="lvwProjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>617, 509</value>
+    <value>917, 509</value>
   </data>
-  <data name="&gt;&gt;butEditEmployers.Name" xml:space="preserve">
-    <value>butEditEmployers</value>
+  <data name="lblProjectCreatedAt.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;txtDescription2.Parent" xml:space="preserve">
     <value>grpProjectData</value>
@@ -231,11 +231,11 @@
   <data name="mnuProjectsUseForNew.Text" xml:space="preserve">
     <value>Use For New</value>
   </data>
-  <data name="lblDescriptionShort.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
+  <data name="lblNumber.Error" xml:space="preserve">
+    <value />
   </data>
-  <data name="grpProjects.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;txtDescription3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblNumber.Name" xml:space="preserve">
     <value>lblNumber</value>
@@ -243,20 +243,17 @@
   <data name="butRemove.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="txtNumber.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="lblEmployer.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="cboEmployer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 16, 3, 3</value>
+  <data name="lblDescription1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 146</value>
   </data>
-  <data name="lblProjectCreatedAt.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+  <data name="lblDescription1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
   <data name="butUseForNew.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
-  </data>
-  <data name="&gt;&gt;txtDescription1.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <data name="butModify.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
@@ -273,20 +270,20 @@
   <data name="&gt;&gt;grpProjects.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="lblDescription1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 146</value>
+  <data name="&gt;&gt;txtDescription3.Parent" xml:space="preserve">
+    <value>grpProjectData</value>
   </data>
-  <data name="&gt;&gt;errorProvider.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblEmployer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 99</value>
   </data>
   <data name="&gt;&gt;lvwProjects.Type" xml:space="preserve">
     <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cboEmployer.ZOrder" xml:space="preserve">
-    <value>15</value>
+  <data name="txtDescription4.Error" xml:space="preserve">
+    <value />
   </data>
-  <data name="txtDescription2.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="&gt;&gt;lblNumber.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="lblNumber.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
@@ -300,8 +297,8 @@
   <data name="lvwProjects.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="lblDescription1.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="butRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="lblEmployer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
@@ -312,20 +309,20 @@
   <data name="butNew.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="txtDescription1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
-  </data>
   <data name="mnuProjectsUseForNew.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 30</value>
   </data>
   <data name="txtDescription3.Location" type="System.Drawing.Point, System.Drawing">
     <value>145, 207</value>
   </data>
+  <data name="butUseForNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblNumber.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;mnuProjectsUseForNew.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="butNew.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
   </data>
   <data name="butUseForNew.Text" xml:space="preserve">
     <value>Use for new</value>
@@ -392,23 +389,20 @@
   <data name="grpProjectData.Size" type="System.Drawing.Size, System.Drawing">
     <value>519, 540</value>
   </data>
-  <data name="grpProjectData.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="txtDescriptionShort.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="lvwProjects.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 25</value>
   </data>
-  <data name="txtNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 26</value>
+  <data name="lblDescriptionShort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="lblDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 20</value>
   </data>
-  <data name="lblNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+  <data name="txtDescription3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 26</value>
   </data>
   <data name="txtDescription2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -419,23 +413,26 @@
   <data name="butModify.Error" xml:space="preserve">
     <value />
   </data>
-  <data name="lvwProjects.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="&gt;&gt;txtNumber.Parent" xml:space="preserve">
+    <value>grpProjectData</value>
   </data>
   <data name="butNew.Error" xml:space="preserve">
     <value />
   </data>
-  <data name="txtDescription1.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;butNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;butRemove.Parent" xml:space="preserve">
     <value>grpProjectData</value>
   </data>
-  <data name="&gt;&gt;butModify.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="butUseForNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 35</value>
   </data>
-  <data name="butModify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 348</value>
+  <data name="butRemove.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;mnuProjectsRemove.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblProjectCreatedAtPreamble.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
@@ -443,8 +440,8 @@
   <data name="lblDescription1.Text" xml:space="preserve">
     <value>Description:</value>
   </data>
-  <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 20</value>
+  <data name="grpProjectData.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="lblProjectCreatedAt.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
@@ -461,26 +458,17 @@
   <data name="&gt;&gt;lblEmployer.Name" xml:space="preserve">
     <value>lblEmployer</value>
   </data>
-  <data name="&gt;&gt;txtDescriptionShort.Name" xml:space="preserve">
-    <value>txtDescriptionShort</value>
+  <data name="&gt;&gt;cboEmployer.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
   <data name="&gt;&gt;grpProjectData.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblDescription1.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;lblProjectCreatedAt.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="grpProjectData.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
+  <data name="butEditEmployers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>341, 348</value>
   </data>
   <data name="mnuProjectsRemove.Text" xml:space="preserve">
     <value>Remove</value>
-  </data>
-  <data name="txtDescription4.Error" xml:space="preserve">
-    <value />
   </data>
   <data name="txtNumber.MaxLength" type="System.Int32, mscorlib">
     <value>7</value>
@@ -500,8 +488,8 @@
   <data name="&gt;&gt;lblEmployer.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="txtNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 51</value>
+  <data name="txtDescription2.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
   </data>
   <data name="cboEmployer.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
@@ -518,6 +506,9 @@
   <data name="&gt;&gt;butModify.Name" xml:space="preserve">
     <value>butModify</value>
   </data>
+  <data name="lblNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
   <data name="&gt;&gt;lblProjectCreatedAt.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
@@ -527,8 +518,8 @@
   <data name="butNew.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="butUseForNew.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="grpProjectData.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
   </data>
   <data name="butNew.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 348</value>
@@ -536,23 +527,23 @@
   <data name="lblProjectCreatedAtPreamble.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 20</value>
   </data>
-  <data name="butRemove.Error" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblProjectCreatedAt.Error" xml:space="preserve">
-    <value />
+  <data name="lvwProjects.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="grpProjectData.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
   </data>
-  <data name="lblEmployer.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;txtDescriptionShort.Name" xml:space="preserve">
+    <value>txtDescriptionShort</value>
   </data>
-  <data name="butModify.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;butEditEmployers.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="butNew.Text" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="lvwProjects.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="lblProjectCreatedAtPreamble.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
@@ -566,14 +557,11 @@
   <data name="&gt;&gt;grpProjects.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;butNew.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblEmployer.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="lblDescriptionShort.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtNumber.Parent" xml:space="preserve">
-    <value>grpProjectData</value>
+  <data name="grpProjectData.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;errorProvider.Name" xml:space="preserve">
     <value>errorProvider</value>
@@ -581,14 +569,14 @@
   <data name="lblDescriptionShort.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="butRemove.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 35</value>
+  <data name="&gt;&gt;errorProvider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lvwProjects.Name" xml:space="preserve">
-    <value>lvwProjects</value>
+  <data name="&gt;&gt;butNew.Parent" xml:space="preserve">
+    <value>grpProjectData</value>
   </data>
-  <data name="cboEmployer.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="grpProjects.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;mnuProjects.Name" xml:space="preserve">
     <value>mnuProjects</value>
@@ -602,8 +590,11 @@
   <data name="butEditEmployers.Text" xml:space="preserve">
     <value>Edit Employers</value>
   </data>
-  <data name="lblEmployer.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
+  <data name="&gt;&gt;cboEmployer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtDescription2.Error" xml:space="preserve">
+    <value />
   </data>
   <data name="butModify.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -611,44 +602,41 @@
   <data name="butRemove.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="txtDescription1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 16, 3, 3</value>
-  </data>
-  <data name="butModify.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 35</value>
+  <data name="txtDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>337, 26</value>
   </data>
   <data name="butEditEmployers.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="grpProjectData.Text" xml:space="preserve">
-    <value>Project Data</value>
+  <data name="lblProjectCreatedAt.Error" xml:space="preserve">
+    <value />
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>
   </data>
   <data name="grpProjectData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>647, 12</value>
+    <value>947, 12</value>
   </data>
-  <data name="lblProjectCreatedAtPreamble.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt, style=Italic</value>
+  <data name="txtNumber.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lblProjectCreatedAt.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt, style=Italic</value>
   </data>
+  <data name="lblNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;lblNumber.Parent" xml:space="preserve">
     <value>grpProjectData</value>
   </data>
-  <data name="&gt;&gt;lblProjectCreatedAtPreamble.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="butModify.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 348</value>
   </data>
-  <data name="cboEmployer.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;lblDescription1.Name" xml:space="preserve">
+    <value>lblDescription1</value>
   </data>
   <data name="txtDescriptionShort.MaxLength" type="System.Int32, mscorlib">
     <value>50</value>
-  </data>
-  <data name="grpProjects.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
   </data>
   <data name="butRemove.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 392</value>
@@ -656,23 +644,23 @@
   <data name="butEditEmployers.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 80</value>
   </data>
-  <data name="butRemove.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="butRemove.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 35</value>
   </data>
   <data name="txtDescription3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="&gt;&gt;lblProjectCreatedAtPreamble.Parent" xml:space="preserve">
-    <value>grpProjectData</value>
+  <data name="&gt;&gt;lblDescription1.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
-  <data name="lblNumber.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="cboEmployer.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
   </data>
   <data name="cboEmployer.Location" type="System.Drawing.Point, System.Drawing">
     <value>145, 96</value>
   </data>
-  <data name="&gt;&gt;txtNumber.Name" xml:space="preserve">
-    <value>txtNumber</value>
+  <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 20</value>
   </data>
   <data name="txtDescription3.MaxLength" type="System.Int32, mscorlib">
     <value>50</value>
@@ -683,6 +671,9 @@
   <data name="lvwProjects.Error" xml:space="preserve">
     <value />
   </data>
+  <data name="lblProjectCreatedAt.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="txtDescription4.Size" type="System.Drawing.Size, System.Drawing">
     <value>337, 26</value>
   </data>
@@ -692,8 +683,8 @@
   <data name="&gt;&gt;lblProjectCreatedAtPreamble.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="butModify.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="butModify.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 35</value>
   </data>
   <data name="&gt;&gt;lblDescription1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -707,8 +698,8 @@
   <data name="txtDescription3.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;txtNumber.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="lblDescriptionShort.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;txtDescription4.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -728,14 +719,11 @@
   <data name="mnuProjects.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="txtDescription1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 143</value>
+  <data name="cboEmployer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="&gt;&gt;txtDescriptionShort.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblDescriptionShort.Error" xml:space="preserve">
-    <value />
   </data>
   <data name="lblProjectCreatedAt.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 20</value>
@@ -743,32 +731,29 @@
   <data name="&gt;&gt;lblEmployer.Parent" xml:space="preserve">
     <value>grpProjectData</value>
   </data>
+  <data name="butEditEmployers.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
   <data name="txtDescription3.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="txtNumber.Error" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblProjectCreatedAtPreamble.Error" xml:space="preserve">
-    <value />
+  <data name="lblDescription1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 20</value>
   </data>
   <data name="&gt;&gt;txtDescription4.Name" xml:space="preserve">
     <value>txtDescription4</value>
   </data>
-  <data name="&gt;&gt;txtDescriptionShort.Parent" xml:space="preserve">
-    <value>grpProjectData</value>
-  </data>
-  <data name="&gt;&gt;grpProjectData.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="txtDescription1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;grpProjectData.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="butEditEmployers.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;mnuProjectsUseForNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="butNew.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
+  <data name="grpProjects.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="lblProjectCreatedAtPreamble.Location" type="System.Drawing.Point, System.Drawing">
     <value>29, 458</value>
@@ -776,20 +761,23 @@
   <data name="lblNumber.Location" type="System.Drawing.Point, System.Drawing">
     <value>23, 54</value>
   </data>
-  <data name="&gt;&gt;lblDescriptionShort.Parent" xml:space="preserve">
-    <value>grpProjectData</value>
+  <data name="&gt;&gt;txtNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtDescription1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 16, 3, 3</value>
   </data>
   <data name="&gt;&gt;txtDescription2.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="txtDescriptionShort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
+  <data name="grpProjectData.Text" xml:space="preserve">
+    <value>Project Data</value>
   </data>
   <data name="&gt;&gt;butRemove.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="butRemove.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
+  <data name="&gt;&gt;txtNumber.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;lblEmployer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -803,9 +791,6 @@
   <data name="lvwProjects.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="txtDescription1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
-  </data>
   <data name="lblDescriptionShort.TabIndex" type="System.Int32, mscorlib">
     <value>40</value>
   </data>
@@ -815,11 +800,8 @@
   <data name="&gt;&gt;butRemove.Name" xml:space="preserve">
     <value>butRemove</value>
   </data>
-  <data name="mnuProjects.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;lblNumber.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="butEditEmployers.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="grpProjects.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>
@@ -830,32 +812,35 @@
   <data name="mnuProjectsEdit.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="butUseForNew.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="lblProjectCreatedAtPreamble.Text" xml:space="preserve">
     <value>Project create at:</value>
   </data>
   <data name="txtDescription4.MaxLength" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
-  <data name="lblEmployer.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;lblDescriptionShort.Parent" xml:space="preserve">
+    <value>grpProjectData</value>
   </data>
-  <data name="butEditEmployers.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="cboEmployer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 16, 3, 3</value>
   </data>
   <data name="butRemove.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="grpProjectData.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+  <data name="lblEmployer.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
-  <data name="lblDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 287</value>
+  <data name="lblProjectCreatedAtPreamble.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt, style=Italic</value>
   </data>
   <data name="txtDescription2.Size" type="System.Drawing.Size, System.Drawing">
     <value>337, 26</value>
   </data>
-  <data name="txtDescription1.Error" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;lblNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnuProjectsEdit.Name" xml:space="preserve">
     <value>mnuProjectsEdit</value>
@@ -863,8 +848,8 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblDescription1.Name" xml:space="preserve">
-    <value>lblDescription1</value>
+  <data name="butModify.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblDescription1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
@@ -875,11 +860,11 @@
   <data name="butModify.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="butUseForNew.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="lblNumber.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="mnuProjects.Error" xml:space="preserve">
-    <value />
+  <data name="txtDescription1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
   </data>
   <data name="&gt;&gt;txtDescription2.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -893,8 +878,8 @@
   <data name="cboEmployer.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="lblEmployer.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="lblProjectCreatedAtPreamble.Error" xml:space="preserve">
+    <value />
   </data>
   <data name="txtDescriptionShort.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
@@ -917,20 +902,17 @@
   <data name="txtDescription2.Location" type="System.Drawing.Point, System.Drawing">
     <value>145, 175</value>
   </data>
-  <data name="cboEmployer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="mnuProjects.Error" xml:space="preserve">
+    <value />
   </data>
-  <data name="txtDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 26</value>
-  </data>
-  <data name="txtDescription4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 239</value>
+  <data name="&gt;&gt;lblProjectCreatedAt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="txtDescription3.Error" xml:space="preserve">
     <value />
   </data>
-  <data name="butEditEmployers.Error" xml:space="preserve">
-    <value />
+  <data name="lblDescriptionShort.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>9, 20</value>
@@ -941,26 +923,29 @@
   <data name="butModify.Text" xml:space="preserve">
     <value>Add</value>
   </data>
-  <data name="&gt;&gt;lvwProjects.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="butEditEmployers.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
-  <data name="&gt;&gt;txtDescription3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="txtNumber.Error" xml:space="preserve">
+    <value />
   </data>
-  <data name="lvwProjects.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="txtDescriptionShort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="&gt;&gt;txtNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtDescription2.Name" xml:space="preserve">
+    <value>txtDescription2</value>
   </data>
-  <data name="txtDescription3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>337, 26</value>
+  <data name="&gt;&gt;butEditEmployers.Name" xml:space="preserve">
+    <value>butEditEmployers</value>
+  </data>
+  <data name="grpProjects.Size" type="System.Drawing.Size, System.Drawing">
+    <value>929, 540</value>
   </data>
   <data name="lblProjectCreatedAt.Location" type="System.Drawing.Point, System.Drawing">
     <value>170, 458</value>
   </data>
-  <data name="butUseForNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 392</value>
+  <data name="grpProjects.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="cboEmployer.Error" xml:space="preserve">
     <value />
@@ -968,14 +953,11 @@
   <data name="&gt;&gt;lblDescriptionShort.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblDescriptionShort.IconPadding" type="System.Int32, mscorlib">
+  <data name="butModify.IconPadding" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="grpProjectData.Error" xml:space="preserve">
     <value />
-  </data>
-  <data name="butEditEmployers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 348</value>
   </data>
   <data name="txtDescription2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
@@ -983,17 +965,17 @@
   <data name="txtNumber.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>MiddleRight</value>
   </data>
-  <data name="&gt;&gt;txtDescription3.Parent" xml:space="preserve">
-    <value>grpProjectData</value>
+  <data name="cboEmployer.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="butRemove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="txtDescription1.Error" xml:space="preserve">
+    <value />
   </data>
-  <data name="&gt;&gt;lblNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblDescription1.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="grpProjects.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="&gt;&gt;lvwProjects.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="butUseForNew.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -1004,38 +986,44 @@
   <data name="butModify.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;lblDescription1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtDescriptionShort.Parent" xml:space="preserve">
     <value>grpProjectData</value>
+  </data>
+  <data name="&gt;&gt;txtDescription1.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="grpProjects.Text" xml:space="preserve">
     <value>Projects</value>
   </data>
-  <data name="butModify.IconPadding" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="txtNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 26</value>
   </data>
-  <data name="grpProjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>629, 540</value>
+  <data name="txtDescriptionShort.Error" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;txtDescription3.Name" xml:space="preserve">
     <value>txtDescription3</value>
   </data>
-  <data name="lblProjectCreatedAt.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="mnuProjects.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
   </data>
   <data name="grpProjectData.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt, style=Bold</value>
   </data>
-  <data name="lblNumber.Error" xml:space="preserve">
+  <data name="&gt;&gt;txtNumber.Name" xml:space="preserve">
+    <value>txtNumber</value>
+  </data>
+  <data name="butModify.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lblDescriptionShort.Error" xml:space="preserve">
     <value />
   </data>
-  <data name="&gt;&gt;cboEmployer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 287</value>
   </data>
-  <data name="&gt;&gt;mnuProjectsRemove.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtDescription2.Error" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;lvwProjects.Name" xml:space="preserve">
+    <value>lvwProjects</value>
   </data>
   <data name="&gt;&gt;mnuProjectsRemove.Name" xml:space="preserve">
     <value>mnuProjectsRemove</value>
@@ -1043,26 +1031,29 @@
   <data name="&gt;&gt;cboEmployer.Parent" xml:space="preserve">
     <value>grpProjectData</value>
   </data>
+  <data name="txtDescription4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>145, 239</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1178, 564</value>
+    <value>1478, 564</value>
   </data>
   <data name="txtDescription1.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="lblEmployer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 99</value>
+  <data name="&gt;&gt;lblDescription1.Parent" xml:space="preserve">
+    <value>grpProjectData</value>
   </data>
-  <data name="lblNumber.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
+  <data name="butRemove.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;grpProjectData.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;txtDescription1.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblDescription1.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
-  </data>
-  <data name="butRemove.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>MiddleRight</value>
+  <data name="lblEmployer.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <data name="butUseForNew.Error" xml:space="preserve">
     <value />
@@ -1076,17 +1067,26 @@
   <data name="cboEmployer.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="butEditEmployers.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
+  <data name="butEditEmployers.Error" xml:space="preserve">
+    <value />
   </data>
   <data name="lblEmployer.Text" xml:space="preserve">
     <value>Employer:</value>
   </data>
-  <data name="&gt;&gt;butEditEmployers.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;butModify.ZOrder" xml:space="preserve">
+    <value>16</value>
   </data>
-  <data name="txtDescription1.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
+  <data name="butRemove.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+    <value>MiddleRight</value>
+  </data>
+  <data name="butUseForNew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 392</value>
+  </data>
+  <data name="txtNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>145, 51</value>
+  </data>
+  <data name="butRemove.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1000, 580</value>
@@ -1097,8 +1097,8 @@
   <metadata name="lblDescription1.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de</value>
+  <metadata name="lblEmployer.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
   </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1112,16 +1112,13 @@
   <metadata name="grpProjects.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>192, 13</value>
-  </metadata>
   <metadata name="grpProjectData.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <metadata name="lblProjectCreatedAtPreamble.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="lblEmployer.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>192, 13</value>
   </metadata>
 </root>

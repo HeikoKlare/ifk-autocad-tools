@@ -91,7 +91,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
             ReconnectWhenClosed();
-            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Projects ORDER BY number DESC", connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM ProjectsNew ORDER BY number DESC", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Fill(projectsTable);
@@ -104,7 +104,7 @@ namespace AutoCADTools.Data
 
             ReconnectWhenClosed();
 
-            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM Projects ORDER BY number DESC", connection);
+            dataAdapter.SelectCommand = new MySqlCommand("SELECT * FROM ProjectsNew ORDER BY number DESC", connection);
             using (MySqlCommandBuilder cb = new MySqlCommandBuilder(dataAdapter))
             {
                 dataAdapter.Update(projectsTable);

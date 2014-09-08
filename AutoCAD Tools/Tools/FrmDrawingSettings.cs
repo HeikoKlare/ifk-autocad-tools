@@ -251,8 +251,8 @@ namespace AutoCADTools.Tools
         {
             if (cboProjects.SelectedIndex >= 0 && !updating)
             {
-                Database.EmployerRow empRow = employersTable.Rows.Find(projectsTable[cboProjects.SelectedIndex].employer) as Database.EmployerRow;
-                cboEmployers.Text = empRow != null ? empRow.name : String.Empty;
+                //Database.EmployerRow empRow = employersTable.Rows.Find(projectsTable[cboProjects.SelectedIndex].employer) as Database.EmployerRow;
+                cboEmployers.Text = projectsTable[cboProjects.SelectedIndex].employer;
                 txtDescription1.Text = projectsTable[cboProjects.SelectedIndex].description1;
                 txtDescription2.Text = projectsTable[cboProjects.SelectedIndex].description2;
                 txtDescription3.Text = projectsTable[cboProjects.SelectedIndex].description3;
@@ -341,10 +341,10 @@ namespace AutoCADTools.Tools
                 float leftHang = Math.Max(numberSize.Width, minSize.Width);
 
                 e.Graphics.DrawString(row.number, boldFont, fontBrush, e.Bounds.X, e.Bounds.Y);
-                Database.EmployerRow empRow = employersTable.Rows.Find(projectsTable[e.Index].employer) as Database.EmployerRow;
-                string employerName = empRow != null ? empRow.name : String.Empty;
+                //Database.EmployerRow empRow = employersTable.Rows.Find(projectsTable[e.Index].employer) as Database.EmployerRow;
+                //string employerName = empRow != null ? empRow.name : String.Empty;
 
-                e.Graphics.DrawString(employerName, italicFont, fontBrush, e.Bounds.X + leftHang + 10, e.Bounds.Y);
+                e.Graphics.DrawString(row.employer, italicFont, fontBrush, e.Bounds.X + leftHang + 10, e.Bounds.Y);
                 e.Graphics.DrawString(row.descriptionShort, e.Font, fontBrush, e.Bounds.X + leftHang + 10, (int)(e.Bounds.Y + e.Bounds.Height / 2.2));
             }
             e.DrawFocusRectangle(); //Draw Focus Rectangle Around 

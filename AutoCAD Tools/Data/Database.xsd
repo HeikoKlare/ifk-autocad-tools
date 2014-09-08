@@ -12,10 +12,10 @@
   <xs:element name="Database" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Database" msprop:Generator_UserDSName="Database">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Employer" msprop:Generator_TableClassName="EmployerDataTable" msprop:Generator_TableVarName="tableEmployer" msprop:Generator_TablePropName="Employer" msprop:Generator_RowDeletingName="EmployerRowDeleting" msprop:Generator_UserTableName="Employer" msprop:Generator_RowChangingName="EmployerRowChanging" msprop:Generator_RowEvHandlerName="EmployerRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployerRowDeleted" msprop:Generator_RowEvArgName="EmployerRowChangeEvent" msprop:Generator_RowChangedName="EmployerRowChanged" msprop:Generator_RowClassName="EmployerRow">
+        <xs:element name="Employer" msprop:Generator_TableClassName="EmployerDataTable" msprop:Generator_TableVarName="tableEmployer" msprop:Generator_RowChangedName="EmployerRowChanged" msprop:Generator_TablePropName="Employer" msprop:Generator_RowDeletingName="EmployerRowDeleting" msprop:Generator_RowChangingName="EmployerRowChanging" msprop:Generator_RowEvHandlerName="EmployerRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployerRowDeleted" msprop:Generator_RowClassName="EmployerRow" msprop:Generator_UserTableName="Employer" msprop:Generator_RowEvArgName="EmployerRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="id" msdata:AutoIncrementSeed="1" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id">
+              <xs:element name="id" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="5" />
@@ -32,7 +32,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Project" msprop:Generator_TableClassName="ProjectDataTable" msprop:Generator_TableVarName="tableProject" msprop:Generator_TablePropName="Project" msprop:Generator_RowDeletingName="ProjectRowDeleting" msprop:Generator_UserTableName="Project" msprop:Generator_RowChangingName="ProjectRowChanging" msprop:Generator_RowEvHandlerName="ProjectRowChangeEventHandler" msprop:Generator_RowDeletedName="ProjectRowDeleted" msprop:Generator_RowEvArgName="ProjectRowChangeEvent" msprop:Generator_RowChangedName="ProjectRowChanged" msprop:Generator_RowClassName="ProjectRow">
+        <xs:element name="Project" msprop:Generator_TableClassName="ProjectDataTable" msprop:Generator_TableVarName="tableProject" msprop:Generator_RowChangedName="ProjectRowChanged" msprop:Generator_TablePropName="Project" msprop:Generator_RowDeletingName="ProjectRowDeleting" msprop:Generator_RowChangingName="ProjectRowChanging" msprop:Generator_RowEvHandlerName="ProjectRowChangeEventHandler" msprop:Generator_RowDeletedName="ProjectRowDeleted" msprop:Generator_RowClassName="ProjectRow" msprop:Generator_UserTableName="Project" msprop:Generator_RowEvArgName="ProjectRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="number" msdata:Caption="Number" msprop:Generator_ColumnVarNameInTable="columnnumber" msprop:Generator_ColumnPropNameInRow="number" msprop:Generator_ColumnPropNameInTable="numberColumn" msprop:Generator_UserColumnName="number">
@@ -45,7 +45,7 @@
               <xs:element name="employer" msdata:Caption="Employer" msprop:Generator_ColumnVarNameInTable="columnemployer" msprop:Generator_ColumnPropNameInRow="employer" msprop:Generator_ColumnPropNameInTable="employerColumn" msprop:Generator_UserColumnName="employer">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="5" />
+                    <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -94,7 +94,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AnnotationCategories" msprop:Generator_TableClassName="AnnotationCategoriesDataTable" msprop:Generator_TableVarName="tableAnnotationCategories" msprop:Generator_TablePropName="AnnotationCategories" msprop:Generator_RowDeletingName="AnnotationCategoriesRowDeleting" msprop:Generator_UserTableName="AnnotationCategories" msprop:Generator_RowChangingName="AnnotationCategoriesRowChanging" msprop:Generator_RowEvHandlerName="AnnotationCategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="AnnotationCategoriesRowDeleted" msprop:Generator_RowEvArgName="AnnotationCategoriesRowChangeEvent" msprop:Generator_RowChangedName="AnnotationCategoriesRowChanged" msprop:Generator_RowClassName="AnnotationCategoriesRow">
+        <xs:element name="AnnotationCategories" msprop:Generator_TableClassName="AnnotationCategoriesDataTable" msprop:Generator_TableVarName="tableAnnotationCategories" msprop:Generator_RowChangedName="AnnotationCategoriesRowChanged" msprop:Generator_TablePropName="AnnotationCategories" msprop:Generator_RowDeletingName="AnnotationCategoriesRowDeleting" msprop:Generator_RowChangingName="AnnotationCategoriesRowChanging" msprop:Generator_RowEvHandlerName="AnnotationCategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="AnnotationCategoriesRowDeleted" msprop:Generator_RowClassName="AnnotationCategoriesRow" msprop:Generator_UserTableName="AnnotationCategories" msprop:Generator_RowEvArgName="AnnotationCategoriesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -108,7 +108,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Annotations" msprop:Generator_TableClassName="AnnotationsDataTable" msprop:Generator_TableVarName="tableAnnotations" msprop:Generator_TablePropName="Annotations" msprop:Generator_RowDeletingName="AnnotationsRowDeleting" msprop:Generator_UserTableName="Annotations" msprop:Generator_RowChangingName="AnnotationsRowChanging" msprop:Generator_RowEvHandlerName="AnnotationsRowChangeEventHandler" msprop:Generator_RowDeletedName="AnnotationsRowDeleted" msprop:Generator_RowEvArgName="AnnotationsRowChangeEvent" msprop:Generator_RowChangedName="AnnotationsRowChanged" msprop:Generator_RowClassName="AnnotationsRow">
+        <xs:element name="Annotations" msprop:Generator_TableClassName="AnnotationsDataTable" msprop:Generator_TableVarName="tableAnnotations" msprop:Generator_RowChangedName="AnnotationsRowChanged" msprop:Generator_TablePropName="Annotations" msprop:Generator_RowDeletingName="AnnotationsRowDeleting" msprop:Generator_RowChangingName="AnnotationsRowChanging" msprop:Generator_RowEvHandlerName="AnnotationsRowChangeEventHandler" msprop:Generator_RowDeletedName="AnnotationsRowDeleted" msprop:Generator_RowClassName="AnnotationsRow" msprop:Generator_UserTableName="Annotations" msprop:Generator_RowEvArgName="AnnotationsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -124,7 +124,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DetailCategories" msprop:Generator_TableClassName="DetailCategoriesDataTable" msprop:Generator_TableVarName="tableDetailCategories" msprop:Generator_TablePropName="DetailCategories" msprop:Generator_RowDeletingName="DetailCategoriesRowDeleting" msprop:Generator_UserTableName="DetailCategories" msprop:Generator_RowChangingName="DetailCategoriesRowChanging" msprop:Generator_RowEvHandlerName="DetailCategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="DetailCategoriesRowDeleted" msprop:Generator_RowEvArgName="DetailCategoriesRowChangeEvent" msprop:Generator_RowChangedName="DetailCategoriesRowChanged" msprop:Generator_RowClassName="DetailCategoriesRow">
+        <xs:element name="DetailCategories" msprop:Generator_TableClassName="DetailCategoriesDataTable" msprop:Generator_TableVarName="tableDetailCategories" msprop:Generator_RowChangedName="DetailCategoriesRowChanged" msprop:Generator_TablePropName="DetailCategories" msprop:Generator_RowDeletingName="DetailCategoriesRowDeleting" msprop:Generator_RowChangingName="DetailCategoriesRowChanging" msprop:Generator_RowEvHandlerName="DetailCategoriesRowChangeEventHandler" msprop:Generator_RowDeletedName="DetailCategoriesRowDeleted" msprop:Generator_RowClassName="DetailCategoriesRow" msprop:Generator_UserTableName="DetailCategories" msprop:Generator_RowEvArgName="DetailCategoriesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -138,7 +138,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Details" msprop:Generator_TableClassName="DetailsDataTable" msprop:Generator_TableVarName="tableDetails" msprop:Generator_TablePropName="Details" msprop:Generator_RowDeletingName="DetailsRowDeleting" msprop:Generator_UserTableName="Details" msprop:Generator_RowChangingName="DetailsRowChanging" msprop:Generator_RowEvHandlerName="DetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="DetailsRowDeleted" msprop:Generator_RowEvArgName="DetailsRowChangeEvent" msprop:Generator_RowChangedName="DetailsRowChanged" msprop:Generator_RowClassName="DetailsRow">
+        <xs:element name="Details" msprop:Generator_TableClassName="DetailsDataTable" msprop:Generator_TableVarName="tableDetails" msprop:Generator_RowChangedName="DetailsRowChanged" msprop:Generator_TablePropName="Details" msprop:Generator_RowDeletingName="DetailsRowDeleting" msprop:Generator_RowChangingName="DetailsRowChanging" msprop:Generator_RowEvHandlerName="DetailsRowChangeEventHandler" msprop:Generator_RowDeletedName="DetailsRowDeleted" msprop:Generator_RowClassName="DetailsRow" msprop:Generator_UserTableName="Details" msprop:Generator_RowEvArgName="DetailsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:Caption="ID" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -181,17 +181,13 @@
       <xs:selector xpath=".//mstns:Details" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
-    <xs:keyref name="FK_DetailCategories_Details" refer="PrimaryKey" msprop:rel_Generator_UserChildTable="Details" msprop:rel_Generator_ChildPropName="GetDetailsRows" msprop:rel_Generator_ParentPropName="DetailCategoriesRow" msprop:rel_Generator_UserRelationName="FK_DetailCategories_Details" msprop:rel_Generator_RelationVarName="relationFK_DetailCategories_Details" msprop:rel_Generator_UserParentTable="DetailCategories">
+    <xs:keyref name="FK_DetailCategories_Details" refer="PrimaryKey" msprop:rel_Generator_UserChildTable="Details" msprop:rel_Generator_ChildPropName="GetDetailsRows" msprop:rel_Generator_UserRelationName="FK_DetailCategories_Details" msprop:rel_Generator_RelationVarName="relationFK_DetailCategories_Details" msprop:rel_Generator_UserParentTable="DetailCategories" msprop:rel_Generator_ParentPropName="DetailCategoriesRow">
       <xs:selector xpath=".//mstns:Details" />
       <xs:field xpath="mstns:categoryId" />
     </xs:keyref>
-    <xs:keyref name="FK_AnnotationCategories_Annotations" refer="id" msprop:rel_Generator_UserChildTable="Annotations" msprop:rel_Generator_ChildPropName="GetAnnotationsRows" msprop:rel_Generator_UserParentTable="AnnotationCategories" msprop:rel_Generator_UserRelationName="FK_AnnotationCategories_Annotations" msprop:rel_Generator_RelationVarName="relationFK_AnnotationCategories_Annotations" msprop:rel_Generator_ParentPropName="AnnotationCategoriesRow">
+    <xs:keyref name="FK_AnnotationCategories_Annotations" refer="id" msprop:rel_Generator_UserChildTable="Annotations" msprop:rel_Generator_ChildPropName="GetAnnotationsRows" msprop:rel_Generator_UserRelationName="FK_AnnotationCategories_Annotations" msprop:rel_Generator_ParentPropName="AnnotationCategoriesRow" msprop:rel_Generator_RelationVarName="relationFK_AnnotationCategories_Annotations" msprop:rel_Generator_UserParentTable="AnnotationCategories">
       <xs:selector xpath=".//mstns:Annotations" />
       <xs:field xpath="mstns:categoryId" />
-    </xs:keyref>
-    <xs:keyref name="FK_Employer_Project" refer="Constraint1" msprop:rel_Generator_UserChildTable="Project" msprop:rel_Generator_ChildPropName="GetProjectRows" msprop:rel_Generator_ParentPropName="EmployerRow" msprop:rel_Generator_UserRelationName="FK_Employer_Project" msprop:rel_Generator_RelationVarName="relationFK_Employer_Project" msprop:rel_Generator_UserParentTable="Employer">
-      <xs:selector xpath=".//mstns:Project" />
-      <xs:field xpath="mstns:employer" />
     </xs:keyref>
   </xs:element>
 </xs:schema>

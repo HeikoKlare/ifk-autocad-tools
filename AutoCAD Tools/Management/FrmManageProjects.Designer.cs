@@ -286,7 +286,6 @@
             // cboEmployer
             // 
             resources.ApplyResources(this.cboEmployer, "cboEmployer");
-            this.cboEmployer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.errorProvider.SetError(this.cboEmployer, resources.GetString("cboEmployer.Error"));
             this.cboEmployer.FormattingEnabled = true;
             this.errorProvider.SetIconAlignment(this.cboEmployer, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboEmployer.IconAlignment"))));

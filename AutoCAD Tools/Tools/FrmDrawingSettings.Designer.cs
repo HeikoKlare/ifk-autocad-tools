@@ -163,7 +163,7 @@
             // 
             // cboProjects
             // 
-            this.cboProjects.BackColor = System.Drawing.SystemColors.Window;
+            this.cboProjects.BackColor = System.Drawing.Color.OldLace;
             this.cboProjects.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cboProjects.DropDownHeight = 400;
             this.cboProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;

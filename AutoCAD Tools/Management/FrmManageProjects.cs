@@ -98,7 +98,6 @@ namespace AutoCADTools.Management
             cboEmployer.DataSource = null;
             cboEmployer.DataSource = employersTable;
             cboEmployer.DisplayMember = "name";
-            cboEmployer.ValueMember = "id";
             cboEmployer.EndUpdate();
 
             // Restore last chosen employer
@@ -203,7 +202,7 @@ namespace AutoCADTools.Management
             newRow.description3 = txtDescription3.Text;
             newRow.description4 = txtDescription4.Text;
             newRow.descriptionShort = txtDescriptionShort.Text;
-            newRow.employer = cboEmployer.SelectedValue as String;
+            newRow.employer = cboEmployer.Text;
             newRow.createdAt = DateTime.Now.ToShortDateString() + " - " + DateTime.Now.ToShortTimeString();
             projectsTable.AddProjectRow(newRow);
 
@@ -236,7 +235,7 @@ namespace AutoCADTools.Management
                 txtDescription3.DataBindings.Add("Text", projectsTable, "description3");
                 txtDescription4.DataBindings.Add("Text", projectsTable, "description4");
                 txtDescriptionShort.DataBindings.Add("Text", projectsTable, "descriptionShort");
-                cboEmployer.DataBindings.Add("SelectedValue", projectsTable, "employer");
+                cboEmployer.DataBindings.Add("Text", projectsTable, "employer");
                 lblProjectCreatedAt.DataBindings.Add("Text", projectsTable, "createdAt");
             }
             else if (!newSelection && dataBound)

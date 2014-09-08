@@ -22,7 +22,6 @@ namespace AutoCADTools.Data {
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
     [global::System.Xml.Serialization.XmlRootAttribute("Database")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    [global::System.CodeDom.Compiler.GeneratedCode("DataSet Generator", "")]
     public partial class Database : global::System.Data.DataSet {
         
         private EmployerDataTable tableEmployer;
@@ -36,8 +35,6 @@ namespace AutoCADTools.Data {
         private DetailCategoriesDataTable tableDetailCategories;
         
         private DetailsDataTable tableDetails;
-        
-        private global::System.Data.DataRelation relationFK_Employer_Project;
         
         private global::System.Data.DataRelation relationFK_AnnotationCategories_Annotations;
         
@@ -321,7 +318,6 @@ namespace AutoCADTools.Data {
                     this.tableDetails.InitVars();
                 }
             }
-            this.relationFK_Employer_Project = this.Relations["FK_Employer_Project"];
             this.relationFK_AnnotationCategories_Annotations = this.Relations["FK_AnnotationCategories_Annotations"];
             this.relationFK_DetailCategories_Details = this.Relations["FK_DetailCategories_Details"];
         }
@@ -347,13 +343,6 @@ namespace AutoCADTools.Data {
             this.tableDetails = new DetailsDataTable();
             base.Tables.Add(this.tableDetails);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_Employer_Project", new global::System.Data.DataColumn[] {
-                        this.tableEmployer.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableProject.employerColumn});
-            this.tableProject.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_AnnotationCategories_Annotations", new global::System.Data.DataColumn[] {
                         this.tableAnnotationCategories.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableAnnotations.categoryIdColumn});
@@ -368,10 +357,6 @@ namespace AutoCADTools.Data {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_Employer_Project = new global::System.Data.DataRelation("FK_Employer_Project", new global::System.Data.DataColumn[] {
-                        this.tableEmployer.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableProject.employerColumn}, false);
-            this.Relations.Add(this.relationFK_Employer_Project);
             this.relationFK_AnnotationCategories_Annotations = new global::System.Data.DataRelation("FK_AnnotationCategories_Annotations", new global::System.Data.DataColumn[] {
                         this.tableAnnotationCategories.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableAnnotations.categoryIdColumn}, false);
@@ -635,7 +620,8 @@ namespace AutoCADTools.Data {
                 base.Columns.Add(this.columnname);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
-                this.columnid.AutoIncrementSeed = 1;
+                this.columnid.AutoIncrementSeed = -1;
+                this.columnid.AutoIncrementStep = -1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
                 this.columnid.Caption = "ID";
@@ -926,20 +912,17 @@ namespace AutoCADTools.Data {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ProjectRow AddProjectRow(string number, EmployerRow parentEmployerRowByFK_Employer_Project, string description1, string description2, string description3, string description4, string descriptionShort, string createdAt) {
+            public ProjectRow AddProjectRow(string number, string employer, string description1, string description2, string description3, string description4, string descriptionShort, string createdAt) {
                 ProjectRow rowProjectRow = ((ProjectRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         number,
-                        null,
+                        employer,
                         description1,
                         description2,
                         description3,
                         description4,
                         descriptionShort,
                         createdAt};
-                if ((parentEmployerRowByFK_Employer_Project != null)) {
-                    columnValuesArray[1] = parentEmployerRowByFK_Employer_Project[0];
-                }
                 rowProjectRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowProjectRow);
                 return rowProjectRow;
@@ -1006,7 +989,7 @@ namespace AutoCADTools.Data {
                 this.columnnumber.MaxLength = 7;
                 this.columnemployer.AllowDBNull = false;
                 this.columnemployer.Caption = "Employer";
-                this.columnemployer.MaxLength = 5;
+                this.columnemployer.MaxLength = 100;
                 this.columndescription1.AllowDBNull = false;
                 this.columndescription1.Caption = "Description Line 1";
                 this.columndescription1.MaxLength = 50;
@@ -2380,17 +2363,6 @@ namespace AutoCADTools.Data {
                     this[this.tableEmployer.nameColumn] = value;
                 }
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ProjectRow[] GetProjectRows() {
-                if ((this.Table.ChildRelations["FK_Employer_Project"] == null)) {
-                    return new ProjectRow[0];
-                }
-                else {
-                    return ((ProjectRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Employer_Project"])));
-                }
-            }
         }
         
         /// <summary>
@@ -2497,17 +2469,6 @@ namespace AutoCADTools.Data {
                 }
                 set {
                     this[this.tableProject.createdAtColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EmployerRow EmployerRow {
-                get {
-                    return ((EmployerRow)(this.GetParentRow(this.Table.ParentRelations["FK_Employer_Project"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Employer_Project"]);
                 }
             }
             
