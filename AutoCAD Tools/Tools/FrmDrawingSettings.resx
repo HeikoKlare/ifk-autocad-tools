@@ -186,7 +186,7 @@
     <value>147, 281</value>
   </data>
   <data name="txtDescriptionShort.MaxLength" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>100</value>
   </data>
   <data name="txtDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
     <value>450, 26</value>

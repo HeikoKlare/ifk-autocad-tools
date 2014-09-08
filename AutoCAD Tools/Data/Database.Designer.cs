@@ -1004,7 +1004,7 @@ namespace AutoCADTools.Data {
                 this.columndescription4.MaxLength = 50;
                 this.columndescriptionShort.AllowDBNull = false;
                 this.columndescriptionShort.Caption = "Short Description";
-                this.columndescriptionShort.MaxLength = 50;
+                this.columndescriptionShort.MaxLength = 100;
                 this.columncreatedAt.Caption = "Created At";
                 this.columncreatedAt.MaxLength = 21;
             }
