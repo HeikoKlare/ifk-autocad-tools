@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblAnnotationText.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="lblAnnotationName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -177,39 +177,9 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblAnnotationName.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="txtAnnotationText.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="txtAnnotationText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>460, 57</value>
-  </data>
-  <data name="txtAnnotationText.MaxLength" type="System.Int32, mscorlib">
-    <value>30000</value>
-  </data>
-  <data name="txtAnnotationText.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtAnnotationText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>423, 268</value>
-  </data>
-  <data name="txtAnnotationText.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;txtAnnotationText.Name" xml:space="preserve">
-    <value>txtAnnotationText</value>
-  </data>
-  <data name="&gt;&gt;txtAnnotationText.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtAnnotationText.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtAnnotationText.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtAnnotationName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -223,7 +193,7 @@
     <value>50</value>
   </data>
   <data name="txtAnnotationName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>423, 26</value>
+    <value>600, 26</value>
   </data>
   <data name="txtAnnotationName.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -262,10 +232,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cboAnnotationCategories.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="butRemove.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="butRemove.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -277,7 +247,7 @@
     <value>NoControl</value>
   </data>
   <data name="butRemove.Location" type="System.Drawing.Point, System.Drawing">
-    <value>460, 392</value>
+    <value>460, 492</value>
   </data>
   <data name="butRemove.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 8, 8, 8</value>
@@ -301,10 +271,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;butRemove.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="butNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="butNew.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -313,7 +283,7 @@
     <value>NoControl</value>
   </data>
   <data name="butNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>604, 341</value>
+    <value>604, 441</value>
   </data>
   <data name="butNew.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 8, 8, 8</value>
@@ -337,10 +307,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;butNew.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="butModify.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="butModify.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -352,7 +322,7 @@
     <value>NoControl</value>
   </data>
   <data name="butModify.Location" type="System.Drawing.Point, System.Drawing">
-    <value>460, 341</value>
+    <value>460, 441</value>
   </data>
   <data name="butModify.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 8, 8, 8</value>
@@ -376,7 +346,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;butModify.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="errorProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -388,10 +358,37 @@
     <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>895, 444</value>
+    <value>1078, 544</value>
+  </data>
+  <data name="rtfAnnotationContent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="rtfAnnotationContent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>460, 58</value>
+  </data>
+  <data name="rtfAnnotationContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>600, 372</value>
+  </data>
+  <data name="rtfAnnotationContent.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="rtfAnnotationContent.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="&gt;&gt;rtfAnnotationContent.Name" xml:space="preserve">
+    <value>rtfAnnotationContent</value>
+  </data>
+  <data name="&gt;&gt;rtfAnnotationContent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rtfAnnotationContent.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rtfAnnotationContent.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="butUseForNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="butUseForNew.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -403,7 +400,7 @@
     <value>NoControl</value>
   </data>
   <data name="butUseForNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>604, 392</value>
+    <value>604, 492</value>
   </data>
   <data name="butUseForNew.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 8, 8, 8</value>
@@ -427,7 +424,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;butUseForNew.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="lvwAnnotations.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -435,24 +432,6 @@
   <metadata name="conAnnotations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>140, 17</value>
   </metadata>
-  <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 30</value>
-  </data>
-  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 30</value>
-  </data>
-  <data name="editToolStripMenuItem.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="useForNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 30</value>
-  </data>
-  <data name="useForNewToolStripMenuItem.Text" xml:space="preserve">
-    <value>Use for new</value>
-  </data>
   <data name="conAnnotations.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 94</value>
   </data>
@@ -466,7 +445,7 @@
     <value>12, 46</value>
   </data>
   <data name="lvwAnnotations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>370, 386</value>
+    <value>370, 486</value>
   </data>
   <data name="lvwAnnotations.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -481,16 +460,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lvwAnnotations.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="butEditCategories.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="butEditCategories.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
   <data name="butEditCategories.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 341</value>
+    <value>755, 441</value>
   </data>
   <data name="butEditCategories.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>8, 13, 3, 8</value>
@@ -514,7 +493,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;butEditCategories.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -575,6 +554,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
@@ -616,5 +598,23 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="removeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 30</value>
+  </data>
+  <data name="removeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="editToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 30</value>
+  </data>
+  <data name="editToolStripMenuItem.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="useForNewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 30</value>
+  </data>
+  <data name="useForNewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Use for new</value>
   </data>
 </root>

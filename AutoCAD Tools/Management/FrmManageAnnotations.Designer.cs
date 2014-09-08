@@ -33,7 +33,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmManageAnnotations));
             this.lblAnnotationText = new System.Windows.Forms.Label();
             this.lblAnnotationName = new System.Windows.Forms.Label();
-            this.txtAnnotationText = new System.Windows.Forms.TextBox();
             this.txtAnnotationName = new System.Windows.Forms.TextBox();
             this.cboAnnotationCategories = new System.Windows.Forms.ComboBox();
             this.butRemove = new System.Windows.Forms.Button();
@@ -47,6 +46,7 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useForNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.butUseForNew = new System.Windows.Forms.Button();
+            this.rtfAnnotationContent = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.conAnnotations.SuspendLayout();
             this.SuspendLayout();
@@ -61,19 +61,12 @@
             resources.ApplyResources(this.lblAnnotationName, "lblAnnotationName");
             this.lblAnnotationName.Name = "lblAnnotationName";
             // 
-            // txtAnnotationText
-            // 
-            resources.ApplyResources(this.txtAnnotationText, "txtAnnotationText");
-            this.txtAnnotationText.Name = "txtAnnotationText";
-            this.txtAnnotationText.TextChanged += new System.EventHandler(this.TxtNameContent_TextChanged);
-            this.txtAnnotationText.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNameContent_Validating);
-            // 
             // txtAnnotationName
             // 
             resources.ApplyResources(this.txtAnnotationName, "txtAnnotationName");
             this.txtAnnotationName.Name = "txtAnnotationName";
-            this.txtAnnotationName.TextChanged += new System.EventHandler(this.TxtNameContent_TextChanged);
-            this.txtAnnotationName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNameContent_Validating);
+            this.txtAnnotationName.TextChanged += new System.EventHandler(this.txtNameContent_TextChanged);
+            this.txtAnnotationName.Validating += new System.ComponentModel.CancelEventHandler(this.txtNameContent_Validating);
             // 
             // cboAnnotationCategories
             // 
@@ -163,10 +156,20 @@
             this.butUseForNew.UseVisualStyleBackColor = true;
             this.butUseForNew.Click += new System.EventHandler(this.butUseForNew_Click);
             // 
+            // rtfAnnotationContent
+            // 
+            resources.ApplyResources(this.rtfAnnotationContent, "rtfAnnotationContent");
+            this.rtfAnnotationContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rtfAnnotationContent.ForeColor = System.Drawing.Color.White;
+            this.rtfAnnotationContent.Name = "rtfAnnotationContent";
+            this.rtfAnnotationContent.TextChanged += new System.EventHandler(this.txtNameContent_TextChanged);
+            this.rtfAnnotationContent.Validating += new System.ComponentModel.CancelEventHandler(this.txtNameContent_Validating);
+            // 
             // FrmManageAnnotations
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.rtfAnnotationContent);
             this.Controls.Add(this.butUseForNew);
             this.Controls.Add(this.lvwAnnotations);
             this.Controls.Add(this.butEditCategories);
@@ -176,7 +179,6 @@
             this.Controls.Add(this.cboAnnotationCategories);
             this.Controls.Add(this.lblAnnotationText);
             this.Controls.Add(this.lblAnnotationName);
-            this.Controls.Add(this.txtAnnotationText);
             this.Controls.Add(this.txtAnnotationName);
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -196,7 +198,6 @@
 
         private System.Windows.Forms.Label lblAnnotationText;
         private System.Windows.Forms.Label lblAnnotationName;
-        private System.Windows.Forms.TextBox txtAnnotationText;
         private System.Windows.Forms.TextBox txtAnnotationName;
         private System.Windows.Forms.ComboBox cboAnnotationCategories;
         private System.Windows.Forms.Button butRemove;
@@ -210,5 +211,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem useForNewToolStripMenuItem;
         private System.Windows.Forms.Button butUseForNew;
+        private System.Windows.Forms.RichTextBox rtfAnnotationContent;
     }
 }

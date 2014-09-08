@@ -32,11 +32,10 @@
             System.Windows.Forms.Label lblCurrentAnnotation;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAnnotations));
             System.Windows.Forms.ColumnHeader Dummy;
-            this.txtContent = new System.Windows.Forms.TextBox();
             this.cboAnnotationCategories = new System.Windows.Forms.ComboBox();
             this.lvwAnnotations = new System.Windows.Forms.ListView();
             this.butClipboard = new System.Windows.Forms.Button();
-            this.butClose = new System.Windows.Forms.Button();
+            this.rtfContent = new System.Windows.Forms.RichTextBox();
             lblCurrentAnnotation = new System.Windows.Forms.Label();
             Dummy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
@@ -46,13 +45,6 @@
             resources.ApplyResources(lblCurrentAnnotation, "lblCurrentAnnotation");
             lblCurrentAnnotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
             lblCurrentAnnotation.Name = "lblCurrentAnnotation";
-            // 
-            // txtContent
-            // 
-            resources.ApplyResources(this.txtContent, "txtContent");
-            this.txtContent.BackColor = System.Drawing.Color.OldLace;
-            this.txtContent.Name = "txtContent";
-            this.txtContent.ReadOnly = true;
             // 
             // cboAnnotationCategories
             // 
@@ -83,30 +75,29 @@
             this.butClipboard.UseVisualStyleBackColor = true;
             this.butClipboard.Click += new System.EventHandler(this.butClipboard_Click);
             // 
-            // butClose
+            // rtfContent
             // 
-            resources.ApplyResources(this.butClose, "butClose");
-            this.butClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.butClose.Name = "butClose";
-            this.butClose.UseVisualStyleBackColor = true;
-            this.butClose.Click += new System.EventHandler(this.butClose_Click);
+            resources.ApplyResources(this.rtfContent, "rtfContent");
+            this.rtfContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.rtfContent.ForeColor = System.Drawing.Color.White;
+            this.rtfContent.Name = "rtfContent";
             // 
             // FrmAnnotations
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.butClose;
-            this.Controls.Add(this.butClose);
+            this.Controls.Add(this.rtfContent);
             this.Controls.Add(this.butClipboard);
             this.Controls.Add(lblCurrentAnnotation);
             this.Controls.Add(this.lvwAnnotations);
             this.Controls.Add(this.cboAnnotationCategories);
-            this.Controls.Add(this.txtContent);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmAnnotations";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmAnnotations_FormClosing);
             this.Load += new System.EventHandler(this.FrmAnnotations_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmAnnotations_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,10 +105,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtContent;
         private System.Windows.Forms.ComboBox cboAnnotationCategories;
         private System.Windows.Forms.ListView lvwAnnotations;
-        private System.Windows.Forms.Button butClose;
         private System.Windows.Forms.Button butClipboard;
+        private System.Windows.Forms.RichTextBox rtfContent;
     }
 }

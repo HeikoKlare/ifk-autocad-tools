@@ -144,14 +144,14 @@ namespace AutoCADTools.Tools
                 CurrencyManager cm = this.BindingContext[annotationsTable] as CurrencyManager;
                 cm.Position = lvwAnnotations.SelectedIndices[0];
 
-                txtContent.DataBindings.Add("Text", annotationsTable, "content");
+                rtfContent.DataBindings.Add("Rtf", annotationsTable, "content");
             }
             else if (!newSelection && dataBound)
             {
                 // if a project was deselected, update the controls and unbind them from data sources
                 dataBound = false;
-                txtContent.DataBindings.Clear();
-                txtContent.Text = String.Empty;
+                rtfContent.DataBindings.Clear();
+                rtfContent.Text = String.Empty;
             }
         }
 
@@ -195,18 +195,17 @@ namespace AutoCADTools.Tools
         /// <param name="e">unused</param>
         private void butClipboard_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Clipboard.SetDataObject(txtContent.Text, true);
+            System.Windows.Forms.Clipboard.SetDataObject(rtfContent.Rtf, true);
             Utils.NativeMethods.SetWindowsToForeground(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
         }
 
-        /// <summary>
-        /// Closes this form.
-        /// </summary>
-        /// <param name="sender">unused</param>
-        /// <param name="e">unused</param>
-        private void butClose_Click(object sender, EventArgs e)
+        private void FrmAnnotations_KeyPress(object sender, KeyPressEventArgs e)
         {
-            this.Close();
+            if (e.KeyChar == 27)
+            {
+                e.Handled = true;
+                this.Close();
+            }
         }
 
         #endregion

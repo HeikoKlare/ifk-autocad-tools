@@ -130,7 +130,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblCurrentAnnotation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 365</value>
+    <value>12, 363</value>
   </data>
   <data name="lblCurrentAnnotation.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 20</value>
@@ -156,39 +156,6 @@
   <metadata name="Dummy.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <data name="txtContent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="txtContent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 388</value>
-  </data>
-  <data name="txtContent.MaxLength" type="System.Int32, mscorlib">
-    <value>30000</value>
-  </data>
-  <data name="txtContent.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtContent.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Vertical</value>
-  </data>
-  <data name="txtContent.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 290</value>
-  </data>
-  <data name="txtContent.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;txtContent.Name" xml:space="preserve">
-    <value>txtContent</value>
-  </data>
-  <data name="&gt;&gt;txtContent.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtContent.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtContent.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="cboAnnotationCategories.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
@@ -199,7 +166,7 @@
     <value>12, 12</value>
   </data>
   <data name="cboAnnotationCategories.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 28</value>
+    <value>454, 28</value>
   </data>
   <data name="cboAnnotationCategories.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -223,7 +190,7 @@
     <value>12, 46</value>
   </data>
   <data name="lvwAnnotations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>384, 312</value>
+    <value>454, 310</value>
   </data>
   <data name="lvwAnnotations.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -241,7 +208,7 @@
     <value>3</value>
   </data>
   <data name="butClipboard.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+    <value>Bottom, Left, Right</value>
   </data>
   <data name="butClipboard.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -253,10 +220,10 @@
     <value>NoControl</value>
   </data>
   <data name="butClipboard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 687</value>
+    <value>12, 767</value>
   </data>
   <data name="butClipboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 65</value>
+    <value>454, 65</value>
   </data>
   <data name="butClipboard.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -276,37 +243,31 @@
   <data name="&gt;&gt;butClipboard.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="butClose.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="rtfContent.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
   </data>
-  <data name="butClose.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="rtfContent.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 386</value>
   </data>
-  <data name="butClose.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="rtfContent.Size" type="System.Drawing.Size, System.Drawing">
+    <value>454, 372</value>
   </data>
-  <data name="butClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 687</value>
+  <data name="rtfContent.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
   </data>
-  <data name="butClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 65</value>
+  <data name="rtfContent.Text" xml:space="preserve">
+    <value />
   </data>
-  <data name="butClose.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;rtfContent.Name" xml:space="preserve">
+    <value>rtfContent</value>
   </data>
-  <data name="butClose.Text" xml:space="preserve">
-    <value>Close</value>
+  <data name="&gt;&gt;rtfContent.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RichTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;butClose.Name" xml:space="preserve">
-    <value>butClose</value>
-  </data>
-  <data name="&gt;&gt;butClose.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;butClose.Parent" xml:space="preserve">
+  <data name="&gt;&gt;rtfContent.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;butClose.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;rtfContent.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -316,7 +277,7 @@
     <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>408, 764</value>
+    <value>478, 844</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -376,6 +337,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>

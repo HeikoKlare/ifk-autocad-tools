@@ -145,7 +145,7 @@ namespace AutoCADTools.Management
         private void UpdateControlStates()
         {
             txtAnnotationName.ReadOnly = (state == EditState.annotationSelected);
-            txtAnnotationText.ReadOnly = (state == EditState.annotationSelected);
+            rtfAnnotationContent.ReadOnly = (state == EditState.annotationSelected);
             butModify.Enabled = (state != EditState.input);
             butUseForNew.Enabled = (state == EditState.annotationSelected);
             butRemove.Enabled = (state == EditState.annotationSelected || state == EditState.editing);
@@ -168,8 +168,8 @@ namespace AutoCADTools.Management
         /// </summary>
         private void ClearFields()
         {
-            txtAnnotationName.Text = "";
-            txtAnnotationText.Text = "";
+            txtAnnotationName.Text = String.Empty;
+            rtfAnnotationContent.Text = String.Empty;
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace AutoCADTools.Management
             // Initiate a new row and add it to the projects table
             Database.AnnotationsRow newRow = annotationsTable.NewAnnotationsRow();
             newRow.name = txtAnnotationName.Text;
-            newRow.content = txtAnnotationText.Text;
+            newRow.content = rtfAnnotationContent.Rtf;
             newRow.categoryId = (int)cboAnnotationCategories.SelectedValue;
             annotationsTable.AddAnnotationsRow(newRow);
 
@@ -207,14 +207,16 @@ namespace AutoCADTools.Management
                 cm.Position = lvwAnnotations.SelectedIndices[0];
 
                 txtAnnotationName.DataBindings.Add("Text", annotationsTable, "name");
-                txtAnnotationText.DataBindings.Add("Text", annotationsTable, "content");
+                rtfAnnotationContent.DataBindings.Add("Rtf", annotationsTable, "content");
             }
             else if (!newSelection && dataBound)
             {
                 // if a project was deselected, update the controls and unbind them from data sources
                 dataBound = false;
                 txtAnnotationName.DataBindings.Clear();
-                txtAnnotationText.DataBindings.Clear();
+                rtfAnnotationContent.DataBindings.Clear();
+                txtAnnotationName.Text = String.Empty;
+                rtfAnnotationContent.Text = String.Empty;
             }
         }
 
@@ -235,7 +237,7 @@ namespace AutoCADTools.Management
                 UpdateControlStates();
                 UpdateDataBindings(true);
                 errorProvider.SetError(txtAnnotationName, String.Empty);
-                errorProvider.SetError(txtAnnotationText, String.Empty);
+                errorProvider.SetError(rtfAnnotationContent, String.Empty);
             }
             else
             {
@@ -379,7 +381,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void TxtNameContent_Validating(object sender, CancelEventArgs e)
+        private void txtNameContent_Validating(object sender, CancelEventArgs e)
         {
             this.ValidateFields();
         }
@@ -389,7 +391,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void TxtNameContent_TextChanged(object sender, EventArgs e)
+        private void txtNameContent_TextChanged(object sender, EventArgs e)
         {
             this.ValidateFields();
         }
@@ -404,7 +406,7 @@ namespace AutoCADTools.Management
             bool result = true;
 
             errorProvider.SetError(txtAnnotationName, String.Empty);
-            errorProvider.SetError(txtAnnotationText, String.Empty);
+            errorProvider.SetError(rtfAnnotationContent, String.Empty);
 
             if ((state == EditState.addable || state== EditState.input) && String.IsNullOrEmpty(txtAnnotationName.Text))
             {
@@ -413,9 +415,9 @@ namespace AutoCADTools.Management
                 UpdateControlStates();
                 result = false;
             }
-            else if ((state == EditState.addable || state == EditState.input) && String.IsNullOrEmpty(txtAnnotationText.Text))
+            else if ((state == EditState.addable || state == EditState.input) && String.IsNullOrEmpty(rtfAnnotationContent.Text))
             {
-                errorProvider.SetError(txtAnnotationText, LocalData.ErrorEmptyContent);
+                errorProvider.SetError(rtfAnnotationContent, LocalData.ErrorEmptyContent);
                 state = EditState.input;
                 UpdateControlStates();
                 result = false;

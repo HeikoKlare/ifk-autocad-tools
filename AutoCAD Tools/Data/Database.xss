@@ -8,25 +8,13 @@
   <Shapes>
     <Shape ID="DesignTable:Employer" ZOrder="7" X="102" Y="41" Height="67" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
     <Shape ID="DesignTable:Project" ZOrder="8" X="632" Y="44" Height="254" Width="312" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="250" />
-    <Shape ID="DesignTable:AnnotationCategories" ZOrder="6" X="65" Y="241" Height="67" Width="193" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
-    <Shape ID="DesignTable:Annotations" ZOrder="5" X="360" Y="249" Height="105" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="101" />
-    <Shape ID="DesignTable:DetailCategories" ZOrder="3" X="104" Y="396" Height="67" Width="161" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
-    <Shape ID="DesignTable:Details" ZOrder="2" X="355" Y="405" Height="124" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="120" />
+    <Shape ID="DesignTable:AnnotationCategories" ZOrder="6" X="65" Y="241" Height="119" Width="193" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="115" />
+    <Shape ID="DesignTable:Annotations" ZOrder="5" X="360" Y="249" Height="146" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="142" />
+    <Shape ID="DesignTable:DetailCategories" ZOrder="4" X="104" Y="396" Height="67" Width="161" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
+    <Shape ID="DesignTable:Details" ZOrder="3" X="355" Y="405" Height="124" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="120" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK_AnnotationCategories_Annotations" ZOrder="4" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>258</X>
-          <Y>263</Y>
-        </Point>
-        <Point>
-          <X>360</X>
-          <Y>263</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
-    <Connector ID="DesignRelation:FK_DetailCategories_Details" ZOrder="1" LineWidth="11">
+    <Connector ID="DesignRelation:FK_DetailCategories_Details" ZOrder="2" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>265</X>
@@ -35,6 +23,18 @@
         <Point>
           <X>355</X>
           <Y>434</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK_AnnotationCategories_Annotations" ZOrder="1" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>258</X>
+          <Y>263</Y>
+        </Point>
+        <Point>
+          <X>360</X>
+          <Y>263</Y>
         </Point>
       </RoutePoints>
     </Connector>
