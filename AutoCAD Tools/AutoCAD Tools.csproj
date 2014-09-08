@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="Data\Database.cs">
       <DependentUpon>Database.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data\Database.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -233,8 +234,10 @@
     <Compile Include="Tools\FrmReinforcingBond.Designer.cs">
       <DependentUpon>FrmReinforcingBond.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tools\Positionnumber.cs" />
     <Compile Include="Tools\ReinforcingBond.cs" />
     <Compile Include="Tools\TrussImport.cs" />
+    <Compile Include="Utils\EntitiesJig.cs" />
     <Compile Include="Utils\NativeMethods.cs" />
     <Compile Include="Utils\Progress.cs">
       <SubType>Form</SubType>

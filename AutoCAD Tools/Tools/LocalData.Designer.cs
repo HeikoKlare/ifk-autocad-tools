@@ -205,11 +205,29 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Specify insertion point ähnelt.
+        /// </summary>
+        internal static string InsertionPoint {
+            get {
+                return ResourceManager.GetString("InsertionPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Name ähnelt.
         /// </summary>
         internal static string Name {
             get {
                 return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Positionnumber ähnelt.
+        /// </summary>
+        internal static string PositionnumberPrompt {
+            get {
+                return ResourceManager.GetString("PositionnumberPrompt", resourceCulture);
             }
         }
         

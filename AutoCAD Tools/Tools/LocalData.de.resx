@@ -135,6 +135,24 @@
   <data name="DeleteDrawingAreaTitle" xml:space="preserve">
     <value>Fortfahren?</value>
   </data>
+  <data name="DiagonalBracingFirstAddition" xml:space="preserve">
+    <value>(erstes Ende)</value>
+  </data>
+  <data name="DiagonalBracingFirstPoint" xml:space="preserve">
+    <value>Ersten Punkt angeben</value>
+  </data>
+  <data name="DiagonalBracingMissingDescriptionText" xml:space="preserve">
+    <value>Position oder Beschreibung fehlt. Fortfahren?</value>
+  </data>
+  <data name="DiagonalBracingMissingDescriptionTitle" xml:space="preserve">
+    <value>Fortfahren?</value>
+  </data>
+  <data name="DiagonalBracingSecondPoint" xml:space="preserve">
+    <value>Zweiten Punkt angeben</value>
+  </data>
+  <data name="DiagonalBracingSecondsAddition" xml:space="preserve">
+    <value>(zweites Ende)</value>
+  </data>
   <data name="DimensionDecimalPlaces" xml:space="preserve">
     <value>Nachkommastellen</value>
   </data>
@@ -144,23 +162,11 @@
   <data name="DimensionReferencePoint" xml:space="preserve">
     <value>Bezugspunkt</value>
   </data>
-  <data name="PanicleFirstAddition" xml:space="preserve">
-    <value>(erstes Ende)</value>
+  <data name="InsertionPoint" xml:space="preserve">
+    <value>Einfügepunkt angeben</value>
   </data>
-  <data name="PanicleFirstPoint" xml:space="preserve">
-    <value>Ersten Punkt angeben</value>
-  </data>
-  <data name="PanicleMissingDescriptionText" xml:space="preserve">
-    <value>Position oder Beschreibung fehlt. Fortfahren?</value>
-  </data>
-  <data name="PanicleMissingDescriptionTitle" xml:space="preserve">
-    <value>Fortfahren?</value>
-  </data>
-  <data name="PanicleSecondPoint" xml:space="preserve">
-    <value>Zweiten Punkt angeben</value>
-  </data>
-  <data name="PanicleSecondsAddition" xml:space="preserve">
-    <value>(zweites Ende)</value>
+  <data name="PositionnumberPrompt" xml:space="preserve">
+    <value>Positionsnummer:</value>
   </data>
   <data name="ReinforcingBondFirstEave" xml:space="preserve">
     <value>Erster Traufpunkt</value>

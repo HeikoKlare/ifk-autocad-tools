@@ -250,6 +250,15 @@ namespace AutoCADTools
             Tools.CompressionWood.Execute();
         }
 
+        /// <summary>
+        /// Enables the user to define a positionnumber.
+        /// </summary>
+        [CommandMethod("Positionnumber")]
+        public static void Positionnumber()
+        {
+            Tools.Positionnumber.Execute();
+        }
+
         #endregion
 
         #region DrawingArea

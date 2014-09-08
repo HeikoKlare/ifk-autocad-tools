@@ -165,8 +165,14 @@
   <data name="EmptyDrawingSetting" xml:space="preserve">
     <value> </value>
   </data>
+  <data name="InsertionPoint" xml:space="preserve">
+    <value>Specify insertion point</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="PositionnumberPrompt" xml:space="preserve">
+    <value>Positionnumber</value>
   </data>
   <data name="ReinforcingBondDefaultDistance" xml:space="preserve">
     <value>0.10</value>
