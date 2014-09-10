@@ -204,9 +204,12 @@ namespace AutoCADTools.Tools
 
                     // Add reference to model space and align it
                     BlockTableRecord ms = (BlockTableRecord)acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
-                    BlockReference textRef = new BlockReference(new Point3d(line.StartPoint.X + Math.Cos(line.Angle) * (line.Length / 8.0),
-                                        line.StartPoint.Y + Math.Sin(line.Angle) * (line.Length / 8.0), 0), acBlkTbl[BlockName]);
-                    textRef.Rotation = line.Angle;
+                    double angle = Math.Cos(line.Angle) < 0 ? line.Angle + Math.PI : line.Angle;
+                    Point3d startPoint = Math.Cos(line.Angle) < 0 ? line.EndPoint : line.StartPoint;
+                    Point3d endPoint = Math.Cos(line.Angle) < 0 ? line.StartPoint : line.EndPoint;
+                    BlockReference textRef = new BlockReference(new Point3d(startPoint.X + Math.Cos(angle) * ((endPoint - startPoint).Length / 8.0),
+                                        startPoint.Y + Math.Sin(angle) * ((endPoint - startPoint).Length / 8.0), 0), acBlkTbl[BlockName]);
+                    textRef.Rotation = angle;
                     ms.AppendEntity(textRef);
                     acTrans.AddNewlyCreatedDBObject(textRef, true);
 
