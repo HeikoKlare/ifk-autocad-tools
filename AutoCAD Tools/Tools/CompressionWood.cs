@@ -17,11 +17,6 @@ namespace AutoCADTools.Tools
         private static int WIDTH = 8;
         private static int HEIGHT = 5;
 
-        public static string BlockName
-        {
-            get { return LocalData.CompressionWoodBlockPrefix + " " + WIDTH + "-" + HEIGHT; }
-        }
-
         #endregion
 
         #region Execution
