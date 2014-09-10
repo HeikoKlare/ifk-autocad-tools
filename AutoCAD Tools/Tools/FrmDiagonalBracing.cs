@@ -130,11 +130,10 @@ namespace AutoCADTools.Tools
                         // dummy text for dimensions
                         MText dummyText = new MText();
                         dummyText.Annotative = AnnotativeStates.True;
-                        dummyText.Contents = "1";
+                        dummyText.Contents = pos;
                         acBlkTblRec.AppendEntity(dummyText);
                         acTrans.AddNewlyCreatedDBObject(dummyText, true);
-
-
+                        
                         Double radius = 0.0;
                         Point3d location = new Point3d(dummyText.ActualHeight * pos.Length / 2, dummyText.ActualHeight * 0.8, 0);
 
@@ -154,12 +153,7 @@ namespace AutoCADTools.Tools
                             }
 
                             // Add the circle
-                            switch (pos.Length)
-                            {
-                                case 1: radius = dummyText.ActualHeight * 0.9; break;
-                                case 2: radius = dummyText.ActualHeight * 1.3; break;
-                                case 3: radius = dummyText.ActualHeight * 1.5; break;
-                            }
+                            radius = Math.Max(dummyText.ActualHeight, dummyText.ActualWidth) * 0.5 + dummyText.ActualHeight * 0.45;
 
                             using (Circle circle = new Circle(location, new Vector3d(0, 0, 1), radius))
                             {
