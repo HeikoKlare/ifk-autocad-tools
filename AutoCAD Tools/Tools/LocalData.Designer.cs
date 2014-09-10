@@ -331,6 +331,15 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Select text ähnelt.
+        /// </summary>
+        internal static string TextBorderSelectPrompt {
+            get {
+                return ResourceManager.GetString("TextBorderSelectPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die An error occured while importing the objects. Contact the developer with the following information:  ähnelt.
         /// </summary>
         internal static string TrussImportErrorText {

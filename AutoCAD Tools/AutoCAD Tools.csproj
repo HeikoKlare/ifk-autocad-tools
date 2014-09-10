@@ -237,6 +237,7 @@
     </Compile>
     <Compile Include="Tools\Positionnumber.cs" />
     <Compile Include="Tools\ReinforcingBond.cs" />
+    <Compile Include="Tools\TextBorder.cs" />
     <Compile Include="Tools\TrussImport.cs" />
     <Compile Include="Utils\EntitiesJig.cs" />
     <Compile Include="Utils\NativeMethods.cs" />

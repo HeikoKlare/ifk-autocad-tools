@@ -268,6 +268,15 @@ namespace AutoCADTools
             Tools.GroundPlan.Execute();
         }
 
+        /// <summary>
+        /// Enables the user to select a text and create a border around it.
+        /// </summary>
+        [CommandMethod("TextBorder")]
+        public static void TextBorder()
+        {
+            Tools.TextBorder.Execute();
+        }
+
         #endregion
 
         #region DrawingArea

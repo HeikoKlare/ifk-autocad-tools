@@ -207,6 +207,9 @@
   <data name="StandardSegment" xml:space="preserve">
     <value>Roof: Gangnail-Trusses</value>
   </data>
+  <data name="TextBorderSelectPrompt" xml:space="preserve">
+    <value>Select text</value>
+  </data>
   <data name="TrussImportErrorText" xml:space="preserve">
     <value>An error occured while importing the objects. Contact the developer with the following information: </value>
   </data>
