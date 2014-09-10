@@ -310,7 +310,7 @@ namespace AutoCADTools.Tools
                 updCount.Value = 1;
             }
 
-            updCount.Enabled = !optDirectInput.Enabled;
+            updCount.Enabled = !optDirectInput.Checked;
         }
 
         #endregion
