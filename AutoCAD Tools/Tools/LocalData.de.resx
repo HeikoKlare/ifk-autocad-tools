@@ -162,6 +162,21 @@
   <data name="DimensionReferencePoint" xml:space="preserve">
     <value>Bezugspunkt</value>
   </data>
+  <data name="GroundPlanEaveOverhangPrompt" xml:space="preserve">
+    <value>Traufüberstand</value>
+  </data>
+  <data name="GroundPlanLengthPrompt" xml:space="preserve">
+    <value>Länge</value>
+  </data>
+  <data name="GroundPlanVergeOverhangPrompt" xml:space="preserve">
+    <value>Ortgangüberstand</value>
+  </data>
+  <data name="GroundPlanWallThicknessPrompt" xml:space="preserve">
+    <value>Wandstärke</value>
+  </data>
+  <data name="GroundPlanWidthPrompt" xml:space="preserve">
+    <value>Breite</value>
+  </data>
   <data name="InsertionPoint" xml:space="preserve">
     <value>Einfügepunkt angeben</value>
   </data>

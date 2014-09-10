@@ -205,6 +205,51 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Eave overhang ähnelt.
+        /// </summary>
+        internal static string GroundPlanEaveOverhangPrompt {
+            get {
+                return ResourceManager.GetString("GroundPlanEaveOverhangPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Length ähnelt.
+        /// </summary>
+        internal static string GroundPlanLengthPrompt {
+            get {
+                return ResourceManager.GetString("GroundPlanLengthPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Verge overhang ähnelt.
+        /// </summary>
+        internal static string GroundPlanVergeOverhangPrompt {
+            get {
+                return ResourceManager.GetString("GroundPlanVergeOverhangPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wall thickness ähnelt.
+        /// </summary>
+        internal static string GroundPlanWallThicknessPrompt {
+            get {
+                return ResourceManager.GetString("GroundPlanWallThicknessPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Width ähnelt.
+        /// </summary>
+        internal static string GroundPlanWidthPrompt {
+            get {
+                return ResourceManager.GetString("GroundPlanWidthPrompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Specify insertion point ähnelt.
         /// </summary>
         internal static string InsertionPoint {

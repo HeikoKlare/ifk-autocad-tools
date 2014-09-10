@@ -211,6 +211,7 @@
     <Compile Include="Tools\CompressionWood.cs" />
     <Compile Include="Tools\ConsecutiveDimension.cs" />
     <Compile Include="Tools\DrawingData.cs" />
+    <Compile Include="Tools\GroundPlan.cs" />
     <Compile Include="Tools\LocalData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

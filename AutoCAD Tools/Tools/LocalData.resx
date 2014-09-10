@@ -165,6 +165,21 @@
   <data name="EmptyDrawingSetting" xml:space="preserve">
     <value> </value>
   </data>
+  <data name="GroundPlanEaveOverhangPrompt" xml:space="preserve">
+    <value>Eave overhang</value>
+  </data>
+  <data name="GroundPlanLengthPrompt" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="GroundPlanVergeOverhangPrompt" xml:space="preserve">
+    <value>Verge overhang</value>
+  </data>
+  <data name="GroundPlanWallThicknessPrompt" xml:space="preserve">
+    <value>Wall thickness</value>
+  </data>
+  <data name="GroundPlanWidthPrompt" xml:space="preserve">
+    <value>Width</value>
+  </data>
   <data name="InsertionPoint" xml:space="preserve">
     <value>Specify insertion point</value>
   </data>

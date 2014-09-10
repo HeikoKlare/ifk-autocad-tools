@@ -259,6 +259,15 @@ namespace AutoCADTools
             Tools.Positionnumber.Execute();
         }
 
+        /// <summary>
+        /// Enables the user to define a simple ground plan.
+        /// </summary>
+        [CommandMethod("GroundPlan")]
+        public static void GroundPlan()
+        {
+            Tools.GroundPlan.Execute();
+        }
+
         #endregion
 
         #region DrawingArea
