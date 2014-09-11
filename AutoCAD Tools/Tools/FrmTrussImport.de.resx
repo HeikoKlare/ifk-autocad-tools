@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="grpRotation.Text" xml:space="preserve">
+    <value>Drehung</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkMember.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 25</value>
@@ -162,9 +165,6 @@
   </data>
   <data name="butImport.Text" xml:space="preserve">
     <value>Importieren</value>
-  </data>
-  <data name="grpRotation.Text" xml:space="preserve">
-    <value>Drehung</value>
   </data>
   <data name="lblTargetLayer.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 20</value>
@@ -233,5 +233,8 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Binderimport</value>
   </data>
 </root>

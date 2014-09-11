@@ -29,8 +29,11 @@
         [System.CodeDom.Compiler.GeneratedCode("Winform Designer", "VS2010")]
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTrussImport));
             System.Windows.Forms.GroupBox grpRotation;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTrussImport));
+            this.optRotateLeft = new System.Windows.Forms.RadioButton();
+            this.optRotateRight = new System.Windows.Forms.RadioButton();
+            this.optRotateNo = new System.Windows.Forms.RadioButton();
             this.chkMember = new System.Windows.Forms.CheckBox();
             this.chkBracings = new System.Windows.Forms.CheckBox();
             this.chkBearings = new System.Windows.Forms.CheckBox();
@@ -42,16 +45,49 @@
             this.lblFilePath = new System.Windows.Forms.Label();
             this.butSearchSource = new System.Windows.Forms.Button();
             this.butImport = new System.Windows.Forms.Button();
-            this.optRotateRight = new System.Windows.Forms.RadioButton();
-            this.optRotateLeft = new System.Windows.Forms.RadioButton();
-            this.optRotateNo = new System.Windows.Forms.RadioButton();
             this.txtLayerPrefix = new System.Windows.Forms.TextBox();
             this.lblTargetLayer = new System.Windows.Forms.Label();
             this.lblLayerSuffix = new System.Windows.Forms.Label();
             grpRotation = new System.Windows.Forms.GroupBox();
-            this.grpCopyLayer.SuspendLayout();
             grpRotation.SuspendLayout();
+            this.grpCopyLayer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // grpRotation
+            // 
+            resources.ApplyResources(grpRotation, "grpRotation");
+            grpRotation.Controls.Add(this.optRotateLeft);
+            grpRotation.Controls.Add(this.optRotateRight);
+            grpRotation.Controls.Add(this.optRotateNo);
+            grpRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            grpRotation.Name = "grpRotation";
+            grpRotation.TabStop = false;
+            // 
+            // optRotateLeft
+            // 
+            resources.ApplyResources(this.optRotateLeft, "optRotateLeft");
+            this.optRotateLeft.Checked = true;
+            this.optRotateLeft.Image = global::AutoCADTools.Properties.Resources.Truss_left;
+            this.optRotateLeft.Name = "optRotateLeft";
+            this.optRotateLeft.TabStop = true;
+            this.optRotateLeft.UseVisualStyleBackColor = true;
+            this.optRotateLeft.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            // 
+            // optRotateRight
+            // 
+            resources.ApplyResources(this.optRotateRight, "optRotateRight");
+            this.optRotateRight.Image = global::AutoCADTools.Properties.Resources.Truss_right;
+            this.optRotateRight.Name = "optRotateRight";
+            this.optRotateRight.UseVisualStyleBackColor = true;
+            this.optRotateRight.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            // 
+            // optRotateNo
+            // 
+            resources.ApplyResources(this.optRotateNo, "optRotateNo");
+            this.optRotateNo.Image = global::AutoCADTools.Properties.Resources.Truss;
+            this.optRotateNo.Name = "optRotateNo";
+            this.optRotateNo.UseVisualStyleBackColor = true;
+            this.optRotateNo.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
             // 
             // chkMember
             // 
@@ -96,13 +132,13 @@
             // 
             // grpCopyLayer
             // 
+            resources.ApplyResources(this.grpCopyLayer, "grpCopyLayer");
             this.grpCopyLayer.Controls.Add(this.chkBracings);
             this.grpCopyLayer.Controls.Add(this.chkDimensions);
             this.grpCopyLayer.Controls.Add(this.chkMember);
             this.grpCopyLayer.Controls.Add(this.chkPlates);
             this.grpCopyLayer.Controls.Add(this.chkBearings);
             this.grpCopyLayer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.grpCopyLayer, "grpCopyLayer");
             this.grpCopyLayer.Name = "grpCopyLayer";
             this.grpCopyLayer.TabStop = false;
             // 
@@ -136,42 +172,6 @@
             this.butImport.Name = "butImport";
             this.butImport.UseVisualStyleBackColor = true;
             this.butImport.Click += new System.EventHandler(this.butImport_Click);
-            // 
-            // optRotateRight
-            // 
-            resources.ApplyResources(this.optRotateRight, "optRotateRight");
-            this.optRotateRight.Image = global::AutoCADTools.Properties.Resources.Truss_right;
-            this.optRotateRight.Name = "optRotateRight";
-            this.optRotateRight.UseVisualStyleBackColor = true;
-            this.optRotateRight.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
-            // 
-            // optRotateLeft
-            // 
-            resources.ApplyResources(this.optRotateLeft, "optRotateLeft");
-            this.optRotateLeft.Checked = true;
-            this.optRotateLeft.Image = global::AutoCADTools.Properties.Resources.Truss_left;
-            this.optRotateLeft.Name = "optRotateLeft";
-            this.optRotateLeft.TabStop = true;
-            this.optRotateLeft.UseVisualStyleBackColor = true;
-            this.optRotateLeft.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
-            // 
-            // optRotateNo
-            // 
-            resources.ApplyResources(this.optRotateNo, "optRotateNo");
-            this.optRotateNo.Image = global::AutoCADTools.Properties.Resources.Truss;
-            this.optRotateNo.Name = "optRotateNo";
-            this.optRotateNo.UseVisualStyleBackColor = true;
-            this.optRotateNo.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
-            // 
-            // grpRotation
-            // 
-            grpRotation.Controls.Add(this.optRotateLeft);
-            grpRotation.Controls.Add(this.optRotateRight);
-            grpRotation.Controls.Add(this.optRotateNo);
-            grpRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(grpRotation, "grpRotation");
-            grpRotation.Name = "grpRotation";
-            grpRotation.TabStop = false;
             // 
             // txtLayerPrefix
             // 
@@ -212,10 +212,10 @@
             this.Name = "FrmTrussImport";
             this.Load += new System.EventHandler(this.FrmTrussImport_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmTrussImport_KeyPress);
-            this.grpCopyLayer.ResumeLayout(false);
-            this.grpCopyLayer.PerformLayout();
             grpRotation.ResumeLayout(false);
             grpRotation.PerformLayout();
+            this.grpCopyLayer.ResumeLayout(false);
+            this.grpCopyLayer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

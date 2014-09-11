@@ -118,529 +118,115 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkMember.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkMember.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chkMember.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 42</value>
-  </data>
-  <data name="chkMember.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="chkMember.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 25</value>
-  </data>
-  <data name="chkMember.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="chkMember.Text" xml:space="preserve">
-    <value>Member</value>
-  </data>
-  <data name="&gt;&gt;chkMember.Name" xml:space="preserve">
-    <value>chkMember</value>
-  </data>
-  <data name="&gt;&gt;chkMember.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkMember.Parent" xml:space="preserve">
-    <value>grpCopyLayer</value>
-  </data>
-  <data name="&gt;&gt;chkMember.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="chkBracings.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkBracings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="chkBracings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 77</value>
-  </data>
-  <data name="chkBracings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="chkBracings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 25</value>
-  </data>
-  <data name="chkBracings.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="chkBracings.Text" xml:space="preserve">
-    <value>Bracings</value>
-  </data>
-  <data name="&gt;&gt;chkBracings.Name" xml:space="preserve">
-    <value>chkBracings</value>
-  </data>
-  <data name="&gt;&gt;chkBracings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkBracings.Parent" xml:space="preserve">
-    <value>grpCopyLayer</value>
-  </data>
-  <data name="&gt;&gt;chkBracings.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="chkBearings.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkBearings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="chkBearings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 112</value>
-  </data>
-  <data name="chkBearings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="chkBearings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 25</value>
-  </data>
-  <data name="chkBearings.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="chkBearings.Text" xml:space="preserve">
-    <value>Bearings</value>
-  </data>
-  <data name="&gt;&gt;chkBearings.Name" xml:space="preserve">
-    <value>chkBearings</value>
-  </data>
-  <data name="&gt;&gt;chkBearings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkBearings.Parent" xml:space="preserve">
-    <value>grpCopyLayer</value>
-  </data>
-  <data name="&gt;&gt;chkBearings.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="chkPlates.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkPlates.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="chkPlates.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 148</value>
-  </data>
-  <data name="chkPlates.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="chkPlates.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 25</value>
-  </data>
-  <data name="chkPlates.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="chkPlates.Text" xml:space="preserve">
-    <value>Plates</value>
-  </data>
-  <data name="&gt;&gt;chkPlates.Name" xml:space="preserve">
-    <value>chkPlates</value>
-  </data>
-  <data name="&gt;&gt;chkPlates.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkPlates.Parent" xml:space="preserve">
-    <value>grpCopyLayer</value>
-  </data>
-  <data name="&gt;&gt;chkPlates.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="chkDimensions.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkDimensions.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="chkDimensions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 183</value>
-  </data>
-  <data name="chkDimensions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="chkDimensions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 25</value>
-  </data>
-  <data name="chkDimensions.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="chkDimensions.Text" xml:space="preserve">
-    <value>Dimensions</value>
-  </data>
-  <data name="&gt;&gt;chkDimensions.Name" xml:space="preserve">
-    <value>chkDimensions</value>
-  </data>
-  <data name="&gt;&gt;chkDimensions.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkDimensions.Parent" xml:space="preserve">
-    <value>grpCopyLayer</value>
-  </data>
-  <data name="&gt;&gt;chkDimensions.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="grpCopyLayer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 74</value>
-  </data>
-  <data name="grpCopyLayer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="grpCopyLayer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="grpCopyLayer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 229</value>
-  </data>
-  <data name="grpCopyLayer.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="grpCopyLayer.Text" xml:space="preserve">
-    <value>Copy layer</value>
-  </data>
-  <data name="&gt;&gt;grpCopyLayer.Name" xml:space="preserve">
-    <value>grpCopyLayer</value>
-  </data>
-  <data name="&gt;&gt;grpCopyLayer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpCopyLayer.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpCopyLayer.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <metadata name="ofdSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="ofdSource.Filter" xml:space="preserve">
-    <value>Zeichnungsdateien (*.dxf, *.dwg)|*.dwg;*.dxf</value>
-  </data>
-  <data name="txtSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="txtSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="txtSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 26</value>
-  </data>
-  <data name="txtSource.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtSource.Name" xml:space="preserve">
-    <value>txtSource</value>
-  </data>
-  <data name="&gt;&gt;txtSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSource.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtSource.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="lblFilePath.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblFilePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 26</value>
-  </data>
-  <data name="lblFilePath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblFilePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 20</value>
-  </data>
-  <data name="lblFilePath.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="lblFilePath.Text" xml:space="preserve">
-    <value>File path:</value>
-  </data>
-  <data name="&gt;&gt;lblFilePath.Name" xml:space="preserve">
-    <value>lblFilePath</value>
-  </data>
-  <data name="&gt;&gt;lblFilePath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFilePath.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblFilePath.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="butSearchSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>512, 18</value>
-  </data>
-  <data name="butSearchSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="butSearchSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 35</value>
-  </data>
-  <data name="butSearchSource.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="butSearchSource.Text" xml:space="preserve">
-    <value>Search</value>
-  </data>
-  <data name="&gt;&gt;butSearchSource.Name" xml:space="preserve">
-    <value>butSearchSource</value>
-  </data>
-  <data name="&gt;&gt;butSearchSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;butSearchSource.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;butSearchSource.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="butImport.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="butImport.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
-  </data>
-  <data name="butImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 301</value>
-  </data>
-  <data name="butImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="butImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 55</value>
-  </data>
-  <data name="butImport.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="butImport.Text" xml:space="preserve">
-    <value>Import</value>
-  </data>
-  <data name="&gt;&gt;butImport.Name" xml:space="preserve">
-    <value>butImport</value>
-  </data>
-  <data name="&gt;&gt;butImport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;butImport.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;butImport.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="optRotateRight.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="optRotateRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>257, 40</value>
-  </data>
-  <data name="optRotateRight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="optRotateRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 60</value>
-  </data>
-  <data name="optRotateRight.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;optRotateRight.Name" xml:space="preserve">
-    <value>optRotateRight</value>
-  </data>
-  <data name="&gt;&gt;optRotateRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optRotateRight.Parent" xml:space="preserve">
-    <value>grpRotation</value>
-  </data>
-  <data name="&gt;&gt;optRotateRight.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="optRotateLeft.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="optRotateLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>47, 40</value>
-  </data>
-  <data name="optRotateLeft.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="optRotateLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 60</value>
-  </data>
   <data name="optRotateLeft.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;optRotateLeft.Name" xml:space="preserve">
-    <value>optRotateLeft</value>
-  </data>
-  <data name="&gt;&gt;optRotateLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optRotateLeft.Parent" xml:space="preserve">
-    <value>grpRotation</value>
-  </data>
-  <data name="&gt;&gt;optRotateLeft.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="optRotateNo.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="optRotateNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>143, 52</value>
-  </data>
-  <data name="optRotateNo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="optRotateNo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 36</value>
-  </data>
-  <data name="optRotateNo.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;optRotateNo.Name" xml:space="preserve">
-    <value>optRotateNo</value>
-  </data>
-  <data name="&gt;&gt;optRotateNo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optRotateNo.Parent" xml:space="preserve">
-    <value>grpRotation</value>
-  </data>
-  <data name="&gt;&gt;optRotateNo.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="grpRotation.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="grpRotation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 154</value>
-  </data>
-  <data name="grpRotation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="grpRotation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="chkBracings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 25</value>
   </data>
   <data name="grpRotation.Size" type="System.Drawing.Size, System.Drawing">
     <value>360, 127</value>
   </data>
-  <data name="grpRotation.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="grpRotation.Text" xml:space="preserve">
-    <value>Rotation</value>
-  </data>
-  <data name="&gt;&gt;grpRotation.Name" xml:space="preserve">
-    <value>grpRotation</value>
-  </data>
-  <data name="&gt;&gt;grpRotation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpRotation.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpRotation.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="txtLayerPrefix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>276, 104</value>
-  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtLayerPrefix.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
-  <data name="txtLayerPrefix.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 26</value>
+  <data name="ofdSource.Filter" xml:space="preserve">
+    <value>Zeichnungsdateien (*.dxf, *.dwg)|*.dwg;*.dxf</value>
   </data>
-  <data name="txtLayerPrefix.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="butImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 55</value>
   </data>
-  <data name="&gt;&gt;txtLayerPrefix.Name" xml:space="preserve">
-    <value>txtLayerPrefix</value>
-  </data>
-  <data name="&gt;&gt;txtLayerPrefix.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtLayerPrefix.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtLayerPrefix.ZOrder" xml:space="preserve">
+  <data name="butSearchSource.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="&gt;&gt;chkDimensions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;butImport.Name" xml:space="preserve">
+    <value>butImport</value>
+  </data>
+  <data name="chkMember.Text" xml:space="preserve">
+    <value>Member</value>
   </data>
   <data name="lblTargetLayer.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblTargetLayer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>272, 74</value>
+  <data name="chkBracings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
-  <data name="lblTargetLayer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblTargetLayer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 20</value>
-  </data>
-  <data name="lblTargetLayer.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="lblTargetLayer.Text" xml:space="preserve">
-    <value>Target-Layer:</value>
-  </data>
-  <data name="&gt;&gt;lblTargetLayer.Name" xml:space="preserve">
-    <value>lblTargetLayer</value>
-  </data>
-  <data name="&gt;&gt;lblTargetLayer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblTargetLayer.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtLayerPrefix.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblTargetLayer.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;chkBearings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optRotateRight.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="lblLayerSuffix.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblLayerSuffix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>520, 109</value>
-  </data>
-  <data name="lblLayerSuffix.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lblLayerSuffix.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 20</value>
-  </data>
-  <data name="lblLayerSuffix.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="lblLayerSuffix.Text" xml:space="preserve">
-    <value>- #Objectname</value>
-  </data>
-  <data name="&gt;&gt;lblLayerSuffix.Name" xml:space="preserve">
-    <value>lblLayerSuffix</value>
-  </data>
-  <data name="&gt;&gt;lblLayerSuffix.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblLayerSuffix.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpCopyLayer.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblLayerSuffix.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;butSearchSource.Name" xml:space="preserve">
+    <value>butSearchSource</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="grpCopyLayer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;optRotateNo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chkPlates.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 25</value>
+  </data>
+  <data name="chkPlates.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 148</value>
+  </data>
+  <data name="&gt;&gt;butImport.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="grpRotation.Text" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="txtLayerPrefix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 26</value>
+  </data>
+  <data name="chkBracings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 77</value>
+  </data>
+  <data name="&gt;&gt;grpCopyLayer.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Truss Import</value>
+  </data>
+  <data name="lblFilePath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="butSearchSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;optRotateRight.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblTargetLayer.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="chkBearings.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="chkBearings.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>9, 20</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>657, 380</value>
+  <data name="&gt;&gt;chkMember.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -701,22 +287,436 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="chkDimensions.Text" xml:space="preserve">
+    <value>Dimensions</value>
+  </data>
+  <data name="chkMember.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="optRotateRight.Location" type="System.Drawing.Point, System.Drawing">
+    <value>257, 40</value>
+  </data>
+  <data name="lblLayerSuffix.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="butSearchSource.Location" type="System.Drawing.Point, System.Drawing">
+    <value>512, 18</value>
+  </data>
+  <data name="chkDimensions.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;chkPlates.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chkPlates.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Truss Import</value>
+  <data name="chkBracings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;grpCopyLayer.Name" xml:space="preserve">
+    <value>grpCopyLayer</value>
+  </data>
+  <data name="&gt;&gt;txtSource.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;optRotateLeft.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="butImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 301</value>
+  </data>
+  <data name="butSearchSource.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="&gt;&gt;txtLayerPrefix.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;grpRotation.Name" xml:space="preserve">
+    <value>grpRotation</value>
+  </data>
+  <data name="grpRotation.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;grpCopyLayer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optRotateLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 40</value>
+  </data>
+  <data name="butSearchSource.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 35</value>
+  </data>
+  <data name="&gt;&gt;chkBearings.Parent" xml:space="preserve">
+    <value>grpCopyLayer</value>
+  </data>
+  <data name="&gt;&gt;butSearchSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkPlates.Parent" xml:space="preserve">
+    <value>grpCopyLayer</value>
+  </data>
+  <data name="&gt;&gt;chkBracings.Parent" xml:space="preserve">
+    <value>grpCopyLayer</value>
+  </data>
+  <data name="&gt;&gt;chkDimensions.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="optRotateRight.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkBearings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 112</value>
+  </data>
+  <data name="optRotateLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 60</value>
+  </data>
+  <data name="&gt;&gt;txtSource.Name" xml:space="preserve">
+    <value>txtSource</value>
+  </data>
+  <data name="&gt;&gt;lblLayerSuffix.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;chkDimensions.Name" xml:space="preserve">
+    <value>chkDimensions</value>
+  </data>
+  <data name="chkBearings.Text" xml:space="preserve">
+    <value>Bearings</value>
+  </data>
+  <data name="&gt;&gt;txtSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optRotateRight.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 60</value>
+  </data>
+  <data name="txtSource.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblLayerSuffix.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkMember.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 25</value>
+  </data>
+  <data name="&gt;&gt;optRotateLeft.Parent" xml:space="preserve">
+    <value>grpRotation</value>
+  </data>
+  <data name="chkPlates.Text" xml:space="preserve">
+    <value>Plates</value>
+  </data>
+  <data name="&gt;&gt;chkMember.Parent" xml:space="preserve">
+    <value>grpCopyLayer</value>
+  </data>
+  <data name="&gt;&gt;optRotateRight.Name" xml:space="preserve">
+    <value>optRotateRight</value>
+  </data>
+  <data name="lblTargetLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 20</value>
+  </data>
+  <data name="txtSource.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;optRotateRight.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtSource.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtSource.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="chkBracings.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="butImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="lblLayerSuffix.Text" xml:space="preserve">
+    <value>- #Objectname</value>
+  </data>
+  <data name="optRotateNo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 36</value>
+  </data>
+  <data name="chkBracings.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="butImport.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="chkMember.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;chkMember.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;butSearchSource.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="chkPlates.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;chkBearings.Name" xml:space="preserve">
+    <value>chkBearings</value>
+  </data>
+  <data name="chkMember.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="&gt;&gt;ofdSource.Name" xml:space="preserve">
     <value>ofdSource</value>
   </data>
+  <data name="&gt;&gt;optRotateNo.Parent" xml:space="preserve">
+    <value>grpRotation</value>
+  </data>
+  <data name="grpCopyLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 74</value>
+  </data>
+  <data name="&gt;&gt;lblTargetLayer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpRotation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblLayerSuffix.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtSource.Size" type="System.Drawing.Size, System.Drawing">
+    <value>376, 26</value>
+  </data>
+  <data name="butImport.Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="&gt;&gt;chkPlates.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;ofdSource.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FrmTrussImport</value>
+  <data name="chkPlates.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblLayerSuffix.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="grpCopyLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 229</value>
+  </data>
+  <data name="lblLayerSuffix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>113, 20</value>
+  </data>
+  <data name="butImport.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="optRotateLeft.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblFilePath.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="chkDimensions.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;lblTargetLayer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpCopyLayer.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;optRotateLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optRotateNo.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;lblTargetLayer.Name" xml:space="preserve">
+    <value>lblTargetLayer</value>
+  </data>
+  <data name="chkMember.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;chkBearings.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblFilePath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
+  </data>
+  <data name="txtLayerPrefix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 104</value>
+  </data>
+  <data name="&gt;&gt;butImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkPlates.Name" xml:space="preserve">
+    <value>chkPlates</value>
+  </data>
+  <data name="chkDimensions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 25</value>
+  </data>
+  <data name="&gt;&gt;chkBracings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpRotation.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;chkMember.Name" xml:space="preserve">
+    <value>chkMember</value>
+  </data>
+  <data name="&gt;&gt;butSearchSource.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;chkBracings.Name" xml:space="preserve">
+    <value>chkBracings</value>
+  </data>
+  <data name="&gt;&gt;butImport.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="optRotateNo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>143, 52</value>
+  </data>
+  <data name="optRotateLeft.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="optRotateNo.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;lblTargetLayer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtLayerPrefix.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkBearings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>97, 25</value>
+  </data>
+  <data name="lblFilePath.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;optRotateRight.Parent" xml:space="preserve">
+    <value>grpRotation</value>
+  </data>
+  <data name="optRotateNo.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="chkBearings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="txtLayerPrefix.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblFilePath.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="chkPlates.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="grpRotation.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;lblFilePath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkDimensions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 183</value>
+  </data>
+  <data name="grpCopyLayer.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;chkDimensions.Parent" xml:space="preserve">
+    <value>grpCopyLayer</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>657, 380</value>
+  </data>
+  <data name="lblFilePath.Text" xml:space="preserve">
+    <value>File path:</value>
+  </data>
+  <data name="&gt;&gt;grpRotation.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="chkDimensions.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="grpRotation.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="chkMember.Location" type="System.Drawing.Point, System.Drawing">
+    <value>34, 42</value>
+  </data>
+  <data name="butImport.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lblFilePath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 26</value>
+  </data>
+  <data name="lblTargetLayer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="grpRotation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 154</value>
+  </data>
+  <data name="&gt;&gt;optRotateNo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>9, 20</value>
+  </data>
+  <data name="&gt;&gt;lblFilePath.Name" xml:space="preserve">
+    <value>lblFilePath</value>
+  </data>
+  <data name="&gt;&gt;lblLayerSuffix.Name" xml:space="preserve">
+    <value>lblLayerSuffix</value>
+  </data>
+  <data name="lblTargetLayer.Text" xml:space="preserve">
+    <value>Target-Layer:</value>
+  </data>
+  <data name="chkDimensions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;chkBracings.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;optRotateNo.Name" xml:space="preserve">
+    <value>optRotateNo</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FrmTrussImport</value>
+  </data>
+  <data name="lblTargetLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>272, 74</value>
+  </data>
+  <data name="&gt;&gt;lblFilePath.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="chkBearings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="chkBracings.Text" xml:space="preserve">
+    <value>Bracings</value>
+  </data>
+  <data name="grpCopyLayer.Text" xml:space="preserve">
+    <value>Copy layer</value>
+  </data>
+  <data name="&gt;&gt;txtLayerPrefix.Name" xml:space="preserve">
+    <value>txtLayerPrefix</value>
+  </data>
+  <data name="lblLayerSuffix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>520, 109</value>
+  </data>
+  <data name="optRotateRight.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;optRotateLeft.Name" xml:space="preserve">
+    <value>optRotateLeft</value>
+  </data>
+  <metadata name="grpRotation.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="ofdSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
