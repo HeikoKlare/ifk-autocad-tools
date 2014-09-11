@@ -350,13 +350,7 @@ namespace AutoCADTools.Tools
                         }
 
                         // Create the circle
-                        double radius = 0.0;
-                        switch (position.Length)
-                        {
-                            case 1: radius = dummyText.ActualHeight * 0.9; break;
-                            case 2: radius = dummyText.ActualHeight * 1.3; break;
-                            case 3: radius = dummyText.ActualHeight * 1.5; break;
-                        }
+                        double radius = Math.Max(dummyText.ActualHeight, dummyText.ActualWidth) * 0.5 + dummyText.ActualHeight * 0.45;
 
                         using (Circle circle = new Circle(new Point3d(0, 0, 0), Vector3d.ZAxis, radius))
                         {
