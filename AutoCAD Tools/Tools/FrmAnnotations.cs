@@ -195,7 +195,7 @@ namespace AutoCADTools.Tools
         /// <param name="e">unused</param>
         private void butClipboard_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.Clipboard.SetDataObject(rtfContent.Rtf, true);
+            System.Windows.Forms.Clipboard.SetText(rtfContent.Rtf, TextDataFormat.Rtf);
             Utils.NativeMethods.SetWindowsToForeground(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
         }
 
