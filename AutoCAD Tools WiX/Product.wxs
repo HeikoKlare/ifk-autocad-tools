@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="AutoCAD Tools für AutoCAD 2015" Language="1031" Version="2.3.4" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{6E78AB5F-8167-43D7-B7F7-8FD1A7BB6E14}">
+	<Product Id="*" Name="AutoCAD Tools" Language="1031" Version="3.0.0" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{6E78AB5F-8167-43D7-B7F7-8FD1A7BB6E14}">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64"/>
 
+    <!-- IMPORTANT
+          When creating a new version only the version property has to be changed. There is automatically a new product id created while
+          the upgrade code, which is used to identify the product series, stays the same. -->
+    
 		<MajorUpgrade DowngradeErrorMessage="Eine neuere Version von [ProductName] ist bereits installiert." AllowSameVersionUpgrades="no" AllowDowngrades="no" />
 		<MediaTemplate EmbedCab="yes"/>
-
+    
     <!-- SET ICONS -->
     <Icon Id="icon.ico" SourceFile="Data/IFK.ico"/>
     <Property Id="ARPPRODUCTICON" Value="icon.ico" />
@@ -16,65 +20,37 @@
     <Property Id="AutoCadVersion" Value="AutoCAD 2012" />-->
     
     <!-- AUTOCAD 2013 -->
-    <!-- <Property Id="AutoCadVersionString" Value="R19.0\ACAD-B001:407" />
-    <Property Id="AutoCadVersion" Value="AutoCAD 2013" />-->
+    <!--<Property Id="AutoCadVersionString2013" Value="R19.0\ACAD-B001:407" />
+    <Property Id="AutoCadVersion2013" Value="AutoCAD 2013" />-->
 
     <!-- AUTOCAD 2014 -->
     <!--<Property Id="AutoCadVersionString" Value="R19.1\ACAD-D001:407" />
     <Property Id="AutoCadVersion" Value="AutoCAD 2014" />-->
 
     <!-- AUTOCAD 2015 -->
-    <Property Id="AutoCadVersionString" Value="R20.0\ACAD-E001:407" />
-    <Property Id="AutoCadVersion" Value="AutoCAD 2015" />
+    <Property Id="AutoCadVersionString2015" Value="R20.0\ACAD-E001:407" />
+    <Property Id="AutoCadVersion2015" Value="AutoCAD 2015" />
     
-    <Property Id="AssemblyName" Value="AutoCAD Tools 2.dll" />
+    <Property Id="AssemblyName" Value="AutoCAD Tools.dll" />
             
     <!-- READ REGISTRY VALUES -->
-    <Property Id="INSTALLDIRRAW">
-      <RegistrySearch Id="Autocad2012Location"
+    <Property Id="AUTOCADINSTALLDIR2015">
+      <RegistrySearch Id="AutocadLocation2015"
                       Root="HKLM"
-                      Key="Software\Autodesk\AutoCAD\[AutoCadVersionString]"
+                      Key="Software\Autodesk\AutoCAD\[AutoCadVersionString2015]"
                       Name="AcadLocation"
                       Type="raw"
                       Win64="yes"/>
     </Property>
-
-    <Property Id="INSTALLDIR">
-      <RegistrySearch Id="Autocad2012LocationDir"
-                      Root="HKLM"
-                      Key="Software\Autodesk\AutoCAD\[AutoCadVersionString]"
-                      Name="AcadLocation"
-                      Type="directory"
-                      Win64="yes"/>
-    </Property>
-
-    <Property Id="ROAMINGDIR">
-      <RegistrySearch Id="Autocad2012Roaming"
-                      Root="HKCU"
-                      Key="Software\Autodesk\AutoCAD\[AutoCadVersionString]"
-                      Name="RoamableRootFolder"
-                      Type="directory"
-                      Win64="yes"/>
-    </Property>
-
-    <Property Id="LOCALDIR">
-      <RegistrySearch Id="Autocad2012Local"
-                      Root="HKCU"
-                      Key="Software\Autodesk\AutoCAD\[AutoCadVersionString]"
-                      Name="LocalRootFolder"
-                      Type="directory"
-                      Win64="yes"/>
-    </Property>
-
-
+    
     <!-- REGISTER REGISTRY COMPONENT -->
     <DirectoryRef Id="TARGETDIR">
-      <Component Id="RegistryEntries" Guid="{018707EF-6D01-4D2B-82FF-7D44499D2A68}" Win64="yes">
-        <RegistryKey Root="HKCU"
-                     Key="Software\Autodesk\AutoCAD\[AutoCadVersionString]\Applications\[ProductName]">
-          <RegistryValue Type="string" Name="DESCRIPTION" Value="AutoCAD Tools 2" KeyPath="yes"/>
+      <Component Id="RegistryEntries2015" Guid="{018707EF-6D01-4D2B-82FF-7D44499D2A68}" Win64="yes">
+        <RegistryKey Root="HKLM"
+                     Key="Software\Autodesk\AutoCAD\[AutoCadVersionString2015]\Applications\[ProductName]">
+          <RegistryValue Type="string" Name="DESCRIPTION" Value="AutoCAD Tools" KeyPath="yes"/>
           <RegistryValue Type="integer" Name="LOADCTRLS" Value="14" />
-          <RegistryValue Type="string" Name="LOADER" Value="[INSTALLDIRRAW]\[AssemblyName]" />
+          <RegistryValue Type="string" Name="LOADER" Value="[AUTOCADINSTALLDIR2015][AssemblyName]" />
           <RegistryValue Type="integer" Name="MANAGED" Value="1" />
         </RegistryKey>
       </Component>
@@ -82,83 +58,70 @@
 
        
     <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="AppDataFolder" Name="PFiles">
-        <Directory Id="AutoCadToolsRoaming" Name="AutoCAD Tools">
-          <Component Id="AutoCadToolsRoamingFolder" Guid="{9594A0CD-29A5-48C4-BC6B-29210BBCECC3}"
-            SharedDllRefCount="no" KeyPath="no" NeverOverwrite="no" Permanent="no" Transitive="no"
-            Win64="no" Location="either">
-            <CreateFolder/>
-            <RemoveFolder Id="AutoCadToolsRoamingDelete" Directory="AutoCadToolsRoaming" On="uninstall" />
-            <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
-          </Component>
-        </Directory>
-      </Directory>
-      <Directory Id="INSTALLDIR">
-        <Component Id="AutoCadToolsDLL" Win64="yes" Guid="{64500DA2-9167-4756-A109-433161A4E973}">
-          <File Id="AutoCadToolsDLL" DiskId="1" Name="AutoCad Tools 2.dll" Source="$(var.AutoCAD Tools.TargetPath)" KeyPath="yes" Checksum="yes"/>
+      <Directory Id ="AUTOCADINSTALLDIR2015" Name="PFiles">
+        <Component Id="AutoCadToolsDLL2015" Win64="yes" Guid="{64500DA2-9167-4756-A109-433161A4E973}">
+          <File Id="AutoCadToolsDLL" DiskId="1" Name="AutoCAD Tools.dll" Source="$(var.AutoCAD Tools.TargetPath)" KeyPath="yes" Checksum="yes"/>
         </Component>
         <Directory Id="INSTALLDIRLOCALIZATIONDE" Name="de">
-          <Component Id="AutoCadToolsResourcesDeDLL" Win64="yes" Guid="{3514EE80-5A70-492E-A7BF-2C0307A707B4}">
-            <File Id="AutoCadToolsResourceDeDll" DiskId="1" Name="AutoCAD Tools 2.resources.dll" Source="$(var.AutoCAD Tools.TargetDir)\de\AutoCAD Tools 2.resources.dll" KeyPath="yes" Checksum="yes"/>
+          <Component Id="AutoCadToolsResourcesDeDLL2015" Win64="yes" Guid="{3514EE80-5A70-492E-A7BF-2C0307A707B4}">
+            <File Id="AutoCadToolsResourceDeDll" DiskId="1" Name="AutoCAD Tools.resources.dll" Source="$(var.AutoCAD Tools.TargetDir)\de\AutoCAD Tools.resources.dll" KeyPath="yes" Checksum="yes"/>
           </Component>
         </Directory>
-        <Component Id="MySqlDll" Win64="yes" Guid="{62534653-38E2-4527-88ED-4DC3FBF88660}">
+        <Component Id="MySqlDll2015" Win64="yes" Guid="{62534653-38E2-4527-88ED-4DC3FBF88660}">
           <File Id="MySqlDll" DiskId="1" Name="MySql.Data.dll" Source="Data/MySql.Data.dll" KeyPath="yes" Checksum="yes"/>
         </Component>
       </Directory>
-      <Directory Id="ROAMINGDIR">
-        <Directory Id="PlottersDir" Name="Plotters">
-          <Component Id="KonicaPc3Files" Win64="yes" Guid="{4BF6FB47-4354-44FA-8763-CC00D5A8B0B2}">
-            <File Id="KonicaPc3" DiskId="1" Name="Konica.pc3" Source="Data/Roaming/Plotters/Konica.pc3" KeyPath="yes"/>
-          </Component>
-          <Component Id="PlotterPc3Files" Win64="yes" Guid="{B3DFD661-F1F0-44A7-80D5-20382457E727}">
-            <File Id="PlotterPc3" DiskId="1" Name="Plotter.pc3" Source="Data/Roaming/Plotters/Plotter.pc3"/>
-          </Component>
-          <Component Id="PngPc3Files" Win64="yes" Guid="{A4B81D51-35D4-4BE8-9EEF-8781D574C0B6}">
-            <File Id="PngPc3" DiskId="1" Name="PNG.pc3" Source="Data/Roaming/Plotters/PNG.pc3"/>
-          </Component>
-          <Directory Id="PlottersPmpDir" Name="PMP Files">
-            <Component Id="KonicaPmpFiles" Win64="yes" Guid="{670A579F-B999-43EA-BBEA-3FCC49AD20AB}">
-              <File Id="KonicaPmp" DiskId="1" Name="Konica.pmp" Source="Data/Roaming/Plotters/PMP Files/Konica.pmp" KeyPath="yes"/>
+      <Directory Id="CommonAppDataFolder">
+        <Directory Id="CommonAppDir" Name="AutoCAD Tools">
+          <Directory Id="PlottersDir" Name="Plotters">
+            <Component Id="KonicaPc3Files" Win64="yes" Guid="{4BF6FB47-4354-44FA-8763-CC00D5A8B0B2}">
+              <File Id="KonicaPc3" DiskId="1" Name="Konica.pc3" Source="Data/Roaming/Plotters/Konica.pc3" KeyPath="yes"/>
             </Component>
-            <Component Id="PlotterPmpFiles" Win64="yes" Guid="{2639A521-23DA-495D-9E64-72F981CD994A}">
-              <File Id="PlotterPmp" DiskId="1" Name="Plotter.pmp" Source="Data/Roaming/Plotters/PMP Files/Plotter.pmp"/>
+            <Component Id="PlotterPc3Files" Win64="yes" Guid="{B3DFD661-F1F0-44A7-80D5-20382457E727}">
+              <File Id="PlotterPc3" DiskId="1" Name="Plotter.pc3" Source="Data/Roaming/Plotters/Plotter.pc3"/>
             </Component>
-            <Component Id="PngPmpFiles" Win64="yes" Guid="{E06AE3F1-E3C2-48E1-AE13-E8898D3CF4F6}">
-              <File Id="PngPmp" DiskId="1" Name="PNG.pmp" Source="Data/Roaming/Plotters/PMP Files/PNG.pmp"/>
+            <Component Id="PngPc3Files" Win64="yes" Guid="{A4B81D51-35D4-4BE8-9EEF-8781D574C0B6}">
+              <File Id="PngPc3" DiskId="1" Name="PNG.pc3" Source="Data/Roaming/Plotters/PNG.pc3"/>
+            </Component>
+            <Directory Id="PlottersPmpDir" Name="PMP Files">
+              <Component Id="KonicaPmpFiles" Win64="yes" Guid="{670A579F-B999-43EA-BBEA-3FCC49AD20AB}">
+                <File Id="KonicaPmp" DiskId="1" Name="Konica.pmp" Source="Data/Roaming/Plotters/PMP Files/Konica.pmp" KeyPath="yes"/>
+              </Component>
+              <Component Id="PlotterPmpFiles" Win64="yes" Guid="{2639A521-23DA-495D-9E64-72F981CD994A}">
+                <File Id="PlotterPmp" DiskId="1" Name="Plotter.pmp" Source="Data/Roaming/Plotters/PMP Files/Plotter.pmp"/>
+              </Component>
+              <Component Id="PngPmpFiles" Win64="yes" Guid="{E06AE3F1-E3C2-48E1-AE13-E8898D3CF4F6}">
+                <File Id="PngPmp" DiskId="1" Name="PNG.pmp" Source="Data/Roaming/Plotters/PMP Files/PNG.pmp"/>
+              </Component>
+            </Directory>
+          </Directory>
+          <Directory Id="CustomazationDir" Name="Customization">
+            <Component Id="CustomizationFiles" Win64="yes" Guid="{7B2F5024-EDD4-4A9D-95C1-7ACD6A83166E}">
+              <File Id="IfkCui" DiskId="1" Name="ifk.cuix" Source="Data/Roaming/Support/ifk.cuix" KeyPath="yes"/>
             </Component>
           </Directory>
-        </Directory>
-        <Directory Id="SupportDir" Name="Support">
-          <Component Id="SupportFiles" Win64="yes" Guid="{7B2F5024-EDD4-4A9D-95C1-7ACD6A83166E}">
-            <File Id="IfkCui" DiskId="1" Name="ifk.cuix" Source="Data/Roaming/Support/ifk.cuix" KeyPath="yes"/>
-          </Component>
-        </Directory>
-      </Directory>
-      <Directory Id="LOCALDIR">
-        <Directory Id="TemplateDir" Name="Template">
-          <Component Id="TemplateFiles" Win64="yes" Guid="{6CA59EEA-51B6-4474-A695-542577CEF5DB}">
-            <File Id="IfkDwt" DiskId="1" Name="ifk.dwt" Source="Data/Local/ifk.dwt" KeyPath="yes"/>
-          </Component>
+          <Directory Id="TemplateDir" Name="Templates">
+            <Component Id="TemplateFiles" Win64="yes" Guid="{6CA59EEA-51B6-4474-A695-542577CEF5DB}">
+              <File Id="IfkDwt" DiskId="1" Name="ifk.dwt" Source="Data/Local/ifk.dwt" KeyPath="yes"/>
+            </Component>
+          </Directory>
         </Directory>
       </Directory>
     </Directory>
 
 
     <!-- DEFINE FEATURES -->
-    <Feature Id="ToolsFeatures" Title="IFK Tools" Level="1">
-      <ComponentRef Id="RegistryEntries" />
-      <ComponentRef Id="AutoCadToolsDLL"/>
-      <ComponentRef Id="MySqlDll"/>
-      <ComponentRef Id="AutoCadToolsRoamingFolder"/>
+    <Feature Id="ToolsFeatures" Title="IFK Tools für AutoCAD 2015" Display="expand" Level="1">
+      <ComponentRef Id="RegistryEntries2015" />
+      <ComponentRef Id="AutoCadToolsDLL2015"/>
+      <ComponentRef Id="MySqlDll2015"/>
+      <Feature Id="ToolsGermanLocalizeFeatures" Title="Deutsche Sprachdateien für IFK Tools" Level="1">
+        <ComponentRef Id="AutoCadToolsResourcesDeDLL2015"/>
+      </Feature>
     </Feature>
 
-    <Feature Id="ToolsGermanLocalizeFeatures" Title="Deutsche Sprachdateien für IFK Tools" Level="1">
-      <ComponentRef Id="AutoCadToolsResourcesDeDLL"/>
-    </Feature>
-
-    <Feature Id="CuiFeatures" Title="Benutzeroberflächenerweritung für IFK Tools" Level="1">
-      <ComponentRef Id="SupportFiles"/>
+    <Feature Id="CuiFeatures" Title="Benutzeroberflächenerweiterung für IFK Tools" Level="1">
+      <ComponentRef Id="CustomizationFiles"/>
     </Feature>
     
     <Feature Id="PlotterFeatures" Title="Plotter" Level="1">
@@ -175,8 +138,8 @@
     </Feature>
 
     <!-- CONDITION FOR AUTOCAD BEING INSTALLED -->    
-    <Condition Message="Für die Installation muss [AutoCadVersion] installiert sein.">
-      <![CDATA[Installed OR INSTALLDIRRAW]]>
+    <Condition Message="Für die Installation muss [AutoCadVersion2015] installiert sein.">
+      <![CDATA[Installed or AUTOCADINSTALLDIR2015]]>
     </Condition>
     
     <!--<Binary Id="CloseAutoCadFile"

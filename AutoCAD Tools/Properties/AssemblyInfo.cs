@@ -6,11 +6,11 @@ using System.Resources;
 // Allgemeine Informationen über eine Assembly werden über die folgenden 
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die mit einer Assembly verknüpft sind.
-[assembly: AssemblyTitle("AutoCAD Tools 2")]
+[assembly: AssemblyTitle("AutoCAD Tools")]
 [assembly: AssemblyDescription("Tools for improved comfort in using AutoCAD especially for projects with gang-nail trusses.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ingenieurbüro Klare")]
-[assembly: AssemblyProduct("AutoCAD Tools 2")]
+[assembly: AssemblyProduct("AutoCAD Tools")]
 [assembly: AssemblyCopyright("Copyright © IFK 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -33,6 +33,6 @@ using System.Resources;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern 
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.3.4.0")]
-[assembly: AssemblyFileVersion("2.3.4.0")]
+[assembly: AssemblyVersion("3.0.0.0")]
+[assembly: AssemblyFileVersion("3.0.0.0")]
 [assembly: NeutralResourcesLanguageAttribute("")]
