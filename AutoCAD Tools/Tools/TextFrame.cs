@@ -8,7 +8,7 @@ namespace AutoCADTools.Tools
     /// <summary>
     /// This class provides functionality to create a border around a textfield by selecting it.
     /// </summary>
-    public static class TextBorder
+    public static class TextFrame
     {
         private static double Margin = 30.0;
         /// <summary>

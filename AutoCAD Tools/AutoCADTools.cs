@@ -173,8 +173,8 @@ namespace AutoCADTools
         /// number and description and then lets the user draw panicles by selecting start and end point. Pressing 
         /// RETURN after drawing one panicle lets the next one begin at the end of the old one.
         /// </summary>
-        [CommandMethod("Panicle", CommandFlags.NoPaperSpace)]
-        public static void Panicle()
+        [CommandMethod("DiagonalBracing", CommandFlags.NoPaperSpace)]
+        public static void DiagonalBracing()
         {
             using (Form Form = new FrmDiagonalBracing())
             {
@@ -269,12 +269,12 @@ namespace AutoCADTools
         }
 
         /// <summary>
-        /// Enables the user to select a text and create a border around it.
+        /// Enables the user to select a text and create a frame around it.
         /// </summary>
-        [CommandMethod("TextBorder")]
-        public static void TextBorder()
+        [CommandMethod("TextFrame")]
+        public static void TextFrame()
         {
-            Tools.TextBorder.Execute();
+            Tools.TextFrame.Execute();
         }
 
         #endregion
