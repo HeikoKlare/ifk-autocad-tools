@@ -78,9 +78,10 @@
             // rtfContent
             // 
             resources.ApplyResources(this.rtfContent, "rtfContent");
-            this.rtfContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rtfContent.ForeColor = System.Drawing.Color.White;
+            this.rtfContent.BackColor = System.Drawing.Color.OldLace;
+            this.rtfContent.ForeColor = System.Drawing.Color.Black;
             this.rtfContent.Name = "rtfContent";
+            this.rtfContent.TextChanged += new System.EventHandler(this.rtfContent_TextChanged);
             // 
             // FrmAnnotations
             // 

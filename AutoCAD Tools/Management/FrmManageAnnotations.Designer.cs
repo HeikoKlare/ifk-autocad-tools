@@ -65,7 +65,7 @@
             // 
             resources.ApplyResources(this.txtAnnotationName, "txtAnnotationName");
             this.txtAnnotationName.Name = "txtAnnotationName";
-            this.txtAnnotationName.TextChanged += new System.EventHandler(this.txtNameContent_TextChanged);
+            this.txtAnnotationName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             this.txtAnnotationName.Validating += new System.ComponentModel.CancelEventHandler(this.txtNameContent_Validating);
             // 
             // cboAnnotationCategories
@@ -159,10 +159,10 @@
             // rtfAnnotationContent
             // 
             resources.ApplyResources(this.rtfAnnotationContent, "rtfAnnotationContent");
-            this.rtfAnnotationContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.rtfAnnotationContent.ForeColor = System.Drawing.Color.White;
+            this.rtfAnnotationContent.BackColor = System.Drawing.Color.OldLace;
+            this.rtfAnnotationContent.ForeColor = System.Drawing.Color.Black;
             this.rtfAnnotationContent.Name = "rtfAnnotationContent";
-            this.rtfAnnotationContent.TextChanged += new System.EventHandler(this.txtNameContent_TextChanged);
+            this.rtfAnnotationContent.TextChanged += new System.EventHandler(this.rtfContent_TextChanged);
             this.rtfAnnotationContent.Validating += new System.ComponentModel.CancelEventHandler(this.txtNameContent_Validating);
             // 
             // FrmManageAnnotations

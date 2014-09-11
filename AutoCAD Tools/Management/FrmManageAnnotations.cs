@@ -391,8 +391,19 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void txtNameContent_TextChanged(object sender, EventArgs e)
+        private void txtName_TextChanged(object sender, EventArgs e)
         {
+            this.ValidateFields();
+        }
+
+
+        private void rtfContent_TextChanged(object sender, EventArgs e)
+        {
+            int selection = rtfAnnotationContent.SelectionStart;
+            rtfAnnotationContent.SelectAll();
+            rtfAnnotationContent.SelectionColor = System.Drawing.Color.Black;
+            rtfAnnotationContent.Select(selection, 0);
+
             this.ValidateFields();
         }
 

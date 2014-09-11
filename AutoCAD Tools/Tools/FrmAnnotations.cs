@@ -210,5 +210,12 @@ namespace AutoCADTools.Tools
 
         #endregion
 
+        private void rtfContent_TextChanged(object sender, EventArgs e)
+        {
+            rtfContent.SelectAll();
+            rtfContent.SelectionColor = System.Drawing.Color.Black;
+            rtfContent.Select(0, 0);
+        }
+
     }
 }
