@@ -1,17 +1,2 @@
-Quick Create Layout: Layout mit Default Settings erstellen ohne den Dialog anzuzeigen. 
-
-LayoutErstellen überarbeiten
-
-Position erzeugen (zentrierte Zahl)
-
-Auftraggeber nicht als Fremdschlüssel sondern als Kopie!
-
-Projektbearbeitnug Spalten größer (Dialog größer / Sizeable)
-
-Anmerkungen überarbeiten, irgendwie....
-
-Maximale länge Planname - 55
-
-Custom files in Ordner von den Tools und ein Befehl um Pfade in Acad zu setzen
-
-Laufendes Maß nicht assoziativ gegen Fehler?
+xref an text als textframe und event abfangen und frame aktualisieren
+TextFrame Größe änderbar
