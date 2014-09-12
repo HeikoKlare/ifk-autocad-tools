@@ -195,6 +195,7 @@ namespace AutoCADTools.PrintLayout
                                         try
                                         {
                                             scale = double.Parse(valuesScale[0].Value.ToString());
+                                            if (scale == 0) scale = drawingArea.CalculateScale();
                                             drawingArea.scale = scale;
                                             oldTextfieldUsed = !bool.Parse(valuesTextField[0].Value.ToString());
                                         }
@@ -436,7 +437,7 @@ namespace AutoCADTools.PrintLayout
                         // Add an xRec with the scale
                         newBlock.CreateExtensionDictionary();
                         DBDictionary extensionDict = acTrans.GetObject(newBlock.ExtensionDictionary, OpenMode.ForWrite) as DBDictionary;
-                        acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, scale), true);
+                        acTrans.AddNewlyCreatedDBObject(CreateScaleRecord(extensionDict, drawingArea.scale), true);
                         acTrans.AddNewlyCreatedDBObject(CreateTextfieldRecord(extensionDict, !format.OldTextfieldSize), true);
                     }
 
