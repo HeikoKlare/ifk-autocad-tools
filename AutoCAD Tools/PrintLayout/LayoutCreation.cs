@@ -341,9 +341,13 @@ namespace AutoCADTools.PrintLayout
         /// <exception cref="System.ArgumentNullException">No argument should be null</exception>
         private void ValidateProperties()
         {
-            if (drawingUnit == 0 || scale == 0)
+            if (drawingUnit == 0)
             {
-                throw new ArgumentException("Drawing Unit or scale must not be null");
+                throw new ArgumentException("Drawing Unit must not be null");
+            }
+            else if (scale == 0)
+            {
+                throw new ArgumentException("Scale must not be null");
             }
             if (extractLowerRightPoint == null || printerformat == null)
             {
