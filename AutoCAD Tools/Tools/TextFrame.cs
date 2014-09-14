@@ -10,14 +10,14 @@ namespace AutoCADTools.Tools
     /// </summary>
     public static class TextFrame
     {
-        private static double Margin = 30.0;
+        private static double Margin = 0.003;
         /// <summary>
         /// Executes the command by letting the user select a text and create the border around it.
         /// </summary>
         public static void Execute()
         {
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
+                        
             PromptSelectionOptions opts = new PromptSelectionOptions();
             opts.MessageForAdding = LocalData.TextBorderSelectPrompt;
             opts.SingleOnly = true;
@@ -48,7 +48,7 @@ namespace AutoCADTools.Tools
             {
                 MText text = trans.GetObject(id, OpenMode.ForWrite) as MText;
                
-                double margin = acDoc.Database.Cannoscale.Scale * Margin;
+                double margin = Margin / acDoc.Database.Cannoscale.Scale;
 
                 Point3d startPoint = text.Location + new Vector3d(-margin, margin, 0);
                 Point3d endPoint = startPoint + new Vector3d(text.ActualWidth + 2 * margin, -text.ActualHeight - 2 * margin, 0);
