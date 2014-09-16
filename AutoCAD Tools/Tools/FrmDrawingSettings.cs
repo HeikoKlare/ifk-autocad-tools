@@ -137,7 +137,10 @@ namespace AutoCADTools.Tools
                 closeByProjects = false;
                 e.Cancel = true;
             }
-            if (connection != null) connection.Dispose();
+            else
+            {
+                if (connection != null) connection.Dispose();
+            }
         }
 
         #endregion
