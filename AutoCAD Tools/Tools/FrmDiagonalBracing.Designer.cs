@@ -43,12 +43,18 @@
             this.optThirdsPoint = new System.Windows.Forms.RadioButton();
             this.optMiddlePoint = new System.Windows.Forms.RadioButton();
             this.optDirectInput = new System.Windows.Forms.RadioButton();
+            this.grpInputMode = new System.Windows.Forms.GroupBox();
+            this.grpDisplay = new System.Windows.Forms.GroupBox();
+            this.optCurrentLayer = new System.Windows.Forms.RadioButton();
+            this.optTopChordPlane = new System.Windows.Forms.RadioButton();
             lblDescription = new System.Windows.Forms.Label();
             lblPositonnumber = new System.Windows.Forms.Label();
             lblCount = new System.Windows.Forms.Label();
             lblDistance = new System.Windows.Forms.Label();
             lblDistanceUnit = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.updCount)).BeginInit();
+            this.grpInputMode.SuspendLayout();
+            this.grpDisplay.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblDescription
@@ -152,15 +158,47 @@
             this.optDirectInput.UseVisualStyleBackColor = true;
             this.optDirectInput.CheckedChanged += new System.EventHandler(this.optDirectInput_CheckedChanged);
             // 
+            // grpInputMode
+            // 
+            this.grpInputMode.Controls.Add(this.optThirdsPoint);
+            this.grpInputMode.Controls.Add(this.optDirectInput);
+            this.grpInputMode.Controls.Add(this.optMiddlePoint);
+            this.grpInputMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(this.grpInputMode, "grpInputMode");
+            this.grpInputMode.Name = "grpInputMode";
+            this.grpInputMode.TabStop = false;
+            // 
+            // grpDisplay
+            // 
+            this.grpDisplay.Controls.Add(this.optCurrentLayer);
+            this.grpDisplay.Controls.Add(this.optTopChordPlane);
+            this.grpDisplay.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(this.grpDisplay, "grpDisplay");
+            this.grpDisplay.Name = "grpDisplay";
+            this.grpDisplay.TabStop = false;
+            // 
+            // optCurrentLayer
+            // 
+            resources.ApplyResources(this.optCurrentLayer, "optCurrentLayer");
+            this.optCurrentLayer.Name = "optCurrentLayer";
+            this.optCurrentLayer.UseVisualStyleBackColor = true;
+            // 
+            // optTopChordPlane
+            // 
+            resources.ApplyResources(this.optTopChordPlane, "optTopChordPlane");
+            this.optTopChordPlane.Checked = true;
+            this.optTopChordPlane.Name = "optTopChordPlane";
+            this.optTopChordPlane.TabStop = true;
+            this.optTopChordPlane.UseVisualStyleBackColor = true;
+            // 
             // FrmDiagonalBracing
             // 
             this.AcceptButton = this.butCreate;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.Controls.Add(this.optDirectInput);
-            this.Controls.Add(this.optMiddlePoint);
-            this.Controls.Add(this.optThirdsPoint);
+            this.Controls.Add(this.grpDisplay);
+            this.Controls.Add(this.grpInputMode);
             this.Controls.Add(lblDistanceUnit);
             this.Controls.Add(this.txtDistance);
             this.Controls.Add(lblDistance);
@@ -180,6 +218,10 @@
             this.Load += new System.EventHandler(this.FrmDiagonalBracing_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmDiagonalBracing_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.updCount)).EndInit();
+            this.grpInputMode.ResumeLayout(false);
+            this.grpInputMode.PerformLayout();
+            this.grpDisplay.ResumeLayout(false);
+            this.grpDisplay.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,6 +237,10 @@
         private System.Windows.Forms.RadioButton optThirdsPoint;
         private System.Windows.Forms.RadioButton optMiddlePoint;
         private System.Windows.Forms.RadioButton optDirectInput;
+        private System.Windows.Forms.GroupBox grpInputMode;
+        private System.Windows.Forms.GroupBox grpDisplay;
+        private System.Windows.Forms.RadioButton optCurrentLayer;
+        private System.Windows.Forms.RadioButton optTopChordPlane;
 
     }
 }

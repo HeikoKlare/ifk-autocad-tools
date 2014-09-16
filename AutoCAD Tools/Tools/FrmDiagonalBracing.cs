@@ -7,6 +7,7 @@ using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.GraphicsInterface;
 using acadDatabase = Autodesk.AutoCAD.DatabaseServices.Database;
+using Autodesk.AutoCAD.Colors;
 
 namespace AutoCADTools.Tools
 {
@@ -24,12 +25,14 @@ namespace AutoCADTools.Tools
         private static int panicleCount = 1;
         private static int panicleDistance = 10;
         private static InputType inputType = InputType.ThirdsPoint;
+        private static bool currentLayer = false;
+
         private static string BlockName
         {
             get
             {
-                return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()
-                    + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer + Properties.Settings.Default.DiagonalBracingDescriptionBlack;
+                return BLOCK_PREFIX + pos.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Cannoscale.Scale
+                    + Properties.Settings.Default.DiagonalBracingDescriptionBlack;
             }
         }
 
@@ -64,6 +67,8 @@ namespace AutoCADTools.Tools
             optThirdsPoint.Checked = inputType == InputType.ThirdsPoint;
             optMiddlePoint.Checked = inputType == InputType.MiddlePoint;
             optDirectInput.Checked = inputType == InputType.DirectInput;
+            optTopChordPlane.Checked = !currentLayer;
+            optCurrentLayer.Checked = currentLayer;
         }
 
         #endregion
@@ -95,6 +100,7 @@ namespace AutoCADTools.Tools
             panicleCount = (int)updCount.Value;
             panicleDistance = int.Parse(txtDistance.Text);
             inputType = optThirdsPoint.Checked ? InputType.ThirdsPoint : (optMiddlePoint.Checked ? InputType.MiddlePoint : InputType.DirectInput);
+            currentLayer = optCurrentLayer.Checked;
 
             // Get the current document and database
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
@@ -142,6 +148,8 @@ namespace AutoCADTools.Tools
                         {
                             using (AttributeDefinition attrPos = new AttributeDefinition())
                             {
+                                attrPos.Color = Color.FromColorIndex(ColorMethod.ByBlock, 0);
+                                attrPos.Layer = "0";
                                 attrPos.Annotative = AnnotativeStates.True;
                                 attrPos.Justify = AttachmentPoint.MiddleCenter;
                                 attrPos.AlignmentPoint = location;
@@ -157,6 +165,10 @@ namespace AutoCADTools.Tools
 
                             using (Circle circle = new Circle(location, new Vector3d(0, 0, 1), radius))
                             {
+                                circle.Color = Color.FromColorIndex(ColorMethod.ByBlock, 0);
+                                circle.Layer = "0";
+                                circle.LineWeight = LineWeight.ByLineWeightDefault;
+                                circle.Linetype = "Continuous";
                                 textBlockTable.AppendEntity(circle);
                                 acTrans.AddNewlyCreatedDBObject(circle, true);
                             }
@@ -173,8 +185,15 @@ namespace AutoCADTools.Tools
                         attrDescription.Justify = AttachmentPoint.MiddleLeft;
                         attrDescription.AlignmentPoint = location;
                         attrDescription.Tag = DESCRIPTION_TAG;
+                        attrDescription.Layer = "0";
                         if (Properties.Settings.Default.DiagonalBracingDescriptionBlack)
+                        {
                             attrDescription.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
+                        }
+                        else
+                        {
+                            attrDescription.Color = Color.FromColorIndex(ColorMethod.ByBlock, 0);
+                        }
                         attrDescription.LockPositionInBlock = true;
                         textBlockTable.AppendEntity(attrDescription);
                         acTrans.AddNewlyCreatedDBObject(attrDescription, true);
@@ -189,6 +208,10 @@ namespace AutoCADTools.Tools
                     {
                         Line currentLine = new Line();
                         currentLine.SetDatabaseDefaults();
+                        if (optTopChordPlane.Checked)
+                        {
+                            currentLine.Layer = "Aussteifung (OG)";
+                        }
                         acBlkTblRec.AppendEntity(currentLine);
                         acTrans.AddNewlyCreatedDBObject(currentLine, true);
                         jig.AddLine(currentLine);
@@ -209,6 +232,10 @@ namespace AutoCADTools.Tools
                     Point3d endPoint = Math.Cos(line.Angle) < 0 ? line.StartPoint : line.EndPoint;
                     BlockReference textRef = new BlockReference(new Point3d(startPoint.X + Math.Cos(angle) * ((endPoint - startPoint).Length / 8.0),
                                         startPoint.Y + Math.Sin(angle) * ((endPoint - startPoint).Length / 8.0), 0), acBlkTbl[BlockName]);
+                    textRef.SetDatabaseDefaults();
+                    if (optTopChordPlane.Checked) {
+                        textRef.Layer = "Aussteifung (OG)";
+                    }
                     textRef.Rotation = angle;
                     ms.AppendEntity(textRef);
                     acTrans.AddNewlyCreatedDBObject(textRef, true);
