@@ -220,6 +220,7 @@ namespace AutoCADTools.Tools
 
                 // Create the polyline
                 Polyline poly = new Polyline();
+                poly.SetDatabaseDefaults();
                 poly.LineWeight = LineWeight.LineWeight050;
                 switch (type)
                 {
@@ -370,11 +371,13 @@ namespace AutoCADTools.Tools
                         // Create the attribute definition
                         using (AttributeDefinition attrPos = new AttributeDefinition())
                         {
+                            attrPos.SetDatabaseDefaults();
                             attrPos.Annotative = AnnotativeStates.True;
                             attrPos.Justify = AttachmentPoint.MiddleCenter;
                             attrPos.AlignmentPoint = new Point3d(0, 0, 0);
                             attrPos.Tag = POSITION_TAG;
                             attrPos.LockPositionInBlock = false;
+                            attrPos.Layer = "0";
                             attrPos.Color = Color.FromColorIndex(ColorMethod.ByBlock, 0);
                             newBlock.AppendEntity(attrPos);
                             acTrans.AddNewlyCreatedDBObject(attrPos, true);
@@ -385,6 +388,8 @@ namespace AutoCADTools.Tools
 
                         using (Circle circle = new Circle(new Point3d(0, 0, 0), Vector3d.ZAxis, radius))
                         {
+                            circle.SetDatabaseDefaults();
+                            circle.Layer = "0";
                             circle.Linetype = "Continuous";
                             circle.LineWeight = LineWeight.ByLineWeightDefault;
                             circle.Color = Color.FromColorIndex(ColorMethod.ByBlock, 0);
