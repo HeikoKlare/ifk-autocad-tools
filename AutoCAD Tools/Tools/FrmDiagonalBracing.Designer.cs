@@ -160,20 +160,20 @@
             // 
             // grpInputMode
             // 
+            resources.ApplyResources(this.grpInputMode, "grpInputMode");
             this.grpInputMode.Controls.Add(this.optThirdsPoint);
             this.grpInputMode.Controls.Add(this.optDirectInput);
             this.grpInputMode.Controls.Add(this.optMiddlePoint);
             this.grpInputMode.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.grpInputMode, "grpInputMode");
             this.grpInputMode.Name = "grpInputMode";
             this.grpInputMode.TabStop = false;
             // 
             // grpDisplay
             // 
+            resources.ApplyResources(this.grpDisplay, "grpDisplay");
             this.grpDisplay.Controls.Add(this.optCurrentLayer);
             this.grpDisplay.Controls.Add(this.optTopChordPlane);
             this.grpDisplay.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            resources.ApplyResources(this.grpDisplay, "grpDisplay");
             this.grpDisplay.Name = "grpDisplay";
             this.grpDisplay.TabStop = false;
             // 

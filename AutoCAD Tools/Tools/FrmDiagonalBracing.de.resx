@@ -128,7 +128,7 @@
     <value>74, 20</value>
   </data>
   <data name="lblPositonnumber.Text" xml:space="preserve">
-    <value>Posiiton:</value>
+    <value>Position:</value>
   </data>
   <data name="lblCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>62, 20</value>
@@ -166,10 +166,10 @@
   <data name="grpInputMode.Text" xml:space="preserve">
     <value>Eingabemodus</value>
   </data>
-  <data name="radioButton1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="optCurrentLayer.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 25</value>
   </data>
-  <data name="radioButton1.Text" xml:space="preserve">
+  <data name="optCurrentLayer.Text" xml:space="preserve">
     <value>Aktueller Layer</value>
   </data>
   <data name="optTopChordPlane.Size" type="System.Drawing.Size, System.Drawing">
@@ -222,10 +222,6 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAA
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Rispen</value>
