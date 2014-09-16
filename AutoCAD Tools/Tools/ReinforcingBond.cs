@@ -1,17 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Colors;
 
 namespace AutoCADTools.Tools
 {
-    class ReinforcingBond
+    /// <summary>
+    /// This class enables the user to create a reinforcing bond by specifying the number of fields, position, distances and
+    /// lets the user specifiy which elements shell be drawn.
+    /// </summary>
+    public class ReinforcingBond
     {
         #region Attributes
 
@@ -88,11 +89,24 @@ namespace AutoCADTools.Tools
         {
             get
             {
-                return BLOCK_PREFIX + position.Length.ToString() + Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CANNOSCALEVALUE").ToString()
-                    + Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database.Clayer;
+                return BLOCK_PREFIX + position.Length.ToString() + Application.DocumentManager.MdiActiveDocument.Database.Cannoscale.Scale;
             }
         }
 
+        private LayerType type;
+
+        /// <summary>
+        /// Gets or sets the type of this bond (Top, bottom, vertical or current data). current data means that the current layer is used.
+        /// </summary>
+        /// <value>
+        /// The type of the bond.
+        /// </value>
+        public LayerType Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
+        
         #endregion
 
         #region Constants
@@ -143,6 +157,7 @@ namespace AutoCADTools.Tools
             position = "2";
             drawVerticalMembers = true;
             drawChords = false;
+            type = LayerType.TopChord;
         }
 
         private static ReinforcingBond instance = new ReinforcingBond();
@@ -205,6 +220,22 @@ namespace AutoCADTools.Tools
 
                 // Create the polyline
                 Polyline poly = new Polyline();
+                poly.LineWeight = LineWeight.LineWeight050;
+                switch (type)
+                {
+                    case LayerType.TopChord:
+                        poly.Layer = "Verbände (OG)";
+                        poly.Linetype = "Continuous";
+                        break;
+                    case LayerType.BottomChord:
+                        poly.Layer = "Verbände (UG)";
+                        poly.Linetype = "SL eng";
+                        break;
+                    case LayerType.Vertical:
+                        poly.Layer = "Verbände (FS)";
+                        poly.Linetype = "SL eng";
+                        break;
+                }
                 int numberOfVertices = halfFieldCount + 1;
                 if (drawVerticalMembers) numberOfVertices += 2;
                 if (drawChords) numberOfVertices += 3;
@@ -344,7 +375,7 @@ namespace AutoCADTools.Tools
                             attrPos.AlignmentPoint = new Point3d(0, 0, 0);
                             attrPos.Tag = POSITION_TAG;
                             attrPos.LockPositionInBlock = false;
-
+                            attrPos.Color = Color.FromColorIndex(ColorMethod.ByBlock, 0);
                             newBlock.AppendEntity(attrPos);
                             acTrans.AddNewlyCreatedDBObject(attrPos, true);
                         }
@@ -355,6 +386,8 @@ namespace AutoCADTools.Tools
                         using (Circle circle = new Circle(new Point3d(0, 0, 0), Vector3d.ZAxis, radius))
                         {
                             circle.Linetype = "Continuous";
+                            circle.LineWeight = LineWeight.ByLineWeightDefault;
+                            circle.Color = Color.FromColorIndex(ColorMethod.ByBlock, 0);
                             newBlock.AppendEntity(circle);
                             acTrans.AddNewlyCreatedDBObject(circle, true);
                         }
@@ -381,6 +414,18 @@ namespace AutoCADTools.Tools
                 // Add a block reference
                 using (BlockReference blockRef = new BlockReference(new Point3d(textPos.X, textPos.Y, 0), blockTable[BlockName]))
                 {
+                    switch (type) {
+                        case LayerType.TopChord:
+                            blockRef.Layer = "Verbände (OG)";
+                            break;
+                        case LayerType.BottomChord:
+                            blockRef.Layer = "Verbände (UG)";
+                            break;
+                        case LayerType.Vertical:
+                            blockRef.Layer = "Verbände (FS)";
+                            break;
+                    }
+                    
                     modelSpace.AppendEntity(blockRef);
                     acTrans.AddNewlyCreatedDBObject(blockRef, true);
 
@@ -498,6 +543,36 @@ namespace AutoCADTools.Tools
                 return true;
             }
 
+        }
+
+        #endregion
+
+        #region Enums
+
+        /// <summary>
+        /// Specification of the layer that is used for a bond.
+        /// </summary>
+        public enum LayerType
+        {
+            /// <summary>
+            /// Layer for top chords.
+            /// </summary>
+            TopChord,
+
+            /// <summary>
+            /// Layer for bottom chords
+            /// </summary>
+            BottomChord,
+
+            /// <summary>
+            /// Layer for vertical chords.
+            /// </summary>
+            Vertical,
+
+            /// <summary>
+            /// The current layer.
+            /// </summary>
+            CurrentData
         }
 
         #endregion

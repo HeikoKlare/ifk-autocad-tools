@@ -41,6 +41,10 @@
             this.butDraw = new System.Windows.Forms.Button();
             this.updHalfFields = new System.Windows.Forms.NumericUpDown();
             this.chkDrawChords = new System.Windows.Forms.CheckBox();
+            this.optTopChord = new System.Windows.Forms.RadioButton();
+            this.optBottomChord = new System.Windows.Forms.RadioButton();
+            this.optVerticalChord = new System.Windows.Forms.RadioButton();
+            this.optCurrentLayer = new System.Windows.Forms.RadioButton();
             lblHalfFieldCount = new System.Windows.Forms.Label();
             lblDistanceRidge = new System.Windows.Forms.Label();
             lblDistanceEave = new System.Windows.Forms.Label();
@@ -138,11 +142,47 @@
             this.chkDrawChords.UseVisualStyleBackColor = true;
             this.chkDrawChords.CheckedChanged += new System.EventHandler(this.butDrawChords_CheckedChanged);
             // 
+            // optTopChord
+            // 
+            resources.ApplyResources(this.optTopChord, "optTopChord");
+            this.optTopChord.Name = "optTopChord";
+            this.optTopChord.TabStop = true;
+            this.optTopChord.UseVisualStyleBackColor = true;
+            this.optTopChord.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            // 
+            // optBottomChord
+            // 
+            resources.ApplyResources(this.optBottomChord, "optBottomChord");
+            this.optBottomChord.Name = "optBottomChord";
+            this.optBottomChord.TabStop = true;
+            this.optBottomChord.UseVisualStyleBackColor = true;
+            this.optBottomChord.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            // 
+            // optVerticalChord
+            // 
+            resources.ApplyResources(this.optVerticalChord, "optVerticalChord");
+            this.optVerticalChord.Name = "optVerticalChord";
+            this.optVerticalChord.TabStop = true;
+            this.optVerticalChord.UseVisualStyleBackColor = true;
+            this.optVerticalChord.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            // 
+            // optCurrentLayer
+            // 
+            resources.ApplyResources(this.optCurrentLayer, "optCurrentLayer");
+            this.optCurrentLayer.Name = "optCurrentLayer";
+            this.optCurrentLayer.TabStop = true;
+            this.optCurrentLayer.UseVisualStyleBackColor = true;
+            this.optCurrentLayer.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            // 
             // FrmReinforcingBond
             // 
             this.AcceptButton = this.butDraw;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.optCurrentLayer);
+            this.Controls.Add(this.optVerticalChord);
+            this.Controls.Add(this.optBottomChord);
+            this.Controls.Add(this.optTopChord);
             this.Controls.Add(this.chkDrawChords);
             this.Controls.Add(this.txtDistanceRidge);
             this.Controls.Add(this.updHalfFields);
@@ -176,5 +216,9 @@
         private System.Windows.Forms.Button butDraw;
         private System.Windows.Forms.NumericUpDown updHalfFields;
         private System.Windows.Forms.CheckBox chkDrawChords;
+        private System.Windows.Forms.RadioButton optTopChord;
+        private System.Windows.Forms.RadioButton optBottomChord;
+        private System.Windows.Forms.RadioButton optVerticalChord;
+        private System.Windows.Forms.RadioButton optCurrentLayer;
     }
 }

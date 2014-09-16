@@ -30,6 +30,21 @@ namespace AutoCADTools.Tools
             chkDrawVerticalMembers.Checked = bond.DrawVerticalMembers;
             chkDrawChords.Checked = bond.DrawChords;
             chkDrawChords.Enabled = bond.DrawVerticalMembers;
+            switch (bond.Type)
+            {
+                case ReinforcingBond.LayerType.TopChord:
+                    optTopChord.Checked = true;
+                    break;
+                case ReinforcingBond.LayerType.BottomChord:
+                    optBottomChord.Checked = true;
+                    break;
+                case ReinforcingBond.LayerType.Vertical:
+                    optVerticalChord.Checked = true;
+                    break;
+                default:
+                    optCurrentLayer.Checked = true;
+                    break;
+            }
         }
 
         #endregion
@@ -124,6 +139,26 @@ namespace AutoCADTools.Tools
         }
 
         #endregion
+
+        private void optType_CheckedChanged(object sender, EventArgs e)
+        {
+            if (optTopChord.Checked)
+            {
+                bond.Type = ReinforcingBond.LayerType.TopChord;
+            }
+            else if (optBottomChord.Checked)
+            {
+                bond.Type = ReinforcingBond.LayerType.BottomChord;
+            }
+            else if (optVerticalChord.Checked)
+            {
+                bond.Type = ReinforcingBond.LayerType.Vertical;
+            }
+            else if (optCurrentLayer.Checked)
+            {
+                bond.Type = ReinforcingBond.LayerType.CurrentData;
+            }
+        }
 
     }
 }

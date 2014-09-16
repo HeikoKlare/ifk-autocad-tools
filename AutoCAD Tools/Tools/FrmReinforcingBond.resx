@@ -126,7 +126,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblHalfFieldCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>284, 28</value>
+    <value>29, 183</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblHalfFieldCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -151,7 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblHalfFieldCount.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>8</value>
   </data>
   <metadata name="lblDistanceRidge.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -160,7 +160,7 @@
     <value>True</value>
   </data>
   <data name="lblDistanceRidge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 109</value>
+    <value>279, 66</value>
   </data>
   <data name="lblDistanceRidge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -184,7 +184,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDistanceRidge.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>9</value>
   </data>
   <metadata name="lblDistanceEave.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -193,7 +193,7 @@
     <value>True</value>
   </data>
   <data name="lblDistanceEave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>27, 68</value>
+    <value>279, 25</value>
   </data>
   <data name="lblDistanceEave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -217,7 +217,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDistanceEave.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>11</value>
   </data>
   <metadata name="lblPositionnumber.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -226,7 +226,7 @@
     <value>True</value>
   </data>
   <data name="lblPositionnumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>284, 75</value>
+    <value>29, 220</value>
   </data>
   <data name="lblPositionnumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -250,7 +250,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPositionnumber.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>14</value>
   </data>
   <data name="chkDrawVerticalMembers.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -259,7 +259,7 @@
     <value>System</value>
   </data>
   <data name="chkDrawVerticalMembers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 23</value>
+    <value>283, 107</value>
   </data>
   <data name="chkDrawVerticalMembers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -283,10 +283,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chkDrawVerticalMembers.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>10</value>
   </data>
   <data name="txtDistanceRidge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 105</value>
+    <value>417, 63</value>
   </data>
   <data name="txtDistanceRidge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -310,10 +310,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtDistanceRidge.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>5</value>
   </data>
   <data name="txtDistanceEave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 63</value>
+    <value>417, 22</value>
   </data>
   <data name="txtDistanceEave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -337,10 +337,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtDistanceEave.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>7</value>
   </data>
   <data name="txtPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>428, 71</value>
+    <value>164, 217</value>
   </data>
   <data name="txtPosition.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -364,7 +364,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPosition.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>13</value>
   </data>
   <data name="butDraw.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -373,13 +373,13 @@
     <value>Microsoft Sans Serif, 8pt, style=Bold</value>
   </data>
   <data name="butDraw.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 120</value>
+    <value>283, 191</value>
   </data>
   <data name="butDraw.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
   <data name="butDraw.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 52</value>
+    <value>213, 52</value>
   </data>
   <data name="butDraw.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -397,16 +397,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;butDraw.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>12</value>
   </data>
   <data name="updHalfFields.Location" type="System.Drawing.Point, System.Drawing">
-    <value>452, 25</value>
+    <value>191, 181</value>
   </data>
   <data name="updHalfFields.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
   <data name="updHalfFields.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 26</value>
+    <value>55, 26</value>
   </data>
   <data name="updHalfFields.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -421,7 +421,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;updHalfFields.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>6</value>
   </data>
   <data name="chkDrawChords.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -430,7 +430,7 @@
     <value>System</value>
   </data>
   <data name="chkDrawChords.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 151</value>
+    <value>283, 142</value>
   </data>
   <data name="chkDrawChords.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -454,6 +454,135 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;chkDrawChords.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="optTopChord.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="optTopChord.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="optTopChord.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 31</value>
+  </data>
+  <data name="optTopChord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 25</value>
+  </data>
+  <data name="optTopChord.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="optTopChord.Text" xml:space="preserve">
+    <value>Top Chord</value>
+  </data>
+  <data name="&gt;&gt;optTopChord.Name" xml:space="preserve">
+    <value>optTopChord</value>
+  </data>
+  <data name="&gt;&gt;optTopChord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optTopChord.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;optTopChord.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="optBottomChord.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="optBottomChord.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="optBottomChord.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="optBottomChord.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 66</value>
+  </data>
+  <data name="optBottomChord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 25</value>
+  </data>
+  <data name="optBottomChord.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="optBottomChord.Text" xml:space="preserve">
+    <value>Bottom Chord</value>
+  </data>
+  <data name="&gt;&gt;optBottomChord.Name" xml:space="preserve">
+    <value>optBottomChord</value>
+  </data>
+  <data name="&gt;&gt;optBottomChord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optBottomChord.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;optBottomChord.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="optVerticalChord.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="optVerticalChord.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="optVerticalChord.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="optVerticalChord.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 101</value>
+  </data>
+  <data name="optVerticalChord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 25</value>
+  </data>
+  <data name="optVerticalChord.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="optVerticalChord.Text" xml:space="preserve">
+    <value>Vertical Chord</value>
+  </data>
+  <data name="&gt;&gt;optVerticalChord.Name" xml:space="preserve">
+    <value>optVerticalChord</value>
+  </data>
+  <data name="&gt;&gt;optVerticalChord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optVerticalChord.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;optVerticalChord.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="optCurrentLayer.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="optCurrentLayer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="optCurrentLayer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="optCurrentLayer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 136</value>
+  </data>
+  <data name="optCurrentLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 25</value>
+  </data>
+  <data name="optCurrentLayer.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="optCurrentLayer.Text" xml:space="preserve">
+    <value>Current Layer</value>
+  </data>
+  <data name="&gt;&gt;optCurrentLayer.Name" xml:space="preserve">
+    <value>optCurrentLayer</value>
+  </data>
+  <data name="&gt;&gt;optCurrentLayer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optCurrentLayer.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;optCurrentLayer.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -463,7 +592,7 @@
     <value>9, 20</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>534, 195</value>
+    <value>523, 269</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

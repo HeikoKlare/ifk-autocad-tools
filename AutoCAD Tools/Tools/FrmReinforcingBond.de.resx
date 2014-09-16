@@ -118,12 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chkDrawVerticalMembers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 25</value>
-  </data>
-  <data name="chkDrawVerticalMembers.Text" xml:space="preserve">
-    <value>Endstäbe zeichnen</value>
-  </data>
   <data name="lblHalfFieldCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 20</value>
   </data>
@@ -148,6 +142,12 @@
   <data name="lblPositionnumber.Text" xml:space="preserve">
     <value>Position:</value>
   </data>
+  <data name="chkDrawVerticalMembers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 25</value>
+  </data>
+  <data name="chkDrawVerticalMembers.Text" xml:space="preserve">
+    <value>Endstäbe zeichnen</value>
+  </data>
   <data name="butDraw.Text" xml:space="preserve">
     <value>Verband zeichnen</value>
   </data>
@@ -156,6 +156,30 @@
   </data>
   <data name="chkDrawChords.Text" xml:space="preserve">
     <value>Gurte zeichnen</value>
+  </data>
+  <data name="optTopChord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 24</value>
+  </data>
+  <data name="optTopChord.Text" xml:space="preserve">
+    <value>Obergurtverband</value>
+  </data>
+  <data name="optBottomChord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 24</value>
+  </data>
+  <data name="optBottomChord.Text" xml:space="preserve">
+    <value>Untergurtverband</value>
+  </data>
+  <data name="optVerticalChord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 24</value>
+  </data>
+  <data name="optVerticalChord.Text" xml:space="preserve">
+    <value>Vertikalverband</value>
+  </data>
+  <data name="optCurrentLayer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 24</value>
+  </data>
+  <data name="optCurrentLayer.Text" xml:space="preserve">
+    <value>Aktueller Layer</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
