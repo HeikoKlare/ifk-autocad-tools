@@ -225,15 +225,15 @@ namespace AutoCADTools.Tools
                 switch (type)
                 {
                     case LayerType.TopChord:
-                        poly.Layer = "Verbände (OG)";
+                        poly.Layer = "Aussteifung (OG)";
                         poly.Linetype = "Continuous";
                         break;
                     case LayerType.BottomChord:
-                        poly.Layer = "Verbände (UG)";
+                        poly.Layer = "Aussteifung (UG)";
                         poly.Linetype = "SL eng";
                         break;
                     case LayerType.Vertical:
-                        poly.Layer = "Verbände (FS)";
+                        poly.Layer = "Aussteifung (FS)";
                         poly.Linetype = "SL eng";
                         break;
                 }
@@ -419,15 +419,17 @@ namespace AutoCADTools.Tools
                 // Add a block reference
                 using (BlockReference blockRef = new BlockReference(new Point3d(textPos.X, textPos.Y, 0), blockTable[BlockName]))
                 {
+                    blockRef.SetDatabaseDefaults();
+
                     switch (type) {
                         case LayerType.TopChord:
-                            blockRef.Layer = "Verbände (OG)";
+                            blockRef.Layer = "Aussteifung (OG)";
                             break;
                         case LayerType.BottomChord:
-                            blockRef.Layer = "Verbände (UG)";
+                            blockRef.Layer = "Aussteifung (UG)";
                             break;
                         case LayerType.Vertical:
-                            blockRef.Layer = "Verbände (FS)";
+                            blockRef.Layer = "Aussteifung (FS)";
                             break;
                     }
                     
