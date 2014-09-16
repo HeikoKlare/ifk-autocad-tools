@@ -117,51 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkDrawVerticalMembers.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkDrawVerticalMembers.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chkDrawVerticalMembers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>32, 23</value>
-  </data>
-  <data name="chkDrawVerticalMembers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="chkDrawVerticalMembers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 25</value>
-  </data>
-  <data name="chkDrawVerticalMembers.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="chkDrawVerticalMembers.Text" xml:space="preserve">
-    <value>Draw vertical members</value>
-  </data>
-  <data name="&gt;&gt;chkDrawVerticalMembers.Name" xml:space="preserve">
-    <value>chkDrawVerticalMembers</value>
-  </data>
-  <data name="&gt;&gt;chkDrawVerticalMembers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkDrawVerticalMembers.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;chkDrawVerticalMembers.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <metadata name="lblHalfFieldCount.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblHalfFieldCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblHalfFieldCount.Location" type="System.Drawing.Point, System.Drawing">
     <value>284, 28</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblHalfFieldCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
@@ -185,60 +152,6 @@
   </data>
   <data name="&gt;&gt;lblHalfFieldCount.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="txtDistanceRidge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 105</value>
-  </data>
-  <data name="txtDistanceRidge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="txtDistanceRidge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 26</value>
-  </data>
-  <data name="txtDistanceRidge.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="txtDistanceRidge.Text" xml:space="preserve">
-    <value>0.10</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceRidge.Name" xml:space="preserve">
-    <value>txtDistanceRidge</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceRidge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceRidge.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceRidge.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtDistanceEave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 63</value>
-  </data>
-  <data name="txtDistanceEave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="txtDistanceEave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 26</value>
-  </data>
-  <data name="txtDistanceEave.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="txtDistanceEave.Text" xml:space="preserve">
-    <value>0.10</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceEave.Name" xml:space="preserve">
-    <value>txtDistanceEave</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceEave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceEave.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtDistanceEave.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <metadata name="lblDistanceRidge.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -338,6 +251,93 @@
   </data>
   <data name="&gt;&gt;lblPositionnumber.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="chkDrawVerticalMembers.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkDrawVerticalMembers.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="chkDrawVerticalMembers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 23</value>
+  </data>
+  <data name="chkDrawVerticalMembers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="chkDrawVerticalMembers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 25</value>
+  </data>
+  <data name="chkDrawVerticalMembers.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="chkDrawVerticalMembers.Text" xml:space="preserve">
+    <value>Draw vertical members</value>
+  </data>
+  <data name="&gt;&gt;chkDrawVerticalMembers.Name" xml:space="preserve">
+    <value>chkDrawVerticalMembers</value>
+  </data>
+  <data name="&gt;&gt;chkDrawVerticalMembers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkDrawVerticalMembers.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;chkDrawVerticalMembers.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="txtDistanceRidge.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 105</value>
+  </data>
+  <data name="txtDistanceRidge.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="txtDistanceRidge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 26</value>
+  </data>
+  <data name="txtDistanceRidge.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="txtDistanceRidge.Text" xml:space="preserve">
+    <value>0.10</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceRidge.Name" xml:space="preserve">
+    <value>txtDistanceRidge</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceRidge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceRidge.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceRidge.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtDistanceEave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>165, 63</value>
+  </data>
+  <data name="txtDistanceEave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="txtDistanceEave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 26</value>
+  </data>
+  <data name="txtDistanceEave.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="txtDistanceEave.Text" xml:space="preserve">
+    <value>0.10</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceEave.Name" xml:space="preserve">
+    <value>txtDistanceEave</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceEave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceEave.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtDistanceEave.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="txtPosition.Location" type="System.Drawing.Point, System.Drawing">
     <value>428, 71</value>

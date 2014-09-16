@@ -373,6 +373,10 @@ namespace AutoCADTools.Tools
                 {
                     textPos = textPos.Subtract(bounds.bondDirection.MultiplyBy(0.5 / halfFieldCount));
                 }
+                if (halfFieldCount == 1)
+                {
+                    textPos = textPos.Add(bounds.bondDirection.MultiplyBy(0.25));
+                }
 
                 // Add a block reference
                 using (BlockReference blockRef = new BlockReference(new Point3d(textPos.X, textPos.Y, 0), blockTable[BlockName]))

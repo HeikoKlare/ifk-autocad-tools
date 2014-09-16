@@ -29,8 +29,8 @@
         [System.CodeDom.Compiler.GeneratedCode("Winform Designer", "VS2010")]
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReinforcingBond));
             System.Windows.Forms.Label lblHalfFieldCount;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReinforcingBond));
             System.Windows.Forms.Label lblDistanceRidge;
             System.Windows.Forms.Label lblDistanceEave;
             System.Windows.Forms.Label lblPositionnumber;
@@ -48,36 +48,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.updHalfFields)).BeginInit();
             this.SuspendLayout();
             // 
-            // chkDrawVerticalMembers
-            // 
-            resources.ApplyResources(this.chkDrawVerticalMembers, "chkDrawVerticalMembers");
-            this.chkDrawVerticalMembers.Checked = true;
-            this.chkDrawVerticalMembers.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDrawVerticalMembers.Name = "chkDrawVerticalMembers";
-            this.chkDrawVerticalMembers.UseVisualStyleBackColor = true;
-            this.chkDrawVerticalMembers.CheckedChanged += new System.EventHandler(this.chkDrawVerticalMembers_CheckedChanged);
-            // 
             // lblHalfFieldCount
             // 
             resources.ApplyResources(lblHalfFieldCount, "lblHalfFieldCount");
             lblHalfFieldCount.FlatStyle = System.Windows.Forms.FlatStyle.System;
             lblHalfFieldCount.Name = "lblHalfFieldCount";
-            // 
-            // txtDistanceRidge
-            // 
-            resources.ApplyResources(this.txtDistanceRidge, "txtDistanceRidge");
-            this.txtDistanceRidge.Name = "txtDistanceRidge";
-            this.txtDistanceRidge.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
-            this.txtDistanceRidge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDecimal_KeyPress);
-            this.txtDistanceRidge.Leave += new System.EventHandler(this.txtDistanceRidge_Leave);
-            // 
-            // txtDistanceEave
-            // 
-            resources.ApplyResources(this.txtDistanceEave, "txtDistanceEave");
-            this.txtDistanceEave.Name = "txtDistanceEave";
-            this.txtDistanceEave.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
-            this.txtDistanceEave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDecimal_KeyPress);
-            this.txtDistanceEave.Leave += new System.EventHandler(this.txtDistanceEave_Leave);
             // 
             // lblDistanceRidge
             // 
@@ -96,6 +71,31 @@
             resources.ApplyResources(lblPositionnumber, "lblPositionnumber");
             lblPositionnumber.FlatStyle = System.Windows.Forms.FlatStyle.System;
             lblPositionnumber.Name = "lblPositionnumber";
+            // 
+            // chkDrawVerticalMembers
+            // 
+            resources.ApplyResources(this.chkDrawVerticalMembers, "chkDrawVerticalMembers");
+            this.chkDrawVerticalMembers.Checked = true;
+            this.chkDrawVerticalMembers.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDrawVerticalMembers.Name = "chkDrawVerticalMembers";
+            this.chkDrawVerticalMembers.UseVisualStyleBackColor = true;
+            this.chkDrawVerticalMembers.CheckedChanged += new System.EventHandler(this.chkDrawVerticalMembers_CheckedChanged);
+            // 
+            // txtDistanceRidge
+            // 
+            resources.ApplyResources(this.txtDistanceRidge, "txtDistanceRidge");
+            this.txtDistanceRidge.Name = "txtDistanceRidge";
+            this.txtDistanceRidge.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
+            this.txtDistanceRidge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDecimal_KeyPress);
+            this.txtDistanceRidge.Leave += new System.EventHandler(this.txtDistanceRidge_Leave);
+            // 
+            // txtDistanceEave
+            // 
+            resources.ApplyResources(this.txtDistanceEave, "txtDistanceEave");
+            this.txtDistanceEave.Name = "txtDistanceEave";
+            this.txtDistanceEave.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
+            this.txtDistanceEave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDecimal_KeyPress);
+            this.txtDistanceEave.Leave += new System.EventHandler(this.txtDistanceEave_Leave);
             // 
             // txtPosition
             // 
@@ -119,7 +119,7 @@
             0,
             0});
             this.updHalfFields.Minimum = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             0});
