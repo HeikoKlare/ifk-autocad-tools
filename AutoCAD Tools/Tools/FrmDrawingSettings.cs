@@ -77,8 +77,6 @@ namespace AutoCADTools.Tools
             {
                 connection = new SqlConnection();
                 connected = true;
-                connection.FillProjects(projectsTable);
-                connection.FillEmployers(employersTable);
             }
             catch (Exception)
             {
