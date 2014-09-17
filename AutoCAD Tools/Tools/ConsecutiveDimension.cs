@@ -73,6 +73,13 @@ namespace AutoCADTools.Tools
                 }
                 Point3d average = new Point3d((maximum.X + minimum.X) / 2, (maximum.Y + minimum.Y) / 2, 0);
 
+                // Turn the layers on again
+                foreach (ObjectId layerId in layerTable)
+                {
+                    LayerTableRecord current = acTrans.GetObject(layerId, OpenMode.ForWrite) as LayerTableRecord;
+                    current.IsOff = layerActivation[current];
+                }
+
                 // Let the user select the reference point
                 var referencePoint = acDoc.Editor.GetPoint(Environment.NewLine + LocalData.DimensionReferencePoint);
                 if (referencePoint.Status != PromptStatus.OK)
@@ -81,16 +88,11 @@ namespace AutoCADTools.Tools
                     return;
                 }
                 
-                // Turn ortho mode on for input point and turn on the layers again
+                // Turn ortho mode on for input point
                 object oldAutoSnap = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("AUTOSNAP");
                 bool oldOrtho = acDoc.Database.Orthomode;
                 acDoc.Database.Orthomode = true;
-                foreach (ObjectId layerId in layerTable)
-                {
-                    LayerTableRecord current = acTrans.GetObject(layerId, OpenMode.ForWrite) as LayerTableRecord;
-                    current.IsOff = layerActivation[current];
-                }
-
+                
                 // Let the user select the insertion point
                 PromptPointOptions pointOpts = new PromptPointOptions(Environment.NewLine + LocalData.DimensionInsertionPoint);
                 pointOpts.UseBasePoint = true;
