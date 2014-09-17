@@ -1,2 +1,4 @@
 xref an text als textframe und event abfangen und frame aktualisieren
 TextFrame Größe änderbar
+
+Zweigeteilter Verband für Stab an Knickpunkt o.Ä.
