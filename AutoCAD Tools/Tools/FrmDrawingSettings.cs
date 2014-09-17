@@ -88,7 +88,6 @@ namespace AutoCADTools.Tools
 
             projectsTable = new Database.ProjectDataTable();
             employersTable = new Database.EmployerDataTable();
-            projectsTable.Columns.Add("Descr", typeof(String), "number + ' - ' + employer + ' # ' + descriptionShort");
 
             // Update the data bindings
             UpdateConnectedDate();
@@ -341,12 +340,12 @@ namespace AutoCADTools.Tools
                 SizeF minSize = e.Graphics.MeasureString("99999", boldFont);
                 float leftHang = Math.Max(numberSize.Width, minSize.Width);
 
-                e.Graphics.DrawString(row.number, boldFont, fontBrush, e.Bounds.X, e.Bounds.Y);
+                e.Graphics.DrawString(row.number, boldFont, fontBrush, e.Bounds.X, (int)(e.Bounds.Y + 0.05 * e.Bounds.Height));
                 //Database.EmployerRow empRow = employersTable.Rows.Find(projectsTable[e.Index].employer) as Database.EmployerRow;
                 //string employerName = empRow != null ? empRow.name : String.Empty;
 
-                e.Graphics.DrawString(row.employer, italicFont, fontBrush, e.Bounds.X + leftHang + 10, e.Bounds.Y);
-                e.Graphics.DrawString(row.descriptionShort, e.Font, fontBrush, e.Bounds.X + leftHang + 10, (int)(e.Bounds.Y + e.Bounds.Height / 2.2));
+                e.Graphics.DrawString(row.employer, italicFont, fontBrush, e.Bounds.X + leftHang + 10, (int)(e.Bounds.Y + 0.05 * e.Bounds.Height));
+                e.Graphics.DrawString(row.descriptionShort, e.Font, fontBrush, e.Bounds.X + leftHang + 10, (int)(e.Bounds.Y + e.Bounds.Height * (1 / 2.2 + 0.05)));
             }
             e.DrawFocusRectangle(); //Draw Focus Rectangle Around 
         }
@@ -361,6 +360,7 @@ namespace AutoCADTools.Tools
             {
                 SizeF stringSize = e.Graphics.MeasureString(((AutoCADTools.Data.Database.ProjectRow)((DataRowView)cboProjects.Items[e.Index]).Row).descriptionShort, font);
 
+                cboProjects.ItemHeight = (int)(2.2 * stringSize.Height);
                 //Set Appropriate Height
                 e.ItemHeight = (int)(2.2 * stringSize.Height);
                 //Set Appropriate Width
