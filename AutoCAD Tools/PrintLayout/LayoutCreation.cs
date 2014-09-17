@@ -167,7 +167,7 @@ namespace AutoCADTools.PrintLayout
         public bool CreateLayout()
         {
             ValidateProperties();
-
+                        
             using (document.LockDocument())
             {
                 var oldCos = document.Editor.CurrentUserCoordinateSystem;
@@ -294,17 +294,6 @@ namespace AutoCADTools.PrintLayout
                     //PVport.StandardScale = StandardScaleType.CustomScale;
                     PVport.CustomScale = scale;
 
-                    // Auto-Zoom in paperspace
-                    if (printerformat.Printer.Name != "PNG")
-                    {
-                        document.SendStringToExecute("_.ZOOM _E ", true, false, true);
-                        document.SendStringToExecute("_.ZOOM .8x ", true, false, true);
-                    }
-
-                    // Switch to modelspace and back to prevent unwanted situations
-                    LayoutManager.Current.CurrentLayout = "Model";
-                    LayoutManager.Current.CurrentLayout = layoutName;
-
                     // Set the annotation scale for the viewport
                     ObjectContextCollection occ = document.Database.ObjectContextManager.GetContextCollection("ACDB_ANNOTATIONSCALES");
                     AnnotationScale annoScale = occ.GetContext("1:" + (1.0 / scale).ToString()) as AnnotationScale;
@@ -326,7 +315,11 @@ namespace AutoCADTools.PrintLayout
                     // Close everything and commit changes
                     trans.Commit();
                 }
+
+                document.Editor.Command("_.ZOOM", "G");
+                document.Editor.Command("_.ZOOM", ".8x");
             }
+
             return true;
         }
 
