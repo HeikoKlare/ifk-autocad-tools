@@ -294,6 +294,10 @@ namespace AutoCADTools.PrintLayout
                     //PVport.StandardScale = StandardScaleType.CustomScale;
                     PVport.CustomScale = scale;
 
+                    // Switch to modelspace and back to prevent unwanted situations
+                    LayoutManager.Current.CurrentLayout = "Model";
+                    LayoutManager.Current.CurrentLayout = layoutName;
+
                     // Set the annotation scale for the viewport
                     ObjectContextCollection occ = document.Database.ObjectContextManager.GetContextCollection("ACDB_ANNOTATIONSCALES");
                     AnnotationScale annoScale = occ.GetContext("1:" + (1.0 / scale).ToString()) as AnnotationScale;
