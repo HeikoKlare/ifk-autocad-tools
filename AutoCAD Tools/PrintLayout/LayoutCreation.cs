@@ -320,8 +320,11 @@ namespace AutoCADTools.PrintLayout
                     trans.Commit();
                 }
 
+                var oldEcho = Application.GetSystemVariable("CMDECHO");
+                Application.SetSystemVariable("CMDECHO", 0);
                 document.Editor.Command("_.ZOOM", "G");
                 document.Editor.Command("_.ZOOM", ".8x");
+                Application.SetSystemVariable("CMDECHO", oldEcho); 
             }
 
             return true;

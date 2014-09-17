@@ -169,8 +169,12 @@ namespace AutoCADTools.Tools
 
                 // Execute command
                 acTrans.Commit();
+
+                var oldEcho = Application.GetSystemVariable("CMDECHO");
+                Application.SetSystemVariable("CMDECHO", 0);
                 acDoc.Editor.Command("SBEM", selection.Value, "", "BE", "H", refPoint, "X", "BA", "P", refPoint, insertionPoint.Value);
-                
+                Application.SetSystemVariable("CMDECHO", oldEcho);
+
                 //acDoc.SendStringToExecute("SBEM " + handleString + " BA P " + referencePointString + "\r" + insertionPointString + " ", true, false, true);
 
                 // Restore old values
