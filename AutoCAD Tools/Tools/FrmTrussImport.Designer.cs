@@ -55,11 +55,11 @@
             // 
             // grpRotation
             // 
-            resources.ApplyResources(grpRotation, "grpRotation");
             grpRotation.Controls.Add(this.optRotateLeft);
             grpRotation.Controls.Add(this.optRotateRight);
             grpRotation.Controls.Add(this.optRotateNo);
             grpRotation.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(grpRotation, "grpRotation");
             grpRotation.Name = "grpRotation";
             grpRotation.TabStop = false;
             // 
@@ -132,13 +132,13 @@
             // 
             // grpCopyLayer
             // 
-            resources.ApplyResources(this.grpCopyLayer, "grpCopyLayer");
             this.grpCopyLayer.Controls.Add(this.chkBracings);
             this.grpCopyLayer.Controls.Add(this.chkDimensions);
             this.grpCopyLayer.Controls.Add(this.chkMember);
             this.grpCopyLayer.Controls.Add(this.chkPlates);
             this.grpCopyLayer.Controls.Add(this.chkBearings);
             this.grpCopyLayer.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            resources.ApplyResources(this.grpCopyLayer, "grpCopyLayer");
             this.grpCopyLayer.Name = "grpCopyLayer";
             this.grpCopyLayer.TabStop = false;
             // 
