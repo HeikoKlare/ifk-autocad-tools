@@ -146,10 +146,10 @@
     <value>Rispen erstellen</value>
   </data>
   <data name="optThirdsPoint.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 25</value>
+    <value>123, 25</value>
   </data>
   <data name="optThirdsPoint.Text" xml:space="preserve">
-    <value>Dritelspunkt</value>
+    <value>Drittelspunkt</value>
   </data>
   <data name="optMiddlePoint.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 25</value>
@@ -166,6 +166,9 @@
   <data name="grpInputMode.Text" xml:space="preserve">
     <value>Eingabemodus</value>
   </data>
+  <data name="grpDisplay.Text" xml:space="preserve">
+    <value>Darstellung</value>
+  </data>
   <data name="optCurrentLayer.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 25</value>
   </data>
@@ -177,9 +180,6 @@
   </data>
   <data name="optTopChordPlane.Text" xml:space="preserve">
     <value>OG-Ebene</value>
-  </data>
-  <data name="grpDisplay.Text" xml:space="preserve">
-    <value>Darstellung</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

@@ -138,14 +138,14 @@
   <data name="txtPosition.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="&gt;&gt;optCurrentLayer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="grpDisplay.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+  <data name="optThirdsPoint.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="butCreate.Size" type="System.Drawing.Size, System.Drawing">
     <value>382, 54</value>
+  </data>
+  <data name="txtDistance.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="lblDescription.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
+  </data>
+  <data name="&gt;&gt;cboDescription.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="cboDescription.Text" xml:space="preserve">
     <value>RiBd 40/1.5</value>
@@ -213,8 +216,8 @@
   <data name="&gt;&gt;lblDistanceUnit.Name" xml:space="preserve">
     <value>lblDistanceUnit</value>
   </data>
-  <data name="&gt;&gt;cboDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblDistanceUnit.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
   <data name="txtPosition.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 15, 15, 15</value>
@@ -225,8 +228,8 @@
   <data name="lblPositonnumber.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="cboDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>156, 74</value>
+  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="txtPosition.Size" type="System.Drawing.Size, System.Drawing">
     <value>199, 26</value>
@@ -291,12 +294,6 @@
   <data name="optDirectInput.Text" xml:space="preserve">
     <value>Direct Input</value>
   </data>
-  <data name="&gt;&gt;optTopChordPlane.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;txtDistance.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -309,8 +306,8 @@
   <data name="&gt;&gt;grpDisplay.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;butCreate.Name" xml:space="preserve">
-    <value>butCreate</value>
+  <data name="&gt;&gt;optTopChordPlane.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;txtPosition.Parent" xml:space="preserve">
     <value>$this</value>
@@ -330,14 +327,14 @@
   <data name="&gt;&gt;updCount.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;txtPosition.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="lblCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="&gt;&gt;lblPositonnumber.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDistance.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="lblPositonnumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 20</value>
@@ -348,17 +345,20 @@
   <data name="lblCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="cboDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>156, 74</value>
+  </data>
   <data name="&gt;&gt;cboDescription.Name" xml:space="preserve">
     <value>cboDescription</value>
   </data>
-  <data name="txtDistance.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;optCurrentLayer.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;lblPositonnumber.Name" xml:space="preserve">
     <value>lblPositonnumber</value>
   </data>
-  <data name="txtPosition.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="optMiddlePoint.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="optDirectInput.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -390,6 +390,9 @@
   <data name="lblDistanceUnit.Text" xml:space="preserve">
     <value>cm</value>
   </data>
+  <data name="optMiddlePoint.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="&gt;&gt;optDirectInput.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -402,8 +405,8 @@
   <data name="lblDistanceUnit.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 20</value>
   </data>
-  <data name="&gt;&gt;grpDisplay.Name" xml:space="preserve">
-    <value>grpDisplay</value>
+  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
+    <value>lblDescription</value>
   </data>
   <data name="&gt;&gt;optThirdsPoint.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -438,11 +441,17 @@
   <data name="updCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 26</value>
   </data>
-  <data name="&gt;&gt;optThirdsPoint.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;optCurrentLayer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optCurrentLayer.Text" xml:space="preserve">
+    <value>Current Layer</value>
   </data>
   <data name="butCreate.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
+  </data>
+  <data name="&gt;&gt;lblCount.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="lblDistance.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -480,9 +489,6 @@
   <data name="cboDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 15, 15</value>
   </data>
-  <data name="optMiddlePoint.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="cboDescription.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
@@ -498,9 +504,6 @@
   <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="&gt;&gt;optCurrentLayer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="grpDisplay.Text" xml:space="preserve">
     <value>Display</value>
   </data>
@@ -509,6 +512,9 @@
   </data>
   <data name="&gt;&gt;optTopChordPlane.Parent" xml:space="preserve">
     <value>grpDisplay</value>
+  </data>
+  <data name="txtPosition.Text" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="optTopChordPlane.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -524,9 +530,6 @@
   </data>
   <data name="optTopChordPlane.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 35</value>
-  </data>
-  <data name="txtPosition.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 26</value>
   </data>
   <data name="&gt;&gt;grpInputMode.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -564,14 +567,8 @@
   <data name="&gt;&gt;optDirectInput.Name" xml:space="preserve">
     <value>optDirectInput</value>
   </data>
-  <data name="optTopChordPlane.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="optTopChordPlane.Size" type="System.Drawing.Size, System.Drawing">
-    <value>151, 25</value>
   </data>
   <data name="&gt;&gt;lblPositonnumber.Parent" xml:space="preserve">
     <value>$this</value>
@@ -582,11 +579,11 @@
   <data name="optCurrentLayer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
-    <value>lblDescription</value>
+  <data name="&gt;&gt;cboDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblPositonnumber.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="optTopChordPlane.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 25</value>
   </data>
   <data name="butCreate.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 8pt, style=Bold</value>
@@ -600,14 +597,14 @@
   <data name="&gt;&gt;optTopChordPlane.Name" xml:space="preserve">
     <value>optTopChordPlane</value>
   </data>
-  <data name="butCreate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>15, 0, 15, 15</value>
+  <data name="&gt;&gt;grpDisplay.Name" xml:space="preserve">
+    <value>grpDisplay</value>
   </data>
   <data name="lblCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 20</value>
   </data>
-  <data name="optMiddlePoint.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;lblDistance.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;optThirdsPoint.Parent" xml:space="preserve">
     <value>grpInputMode</value>
@@ -633,8 +630,8 @@
   <data name="optTopChordPlane.Text" xml:space="preserve">
     <value>Top Chord Plane</value>
   </data>
-  <data name="lblPositonnumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>15, 15, 15, 15</value>
+  <data name="txtPosition.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 26</value>
   </data>
   <data name="&gt;&gt;txtPosition.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -642,20 +639,17 @@
   <data name="lblDistanceUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
-  <data name="&gt;&gt;lblCount.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="txtDistance.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;updCount.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;grpDisplay.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;lblPositonnumber.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="txtDistance.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
+  <data name="&gt;&gt;butCreate.Name" xml:space="preserve">
+    <value>butCreate</value>
   </data>
   <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -663,23 +657,23 @@
   <data name="&gt;&gt;optThirdsPoint.Name" xml:space="preserve">
     <value>optThirdsPoint</value>
   </data>
-  <data name="&gt;&gt;cboDescription.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="txtPosition.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>406, 402</value>
   </data>
-  <data name="txtPosition.Text" xml:space="preserve">
-    <value>3</value>
+  <data name="butCreate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>15, 0, 15, 15</value>
   </data>
   <data name="&gt;&gt;grpInputMode.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="butCreate.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="grpDisplay.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
-  <data name="&gt;&gt;txtPosition.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblPositonnumber.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="optMiddlePoint.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 69</value>
@@ -687,8 +681,8 @@
   <data name="&gt;&gt;lblCount.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="optCurrentLayer.Text" xml:space="preserve">
-    <value>Current Layer</value>
+  <data name="optTopChordPlane.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="updCount.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -702,8 +696,8 @@
   <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="optThirdsPoint.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;grpDisplay.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;updCount.Name" xml:space="preserve">
     <value>updCount</value>
@@ -723,14 +717,20 @@
   <data name="lblPositonnumber.Text" xml:space="preserve">
     <value>Positionnumber:</value>
   </data>
+  <data name="&gt;&gt;optThirdsPoint.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="butCreate.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
   <data name="&gt;&gt;optCurrentLayer.Name" xml:space="preserve">
     <value>optCurrentLayer</value>
   </data>
   <data name="&gt;&gt;txtDistance.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblDistanceUnit.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+  <data name="lblPositonnumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>15, 15, 15, 15</value>
   </data>
   <data name="optCurrentLayer.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
