@@ -321,8 +321,9 @@ namespace AutoCADTools.Tools
                         {
                             // Create a new reference of the block to add to model space and create the jig
                             newBlock = new BlockReference(new Point3d(0, 0, 0), acTrans.GetObject(acBlkTbl[dummyBlockName], OpenMode.ForRead).ObjectId);
-                            newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColor(System.Drawing.Color.Black);
-
+                            newBlock.SetDatabaseDefaults();
+                            newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByLayer, 0);
+                            
                             // Get the wanted rotation and apply to the new block reference
                             double rotate = 0;
                             if (rotation == Direction.LeftRotate)
@@ -348,6 +349,7 @@ namespace AutoCADTools.Tools
                                     newBlock.Explode(acDbObjColl);
                                     foreach (Entity acEnt in acDbObjColl)
                                     {
+                                        acEnt.SetDatabaseDefaults();
                                         acBlkTblRec.AppendEntity(acEnt);
                                         acTrans.AddNewlyCreatedDBObject(acEnt, true);
                                     }
