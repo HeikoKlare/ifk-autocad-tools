@@ -284,6 +284,9 @@
     <EmbeddedResource Include="Management\FrmManageDetailCategories.de.resx">
       <DependentUpon>FrmManageDetailCategories.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Management\FrmManageEmployers.de-DE.resx">
+      <DependentUpon>FrmManageEmployers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Management\FrmManageEmployers.de.resx">
       <DependentUpon>FrmManageEmployers.cs</DependentUpon>
     </EmbeddedResource>
