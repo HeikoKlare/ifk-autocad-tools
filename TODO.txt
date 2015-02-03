@@ -18,3 +18,5 @@ Zeichenbereich in neue Datei kopiert -> nicht gefunden -> neuer Erzeugt -> ist v
 Blattnummer geht nicht bei alten Zeichnungen. Wird nicht mehr eingefügt+
 
 Laufendes Maß: KOS zurücksetzen!!
+
+Projekt ohne kurze Beschreibung für zu Fehlermeldung in Zeichnungsdaten Dialog
