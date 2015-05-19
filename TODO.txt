@@ -22,3 +22,5 @@ Laufendes Maß: KOS zurücksetzen!!
 Projekt ohne kurze Beschreibung für zu Fehlermeldung in Zeichnungsdaten Dialog
 
 Positionsnummer Textfeld größer machen
+
+Anmerkung Standard Bewehrung ändern: max_packet_size
