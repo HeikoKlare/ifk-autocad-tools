@@ -42,6 +42,7 @@ namespace AutoCADTools.Tools
                 text.Attachment = AttachmentPoint.MiddleCenter;
                 text.Contents = positionResult.StringResult;
                 text.Location = Point3d.Origin;
+                text.Width = text.ActualWidth;
                 acBlkTblRec.AppendEntity(text);
 
                 double radius = Math.Max(text.ActualHeight, text.ActualWidth) * 0.5 + text.ActualHeight * 0.45;

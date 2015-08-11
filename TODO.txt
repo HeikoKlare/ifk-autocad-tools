@@ -8,8 +8,6 @@ Vertikalverband zur Position ein Textfeld "Vertikalverband" dahinter und 0 Felde
 
 Schnitt Binder erzeugen (OG/UG + vertikale)
 
-Auftraggeber verwalten, buttons deutsch
-
 Truss Import Farbe und Linientyp von Layer pro Entity!!
 
 Zeichenbereich in neue Datei kopiert -> nicht gefunden -> neuer Erzeugt -> ist verschoben -> speichern und laden -> wird nicht gefunden -> neu anlegen -> access violation
@@ -18,8 +16,6 @@ Zeichenbereich in neue Datei kopiert -> nicht gefunden -> neuer Erzeugt -> ist v
 Blattnummer geht nicht bei alten Zeichnungen. Wird nicht mehr eingefügt+
 
 Laufendes Maß: KOS zurücksetzen!!
-
-Positionsnummer Textfeld größer machen
 
 Anmerkung Standard Bewehrung ändern: max_packet_size
 
