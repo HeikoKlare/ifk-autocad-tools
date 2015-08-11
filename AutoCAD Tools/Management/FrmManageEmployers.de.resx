@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ButSave.Text" xml:space="preserve">
+  <data name="butSave.Text" xml:space="preserve">
     <value>Änderungen speichern</value>
   </data>
-  <data name="ButDiscard.Text" xml:space="preserve">
+  <data name="butDiscard.Text" xml:space="preserve">
     <value>Änderungen verwerfen</value>
   </data>
-  <data name="ButUpdate.Text" xml:space="preserve">
+  <data name="butUpdate.Text" xml:space="preserve">
     <value>Aktualisieren</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

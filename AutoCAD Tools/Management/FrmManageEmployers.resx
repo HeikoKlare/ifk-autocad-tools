@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;butSave.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="butDiscard.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -132,7 +135,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="butUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 45</value>
+    <value>133, 29</value>
   </data>
   <data name="butSave.Text" xml:space="preserve">
     <value>Save changes</value>
@@ -196,6 +199,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
+  <data name="butSave.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;butUpdate.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -210,7 +216,7 @@
     <value>Bottom, Left</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>678, 444</value>
+    <value>456, 300</value>
   </data>
   <data name="butUpdate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -222,16 +228,19 @@
     <value>2</value>
   </data>
   <data name="dgdEmployers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
+    <value>8, 8</value>
   </data>
   <data name="dgdEmployers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>654, 362</value>
+    <value>436, 235</value>
   </data>
   <data name="&gt;&gt;butDiscard.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Manage Employers</value>
+  </data>
   <data name="butSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 387</value>
+    <value>8, 252</value>
   </data>
   <data name="&gt;&gt;butSave.Name" xml:space="preserve">
     <value>butSave</value>
@@ -246,7 +255,7 @@
     <value>CenterParent</value>
   </data>
   <data name="butDiscard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 45</value>
+    <value>133, 29</value>
   </data>
   <data name="dgdEmployers.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -254,8 +263,11 @@
   <data name="butUpdate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>700, 500</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="butDiscard.Text" xml:space="preserve">
+    <value>Discard changes</value>
   </data>
   <data name="&gt;&gt;butUpdate.Name" xml:space="preserve">
     <value>butUpdate</value>
@@ -263,38 +275,29 @@
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmManageEmployers</value>
   </data>
-  <data name="&gt;&gt;butSave.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="dgdEmployers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="butDiscard.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
   <data name="butUpdate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>24, 10, 3, 3</value>
+    <value>16, 6, 2, 2</value>
   </data>
   <data name="&gt;&gt;butDiscard.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dgdEmployers.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="&gt;&gt;butUpdate.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="butDiscard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>24, 10, 3, 3</value>
-  </data>
   <data name="butSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 10, 3, 3</value>
+    <value>2, 6, 2, 2</value>
   </data>
   <data name="butUpdate.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="butUpdate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>466, 387</value>
+    <value>311, 252</value>
   </data>
   <data name="butSave.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -306,31 +309,28 @@
     <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="butDiscard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 387</value>
+    <value>159, 252</value>
   </data>
   <data name="&gt;&gt;butDiscard.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="butDiscard.Text" xml:space="preserve">
-    <value>Discard changes</value>
+  <data name="butDiscard.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>16, 6, 2, 2</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>472, 339</value>
+  </data>
+  <data name="butSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 29</value>
   </data>
   <data name="butDiscard.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>9, 20</value>
-  </data>
-  <data name="butSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 45</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Manage Employers</value>
-  </data>
   <data name="butDiscard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="butSave.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="&gt;&gt;dgdEmployers.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
