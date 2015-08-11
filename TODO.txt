@@ -1,18 +1,12 @@
+Blattnummer geht nicht bei alten Zeichnungen. Wird nicht mehr eingefügt. Beispiel??
+
 xref an text als textframe und event abfangen und frame aktualisieren
 TextFrame Größe änderbar
 
 Zweigeteilter Verband für Stab an Knickpunkt o.Ä.
-
 Vertikalverband zur Position ein Textfeld "Vertikalverband" dahinter und 0 Felder möglich
-
-
 Schnitt Binder erzeugen (OG/UG + vertikale)
 
 Zeichenbereich in neue Datei kopiert -> nicht gefunden -> neuer Erzeugt -> ist verschoben -> speichern und laden -> wird nicht gefunden -> neu anlegen -> access violation
-
-
-Blattnummer geht nicht bei alten Zeichnungen. Wird nicht mehr eingefügt+
-
-Anmerkung Standard Bewehrung ändern: max_packet_size
 
 Textstil für Überschrift (0.035)
