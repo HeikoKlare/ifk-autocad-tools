@@ -16,10 +16,22 @@ namespace AutoCADTools.Tools
         private readonly static string STYLENAME = "Laufendes Maß";
         private readonly static string OLDSTYLENAME = "2NK Fortlaufend";
 
+        private static void SetUCS(Matrix3d ucs)
+        {
+            Application.DocumentManager.MdiActiveDocument.Editor.CurrentUserCoordinateSystem = ucs;
+        }
+
         public static void Execute() {
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             Dictionary<LayerTableRecord, bool> layerActivation = new Dictionary<LayerTableRecord, bool>();
 
+            Matrix3d oldUCS = Application.DocumentManager.MdiActiveDocument.Editor.CurrentUserCoordinateSystem;
+            SetUCS(new Matrix3d(new double[16]{
+                1.0, 0.0, 0.0, 0.0,
+                0.0, 1.0, 0.0, 0.0,
+                0.0, 0.0, 1.0, 0.0,
+                0.0, 0.0, 0.0, 1.0}));
+        
             using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
             {
                 // Save all layers status and turn most of them off
@@ -47,6 +59,7 @@ namespace AutoCADTools.Tools
                 if (selection.Status != PromptStatus.OK)
                 {
                     acTrans.Abort();
+                    SetUCS(oldUCS);
                     return;
                 }
                 // Create a handle string for the objects
@@ -85,6 +98,7 @@ namespace AutoCADTools.Tools
                 if (referencePoint.Status != PromptStatus.OK)
                 {
                     acTrans.Abort();
+                    SetUCS(oldUCS);
                     return;
                 }
                 
@@ -102,6 +116,7 @@ namespace AutoCADTools.Tools
                 if (insertionPoint.Status != PromptStatus.OK)
                 {
                     acTrans.Abort();
+                    SetUCS(oldUCS);
                     return;
                 }
                 //var insertionPointString = insertionPoint.Value.X + "," + insertionPoint.Value.Y + "," + insertionPoint.Value.Z;
@@ -116,6 +131,7 @@ namespace AutoCADTools.Tools
                 if (decimalPlaces.Status != PromptStatus.OK) 
                 {
                     acTrans.Abort();
+                    SetUCS(oldUCS);
                     return;
                 }
 
@@ -186,7 +202,7 @@ namespace AutoCADTools.Tools
                 acDoc.Database.Dimdec = oldDimdec;
                 acDoc.Database.Dimdli = oldDimdli;
                 acDoc.Database.DimAssoc = oldDimAssoc;
-
+                SetUCS(oldUCS);
             }
         }
     }
