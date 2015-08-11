@@ -81,19 +81,19 @@
   <ItemGroup>
     <Reference Include="accoremgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Autodesk\AutoCAD 2015\accoremgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2015\accoremgd.dll</HintPath>
     </Reference>
     <Reference Include="AcCui, Version=20.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Autodesk\AutoCAD 2015\AcCui.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2015\AcCui.dll</HintPath>
     </Reference>
     <Reference Include="acdbmgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Autodesk\AutoCAD 2015\acdbmgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2015\acdbmgd.dll</HintPath>
     </Reference>
     <Reference Include="acmgd, Version=19.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Autodesk\AutoCAD 2015\acmgd.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\AutoCAD 2015\acmgd.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=6.9.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

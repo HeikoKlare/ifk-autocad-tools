@@ -359,6 +359,14 @@ namespace AutoCADTools.Tools
             if (e.Index >= 0 && e.Index < cboProjects.Items.Count)
             {
                 SizeF stringSize = e.Graphics.MeasureString(((AutoCADTools.Data.Database.ProjectRow)((DataRowView)cboProjects.Items[e.Index]).Row).descriptionShort, font);
+                if (stringSize.Height == 0)
+                {
+                    stringSize = e.Graphics.MeasureString(((AutoCADTools.Data.Database.ProjectRow)((DataRowView)cboProjects.Items[e.Index]).Row).number, font);
+                }
+                if (stringSize.Height == 0)
+                {
+                    stringSize = e.Graphics.MeasureString(((AutoCADTools.Data.Database.ProjectRow)((DataRowView)cboProjects.Items[e.Index]).Row).employer, font);
+                }
 
                 cboProjects.ItemHeight = (int)(2.2 * stringSize.Height);
                 //Set Appropriate Height
