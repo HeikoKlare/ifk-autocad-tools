@@ -350,6 +350,8 @@ namespace AutoCADTools.Tools
                                     foreach (Entity acEnt in acDbObjColl)
                                     {
                                         acEnt.SetDatabaseDefaults();
+                                        acEnt.ColorIndex = 256;
+                                        acEnt.LinetypeId = acDoc.Database.ByLayerLinetype;
                                         acBlkTblRec.AppendEntity(acEnt);
                                         acTrans.AddNewlyCreatedDBObject(acEnt, true);
                                     }
