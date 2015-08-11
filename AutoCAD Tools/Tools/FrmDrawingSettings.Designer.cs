@@ -86,6 +86,7 @@
             // 
             // grpProject
             // 
+            resources.ApplyResources(grpProject, "grpProject");
             grpProject.Controls.Add(this.txtDescriptionShort);
             grpProject.Controls.Add(lblDescriptionShort);
             grpProject.Controls.Add(this.txtProjectnumber);
@@ -100,7 +101,6 @@
             grpProject.Controls.Add(lblProjectCopyFrom);
             grpProject.Controls.Add(lblEmployer);
             grpProject.Controls.Add(lblDescription);
-            resources.ApplyResources(grpProject, "grpProject");
             grpProject.Name = "grpProject";
             grpProject.TabStop = false;
             // 
@@ -122,9 +122,9 @@
             // 
             // butEditProjects
             // 
+            resources.ApplyResources(this.butEditProjects, "butEditProjects");
             this.butEditProjects.AutoEllipsis = true;
             this.butEditProjects.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this.butEditProjects, "butEditProjects");
             this.butEditProjects.Name = "butEditProjects";
             this.butEditProjects.UseVisualStyleBackColor = true;
             this.butEditProjects.Click += new System.EventHandler(this.butEditProjects_Click);
@@ -137,8 +137,8 @@
             // 
             // cboEmployers
             // 
-            this.cboEmployers.FormattingEnabled = true;
             resources.ApplyResources(this.cboEmployers, "cboEmployers");
+            this.cboEmployers.FormattingEnabled = true;
             this.cboEmployers.Name = "cboEmployers";
             // 
             // txtDescription4
@@ -163,12 +163,12 @@
             // 
             // cboProjects
             // 
+            resources.ApplyResources(this.cboProjects, "cboProjects");
             this.cboProjects.BackColor = System.Drawing.Color.OldLace;
             this.cboProjects.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.cboProjects.DropDownHeight = 400;
             this.cboProjects.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboProjects.DropDownWidth = 450;
-            resources.ApplyResources(this.cboProjects, "cboProjects");
             this.cboProjects.FormattingEnabled = true;
             this.cboProjects.Name = "cboProjects";
             this.cboProjects.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cboProjects_DrawItem);
@@ -217,8 +217,8 @@
             // 
             // butOK
             // 
-            this.butOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.butOK, "butOK");
+            this.butOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butOK.Name = "butOK";
             this.butOK.UseVisualStyleBackColor = true;
             this.butOK.Click += new System.EventHandler(this.butOK_Click);
@@ -248,8 +248,8 @@
             // 
             // butCancel
             // 
-            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.butCancel, "butCancel");
+            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butCancel.Name = "butCancel";
             this.butCancel.UseVisualStyleBackColor = true;
             this.butCancel.Click += new System.EventHandler(this.butCancel_Click);

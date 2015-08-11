@@ -119,19 +119,19 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblEmployer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 20</value>
+    <value>71, 13</value>
   </data>
   <data name="lblEmployer.Text" xml:space="preserve">
     <value>Auftraggeber:</value>
   </data>
   <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 20</value>
+    <value>24, 13</value>
   </data>
   <data name="lblDescription.Text" xml:space="preserve">
     <value>BV:</value>
   </data>
   <data name="lblDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
+    <value>53, 13</value>
   </data>
   <data name="lblDescriptionShort.Text" xml:space="preserve">
     <value>BV (kurz):</value>
@@ -140,13 +140,13 @@
     <value>Projekte bearbeiten</value>
   </data>
   <data name="lblProjectNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 20</value>
+    <value>74, 13</value>
   </data>
   <data name="lblProjectNumber.Text" xml:space="preserve">
     <value>Statiknummer:</value>
   </data>
   <data name="lblProjectCopyFrom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 20</value>
+    <value>73, 13</value>
   </data>
   <data name="lblProjectCopyFrom.Text" xml:space="preserve">
     <value>Kopieren von:</value>
@@ -155,25 +155,25 @@
     <value>Projekt</value>
   </data>
   <data name="lblObject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 20</value>
+    <value>90, 13</value>
   </data>
   <data name="lblObject.Text" xml:space="preserve">
     <value>Bauteil / Position:</value>
   </data>
   <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 20</value>
+    <value>83, 13</value>
   </data>
   <data name="lblNumber.Text" xml:space="preserve">
     <value>Plan-Nr. / Seite:</value>
   </data>
   <data name="lblDrawingUnit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>143, 20</value>
+    <value>97, 13</value>
   </data>
   <data name="lblDrawingUnit.Text" xml:space="preserve">
     <value>Zeichnungseinheit:</value>
   </data>
   <data name="lblCreationDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
+    <value>90, 13</value>
   </data>
   <data name="lblCreationDate.Text" xml:space="preserve">
     <value>Erstellungsdatum:</value>
@@ -182,19 +182,19 @@
     <value>Dach: NP-Binder, Positionsplan</value>
   </data>
   <data name="optMeters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 25</value>
+    <value>58, 18</value>
   </data>
   <data name="optMeters.Text" xml:space="preserve">
     <value>Meter</value>
   </data>
   <data name="optCentimeters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 25</value>
+    <value>81, 18</value>
   </data>
   <data name="optCentimeters.Text" xml:space="preserve">
     <value>Zentimeter</value>
   </data>
   <data name="optMillimeters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 25</value>
+    <value>74, 18</value>
   </data>
   <data name="optMillimeters.Text" xml:space="preserve">
     <value>Millimeter</value>

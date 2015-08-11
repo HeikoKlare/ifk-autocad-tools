@@ -117,878 +117,233 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="lblEmployer.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblEmployer.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblEmployer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 69</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblEmployer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblEmployer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 13</value>
-  </data>
-  <data name="lblEmployer.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblEmployer.Text" xml:space="preserve">
-    <value>Employer:</value>
-  </data>
-  <data name="&gt;&gt;lblEmployer.Name" xml:space="preserve">
-    <value>lblEmployer</value>
-  </data>
-  <data name="&gt;&gt;lblEmployer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblEmployer.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;lblEmployer.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <metadata name="lblDescription.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblDescription.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 95</value>
-  </data>
-  <data name="lblDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 13</value>
-  </data>
-  <data name="lblDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="lblDescription.Text" xml:space="preserve">
-    <value>Description:</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
-    <value>lblDescription</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <metadata name="grpProject.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="txtDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 183</value>
-  </data>
-  <data name="txtDescriptionShort.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtDescriptionShort.MaxLength" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="txtDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 20</value>
-  </data>
-  <data name="txtDescriptionShort.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="&gt;&gt;txtDescriptionShort.Name" xml:space="preserve">
-    <value>txtDescriptionShort</value>
-  </data>
-  <data name="&gt;&gt;txtDescriptionShort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDescriptionShort.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;txtDescriptionShort.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="lblDescriptionShort.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblDescriptionShort.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 183</value>
-  </data>
-  <data name="lblDescriptionShort.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="lblDescriptionShort.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="lblDescriptionShort.Text" xml:space="preserve">
-    <value>Descr. (short):</value>
-  </data>
-  <data name="&gt;&gt;lblDescriptionShort.Name" xml:space="preserve">
-    <value>lblDescriptionShort</value>
-  </data>
-  <data name="&gt;&gt;lblDescriptionShort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDescriptionShort.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;lblDescriptionShort.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtProjectnumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 209</value>
-  </data>
-  <data name="txtProjectnumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtProjectnumber.MaxLength" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="txtProjectnumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 20</value>
-  </data>
-  <data name="txtProjectnumber.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="&gt;&gt;txtProjectnumber.Name" xml:space="preserve">
-    <value>txtProjectnumber</value>
-  </data>
-  <data name="&gt;&gt;txtProjectnumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtProjectnumber.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;txtProjectnumber.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="butEditProjects.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="butEditProjects.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 206</value>
-  </data>
-  <data name="butEditProjects.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="butEditProjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 23</value>
-  </data>
-  <data name="butEditProjects.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="butEditProjects.Text" xml:space="preserve">
-    <value>Edit Projects</value>
-  </data>
-  <data name="&gt;&gt;butEditProjects.Name" xml:space="preserve">
-    <value>butEditProjects</value>
-  </data>
-  <data name="&gt;&gt;butEditProjects.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;butEditProjects.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;butEditProjects.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="lblProjectNumber.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblProjectNumber.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblProjectNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 209</value>
-  </data>
-  <data name="lblProjectNumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblProjectNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 13</value>
-  </data>
-  <data name="lblProjectNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="lblProjectNumber.Text" xml:space="preserve">
-    <value>Projectnumber:</value>
-  </data>
-  <data name="&gt;&gt;lblProjectNumber.Name" xml:space="preserve">
-    <value>lblProjectNumber</value>
-  </data>
-  <data name="&gt;&gt;lblProjectNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblProjectNumber.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;lblProjectNumber.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="cboEmployers.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 68</value>
-  </data>
-  <data name="cboEmployers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="cboEmployers.MaxLength" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="cboEmployers.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 21</value>
-  </data>
-  <data name="cboEmployers.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;cboEmployers.Name" xml:space="preserve">
-    <value>cboEmployers</value>
-  </data>
-  <data name="&gt;&gt;cboEmployers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboEmployers.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;cboEmployers.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="txtDescription4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 157</value>
-  </data>
-  <data name="txtDescription4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtDescription4.MaxLength" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="txtDescription4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 20</value>
-  </data>
-  <data name="txtDescription4.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="&gt;&gt;txtDescription4.Name" xml:space="preserve">
-    <value>txtDescription4</value>
-  </data>
-  <data name="&gt;&gt;txtDescription4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDescription4.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;txtDescription4.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="txtDescription3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 136</value>
-  </data>
-  <data name="txtDescription3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtDescription3.MaxLength" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="txtDescription3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 20</value>
-  </data>
-  <data name="txtDescription3.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="&gt;&gt;txtDescription3.Name" xml:space="preserve">
-    <value>txtDescription3</value>
-  </data>
-  <data name="&gt;&gt;txtDescription3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDescription3.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;txtDescription3.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="txtDescription2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 115</value>
-  </data>
-  <data name="txtDescription2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtDescription2.MaxLength" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="txtDescription2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 20</value>
-  </data>
-  <data name="txtDescription2.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="&gt;&gt;txtDescription2.Name" xml:space="preserve">
-    <value>txtDescription2</value>
-  </data>
-  <data name="&gt;&gt;txtDescription2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDescription2.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;txtDescription2.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="txtDescription1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 94</value>
-  </data>
-  <data name="txtDescription1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtDescription1.MaxLength" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="txtDescription1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 20</value>
-  </data>
-  <data name="txtDescription1.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="&gt;&gt;txtDescription1.Name" xml:space="preserve">
-    <value>txtDescription1</value>
-  </data>
-  <data name="&gt;&gt;txtDescription1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDescription1.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;txtDescription1.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="cboProjects.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="cboProjects.IntegralHeight" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="cboProjects.ItemHeight" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="cboProjects.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 23</value>
-  </data>
-  <data name="cboProjects.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="cboProjects.Size" type="System.Drawing.Size, System.Drawing">
-    <value>301, 51</value>
-  </data>
-  <data name="cboProjects.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;cboProjects.Name" xml:space="preserve">
-    <value>cboProjects</value>
-  </data>
-  <data name="&gt;&gt;cboProjects.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboProjects.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;cboProjects.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <metadata name="lblProjectCopyFrom.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblProjectCopyFrom.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblProjectCopyFrom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 25</value>
-  </data>
-  <data name="lblProjectCopyFrom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblProjectCopyFrom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="lblProjectCopyFrom.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lblProjectCopyFrom.Text" xml:space="preserve">
-    <value>Copy From:</value>
-  </data>
-  <data name="&gt;&gt;lblProjectCopyFrom.Name" xml:space="preserve">
-    <value>lblProjectCopyFrom</value>
-  </data>
-  <data name="&gt;&gt;lblProjectCopyFrom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblProjectCopyFrom.Parent" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;lblProjectCopyFrom.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="grpProject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 9</value>
-  </data>
-  <data name="grpProject.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="grpProject.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="grpProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 244</value>
-  </data>
-  <data name="grpProject.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="grpProject.Text" xml:space="preserve">
-    <value>Project</value>
-  </data>
-  <data name="&gt;&gt;grpProject.Name" xml:space="preserve">
-    <value>grpProject</value>
-  </data>
-  <data name="&gt;&gt;grpProject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpProject.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpProject.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <metadata name="lblObject.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblObject.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblObject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 21</value>
-  </data>
-  <data name="lblObject.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblObject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
-  </data>
-  <data name="lblObject.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="lblObject.Text" xml:space="preserve">
-    <value>Plan / Position:</value>
-  </data>
-  <data name="&gt;&gt;lblObject.Name" xml:space="preserve">
-    <value>lblObject</value>
-  </data>
-  <data name="&gt;&gt;lblObject.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblObject.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblObject.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <metadata name="lblNumber.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblNumber.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 64</value>
-  </data>
-  <data name="lblNumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
-  </data>
-  <data name="lblNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lblDescriptionShort.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
   </data>
   <data name="lblNumber.Text" xml:space="preserve">
     <value>Plan-No. / Page:</value>
   </data>
-  <data name="&gt;&gt;lblNumber.Name" xml:space="preserve">
-    <value>lblNumber</value>
+  <data name="&gt;&gt;txtDescription4.Parent" xml:space="preserve">
+    <value>grpProject</value>
   </data>
-  <data name="&gt;&gt;lblNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;grpProject.Name" xml:space="preserve">
+    <value>grpProject</value>
   </data>
-  <data name="&gt;&gt;lblNumber.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblNumber.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <metadata name="lblDrawingUnit.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblDrawingUnit.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDrawingUnit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>446, 184</value>
-  </data>
-  <data name="lblDrawingUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblDrawingUnit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 13</value>
-  </data>
-  <data name="lblDrawingUnit.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="lblDrawingUnit.Text" xml:space="preserve">
-    <value>Drawing Unit:</value>
-  </data>
-  <data name="&gt;&gt;lblDrawingUnit.Name" xml:space="preserve">
-    <value>lblDrawingUnit</value>
-  </data>
-  <data name="&gt;&gt;lblDrawingUnit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDrawingUnit.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblDrawingUnit.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <metadata name="lblCreationDate.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="lblCreationDate.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCreationDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 105</value>
-  </data>
-  <data name="lblCreationDate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 0, 2, 0</value>
-  </data>
-  <data name="lblCreationDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="lblCreationDate.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="lblCreationDate.Text" xml:space="preserve">
-    <value>Creation date:</value>
-  </data>
-  <data name="&gt;&gt;lblCreationDate.Name" xml:space="preserve">
-    <value>lblCreationDate</value>
-  </data>
-  <data name="&gt;&gt;lblCreationDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCreationDate.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblCreationDate.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtSegment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 36</value>
-  </data>
-  <data name="txtSegment.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtSegment.MaxLength" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="txtSegment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>305, 20</value>
-  </data>
-  <data name="txtSegment.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="txtSegment.Text" xml:space="preserve">
-    <value>Roof: Gangnail-Truss</value>
-  </data>
-  <data name="&gt;&gt;txtSegment.Name" xml:space="preserve">
-    <value>txtSegment</value>
-  </data>
-  <data name="&gt;&gt;txtSegment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSegment.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtSegment.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="txtPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 79</value>
-  </data>
-  <data name="txtPage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="txtPage.MaxLength" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="txtPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="txtPage.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="txtPage.Text" xml:space="preserve">
-    <value>P1</value>
-  </data>
-  <data name="&gt;&gt;txtPage.Name" xml:space="preserve">
-    <value>txtPage</value>
-  </data>
-  <data name="&gt;&gt;txtPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtPage.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtPage.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="butOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="butOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>449, 215</value>
-  </data>
-  <data name="butOK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="butOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 28</value>
-  </data>
-  <data name="butOK.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="butOK.Text" xml:space="preserve">
-    <value>OK</value>
-  </data>
-  <data name="&gt;&gt;butOK.Name" xml:space="preserve">
-    <value>butOK</value>
-  </data>
-  <data name="&gt;&gt;butOK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;butOK.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;butOK.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="optMeters.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="optMeters.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="optMeters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>547, 183</value>
-  </data>
-  <data name="optMeters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="optMeters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 18</value>
-  </data>
-  <data name="optMeters.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="optMeters.Text" xml:space="preserve">
-    <value>Meters</value>
-  </data>
-  <data name="&gt;&gt;optMeters.Name" xml:space="preserve">
-    <value>optMeters</value>
-  </data>
-  <data name="&gt;&gt;optMeters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optMeters.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;optMeters.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="optCentimeters.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="optCentimeters.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="optCentimeters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>606, 183</value>
-  </data>
-  <data name="optCentimeters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="optCentimeters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 18</value>
-  </data>
-  <data name="optCentimeters.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="optCentimeters.Text" xml:space="preserve">
-    <value>Centimeters</value>
-  </data>
-  <data name="&gt;&gt;optCentimeters.Name" xml:space="preserve">
-    <value>optCentimeters</value>
-  </data>
-  <data name="&gt;&gt;optCentimeters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optCentimeters.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;optCentimeters.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="optMillimeters.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="txtDescription3.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
   <data name="optMillimeters.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="optMillimeters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>689, 183</value>
-  </data>
-  <data name="optMillimeters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="optMillimeters.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 18</value>
-  </data>
-  <data name="optMillimeters.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="optMillimeters.Text" xml:space="preserve">
-    <value>Millimeters</value>
-  </data>
-  <data name="&gt;&gt;optMillimeters.Name" xml:space="preserve">
-    <value>optMillimeters</value>
-  </data>
-  <data name="&gt;&gt;optMillimeters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optMillimeters.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;optMillimeters.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="butCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="butCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>618, 215</value>
-  </data>
-  <data name="butCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="butCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 28</value>
-  </data>
-  <data name="butCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="butCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;butCancel.Name" xml:space="preserve">
-    <value>butCancel</value>
-  </data>
-  <data name="&gt;&gt;butCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;butCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="&gt;&gt;butCancel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="dtpCreationDate.CustomFormat" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;optMeters.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="dtpCreationDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>443, 120</value>
+  <data name="&gt;&gt;lblDescriptionShort.Name" xml:space="preserve">
+    <value>lblDescriptionShort</value>
+  </data>
+  <data name="optMeters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="cboProjects.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 23</value>
+  </data>
+  <data name="lblProjectNumber.Text" xml:space="preserve">
+    <value>Projectnumber:</value>
+  </data>
+  <data name="&gt;&gt;txtDescription1.Name" xml:space="preserve">
+    <value>txtDescription1</value>
+  </data>
+  <data name="grpProject.Size" type="System.Drawing.Size, System.Drawing">
+    <value>413, 244</value>
+  </data>
+  <data name="&gt;&gt;lblProjectNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dtpCreationDate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
-  <data name="dtpCreationDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 20</value>
-  </data>
-  <data name="dtpCreationDate.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;dtpCreationDate.Name" xml:space="preserve">
-    <value>dtpCreationDate</value>
-  </data>
-  <data name="&gt;&gt;dtpCreationDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dtpCreationDate.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;dtpCreationDate.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="butDefaultValues.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="butDefaultValues.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
-  </data>
   <data name="butDefaultValues.Location" type="System.Drawing.Point, System.Drawing">
     <value>591, 64</value>
   </data>
-  <data name="butDefaultValues.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="lblProjectNumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="butEditProjects.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="lblObject.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 21</value>
+  </data>
+  <data name="grpProject.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
-  <data name="butDefaultValues.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 23</value>
+  <data name="lblDescriptionShort.Text" xml:space="preserve">
+    <value>Descr. (short):</value>
   </data>
-  <data name="butDefaultValues.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+  <data name="txtDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 183</value>
+  </data>
+  <data name="lblProjectCopyFrom.Text" xml:space="preserve">
+    <value>Copy From:</value>
+  </data>
+  <data name="&gt;&gt;butCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="grpProject.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 9</value>
+  </data>
+  <data name="cboEmployers.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="txtDescription4.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;cboProjects.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="&gt;&gt;butEditProjects.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="&gt;&gt;butOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDescription2.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="&gt;&gt;lblObject.Name" xml:space="preserve">
+    <value>lblObject</value>
+  </data>
+  <data name="butOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>449, 215</value>
+  </data>
+  <data name="optMeters.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="&gt;&gt;txtDescriptionShort.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtPage.MaxLength" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;butOK.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="butDefaultValues.Text" xml:space="preserve">
     <value>Default Values</value>
   </data>
-  <data name="&gt;&gt;butDefaultValues.Name" xml:space="preserve">
-    <value>butDefaultValues</value>
+  <data name="&gt;&gt;lblProjectCopyFrom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;butDefaultValues.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtDescription3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;butDefaultValues.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;lblNumber.Name" xml:space="preserve">
+    <value>lblNumber</value>
   </data>
-  <data name="&gt;&gt;butDefaultValues.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="optCentimeters.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="lblEmployer.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>773, 262</value>
+  <data name="optMillimeters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 18</value>
+  </data>
+  <data name="optMeters.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;optMillimeters.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cboProjects.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="butOK.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;butOK.Name" xml:space="preserve">
+    <value>butOK</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Drawing Settings</value>
+  </data>
+  <data name="&gt;&gt;txtProjectnumber.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="&gt;&gt;txtDescription3.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="&gt;&gt;lblCreationDate.Name" xml:space="preserve">
+    <value>lblCreationDate</value>
+  </data>
+  <data name="cboProjects.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="lblProjectNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 13</value>
+  </data>
+  <data name="txtPage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 79</value>
+  </data>
+  <data name="txtPage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 20</value>
+  </data>
+  <data name="dtpCreationDate.CustomFormat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblObject.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="dtpCreationDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 120</value>
+  </data>
+  <data name="&gt;&gt;txtProjectnumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblCreationDate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 105</value>
+  </data>
+  <data name="&gt;&gt;cboEmployers.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="butOK.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="dtpCreationDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="&gt;&gt;lblCreationDate.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtDescription3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 136</value>
+  </data>
+  <data name="&gt;&gt;txtSegment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optCentimeters.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="lblDrawingUnit.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;cboEmployers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1049,16 +404,661 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+  <data name="&gt;&gt;txtSegment.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Drawing Settings</value>
+  <data name="&gt;&gt;txtDescription2.Name" xml:space="preserve">
+    <value>txtDescription2</value>
+  </data>
+  <data name="lblDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 13</value>
+  </data>
+  <data name="txtDescription3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 20</value>
+  </data>
+  <data name="txtDescription2.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;lblDrawingUnit.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="dtpCreationDate.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;lblCreationDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="butCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lblObject.Text" xml:space="preserve">
+    <value>Plan / Position:</value>
+  </data>
+  <data name="&gt;&gt;txtSegment.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtSegment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 36</value>
+  </data>
+  <data name="&gt;&gt;txtPage.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="lblCreationDate.Text" xml:space="preserve">
+    <value>Creation date:</value>
+  </data>
+  <data name="lblCreationDate.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="butDefaultValues.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="optMillimeters.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 13</value>
+  </data>
+  <data name="lblDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lblDrawingUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lblEmployer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
+  </data>
+  <data name="&gt;&gt;lblEmployer.Name" xml:space="preserve">
+    <value>lblEmployer</value>
+  </data>
+  <data name="cboProjects.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;dtpCreationDate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cboProjects.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="lblDrawingUnit.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="optMeters.Text" xml:space="preserve">
+    <value>Meters</value>
+  </data>
+  <data name="&gt;&gt;txtDescription1.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="&gt;&gt;lblDrawingUnit.Name" xml:space="preserve">
+    <value>lblDrawingUnit</value>
+  </data>
+  <data name="&gt;&gt;grpProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblEmployer.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtDescription2.MaxLength" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="lblProjectNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="butDefaultValues.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;lblProjectCopyFrom.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="lblProjectNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lblNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="txtDescription4.MaxLength" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="grpProject.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="cboProjects.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="lblDescription.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;optCentimeters.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="optMeters.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;txtDescriptionShort.Name" xml:space="preserve">
+    <value>txtDescriptionShort</value>
+  </data>
+  <data name="txtSegment.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;butEditProjects.Name" xml:space="preserve">
+    <value>butEditProjects</value>
+  </data>
+  <data name="&gt;&gt;butEditProjects.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblProjectCopyFrom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;butEditProjects.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;grpProject.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cboEmployers.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 21</value>
+  </data>
+  <data name="optMillimeters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;cboEmployers.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="lblDescriptionShort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="grpProject.Text" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="txtProjectnumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 20</value>
+  </data>
+  <data name="lblProjectCopyFrom.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblProjectNumber.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblObject.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 13</value>
+  </data>
+  <data name="&gt;&gt;optMeters.Name" xml:space="preserve">
+    <value>optMeters</value>
+  </data>
+  <data name="txtDescription1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 20</value>
+  </data>
+  <data name="txtDescriptionShort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 20</value>
+  </data>
+  <data name="&gt;&gt;optMeters.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;optMillimeters.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtProjectnumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;dtpCreationDate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="butCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="txtDescriptionShort.MaxLength" type="System.Int32, mscorlib">
+    <value>100</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmDrawingSettings</value>
   </data>
+  <data name="cboProjects.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 51</value>
+  </data>
+  <data name="lblProjectCopyFrom.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtDescription4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 20</value>
+  </data>
+  <data name="&gt;&gt;butDefaultValues.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;optCentimeters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtDescription3.MaxLength" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="optMeters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 18</value>
+  </data>
+  <data name="butDefaultValues.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8pt</value>
+  </data>
+  <data name="optCentimeters.Text" xml:space="preserve">
+    <value>Centimeters</value>
+  </data>
+  <data name="butEditProjects.Text" xml:space="preserve">
+    <value>Edit Projects</value>
+  </data>
+  <data name="optCentimeters.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 95</value>
+  </data>
+  <data name="&gt;&gt;cboProjects.Name" xml:space="preserve">
+    <value>cboProjects</value>
+  </data>
+  <data name="&gt;&gt;txtDescription4.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;lblNumber.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblCreationDate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cboEmployers.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;lblProjectNumber.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="txtDescription1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 94</value>
+  </data>
+  <data name="butOK.Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="&gt;&gt;txtDescriptionShort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblObject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;butDefaultValues.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboProjects.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblEmployer.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="&gt;&gt;lblProjectCopyFrom.Name" xml:space="preserve">
+    <value>lblProjectCopyFrom</value>
+  </data>
+  <data name="&gt;&gt;txtDescription4.Name" xml:space="preserve">
+    <value>txtDescription4</value>
+  </data>
+  <data name="&gt;&gt;txtDescriptionShort.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="lblCreationDate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 13</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="&gt;&gt;txtPage.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>441, 64</value>
+  </data>
+  <data name="lblObject.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="txtPage.Text" xml:space="preserve">
+    <value>P1</value>
+  </data>
+  <data name="txtDescription1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;grpProject.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="optCentimeters.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="butEditProjects.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;lblEmployer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDescription4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtProjectnumber.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtDescriptionShort.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="lblEmployer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;txtDescription2.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;optMillimeters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPage.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNumber.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="txtPage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="lblObject.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblProjectNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 209</value>
+  </data>
+  <data name="&gt;&gt;lblDescriptionShort.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="optCentimeters.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 18</value>
+  </data>
+  <data name="txtProjectnumber.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="lblProjectCopyFrom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="txtDescriptionShort.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="txtDescription2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>301, 20</value>
+  </data>
+  <data name="&gt;&gt;lblProjectNumber.Name" xml:space="preserve">
+    <value>lblProjectNumber</value>
+  </data>
+  <data name="&gt;&gt;lblNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optMillimeters.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="lblCreationDate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;txtDescription3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="optCentimeters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>606, 183</value>
+  </data>
+  <data name="butCancel.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
+    <value>lblDescription</value>
+  </data>
+  <data name="txtDescription2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="butCancel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="txtDescription3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="lblEmployer.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;dtpCreationDate.Name" xml:space="preserve">
+    <value>dtpCreationDate</value>
+  </data>
+  <data name="txtSegment.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="&gt;&gt;txtSegment.Name" xml:space="preserve">
+    <value>txtSegment</value>
+  </data>
+  <data name="lblDescription.Text" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="butOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 28</value>
+  </data>
+  <data name="lblProjectCopyFrom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 25</value>
+  </data>
+  <data name="txtDescription2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 115</value>
+  </data>
+  <data name="butEditProjects.Location" type="System.Drawing.Point, System.Drawing">
+    <value>265, 207</value>
+  </data>
+  <data name="&gt;&gt;txtDescription2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtDescription4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 157</value>
+  </data>
+  <data name="lblDrawingUnit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 13</value>
+  </data>
+  <data name="&gt;&gt;lblObject.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="lblDescription.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lblDrawingUnit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>446, 184</value>
+  </data>
+  <data name="&gt;&gt;dtpCreationDate.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblProjectCopyFrom.Parent" xml:space="preserve">
+    <value>grpProject</value>
+  </data>
+  <data name="grpProject.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblCreationDate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtDescription4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="&gt;&gt;cboEmployers.Name" xml:space="preserve">
+    <value>cboEmployers</value>
+  </data>
+  <data name="&gt;&gt;butDefaultValues.Name" xml:space="preserve">
+    <value>butDefaultValues</value>
+  </data>
+  <data name="txtSegment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 20</value>
+  </data>
+  <data name="&gt;&gt;lblDescriptionShort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="butCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>618, 215</value>
+  </data>
+  <data name="&gt;&gt;txtPage.Name" xml:space="preserve">
+    <value>txtPage</value>
+  </data>
+  <data name="txtSegment.MaxLength" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="cboProjects.ItemHeight" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="butDefaultValues.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="txtProjectnumber.MaxLength" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="butDefaultValues.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblEmployer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 69</value>
+  </data>
+  <data name="&gt;&gt;butCancel.Name" xml:space="preserve">
+    <value>butCancel</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>773, 262</value>
+  </data>
+  <data name="cboEmployers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 68</value>
+  </data>
+  <data name="&gt;&gt;lblDrawingUnit.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;optMillimeters.Name" xml:space="preserve">
+    <value>optMillimeters</value>
+  </data>
+  <data name="&gt;&gt;txtDescription1.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;txtProjectnumber.Name" xml:space="preserve">
+    <value>txtProjectnumber</value>
+  </data>
+  <data name="cboEmployers.MaxLength" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;txtDescription3.Name" xml:space="preserve">
+    <value>txtDescription3</value>
+  </data>
+  <data name="txtSegment.Text" xml:space="preserve">
+    <value>Roof: Gangnail-Truss</value>
+  </data>
+  <data name="butOK.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="lblNumber.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="&gt;&gt;optCentimeters.Name" xml:space="preserve">
+    <value>optCentimeters</value>
+  </data>
+  <data name="&gt;&gt;optCentimeters.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblObject.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblDrawingUnit.Text" xml:space="preserve">
+    <value>Drawing Unit:</value>
+  </data>
+  <data name="lblDescriptionShort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 183</value>
+  </data>
+  <data name="txtPage.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="&gt;&gt;butOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 13</value>
+  </data>
+  <data name="optMeters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>547, 183</value>
+  </data>
+  <data name="butCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 28</value>
+  </data>
+  <data name="txtDescription1.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;butCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="optMillimeters.Text" xml:space="preserve">
+    <value>Millimeters</value>
+  </data>
+  <data name="optMillimeters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>689, 183</value>
+  </data>
+  <data name="&gt;&gt;txtDescription1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="butEditProjects.Size" type="System.Drawing.Size, System.Drawing">
+    <value>134, 23</value>
+  </data>
+  <data name="&gt;&gt;lblDescriptionShort.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtProjectnumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 209</value>
+  </data>
+  <data name="&gt;&gt;lblDrawingUnit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblDescriptionShort.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
+  </data>
+  <data name="lblEmployer.Text" xml:space="preserve">
+    <value>Employer:</value>
+  </data>
+  <data name="&gt;&gt;butDefaultValues.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtDescription1.MaxLength" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;optMeters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="lblProjectCopyFrom.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="lblDrawingUnit.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="grpProject.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="lblObject.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="lblDescription.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="lblCreationDate.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="lblProjectNumber.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="lblEmployer.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lblDescriptionShort.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="lblNumber.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>
