@@ -12,3 +12,4 @@ Zeichenbereich in neue Datei kopiert -> nicht gefunden -> neuer Erzeugt -> ist v
 Textstil für Überschrift (0.035)
 
 
+Projekteverwaltung Fehlermeldung und lässt sich nicht mehr schließen bei Timeout zu Server.
