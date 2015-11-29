@@ -13,3 +13,12 @@ Textstil für Überschrift (0.035)
 
 
 Projekteverwaltung Fehlermeldung und lässt sich nicht mehr schließen bei Timeout zu Server.
+
+
+Textrahmen mehrere Textfelder
+
+Tool: Bewehrung zeichnen
+
+Textrahmen wenn Textfeld von rechts nach links falsch gezeichnet
+
+Tool: Alle Bemaßungen auf Standard setzen
