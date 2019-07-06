@@ -25,18 +25,6 @@ namespace AutoCADTools.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ifk.no-ip.biz")]
-        public string SqlConnectionPath {
-            get {
-                return ((string)(this["SqlConnectionPath"]));
-            }
-            set {
-                this["SqlConnectionPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string SqlConnectionLogin {
             get {
@@ -152,6 +140,18 @@ namespace AutoCADTools.Properties {
             }
             set {
                 this["DefaultLayoutName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ifk.diskstation.me")]
+        public string SqlConnectionPath {
+            get {
+                return ((string)(this["SqlConnectionPath"]));
+            }
+            set {
+                this["SqlConnectionPath"] = value;
             }
         }
     }

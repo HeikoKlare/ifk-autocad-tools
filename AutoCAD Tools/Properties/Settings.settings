@@ -2,9 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AutoCADTools.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="SqlConnectionPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ifk.no-ip.biz</Value>
-    </Setting>
     <Setting Name="SqlConnectionLogin" Type="System.String" Scope="User">
       <Value Profile="(Default)"></Value>
     </Setting>
@@ -34,6 +31,9 @@
     </Setting>
     <Setting Name="DefaultLayoutName" Type="System.String" Scope="User">
       <Value Profile="(Default)">Plot</Value>
+    </Setting>
+    <Setting Name="SqlConnectionPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ifk.diskstation.me</Value>
     </Setting>
   </Settings>
 </SettingsFile>
