@@ -12,22 +12,22 @@ namespace AutoCADToolsTest
         {
             var paper = PaperformatFactory.GetPaperformatTextfield(new Size(250, 160));
             Assert.IsInstanceOfType(paper, typeof(PaperformatTextfieldA4Horizontal));
-            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA4Horizontal.MAX_VIEWPORT_SIZE);
+            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA4Horizontal.MaximumViewportSize);
             paper = PaperformatFactory.GetPaperformatTextfield(new Size(160, 250));
             Assert.IsInstanceOfType(paper, typeof(PaperformatTextfieldA4Vertical));
-            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA4Vertical.MAX_VIEWPORT_SIZE);
+            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA4Vertical.MaximumViewportSize);
             paper = PaperformatFactory.GetPaperformatTextfield(new Size(250, 250));
             Assert.IsInstanceOfType(paper, typeof(PaperformatTextfieldA3));
-            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA3.MAX_VIEWPORT_SIZE);
+            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA3.MaximumViewportSize);
             paper = PaperformatFactory.GetPaperformatTextfield(new Size(385, 287));
             Assert.IsInstanceOfType(paper, typeof(PaperformatTextfieldA3));
-            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA3.MAX_VIEWPORT_SIZE);
+            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldA3.MaximumViewportSize);
             paper = PaperformatFactory.GetPaperformatTextfield(new Size(400, 287));
             Assert.IsInstanceOfType(paper, typeof(PaperformatTextfieldCustom));
             Assert.AreEqual(paper.ViewportSizeModel, new Size(400, 287));
             paper = PaperformatFactory.GetPaperformatTextfield(new Size(1200, 850));
             Assert.IsInstanceOfType(paper, typeof(PaperformatTextfieldCustom));
-            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldCustom.MAX_VIEWPORT_SIZE);
+            Assert.AreEqual(paper.ViewportSizeModel, PaperformatTextfieldCustom.MaximumViewportSize);
         }
 
         [TestMethod]
