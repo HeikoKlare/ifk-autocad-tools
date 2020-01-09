@@ -33,7 +33,7 @@
       <Value Profile="(Default)">Plot</Value>
     </Setting>
     <Setting Name="SqlConnectionPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ifk.diskstation.me</Value>
+      <Value Profile="(Default)">SERVER_URL</Value>
     </Setting>
   </Settings>
 </SettingsFile>
