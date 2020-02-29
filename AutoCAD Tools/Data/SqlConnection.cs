@@ -40,6 +40,11 @@ namespace AutoCADTools.Data
             dataAdapter = new MySqlDataAdapter();
         }
 
+        public Boolean IsEstablished()
+        {
+            return connection.State == System.Data.ConnectionState.Open;
+        }
+
         #endregion
 
         #region Helper

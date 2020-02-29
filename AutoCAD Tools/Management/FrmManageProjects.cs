@@ -56,7 +56,15 @@ namespace AutoCADTools.Management
         {
             state = EditState.input;
             dataBound = false;
-            connection = new SqlConnection();
+            try
+            {
+                connection = new SqlConnection();
+            }
+            catch (Exception)
+            {
+                this.Close();
+                return;
+            }
 
             // Initialize employer and project tables
             employersTable = new Database.EmployerDataTable();
@@ -74,7 +82,10 @@ namespace AutoCADTools.Management
 
         private void FrmManageProjects_FormClosing(object sender, FormClosingEventArgs e)
         {
-            connection.Dispose();
+            if (connection != null)
+            {
+                connection.Dispose();
+            }
         }
 
         #endregion
@@ -88,6 +99,8 @@ namespace AutoCADTools.Management
         /// </summary>
         private void Employers_Refresh()
         {
+            if (connection == null || !connection.IsEstablished()) return;
+
             // Save employer, clear table and refill employers table
             String saveEmployer = cboEmployer.Text;
             employersTable.Clear();
@@ -110,6 +123,8 @@ namespace AutoCADTools.Management
         /// </summary>
         private void Projects_Refresh()
         {
+            if (connection == null || !connection.IsEstablished()) return;
+
             // Save last project, clear table and refill it
             String lastProject = null;
             if (state == EditState.projectSelected || state == EditState.editing) lastProject = txtNumber.Text;

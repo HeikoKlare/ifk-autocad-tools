@@ -56,7 +56,15 @@ namespace AutoCADTools.Management
         {
             state = EditState.input;
             dataBound = false;
-            connection = new SqlConnection();
+            try
+            {
+                connection = new SqlConnection();
+            }
+            catch (Exception)
+            {
+                this.Close();
+                return;
+            }
 
             // Initialize annotation categories and annotation table
             annotationCategoriesTable = new Database.AnnotationCategoriesDataTable();
@@ -69,7 +77,7 @@ namespace AutoCADTools.Management
 
         private void FrmManageAnnotations_FormClosing(object sender, FormClosingEventArgs e)
         {
-            connection.Dispose();
+            if (connection != null) connection.Dispose();
         }
 
         #endregion
@@ -83,6 +91,8 @@ namespace AutoCADTools.Management
         /// </summary>
         private void AnnotationCategories_Refresh()
         {
+            if (connection == null || !connection.IsEstablished()) return;
+
             // Save category, clear table and refill category table
             String saveCategory = cboAnnotationCategories.Text;
             annotationCategoriesTable.Clear();

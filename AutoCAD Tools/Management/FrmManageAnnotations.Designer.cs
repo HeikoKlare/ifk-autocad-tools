@@ -16,7 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
-                connection.Dispose();
+                if (connection != null) connection.Dispose();
             }
             base.Dispose(disposing);
         }
