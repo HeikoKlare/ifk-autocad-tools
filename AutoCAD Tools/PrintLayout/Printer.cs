@@ -12,6 +12,11 @@ namespace AutoCADTools.PrintLayout
     /// </summary>
     public class Printer
     {
+        /// <summary>
+        /// File extension for printer configuration files
+        /// </summary>
+        public const string printerConfigurationFileExtension = ".pc3";
+
         private readonly IEnumerable<string> ordinaryPaperFormats = new List<string>() { "A0", "A1", "A2", "A3", "A4" };
         private readonly Dictionary<string, string> ordinaryPaperFormatsToPng = new Dictionary<string, string> { { "A4", "UserDefinedRaster (2100.00 x 2970.00Pixel)" }, { "A3", "UserDefinedRaster (2970.00 x 4200.00Pixel)" } };
 
@@ -23,7 +28,7 @@ namespace AutoCADTools.PrintLayout
         /// </value>
         public String Name { get; }
 
-        private IList<PrinterPaperformat> paperformats;
+        private readonly IList<PrinterPaperformat> paperformats = new List<PrinterPaperformat>();
 
         /// <summary>
         /// Gets the optimized or unoptimized paperformats for this printer, depending on the specified parameter. Formats are optimized if their margins
@@ -45,13 +50,12 @@ namespace AutoCADTools.PrintLayout
         public Printer(String name)
         {
             PlotSettingsValidator psv = PlotSettingsValidator.Current;
-            if (String.IsNullOrEmpty(name) || !psv.GetPlotDeviceList().Contains(name + ".pc3"))
+            if (String.IsNullOrEmpty(name) || !psv.GetPlotDeviceList().Contains(name + printerConfigurationFileExtension))
             {
                 throw new System.ArgumentException(LocalData.PrinterNameException + name);
             }
 
             this.Name = name;
-            this.paperformats = new List<PrinterPaperformat>();
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Autodesk.AutoCAD.DatabaseServices;
 using System.Threading.Tasks;
 using System.Linq;
+using static AutoCADTools.PrintLayout.Printer;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -12,7 +13,6 @@ namespace AutoCADTools.PrintLayout
     public class PrinterRepository
     {
         private static readonly IReadOnlyList<string> excludedNames = new List<string>() { "Default" };
-        private const string printerNameExtension = ".pc3";
 
         private static readonly PrinterRepository instance = new PrinterRepository();
 
@@ -27,7 +27,7 @@ namespace AutoCADTools.PrintLayout
             get { return PrinterRepository.instance; }
         }
 
-        private Dictionary<string, Printer> printer = new Dictionary<string, Printer>();
+        private readonly Dictionary<string, Printer> printer = new Dictionary<string, Printer>();
 
         /// <summary>
         /// Gets the names of the available printers.
@@ -38,9 +38,9 @@ namespace AutoCADTools.PrintLayout
             {
                 PlotSettingsValidator psv = PlotSettingsValidator.Current;
                 return psv.GetPlotDeviceList().Cast<string>()
-                       .Where(device => device.EndsWith(printerNameExtension))
+                       .Where(device => device.EndsWith(Printer.printerConfigurationFileExtension))
+                       .Select(device => device.Replace(Printer.printerConfigurationFileExtension, ""))
                        .Where(device => excludedNames.ToList().TrueForAll(name => !device.Contains(name)))
-                       .Select(device => device.Replace(printerNameExtension, ""))
                        .ToList().AsReadOnly();
             }
         }
