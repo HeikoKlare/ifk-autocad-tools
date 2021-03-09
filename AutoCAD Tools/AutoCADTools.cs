@@ -438,6 +438,15 @@ namespace AutoCADTools
                 = dbSumBuilder.ToDatabaseSummaryInfo();
         }
 
+        /// <summary>
+        /// Hidden command. Clears the printer repository, such that printer are initialized anew.
+        /// </summary>
+        [CommandMethod("ClearPrinterRepository")]
+        public static void ClearPrinterRepository()
+        {
+            PrinterRepository.Instance.Clear();
+        }
+
         #endregion
 
     }
