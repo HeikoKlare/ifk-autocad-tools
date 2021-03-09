@@ -106,8 +106,10 @@ namespace AutoCADTools.PrintLayout
             }
 
             // Get the last point of the layout extends and show line from first point
-            var endpointOpts = new PromptCornerOptions(LocalData.ExtractEndPointText, p1);
-            endpointOpts.UseDashedLine = true;
+            var endpointOpts = new PromptCornerOptions(LocalData.ExtractEndPointText, p1)
+            {
+                UseDashedLine = true
+            };
             getPointResult = document.Editor.GetCorner(endpointOpts);
             // Set cursorsize to normal
             Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", oldCrossWidth);

@@ -516,39 +516,47 @@ namespace AutoCADTools.Management
                 this.AutoSize = true;
                 this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 
-                txtName = new TextBox();
-                txtName.Size = new Size(400, 26);
-                txtName.Location = new Point(12, 12);
-                txtName.Text = detailsTable[selectedDetail].name;
-                txtName.Margin = new Padding(3);
+                txtName = new TextBox
+                {
+                    Size = new Size(400, 26),
+                    Location = new Point(12, 12),
+                    Text = detailsTable[selectedDetail].name,
+                    Margin = new Padding(3)
+                };
                 this.Controls.Add(txtName);
 
-                cboEdit = new ComboBox();
-                cboEdit.FlatStyle = FlatStyle.System;
-                cboEdit.DataSource = detailCategoriesTable;
-                cboEdit.DisplayMember = "name";
-                cboEdit.ValueMember = "id";
-                cboEdit.Size = new Size(400, 28);
-                cboEdit.Location = new Point(12, 44);
-                cboEdit.Margin = new Padding(3);
-                cboEdit.DropDownStyle = ComboBoxStyle.DropDownList;
+                cboEdit = new ComboBox
+                {
+                    FlatStyle = FlatStyle.System,
+                    DataSource = detailCategoriesTable,
+                    DisplayMember = "name",
+                    ValueMember = "id",
+                    Size = new Size(400, 28),
+                    Location = new Point(12, 44),
+                    Margin = new Padding(3),
+                    DropDownStyle = ComboBoxStyle.DropDownList
+                };
                 this.Controls.Add(cboEdit);
 
-                butOk = new Button();
-                butOk.FlatStyle = FlatStyle.System;
-                butOk.Size = new Size(197, 35);
-                butOk.Location = new Point(12, 78);
-                butOk.Margin = new Padding(3);
-                butOk.Text = LocalData.OK;
+                butOk = new Button
+                {
+                    FlatStyle = FlatStyle.System,
+                    Size = new Size(197, 35),
+                    Location = new Point(12, 78),
+                    Margin = new Padding(3),
+                    Text = LocalData.OK
+                };
                 butOk.Click += new EventHandler(EditCategory_ButOk_Click);
                 this.Controls.Add(butOk);
 
-                butCancel = new Button();
-                butCancel.FlatStyle = FlatStyle.System;
-                butCancel.Size = new Size(197, 35);
-                butCancel.Location = new Point(215, 78);
-                butCancel.Text = LocalData.Cancel;
-                butCancel.Margin = new Padding(3, 3, 12, 12);
+                butCancel = new Button
+                {
+                    FlatStyle = FlatStyle.System,
+                    Size = new Size(197, 35),
+                    Location = new Point(215, 78),
+                    Text = LocalData.Cancel,
+                    Margin = new Padding(3, 3, 12, 12)
+                };
                 butCancel.Click += new EventHandler(EditCategory_ButCancel_Click);
                 this.Controls.Add(butCancel);
 
