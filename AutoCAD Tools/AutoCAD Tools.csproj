@@ -470,4 +470,10 @@ xcopy /y  "$(ProjectDir)$(OutDir)de\AutoCAD Tools.resources.dll" "C:\Programme\A
   <Target Name="AfterBuild">
   </Target>
   -->
+  <Target Name="FixAL1703Warning" BeforeTargets="GenerateSatelliteAssemblies" Condition="'$(PlatformTarget)' == 'x64'">
+    <Message Text="Adjusting SDK tools directory to use x64 version of AL.EXE" />
+    <PropertyGroup>
+      <TargetFrameworkSDKToolsDirectory>$(TargetFrameworkSDKToolsDirectory)$(PlatformTarget)\</TargetFrameworkSDKToolsDirectory>
+    </PropertyGroup>
+  </Target>
 </Project>
