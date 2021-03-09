@@ -19,7 +19,7 @@ namespace AutoCADTools.Tools
         /// The name of the data in the UserData dictionary of the document
         /// </summary>
         public const string DICTIONARY_NAME = "DrawingData";
-        private Document document;
+        private readonly Document document;
 
         private int version;
 

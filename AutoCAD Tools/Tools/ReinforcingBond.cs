@@ -160,7 +160,7 @@ namespace AutoCADTools.Tools
             type = LayerType.TopChord;
         }
 
-        private static ReinforcingBond instance = new ReinforcingBond();
+        private static readonly ReinforcingBond instance = new ReinforcingBond();
 
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace AutoCADTools.Tools
         /// <param name="firstEavePoint">the first eave point</param>
         /// <param name="secondEavePoint">the second eave point</param>
         /// <param name="ridgePoint">the ridge point</param>
-        private void updatePolyline(Polyline poly, Point2d firstEavePoint, Point2d secondEavePoint, Point2d ridgePoint)
+        private void UpdatePolyline(Polyline poly, Point2d firstEavePoint, Point2d secondEavePoint, Point2d ridgePoint)
         {
             Bounds bounds = new Bounds(firstEavePoint, secondEavePoint, ridgePoint, distanceToEave, distanceToRidge);
 
@@ -352,16 +352,20 @@ namespace AutoCADTools.Tools
                 if (!blockTable.Has(BlockName))
                 {
                     // Create the new block
-                    BlockTableRecord newBlock = new BlockTableRecord();
-                    newBlock.Name = BlockName;
+                    BlockTableRecord newBlock = new BlockTableRecord
+                    {
+                        Name = BlockName
+                    };
                     blockTable.UpgradeOpen();
                     blockTable.Add(newBlock);
                     acTrans.AddNewlyCreatedDBObject(newBlock, true);
 
                     // Dummy text for dimensions
-                    MText dummyText = new MText();
-                    dummyText.Annotative = AnnotativeStates.True;
-                    dummyText.Contents = position;
+                    MText dummyText = new MText
+                    {
+                        Annotative = AnnotativeStates.True,
+                        Contents = position
+                    };
                     modelSpace.AppendEntity(dummyText);
                     acTrans.AddNewlyCreatedDBObject(dummyText, true);
 
@@ -488,8 +492,8 @@ namespace AutoCADTools.Tools
                 get { return ridgePoint; }
                 set { ridgePoint = value; }
             }
-            private ReinforcingBond bond;
-            private Polyline poly;
+            private readonly ReinforcingBond bond;
+            private readonly Polyline poly;
 
             /// <summary>
             /// Initiates a new Jig for the given polyline belonging to a reinforcing bond
@@ -544,7 +548,7 @@ namespace AutoCADTools.Tools
             /// <returns>true if everything is okay</returns>
             protected override bool Update()
             {
-                bond.updatePolyline(poly, firstEavePoint, secondEavePoint, ridgePoint.Convert2d(plane));
+                bond.UpdatePolyline(poly, firstEavePoint, secondEavePoint, ridgePoint.Convert2d(plane));
 
                 // Return that everything is fine
                 return true;

@@ -28,9 +28,11 @@ namespace AutoCADTools.Tools
             using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
             {
                 // Get width from user
-                PromptIntegerOptions intOpts = new PromptIntegerOptions(Environment.NewLine + LocalData.CompressionWoodWidth);
-                intOpts.UseDefaultValue = true;
-                intOpts.DefaultValue = WIDTH;
+                PromptIntegerOptions intOpts = new PromptIntegerOptions(Environment.NewLine + LocalData.CompressionWoodWidth)
+                {
+                    UseDefaultValue = true,
+                    DefaultValue = WIDTH
+                };
                 var widthResult = acDoc.Editor.GetInteger(intOpts);
                 if (widthResult.Status != PromptStatus.OK)
                 {
@@ -51,9 +53,11 @@ namespace AutoCADTools.Tools
                 HEIGHT = heightResult.Value;
 
                 // Get angle from user
-                PromptAngleOptions angleOpts = new PromptAngleOptions(Environment.NewLine + LocalData.CompressionWoodAngle);
-                angleOpts.UseDefaultValue = true;
-                angleOpts.DefaultValue = 0.0;
+                PromptAngleOptions angleOpts = new PromptAngleOptions(Environment.NewLine + LocalData.CompressionWoodAngle)
+                {
+                    UseDefaultValue = true,
+                    DefaultValue = 0.0
+                };
                 var angleResult = acDoc.Editor.GetAngle(angleOpts);
                 if (angleResult.Status != PromptStatus.OK)
                 {

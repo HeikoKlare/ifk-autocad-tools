@@ -10,17 +10,20 @@ namespace AutoCADTools.Tools
     /// </summary>
     public static class TextFrame
     {
-        private static double Margin = 0.003;
+        private static readonly double Margin = 0.003;
+
         /// <summary>
         /// Executes the command by letting the user select a text and create the border around it.
         /// </summary>
         public static void Execute()
         {
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-                        
-            PromptSelectionOptions opts = new PromptSelectionOptions();
-            opts.MessageForAdding = LocalData.TextBorderSelectPrompt;
-            opts.SingleOnly = true;
+
+            PromptSelectionOptions opts = new PromptSelectionOptions
+            {
+                MessageForAdding = LocalData.TextBorderSelectPrompt,
+                SingleOnly = true
+            };
 
             ObjectId id = ObjectId.Null;
 

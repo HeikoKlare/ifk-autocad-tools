@@ -27,33 +27,28 @@ namespace AutoCADTools.Tools
         public static void Execute()
         {
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            
-            double width;
-            double length;
-            double wallThickness;
-            double eaveOverhang;
-            double vergeOverhang;
-            if (!GetValue(acDoc.Editor, LocalData.GroundPlanLengthPrompt, savedLength, out length))
+
+            if (!GetValue(acDoc.Editor, LocalData.GroundPlanLengthPrompt, savedLength, out double length))
             {
                 return;
             }
             savedLength = length;
-            if (!GetValue(acDoc.Editor, LocalData.GroundPlanWidthPrompt, savedWidth, out width))
+            if (!GetValue(acDoc.Editor, LocalData.GroundPlanWidthPrompt, savedWidth, out double width))
             {
                 return;
             }
             savedWidth = width;
-            if (!GetValue(acDoc.Editor, LocalData.GroundPlanWallThicknessPrompt, savedWallThickness, out wallThickness))
+            if (!GetValue(acDoc.Editor, LocalData.GroundPlanWallThicknessPrompt, savedWallThickness, out double wallThickness))
             {
                 return;
             }
             savedWallThickness = wallThickness;
-            if (!GetValue(acDoc.Editor, LocalData.GroundPlanEaveOverhangPrompt, savedEaveOverhang, out eaveOverhang))
+            if (!GetValue(acDoc.Editor, LocalData.GroundPlanEaveOverhangPrompt, savedEaveOverhang, out double eaveOverhang))
             {
                 return;
             }
             savedEaveOverhang = eaveOverhang;
-            if (!GetValue(acDoc.Editor, LocalData.GroundPlanVergeOverhangPrompt, savedVergeOverhang, out vergeOverhang))
+            if (!GetValue(acDoc.Editor, LocalData.GroundPlanVergeOverhangPrompt, savedVergeOverhang, out double vergeOverhang))
             {
                 return;
             }
@@ -171,9 +166,11 @@ namespace AutoCADTools.Tools
 
         private static bool GetValue(Editor ed, string prompt, double defaultValue, out double result)
         {
-            PromptDoubleOptions opts = new PromptDoubleOptions(Environment.NewLine + prompt);
-            opts.UseDefaultValue = true;
-            opts.DefaultValue = defaultValue;
+            PromptDoubleOptions opts = new PromptDoubleOptions(Environment.NewLine + prompt)
+            {
+                UseDefaultValue = true,
+                DefaultValue = defaultValue
+            };
             PromptDoubleResult res = ed.GetDouble(opts);
             result = res.Value;
             return res.Status == PromptStatus.OK;

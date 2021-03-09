@@ -60,7 +60,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="layer">the layer to check</param>
         /// <param name="activated">true if it shell be imported, false if not</param>
-        public void setLayerChecked(Layer layer, bool activated)
+        public void SetLayerChecked(Layer layer, bool activated)
         {
             layersChecked[layer] = activated;
         }
@@ -69,7 +69,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="layer">the layer to check</param>
         /// <returns>true if the layer is checked for import, false if not</returns>
-        public bool isLayerChecked(Layer layer)
+        public bool IsLayerChecked(Layer layer)
         {
             return layersChecked[layer];
         }
@@ -93,12 +93,12 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="layer">the layer to return the name for</param>
         /// <returns>the name of the resulting layer</returns>
-        private string getNewLayerName(Layer layer)
+        private string GetNewLayerName(Layer layer)
         {
             return layerPrefix + " - " + newLayerNameMap[layer];
         }
 
-        private string dummyBlockName = "TrussPreventFromDuplicateBlockName";
+        private const string dummyBlockName = "TrussPreventFromDuplicateBlockName";
 
         #endregion
 
@@ -118,42 +118,48 @@ namespace AutoCADTools.Tools
         /// </summary>
         private void InitialiseLayerChecks()
         {
-            layersChecked = new Dictionary<Layer, bool>();
-            layersChecked[Layer.Bearings] = true;
-            layersChecked[Layer.Bracings] = true;
-            layersChecked[Layer.Dimensions] = false;
-            layersChecked[Layer.Member] = true;
-            layersChecked[Layer.Plates] = false;
+            layersChecked = new Dictionary<Layer, bool>
+            {
+                [Layer.Bearings] = true,
+                [Layer.Bracings] = true,
+                [Layer.Dimensions] = false,
+                [Layer.Member] = true,
+                [Layer.Plates] = false
+            };
         }
 
         /// <summary>
         /// Initialises the layer names
         /// </summary>
         private void InitialiseLayerNames() {
-            originalLayerNameMap = new Dictionary<string, Layer>();
-            // TrussCon Layers
-            originalLayerNameMap.Add("QUERSCHNITTE", Layer.Member);
-            originalLayerNameMap.Add("AUSSTEIFUNG", Layer.Bracings);
-            originalLayerNameMap.Add("AUFLAGER", Layer.Bearings);
-            originalLayerNameMap.Add("MAßLINIEN", Layer.Dimensions);
-            originalLayerNameMap.Add("PLATTE", Layer.Plates);
-            // MiTek Layers
-            originalLayerNameMap.Add("MEMBERS", Layer.Member);
-            originalLayerNameMap.Add("WEB_BRACING", Layer.Bracings);
-            originalLayerNameMap.Add("BEARINGS", Layer.Bearings);
-            originalLayerNameMap.Add("DIMENSIONS", Layer.Dimensions);
-            originalLayerNameMap.Add("PLATES", Layer.Plates);
+            originalLayerNameMap = new Dictionary<string, Layer>
+            {
+                // TrussCon Layers
+                { "QUERSCHNITTE", Layer.Member },
+                { "AUSSTEIFUNG", Layer.Bracings },
+                { "AUFLAGER", Layer.Bearings },
+                { "MAßLINIEN", Layer.Dimensions },
+                { "PLATTE", Layer.Plates },
+                // MiTek Layers
+                { "MEMBERS", Layer.Member },
+                { "WEB_BRACING", Layer.Bracings },
+                { "BEARINGS", Layer.Bearings },
+                { "DIMENSIONS", Layer.Dimensions },
+                { "PLATES", Layer.Plates }
+            };
 
             // New Layer names
-            newLayerNameMap = new Dictionary<Layer, string>();
-            newLayerNameMap[Layer.Bearings] = LocalData.TrussImportSuffixBearings;
-            newLayerNameMap[Layer.Bracings] = LocalData.TrussImportSuffixBracings;
-            newLayerNameMap[Layer.Dimensions] = LocalData.TrussImportSuffixDimensions;
-            newLayerNameMap[Layer.Member] = LocalData.TrussImportSuffixMembers;
-            newLayerNameMap[Layer.Plates] = LocalData.TrussImportSuffixPlates;
+            newLayerNameMap = new Dictionary<Layer, string>
+            {
+                [Layer.Bearings] = LocalData.TrussImportSuffixBearings,
+                [Layer.Bracings] = LocalData.TrussImportSuffixBracings,
+                [Layer.Dimensions] = LocalData.TrussImportSuffixDimensions,
+                [Layer.Member] = LocalData.TrussImportSuffixMembers,
+                [Layer.Plates] = LocalData.TrussImportSuffixPlates
+            };
         }
 
-        private static TrussImport instance = new TrussImport();
+        private static readonly TrussImport instance = new TrussImport();
         /// <summary>
         /// Returns the singleton instance for this class.
         /// </summary>
@@ -235,7 +241,7 @@ namespace AutoCADTools.Tools
                             // Look if entity is on a layer that shell be copied
                             if (originalLayerNameMap.ContainsKey(ent.Layer) && layersChecked[originalLayerNameMap[ent.Layer]])
                             {
-                                string newLayerName = getNewLayerName(originalLayerNameMap[ent.Layer]);
+                                string newLayerName = GetNewLayerName(originalLayerNameMap[ent.Layer]);
                                 if (!acLyrTbl.Has(newLayerName))
                                 {
                                     // Create the new layer

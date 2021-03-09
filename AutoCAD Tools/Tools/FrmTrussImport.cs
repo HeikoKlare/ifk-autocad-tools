@@ -48,11 +48,11 @@ namespace AutoCADTools.Tools
                     break;
             }
 
-            chkBearings.Checked = trussImport.isLayerChecked(Layer.Bearings);
-            chkBracings.Checked = trussImport.isLayerChecked(Layer.Bracings);
-            chkMember.Checked = trussImport.isLayerChecked(Layer.Member);
-            chkDimensions.Checked = trussImport.isLayerChecked(Layer.Dimensions);
-            chkPlates.Checked = trussImport.isLayerChecked(Layer.Plates);
+            chkBearings.Checked = trussImport.IsLayerChecked(Layer.Bearings);
+            chkBracings.Checked = trussImport.IsLayerChecked(Layer.Bracings);
+            chkMember.Checked = trussImport.IsLayerChecked(Layer.Member);
+            chkDimensions.Checked = trussImport.IsLayerChecked(Layer.Dimensions);
+            chkPlates.Checked = trussImport.IsLayerChecked(Layer.Plates);
         }
 
         #endregion
@@ -124,11 +124,11 @@ namespace AutoCADTools.Tools
 
         private void LayerChecked_CheckedChanged(object sender, EventArgs e)
         {
-            trussImport.setLayerChecked(Layer.Member, chkMember.Checked);
-            trussImport.setLayerChecked(Layer.Bearings, chkBearings.Checked);
-            trussImport.setLayerChecked(Layer.Bracings, chkBracings.Checked);
-            trussImport.setLayerChecked(Layer.Dimensions, chkDimensions.Checked);
-            trussImport.setLayerChecked(Layer.Plates, chkPlates.Checked);
+            trussImport.SetLayerChecked(Layer.Member, chkMember.Checked);
+            trussImport.SetLayerChecked(Layer.Bearings, chkBearings.Checked);
+            trussImport.SetLayerChecked(Layer.Bracings, chkBracings.Checked);
+            trussImport.SetLayerChecked(Layer.Dimensions, chkDimensions.Checked);
+            trussImport.SetLayerChecked(Layer.Plates, chkPlates.Checked);
         }
 
 

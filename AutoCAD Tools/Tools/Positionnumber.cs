@@ -24,9 +24,11 @@ namespace AutoCADTools.Tools
 
             using (Transaction acTrans = acDoc.TransactionManager.StartTransaction())
             {
-                PromptStringOptions numberOpts = new PromptStringOptions(Environment.NewLine + LocalData.PositionnumberPrompt);
-                numberOpts.UseDefaultValue = true;
-                numberOpts.DefaultValue = DefaultPosition;
+                PromptStringOptions numberOpts = new PromptStringOptions(Environment.NewLine + LocalData.PositionnumberPrompt)
+                {
+                    UseDefaultValue = true,
+                    DefaultValue = DefaultPosition
+                };
                 PromptResult positionResult = acDoc.Editor.GetString(numberOpts);
                 if (positionResult.Status != PromptStatus.OK || String.IsNullOrEmpty(positionResult.StringResult))
                 {
@@ -37,11 +39,13 @@ namespace AutoCADTools.Tools
                 BlockTable acBlkTbl = acTrans.GetObject(acDoc.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
                 BlockTableRecord acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
 
-                MText text = new MText();
-                text.Annotative = AnnotativeStates.True;
-                text.Attachment = AttachmentPoint.MiddleCenter;
-                text.Contents = positionResult.StringResult;
-                text.Location = Point3d.Origin;
+                MText text = new MText
+                {
+                    Annotative = AnnotativeStates.True,
+                    Attachment = AttachmentPoint.MiddleCenter,
+                    Contents = positionResult.StringResult,
+                    Location = Point3d.Origin
+                };
                 text.Width = text.ActualWidth;
                 acBlkTblRec.AppendEntity(text);
 
@@ -49,9 +53,11 @@ namespace AutoCADTools.Tools
                 Circle circle = new Circle(Point3d.Origin, new Vector3d(0, 0, 1), radius);
                 acBlkTblRec.AppendEntity(circle);
 
-                List<Entity> entities = new List<Entity>();
-                entities.Add(text);
-                entities.Add(circle);
+                List<Entity> entities = new List<Entity>
+                {
+                    text,
+                    circle
+                };
                 EntitiesJig jig = new EntitiesJig(entities, Point3d.Origin, LocalData.InsertionPoint);
 
                 PromptResult dragResult = acDoc.Editor.Drag(jig);

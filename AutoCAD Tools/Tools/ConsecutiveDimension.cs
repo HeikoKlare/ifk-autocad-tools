@@ -106,11 +106,13 @@ namespace AutoCADTools.Tools
                 object oldAutoSnap = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("AUTOSNAP");
                 bool oldOrtho = acDoc.Database.Orthomode;
                 acDoc.Database.Orthomode = true;
-                
+
                 // Let the user select the insertion point
-                PromptPointOptions pointOpts = new PromptPointOptions(Environment.NewLine + LocalData.DimensionInsertionPoint);
-                pointOpts.UseBasePoint = true;
-                pointOpts.BasePoint = referencePoint.Value;
+                PromptPointOptions pointOpts = new PromptPointOptions(Environment.NewLine + LocalData.DimensionInsertionPoint)
+                {
+                    UseBasePoint = true,
+                    BasePoint = referencePoint.Value
+                };
                 PromptPointResult insertionPoint = acDoc.Editor.GetPoint(pointOpts);
                 Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("AUTOSNAP", oldAutoSnap);
                 if (insertionPoint.Status != PromptStatus.OK)
@@ -122,11 +124,13 @@ namespace AutoCADTools.Tools
                 //var insertionPointString = insertionPoint.Value.X + "," + insertionPoint.Value.Y + "," + insertionPoint.Value.Z;
 
                 // Let the user define the number of decimal places
-                PromptIntegerOptions intOpts = new PromptIntegerOptions(Environment.NewLine + LocalData.DimensionDecimalPlaces);
-                intOpts.DefaultValue = 2;
-                intOpts.LowerLimit = 1;
-                intOpts.UpperLimit = 4;
-                intOpts.UseDefaultValue = true;
+                PromptIntegerOptions intOpts = new PromptIntegerOptions(Environment.NewLine + LocalData.DimensionDecimalPlaces)
+                {
+                    DefaultValue = 2,
+                    LowerLimit = 1,
+                    UpperLimit = 4,
+                    UseDefaultValue = true
+                };
                 PromptIntegerResult decimalPlaces = acDoc.Editor.GetInteger(intOpts);
                 if (decimalPlaces.Status != PromptStatus.OK) 
                 {
