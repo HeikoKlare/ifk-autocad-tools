@@ -341,7 +341,7 @@ namespace AutoCADTools.PrintLayout
             if (!chkExactExtract.Checked && currentPaperformat != null)
             {
                 var paperformat = currentPaperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked);
-                int formatIndex = cboPaperformat.FindStringExact(paperformat.Name);
+                int formatIndex = paperformat != null ? cboPaperformat.FindStringExact(paperformat.Name) : -1;
                 if (formatIndex != -1)
                 {
                     cboPaperformat.SelectedIndex = formatIndex;

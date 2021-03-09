@@ -179,7 +179,9 @@ namespace AutoCADTools.PrintLayout
         /// <returns><c>true</c> if the printer paperformat fits the specified paperformat, <c>false</c> otherwise</returns>
         public static bool IsFormatFitting(PrinterPaperformat printerformat, Paperformat paperformat)
         {
+            if (printerformat == null || paperformat == null) return false;
             var fittingFormat = paperformat.GetFittingPaperformat(printerformat.Printer, false);
+            if (fittingFormat == null) return false;
             char fittingFormatChar = fittingFormat.Name[fittingFormat.Name.Length - 1];
             char currentFormatChar = printerformat.Name[printerformat.Name.Length - 1];
             return char.IsDigit(fittingFormatChar) && char.IsDigit(currentFormatChar) && int.Parse(fittingFormatChar.ToString()) >= int.Parse(currentFormatChar.ToString());
