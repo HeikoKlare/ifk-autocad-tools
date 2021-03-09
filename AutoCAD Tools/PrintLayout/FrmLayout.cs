@@ -19,7 +19,7 @@ namespace AutoCADTools.PrintLayout
         #region Fields
 
         // Instance fields
-        private bool oldTextfieldUsed;
+        private readonly bool oldTextfieldUsed;
         private Document document;
 
         // State fields

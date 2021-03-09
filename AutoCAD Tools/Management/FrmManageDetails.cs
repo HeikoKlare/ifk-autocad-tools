@@ -448,7 +448,7 @@ namespace AutoCADTools.Management
             if (lvwDetails.SelectedIndices.Count > 0)
             {
                 using (EditCategory editForm = new EditCategory(detailsTable, detailCategoriesTable,
-                    lvwDetails.SelectedIndices[0], cboDetailCategories.SelectedIndex))
+                    lvwDetails.SelectedIndices[0]))
                 {
                     Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(editForm);
                 }
@@ -491,24 +491,20 @@ namespace AutoCADTools.Management
         /// </summary>
         private class EditCategory : Form
         {
-            Database.DetailsDataTable detailsTable;
-            Database.DetailCategoriesDataTable detailCategoriesTable;
+            readonly Database.DetailsDataTable detailsTable;
 
-            TextBox txtName;
-            ComboBox cboEdit;
-            Button butOk;
-            Button butCancel;
-            int selectedIndex;
-            int selectedCategory;
+            readonly TextBox txtName;
+            readonly ComboBox cboEdit;
+            readonly Button butOk;
+            readonly Button butCancel;
+            readonly int selectedIndex;
 
             public EditCategory(Database.DetailsDataTable detailsTable,
                 Database.DetailCategoriesDataTable detailCategoriesTable,
-                int selectedDetail, int selectedCategory)
+                int selectedDetail)
             {
                 this.detailsTable = detailsTable;
-                this.detailCategoriesTable = detailCategoriesTable;
                 this.selectedIndex = selectedDetail;
-                this.selectedCategory = selectedCategory;
 
                 this.StartPosition = FormStartPosition.CenterParent;
                 this.Size = new Size(300, 150);
