@@ -22,7 +22,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The threshold for increasing the size to the next fold size
         /// </summary>
-        private static double foldThreshold = 20.0;
+        private const double foldThreshold = 20.0;
 
         /// <summary>
         /// The fold sizes in each dimension. After the specified value the paper is folded.

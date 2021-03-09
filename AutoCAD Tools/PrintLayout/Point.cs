@@ -9,7 +9,7 @@ namespace AutoCADTools.PrintLayout
     {
         #region Fields
 
-        private double x;
+        private readonly double x;
         /// <summary>
         /// The x value of the point.
         /// </summary>
@@ -21,7 +21,7 @@ namespace AutoCADTools.PrintLayout
             get { return x; }
         }
 
-        private double y;
+        private readonly double y;
         /// <summary>
         /// The y value of the point.
         /// </summary>
@@ -33,7 +33,7 @@ namespace AutoCADTools.PrintLayout
             get { return y; }
         }
 
-        private static Point origin = new Point(0, 0);
+        private static readonly Point origin = new Point(0, 0);
         /// <summary>
         /// The origin (0, 0).
         /// </summary>
@@ -137,8 +137,8 @@ namespace AutoCADTools.PrintLayout
         /// </returns>
         public static bool operator ==(Point left, Point right)
         {
-            if (Object.ReferenceEquals(left, null))
-                return Object.ReferenceEquals(right, null);
+            if (left is null)
+                return right is null;
             return left.Equals(right);
         }
 

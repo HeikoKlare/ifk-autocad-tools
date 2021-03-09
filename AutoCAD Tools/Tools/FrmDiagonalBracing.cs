@@ -520,7 +520,6 @@ namespace AutoCADTools.Tools
             /// A method for running the jig until all inputs are done.
             /// </summary>
             /// <param name="ed">the editor used</param>
-            /// <param name="tr">the transaction to work in</param>
             /// <returns></returns>
             internal bool RunTillComplete(Editor ed)
             {

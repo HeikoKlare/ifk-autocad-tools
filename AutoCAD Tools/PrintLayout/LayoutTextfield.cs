@@ -12,7 +12,7 @@ namespace AutoCADTools.PrintLayout
     {
         #region Attributes
 
-        private PaperformatTextfield paperformat;
+        private readonly PaperformatTextfield paperformat;
         /// <summary>
         /// Gets the paperformat specified in the constructor.
         /// </summary>
@@ -61,8 +61,10 @@ namespace AutoCADTools.PrintLayout
                 }
 
                 // Create polyline and add the vertices
-                Polyline pBorder = new Polyline();
-                pBorder.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
+                Polyline pBorder = new Polyline
+                {
+                    Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black)
+                };
 
                 pBorder.AddVertexAt(pBorder.NumberOfVertices,
                     new Point2d(paperformat.BorderBasePoint.X / DrawingUnit - margin.Width,
@@ -84,9 +86,11 @@ namespace AutoCADTools.PrintLayout
                 pBorder.Dispose();
 
                 // Create a line for the nippel and set start- and endpoint depending on format
-                Line halfSizeMark = new Line();
-                halfSizeMark.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
-                halfSizeMark.LayerId = Document.Database.LayerZero;
+                Line halfSizeMark = new Line
+                {
+                    Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black),
+                    LayerId = Document.Database.LayerZero
+                };
 
                 if (paperformat is PaperformatTextfieldA4)
                 {
@@ -126,9 +130,11 @@ namespace AutoCADTools.PrintLayout
                 // Create a new BlockReference of the right textfield and get the record of the block
                 BlockTableRecord textfieldBlock = trans.GetObject(blockTable[paperformat.TextfieldBlockName], OpenMode.ForRead) as BlockTableRecord;
                 BlockReference textfield = new BlockReference(new Point3d(paperformat.TextfieldBasePoint.X / DrawingUnit - margin.Width,
-                    paperformat.TextfieldBasePoint.Y / DrawingUnit - margin.Height, 0), blockTable[paperformat.TextfieldBlockName]);
-                textfield.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
-                textfield.LayerId = Document.Database.LayerZero;
+                    paperformat.TextfieldBasePoint.Y / DrawingUnit - margin.Height, 0), blockTable[paperformat.TextfieldBlockName])
+                {
+                    Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black),
+                    LayerId = Document.Database.LayerZero
+                };
 
                 // Set right scalefactor (should be 0.01)
                 textfield.ScaleFactors = new Scale3d(textfield.UnitFactor);

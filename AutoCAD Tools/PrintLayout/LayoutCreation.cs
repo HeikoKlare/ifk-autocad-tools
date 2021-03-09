@@ -33,7 +33,7 @@ namespace AutoCADTools.PrintLayout
 
         #region Attributes
 
-        private Paperformat paperformat;
+        private readonly Paperformat paperformat;
         /// <summary>
         /// Gets the paperformat specified in the constructor.
         /// </summary>
@@ -115,7 +115,7 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         protected bool rotateViewport;
 
-        private Document document;
+        private readonly Document document;
         /// <summary>
         /// Gets the document the layout is created in.
         /// </summary>
@@ -241,9 +241,11 @@ namespace AutoCADTools.PrintLayout
                         margin = margin.Rotate();
                     }
 
-                    Viewport PVport = new Viewport();
-                    PVport.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
-                    PVport.LayerId = document.Database.LayerZero;
+                    Viewport PVport = new Viewport
+                    {
+                        Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black),
+                        LayerId = document.Database.LayerZero
+                    };
                     layoutRecord.AppendEntity(PVport);
                     trans.AddNewlyCreatedDBObject(PVport, true);
 
@@ -374,9 +376,11 @@ namespace AutoCADTools.PrintLayout
         /// <returns>The created polyline.</returns>
         private Polyline CreateViewportPolyline(Size margin)
         {
-            Polyline viewport = new Polyline();
-            viewport.Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black);
-            viewport.LayerId = document.Database.LayerZero;
+            Polyline viewport = new Polyline
+            {
+                Color = Autodesk.AutoCAD.Colors.Color.FromColor(Color.Black),
+                LayerId = document.Database.LayerZero
+            };
 
             // Set the vertices of the viewport poly
             viewport.AddVertexAt(viewport.NumberOfVertices,

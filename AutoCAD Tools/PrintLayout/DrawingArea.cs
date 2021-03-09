@@ -66,7 +66,7 @@ namespace AutoCADTools.PrintLayout
             set { scale = value; }
         }
 
-        private Document document;
+        private readonly Document document;
 
         /// <summary>
         /// The document this drawing area belongs to
@@ -109,7 +109,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The id of this drawing area, unique per document
         /// </summary>
-        private int id;
+        private readonly int id;
 
         /// <summary>
         /// The Name of this drawing area, concatenated from a generic name and the id
@@ -327,8 +327,8 @@ namespace AutoCADTools.PrintLayout
             double scale = 1.0;
             using (document.LockDocument())
             {
-                var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-                if (drawingData == null) {
+                if (!(document.UserData[DrawingData.DICTIONARY_NAME] is DrawingData drawingData))
+                {
                     drawingData = DrawingData.Create(document);
                 }
                 scale = document.Database.Cannoscale.PaperUnits / document.Database.Cannoscale.DrawingUnits *
@@ -623,7 +623,7 @@ namespace AutoCADTools.PrintLayout
 
         class DrawingAreaInsertionJig : EntityJig
         {
-            private DrawingArea drawingArea;
+            private readonly DrawingArea drawingArea;
             private Point3d insertionPoint;
 
             public DrawingAreaInsertionJig(BlockReference br, DrawingArea drawingArea)
@@ -668,10 +668,10 @@ namespace AutoCADTools.PrintLayout
 
         class DrawingAreaModificationJig : EntityJig
         {
-            private DrawingArea drawingArea;
+            private readonly DrawingArea drawingArea;
             private Point3d insertionPoint;
             private Point3d targetPoint;
-            private BlockReference reference;
+            private readonly BlockReference reference;
             public DrawingAreaModificationJig(BlockReference br, DrawingArea drawingArea)
                 : base(br)
             {
