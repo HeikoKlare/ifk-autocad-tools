@@ -78,7 +78,7 @@ namespace AutoCADTools.PrintLayout
 
         #region Actions
 
-        private void butDefineExtract_Click(object sender, EventArgs e)
+        private void ButDefineExtract_Click(object sender, EventArgs e)
         {
             var interact = document.Editor.StartUserInteraction(this.Handle);
 
@@ -132,7 +132,7 @@ namespace AutoCADTools.PrintLayout
             SelectDefaultPrinter();
         }
 
-        private void butCreate_Click(object sender, EventArgs e)
+        private void ButCreate_Click(object sender, EventArgs e)
         {
             ValidateCreationAvailable();
             if (!butCreate.Enabled) return;
@@ -455,28 +455,28 @@ namespace AutoCADTools.PrintLayout
         
         #region Handler
 
-        private void txtLayoutName_Validating(object sender, CancelEventArgs e)
+        private void TxtLayoutName_Validating(object sender, CancelEventArgs e)
         {
             ValidateLayoutName();
         }
 
-        private void cboScale_Validating(object sender, CancelEventArgs e)
+        private void CboScale_Validating(object sender, CancelEventArgs e)
         {
             ValidateScale();
             UpdateSelectedPaperformat();
         }
 
-        private void updDrawingUnit_ValueChanged(object sender, EventArgs e)
+        private void UpdDrawingUnit_ValueChanged(object sender, EventArgs e)
         {
             UpdateSelectedPaperformat();
         }
 
-        private void cboPrinter_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboPrinter_SelectedIndexChanged(object sender, EventArgs e)
         {
             PrinterChanged();
         }
         
-        private void cboPaperformat_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboPaperformat_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSelectedPaperformat();
             UpdatePaperOrientations();
@@ -489,7 +489,7 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
-        private void chkOptimizedPaperformats_CheckedChanged(object sender, EventArgs e)
+        private void ChkOptimizedPaperformats_CheckedChanged(object sender, EventArgs e)
         {
             PrinterChanged();
             if (chkExactExtract.Checked && currentPaperformat != null)
@@ -506,7 +506,7 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
-        private void chkExactExtract_CheckedChanged(object sender, EventArgs e)
+        private void ChkExactExtract_CheckedChanged(object sender, EventArgs e)
         {
             cboScale.Enabled = !chkExactExtract.Checked;
             updDrawingUnit.Enabled = !chkExactExtract.Checked;
@@ -515,20 +515,20 @@ namespace AutoCADTools.PrintLayout
             UpdatePaperOrientations();
         }
 
-        private void chkTextfield_CheckedChanged(object sender, EventArgs e)
+        private void ChkTextfield_CheckedChanged(object sender, EventArgs e)
         {
             UpdateSelectedPaperformat();
             UpdatePaperOrientations();
             SelectOptimalPaperformat();
         }
 
-        private void chkUseDrawingArea_CheckedChanged(object sender, EventArgs e)
+        private void ChkUseDrawingArea_CheckedChanged(object sender, EventArgs e)
         {
             if (!chkUseDrawingArea.Checked) chkUseDrawingArea.Checked = true;
             if (chkUseDrawingArea.Checked) SelectDefaultPrinter();
         }
 
-        private void cboScale_KeyPress(object sender, KeyPressEventArgs e)
+        private void CboScale_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }

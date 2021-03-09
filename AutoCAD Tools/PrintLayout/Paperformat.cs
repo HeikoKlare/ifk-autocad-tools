@@ -67,7 +67,7 @@ namespace AutoCADTools.PrintLayout
         {
             get;
         }
-        
+
         /// <summary>
         /// Gets the default printer for this paperformat.
         /// </summary>

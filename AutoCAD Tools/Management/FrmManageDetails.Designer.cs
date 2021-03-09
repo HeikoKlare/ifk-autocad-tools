@@ -62,21 +62,21 @@
             resources.ApplyResources(this.cboDetailCategories, "cboDetailCategories");
             this.cboDetailCategories.FormattingEnabled = true;
             this.cboDetailCategories.Name = "cboDetailCategories";
-            this.cboDetailCategories.SelectedIndexChanged += new System.EventHandler(this.cboAnnotationCategories_SelectedIndexChanged);
+            this.cboDetailCategories.SelectedIndexChanged += new System.EventHandler(this.CboAnnotationCategories_SelectedIndexChanged);
             // 
             // butRemove
             // 
             resources.ApplyResources(this.butRemove, "butRemove");
             this.butRemove.Name = "butRemove";
             this.butRemove.UseVisualStyleBackColor = true;
-            this.butRemove.Click += new System.EventHandler(this.butRemove_Click);
+            this.butRemove.Click += new System.EventHandler(this.ButRemove_Click);
             // 
             // butAdd
             // 
             resources.ApplyResources(this.butAdd, "butAdd");
             this.butAdd.Name = "butAdd";
             this.butAdd.UseVisualStyleBackColor = true;
-            this.butAdd.Click += new System.EventHandler(this.butAdd_Click);
+            this.butAdd.Click += new System.EventHandler(this.ButAdd_Click);
             // 
             // errorProvider
             // 
@@ -89,7 +89,7 @@
             resources.ApplyResources(this.butEditCategories, "butEditCategories");
             this.butEditCategories.Name = "butEditCategories";
             this.butEditCategories.UseVisualStyleBackColor = true;
-            this.butEditCategories.Click += new System.EventHandler(this.butEditCategories_Click);
+            this.butEditCategories.Click += new System.EventHandler(this.ButEditCategories_Click);
             // 
             // lvwDetails
             // 
@@ -100,7 +100,7 @@
             this.lvwDetails.Name = "lvwDetails";
             this.lvwDetails.UseCompatibleStateImageBehavior = false;
             this.lvwDetails.View = System.Windows.Forms.View.Details;
-            this.lvwDetails.SelectedIndexChanged += new System.EventHandler(this.lvwDetails_SelectedIndexChanged);
+            this.lvwDetails.SelectedIndexChanged += new System.EventHandler(this.LvwDetails_SelectedIndexChanged);
             // 
             // picPng
             // 
@@ -108,14 +108,14 @@
             this.picPng.BackColor = System.Drawing.Color.OldLace;
             this.picPng.Name = "picPng";
             this.picPng.TabStop = false;
-            this.picPng.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picPng_MouseClick);
+            this.picPng.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PicPng_MouseClick);
             // 
             // butEdit
             // 
             resources.ApplyResources(this.butEdit, "butEdit");
             this.butEdit.Name = "butEdit";
             this.butEdit.UseVisualStyleBackColor = true;
-            this.butEdit.Click += new System.EventHandler(this.butEdit_Click);
+            this.butEdit.Click += new System.EventHandler(this.ButEdit_Click);
             // 
             // FrmManageDetails
             // 

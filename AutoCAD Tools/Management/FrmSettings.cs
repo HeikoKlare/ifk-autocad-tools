@@ -47,7 +47,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void butSave_Click(object sender, EventArgs e)
+        private void ButSave_Click(object sender, EventArgs e)
         {
             Settings currentSettings = Settings.Default;
 
@@ -74,7 +74,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">using</param>
         /// <param name="e">using</param>
-        private void butCancel_Click(object sender, EventArgs e)
+        private void ButCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

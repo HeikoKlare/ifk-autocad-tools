@@ -86,7 +86,7 @@
             this.chkTextfield.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTextfield.Name = "chkTextfield";
             this.chkTextfield.UseVisualStyleBackColor = true;
-            this.chkTextfield.CheckedChanged += new System.EventHandler(this.chkTextfield_CheckedChanged);
+            this.chkTextfield.CheckedChanged += new System.EventHandler(this.ChkTextfield_CheckedChanged);
             // 
             // optPortrait
             // 
@@ -109,7 +109,7 @@
             resources.ApplyResources(this.cboPaperformat, "cboPaperformat");
             this.cboPaperformat.ForeColor = System.Drawing.SystemColors.WindowText;
             this.cboPaperformat.Name = "cboPaperformat";
-            this.cboPaperformat.SelectedIndexChanged += new System.EventHandler(this.cboPaperformat_SelectedIndexChanged);
+            this.cboPaperformat.SelectedIndexChanged += new System.EventHandler(this.CboPaperformat_SelectedIndexChanged);
             // 
             // lblPaperformat
             // 
@@ -124,7 +124,7 @@
             resources.ApplyResources(this.chkOptimizedPaperformats, "chkOptimizedPaperformats");
             this.chkOptimizedPaperformats.Name = "chkOptimizedPaperformats";
             this.chkOptimizedPaperformats.UseVisualStyleBackColor = true;
-            this.chkOptimizedPaperformats.CheckedChanged += new System.EventHandler(this.chkOptimizedPaperformats_CheckedChanged);
+            this.chkOptimizedPaperformats.CheckedChanged += new System.EventHandler(this.ChkOptimizedPaperformats_CheckedChanged);
             // 
             // grpScale
             // 
@@ -158,14 +158,14 @@
             0,
             0,
             0});
-            this.updDrawingUnit.ValueChanged += new System.EventHandler(this.updDrawingUnit_ValueChanged);
+            this.updDrawingUnit.ValueChanged += new System.EventHandler(this.UpdDrawingUnit_ValueChanged);
             // 
             // chkExactExtract
             // 
             resources.ApplyResources(this.chkExactExtract, "chkExactExtract");
             this.chkExactExtract.Name = "chkExactExtract";
             this.chkExactExtract.UseVisualStyleBackColor = true;
-            this.chkExactExtract.CheckedChanged += new System.EventHandler(this.chkExactExtract_CheckedChanged);
+            this.chkExactExtract.CheckedChanged += new System.EventHandler(this.ChkExactExtract_CheckedChanged);
             // 
             // lblDrawingUnitMm
             // 
@@ -182,8 +182,8 @@
             resources.ApplyResources(this.cboScale, "cboScale");
             this.cboScale.FormattingEnabled = true;
             this.cboScale.Name = "cboScale";
-            this.cboScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboScale_KeyPress);
-            this.cboScale.Validating += new System.ComponentModel.CancelEventHandler(this.cboScale_Validating);
+            this.cboScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CboScale_KeyPress);
+            this.cboScale.Validating += new System.ComponentModel.CancelEventHandler(this.CboScale_Validating);
             // 
             // lblScaleText
             // 
@@ -214,13 +214,13 @@
             resources.ApplyResources(this.butDefineExtract, "butDefineExtract");
             this.butDefineExtract.Name = "butDefineExtract";
             this.butDefineExtract.UseVisualStyleBackColor = true;
-            this.butDefineExtract.Click += new System.EventHandler(this.butDefineExtract_Click);
+            this.butDefineExtract.Click += new System.EventHandler(this.ButDefineExtract_Click);
             // 
             // txtLayoutName
             // 
             resources.ApplyResources(this.txtLayoutName, "txtLayoutName");
             this.txtLayoutName.Name = "txtLayoutName";
-            this.txtLayoutName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLayoutName_Validating);
+            this.txtLayoutName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLayoutName_Validating);
             // 
             // cboPrinter
             // 
@@ -228,21 +228,21 @@
             resources.ApplyResources(this.cboPrinter, "cboPrinter");
             this.cboPrinter.FormattingEnabled = true;
             this.cboPrinter.Name = "cboPrinter";
-            this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.cboPrinter_SelectedIndexChanged);
+            this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.CboPrinter_SelectedIndexChanged);
             // 
             // butCreate
             // 
             resources.ApplyResources(this.butCreate, "butCreate");
             this.butCreate.Name = "butCreate";
             this.butCreate.UseVisualStyleBackColor = true;
-            this.butCreate.Click += new System.EventHandler(this.butCreate_Click);
+            this.butCreate.Click += new System.EventHandler(this.ButCreate_Click);
             // 
             // chkUseDrawingArea
             // 
             resources.ApplyResources(this.chkUseDrawingArea, "chkUseDrawingArea");
             this.chkUseDrawingArea.Name = "chkUseDrawingArea";
             this.chkUseDrawingArea.UseVisualStyleBackColor = true;
-            this.chkUseDrawingArea.CheckedChanged += new System.EventHandler(this.chkUseDrawingArea_CheckedChanged);
+            this.chkUseDrawingArea.CheckedChanged += new System.EventHandler(this.ChkUseDrawingArea_CheckedChanged);
             // 
             // FrmLayout
             // 

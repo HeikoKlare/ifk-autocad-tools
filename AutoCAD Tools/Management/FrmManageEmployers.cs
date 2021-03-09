@@ -75,7 +75,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butSave_Click(object sender, EventArgs e)
+        private void ButSave_Click(object sender, EventArgs e)
         {
             connection.UpdateEmployers(employersTable);
         }
@@ -85,7 +85,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butDiscard_Click(object sender, EventArgs e)
+        private void ButDiscard_Click(object sender, EventArgs e)
         {
             employersTable.RejectChanges();
         }
@@ -96,7 +96,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butUpdate_Click(object sender, EventArgs e)
+        private void ButUpdate_Click(object sender, EventArgs e)
         {
             if (employersTable.GetChanges() != null &&
                 MessageBox.Show(LocalData.SaveChangesQuestion, LocalData.SaveChangesTitle,
@@ -128,7 +128,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the ssender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void dgdEmployers_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        private void DgdEmployers_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
             MessageBox.Show(LocalData.DataErrorMessage + Environment.NewLine + e.Exception.Message,

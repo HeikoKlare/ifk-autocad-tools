@@ -194,7 +194,7 @@
             resources.ApplyResources(this.butSave, "butSave");
             this.butSave.Name = "butSave";
             this.butSave.UseVisualStyleBackColor = true;
-            this.butSave.Click += new System.EventHandler(this.butSave_Click);
+            this.butSave.Click += new System.EventHandler(this.ButSave_Click);
             // 
             // butCancel
             // 
@@ -202,7 +202,7 @@
             resources.ApplyResources(this.butCancel, "butCancel");
             this.butCancel.Name = "butCancel";
             this.butCancel.UseVisualStyleBackColor = true;
-            this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
+            this.butCancel.Click += new System.EventHandler(this.ButCancel_Click);
             // 
             // errorProvider
             // 

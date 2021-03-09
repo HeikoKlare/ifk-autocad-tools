@@ -42,28 +42,28 @@
             resources.ApplyResources(this.dgdEmployers, "dgdEmployers");
             this.dgdEmployers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgdEmployers.Name = "dgdEmployers";
-            this.dgdEmployers.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgdEmployers_DataError);
+            this.dgdEmployers.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgdEmployers_DataError);
             // 
             // butSave
             // 
             resources.ApplyResources(this.butSave, "butSave");
             this.butSave.Name = "butSave";
             this.butSave.UseVisualStyleBackColor = true;
-            this.butSave.Click += new System.EventHandler(this.butSave_Click);
+            this.butSave.Click += new System.EventHandler(this.ButSave_Click);
             // 
             // butDiscard
             // 
             resources.ApplyResources(this.butDiscard, "butDiscard");
             this.butDiscard.Name = "butDiscard";
             this.butDiscard.UseVisualStyleBackColor = true;
-            this.butDiscard.Click += new System.EventHandler(this.butDiscard_Click);
+            this.butDiscard.Click += new System.EventHandler(this.ButDiscard_Click);
             // 
             // butUpdate
             // 
             resources.ApplyResources(this.butUpdate, "butUpdate");
             this.butUpdate.Name = "butUpdate";
             this.butUpdate.UseVisualStyleBackColor = true;
-            this.butUpdate.Click += new System.EventHandler(this.butUpdate_Click);
+            this.butUpdate.Click += new System.EventHandler(this.ButUpdate_Click);
             // 
             // FrmManageEmployers
             // 

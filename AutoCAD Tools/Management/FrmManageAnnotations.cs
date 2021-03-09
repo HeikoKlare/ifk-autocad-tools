@@ -238,7 +238,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void lvwAnnotations_SelectedIndexChanged(object sender, EventArgs e)
+        private void LvwAnnotations_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwAnnotations.SelectedIndices.Count > 0)
             {
@@ -264,7 +264,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butModify_Click(object sender, EventArgs e)
+        private void ButModify_Click(object sender, EventArgs e)
         {
             // Validate the fields
             if (!this.ValidateFields()) return;
@@ -302,7 +302,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butRemove_Click(object sender, EventArgs e)
+        private void ButRemove_Click(object sender, EventArgs e)
         {
             // Delete the selected row, update data binding and update global database and controls
             state = EditState.input;
@@ -322,7 +322,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butNew_Click(object sender, EventArgs e)
+        private void ButNew_Click(object sender, EventArgs e)
         {
             state = EditState.input;
             ClearFields();
@@ -338,7 +338,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butUseForNew_Click(object sender, EventArgs e)
+        private void ButUseForNew_Click(object sender, EventArgs e)
         {
             state = EditState.input;
             UpdateControlStates();
@@ -353,7 +353,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butEditAnnotationCategories_Click(object sender, EventArgs e)
+        private void ButEditAnnotationCategories_Click(object sender, EventArgs e)
         {
             using (FrmManageAnnotationCategories management = new FrmManageAnnotationCategories())
             {
@@ -367,7 +367,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Annotations_Refresh();
         }
@@ -390,7 +390,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void txtNameContent_Validating(object sender, CancelEventArgs e)
+        private void TxtNameContent_Validating(object sender, CancelEventArgs e)
         {
             this.ValidateFields();
         }
@@ -400,13 +400,13 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void txtName_TextChanged(object sender, EventArgs e)
+        private void TxtName_TextChanged(object sender, EventArgs e)
         {
             this.ValidateFields();
         }
 
 
-        private void rtfContent_TextChanged(object sender, EventArgs e)
+        private void RtfContent_TextChanged(object sender, EventArgs e)
         {
             int selection = rtfAnnotationContent.SelectionStart;
             rtfAnnotationContent.SelectAll();

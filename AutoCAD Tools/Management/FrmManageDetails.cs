@@ -328,7 +328,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void lvwDetails_SelectedIndexChanged(object sender, EventArgs e)
+        private void LvwDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
             butRemove.Enabled = lvwDetails.SelectedIndices.Count != 0;
             butEdit.Enabled = lvwDetails.SelectedIndices.Count != 0;
@@ -366,7 +366,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butAdd_Click(object sender, EventArgs e)
+        private void ButAdd_Click(object sender, EventArgs e)
         {
             // Validate the fields
             if (!this.ValidateFields()) return;
@@ -380,7 +380,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butRemove_Click(object sender, EventArgs e)
+        private void ButRemove_Click(object sender, EventArgs e)
         {
             // Delete the selected row, update data binding and update global database and controls
             detailsTable.Rows[lvwDetails.SelectedIndices[0]].Delete();
@@ -393,7 +393,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Details_Refresh();
         }
@@ -403,7 +403,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butEditCategories_Click(object sender, EventArgs e)
+        private void ButEditCategories_Click(object sender, EventArgs e)
         {
             using (FrmManageDetailCategories management = new FrmManageDetailCategories())
             {
@@ -417,7 +417,7 @@ namespace AutoCADTools.Management
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void picPng_MouseClick(object sender, MouseEventArgs e)
+        private void PicPng_MouseClick(object sender, MouseEventArgs e)
         {
             if (picPng.Image != null)
             {
@@ -443,7 +443,7 @@ namespace AutoCADTools.Management
             }
         }
 
-        private void butEdit_Click(object sender, EventArgs e)
+        private void ButEdit_Click(object sender, EventArgs e)
         {
             if (lvwDetails.SelectedIndices.Count > 0)
             {
