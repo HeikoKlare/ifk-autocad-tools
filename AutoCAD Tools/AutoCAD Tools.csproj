@@ -203,7 +203,7 @@
     <Compile Include="PrintLayout\PaperformatsTextfield\PaperformatTextfieldFullTextfield.cs" />
     <Compile Include="PrintLayout\Point.cs" />
     <Compile Include="PrintLayout\Printer.cs" />
-    <Compile Include="PrintLayout\PrinterCache.cs" />
+    <Compile Include="PrintLayout\PrinterRepository.cs" />
     <Compile Include="PrintLayout\QuickLayoutCreation.cs" />
     <Compile Include="PrintLayout\Size.cs" />
     <Compile Include="ToolsInitialization.cs" />

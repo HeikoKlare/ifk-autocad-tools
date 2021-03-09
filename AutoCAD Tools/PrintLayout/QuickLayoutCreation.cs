@@ -46,7 +46,7 @@ namespace AutoCADTools.PrintLayout
         public static bool CreatePngLayout()
         {
             var drawingArea = GetDrawingArea();
-            Printer printer = PrinterCache.Instance["PNG"];
+            Printer printer = PrinterRepository.Instance["PNG"];
             if (!drawingArea.IsValid || drawingArea.Format is PaperformatTextfieldCustom || printer == null)
             {
                 return false;

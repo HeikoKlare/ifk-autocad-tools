@@ -15,7 +15,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns>The default printer for the specified paperformat or <c>null</c> if there is none.</returns>
         public static Printer GetDefaultPrinter(PaperformatA4 paperformat)
         {
-            return PrinterCache.Instance[Properties.Settings.Default.DefaultPrinterA4];
+            return PrinterRepository.Instance[Properties.Settings.Default.DefaultPrinterA4];
         }
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns>The default printer for the specified paperformat or <c>null</c> if there is none.</returns>
         public static Printer GetDefaultPrinter(PaperformatA3 paperformat)
         {
-            return PrinterCache.Instance[Properties.Settings.Default.DefaultPrinterA3];
+            return PrinterRepository.Instance[Properties.Settings.Default.DefaultPrinterA3];
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns>The default printer for the specified paperformat or <c>null</c> if there is none.</returns>
         public static Printer GetDefaultPrinter(PaperformatCustom paperformat)
         {
-            return PrinterCache.Instance[Properties.Settings.Default.DefaultPrinterCustom];
+            return PrinterRepository.Instance[Properties.Settings.Default.DefaultPrinterCustom];
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns>The default printer for the specified paperformat or <c>null</c> if there is none.</returns>
         public static Printer GetDefaultPrinter(PaperformatTextfieldA4 paperformat)
         {
-            return PrinterCache.Instance[Properties.Settings.Default.DefaultPrinterA4];
+            return PrinterRepository.Instance[Properties.Settings.Default.DefaultPrinterA4];
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns>The default printer for the specified paperformat or <c>null</c> if there is none.</returns>
         public static Printer GetDefaultPrinter(PaperformatTextfieldA3 paperformat)
         {
-            return PrinterCache.Instance[Properties.Settings.Default.DefaultPrinterA3];
+            return PrinterRepository.Instance[Properties.Settings.Default.DefaultPrinterA3];
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns>The default printer for the specified paperformat or <c>null</c> if there is none.</returns>
         public static Printer GetDefaultPrinter(PaperformatTextfieldCustom paperformat)
         {
-            return PrinterCache.Instance[Properties.Settings.Default.DefaultPrinterCustom];
+            return PrinterRepository.Instance[Properties.Settings.Default.DefaultPrinterCustom];
         }
 
         #endregion

@@ -19,7 +19,6 @@ namespace AutoCADTools.PrintLayout
         #region Fields
 
         // Instance fields
-        private List<string> printerNames;
         private bool oldTextfieldUsed;
         private Document document;
 
@@ -48,11 +47,8 @@ namespace AutoCADTools.PrintLayout
         {
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
 
-            printerNames = Printer.PrinterNamesList;
-            cboPrinter.DataSource = printerNames;
-
+            cboPrinter.DataSource = PrinterRepository.Instance.PrinterNames;
             txtLayoutName.Text = Properties.Settings.Default.DefaultLayoutName;
-
             currentPaperformat = new PaperformatTextfieldA4Vertical(oldTextfieldUsed);
             SelectDefaultPrinter();
 
@@ -273,7 +269,7 @@ namespace AutoCADTools.PrintLayout
         private void PrinterChanged()
         {
             var oldFormat = cboPaperformat.Text;
-            this.selectedPrinter = PrinterCache.Instance[cboPrinter.Text];
+            this.selectedPrinter = PrinterRepository.Instance[cboPrinter.Text];
             this.selectablePaperformats = selectedPrinter.GetPaperformats(chkOptimizedPaperformats.Checked);
             /*cboPaperformat.BeginUpdate();
             cboPaperformat.DataSource = null;
@@ -425,12 +421,9 @@ namespace AutoCADTools.PrintLayout
 
         private void ValidatePaperformatFitting()
         {
-            PrinterPaperformat printerformat = null;
-            foreach (var format in selectablePaperformats)
-            {
-                if (format.Name == cboPaperformat.Text) printerformat = format;
-            }
-            if (!chkExactExtract.Checked && currentPaperformat != null && !PaperformatPrinterMapping.IsFormatFitting(printerformat, currentPaperformat))
+            var matchingPaperformats = selectablePaperformats.Where(format => format.Name == cboPaperformat.Text);
+            PrinterPaperformat printerformat = matchingPaperformats.Any() ? matchingPaperformats.First() : null;
+            if (!chkExactExtract.Checked && !PaperformatPrinterMapping.IsFormatFitting(printerformat, currentPaperformat))
             {
                 errorProvider.SetError(cboPaperformat, LocalData.PaperformatNotFitting);
             }

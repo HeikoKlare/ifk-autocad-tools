@@ -1,6 +1,8 @@
 ﻿using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.PlottingServices;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AutoCADTools.PrintLayout
@@ -10,7 +12,8 @@ namespace AutoCADTools.PrintLayout
     /// </summary>
     public class Printer
     {
-        private String name;
+        private readonly IEnumerable<string> ordinaryPaperFormats = new List<string>() { "A0", "A1", "A2", "A3", "A4" };
+        private readonly Dictionary<string, string> ordinaryPaperFormatsToPng = new Dictionary<string, string> { { "A4", "UserDefinedRaster (2100.00 x 2970.00Pixel)" }, { "A3", "UserDefinedRaster (2970.00 x 4200.00Pixel)" } };
 
         /// <summary>
         /// Gets the name of the printer.
@@ -18,14 +21,10 @@ namespace AutoCADTools.PrintLayout
         /// <value>
         /// The name of the printer.
         /// </value>
-        public String Name
-        {
-            get { return name; }
-        }
+        public String Name { get; }
 
-        private List<PrinterPaperformat> unoptimizedPaperformats;
-        private List<PrinterPaperformat> optimizedPaperformats;
-        
+        private IList<PrinterPaperformat> paperformats;
+
         /// <summary>
         /// Gets the optimized or unoptimized paperformats for this printer, depending on the specified parameter. Formats are optimized if their margins
         /// are all nearly 4 mm.
@@ -34,7 +33,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns>A list the (un)optmized paperformats for this printer</returns>
         public IReadOnlyList<PrinterPaperformat> GetPaperformats(bool optimized)
         {
-            return optimized ? optimizedPaperformats.AsReadOnly() : unoptimizedPaperformats.AsReadOnly();
+            return optimized ? paperformats.Where(format => format.Optimal).ToList().AsReadOnly() : paperformats.ToList().AsReadOnly();
         }
 
         /// <summary>
@@ -51,9 +50,8 @@ namespace AutoCADTools.PrintLayout
                 throw new System.ArgumentException(LocalData.PrinterNameException + name);
             }
 
-            this.name = name;
-            this.unoptimizedPaperformats = new List<PrinterPaperformat>();
-            this.optimizedPaperformats = new List<PrinterPaperformat>();
+            this.Name = name;
+            this.paperformats = new List<PrinterPaperformat>();
         }
 
         /// <summary>
@@ -61,100 +59,46 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public void InitializePaperformats()
         {
-            bool found;
-            bool optFound;
-
             PlotSettingsValidator psv = PlotSettingsValidator.Current;
-
             using (PlotSettings acPlSet = new PlotSettings(true))
             {
-                psv.SetPlotConfigurationName(acPlSet, name + ".pc3", null);
+                psv.SetPlotConfigurationName(acPlSet, Name + ".pc3", null);
                 psv.RefreshLists(acPlSet);
 
-                var paperFormats = psv.GetCanonicalMediaNameList(acPlSet);
-
-                for (int i = 0; i <= 4; i++)
+                var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
+                foreach (var ordinaryPaperformat in ordinaryPaperFormats)
                 {
-                    // Look if the paperformat is optimized or if its usable and not optimed
-                    found = false;
-                    optFound = false;
-                    String savedFormat = "";
+                    var isOptimal = false;
+                    String foundFormat = null;
+                    var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
 
-                    var formats = paperFormats;
-
-                    for (int k = 0; k < formats.Count && !optFound; k++)
+                    if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
                     {
-                        // Add the PNG formats
-                        if (i == 0)
+                        isOptimal = true;
+                        foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
+                    }
+                    else
+                    {
+                        foreach (var candidate in candidateFormats)
                         {
-                            if (formats[k].ToString() == "UserDefinedRaster (2100.00 x 2970.00Pixel)")
-                            {
-                                unoptimizedPaperformats.Add(new PrinterPaperformat("A4", formats[k].ToString(), this));
-                                optimizedPaperformats.Add(new PrinterPaperformat("A4", formats[k].ToString(), this));
-
-                            }
-                            else if (formats[k].ToString() == "UserDefinedRaster (2970.00 x 4200.00Pixel)")
-                            {
-                                unoptimizedPaperformats.Add(new PrinterPaperformat("A3", formats[k].ToString(), this));
-                                optimizedPaperformats.Add(new PrinterPaperformat("A3", formats[k].ToString(), this));
-
-                            }
-                        }
-
-                        if (psv.GetLocaleMediaName(acPlSet, formats[k]).Contains("A" + i.ToString()) && !optFound)
-                        {
-                            psv.SetCanonicalMediaName(acPlSet, formats[k]);
-
-                            found = true;
+                            foundFormat = candidate;
+                            psv.SetCanonicalMediaName(acPlSet, candidate);
                             Extents2d margins = acPlSet.PlotPaperMargins;
                             if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
                                 && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
                                 && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
                                 && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
                             {
-                                optFound = true;
+                                isOptimal = true;
+                                break;
                             }
-                            savedFormat = formats[k].ToString();
-                        }
-
-                    }
-                    // If format (optimal) found, add it to formats
-                    if (found)
-                    {
-                        unoptimizedPaperformats.Add(new PrinterPaperformat("A" + i.ToString(), savedFormat, this));
-
-                        if (optFound)
-                        {
-                            optimizedPaperformats.Add(new PrinterPaperformat("A" + i.ToString(), savedFormat, this));
-
                         }
                     }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the list of printer names.
-        /// </summary>
-        /// <value>
-        /// The printer names list.
-        /// </value>
-        public static List<string> PrinterNamesList
-        {
-            get
-            {
-                PlotSettingsValidator psv = PlotSettingsValidator.Current;
-                var devicelist = psv.GetPlotDeviceList();
-                List<string> result = new List<string>();
-                foreach (string device in devicelist)
-                {
-                    if (!device.Contains("Default")
-                       && device.Length > 4 && device.Substring(device.Length - 4, 4) == ".pc3")
+                    if (foundFormat != null)
                     {
-                        result.Add(device.Substring(0, device.Length - 4));
+                        paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
                     }
                 }
-                return result;
             }
         }
     }
@@ -164,20 +108,13 @@ namespace AutoCADTools.PrintLayout
     /// </summary>
     public class PrinterPaperformat
     {
-        private String name;
-
         /// <summary>
         /// Gets the readable name of the format.
         /// </summary>
         /// <value>
         /// The readable name of the format.
         /// </value>
-        public String Name
-        {
-            get { return name; }
-        }
-
-        private String formatName;
+        public String Name { get; }
 
         /// <summary>
         /// Gets the name of the format as it is used to adress the format.
@@ -185,12 +122,7 @@ namespace AutoCADTools.PrintLayout
         /// <value>
         /// The original name of the format.
         /// </value>
-        public String FormatName
-        {
-            get { return formatName; }
-        }
-
-        private Printer printer;
+        public String FormatName { get; }
 
         /// <summary>
         /// Gets the printer this format belongs to.
@@ -198,22 +130,27 @@ namespace AutoCADTools.PrintLayout
         /// <value>
         /// The printer.
         /// </value>
-        public Printer Printer
-        {
-            get { return printer; }
-        }
+        public Printer Printer { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PrinterPaperformat"/> class with the specified readable name and the original format name.
+        /// Returns whether the printer paperformat is optimal
+        /// </summary>
+        public bool Optimal { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrinterPaperformat"/> class with the specified readable name, the original format name, 
+        /// and whether it is optimal or not.
         /// </summary>
         /// <param name="name">The readable name.</param>
         /// <param name="formatName">Original name of the format.</param>
         /// <param name="printer">The printer this format belongs to.</param>
-        public PrinterPaperformat(String name, String formatName, Printer printer)
+        /// <param name="optimal">Whether the format is optimal.</param>
+        public PrinterPaperformat(String name, String formatName, Printer printer, bool optimal)
         {
-            this.name = name;
-            this.formatName = formatName;
-            this.printer = printer;
+            this.Name = name;
+            this.FormatName = formatName;
+            this.Printer = printer;
+            this.Optimal = optimal;
         }
     }
 
