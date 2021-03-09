@@ -71,7 +71,7 @@
             this.optRotateLeft.Name = "optRotateLeft";
             this.optRotateLeft.TabStop = true;
             this.optRotateLeft.UseVisualStyleBackColor = true;
-            this.optRotateLeft.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            this.optRotateLeft.CheckedChanged += new System.EventHandler(this.ButRotate_CheckedChanged);
             // 
             // optRotateRight
             // 
@@ -79,7 +79,7 @@
             this.optRotateRight.Image = global::AutoCADTools.Properties.Resources.Truss_right;
             this.optRotateRight.Name = "optRotateRight";
             this.optRotateRight.UseVisualStyleBackColor = true;
-            this.optRotateRight.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            this.optRotateRight.CheckedChanged += new System.EventHandler(this.ButRotate_CheckedChanged);
             // 
             // optRotateNo
             // 
@@ -87,7 +87,7 @@
             this.optRotateNo.Image = global::AutoCADTools.Properties.Resources.Truss;
             this.optRotateNo.Name = "optRotateNo";
             this.optRotateNo.UseVisualStyleBackColor = true;
-            this.optRotateNo.CheckedChanged += new System.EventHandler(this.butRotate_CheckedChanged);
+            this.optRotateNo.CheckedChanged += new System.EventHandler(this.ButRotate_CheckedChanged);
             // 
             // chkMember
             // 
@@ -96,7 +96,7 @@
             this.chkMember.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMember.Name = "chkMember";
             this.chkMember.UseVisualStyleBackColor = true;
-            this.chkMember.CheckedChanged += new System.EventHandler(this.layerChecked_CheckedChanged);
+            this.chkMember.CheckedChanged += new System.EventHandler(this.LayerChecked_CheckedChanged);
             // 
             // chkBracings
             // 
@@ -105,7 +105,7 @@
             this.chkBracings.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBracings.Name = "chkBracings";
             this.chkBracings.UseVisualStyleBackColor = true;
-            this.chkBracings.CheckedChanged += new System.EventHandler(this.layerChecked_CheckedChanged);
+            this.chkBracings.CheckedChanged += new System.EventHandler(this.LayerChecked_CheckedChanged);
             // 
             // chkBearings
             // 
@@ -114,21 +114,21 @@
             this.chkBearings.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkBearings.Name = "chkBearings";
             this.chkBearings.UseVisualStyleBackColor = true;
-            this.chkBearings.CheckedChanged += new System.EventHandler(this.layerChecked_CheckedChanged);
+            this.chkBearings.CheckedChanged += new System.EventHandler(this.LayerChecked_CheckedChanged);
             // 
             // chkPlates
             // 
             resources.ApplyResources(this.chkPlates, "chkPlates");
             this.chkPlates.Name = "chkPlates";
             this.chkPlates.UseVisualStyleBackColor = true;
-            this.chkPlates.CheckedChanged += new System.EventHandler(this.layerChecked_CheckedChanged);
+            this.chkPlates.CheckedChanged += new System.EventHandler(this.LayerChecked_CheckedChanged);
             // 
             // chkDimensions
             // 
             resources.ApplyResources(this.chkDimensions, "chkDimensions");
             this.chkDimensions.Name = "chkDimensions";
             this.chkDimensions.UseVisualStyleBackColor = true;
-            this.chkDimensions.CheckedChanged += new System.EventHandler(this.layerChecked_CheckedChanged);
+            this.chkDimensions.CheckedChanged += new System.EventHandler(this.LayerChecked_CheckedChanged);
             // 
             // grpCopyLayer
             // 
@@ -151,7 +151,7 @@
             resources.ApplyResources(this.txtSource, "txtSource");
             this.txtSource.Name = "txtSource";
             this.txtSource.ReadOnly = true;
-            this.txtSource.TextChanged += new System.EventHandler(this.txtSource_TextChanged);
+            this.txtSource.TextChanged += new System.EventHandler(this.TxtSource_TextChanged);
             // 
             // lblFilePath
             // 
@@ -164,20 +164,20 @@
             resources.ApplyResources(this.butSearchSource, "butSearchSource");
             this.butSearchSource.Name = "butSearchSource";
             this.butSearchSource.UseVisualStyleBackColor = true;
-            this.butSearchSource.Click += new System.EventHandler(this.butSearchSource_Click);
+            this.butSearchSource.Click += new System.EventHandler(this.ButSearchSource_Click);
             // 
             // butImport
             // 
             resources.ApplyResources(this.butImport, "butImport");
             this.butImport.Name = "butImport";
             this.butImport.UseVisualStyleBackColor = true;
-            this.butImport.Click += new System.EventHandler(this.butImport_Click);
+            this.butImport.Click += new System.EventHandler(this.ButImport_Click);
             // 
             // txtLayerPrefix
             // 
             resources.ApplyResources(this.txtLayerPrefix, "txtLayerPrefix");
             this.txtLayerPrefix.Name = "txtLayerPrefix";
-            this.txtLayerPrefix.TextChanged += new System.EventHandler(this.txtLayerPrefix_TextChanged);
+            this.txtLayerPrefix.TextChanged += new System.EventHandler(this.TxtLayerPrefix_TextChanged);
             // 
             // lblTargetLayer
             // 

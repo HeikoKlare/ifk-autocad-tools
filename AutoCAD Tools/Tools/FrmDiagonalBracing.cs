@@ -81,7 +81,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the object sending invoke to start this command</param>
         /// <param name="e">the event arguments</param>
-        private void butCreate_Click(object sender, EventArgs e)
+        private void ButCreate_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtPosition.Text) || String.IsNullOrEmpty(cboDescription.Text))
             {
@@ -127,16 +127,20 @@ namespace AutoCADTools.Tools
                     // Look if block definition for current position text length exists
                     if (!acBlkTbl.Has(BlockName))
                     {
-                        BlockTableRecord textBlockTable = new BlockTableRecord();
-                        textBlockTable.Name = BlockName;
+                        BlockTableRecord textBlockTable = new BlockTableRecord
+                        {
+                            Name = BlockName
+                        };
                         acBlkTbl.UpgradeOpen();
                         acBlkTbl.Add(textBlockTable);
                         acTrans.AddNewlyCreatedDBObject(textBlockTable, true);
 
                         // dummy text for dimensions
-                        MText dummyText = new MText();
-                        dummyText.Annotative = AnnotativeStates.True;
-                        dummyText.Contents = pos;
+                        MText dummyText = new MText
+                        {
+                            Annotative = AnnotativeStates.True,
+                            Contents = pos
+                        };
                         acBlkTblRec.AppendEntity(dummyText);
                         acTrans.AddNewlyCreatedDBObject(dummyText, true);
                         
@@ -180,12 +184,14 @@ namespace AutoCADTools.Tools
                         dummyText.Dispose();
 
                         // Place and add the description if wanted
-                        AttributeDefinition attrDescription = new AttributeDefinition();
-                        attrDescription.Annotative = AnnotativeStates.True;
-                        attrDescription.Justify = AttachmentPoint.MiddleLeft;
-                        attrDescription.AlignmentPoint = location;
-                        attrDescription.Tag = DESCRIPTION_TAG;
-                        attrDescription.Layer = "0";
+                        AttributeDefinition attrDescription = new AttributeDefinition
+                        {
+                            Annotative = AnnotativeStates.True,
+                            Justify = AttachmentPoint.MiddleLeft,
+                            AlignmentPoint = location,
+                            Tag = DESCRIPTION_TAG,
+                            Layer = "0"
+                        };
                         if (Properties.Settings.Default.DiagonalBracingDescriptionBlack)
                         {
                             attrDescription.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByAci, 7);
@@ -219,7 +225,7 @@ namespace AutoCADTools.Tools
                     }
 
                     // Run jig
-                    if (!jig.RunTillComplete(acDoc.Editor, acTrans))
+                    if (!jig.RunTillComplete(acDoc.Editor))
                     {
                         acTrans.Commit();
                         break;
@@ -302,7 +308,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender of the key press</param>
         /// <param name="e">the event args</param>
-        private void txtDistance_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtDistance_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar)
                 && !char.IsDigit(e.KeyChar)
@@ -317,7 +323,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the event sender</param>
         /// <param name="e">the event args</param>
-        private void updCount_ValueChanged(object sender, EventArgs e)
+        private void UpdCount_ValueChanged(object sender, EventArgs e)
         {
             txtDistance.Enabled = updCount.Value > 1;
         }
@@ -327,7 +333,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the event sender</param>
         /// <param name="e">the event args</param>
-        private void optDirectInput_CheckedChanged(object sender, EventArgs e)
+        private void OptDirectInput_CheckedChanged(object sender, EventArgs e)
         {
             if (optDirectInput.Checked)
             {
@@ -353,14 +359,14 @@ namespace AutoCADTools.Tools
             public const byte secondPointIndex = 1;
             public const byte firstEndIndex = 0;
             public const byte secondEndIndex = 1;
-            private Point3d[,] endPoints;
+            private readonly Point3d[,] endPoints;
             private int currentPointIndex;
             private int currentEndIndex;
             private int numberOfPanicles;
-            private double distance;
-            private double pointFactor;
-            private List<Line> lines;
-            private bool interpolatedInput;
+            private readonly double distance;
+            private readonly double pointFactor;
+            private readonly List<Line> lines;
+            private readonly bool interpolatedInput;
 
             /// <summary>
             /// Initiates a new PanicleLineJig for defining a panicle with a specified factor for the start-/endpoint
@@ -475,9 +481,6 @@ namespace AutoCADTools.Tools
             /// <returns>true if everything is okay</returns>
             protected bool Update()
             {
-                // Get the document
-                Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
                 if (currentPointIndex == firstPointIndex) return true;
 
                 switch (currentEndIndex)
@@ -519,7 +522,7 @@ namespace AutoCADTools.Tools
             /// <param name="ed">the editor used</param>
             /// <param name="tr">the transaction to work in</param>
             /// <returns></returns>
-            internal bool RunTillComplete(Editor ed, Transaction tr)
+            internal bool RunTillComplete(Editor ed)
             {
                 // Perform the jig operation in a loop
                 while (true)

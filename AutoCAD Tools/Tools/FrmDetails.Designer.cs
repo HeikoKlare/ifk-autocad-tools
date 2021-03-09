@@ -49,14 +49,14 @@
             this.cboDetailCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDetailCategories.FormattingEnabled = true;
             this.cboDetailCategories.Name = "cboDetailCategories";
-            this.cboDetailCategories.SelectedIndexChanged += new System.EventHandler(this.cboAnnotationCategories_SelectedIndexChanged);
+            this.cboDetailCategories.SelectedIndexChanged += new System.EventHandler(this.CboAnnotationCategories_SelectedIndexChanged);
             // 
             // butOpen
             // 
             resources.ApplyResources(this.butOpen, "butOpen");
             this.butOpen.Name = "butOpen";
             this.butOpen.UseVisualStyleBackColor = true;
-            this.butOpen.Click += new System.EventHandler(this.butOpen_Click);
+            this.butOpen.Click += new System.EventHandler(this.ButOpen_Click);
             // 
             // lvwDetails
             // 
@@ -69,7 +69,7 @@
             this.lvwDetails.Name = "lvwDetails";
             this.lvwDetails.UseCompatibleStateImageBehavior = false;
             this.lvwDetails.View = System.Windows.Forms.View.Details;
-            this.lvwDetails.SelectedIndexChanged += new System.EventHandler(this.lvwDetails_SelectedIndexChanged);
+            this.lvwDetails.SelectedIndexChanged += new System.EventHandler(this.LvwDetails_SelectedIndexChanged);
             // 
             // picPng
             // 
@@ -77,7 +77,7 @@
             this.picPng.BackColor = System.Drawing.Color.OldLace;
             this.picPng.Name = "picPng";
             this.picPng.TabStop = false;
-            this.picPng.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picPng_MouseClick);
+            this.picPng.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PicPng_MouseClick);
             // 
             // FrmDetails
             // 

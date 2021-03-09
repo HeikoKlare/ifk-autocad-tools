@@ -109,8 +109,7 @@ namespace AutoCADTools.Tools
 
             // Clear table and refill annotations table
             annotationsTable.Clear();
-            int categoryId = 0;
-            if (!int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out categoryId))
+            if (!int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out int categoryId))
             {
                 return;
             }
@@ -164,7 +163,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void lvwAnnotations_SelectedIndexChanged(object sender, EventArgs e)
+        private void LvwAnnotations_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvwAnnotations.SelectedIndices.Count > 0)
             {
@@ -183,7 +182,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Annotations_Refresh();
         }
@@ -193,7 +192,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void butClipboard_Click(object sender, EventArgs e)
+        private void ButClipboard_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Clipboard.SetText(rtfContent.Rtf, TextDataFormat.Rtf);
             Utils.NativeMethods.SetWindowsToForeground(Autodesk.AutoCAD.ApplicationServices.Application.NonInPlaceMainWindow.Handle.ToInt32());
@@ -210,7 +209,7 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        private void rtfContent_TextChanged(object sender, EventArgs e)
+        private void RrtfContent_TextChanged(object sender, EventArgs e)
         {
             rtfContent.SelectAll();
             rtfContent.SelectionColor = System.Drawing.Color.Black;

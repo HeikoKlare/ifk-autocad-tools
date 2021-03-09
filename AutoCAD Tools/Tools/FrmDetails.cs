@@ -106,8 +106,7 @@ namespace AutoCADTools.Tools
 
             // Clear table and refill annotations table
             detailsTable.Clear();
-            int categoryId = 0;
-            if (!int.TryParse(cboDetailCategories.SelectedValue.ToString(), out categoryId))
+            if (!int.TryParse(cboDetailCategories.SelectedValue.ToString(), out int categoryId))
             {
                 return;
             }
@@ -136,7 +135,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void lvwDetails_SelectedIndexChanged(object sender, EventArgs e)
+        private void LvwDetails_SelectedIndexChanged(object sender, EventArgs e)
         {
             butOpen.Enabled = lvwDetails.SelectedIndices.Count != 0;
             if (lvwDetails.SelectedIndices.Count == 0)
@@ -172,7 +171,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void butOpen_Click(object sender, EventArgs e)
+        private void ButOpen_Click(object sender, EventArgs e)
         {
             Database.DetailsDataTable table = connection.GetDetail(detailsTable[lvwDetails.SelectedIndices[0]].id);
             if (table.Rows.Count != 1) return;
@@ -193,7 +192,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void cboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboAnnotationCategories_SelectedIndexChanged(object sender, EventArgs e)
         {
             Details_Refresh();
         }
@@ -203,7 +202,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the sender invoking this method</param>
         /// <param name="e">the event arguments</param>
-        private void picPng_MouseClick(object sender, MouseEventArgs e)
+        private void PicPng_MouseClick(object sender, MouseEventArgs e)
         {
             if (picPng.Image != null)
             {

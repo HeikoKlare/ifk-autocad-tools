@@ -83,36 +83,36 @@
             this.chkDrawVerticalMembers.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDrawVerticalMembers.Name = "chkDrawVerticalMembers";
             this.chkDrawVerticalMembers.UseVisualStyleBackColor = true;
-            this.chkDrawVerticalMembers.CheckedChanged += new System.EventHandler(this.chkDrawVerticalMembers_CheckedChanged);
+            this.chkDrawVerticalMembers.CheckedChanged += new System.EventHandler(this.ChkDrawVerticalMembers_CheckedChanged);
             // 
             // txtDistanceRidge
             // 
             resources.ApplyResources(this.txtDistanceRidge, "txtDistanceRidge");
             this.txtDistanceRidge.Name = "txtDistanceRidge";
-            this.txtDistanceRidge.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
-            this.txtDistanceRidge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDecimal_KeyPress);
-            this.txtDistanceRidge.Leave += new System.EventHandler(this.txtDistanceRidge_Leave);
+            this.txtDistanceRidge.TextChanged += new System.EventHandler(this.TxtDistance_TextChanged);
+            this.txtDistanceRidge.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDecimal_KeyPress);
+            this.txtDistanceRidge.Leave += new System.EventHandler(this.TxtDistanceRidge_Leave);
             // 
             // txtDistanceEave
             // 
             resources.ApplyResources(this.txtDistanceEave, "txtDistanceEave");
             this.txtDistanceEave.Name = "txtDistanceEave";
-            this.txtDistanceEave.TextChanged += new System.EventHandler(this.txtDistance_TextChanged);
-            this.txtDistanceEave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDecimal_KeyPress);
-            this.txtDistanceEave.Leave += new System.EventHandler(this.txtDistanceEave_Leave);
+            this.txtDistanceEave.TextChanged += new System.EventHandler(this.TxtDistance_TextChanged);
+            this.txtDistanceEave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDecimal_KeyPress);
+            this.txtDistanceEave.Leave += new System.EventHandler(this.TxtDistanceEave_Leave);
             // 
             // txtPosition
             // 
             resources.ApplyResources(this.txtPosition, "txtPosition");
             this.txtPosition.Name = "txtPosition";
-            this.txtPosition.TextChanged += new System.EventHandler(this.txtPosition_TextChanged);
+            this.txtPosition.TextChanged += new System.EventHandler(this.TxtPosition_TextChanged);
             // 
             // butDraw
             // 
             resources.ApplyResources(this.butDraw, "butDraw");
             this.butDraw.Name = "butDraw";
             this.butDraw.UseVisualStyleBackColor = true;
-            this.butDraw.Click += new System.EventHandler(this.butDraw_Click);
+            this.butDraw.Click += new System.EventHandler(this.ButDraw_Click);
             // 
             // updHalfFields
             // 
@@ -133,14 +133,14 @@
             0,
             0,
             0});
-            this.updHalfFields.ValueChanged += new System.EventHandler(this.updHalfFields_ValueChanged);
+            this.updHalfFields.ValueChanged += new System.EventHandler(this.UpdHalfFields_ValueChanged);
             // 
             // chkDrawChords
             // 
             resources.ApplyResources(this.chkDrawChords, "chkDrawChords");
             this.chkDrawChords.Name = "chkDrawChords";
             this.chkDrawChords.UseVisualStyleBackColor = true;
-            this.chkDrawChords.CheckedChanged += new System.EventHandler(this.butDrawChords_CheckedChanged);
+            this.chkDrawChords.CheckedChanged += new System.EventHandler(this.ButDrawChords_CheckedChanged);
             // 
             // optTopChord
             // 
@@ -148,7 +148,7 @@
             this.optTopChord.Name = "optTopChord";
             this.optTopChord.TabStop = true;
             this.optTopChord.UseVisualStyleBackColor = true;
-            this.optTopChord.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            this.optTopChord.CheckedChanged += new System.EventHandler(this.OptType_CheckedChanged);
             // 
             // optBottomChord
             // 
@@ -156,7 +156,7 @@
             this.optBottomChord.Name = "optBottomChord";
             this.optBottomChord.TabStop = true;
             this.optBottomChord.UseVisualStyleBackColor = true;
-            this.optBottomChord.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            this.optBottomChord.CheckedChanged += new System.EventHandler(this.OptType_CheckedChanged);
             // 
             // optVerticalChord
             // 
@@ -164,7 +164,7 @@
             this.optVerticalChord.Name = "optVerticalChord";
             this.optVerticalChord.TabStop = true;
             this.optVerticalChord.UseVisualStyleBackColor = true;
-            this.optVerticalChord.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            this.optVerticalChord.CheckedChanged += new System.EventHandler(this.OptType_CheckedChanged);
             // 
             // optCurrentLayer
             // 
@@ -172,7 +172,7 @@
             this.optCurrentLayer.Name = "optCurrentLayer";
             this.optCurrentLayer.TabStop = true;
             this.optCurrentLayer.UseVisualStyleBackColor = true;
-            this.optCurrentLayer.CheckedChanged += new System.EventHandler(this.optType_CheckedChanged);
+            this.optCurrentLayer.CheckedChanged += new System.EventHandler(this.OptType_CheckedChanged);
             // 
             // FrmReinforcingBond
             // 

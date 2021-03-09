@@ -63,7 +63,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the object sending invoke to execute this function</param>
         /// <param name="e">the event arguments</param>
-        private void butSearchSource_Click(object sender, EventArgs e)
+        private void ButSearchSource_Click(object sender, EventArgs e)
         {
             if (ofdSource.ShowDialog() == DialogResult.OK)
             {
@@ -78,7 +78,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">the object sending invoke to execute this function</param>
         /// <param name="e">the event arguments</param>
-        private void butImport_Click(object sender, EventArgs e)
+        private void ButImport_Click(object sender, EventArgs e)
         {
             // Look if selected file exists, otherwise show error and return
             if (!File.Exists(trussImport.FileName))
@@ -96,17 +96,17 @@ namespace AutoCADTools.Tools
             //}
         }
 
-        private void txtSource_TextChanged(object sender, EventArgs e)
+        private void TxtSource_TextChanged(object sender, EventArgs e)
         {
             trussImport.FileName = txtSource.Text;
         }
 
-        private void txtLayerPrefix_TextChanged(object sender, EventArgs e)
+        private void TxtLayerPrefix_TextChanged(object sender, EventArgs e)
         {
             trussImport.LayerPrefix = txtLayerPrefix.Text;
         }
 
-        private void butRotate_CheckedChanged(object sender, EventArgs e)
+        private void ButRotate_CheckedChanged(object sender, EventArgs e)
         {
             if (optRotateLeft.Checked)
             {
@@ -122,7 +122,7 @@ namespace AutoCADTools.Tools
             }
         }
 
-        private void layerChecked_CheckedChanged(object sender, EventArgs e)
+        private void LayerChecked_CheckedChanged(object sender, EventArgs e)
         {
             trussImport.setLayerChecked(Layer.Member, chkMember.Checked);
             trussImport.setLayerChecked(Layer.Bearings, chkBearings.Checked);

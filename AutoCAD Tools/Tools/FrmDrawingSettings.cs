@@ -192,7 +192,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void butOK_Click(object sender, EventArgs e)
+        private void ButOK_Click(object sender, EventArgs e)
         {
             var data = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
             data.CreationDate = dtpCreationDate.Value;
@@ -220,7 +220,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void butCancel_Click(object sender, EventArgs e)
+        private void ButCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -230,7 +230,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void butEditProjects_Click(object sender, EventArgs e)
+        private void ButEditProjects_Click(object sender, EventArgs e)
         {
             using (FrmManageProjects management = new FrmManageProjects())
             {
@@ -247,7 +247,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void cboProjects_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboProjects_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboProjects.SelectedIndex >= 0 && !updating)
             {
@@ -303,7 +303,7 @@ namespace AutoCADTools.Tools
         /// </summary>
         /// <param name="sender">unused</param>
         /// <param name="e">unused</param>
-        private void butStandard_Click(object sender, EventArgs e)
+        private void ButStandard_Click(object sender, EventArgs e)
         {
             txtSegment.Text = LocalData.StandardSegment;
             txtPage.Text = LocalData.StandardPosition;
@@ -311,7 +311,7 @@ namespace AutoCADTools.Tools
 
         #endregion
 
-        private void cboProjects_DrawItem(object sender, DrawItemEventArgs e)
+        private void CboProjects_DrawItem(object sender, DrawItemEventArgs e)
         {
             Brush fontBrush; //Brush To Be used
 
@@ -332,7 +332,6 @@ namespace AutoCADTools.Tools
             //Draw Current Font
             if (e.Index >= 0 && e.Index < cboProjects.Items.Count)
             {
-                Font font = e.Font;
                 Font boldFont = new Font(e.Font, FontStyle.Bold);
                 Font italicFont = new Font(e.Font, FontStyle.Italic);
                 var row = ((AutoCADTools.Data.Database.ProjectRow)((DataRowView)cboProjects.Items[e.Index]).Row);
@@ -350,7 +349,7 @@ namespace AutoCADTools.Tools
             e.DrawFocusRectangle(); //Draw Focus Rectangle Around 
         }
 
-        private void cboProjects_MeasureItem(object sender, MeasureItemEventArgs e)
+        private void CboProjects_MeasureItem(object sender, MeasureItemEventArgs e)
         {
             //Get Current Font In ComboBox
             Font font = cboProjects.Font;

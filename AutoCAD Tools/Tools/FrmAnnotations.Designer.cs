@@ -52,7 +52,7 @@
             this.cboAnnotationCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboAnnotationCategories.FormattingEnabled = true;
             this.cboAnnotationCategories.Name = "cboAnnotationCategories";
-            this.cboAnnotationCategories.SelectedIndexChanged += new System.EventHandler(this.cboAnnotationCategories_SelectedIndexChanged);
+            this.cboAnnotationCategories.SelectedIndexChanged += new System.EventHandler(this.CboAnnotationCategories_SelectedIndexChanged);
             // 
             // lvwAnnotations
             // 
@@ -65,15 +65,15 @@
             this.lvwAnnotations.Name = "lvwAnnotations";
             this.lvwAnnotations.UseCompatibleStateImageBehavior = false;
             this.lvwAnnotations.View = System.Windows.Forms.View.Details;
-            this.lvwAnnotations.SelectedIndexChanged += new System.EventHandler(this.lvwAnnotations_SelectedIndexChanged);
-            this.lvwAnnotations.DoubleClick += new System.EventHandler(this.butClipboard_Click);
+            this.lvwAnnotations.SelectedIndexChanged += new System.EventHandler(this.LvwAnnotations_SelectedIndexChanged);
+            this.lvwAnnotations.DoubleClick += new System.EventHandler(this.ButClipboard_Click);
             // 
             // butClipboard
             // 
             resources.ApplyResources(this.butClipboard, "butClipboard");
             this.butClipboard.Name = "butClipboard";
             this.butClipboard.UseVisualStyleBackColor = true;
-            this.butClipboard.Click += new System.EventHandler(this.butClipboard_Click);
+            this.butClipboard.Click += new System.EventHandler(this.ButClipboard_Click);
             // 
             // rtfContent
             // 
@@ -81,7 +81,7 @@
             this.rtfContent.BackColor = System.Drawing.Color.OldLace;
             this.rtfContent.ForeColor = System.Drawing.Color.Black;
             this.rtfContent.Name = "rtfContent";
-            this.rtfContent.TextChanged += new System.EventHandler(this.rtfContent_TextChanged);
+            this.rtfContent.TextChanged += new System.EventHandler(this.RrtfContent_TextChanged);
             // 
             // FrmAnnotations
             // 

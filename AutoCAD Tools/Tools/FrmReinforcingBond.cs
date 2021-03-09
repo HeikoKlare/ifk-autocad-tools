@@ -65,7 +65,7 @@ namespace AutoCADTools.Tools
             }
         }
 
-        private void chkDrawVerticalMembers_CheckedChanged(object sender, EventArgs e)
+        private void ChkDrawVerticalMembers_CheckedChanged(object sender, EventArgs e)
         {
             bond.DrawVerticalMembers = chkDrawVerticalMembers.Checked;
             txtDistanceEave.Enabled = chkDrawVerticalMembers.Checked;
@@ -74,7 +74,7 @@ namespace AutoCADTools.Tools
             if (!chkDrawVerticalMembers.Checked) chkDrawChords.Checked = false;
         }
 
-        private void txtDecimal_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtDecimal_KeyPress(object sender, KeyPressEventArgs e)
         {
             if ((int)e.KeyChar == 8 || ((int)e.KeyChar >= 48 && (int)e.KeyChar < 58)
                 || ((int)e.KeyChar == 46))
@@ -87,17 +87,17 @@ namespace AutoCADTools.Tools
             }
         }
 
-        private void txtDistanceEave_Leave(object sender, EventArgs e)
+        private void TxtDistanceEave_Leave(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtDistanceEave.Text)) txtDistanceEave.Text = LocalData.ReinforcingBondDefaultDistance;
         }
 
-        private void txtDistanceRidge_Leave(object sender, EventArgs e)
+        private void TxtDistanceRidge_Leave(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtDistanceRidge.Text)) txtDistanceRidge.Text = LocalData.ReinforcingBondDefaultDistance;
         }
 
-        private void txtDistance_TextChanged(object sender, EventArgs e)
+        private void TxtDistance_TextChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(txtDistanceEave.Text))
             {
@@ -109,17 +109,17 @@ namespace AutoCADTools.Tools
             }
         }
 
-        private void txtPosition_TextChanged(object sender, EventArgs e)
+        private void TxtPosition_TextChanged(object sender, EventArgs e)
         {
             bond.Position = txtPosition.Text;
         }
 
-        private void updHalfFields_ValueChanged(object sender, EventArgs e)
+        private void UpdHalfFields_ValueChanged(object sender, EventArgs e)
         {
             bond.HalfFieldCount = (int)updHalfFields.Value;
         }
 
-        private void butDraw_Click(object sender, EventArgs e)
+        private void ButDraw_Click(object sender, EventArgs e)
         {
             this.Hide();
 
@@ -133,14 +133,14 @@ namespace AutoCADTools.Tools
             }
         }
 
-        private void butDrawChords_CheckedChanged(object sender, EventArgs e)
+        private void ButDrawChords_CheckedChanged(object sender, EventArgs e)
         {
             bond.DrawChords = chkDrawChords.Checked;
         }
 
         #endregion
 
-        private void optType_CheckedChanged(object sender, EventArgs e)
+        private void OptType_CheckedChanged(object sender, EventArgs e)
         {
             if (optTopChord.Checked)
             {

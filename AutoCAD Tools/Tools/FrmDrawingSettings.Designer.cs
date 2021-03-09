@@ -127,7 +127,7 @@
             this.butEditProjects.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butEditProjects.Name = "butEditProjects";
             this.butEditProjects.UseVisualStyleBackColor = true;
-            this.butEditProjects.Click += new System.EventHandler(this.butEditProjects_Click);
+            this.butEditProjects.Click += new System.EventHandler(this.ButEditProjects_Click);
             // 
             // lblProjectNumber
             // 
@@ -171,9 +171,9 @@
             this.cboProjects.DropDownWidth = 450;
             this.cboProjects.FormattingEnabled = true;
             this.cboProjects.Name = "cboProjects";
-            this.cboProjects.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.cboProjects_DrawItem);
-            this.cboProjects.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.cboProjects_MeasureItem);
-            this.cboProjects.SelectedIndexChanged += new System.EventHandler(this.cboProjects_SelectedIndexChanged);
+            this.cboProjects.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.CboProjects_DrawItem);
+            this.cboProjects.MeasureItem += new System.Windows.Forms.MeasureItemEventHandler(this.CboProjects_MeasureItem);
+            this.cboProjects.SelectedIndexChanged += new System.EventHandler(this.CboProjects_SelectedIndexChanged);
             // 
             // lblProjectCopyFrom
             // 
@@ -221,7 +221,7 @@
             this.butOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butOK.Name = "butOK";
             this.butOK.UseVisualStyleBackColor = true;
-            this.butOK.Click += new System.EventHandler(this.butOK_Click);
+            this.butOK.Click += new System.EventHandler(this.ButOK_Click);
             // 
             // optMeters
             // 
@@ -252,7 +252,7 @@
             this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butCancel.Name = "butCancel";
             this.butCancel.UseVisualStyleBackColor = true;
-            this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
+            this.butCancel.Click += new System.EventHandler(this.ButCancel_Click);
             // 
             // dtpCreationDate
             // 
@@ -266,7 +266,7 @@
             resources.ApplyResources(this.butDefaultValues, "butDefaultValues");
             this.butDefaultValues.Name = "butDefaultValues";
             this.butDefaultValues.UseVisualStyleBackColor = true;
-            this.butDefaultValues.Click += new System.EventHandler(this.butStandard_Click);
+            this.butDefaultValues.Click += new System.EventHandler(this.ButStandard_Click);
             // 
             // FrmDrawingSettings
             // 

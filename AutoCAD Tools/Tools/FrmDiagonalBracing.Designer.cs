@@ -103,7 +103,7 @@
             resources.ApplyResources(this.butCreate, "butCreate");
             this.butCreate.Name = "butCreate";
             this.butCreate.UseVisualStyleBackColor = true;
-            this.butCreate.Click += new System.EventHandler(this.butCreate_Click);
+            this.butCreate.Click += new System.EventHandler(this.ButCreate_Click);
             // 
             // txtPosition
             // 
@@ -129,13 +129,13 @@
             0,
             0,
             0});
-            this.updCount.ValueChanged += new System.EventHandler(this.updCount_ValueChanged);
+            this.updCount.ValueChanged += new System.EventHandler(this.UpdCount_ValueChanged);
             // 
             // txtDistance
             // 
             resources.ApplyResources(this.txtDistance, "txtDistance");
             this.txtDistance.Name = "txtDistance";
-            this.txtDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDistance_KeyPress);
+            this.txtDistance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtDistance_KeyPress);
             // 
             // optThirdsPoint
             // 
@@ -156,7 +156,7 @@
             resources.ApplyResources(this.optDirectInput, "optDirectInput");
             this.optDirectInput.Name = "optDirectInput";
             this.optDirectInput.UseVisualStyleBackColor = true;
-            this.optDirectInput.CheckedChanged += new System.EventHandler(this.optDirectInput_CheckedChanged);
+            this.optDirectInput.CheckedChanged += new System.EventHandler(this.OptDirectInput_CheckedChanged);
             // 
             // grpInputMode
             // 
