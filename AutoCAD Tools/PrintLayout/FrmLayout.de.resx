@@ -122,7 +122,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkUseDrawingArea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 25</value>
+    <value>141, 18</value>
   </data>
   <data name="chkUseDrawingArea.Text" xml:space="preserve">
     <value>Zeichenbereich nutzen</value>
@@ -131,31 +131,31 @@
     <value>Ausschnitt festlegen</value>
   </data>
   <data name="cboPrinter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 202</value>
+    <value>74, 132</value>
   </data>
   <data name="cboPrinter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 28</value>
+    <value>196, 21</value>
   </data>
   <data name="lblPrinter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
+    <value>48, 13</value>
   </data>
   <data name="lblPrinter.Text" xml:space="preserve">
     <value>Drucker:</value>
   </data>
   <data name="chkExactExtract.Size" type="System.Drawing.Size, System.Drawing">
-    <value>274, 25</value>
+    <value>191, 18</value>
   </data>
   <data name="chkExactExtract.Text" xml:space="preserve">
     <value>Exakter Ausschnitt ohne Maßstab</value>
   </data>
   <data name="lblDrawingUnit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 20</value>
+    <value>112, 13</value>
   </data>
   <data name="lblDrawingUnit.Text" xml:space="preserve">
     <value>1 Zeichnungseinheit =</value>
   </data>
   <data name="lblScale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 20</value>
+    <value>79, 13</value>
   </data>
   <data name="lblScale.Text" xml:space="preserve">
     <value>Druckmaßstab:</value>
@@ -163,29 +163,94 @@
   <data name="grpScale.Text" xml:space="preserve">
     <value>Skalierung</value>
   </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAAAAEAGACoDAAAFgAAACgAAAAgAAAAQAAAAAEAGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AADv8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+719vX7+/v7+/v7/Pv6+/r6+/r6+/rx
+        8vHv8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/19fWysrKEhYSVlpWEhISIiIiVlZV/gH/e397x8vHv8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/w8PD5+vlBQUEAAACk
+        pKRzc3MAAABHRkf9/v3w8PDv8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+74+fi/v78AAAB0dHRGRkYAAADi4uL09fTv8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7w8fD///8AAAAQEBAAAAAGBgb////u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O////82NzYAAAAAAAB2dnb////u
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/9/f2JiYkAAABeXl4PDw/8/fz7/Pvw8PDv8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/7+/uYmJgA
+        AAAODg7Nzc0AAACcnJzx8vHw8PDv8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/29/asrayrq6unqKeZmZmpqqmRkZHn5+fx8fHv8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/v8O/29/b5+fn4+fj4+fj4+fj4+fjx8fHv8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7x8vH6+vr6+vr6+vry8vLv7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/x8fHh4eGHiIehoqGT
+        k5PR0tHy8vLv7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/v8O/19vWCgoIAAAAkJCT7+/vx8vHv7+/u7+7v8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7x8fH///8AAAAAAAD////s7ez09PTu7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O////8/Pz8AAADv8O81NjXj5OPy
+        8vLv8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/8/fyLi4sAAAAUFBQAAACQkJD////v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/09fTb3NsA
+        AAA+Pj7///+AgYCkpKT9/f3v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/y8vL3+PcAAAAAAAC+v76mpqYAAADc3dzz9PPv8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/19vWvr6+cnJyfoJ+LjIuOjo6YmJjV1dXy8/Lv8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/v8O/19vX6+vr5+vn5+vn5+vn5
+        +vnz8/Pv8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+739/f9/v39/v39
+        /v3u7+7v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/29vakpKRra2t9fn1dXl39/f3v7+/v7+/u7+7v8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/v
+        7+////9DREMAAACYmJj7/Pvv7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+73+Pe/v78AAABVVVX////v7+/v7+/u
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v
+        8O/u7+7v7+/v7+/u7+7w8fD///8AAAAAAAD////v7+/v7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O////81NjUA
+        AADa29r09PTv7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v
+        8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/8/fyUlJQAAACGhob////v7+/u7+7v8O/v8O/v8O/v
+        8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u8O7v8O/v8O/u7+7v7+/v7+/u
+        7+7v8O/9/f17e3sAAAAAAADS0tLz9PPu7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v
+        8O/u8O7u8O7u8O7u8O7v8O/u8O7v8O/v8O/u7+7v7+/v7+/u7+7v8O/29va1tbXFxcW9vb3Hx8fz8/Pu
+        7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/v8O/u7+7u7+7v8O/v
+        8O/u7+7v7+/v7+/u7+7v8O/v8O/29vb29/b29vbz8/Pv7+/u7+7v8O/v8O/v8O/v8O/u7+7v7+/v8O/v
+        8O/v8O/v8O/v8O/v8O8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+</value>
+  </data>
   <data name="chkTextfield.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 25</value>
+    <value>70, 18</value>
   </data>
   <data name="chkTextfield.Text" xml:space="preserve">
     <value>Textfeld</value>
   </data>
   <data name="optPortrait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 25</value>
+    <value>86, 18</value>
   </data>
   <data name="optPortrait.Text" xml:space="preserve">
     <value>Hochformat</value>
   </data>
   <data name="optLandscape.Size" type="System.Drawing.Size, System.Drawing">
-    <value>114, 25</value>
+    <value>83, 18</value>
   </data>
   <data name="optLandscape.Text" xml:space="preserve">
     <value>Querformat</value>
   </data>
+  <data name="cboPaperformat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 57</value>
+  </data>
   <data name="lblPaperformat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 20</value>
+    <value>69, 13</value>
   </data>
   <data name="lblPaperformat.Text" xml:space="preserve">
     <value>Papierformat:</value>
+  </data>
+  <data name="chkOptimizedPaperformats.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 40</value>
   </data>
   <data name="chkOptimizedPaperformats.Text" xml:space="preserve">
     <value>Nur optimierte Papierformate</value>

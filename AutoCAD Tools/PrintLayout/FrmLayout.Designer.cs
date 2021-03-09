@@ -50,9 +50,9 @@
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.butDefineExtract = new System.Windows.Forms.Button();
             this.txtLayoutName = new System.Windows.Forms.TextBox();
-            this.cboPrinter = new System.Windows.Forms.ComboBox();
             this.butCreate = new System.Windows.Forms.Button();
             this.chkUseDrawingArea = new System.Windows.Forms.CheckBox();
+            this.cboPrinter = new System.Windows.Forms.ComboBox();
             grpPaperformat = new System.Windows.Forms.GroupBox();
             grpScale = new System.Windows.Forms.GroupBox();
             lblDrawingUnitMm = new System.Windows.Forms.Label();
@@ -76,6 +76,7 @@
             grpPaperformat.Controls.Add(this.lblPaperformat);
             grpPaperformat.Controls.Add(this.chkOptimizedPaperformats);
             resources.ApplyResources(grpPaperformat, "grpPaperformat");
+            this.errorProvider.SetIconAlignment(grpPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("grpPaperformat.IconAlignment"))));
             grpPaperformat.Name = "grpPaperformat";
             grpPaperformat.TabStop = false;
             // 
@@ -84,6 +85,7 @@
             resources.ApplyResources(this.chkTextfield, "chkTextfield");
             this.chkTextfield.Checked = true;
             this.chkTextfield.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.errorProvider.SetIconAlignment(this.chkTextfield, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkTextfield.IconAlignment"))));
             this.chkTextfield.Name = "chkTextfield";
             this.chkTextfield.UseVisualStyleBackColor = true;
             this.chkTextfield.CheckedChanged += new System.EventHandler(this.ChkTextfield_CheckedChanged);
@@ -91,6 +93,7 @@
             // optPortrait
             // 
             resources.ApplyResources(this.optPortrait, "optPortrait");
+            this.errorProvider.SetIconAlignment(this.optPortrait, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("optPortrait.IconAlignment"))));
             this.optPortrait.Name = "optPortrait";
             this.optPortrait.UseVisualStyleBackColor = true;
             // 
@@ -98,6 +101,7 @@
             // 
             resources.ApplyResources(this.optLandscape, "optLandscape");
             this.optLandscape.Checked = true;
+            this.errorProvider.SetIconAlignment(this.optLandscape, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("optLandscape.IconAlignment"))));
             this.optLandscape.Name = "optLandscape";
             this.optLandscape.TabStop = true;
             this.optLandscape.UseVisualStyleBackColor = true;
@@ -108,12 +112,14 @@
             this.cboPaperformat.DropDownWidth = 60;
             resources.ApplyResources(this.cboPaperformat, "cboPaperformat");
             this.cboPaperformat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.errorProvider.SetIconAlignment(this.cboPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPaperformat.IconAlignment"))));
             this.cboPaperformat.Name = "cboPaperformat";
             this.cboPaperformat.SelectedIndexChanged += new System.EventHandler(this.CboPaperformat_SelectedIndexChanged);
             // 
             // lblPaperformat
             // 
             resources.ApplyResources(this.lblPaperformat, "lblPaperformat");
+            this.errorProvider.SetIconAlignment(this.lblPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lblPaperformat.IconAlignment"))));
             this.lblPaperformat.Name = "lblPaperformat";
             // 
             // chkOptimizedPaperformats
@@ -122,6 +128,7 @@
             this.chkOptimizedPaperformats.Checked = true;
             this.chkOptimizedPaperformats.CheckState = System.Windows.Forms.CheckState.Checked;
             resources.ApplyResources(this.chkOptimizedPaperformats, "chkOptimizedPaperformats");
+            this.errorProvider.SetIconAlignment(this.chkOptimizedPaperformats, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkOptimizedPaperformats.IconAlignment"))));
             this.chkOptimizedPaperformats.Name = "chkOptimizedPaperformats";
             this.chkOptimizedPaperformats.UseVisualStyleBackColor = true;
             this.chkOptimizedPaperformats.CheckedChanged += new System.EventHandler(this.ChkOptimizedPaperformats_CheckedChanged);
@@ -136,12 +143,14 @@
             grpScale.Controls.Add(lblScaleText);
             grpScale.Controls.Add(lblScale);
             resources.ApplyResources(grpScale, "grpScale");
+            this.errorProvider.SetIconAlignment(grpScale, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("grpScale.IconAlignment"))));
             grpScale.Name = "grpScale";
             grpScale.TabStop = false;
             // 
             // updDrawingUnit
             // 
             resources.ApplyResources(this.updDrawingUnit, "updDrawingUnit");
+            this.errorProvider.SetIconAlignment(this.updDrawingUnit, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("updDrawingUnit.IconAlignment"))));
             this.updDrawingUnit.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -163,6 +172,7 @@
             // chkExactExtract
             // 
             resources.ApplyResources(this.chkExactExtract, "chkExactExtract");
+            this.errorProvider.SetIconAlignment(this.chkExactExtract, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkExactExtract.IconAlignment"))));
             this.chkExactExtract.Name = "chkExactExtract";
             this.chkExactExtract.UseVisualStyleBackColor = true;
             this.chkExactExtract.CheckedChanged += new System.EventHandler(this.ChkExactExtract_CheckedChanged);
@@ -170,17 +180,20 @@
             // lblDrawingUnitMm
             // 
             resources.ApplyResources(lblDrawingUnitMm, "lblDrawingUnitMm");
+            this.errorProvider.SetIconAlignment(lblDrawingUnitMm, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lblDrawingUnitMm.IconAlignment"))));
             lblDrawingUnitMm.Name = "lblDrawingUnitMm";
             // 
             // lblDrawingUnit
             // 
             resources.ApplyResources(lblDrawingUnit, "lblDrawingUnit");
+            this.errorProvider.SetIconAlignment(lblDrawingUnit, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lblDrawingUnit.IconAlignment"))));
             lblDrawingUnit.Name = "lblDrawingUnit";
             // 
             // cboScale
             // 
             resources.ApplyResources(this.cboScale, "cboScale");
             this.cboScale.FormattingEnabled = true;
+            this.errorProvider.SetIconAlignment(this.cboScale, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboScale.IconAlignment"))));
             this.cboScale.Name = "cboScale";
             this.cboScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CboScale_KeyPress);
             this.cboScale.Validating += new System.ComponentModel.CancelEventHandler(this.CboScale_Validating);
@@ -188,21 +201,25 @@
             // lblScaleText
             // 
             resources.ApplyResources(lblScaleText, "lblScaleText");
+            this.errorProvider.SetIconAlignment(lblScaleText, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lblScaleText.IconAlignment"))));
             lblScaleText.Name = "lblScaleText";
             // 
             // lblScale
             // 
             resources.ApplyResources(lblScale, "lblScale");
+            this.errorProvider.SetIconAlignment(lblScale, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lblScale.IconAlignment"))));
             lblScale.Name = "lblScale";
             // 
             // lblLayoutName
             // 
             resources.ApplyResources(lblLayoutName, "lblLayoutName");
+            this.errorProvider.SetIconAlignment(lblLayoutName, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lblLayoutName.IconAlignment"))));
             lblLayoutName.Name = "lblLayoutName";
             // 
             // lblPrinter
             // 
             resources.ApplyResources(lblPrinter, "lblPrinter");
+            this.errorProvider.SetIconAlignment(lblPrinter, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("lblPrinter.IconAlignment"))));
             lblPrinter.Name = "lblPrinter";
             // 
             // errorProvider
@@ -212,6 +229,7 @@
             // butDefineExtract
             // 
             resources.ApplyResources(this.butDefineExtract, "butDefineExtract");
+            this.errorProvider.SetIconAlignment(this.butDefineExtract, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("butDefineExtract.IconAlignment"))));
             this.butDefineExtract.Name = "butDefineExtract";
             this.butDefineExtract.UseVisualStyleBackColor = true;
             this.butDefineExtract.Click += new System.EventHandler(this.ButDefineExtract_Click);
@@ -219,20 +237,14 @@
             // txtLayoutName
             // 
             resources.ApplyResources(this.txtLayoutName, "txtLayoutName");
+            this.errorProvider.SetIconAlignment(this.txtLayoutName, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("txtLayoutName.IconAlignment"))));
             this.txtLayoutName.Name = "txtLayoutName";
             this.txtLayoutName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLayoutName_Validating);
-            // 
-            // cboPrinter
-            // 
-            this.cboPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboPrinter, "cboPrinter");
-            this.cboPrinter.FormattingEnabled = true;
-            this.cboPrinter.Name = "cboPrinter";
-            this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.CboPrinter_SelectedIndexChanged);
             // 
             // butCreate
             // 
             resources.ApplyResources(this.butCreate, "butCreate");
+            this.errorProvider.SetIconAlignment(this.butCreate, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("butCreate.IconAlignment"))));
             this.butCreate.Name = "butCreate";
             this.butCreate.UseVisualStyleBackColor = true;
             this.butCreate.Click += new System.EventHandler(this.ButCreate_Click);
@@ -240,9 +252,19 @@
             // chkUseDrawingArea
             // 
             resources.ApplyResources(this.chkUseDrawingArea, "chkUseDrawingArea");
+            this.errorProvider.SetIconAlignment(this.chkUseDrawingArea, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkUseDrawingArea.IconAlignment"))));
             this.chkUseDrawingArea.Name = "chkUseDrawingArea";
             this.chkUseDrawingArea.UseVisualStyleBackColor = true;
             this.chkUseDrawingArea.CheckedChanged += new System.EventHandler(this.ChkUseDrawingArea_CheckedChanged);
+            // 
+            // cboPrinter
+            // 
+            this.cboPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cboPrinter, "cboPrinter");
+            this.cboPrinter.FormattingEnabled = true;
+            this.errorProvider.SetIconAlignment(this.cboPrinter, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPrinter.IconAlignment"))));
+            this.cboPrinter.Name = "cboPrinter";
+            this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.CboPrinter_SelectedIndexChanged);
             // 
             // FrmLayout
             // 
@@ -286,12 +308,12 @@
         private System.Windows.Forms.CheckBox chkExactExtract;
         private System.Windows.Forms.ComboBox cboScale;
         private System.Windows.Forms.TextBox txtLayoutName;
-        private System.Windows.Forms.ComboBox cboPrinter;
         private System.Windows.Forms.NumericUpDown updDrawingUnit;
         private System.Windows.Forms.Button butCreate;
         private System.Windows.Forms.Button butDefineExtract;
         private System.Windows.Forms.CheckBox chkTextfield;
         private System.Windows.Forms.CheckBox chkOptimizedPaperformats;
         private System.Windows.Forms.CheckBox chkUseDrawingArea;
+        private System.Windows.Forms.ComboBox cboPrinter;
     }
 }
