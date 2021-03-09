@@ -272,7 +272,7 @@ namespace AutoCADTools.PrintLayout
         {
             var oldFormat = cboPaperformat.Text;
             this.selectedPrinter = PrinterRepository.Instance[cboPrinter.Text];
-            this.selectablePaperformats = selectedPrinter.GetPaperformats(chkOptimizedPaperformats.Checked);
+            this.selectablePaperformats = selectedPrinter != null ? selectedPrinter.GetPaperformats(chkOptimizedPaperformats.Checked) : Array.Empty<PrinterPaperformat>();
             /*cboPaperformat.BeginUpdate();
             cboPaperformat.DataSource = null;
             cboPaperformat.DataSource = paperformats;
@@ -336,7 +336,7 @@ namespace AutoCADTools.PrintLayout
 
         private void SelectOptimalPaperformat()
         {
-            if (!chkExactExtract.Checked && currentPaperformat != null)
+            if (!chkExactExtract.Checked && currentPaperformat != null && selectedPrinter != null)
             {
                 var paperformat = currentPaperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked);
                 int formatIndex = paperformat != null ? cboPaperformat.FindStringExact(paperformat.Name) : -1;
