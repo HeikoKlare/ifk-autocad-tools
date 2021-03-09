@@ -111,8 +111,7 @@ namespace AutoCADTools.Management
 
             // Clear table and refill annotations table
             detailsTable.Clear();
-            int categoryId = 0;
-            if (!int.TryParse(cboDetailCategories.SelectedValue.ToString(), out categoryId))
+            if (!int.TryParse(cboDetailCategories.SelectedValue.ToString(), out int categoryId))
             {
                 return;
             }
@@ -384,7 +383,6 @@ namespace AutoCADTools.Management
         private void butRemove_Click(object sender, EventArgs e)
         {
             // Delete the selected row, update data binding and update global database and controls
-            CurrencyManager cm = this.BindingContext[detailsTable] as CurrencyManager;
             detailsTable.Rows[lvwDetails.SelectedIndices[0]].Delete();
             connection.UpdateDetails(detailsTable);
             Details_Refresh();

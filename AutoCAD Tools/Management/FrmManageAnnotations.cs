@@ -127,8 +127,7 @@ namespace AutoCADTools.Management
 
             // Clear table and refill annotations table
             annotationsTable.Clear();
-            int categoryId = 0;
-            if (!int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out categoryId))
+            if (!int.TryParse(cboAnnotationCategories.SelectedValue.ToString(), out int categoryId))
             {
                 return;
             }

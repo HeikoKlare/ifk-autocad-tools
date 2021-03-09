@@ -87,8 +87,7 @@ namespace AutoCADTools.Management
         /// <param name="e">the event arguments for validation</param>
         private void TxtPortValidate(object sender, CancelEventArgs e)
         {
-            int dummy;
-            if (int.TryParse(txtDatabasePort.Text, out dummy))
+            if (int.TryParse(txtDatabasePort.Text, out _))
             {
                 errorProvider.SetError(txtDatabasePort, String.Empty);
             }
@@ -107,8 +106,7 @@ namespace AutoCADTools.Management
         /// <param name="e">the event arguments for validation</param>
         private void TxtTimeoutValidate(object sender, CancelEventArgs e)
         {
-            int dummy;
-            if (int.TryParse(txtDatabaseTimeout.Text, out dummy))
+            if (int.TryParse(txtDatabaseTimeout.Text, out _))
             {
                 errorProvider.SetError(txtDatabaseTimeout, String.Empty);
             }

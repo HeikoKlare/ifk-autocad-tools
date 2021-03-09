@@ -89,5 +89,6 @@ namespace AutoCADTools.PrintLayout
         {
             viewportSizeModel = Size.Zero;
         }
+
     }
 }

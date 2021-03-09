@@ -86,8 +86,8 @@ namespace AutoCADTools.PrintLayout
             Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", 100);
 
             // Define to points to get from user
-            Point3d p1 = Point3d.Origin;
-            Point3d p2 = Point3d.Origin;
+            Point3d p1;
+            Point3d p2;
 
             PromptPointResult getPointResult;
 
@@ -165,7 +165,7 @@ namespace AutoCADTools.PrintLayout
                 extractLowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
             }
 
-            LayoutCreation creation = null;
+            LayoutCreation creation;
             if (chkTextfield.Checked)
             {
                 creation = new LayoutTextfield((PaperformatTextfield)currentPaperformat);
