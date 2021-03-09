@@ -1,5 +1,8 @@
 ﻿using System;
 using AutoCAD;
+using Autodesk.AutoCAD.ApplicationServices;
+using AutoCADTools.PrintLayout;
+using System.Threading.Tasks;
 
 namespace AutoCADTools
 {
@@ -27,6 +30,7 @@ namespace AutoCADTools
             SetPrinterPmpPath();
             SetCustomizationFile();
             SetTemplateFile();
+            RegisterPrinterRepositoryInitializer();
         }
 
         private void SetPrinterConfigPath()
@@ -94,6 +98,12 @@ namespace AutoCADTools
             {
                 prefs.Files.QNewTemplateFile = (roamingFolder + TemplateFolder + "\\" + TemplateFile).ToLower();
             }
+        }
+
+        private void RegisterPrinterRepositoryInitializer()
+        {
+            Application.DocumentManager.DocumentCreated +=
+                new DocumentCollectionEventHandler((sender, args) => Task.Run(PrinterRepository.Instance.Initialize));
         }
 
         /// <summary>
