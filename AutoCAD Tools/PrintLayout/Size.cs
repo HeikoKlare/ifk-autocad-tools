@@ -148,8 +148,8 @@ namespace AutoCADTools.PrintLayout
         /// </returns>
         public static bool operator ==(Size left, Size right)
         {
-            if (Object.ReferenceEquals(left, null))
-                return Object.ReferenceEquals(right, null);
+            if (left is null)
+                return right is null;
             return left.Equals(right);
         }
 
