@@ -273,25 +273,10 @@ namespace AutoCADTools.PrintLayout
             var oldFormat = cboPaperformat.Text;
             this.selectedPrinter = PrinterRepository.Instance[cboPrinter.Text];
             this.selectablePaperformats = selectedPrinter != null ? selectedPrinter.GetPaperformats(chkOptimizedPaperformats.Checked) : Array.Empty<PrinterPaperformat>();
-            /*cboPaperformat.BeginUpdate();
-            cboPaperformat.DataSource = null;
-            cboPaperformat.DataSource = paperformats;
-            cboPaperformat.DisplayMember = "Name";
-            cboPaperformat.EndUpdate();*/
             cboPaperformat.Items.Clear();
-            foreach (var format in selectablePaperformats)
-            {
-                cboPaperformat.Items.Add(format.Name);
-            }
+            cboPaperformat.Items.AddRange(selectablePaperformats.Select(format => format.Name).ToArray());
             int index = cboPaperformat.FindStringExact(oldFormat);
-            if (index != -1)
-            {
-                cboPaperformat.SelectedIndex = index;
-            }
-            else if (cboPaperformat.Items.Count > 0)
-            {
-                cboPaperformat.SelectedIndex = 0;
-            }
+            cboPaperformat.SelectedIndex = index != -1 ? index : 0;
             ValidatePaperformats();
         }
 
