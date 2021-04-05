@@ -272,7 +272,7 @@ namespace AutoCADTools.PrintLayout
         {
             var oldFormat = cboPaperformat.Text;
             this.selectedPrinter = PrinterRepository.Instance[cboPrinter.Text];
-            this.selectablePaperformats = selectedPrinter != null ? selectedPrinter.GetPaperformats(chkOptimizedPaperformats.Checked) : Array.Empty<PrinterPaperformat>();
+            this.selectablePaperformats = selectedPrinter != null ? selectedPrinter.GetPaperformats(chkOptimizedPaperformats.Checked) : new List<PrinterPaperformat>().ToArray();
             cboPaperformat.Items.Clear();
             cboPaperformat.Items.AddRange(selectablePaperformats.Select(format => format.Name).ToArray());
             int index = cboPaperformat.FindStringExact(oldFormat);
