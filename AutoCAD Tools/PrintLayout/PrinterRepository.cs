@@ -15,7 +15,10 @@ namespace AutoCADTools.PrintLayout
         private static readonly IReadOnlyList<string> excludedNames = new List<string>() { "Default" };
 
         private static readonly PrinterRepository instance = new PrinterRepository();
-
+        
+        /// <summary>
+        /// Returns whether the repository has been initialized, such that printers can be accessed.
+        /// </summary>
         public bool Initialized
         {
             get;
