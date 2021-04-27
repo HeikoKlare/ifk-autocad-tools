@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Autodesk.AutoCAD.DatabaseServices;
 using System.Linq;
 using System.Threading;
-using System.Runtime.ExceptionServices;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -23,7 +22,7 @@ namespace AutoCADTools.PrintLayout
         }
 
         private bool initializing = false;
-    
+
         /// <summary>
         /// Gets the singleton instance of the cache.
         /// </summary>
@@ -84,43 +83,53 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
-        private void InitializePrinter(string name)
+        private bool InitializePrinter(string name)
         {
-            var newprinter = new Printer(name);
-            newprinter.InitializePaperformats();
-            printer.Add(name, newprinter);
+            try
+            {
+                var newprinter = new Printer(name);
+                newprinter.InitializePaperformats();
+                printer.Add(name, newprinter);
+                return true;
+            }
+            catch (Exception)
+            {
+                // There may be different reasons for the initialization to fail. In particular,
+                // changing the document in between will lead to access violation errors, such that
+                // we abort and return false to enfore restart initialization.
+                return false;
+            }
         }
 
         /// <summary>
         /// Initializes the repository with available printers.
         /// </summary>
-        [HandleProcessCorruptedStateExceptions]
-        public IEnumerable<string> Initialize(CancellationToken cancellationToken)
+        public void Initialize(CancellationToken cancellationToken)
         {
-            if (initializing || Initialized)
+            lock (this)
             {
-                return Enumerable.Empty<string>();
-            }
-
-            initializing = true;
-            var failedPrinters = new List<string>();
-            foreach (string device in PrinterNames)
-            {
-                try
+                if (initializing || Initialized)
                 {
-                    InitializePrinter(device);
+                    return;
                 }
-                catch (Exception)
+
+                initializing = true;
+                var remainingPrinters = new List<string>();
+                remainingPrinters.AddRange(PrinterNames);
+                while (remainingPrinters.Any())
                 {
+                    var nextPrinter = remainingPrinters.First();
+                    if (InitializePrinter(nextPrinter))
+                    {
+                        remainingPrinters.Remove(nextPrinter);
+                    }
                     if (cancellationToken.IsCancellationRequested)
                     {
-                        return Enumerable.Empty<string>();
+                        return;
                     }
-                    failedPrinters.Add(device);
                 }
+                Initialized = true;
             }
-            Initialized = true;
-            return failedPrinters;
         }
 
         /// <summary>

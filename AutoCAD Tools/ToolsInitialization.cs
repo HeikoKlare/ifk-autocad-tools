@@ -106,19 +106,26 @@ namespace AutoCADTools
         private void RegisterPrinterRepositoryInitializer()
         {
             var initializationTaskCancelSource = new CancellationTokenSource();
-            var token = initializationTaskCancelSource.Token;
-            Application.DocumentManager.DocumentCreated +=
-                new DocumentCollectionEventHandler((sender, args) => Task.Run(() =>
-                {
-                    var failedPrinters = PrinterRepository.Instance.Initialize(token);
-                    if (failedPrinters.Any())
-                    {
-                        Forms.MessageBox.Show(String.Format(LocalData.PrinterInitializationErrorMessage, string.Join(", ", failedPrinters)), "Error");
-                    }
-                }, token));
+            var initialization = new AsynchronousPrinterRepositoryInitialization();
+            Application.DocumentManager.DocumentCreated += new DocumentCollectionEventHandler((sender, args) => initialization.Initialize(initializationTaskCancelSource));
+            Application.BeginQuit += new EventHandler((sender, args) => initializationTaskCancelSource.Cancel());
+        }
 
-            Application.BeginQuit +=
-                new EventHandler((sender, args) => initializationTaskCancelSource.Cancel());
+        private class AsynchronousPrinterRepositoryInitialization
+        {
+            private bool initializationStarted = false;
+
+            public void Initialize(CancellationTokenSource tokenSource)
+            {
+                lock (this)
+                {
+                    if (!initializationStarted)
+                    {
+                        initializationStarted = true;
+                        Task.Run(() => PrinterRepository.Instance.Initialize(tokenSource.Token), tokenSource.Token);
+                    }
+                }
+            }
         }
 
         /// <summary>
