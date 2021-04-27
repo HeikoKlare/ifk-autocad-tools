@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Autodesk.AutoCAD.DatabaseServices;
 using System.Linq;
 using System.Threading;
+using System.Runtime.ExceptionServices;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -83,6 +84,7 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
+        [HandleProcessCorruptedStateExceptions]
         private bool InitializePrinter(string name)
         {
             try

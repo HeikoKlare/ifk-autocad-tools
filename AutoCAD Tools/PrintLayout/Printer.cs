@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ExceptionServices;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -59,59 +58,51 @@ namespace AutoCADTools.PrintLayout
 
         /// <summary>
         /// Initializes the paperformats. They are seperated into optimized and unoptimized formats.
+        /// During execution, the plot settings validator may not be changed (by creating a new document, closing the application or the like).
+        /// Otherwise, access violation exception will occur, which then need to be handled by the caller.
         /// </summary>
-        /// <exception cref="InvalidOperationException">When a memory access error occurred, such that the printer could not initialized properly. This is usually the case when the application has been closed during execution.</exception>
-        [HandleProcessCorruptedStateExceptions]
         public void InitializePaperformats()
         {
-            try
+            PlotSettingsValidator psv = PlotSettingsValidator.Current;
+            using (PlotSettings acPlSet = new PlotSettings(true))
             {
-                PlotSettingsValidator psv = PlotSettingsValidator.Current;
-                using (PlotSettings acPlSet = new PlotSettings(true))
+                psv.SetPlotConfigurationName(acPlSet, Name + printerConfigurationFileExtension, null);
+                psv.RefreshLists(acPlSet);
+
+                var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
+                foreach (var ordinaryPaperformat in ordinaryPaperFormats)
                 {
-                    psv.SetPlotConfigurationName(acPlSet, Name + printerConfigurationFileExtension, null);
-                    psv.RefreshLists(acPlSet);
+                    var isOptimal = false;
+                    String foundFormat = null;
+                    var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
 
-                    var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
-                    foreach (var ordinaryPaperformat in ordinaryPaperFormats)
+                    if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
                     {
-                        var isOptimal = false;
-                        String foundFormat = null;
-                        var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
-
-                        if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
+                        isOptimal = true;
+                        foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
+                    }
+                    else
+                    {
+                        foreach (var candidate in candidateFormats)
                         {
-                            isOptimal = true;
-                            foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
-                        }
-                        else
-                        {
-                            foreach (var candidate in candidateFormats)
+                            foundFormat = candidate;
+                            psv.SetCanonicalMediaName(acPlSet, candidate);
+                            Extents2d margins = acPlSet.PlotPaperMargins;
+                            if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
+                                && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
+                                && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
+                                && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
                             {
-                                foundFormat = candidate;
-                                psv.SetCanonicalMediaName(acPlSet, candidate);
-                                Extents2d margins = acPlSet.PlotPaperMargins;
-                                if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
-                                    && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
-                                    && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
-                                    && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
-                                {
-                                    isOptimal = true;
-                                    break;
-                                }
+                                isOptimal = true;
+                                break;
                             }
                         }
-                        if (foundFormat != null)
-                        {
-                            paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
-                        }
+                    }
+                    if (foundFormat != null)
+                    {
+                        paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
                     }
                 }
-            }
-            catch (AccessViolationException)
-            {
-                paperformats.Clear();
-                throw new InvalidOperationException("A memory access error occurred when initializing paperformats for printer " + Name);
             }
         }
     }
