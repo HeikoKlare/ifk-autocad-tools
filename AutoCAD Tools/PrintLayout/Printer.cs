@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Runtime.ExceptionServices;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -46,7 +47,7 @@ namespace AutoCADTools.PrintLayout
         /// <see cref="Printer.InitializePaperformats()"/> has to be called afterwards to load the available paperformats.
         /// </summary>
         /// <param name="name">The name of the printer.</param>
-        /// <exception cref="System.ArgumentException">Is thrown if the name is null, empty or if the specified printer does not exist</exception>
+        /// <exception cref="System.ArgumentException">Is thrown if the name is null, empty or if the specified printer does not exist.</exception>
         public Printer(String name)
         {
             PlotSettingsValidator psv = PlotSettingsValidator.Current;
@@ -61,48 +62,58 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// Initializes the paperformats. They are seperated into optimized and unoptimized formats.
         /// </summary>
+        /// <exception cref="InvalidOperationException">When a memory access error occurred, such that the printer could not initialized properly. This is usually the case when the application has been closed during execution.</exception>
+        [HandleProcessCorruptedStateExceptions]
         public void InitializePaperformats()
         {
-            PlotSettingsValidator psv = PlotSettingsValidator.Current;
-            using (PlotSettings acPlSet = new PlotSettings(true))
+            try
             {
-                psv.SetPlotConfigurationName(acPlSet, Name + ".pc3", null);
-                psv.RefreshLists(acPlSet);
-
-                var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
-                foreach (var ordinaryPaperformat in ordinaryPaperFormats)
+                PlotSettingsValidator psv = PlotSettingsValidator.Current;
+                using (PlotSettings acPlSet = new PlotSettings(true))
                 {
-                    var isOptimal = false;
-                    String foundFormat = null;
-                    var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
+                    psv.SetPlotConfigurationName(acPlSet, Name + printerConfigurationFileExtension, null);
+                    psv.RefreshLists(acPlSet);
 
-                    if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
+                    var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
+                    foreach (var ordinaryPaperformat in ordinaryPaperFormats)
                     {
-                        isOptimal = true;
-                        foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
-                    }
-                    else
-                    {
-                        foreach (var candidate in candidateFormats)
+                        var isOptimal = false;
+                        String foundFormat = null;
+                        var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
+
+                        if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
                         {
-                            foundFormat = candidate;
-                            psv.SetCanonicalMediaName(acPlSet, candidate);
-                            Extents2d margins = acPlSet.PlotPaperMargins;
-                            if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
-                                && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
-                                && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
-                                && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
+                            isOptimal = true;
+                            foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
+                        }
+                        else
+                        {
+                            foreach (var candidate in candidateFormats)
                             {
-                                isOptimal = true;
-                                break;
+                                foundFormat = candidate;
+                                psv.SetCanonicalMediaName(acPlSet, candidate);
+                                Extents2d margins = acPlSet.PlotPaperMargins;
+                                if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
+                                    && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
+                                    && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
+                                    && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
+                                {
+                                    isOptimal = true;
+                                    break;
+                                }
                             }
                         }
-                    }
-                    if (foundFormat != null)
-                    {
-                        paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
+                        if (foundFormat != null)
+                        {
+                            paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
+                        }
                     }
                 }
+            }
+            catch (AccessViolationException)
+            {
+                paperformats.Clear();
+                throw new InvalidOperationException("A memory access error occurred when initializing paperformats for printer " + Name);
             }
         }
     }
