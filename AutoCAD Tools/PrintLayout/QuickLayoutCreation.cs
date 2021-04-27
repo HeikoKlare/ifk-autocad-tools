@@ -1,6 +1,8 @@
 ﻿using AutoCADTools.Tools;
 using Autodesk.AutoCAD.DatabaseServices;
 using System;
+using System.Windows.Forms;
+using AutoCADTools.Utils;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -17,26 +19,42 @@ namespace AutoCADTools.PrintLayout
         {
             var drawingArea = GetDrawingArea();
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            
+
             if (!drawingArea.IsValid)
             {
                 doc.Editor.WriteMessage(Environment.NewLine + LocalData.NoDrawingAreaMessage);
+                MessageBox.Show(AutocadMainWindow.Instance, LocalData.NoDrawingAreaMessage, "Layout");
                 return false;
             }
-            
+
+            if (!PrinterRepository.Instance.Initialized)
+            {
+                doc.Editor.WriteMessage(Environment.NewLine + LocalData.AllPrintersNotInitializedMessage);
+                MessageBox.Show(AutocadMainWindow.Instance, LocalData.AllPrintersNotInitializedMessage, "Layout");
+                return false;
+            }
+
             var paperformat = drawingArea.Format;
-            if (paperformat.GetDefaultPrinter() == null)
+            var printer = paperformat.GetDefaultPrinter();
+            if (printer == null)
             {
                 doc.Editor.WriteMessage(Environment.NewLine + LocalData.DefaultPrinterInvalid);
+                MessageBox.Show(AutocadMainWindow.Instance, LocalData.DefaultPrinterInvalid, "Layout");
                 return false;
             }
 
             var creation = new LayoutTextfield(paperformat);
             SetDrawingArea(creation, drawingArea);
             creation.LayoutName = Properties.Settings.Default.DefaultLayoutName;
-            creation.Printerformat = paperformat.GetFittingPaperformat(paperformat.GetDefaultPrinter(), true);
-            
-            return creation.CreateLayout();
+            creation.Printerformat = paperformat.GetFittingPaperformat(printer, true);
+            if (creation.Printerformat != null)
+            {
+                return creation.CreateLayout();
+            }
+            else
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -45,7 +63,16 @@ namespace AutoCADTools.PrintLayout
         /// <returns><c>true</c> if the layout was created successfully, <c>false</c> otherwise</returns>
         public static bool CreatePngLayout()
         {
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+
             var drawingArea = GetDrawingArea();
+            if (!PrinterRepository.Instance.Initialized)
+            {
+                doc.Editor.WriteMessage(Environment.NewLine + LocalData.AllPrintersNotInitializedMessage);
+                MessageBox.Show(AutocadMainWindow.Instance, LocalData.AllPrintersNotInitializedMessage, "Layout");
+                return false;
+            }
+
             Printer printer = PrinterRepository.Instance["PNG"];
             if (!drawingArea.IsValid || drawingArea.Format is PaperformatTextfieldCustom || printer == null)
             {

@@ -45,6 +45,12 @@ namespace AutoCADTools.PrintLayout
         
         private void FrmLayout_Load(object sender, EventArgs e)
         {
+            if (!PrinterRepository.Instance.Initialized)
+            {
+                Close();
+                MessageBox.Show(this, LocalData.AllPrintersNotInitializedMessage, "Layout");
+                return;
+            }
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
 
             cboPrinter.DataSource = PrinterRepository.Instance.PrinterNames;

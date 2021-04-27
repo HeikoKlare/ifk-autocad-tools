@@ -243,6 +243,7 @@
     <Compile Include="Tools\ReinforcingBond.cs" />
     <Compile Include="Tools\TextFrame.cs" />
     <Compile Include="Tools\TrussImport.cs" />
+    <Compile Include="Utils\AutocadMainWindow.cs" />
     <Compile Include="Utils\EntitiesJig.cs" />
     <Compile Include="Utils\NativeMethods.cs" />
     <Compile Include="Utils\Progress.cs">
