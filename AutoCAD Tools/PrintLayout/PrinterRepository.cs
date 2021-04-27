@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Autodesk.AutoCAD.DatabaseServices;
-using System.Threading.Tasks;
 using System.Linq;
-using static AutoCADTools.PrintLayout.Printer;
 using System.Threading;
-using System.Windows.Forms;
-using ApplicationServices = Autodesk.AutoCAD.ApplicationServices;
 using System.Runtime.ExceptionServices;
 
 namespace AutoCADTools.PrintLayout
