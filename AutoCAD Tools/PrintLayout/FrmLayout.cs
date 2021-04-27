@@ -282,8 +282,9 @@ namespace AutoCADTools.PrintLayout
             cboPaperformat.Items.Clear();
             cboPaperformat.Items.AddRange(selectablePaperformats.Select(format => format.Name).ToArray());
             int index = cboPaperformat.FindStringExact(oldFormat);
-            cboPaperformat.SelectedIndex = index != -1 ? index : 0;
+            cboPaperformat.SelectedIndex = index != -1 || cboPaperformat.Items.Count == 0 ? index : 0;
             ValidatePaperformats();
+            ValidateSelectedPaperformat();
         }
 
         private void UpdatePaperOrientations()
