@@ -4,6 +4,10 @@ using Autodesk.AutoCAD.DatabaseServices;
 using System.Threading.Tasks;
 using System.Linq;
 using static AutoCADTools.PrintLayout.Printer;
+using System.Threading;
+using System.Windows.Forms;
+using ApplicationServices = Autodesk.AutoCAD.ApplicationServices;
+using System.Runtime.ExceptionServices;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -16,6 +20,14 @@ namespace AutoCADTools.PrintLayout
 
         private static readonly PrinterRepository instance = new PrinterRepository();
 
+        public bool Initialized
+        {
+            get;
+            private set;
+        }
+
+        private bool initializing = false;
+    
         /// <summary>
         /// Gets the singleton instance of the cache.
         /// </summary>
@@ -50,7 +62,8 @@ namespace AutoCADTools.PrintLayout
         private PrinterRepository() { }
 
         /// <summary>
-        /// Gets the <see cref="Printer"/> with the specified name. If it is not loaded it is done now (beware of the delay!).
+        /// Gets the <see cref="Printer"/> with the specified name.
+        /// Requries that the repository has been initialized, otherwise throws an <see cref="InvalidOperationException"/>.
         /// If there is no printer with the specified name available, <c>null</c> is returned.
         /// </summary>
         /// <value>
@@ -62,43 +75,56 @@ namespace AutoCADTools.PrintLayout
         {
             get
             {
-                if (printer.ContainsKey(name))
+                if (!Initialized)
                 {
-                    return printer[name];
+                    throw new InvalidOperationException("Printer repository has not been initialized yet");
                 }
-                else
+
+                if (!printer.ContainsKey(name))
                 {
-                    try
-                    {
-                        lock (this)
-                        {
-                            var newprinter = new Printer(name);
-                            newprinter.InitializePaperformats();
-                            printer.Add(name, newprinter);
-                            return newprinter;
-                        }
-                    }
-                    catch (ArgumentException)
-                    {
-                        return null;
-                    }
+                    return null;
                 }
+                return printer[name];
             }
         }
 
-        /// <summary>
-        /// Initializes the repository with available printers
-        /// </summary>
-        public void Initialize()
+        private void InitializePrinter(string name)
         {
-            lock (this)
+            var newprinter = new Printer(name);
+            newprinter.InitializePaperformats();
+            printer.Add(name, newprinter);
+        }
+
+        /// <summary>
+        /// Initializes the repository with available printers.
+        /// </summary>
+        [HandleProcessCorruptedStateExceptions]
+        public IEnumerable<string> Initialize(CancellationToken cancellationToken)
+        {
+            if (initializing || Initialized)
             {
-                PlotSettingsValidator psv = PlotSettingsValidator.Current;
-                foreach (string device in PrinterNames)
+                return Enumerable.Empty<string>();
+            }
+
+            initializing = true;
+            var failedPrinters = new List<string>();
+            foreach (string device in PrinterNames)
+            {
+                try
                 {
-                    _ = PrinterRepository.Instance[device];
+                    InitializePrinter(device);
+                }
+                catch (Exception)
+                {
+                    if (cancellationToken.IsCancellationRequested)
+                    {
+                        return Enumerable.Empty<string>();
+                    }
+                    failedPrinters.Add(device);
                 }
             }
+            Initialized = true;
+            return failedPrinters;
         }
 
         /// <summary>

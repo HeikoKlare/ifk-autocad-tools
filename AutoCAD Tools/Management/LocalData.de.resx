@@ -195,12 +195,6 @@
   <data name="EditDetailTitle" xml:space="preserve">
     <value>Detail ändern</value>
   </data>
-  <data name="NoConnectionText" xml:space="preserve">
-    <value>Es kann keine Verbindung zur Datenbank hergestellt werden. Überprüfen Sie die Einstellungen und stellen Sie sicher, dass der Datenbankserver läuft. Bitte überspringen Sie die folgende Fehlermeldung.</value>
-  </data>
-  <data name="NoConnectionTitle" xml:space="preserve">
-    <value>Keine Datenbankverbindung</value>
-  </data>
   <data name="ErrorNoNumber" xml:space="preserve">
     <value>Das ist keine Zahl</value>
   </data>

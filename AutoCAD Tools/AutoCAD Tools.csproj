@@ -114,6 +114,11 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalData.resx</DependentUpon>
+    </Compile>
     <Compile Include="PrintLayout\DrawingAreaDocumentWrapper.cs" />
     <Compile Include="PrintLayout\Formats.cs" />
     <Compile Include="PrintLayout\LayoutCreation.cs" />
@@ -280,6 +285,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LocalData.de.resx" />
+    <EmbeddedResource Include="LocalData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Management\FrmManageDetailCategories.de.resx">
       <DependentUpon>FrmManageDetailCategories.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,7 +310,9 @@
       <DependentUpon>FrmLayout.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintLayout\LocalData.de.resx" />
+    <EmbeddedResource Include="PrintLayout\LocalData.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintLayout\LocalData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalData.Designer.cs</LastGenOutput>

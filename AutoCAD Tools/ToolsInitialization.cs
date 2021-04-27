@@ -3,6 +3,9 @@ using AutoCAD;
 using Autodesk.AutoCAD.ApplicationServices;
 using AutoCADTools.PrintLayout;
 using System.Threading.Tasks;
+using System.Threading;
+using Forms = System.Windows.Forms;
+using System.Linq;
 
 namespace AutoCADTools
 {
@@ -88,7 +91,7 @@ namespace AutoCADTools
                     group.Toolbars.Item(i).Visible = true;
                 }
             }
-            
+
         }
 
         private void SetTemplateFile()
@@ -102,8 +105,20 @@ namespace AutoCADTools
 
         private void RegisterPrinterRepositoryInitializer()
         {
+            var initializationTaskCancelSource = new CancellationTokenSource();
+            var token = initializationTaskCancelSource.Token;
             Application.DocumentManager.DocumentCreated +=
-                new DocumentCollectionEventHandler((sender, args) => Task.Run(PrinterRepository.Instance.Initialize));
+                new DocumentCollectionEventHandler((sender, args) => Task.Run(() =>
+                {
+                    var failedPrinters = PrinterRepository.Instance.Initialize(token);
+                    if (failedPrinters.Any())
+                    {
+                        Forms.MessageBox.Show(String.Format(LocalData.PrinterInitializationErrorMessage, string.Join(", ", failedPrinters)), "Error");
+                    }
+                }, token));
+
+            Application.BeginQuit +=
+                new EventHandler((sender, args) => initializationTaskCancelSource.Cancel());
         }
 
         /// <summary>

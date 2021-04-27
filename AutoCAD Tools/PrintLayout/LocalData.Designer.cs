@@ -61,6 +61,15 @@ namespace AutoCADTools.PrintLayout {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Printers have not been initialized yet. Please try again in a few seconds. ähnelt.
+        /// </summary>
+        internal static string AllPrintersNotInitializedMessage {
+            get {
+                return ResourceManager.GetString("AllPrintersNotInitializedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The specified default printer is not found. ähnelt.
         /// </summary>
         internal static string DefaultPrinterInvalid {

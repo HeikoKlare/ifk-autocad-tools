@@ -205,24 +205,6 @@ namespace AutoCADTools.Management {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die There is no connection to the database possible. Check the settings and make sure the database server is running. Please skip the following error message. ähnelt.
-        /// </summary>
-        internal static string NoConnectionText {
-            get {
-                return ResourceManager.GetString("NoConnectionText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die No Database Connection ähnelt.
-        /// </summary>
-        internal static string NoConnectionTitle {
-            get {
-                return ResourceManager.GetString("NoConnectionTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
         /// </summary>
         internal static string OK {
