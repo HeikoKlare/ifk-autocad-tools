@@ -37,10 +37,12 @@ namespace AutoCADTools.PrintLayout
             get
             {
                 PlotSettingsValidator psv = PlotSettingsValidator.Current;
+                var defaultPrinters = new List<string> { Properties.Settings.Default.DefaultPrinterCustom, Properties.Settings.Default.DefaultPrinterA3, Properties.Settings.Default.DefaultPrinterA4 };
                 return psv.GetPlotDeviceList().Cast<string>()
                        .Where(device => device.EndsWith(Printer.printerConfigurationFileExtension))
                        .Select(device => device.Replace(Printer.printerConfigurationFileExtension, ""))
                        .Where(device => excludedNames.ToList().TrueForAll(name => !device.Contains(name)))
+                       .OrderByDescending(name => defaultPrinters.IndexOf(name))
                        .ToList().AsReadOnly();
             }
         }
