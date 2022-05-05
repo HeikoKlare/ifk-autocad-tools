@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Forms = System.Windows.Forms;
 using System.Linq;
+using static System.IO.Path;
 
 namespace AutoCADTools
 {
@@ -21,8 +22,9 @@ namespace AutoCADTools
         private const string CustomizationFile = "ifk";
         private const string TemplateFolder = "Templates";
         private const string TemplateFile = "ifk.dwt";
+        private const string MenuGroupName = "IFK";
 
-        private readonly string roamingFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\" + AssemblyName + "\\";
+        private readonly string roamingFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + DirectorySeparatorChar + AssemblyName + DirectorySeparatorChar;
 
         /// <summary>
         /// Sets the defaults paths for the tools when starting AutoCAD. Sets printer configurations, UI customization and template files.
@@ -57,7 +59,7 @@ namespace AutoCADTools
         {
             AcadPreferences prefs = Autodesk.AutoCAD.ApplicationServices.Application.Preferences as AcadPreferences;
             string plotterDescPaths = prefs.Files.PrinterDescPath;
-            string plotterDesc = (roamingFolder + PlotterFolder + "\\" + PlotterPmpFolder);
+            string plotterDesc = (roamingFolder + PlotterFolder + DirectorySeparatorChar + PlotterPmpFolder);
             bool printerFound = false;
             foreach (var path in plotterDescPaths.Split(';'))
             {
@@ -76,7 +78,7 @@ namespace AutoCADTools
             bool found = false;
             for (int i = 0; i < prefs.Application.MenuGroups.Count; i++)
             {
-                if (prefs.Application.MenuGroups.Item(i).Name == "IFK")
+                if (prefs.Application.MenuGroups.Item(i).Name == MenuGroupName)
                 {
                     found = true;
                     break;
@@ -84,8 +86,8 @@ namespace AutoCADTools
             }
             if (!found)
             {
-                prefs.Application.MenuGroups.Load(roamingFolder + CustomizationFolder + "\\" + CustomizationFile);
-                var group = prefs.Application.MenuGroups.Item("IFK");
+                prefs.Application.MenuGroups.Load(roamingFolder + CustomizationFolder + DirectorySeparatorChar + CustomizationFile);
+                var group = prefs.Application.MenuGroups.Item(MenuGroupName);
                 for (int i = 0; i < group.Toolbars.Count; i++)
                 {
                     group.Toolbars.Item(i).Visible = true;
@@ -97,9 +99,9 @@ namespace AutoCADTools
         private void SetTemplateFile()
         {
             AcadPreferences prefs = Autodesk.AutoCAD.ApplicationServices.Application.Preferences as AcadPreferences;
-            if (prefs.Files.QNewTemplateFile != (roamingFolder + TemplateFolder + "\\" + TemplateFile).ToLower())
+            if (prefs.Files.QNewTemplateFile != (roamingFolder + TemplateFolder + DirectorySeparatorChar + TemplateFile).ToLower())
             {
-                prefs.Files.QNewTemplateFile = (roamingFolder + TemplateFolder + "\\" + TemplateFile).ToLower();
+                prefs.Files.QNewTemplateFile = (roamingFolder + TemplateFolder + DirectorySeparatorChar + TemplateFile).ToLower();
             }
         }
 
