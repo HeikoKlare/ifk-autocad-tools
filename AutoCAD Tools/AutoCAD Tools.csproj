@@ -287,7 +287,9 @@
     <Compile Include="Utils\IProgressMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="LocalData.de.resx" />
+    <EmbeddedResource Include="LocalData.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="LocalData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalData.Designer.cs</LastGenOutput>

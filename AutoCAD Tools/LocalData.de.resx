@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FirstStartupText" xml:space="preserve">
+    <value>Du scheinst AutoCAD zum ersten Mal mit den IFK-AutoCAD-Tools zu starten. Möchtest du den Dialog zum Ergänzen der Verbindungsdaten zur Datenbank öffnen?</value>
+  </data>
+  <data name="FirstStatupTitle" xml:space="preserve">
+    <value>Erster Start</value>
+  </data>
   <data name="NoConnectionText" xml:space="preserve">
     <value>Es kann keine Verbindung zur Datenbank hergestellt werden. Überprüfen Sie die Einstellungen und stellen Sie sicher, dass der Datenbankserver läuft. Bitte überspringen Sie die folgende Fehlermeldung.</value>
   </data>

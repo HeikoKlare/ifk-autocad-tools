@@ -1,5 +1,7 @@
 ﻿using AutoCAD;
+using AutoCADTools.Properties;
 using System;
+using System.Windows.Forms;
 using static System.IO.Path;
 
 namespace AutoCADTools
@@ -17,6 +19,7 @@ namespace AutoCADTools
         private const string TemplateFolder = "Templates";
         private const string TemplateFile = "ifk.dwt";
         private const string MenuGroupName = "IFK";
+        private const string DefaultDatabasePath = "SERVER_URL";
 
         private readonly string roamingFolder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + DirectorySeparatorChar + AssemblyName + DirectorySeparatorChar;
 
@@ -29,6 +32,18 @@ namespace AutoCADTools
             SetPrinterPmpPath();
             SetCustomizationFile();
             SetTemplateFile();
+            InitializeDatabaseAfterInstallation();
+        }
+
+        private void InitializeDatabaseAfterInstallation()
+        {
+            if (Settings.Default.SqlConnectionPath == DefaultDatabasePath)
+            {
+                if (MessageBox.Show(LocalData.FirstStartupText, LocalData.FirstStatupTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    AcadTools.Settings();
+                }
+            }
         }
 
         private void SetPrinterConfigPath()
