@@ -31,12 +31,19 @@ namespace AutoCADTools.Tools
         /// </summary>
         private Database.DetailsDataTable detailsTable;
 
+        public string SelectedFileToOpen
+        {
+            get;
+            private set;
+        }
+
         #endregion
 
         #region Load/Unload
         
         /// <summary>
         /// Initates a new GUI for managing details and the needed database connection and data tables.
+        /// The file to open, if any was selected, is stored in the <see cref="SelectedFileToOpen"/> property.
         /// </summary>
         public FrmDetails()
         {
@@ -183,7 +190,7 @@ namespace AutoCADTools.Tools
                 fs.Write(table[0].templateFile, 0, table[0].templateFile.Length);
             }
 
-            AutoCADTools.AcadTools.FileToOpen = file;
+            SelectedFileToOpen = file;
             this.Close();
         }
 

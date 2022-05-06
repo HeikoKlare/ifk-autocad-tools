@@ -18,24 +18,6 @@ namespace AutoCADTools
     /// </summary>
     public static class AcadTools
     {
-        #region Attributes
-        
-        /// <summary>
-        /// A string used as transfer for creating details
-        /// </summary>
-        private static String fileToOpen = "";
-
-        /// <summary>
-        /// A string used as transfer for creating details
-        /// </summary>
-        public static String FileToOpen
-        {
-            get { return AcadTools.fileToOpen; }
-            set { AcadTools.fileToOpen = value; }
-        }
-
-        #endregion
-
         #region Management
 
         /// <summary>
@@ -133,15 +115,16 @@ namespace AutoCADTools
         [CommandMethod("Details")]
         public static void Details()
         {
-            using (Form details = new Tools.FrmDetails())
+            var fileToOpen = "";
+            using (FrmDetails details = new FrmDetails())
             {
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(details);
+                fileToOpen = details.SelectedFileToOpen;
             }
             if (!String.IsNullOrEmpty(fileToOpen))
             {
                 Autodesk.AutoCAD.ApplicationServices.Document open = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.Add(fileToOpen);
                 Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument = open;
-                fileToOpen = "";
             }
         }
 
