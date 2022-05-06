@@ -6,12 +6,7 @@ namespace AutoCADTools.Utils
 {
     class AutocadMainWindow : Forms.IWin32Window
     {
-        private static AutocadMainWindow instance = new AutocadMainWindow();
-
-        public static AutocadMainWindow Instance
-        {
-            get { return instance; }
-        }
+        public static AutocadMainWindow Instance { get; } = new AutocadMainWindow();
 
         private AutocadMainWindow() { }
 
