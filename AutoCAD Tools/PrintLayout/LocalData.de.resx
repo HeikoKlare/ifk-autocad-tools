@@ -148,13 +148,19 @@
     <value>Layoutname darf nicht leer sein.</value>
   </data>
   <data name="LoadPaperformatsDescription" xml:space="preserve">
-    <value>Bearbeite Papierformat</value>
+    <value>Initialisiere Papierformat</value>
+  </data>
+  <data name="LoadPaperformatsErrorMessage" xml:space="preserve">
+    <value>Ein Fehler ist aufgetreten beim Laden der Papierformate für Drucker</value>
+  </data>
+  <data name="LoadPaperformatsErrorTitle" xml:space="preserve">
+    <value>Fehler Laden Papierformate</value>
   </data>
   <data name="LoadPaperformatsInitialization" xml:space="preserve">
     <value>Initialisere Ladevorgang</value>
   </data>
   <data name="LoadPaperformatsText" xml:space="preserve">
-    <value>Lade Paperformate für Drucker</value>
+    <value>Lade Papierformate für Drucker</value>
   </data>
   <data name="LoadPaperformatsTitle" xml:space="preserve">
     <value>Initialisiere Drucker</value>

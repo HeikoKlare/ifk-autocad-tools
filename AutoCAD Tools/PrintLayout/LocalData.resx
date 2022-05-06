@@ -150,6 +150,12 @@
   <data name="LoadPaperformatsDescription" xml:space="preserve">
     <value>Processing paperformat</value>
   </data>
+  <data name="LoadPaperformatsErrorMessage" xml:space="preserve">
+    <value>An error occurred when loading paperformats for printer</value>
+  </data>
+  <data name="LoadPaperformatsErrorTitle" xml:space="preserve">
+    <value>Error loading paperformats</value>
+  </data>
   <data name="LoadPaperformatsInitialization" xml:space="preserve">
     <value>Initialize loading</value>
   </data>
