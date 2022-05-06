@@ -216,6 +216,7 @@ namespace AutoCADTools.Management
                 progressMonitor.Title = LocalData.PNGPlotTitle;
                 progressMonitor.MainText = LocalData.PNGPlotText;
                 progressMonitor.CurrentActionDescription = LocalData.PNGPlotCreateLayout;
+                progressMonitor.Start();
 
                 // If not in model space, switch there
                 if (LayoutManager.Current.CurrentLayout != "Model") LayoutManager.Current.CurrentLayout = "Model";

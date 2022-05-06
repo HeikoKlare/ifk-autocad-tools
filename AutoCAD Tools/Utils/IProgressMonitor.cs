@@ -31,6 +31,10 @@ namespace AutoCADTools.Utils
         /// </summary>
         string CurrentActionDescription { set; }
 
+        /// <summary>
+        /// Indicates that the monitored process is started.
+        /// </summary>
+        void Start();
     }
 
     class NullProgressMonitor : IProgressMonitor
@@ -42,6 +46,11 @@ namespace AutoCADTools.Utils
         public string CurrentActionDescription { set { } }
 
         public void Dispose()
+        {
+            // Do nothing
+        }
+
+        public void Start()
         {
             // Do nothing
         }

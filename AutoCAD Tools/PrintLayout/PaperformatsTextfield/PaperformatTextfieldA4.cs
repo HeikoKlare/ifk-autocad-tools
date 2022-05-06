@@ -1,4 +1,6 @@
 ﻿
+using AutoCADTools.Utils;
+
 namespace AutoCADTools.PrintLayout
 {
     /// <summary>
@@ -88,9 +90,9 @@ namespace AutoCADTools.PrintLayout
         }
 
         /// <inheritdoc/>
-        public override PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats)
+        public override PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats, IProgressMonitor progressMonitor)
         {
-            return PaperformatPrinterMapping.GetFittingPaperformat(printer, optimizedPaperformats, 4);
+            return PaperformatPrinterMapping.GetFittingPaperformat(printer, optimizedPaperformats, 4, progressMonitor);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using AutoCADTools.Utils;
+
 namespace AutoCADTools.PrintLayout
 {
     /// <summary>
@@ -78,9 +80,10 @@ namespace AutoCADTools.PrintLayout
         /// Gets the fitting paperformat for the specified printer.
         /// </summary>
         /// <param name="printer">The printer to get the paperformat for.</param>
-        /// <param name="optimizedPaperformats">if set to <c>true</c> only optimized paperformats are used.</param>
+        /// <param name="optimizedPaperformats">If set to <c>true</c> only optimized paperformats are used.</param>
+        /// <param name="progressMonitor">The monitor to get informed about the paperformat initialization process, may be <code>null</code>.</param>
         /// <returns>The paperformat for the specified printer fitting this paperformat or <c>null</c> if none is found.</returns>
-        public abstract PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats);
+        public abstract PrinterPaperformat GetFittingPaperformat(Printer printer, bool optimizedPaperformats, IProgressMonitor progressMonitor);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Paperformat"/> class with the initial size Zero.

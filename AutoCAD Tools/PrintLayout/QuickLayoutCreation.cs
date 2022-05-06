@@ -39,7 +39,10 @@ namespace AutoCADTools.PrintLayout
             var creation = new LayoutTextfield(paperformat);
             SetDrawingArea(creation, drawingArea);
             creation.LayoutName = Properties.Settings.Default.DefaultLayoutName;
-            creation.Printerformat = paperformat.GetFittingPaperformat(printer, true);
+            using (var progressDialog = new ProgressDialog())
+            {
+                creation.Printerformat = paperformat.GetFittingPaperformat(printer, true, progressDialog);
+            }
             if (creation.Printerformat != null)
             {
                 return creation.CreateLayout();
@@ -71,7 +74,7 @@ namespace AutoCADTools.PrintLayout
             SetDrawingArea(creation, drawingArea);
 
             creation.LayoutName = "PNG";
-            creation.Printerformat = paperformat.GetFittingPaperformat(printer, true);
+            creation.Printerformat = paperformat.GetFittingPaperformat(printer, true, new ProgressDialog());
 
             return creation.CreateLayout();
         }

@@ -49,11 +49,12 @@ namespace AutoCADTools.PrintLayout
         /// Initializes and gets the optimized or unoptimized paperformats for this printer, depending on the specified parameter. Formats are optimized if their margins
         /// are all nearly 4 mm.
         /// </summary>
-        /// <param name="optimized">if set to <c>true</c> optimized formats are returned.</param>
+        /// <param name="optimized">If set to <c>true</c> optimized formats are returned.</param>
+        /// <param name="progressMonitor">The monitor to get informed about the initialization process, may be <code>null</code></param>
         /// <returns>A list the (un)optmized paperformats for this printer</returns>
-        public IReadOnlyList<PrinterPaperformat> InitializeAndGetPaperformats(bool optimized)
+        public IReadOnlyList<PrinterPaperformat> InitializeAndGetPaperformats(bool optimized, IProgressMonitor progressMonitor)
         {
-            if (!InitializePaperformats())
+            if (!InitializePaperformats(progressMonitor))
             {
                 MessageBox.Show(LocalData.LoadPaperformatsErrorTitle, LocalData.LoadPaperformatsErrorMessage + " " + Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -66,7 +67,7 @@ namespace AutoCADTools.PrintLayout
         /// If paperformats have not been initialized calling <see cref="InitializePaperformats"/>, an empty list will be returned.
         /// Initialization can be checked accessing <see cref="Initialized"/>.
         /// </summary>
-        /// <param name="optimized">if set to <c>true</c> optimized formats are returned.</param>
+        /// <param name="optimized">If set to <c>true</c> optimized formats are returned.</param>
         /// <returns>A list the (un)optmized paperformats for this printer</returns>
         public IReadOnlyList<PrinterPaperformat> GetPaperformats(bool optimized)
         {
@@ -97,50 +98,50 @@ namespace AutoCADTools.PrintLayout
         /// If the paperformats have already been initialized, nothing is done.
         /// Returns whether initialization was successful.
         /// </summary>
+        /// <param name="progressMonitor">The monitor to get informed about the initialization process, may be <code>null</code></param>
         [HandleProcessCorruptedStateExceptions]
-        public bool InitializePaperformats()
+        public bool InitializePaperformats(IProgressMonitor progressMonitor)
         {
+            if (progressMonitor == null) progressMonitor = new NullProgressMonitor();
             if (Initialized)
             {
                 return true;
             }
-            using (IProgressMonitor progressMonitor = new ProgressDialog())
+            progressMonitor.Title = LocalData.LoadPaperformatsTitle + " " + Name;
+            progressMonitor.MainText = LocalData.LoadPaperformatsText;
+            progressMonitor.CurrentActionDescription = LocalData.LoadPaperformatsInitialization;
+            progressMonitor.Start();
+            try
             {
-                progressMonitor.Title = LocalData.LoadPaperformatsTitle + " " + Name;
-                progressMonitor.MainText = LocalData.LoadPaperformatsText;
-                progressMonitor.CurrentActionDescription = LocalData.LoadPaperformatsInitialization;
-                try
+                using (PlotSettings plotSettings = new PlotSettings(true))
                 {
-                    using (PlotSettings plotSettings = new PlotSettings(true))
+                    var paperformatExtractionState = new PaperformatExtractionState(PlotSettingsValidator.Current, plotSettings, progressMonitor);
+                    IEnumerable<PaperformatDescription> printerPaperformatDescriptions = FindAvailablePaperformatsOfPrinter(paperformatExtractionState);
+                    var paperFormatNumber = 0;
+                    foreach (var targetPaperformatName in targetPaperformatsNames)
                     {
-                        var paperformatExtractionState = new PaperformatExtractionState(PlotSettingsValidator.Current, plotSettings, progressMonitor);
-                        IEnumerable<PaperformatDescription> printerPaperformatDescriptions = FindAvailablePaperformatsOfPrinter(paperformatExtractionState);
-                        var paperFormatNumber = 0;
-                        foreach (var targetPaperformatName in targetPaperformatsNames)
+                        var candidatePrinterPaperformatDescriptions = printerPaperformatDescriptions.Where(format => format.LocaleName.Contains(targetPaperformatName));
+                        var foundPaperformatDescription = FindAndMarkOptimizedPaperformat(paperformatExtractionState, targetPaperformatName, candidatePrinterPaperformatDescriptions);
+                        if (foundPaperformatDescription == null && candidatePrinterPaperformatDescriptions.Any())
                         {
-                            var candidatePrinterPaperformatDescriptions = printerPaperformatDescriptions.Where(format => format.LocaleName.Contains(targetPaperformatName));
-                            var foundPaperformatDescription = FindAndMarkOptimizedPaperformat(paperformatExtractionState, targetPaperformatName, candidatePrinterPaperformatDescriptions);
-                            if (foundPaperformatDescription == null)
-                            {
-                                foundPaperformatDescription = candidatePrinterPaperformatDescriptions.Last();
-                            }
-                            if (foundPaperformatDescription != null)
-                            {
-                                this.paperformats.Add(new PrinterPaperformat(targetPaperformatName, foundPaperformatDescription.CanonicalName, this, foundPaperformatDescription.Optimal));
-                            }
-                            paperFormatNumber++;
-                            progressMonitor.Progress = (double)paperFormatNumber / targetPaperformatsNames.Count();
+                            foundPaperformatDescription = candidatePrinterPaperformatDescriptions.Last();
                         }
+                        if (foundPaperformatDescription != null)
+                        {
+                            this.paperformats.Add(new PrinterPaperformat(targetPaperformatName, foundPaperformatDescription.CanonicalName, this, foundPaperformatDescription.Optimal));
+                        }
+                        paperFormatNumber++;
+                        progressMonitor.Progress = (double)paperFormatNumber / targetPaperformatsNames.Count();
                     }
                 }
-                catch (Exception)
-                {
-                    // There may be different reasons for the initialization to fail. In particular,
-                    // changing the document in between will lead to access violation errors, such that
-                    // we abort and return false to enfore restart initialization.
-                    this.paperformats.Clear();
-                    return false;
-                }
+            }
+            catch (Exception)
+            {
+                // There may be different reasons for the initialization to fail. In particular,
+                // changing the document in between will lead to access violation errors, such that
+                // we abort and return false to enfore restart initialization.
+                this.paperformats.Clear();
+                return false;
             }
             Initialized = true;
             return true;
@@ -208,7 +209,7 @@ namespace AutoCADTools.PrintLayout
         private static void UpdateProgressMonitor(IProgressMonitor progressMonitor, string paperFormatName, double addedProgress)
         {
             progressMonitor.Progress += addedProgress;
-            progressMonitor.CurrentActionDescription = String.Format("{0} {1})", LocalData.LoadPaperformatsDescription, paperFormatName);
+            progressMonitor.CurrentActionDescription = String.Format("{0} {1}", LocalData.LoadPaperformatsDescription, paperFormatName);
         }
 
         private class PaperformatDescription

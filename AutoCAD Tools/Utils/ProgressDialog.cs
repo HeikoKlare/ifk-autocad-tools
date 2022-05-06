@@ -15,7 +15,6 @@ namespace AutoCADTools.Utils
                 _progress = value < 0 ? 0 : value > 1 ? 1 : value;
                 progressBar.Value = ProgressInPercent();
                 UpdateWindowTitle();
-                Update();
             }
         }
 
@@ -37,6 +36,7 @@ namespace AutoCADTools.Utils
         private void UpdateWindowTitle()
         {
             this.Text = _windowTitle + " (" + ProgressInPercent() + " %)";
+            Update();
         }
 
         string IProgressMonitor.MainText
@@ -57,12 +57,21 @@ namespace AutoCADTools.Utils
         }
 
         /// <summary>
-        /// Initialises and shows the dialog.
+        /// Initialises the dialog.
         /// </summary>
         public ProgressDialog()
         {
             InitializeComponent();
+            
+        }
+
+        /// <summary>
+        /// Shows the dialog.
+        /// </summary>
+        public void Start()
+        {
             Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(this);
+            Update();
         }
 
         /// <summary>
