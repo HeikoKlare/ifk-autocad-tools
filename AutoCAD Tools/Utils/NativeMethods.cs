@@ -3,12 +3,12 @@
 namespace AutoCADTools.Utils
 {
     /// <summary>
-    /// Collection a extern native method definition.
+    /// Collection of extern native method definition.
     /// </summary>
     public static class NativeMethods
     {
         /// <summary>
-        /// This method provided by the COM-API allows to set the window with the given handle active
+        /// This method provided by the COM-API allows to set the window with the given handle active.
         /// </summary>
         /// <param name="hWnd">the handle of the window to set active</param>
         public static void SetWindowsToForeground(int hWnd)
@@ -17,7 +17,7 @@ namespace AutoCADTools.Utils
         }
 
         /// <summary>
-        /// This method provided by the COM-API allows to set the window with the given handle active
+        /// This method provided by the COM-API allows to set the window with the given handle active.
         /// </summary>
         /// <param name="hWnd">the handle of the window to set active</param>
         /// <returns>something</returns>
