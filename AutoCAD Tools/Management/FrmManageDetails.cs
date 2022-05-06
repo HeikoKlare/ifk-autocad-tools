@@ -211,9 +211,11 @@ namespace AutoCADTools.Management
 
             this.Hide();
 
-            using (IProgressMonitor progressMonitor = new ProgressDialog(LocalData.PNGPlotTitle, LocalData.PNGPlotText))
+            using (IProgressMonitor progressMonitor = new ProgressDialog())
             {
-                progressMonitor.SetCurrentActionDescription(LocalData.PNGPlotCreateLayout);
+                progressMonitor.Title = LocalData.PNGPlotTitle;
+                progressMonitor.MainText = LocalData.PNGPlotText;
+                progressMonitor.CurrentActionDescription = LocalData.PNGPlotCreateLayout;
 
                 // If not in model space, switch there
                 if (LayoutManager.Current.CurrentLayout != "Model") LayoutManager.Current.CurrentLayout = "Model";
@@ -227,7 +229,7 @@ namespace AutoCADTools.Management
                     return false;
                 }
 
-                progressMonitor.SetCurrentActionDescription(LocalData.PNGPlotInitialize);
+                progressMonitor.CurrentActionDescription = LocalData.PNGPlotInitialize;
                 progressMonitor.Progress = 0.2;
 
                 // Get the active document
@@ -280,7 +282,7 @@ namespace AutoCADTools.Management
                 }
                 // Start the waiting thread and disable changing details, show the main window
 
-                progressMonitor.SetCurrentActionDescription(LocalData.PNGPlotWaiting);
+                progressMonitor.CurrentActionDescription = LocalData.PNGPlotWaiting;
                 progressMonitor.Progress = 0.4;
                 bool accessable = false;
                 while (!accessable)

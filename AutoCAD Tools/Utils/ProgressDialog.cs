@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Diagnostics.Contracts;
+﻿using System.Windows.Forms;
 
 namespace AutoCADTools.Utils
 {
@@ -9,41 +7,62 @@ namespace AutoCADTools.Utils
     /// </summary>
     public partial class ProgressDialog : Form, IProgressMonitor
     {
-        private readonly string _windowTitle;
-
         private double _progress;
         double IProgressMonitor.Progress
         {
             get { return _progress; }
             set {
                 _progress = value < 0 ? 0 : value > 1 ? 1 : value;
-                var progressInPercent = (int)(_progress * 100);
-                this.Text = _windowTitle + " (" + progressInPercent + " %)";
-                progressBar.Value = progressInPercent;
+                progressBar.Value = ProgressInPercent();
+                UpdateWindowTitle();
+                Update();
+            }
+        }
+
+        private int ProgressInPercent()
+        {
+            return (int)(_progress * 100);
+        }
+
+        private string _windowTitle;
+        string IProgressMonitor.Title
+        {
+            set
+            {
+                _windowTitle = value;
+                UpdateWindowTitle();
+            }
+        }
+
+        private void UpdateWindowTitle()
+        {
+            this.Text = _windowTitle + " (" + ProgressInPercent() + " %)";
+        }
+
+        string IProgressMonitor.MainText
+        {
+            set {
+                lblMain.Text = value;
+                Update();
+
+            }
+        }
+
+        string IProgressMonitor.CurrentActionDescription
+        {
+            set {
+                lblDescription.Text = value;
                 Update();
             }
         }
 
         /// <summary>
-        /// Initialises the dialog with the given window name and text.
+        /// Initialises and shows the dialog.
         /// </summary>
-        /// <param name="windowTitle">the title of the windows, must not be <code>null</code></param>
-        /// <param name="mainText">the main text to be presented as top content of the dialog, must not be <code>null</code></param>
-        public ProgressDialog(string windowTitle, string mainText)
+        public ProgressDialog()
         {
-            Contract.Requires(windowTitle != null, "title of the progress dialog window must not be null");
-            Contract.Requires(mainText != null, "main text of the progress dialog window must not be null");
             InitializeComponent();
-            this._windowTitle = windowTitle;
-            lblMain.Text = mainText;
             Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(this);
-        }
-
-        public void SetCurrentActionDescription(String text)
-        {
-            Contract.Requires(text != null);
-            lblDescription.Text = text;
-            Update();
         }
 
         /// <summary>

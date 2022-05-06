@@ -104,11 +104,13 @@ namespace AutoCADTools.PrintLayout
             {
                 return true;
             }
-            try
+            using (IProgressMonitor progressMonitor = new ProgressDialog())
             {
-                using (IProgressMonitor progressMonitor = new ProgressDialog(LocalData.LoadPaperformatsTitle + " " + Name, LocalData.LoadPaperformatsText))
+                progressMonitor.Title = LocalData.LoadPaperformatsTitle + " " + Name;
+                progressMonitor.MainText = LocalData.LoadPaperformatsText;
+                progressMonitor.CurrentActionDescription = LocalData.LoadPaperformatsInitialization;
+                try
                 {
-                    progressMonitor.SetCurrentActionDescription(LocalData.LoadPaperformatsInitialization);
                     using (PlotSettings plotSettings = new PlotSettings(true))
                     {
                         var paperformatExtractionState = new PaperformatExtractionState(PlotSettingsValidator.Current, plotSettings, progressMonitor);
@@ -131,14 +133,14 @@ namespace AutoCADTools.PrintLayout
                         }
                     }
                 }
-            }
-            catch (Exception)
-            {
-                // There may be different reasons for the initialization to fail. In particular,
-                // changing the document in between will lead to access violation errors, such that
-                // we abort and return false to enfore restart initialization.
-                this.paperformats.Clear();
-                return false;
+                catch (Exception)
+                {
+                    // There may be different reasons for the initialization to fail. In particular,
+                    // changing the document in between will lead to access violation errors, such that
+                    // we abort and return false to enfore restart initialization.
+                    this.paperformats.Clear();
+                    return false;
+                }
             }
             Initialized = true;
             return true;
@@ -206,7 +208,7 @@ namespace AutoCADTools.PrintLayout
         private static void UpdateProgressMonitor(IProgressMonitor progressMonitor, string paperFormatName, double addedProgress)
         {
             progressMonitor.Progress += addedProgress;
-            progressMonitor.SetCurrentActionDescription(String.Format("{0} {1})", LocalData.LoadPaperformatsDescription, paperFormatName));
+            progressMonitor.CurrentActionDescription = String.Format("{0} {1})", LocalData.LoadPaperformatsDescription, paperFormatName);
         }
 
         private class PaperformatDescription
