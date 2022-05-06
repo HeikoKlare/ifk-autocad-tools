@@ -35,7 +35,6 @@ namespace AutoCADTools
             SetPrinterPmpPath();
             SetCustomizationFile();
             SetTemplateFile();
-            RegisterPrinterRepositoryInitializer();
         }
 
         private void SetPrinterConfigPath()
@@ -102,31 +101,6 @@ namespace AutoCADTools
             if (prefs.Files.QNewTemplateFile != (roamingFolder + TemplateFolder + DirectorySeparatorChar + TemplateFile).ToLower())
             {
                 prefs.Files.QNewTemplateFile = (roamingFolder + TemplateFolder + DirectorySeparatorChar + TemplateFile).ToLower();
-            }
-        }
-
-        private void RegisterPrinterRepositoryInitializer()
-        {
-            var initializationTaskCancelSource = new CancellationTokenSource();
-            var initialization = new AsynchronousPrinterRepositoryInitialization();
-            Application.DocumentManager.DocumentCreated += new DocumentCollectionEventHandler((sender, args) => initialization.Initialize(initializationTaskCancelSource));
-            Application.BeginQuit += new EventHandler((sender, args) => initializationTaskCancelSource.Cancel());
-        }
-
-        private class AsynchronousPrinterRepositoryInitialization
-        {
-            private bool initializationStarted = false;
-
-            public void Initialize(CancellationTokenSource tokenSource)
-            {
-                lock (this)
-                {
-                    if (!initializationStarted)
-                    {
-                        initializationStarted = true;
-                        Task.Run(() => PrinterRepository.Instance.Initialize(tokenSource.Token), tokenSource.Token);
-                    }
-                }
             }
         }
 

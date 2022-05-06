@@ -2,6 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoCADTools.Utils;
+using System.Runtime.ExceptionServices;
+using System.Windows.Forms;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -14,6 +17,16 @@ namespace AutoCADTools.PrintLayout
         /// File extension for printer configuration files
         /// </summary>
         public const string printerConfigurationFileExtension = ".pc3";
+
+        /// <summary>
+        /// Returns whether the printer has been initialized.
+        /// </summary>
+        public bool Initialized
+        {
+            get;
+            private set;
+        }
+
 
         private readonly IEnumerable<string> ordinaryPaperFormats = new List<string>() { "A0", "A1", "A2", "A3", "A4" };
         private readonly Dictionary<string, string> ordinaryPaperFormatsToPng = new Dictionary<string, string> { { "A4", "UserDefinedRaster (2100.00 x 2970.00Pixel)" }, { "A3", "UserDefinedRaster (2970.00 x 4200.00Pixel)" } };
@@ -29,8 +42,25 @@ namespace AutoCADTools.PrintLayout
         private readonly IList<PrinterPaperformat> paperformats = new List<PrinterPaperformat>();
 
         /// <summary>
+        /// Initializes and gets the optimized or unoptimized paperformats for this printer, depending on the specified parameter. Formats are optimized if their margins
+        /// are all nearly 4 mm.
+        /// </summary>
+        /// <param name="optimized">if set to <c>true</c> optimized formats are returned.</param>
+        /// <returns>A list the (un)optmized paperformats for this printer</returns>
+        public IReadOnlyList<PrinterPaperformat> InitializeAndGetPaperformats(bool optimized)
+        {
+            if (!InitializePaperformats())
+            {
+                MessageBox.Show("Fehler", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return GetPaperformats(optimized);
+        }
+
+        /// <summary>
         /// Gets the optimized or unoptimized paperformats for this printer, depending on the specified parameter. Formats are optimized if their margins
         /// are all nearly 4 mm.
+        /// If paperformats have not been initialized calling <see cref="InitializePaperformats"/>, an empty list will be returned.
+        /// Initialization can be checked accessing <see cref="Initialized"/>.
         /// </summary>
         /// <param name="optimized">if set to <c>true</c> optimized formats are returned.</param>
         /// <returns>A list the (un)optmized paperformats for this printer</returns>
@@ -60,50 +90,96 @@ namespace AutoCADTools.PrintLayout
         /// Initializes the paperformats. They are seperated into optimized and unoptimized formats.
         /// During execution, the plot settings validator may not be changed (by creating a new document, closing the application or the like).
         /// Otherwise, access violation exception will occur, which then need to be handled by the caller.
+        /// If the paperformats have already been initialized, nothing is done.
+        /// Returns whether initialization was successful.
         /// </summary>
-        public void InitializePaperformats()
+        [HandleProcessCorruptedStateExceptions]
+        public bool InitializePaperformats()
         {
-            PlotSettingsValidator psv = PlotSettingsValidator.Current;
-            using (PlotSettings acPlSet = new PlotSettings(true))
+            if (Initialized)
             {
-                psv.SetPlotConfigurationName(acPlSet, Name + printerConfigurationFileExtension, null);
-                psv.RefreshLists(acPlSet);
-
-                var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
-                foreach (var ordinaryPaperformat in ordinaryPaperFormats)
+                return true;
+            }
+            try
+            {
+                using (UFProgress progressWindow = new UFProgress())
                 {
-                    var isOptimal = false;
-                    String foundFormat = null;
-                    var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
+                    var numberOfOrdinaryPaperFormats = ordinaryPaperFormats.Count();
+                    progressWindow.setName(LocalData.LoadPaperformatsTitle);
+                    progressWindow.setMain(LocalData.LoadPaperformatsText);
+                    progressWindow.setDescription(LocalData.LoadPaperformatsInitialization);
+                    progressWindow.setProgress(0);
+                    progressWindow.Update();
+                    Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(progressWindow);
 
-                    if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
+                    PlotSettingsValidator psv = PlotSettingsValidator.Current;
+                    using (PlotSettings acPlSet = new PlotSettings(true))
                     {
-                        isOptimal = true;
-                        foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
-                    }
-                    else
-                    {
-                        foreach (var candidate in candidateFormats)
+                        psv.SetPlotConfigurationName(acPlSet, Name + printerConfigurationFileExtension, null);
+                        psv.RefreshLists(acPlSet);
+                        var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
+
+                        var paperFormatNumber = 0;
+                        foreach (var ordinaryPaperformat in ordinaryPaperFormats)
                         {
-                            foundFormat = candidate;
-                            psv.SetCanonicalMediaName(acPlSet, candidate);
-                            Extents2d margins = acPlSet.PlotPaperMargins;
-                            if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
-                                && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
-                                && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
-                                && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
+                            var isOptimal = false;
+                            String foundFormat = null;
+                            var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
+
+                            if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
                             {
                                 isOptimal = true;
-                                break;
+                                foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
                             }
+                            else
+                            {
+                                var numberOfCandidateFormats = candidateFormats.Count();
+                                var candidateNumber = 0;
+                                foreach (var candidate in candidateFormats)
+                                {
+                                    var progress = (100 * paperFormatNumber + 100 * candidateNumber / numberOfCandidateFormats) / numberOfOrdinaryPaperFormats;
+                                    UpdateProgressWindow(progressWindow, ordinaryPaperformat, progress);
+                                    foundFormat = candidate;
+                                    psv.SetCanonicalMediaName(acPlSet, candidate);
+                                    Extents2d margins = acPlSet.PlotPaperMargins;
+                                    if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
+                                        && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
+                                        && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
+                                        && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
+                                    {
+                                        isOptimal = true;
+                                        break;
+                                    }
+                                    candidateNumber++;
+                                }
+                            }
+                            if (foundFormat != null)
+                            {
+                                paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
+                            }
+                            paperFormatNumber++;
+                            UpdateProgressWindow(progressWindow, ordinaryPaperformat, 100 * paperFormatNumber / numberOfOrdinaryPaperFormats);
                         }
-                    }
-                    if (foundFormat != null)
-                    {
-                        paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
+                        progressWindow.Hide();
                     }
                 }
             }
+            catch (Exception)
+            {
+                // There may be different reasons for the initialization to fail. In particular,
+                // changing the document in between will lead to access violation errors, such that
+                // we abort and return false to enfore restart initialization.
+                return false;
+            }
+            Initialized = true;
+            return true;
+        }
+
+        private static void UpdateProgressWindow(UFProgress progressWindow, string paperFormatName, int progress)
+        {
+            progressWindow.setDescription(String.Format("{0} {1} ({2} %)", LocalData.LoadPaperformatsDescription, paperFormatName, progress));
+            progressWindow.setProgress(progress);
+            progressWindow.Update();
         }
     }
 

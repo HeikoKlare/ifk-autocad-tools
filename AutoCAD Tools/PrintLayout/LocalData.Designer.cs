@@ -61,15 +61,6 @@ namespace AutoCADTools.PrintLayout {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Printers have not been initialized yet. Please try again in a few seconds. ähnelt.
-        /// </summary>
-        internal static string AllPrintersNotInitializedMessage {
-            get {
-                return ResourceManager.GetString("AllPrintersNotInitializedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The specified default printer is not found. ähnelt.
         /// </summary>
         internal static string DefaultPrinterInvalid {
@@ -156,6 +147,42 @@ namespace AutoCADTools.PrintLayout {
         internal static string LayoutNameEmptyError {
             get {
                 return ResourceManager.GetString("LayoutNameEmptyError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Processing paperformat ähnelt.
+        /// </summary>
+        internal static string LoadPaperformatsDescription {
+            get {
+                return ResourceManager.GetString("LoadPaperformatsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Initialize loading ähnelt.
+        /// </summary>
+        internal static string LoadPaperformatsInitialization {
+            get {
+                return ResourceManager.GetString("LoadPaperformatsInitialization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Loading paperformats for printer ähnelt.
+        /// </summary>
+        internal static string LoadPaperformatsText {
+            get {
+                return ResourceManager.GetString("LoadPaperformatsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Initialize Printer ähnelt.
+        /// </summary>
+        internal static string LoadPaperformatsTitle {
+            get {
+                return ResourceManager.GetString("LoadPaperformatsTitle", resourceCulture);
             }
         }
         

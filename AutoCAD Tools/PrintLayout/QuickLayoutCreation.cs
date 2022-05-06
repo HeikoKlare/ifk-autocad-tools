@@ -27,13 +27,6 @@ namespace AutoCADTools.PrintLayout
                 return false;
             }
 
-            if (!PrinterRepository.Instance.Initialized)
-            {
-                doc.Editor.WriteMessage(Environment.NewLine + LocalData.AllPrintersNotInitializedMessage);
-                MessageBox.Show(AutocadMainWindow.Instance, LocalData.AllPrintersNotInitializedMessage, "Layout");
-                return false;
-            }
-
             var paperformat = drawingArea.Format;
             var printer = paperformat.GetDefaultPrinter();
             if (printer == null)
@@ -66,12 +59,6 @@ namespace AutoCADTools.PrintLayout
             var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
 
             var drawingArea = GetDrawingArea();
-            if (!PrinterRepository.Instance.Initialized)
-            {
-                doc.Editor.WriteMessage(Environment.NewLine + LocalData.AllPrintersNotInitializedMessage);
-                MessageBox.Show(AutocadMainWindow.Instance, LocalData.AllPrintersNotInitializedMessage, "Layout");
-                return false;
-            }
 
             Printer printer = PrinterRepository.Instance["PNG"];
             if (!drawingArea.IsValid || drawingArea.Format is PaperformatTextfieldCustom || printer == null)

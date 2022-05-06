@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllPrintersNotInitializedMessage" xml:space="preserve">
-    <value>Drucker wurden noch nicht initialisiert. Bitte versuchen Sie es in ein paar Sekunden erneut.</value>
-  </data>
   <data name="DefaultPrinterInvalid" xml:space="preserve">
     <value>Der Standarddrucker wurde nicht gefunden.</value>
   </data>
@@ -149,6 +146,18 @@
   </data>
   <data name="LayoutNameEmptyError" xml:space="preserve">
     <value>Layoutname darf nicht leer sein.</value>
+  </data>
+  <data name="LoadPaperformatsDescription" xml:space="preserve">
+    <value>Bearbeite Papierformat</value>
+  </data>
+  <data name="LoadPaperformatsInitialization" xml:space="preserve">
+    <value>Initialisere Ladevorgang</value>
+  </data>
+  <data name="LoadPaperformatsText" xml:space="preserve">
+    <value>Lade Paperformate für Drucker</value>
+  </data>
+  <data name="LoadPaperformatsTitle" xml:space="preserve">
+    <value>Initialisiere Drucker</value>
   </data>
   <data name="NoDrawingAreaMessage" xml:space="preserve">
     <value>Kein Zeichenbereich gefunden.</value>

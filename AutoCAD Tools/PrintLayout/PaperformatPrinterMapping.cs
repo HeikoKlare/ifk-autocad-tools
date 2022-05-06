@@ -19,7 +19,7 @@ namespace AutoCADTools.PrintLayout
         {
             PrinterPaperformat result = null;
             int bestFormatFound = -1;
-            foreach (var format in printer.GetPaperformats(optimizedFormats))
+            foreach (var format in printer.InitializeAndGetPaperformats(optimizedFormats))
             {
                 char lastSymbol = format.Name[format.Name.Length - 1];
                 if (char.IsDigit(lastSymbol))

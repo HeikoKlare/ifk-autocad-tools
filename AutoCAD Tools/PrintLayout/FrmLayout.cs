@@ -45,12 +45,6 @@ namespace AutoCADTools.PrintLayout
         
         private void FrmLayout_Load(object sender, EventArgs e)
         {
-            if (!PrinterRepository.Instance.Initialized)
-            {
-                Close();
-                MessageBox.Show(this, LocalData.AllPrintersNotInitializedMessage, "Layout");
-                return;
-            }
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
 
             cboPrinter.DataSource = PrinterRepository.Instance.PrinterNames;
@@ -278,7 +272,7 @@ namespace AutoCADTools.PrintLayout
         {
             var oldFormat = cboPaperformat.Text;
             this.selectedPrinter = PrinterRepository.Instance[cboPrinter.Text];
-            this.selectablePaperformats = selectedPrinter != null ? selectedPrinter.GetPaperformats(chkOptimizedPaperformats.Checked) : new List<PrinterPaperformat>().ToArray();
+            this.selectablePaperformats = selectedPrinter != null ? selectedPrinter.InitializeAndGetPaperformats(chkOptimizedPaperformats.Checked) : new List<PrinterPaperformat>().ToArray();
             cboPaperformat.Items.Clear();
             cboPaperformat.Items.AddRange(selectablePaperformats.Select(format => format.Name).ToArray());
             int index = cboPaperformat.FindStringExact(oldFormat);

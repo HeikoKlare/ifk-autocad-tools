@@ -15,17 +15,6 @@ namespace AutoCADTools.PrintLayout
         private static readonly IReadOnlyList<string> excludedNames = new List<string>() { "Default" };
 
         private static readonly PrinterRepository instance = new PrinterRepository();
-        
-        /// <summary>
-        /// Returns whether the repository has been initialized, such that printers can be accessed.
-        /// </summary>
-        public bool Initialized
-        {
-            get;
-            private set;
-        }
-
-        private bool initializing = false;
 
         /// <summary>
         /// Gets the singleton instance of the cache.
@@ -62,7 +51,6 @@ namespace AutoCADTools.PrintLayout
 
         /// <summary>
         /// Gets the <see cref="Printer"/> with the specified name.
-        /// Requries that the repository has been initialized, otherwise throws an <see cref="InvalidOperationException"/>.
         /// If there is no printer with the specified name available, <c>null</c> is returned.
         /// </summary>
         /// <value>
@@ -74,66 +62,18 @@ namespace AutoCADTools.PrintLayout
         {
             get
             {
-                if (!Initialized)
-                {
-                    throw new InvalidOperationException("Printer repository has not been initialized yet");
-                }
-
                 if (!printer.ContainsKey(name))
                 {
-                    return null;
+                    if (PrinterNames.Contains(name))
+                    {
+                        printer.Add(name, new Printer(name));
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 return printer[name];
-            }
-        }
-
-        [HandleProcessCorruptedStateExceptions]
-        private bool InitializePrinter(string name)
-        {
-            try
-            {
-                var newprinter = new Printer(name);
-                newprinter.InitializePaperformats();
-                printer.Add(name, newprinter);
-                return true;
-            }
-            catch (Exception)
-            {
-                // There may be different reasons for the initialization to fail. In particular,
-                // changing the document in between will lead to access violation errors, such that
-                // we abort and return false to enfore restart initialization.
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Initializes the repository with available printers.
-        /// </summary>
-        public void Initialize(CancellationToken cancellationToken)
-        {
-            lock (this)
-            {
-                if (initializing || Initialized)
-                {
-                    return;
-                }
-
-                initializing = true;
-                var remainingPrinters = new List<string>();
-                remainingPrinters.AddRange(PrinterNames);
-                while (remainingPrinters.Any())
-                {
-                    var nextPrinter = remainingPrinters.First();
-                    if (InitializePrinter(nextPrinter))
-                    {
-                        remainingPrinters.Remove(nextPrinter);
-                    }
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        return;
-                    }
-                }
-                Initialized = true;
             }
         }
 

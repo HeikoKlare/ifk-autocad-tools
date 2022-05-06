@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AllPrintersNotInitializedMessage" xml:space="preserve">
-    <value>Printers have not been initialized yet. Please try again in a few seconds.</value>
-  </data>
   <data name="DefaultPrinterInvalid" xml:space="preserve">
     <value>The specified default printer is not found.</value>
   </data>
@@ -149,6 +146,18 @@
   </data>
   <data name="LayoutNameEmptyError" xml:space="preserve">
     <value>Layoutname must not be empty.</value>
+  </data>
+  <data name="LoadPaperformatsDescription" xml:space="preserve">
+    <value>Processing paperformat</value>
+  </data>
+  <data name="LoadPaperformatsInitialization" xml:space="preserve">
+    <value>Initialize loading</value>
+  </data>
+  <data name="LoadPaperformatsText" xml:space="preserve">
+    <value>Loading paperformats for printer</value>
+  </data>
+  <data name="LoadPaperformatsTitle" xml:space="preserve">
+    <value>Initialize Printer</value>
   </data>
   <data name="NoDrawingAreaMessage" xml:space="preserve">
     <value>No drawing area detected.</value>
