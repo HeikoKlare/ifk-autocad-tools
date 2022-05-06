@@ -125,19 +125,19 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblPrinterCustom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 20</value>
+    <value>70, 13</value>
   </data>
   <data name="lblPrinterCustom.Text" xml:space="preserve">
     <value>Drucker &gt;A3:</value>
   </data>
   <data name="lblPrinterA3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 20</value>
+    <value>64, 13</value>
   </data>
   <data name="lblPrinterA3.Text" xml:space="preserve">
     <value>Drucker A3:</value>
   </data>
   <data name="lblPrinterA4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 20</value>
+    <value>64, 13</value>
   </data>
   <data name="lblPrinterA4.Text" xml:space="preserve">
     <value>Drucker A4:</value>
@@ -146,16 +146,22 @@
     <value>Layout und Druck Standardwerte</value>
   </data>
   <data name="chkDiagonalBracingDescriptionBlack.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 25</value>
+    <value>223, 18</value>
   </data>
   <data name="chkDiagonalBracingDescriptionBlack.Text" xml:space="preserve">
     <value>Schwarzer Beschreibungstext für Rispen</value>
   </data>
   <data name="lblDatabaseDatabase.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 20</value>
+    <value>63, 13</value>
   </data>
   <data name="lblDatabaseDatabase.Text" xml:space="preserve">
     <value>Datenbank:</value>
+  </data>
+  <data name="lblDatabasePassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 13</value>
+  </data>
+  <data name="lblDatabasePassword.Text" xml:space="preserve">
+    <value>Passwort:</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Datenbank</value>
