@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
-using Autodesk.AutoCAD.Runtime;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AutoCADTools.Tools
 {
@@ -21,7 +19,8 @@ namespace AutoCADTools.Tools
             Application.DocumentManager.MdiActiveDocument.Editor.CurrentUserCoordinateSystem = ucs;
         }
 
-        public static void Execute() {
+        public static void Execute()
+        {
             Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             Dictionary<LayerTableRecord, bool> layerActivation = new Dictionary<LayerTableRecord, bool>();
 
@@ -31,7 +30,7 @@ namespace AutoCADTools.Tools
                 0.0, 1.0, 0.0, 0.0,
                 0.0, 0.0, 1.0, 0.0,
                 0.0, 0.0, 0.0, 1.0}));
-        
+
             using (Transaction acTrans = acDoc.Database.TransactionManager.StartTransaction())
             {
                 // Save all layers status and turn most of them off
@@ -40,17 +39,13 @@ namespace AutoCADTools.Tools
                 {
                     LayerTableRecord current = acTrans.GetObject(layerId, OpenMode.ForWrite) as LayerTableRecord;
                     layerActivation.Add(current, current.IsOff);
-                    Boolean True = new Boolean();
-                    True = true;
-                    Boolean False = new Boolean();
-                    False = false;
                     if (!LAYERS_TO_SHOW.Contains(current.Name) && acDoc.Database.Clayer != layerId)
                     {
-                        current.IsOff = True;
+                        current.IsOff = true;
                     }
                     else
                     {
-                        current.IsOff = False;
+                        current.IsOff = false;
                     }
                 }
 
@@ -66,7 +61,7 @@ namespace AutoCADTools.Tools
                 //string handleString = "";
                 Point3d minimum = new Point3d(double.MaxValue, double.MaxValue, 0);
                 Point3d maximum = new Point3d(double.MinValue, double.MinValue, 0);
-                
+
                 foreach (SelectedObject obj in selection.Value)
                 {
                     //handleString += "(handent \"" + obj.ObjectId.Handle + "\")" + "\r";
@@ -101,7 +96,7 @@ namespace AutoCADTools.Tools
                     SetUCS(oldUCS);
                     return;
                 }
-                
+
                 // Turn ortho mode on for input point
                 object oldAutoSnap = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("AUTOSNAP");
                 bool oldOrtho = acDoc.Database.Orthomode;
@@ -132,7 +127,7 @@ namespace AutoCADTools.Tools
                     UseDefaultValue = true
                 };
                 PromptIntegerResult decimalPlaces = acDoc.Editor.GetInteger(intOpts);
-                if (decimalPlaces.Status != PromptStatus.OK) 
+                if (decimalPlaces.Status != PromptStatus.OK)
                 {
                     acTrans.Abort();
                     SetUCS(oldUCS);
@@ -142,7 +137,7 @@ namespace AutoCADTools.Tools
                 // Move reference point a little bit from the center, so it is correctly recognized
                 bool horizontal = Math.Abs(insertionPoint.Value.X - referencePoint.Value.X) < Math.Abs(insertionPoint.Value.Y - referencePoint.Value.Y);
                 Point3d refPoint = referencePoint.Value;
-                Point3d calcRefPoint = referencePoint.Value;
+                Point3d calcRefPoint;
                 if (horizontal)
                 {
                     refPoint = refPoint.Add(new Vector3d(referencePoint.Value.X < average.X ? -0.001 : 0.001, 0, 0));
@@ -169,7 +164,7 @@ namespace AutoCADTools.Tools
                 var oldDimdec = acDoc.Database.Dimdec;
                 var oldDimdli = acDoc.Database.Dimdli;
                 var oldDimAssoc = acDoc.Database.DimAssoc;
-                
+
                 if (dimStyleTable.Has(STYLENAME))
                 {
                     acDoc.Database.Dimstyle = dimStyleTable[STYLENAME];

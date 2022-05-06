@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.IO;
-
+using System.Windows.Forms;
 using Direction = AutoCADTools.Tools.TrussImport.Direction;
 using Layer = AutoCADTools.Tools.TrussImport.Layer;
 
@@ -86,10 +85,10 @@ namespace AutoCADTools.Tools
                 MessageBox.Show(LocalData.TrussImportFileNotFoundText + trussImport.FileName, LocalData.TrussImportFileNotFoundTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             this.DialogResult = DialogResult.OK;
             this.Close();
-            
+
             //if (!trussImport.Import())
             //{
             //    MessageBox.Show(LocalData.TrussImportErrorText, LocalData.TrussImportErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);

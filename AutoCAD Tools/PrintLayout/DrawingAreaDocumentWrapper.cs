@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Autodesk.AutoCAD.Runtime;
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.Runtime;
+using System.Windows.Forms;
 [assembly: PerDocumentClass(typeof(AutoCADTools.PrintLayout.DrawingAreaDocumentWrapper))]
- 
+
 
 namespace AutoCADTools.PrintLayout
 {
@@ -56,7 +51,8 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         /// <param name="format">the format the new drawing area should have</param>
         /// <returns>true if the drawing area was successfully created, false otherwise</returns>
-        public bool Create(PaperformatTextfield format) {
+        public bool Create(PaperformatTextfield format)
+        {
             var createdArea = drawingArea.Create(format, 0);
             if (createdArea != null)
             {
@@ -70,7 +66,8 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         /// <param name="oldTextfieldUsed">specified if the old textfield size shell be used for ne resized drawing area</param>
         /// <returns>true if the drawing area was resized, false otherwise</returns>
-        public bool Resize(bool oldTextfieldUsed = false) {
+        public bool Resize(bool oldTextfieldUsed = false)
+        {
             if (!this.drawingArea.IsValid) this.drawingArea = DrawingArea.FindDrawingArea(drawingArea.Document, 0);
             return this.drawingArea.Resize(oldTextfieldUsed);
         }
@@ -110,6 +107,6 @@ namespace AutoCADTools.PrintLayout
             var dadw = new DrawingAreaDocumentWrapper(doc);
             return dadw;
         }
-    
+
     }
 }

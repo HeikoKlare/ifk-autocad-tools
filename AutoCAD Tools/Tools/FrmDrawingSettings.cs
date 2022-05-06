@@ -1,12 +1,11 @@
-﻿using System;
-using System.Windows.Forms;
-using AutoCADTools.Data;
+﻿using AutoCADTools.Data;
 using AutoCADTools.Management;
 using AutoCADTools.PrintLayout;
-using Database = AutoCADTools.Data.Database;
-using System.Drawing;
+using System;
 using System.Data;
-using System.Linq;
+using System.Drawing;
+using System.Windows.Forms;
+using Database = AutoCADTools.Data.Database;
 
 namespace AutoCADTools.Tools
 {
@@ -353,7 +352,7 @@ namespace AutoCADTools.Tools
         {
             //Get Current Font In ComboBox
             Font font = cboProjects.Font;
-                        
+
             //determine Its Size
             if (e.Index >= 0 && e.Index < cboProjects.Items.Count)
             {
@@ -374,7 +373,7 @@ namespace AutoCADTools.Tools
                 e.ItemWidth = (int)stringSize.Width;
             }
         }
-        
+
     }
 
 }

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using AutoCADTools.Properties;
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using AutoCADTools.Properties;
 
 namespace AutoCADTools.Management
 {
@@ -11,7 +11,7 @@ namespace AutoCADTools.Management
     public partial class FrmSettings : Form
     {
         #region Load/Unload
-        
+
         /// <summary>
         /// Initializes the GUI and loads the data from the current application settings.
         /// </summary>
@@ -41,7 +41,7 @@ namespace AutoCADTools.Management
         #endregion
 
         #region EventHandler
-        
+
         /// <summary>
         /// Saves the changes persistent to the application settings and closes the window.
         /// </summary>

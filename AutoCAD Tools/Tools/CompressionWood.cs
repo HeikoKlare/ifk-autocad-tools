@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
+using System;
 
 namespace AutoCADTools.Tools
 {
@@ -97,7 +93,7 @@ namespace AutoCADTools.Tools
                 }
             }
         }
-        
+
         #endregion
 
         #region Jig
@@ -166,7 +162,7 @@ namespace AutoCADTools.Tools
                     ((Polyline)this.Entity).TransformBy(Matrix3d.Displacement(oldPoint.GetVectorTo(insertionPoint)));
                     oldPoint = insertionPoint;
                 }
-                    
+
                 // Return that everything is fine
                 return true;
             }

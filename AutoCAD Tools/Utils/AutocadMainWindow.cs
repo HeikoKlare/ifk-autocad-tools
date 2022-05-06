@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Autodesk.AutoCAD.ApplicationServices;
+using System;
 using Forms = System.Windows.Forms;
-using Autodesk.AutoCAD.ApplicationServices;
 
 namespace AutoCADTools.Utils
 {

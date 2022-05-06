@@ -1,10 +1,9 @@
-﻿using System;
-
-using Autodesk.AutoCAD.ApplicationServices;
-using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using Autodesk.AutoCAD.EditorInput;
+﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.Colors;
+using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
+using System;
 
 namespace AutoCADTools.Tools
 {
@@ -106,7 +105,7 @@ namespace AutoCADTools.Tools
             get { return type; }
             set { type = value; }
         }
-        
+
         #endregion
 
         #region Constants
@@ -425,7 +424,8 @@ namespace AutoCADTools.Tools
                 {
                     blockRef.SetDatabaseDefaults();
 
-                    switch (type) {
+                    switch (type)
+                    {
                         case LayerType.TopChord:
                             blockRef.Layer = "Aussteifung (OG)";
                             break;
@@ -436,7 +436,7 @@ namespace AutoCADTools.Tools
                             blockRef.Layer = "Aussteifung (FS)";
                             break;
                     }
-                    
+
                     modelSpace.AppendEntity(blockRef);
                     acTrans.AddNewlyCreatedDBObject(blockRef, true);
 

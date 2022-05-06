@@ -11,7 +11,8 @@ namespace AutoCADTools.Utils
         double IProgressMonitor.Progress
         {
             get { return _progress; }
-            set {
+            set
+            {
                 _progress = value < 0 ? 0 : value > 1 ? 1 : value;
                 progressBar.Value = ProgressInPercent();
                 UpdateWindowTitle();
@@ -41,7 +42,8 @@ namespace AutoCADTools.Utils
 
         string IProgressMonitor.MainText
         {
-            set {
+            set
+            {
                 lblMain.Text = value;
                 Update();
 
@@ -50,7 +52,8 @@ namespace AutoCADTools.Utils
 
         string IProgressMonitor.CurrentActionDescription
         {
-            set {
+            set
+            {
                 lblDescription.Text = value;
                 Update();
             }
@@ -62,7 +65,7 @@ namespace AutoCADTools.Utils
         public ProgressDialog()
         {
             InitializeComponent();
-            
+
         }
 
         /// <summary>

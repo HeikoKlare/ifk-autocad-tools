@@ -1,11 +1,5 @@
-﻿using System;
-using AutoCAD;
-using Autodesk.AutoCAD.ApplicationServices;
-using AutoCADTools.PrintLayout;
-using System.Threading.Tasks;
-using System.Threading;
-using Forms = System.Windows.Forms;
-using System.Linq;
+﻿using AutoCAD;
+using System;
 using static System.IO.Path;
 
 namespace AutoCADTools

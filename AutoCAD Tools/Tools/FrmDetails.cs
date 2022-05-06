@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AutoCADTools.Data;
+using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using AutoCADTools.Data;
 using Database = AutoCADTools.Data.Database;
 
 namespace AutoCADTools.Tools
@@ -25,12 +25,16 @@ namespace AutoCADTools.Tools
         /// The table containing the detail categories.
         /// </summary>
         private Database.DetailCategoriesDataTable detailCategoriesTable;
-        
+
         /// <summary>
         /// The table containing the details.
         /// </summary>
         private Database.DetailsDataTable detailsTable;
 
+        /// <summary>
+        /// The file that was selected to be opened after closing the dialog with the OK button.
+        /// Will be <code>null</code> before the dialog was finished.
+        /// </summary>
         public string SelectedFileToOpen
         {
             get;
@@ -40,7 +44,7 @@ namespace AutoCADTools.Tools
         #endregion
 
         #region Load/Unload
-        
+
         /// <summary>
         /// Initates a new GUI for managing details and the needed database connection and data tables.
         /// The file to open, if any was selected, is stored in the <see cref="SelectedFileToOpen"/> property.

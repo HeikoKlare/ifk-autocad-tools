@@ -1,8 +1,7 @@
-﻿using System;
+﻿using AutoCADTools.Data;
+using System;
 using System.Data;
-
 using System.Windows.Forms;
-using AutoCADTools.Data;
 
 namespace AutoCADTools.Tools
 {
@@ -13,7 +12,7 @@ namespace AutoCADTools.Tools
     public partial class FrmAnnotations : Form
     {
         #region Attributes
-        
+
         /// <summary>
         /// The Sql connection doing the connection stuff to the global database.
         /// </summary>
@@ -23,7 +22,7 @@ namespace AutoCADTools.Tools
         /// The table containing the annotation categories.
         /// </summary>
         private Database.AnnotationCategoriesDataTable annotationCategoriesTable;
-        
+
         /// <summary>
         /// The table containing the annotations.
         /// </summary>
@@ -37,7 +36,7 @@ namespace AutoCADTools.Tools
         #endregion
 
         #region Load/Unload
-        
+
         /// <summary>
         /// Initates a new GUI for managing projects and the needed database connection and data tables.
         /// </summary>
@@ -63,7 +62,7 @@ namespace AutoCADTools.Tools
         {
             connection.Dispose();
         }
-       
+
         #endregion
 
         #region Methods

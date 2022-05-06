@@ -1,7 +1,6 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using AutoCADTools.Management;
 
 namespace AutoCADTools.Data
 {
@@ -33,7 +32,7 @@ namespace AutoCADTools.Data
             }
             catch (Exception)
             {
-                MessageBox.Show(LocalData.NoConnectionText, LocalData.NoConnectionTitle, 
+                MessageBox.Show(LocalData.NoConnectionText, LocalData.NoConnectionTitle,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
@@ -51,7 +50,8 @@ namespace AutoCADTools.Data
 
         private void ReconnectWhenClosed()
         {
-            if (connection.State != System.Data.ConnectionState.Open) {
+            if (connection.State != System.Data.ConnectionState.Open)
+            {
                 connection.Open();
             }
         }
@@ -60,7 +60,7 @@ namespace AutoCADTools.Data
 
         #region Employers
 
-        public void FillEmployers(Database.EmployerDataTable employersTable)  
+        public void FillEmployers(Database.EmployerDataTable employersTable)
         {
             if (employersTable == null) return;
 
@@ -175,7 +175,7 @@ namespace AutoCADTools.Data
                 dataAdapter.Update(annotationCategoriesTable);
             }
         }
-        
+
         #endregion
 
         #region Details

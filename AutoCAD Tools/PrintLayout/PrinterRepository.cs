@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Autodesk.AutoCAD.DatabaseServices;
 using System.Collections.Generic;
-using Autodesk.AutoCAD.DatabaseServices;
 using System.Linq;
-using System.Threading;
-using System.Runtime.ExceptionServices;
 
 namespace AutoCADTools.PrintLayout
 {

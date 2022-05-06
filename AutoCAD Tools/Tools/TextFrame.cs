@@ -50,7 +50,7 @@ namespace AutoCADTools.Tools
             using (Transaction trans = acDoc.Database.TransactionManager.StartTransaction())
             {
                 MText text = trans.GetObject(id, OpenMode.ForWrite) as MText;
-               
+
                 double margin = Margin / acDoc.Database.Cannoscale.Scale;
 
                 Point3d startPoint = text.Location + new Vector3d(-margin, margin, 0);

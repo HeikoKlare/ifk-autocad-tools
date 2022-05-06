@@ -41,40 +41,40 @@ namespace AutoCADTools.PrintLayout.Deprecated
         VERTICAL
     }
 
-/*    /// <summary>
-    /// A 2D Point
-    /// </summary>
-    public struct Point {
-        private readonly double x;
-        /// <summary>
-        /// The X value of the point
+    /*    /// <summary>
+        /// A 2D Point
         /// </summary>
-        public double X {get { return x; }}
+        public struct Point {
+            private readonly double x;
+            /// <summary>
+            /// The X value of the point
+            /// </summary>
+            public double X {get { return x; }}
 
-        private double y;
-        /// <summary>
-        /// The Y value of the point
-        /// </summary>
-        public double Y {get { return y; }}
+            private double y;
+            /// <summary>
+            /// The Y value of the point
+            /// </summary>
+            public double Y {get { return y; }}
 
-        /// <summary>
-        /// Instantiates a new point with specified x and y coordinate
-        /// </summary>
-        /// <param name="x">the x coordinate</param>
-        /// <param name="y">the y coordinate</param>
-        public Point(double x, double y) {
-            this.x = x;
-            this.y = y;
-        }
+            /// <summary>
+            /// Instantiates a new point with specified x and y coordinate
+            /// </summary>
+            /// <param name="x">the x coordinate</param>
+            /// <param name="y">the y coordinate</param>
+            public Point(double x, double y) {
+                this.x = x;
+                this.y = y;
+            }
 
-        /// <summary>
-        /// Swaps x and y coordinate and returns a new point with those values
-        /// </summary>
-        /// <returns>a point with the x and y value swapped</returns>
-        public Point Swap() {
-            return new Point(y, x);
-        }
-    }*/
+            /// <summary>
+            /// Swaps x and y coordinate and returns a new point with those values
+            /// </summary>
+            /// <returns>a point with the x and y value swapped</returns>
+            public Point Swap() {
+                return new Point(y, x);
+            }
+        }*/
 
     #endregion
 
@@ -95,7 +95,7 @@ namespace AutoCADTools.PrintLayout.Deprecated
             get { return viewportModel; }
             internal set { viewportModel = value; }
         }
-        
+
         private Point viewportLayout;
         /// <summary>
         /// The size of the viewport in layout space
@@ -152,10 +152,10 @@ namespace AutoCADTools.PrintLayout.Deprecated
         #region Predefined Formats and Constants
 
         private static readonly Format[] formats;
-        
+
         static SpecificFormat()
         {
-            formats = new Format[(int)Paperformat.AMAX+1];
+            formats = new Format[(int)Paperformat.AMAX + 1];
             formats[(int)Paperformat.A4] = new Format()
             {
                 ViewportModel = new Point(250.5, 171.37),
@@ -187,9 +187,9 @@ namespace AutoCADTools.PrintLayout.Deprecated
         private static readonly double fangThreshold = 20.0;
         private static readonly Point textfieldSize = new Point(185.0, 57.5);
         private static readonly Point textfieldSizeOld = new Point(185.0, 77.0);
-        
+
         #endregion
-                        
+
         #region Members
 
         private Orientation orientation;
@@ -398,9 +398,10 @@ namespace AutoCADTools.PrintLayout.Deprecated
             Point result = new Point(width, height);
             if ((width - foldMargin.X) % foldPeriod.X > (foldPeriod.X - fangThreshold))
             {
-                result = new Point(((int)(width - foldMargin.X) / (int)foldPeriod.X + 1) * foldPeriod.X + foldMargin.X, result.Y); 
+                result = new Point(((int)(width - foldMargin.X) / (int)foldPeriod.X + 1) * foldPeriod.X + foldMargin.X, result.Y);
             }
-            if ((height - foldMargin.Y) % foldPeriod.Y > (foldPeriod.Y - fangThreshold)) {
+            if ((height - foldMargin.Y) % foldPeriod.Y > (foldPeriod.Y - fangThreshold))
+            {
                 result = new Point(result.X, ((int)(height - foldMargin.Y) / (int)foldPeriod.Y + 1) * foldPeriod.Y + foldMargin.Y);
             }
             return result;

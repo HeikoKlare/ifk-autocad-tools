@@ -1,6 +1,6 @@
-﻿using System;
+﻿using AutoCADTools.Data;
+using System;
 using System.Windows.Forms;
-using AutoCADTools.Data;
 
 
 namespace AutoCADTools.Management
@@ -11,7 +11,7 @@ namespace AutoCADTools.Management
     public partial class FrmManageAnnotationCategories : Form
     {
         #region Attributes
-        
+
         /// <summary>
         /// The SqlConnection object doing the server connection stuff.
         /// </summary>
@@ -25,7 +25,7 @@ namespace AutoCADTools.Management
         #endregion
 
         #region Load/Unload
-        
+
         /// <summary>
         /// Initiates a new GUI to manage annotation categories.
         /// Initializes the Sql connection and fills the table.
@@ -38,7 +38,7 @@ namespace AutoCADTools.Management
         private void FrmManageAnnotationCategories_Load(object sender, EventArgs e)
         {
             connection = new SqlConnection();
-            
+
             // Fille the annotation categories table
             annotationCategoriesTable = new Database.AnnotationCategoriesDataTable();
             connection.FillAnnotationCategories(annotationCategoriesTable);
@@ -65,12 +65,12 @@ namespace AutoCADTools.Management
             }
             connection.Dispose();
         }
-          
+
 
         #endregion
 
         #region EventHandler
-        
+
         /// <summary>
         /// Saves changes in global database when clicking the Save-Button.
         /// </summary>
@@ -122,7 +122,7 @@ namespace AutoCADTools.Management
         #endregion
 
         #region ErrorHandling
-        
+
         /// <summary>
         /// Handles the data errors in the DataGridView and show a MessageBox to the user
         /// describing what he did wrong.

@@ -1,11 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using Autodesk.AutoCAD.Runtime;
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using AutoCADTools.PrintLayout;
 using AutoCADTools.Tools;
-using AutoCADTools.PrintLayout;
+using Autodesk.AutoCAD.ApplicationServices;
+using Autodesk.AutoCAD.Runtime;
+using System;
+using System.Windows.Forms;
 
 [assembly: CLSCompliant(true)]
 [assembly: CommandClass(typeof(AutoCADTools.AcadTools))]
@@ -77,7 +75,7 @@ namespace AutoCADTools
             //using (Form management = new Management.FrmManageAnnotations())
             //{
             Form management = new Management.FrmManageAnnotations();
-                Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(management);
+            Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(management);
             //}
         }
 
@@ -150,7 +148,7 @@ namespace AutoCADTools
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(settings);
             }
         }
-        
+
         /// <summary>
         /// Panicle is a command to create a new panicle in the drawing. It opens a UserForm to input a position 
         /// number and description and then lets the user draw panicles by selecting start and end point. Pressing 
@@ -177,7 +175,7 @@ namespace AutoCADTools
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(Form);
             }
         }
-        
+
         /// <summary>
         /// Opens a dialog for creating a layout using the LayoutUI dialog.
         /// </summary>
@@ -209,7 +207,8 @@ namespace AutoCADTools
         public static void TrussImport()
         {
             bool import = false;
-            using (Form trussImportUi = new FrmTrussImport()) {
+            using (Form trussImportUi = new FrmTrussImport())
+            {
                 import = Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(trussImportUi) == DialogResult.OK;
             }
             if (import) Tools.TrussImport.Instance.Import();
@@ -395,7 +394,7 @@ namespace AutoCADTools
         #endregion
 
         #region Helper Tools
-        
+
         /// <summary>
         /// Hidden command. Resets all properties to an almost empty string (just contains a whitespace)
         /// </summary>

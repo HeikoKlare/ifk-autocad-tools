@@ -1,8 +1,8 @@
 ﻿using AutoCADTools.Tools;
+using AutoCADTools.Utils;
 using Autodesk.AutoCAD.DatabaseServices;
 using System;
 using System.Windows.Forms;
-using AutoCADTools.Utils;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -59,8 +59,6 @@ namespace AutoCADTools.PrintLayout
         /// <returns><c>true</c> if the layout was created successfully, <c>false</c> otherwise</returns>
         public static bool CreatePngLayout()
         {
-            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
             var drawingArea = GetDrawingArea();
 
             Printer printer = PrinterRepository.Instance["PNG"];

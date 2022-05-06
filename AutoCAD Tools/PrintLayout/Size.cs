@@ -1,6 +1,4 @@
-﻿
-using System;
-namespace AutoCADTools.PrintLayout
+﻿namespace AutoCADTools.PrintLayout
 {
     /// <summary>
     /// Specifies a two-dimensional Size.
@@ -134,7 +132,8 @@ namespace AutoCADTools.PrintLayout
         /// <returns>
         /// The component-wise scaled Size.
         /// </returns>
-        public static Size operator *(double scalar, Size size) {
+        public static Size operator *(double scalar, Size size)
+        {
             return new Size(size.width * scalar, size.height * scalar);
         }
 

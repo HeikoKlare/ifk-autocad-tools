@@ -1,6 +1,4 @@
-﻿
-using System;
-namespace AutoCADTools.PrintLayout
+﻿namespace AutoCADTools.PrintLayout
 {
     /// <summary>
     /// Specifies a two-dimensional point.

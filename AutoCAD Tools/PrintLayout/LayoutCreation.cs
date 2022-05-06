@@ -167,7 +167,7 @@ namespace AutoCADTools.PrintLayout
         public bool CreateLayout()
         {
             ValidateProperties();
-                        
+
             using (document.LockDocument())
             {
                 var oldCos = document.Editor.CurrentUserCoordinateSystem;
@@ -326,7 +326,7 @@ namespace AutoCADTools.PrintLayout
                 Application.SetSystemVariable("CMDECHO", 0);
                 document.Editor.Command("_.ZOOM", "G");
                 document.Editor.Command("_.ZOOM", ".8x");
-                Application.SetSystemVariable("CMDECHO", oldEcho); 
+                Application.SetSystemVariable("CMDECHO", oldEcho);
             }
 
             return true;
@@ -360,7 +360,7 @@ namespace AutoCADTools.PrintLayout
                 throw new ArgumentException("Layout name must not be null or empty");
             }
         }
-        
+
         /// <summary>
         /// Draws additional parts in the layout.
         /// </summary>

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using Autodesk.AutoCAD.ApplicationServices;
+using Autodesk.AutoCAD.Colors;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.GraphicsInterface;
+using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using acadDatabase = Autodesk.AutoCAD.DatabaseServices.Database;
-using Autodesk.AutoCAD.Colors;
 
 namespace AutoCADTools.Tools
 {
@@ -143,7 +143,7 @@ namespace AutoCADTools.Tools
                         };
                         acBlkTblRec.AppendEntity(dummyText);
                         acTrans.AddNewlyCreatedDBObject(dummyText, true);
-                        
+
                         Double radius = 0.0;
                         Point3d location = new Point3d(dummyText.ActualHeight * pos.Length / 2, dummyText.ActualHeight * 0.8, 0);
 
@@ -239,7 +239,8 @@ namespace AutoCADTools.Tools
                     BlockReference textRef = new BlockReference(new Point3d(startPoint.X + Math.Cos(angle) * ((endPoint - startPoint).Length / 8.0),
                                         startPoint.Y + Math.Sin(angle) * ((endPoint - startPoint).Length / 8.0), 0), acBlkTbl[BlockName]);
                     textRef.SetDatabaseDefaults();
-                    if (optTopChordPlane.Checked) {
+                    if (optTopChordPlane.Checked)
+                    {
                         textRef.Layer = "Aussteifung (OG)";
                     }
                     textRef.Rotation = angle;

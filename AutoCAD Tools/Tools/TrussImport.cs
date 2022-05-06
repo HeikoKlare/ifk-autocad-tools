@@ -1,14 +1,11 @@
-﻿using System;
+﻿using Autodesk.AutoCAD.ApplicationServices;
+using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using System.Windows.Forms;
-
-using Autodesk.AutoCAD.ApplicationServices;
-using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using Autodesk.AutoCAD.EditorInput;
 
 namespace AutoCADTools.Tools
 {
@@ -131,7 +128,8 @@ namespace AutoCADTools.Tools
         /// <summary>
         /// Initialises the layer names
         /// </summary>
-        private void InitialiseLayerNames() {
+        private void InitialiseLayerNames()
+        {
             originalLayerNameMap = new Dictionary<string, Layer>
             {
                 // TrussCon Layers
@@ -200,7 +198,7 @@ namespace AutoCADTools.Tools
 
             // Create a collection for the objects to copy
             ObjectIdCollection acObjIdColl = new ObjectIdCollection();
-            
+
             // Lock the current document
             using (acImportDoc.LockDocument())
             {
@@ -260,17 +258,17 @@ namespace AutoCADTools.Tools
 
                                 // add object to collection, look if new min value
                                 acObjIdColl.Add(ent.ObjectId);
-                                if (ent.Bounds.Value.MinPoint.X < minXall) 
+                                if (ent.Bounds.Value.MinPoint.X < minXall)
                                 {
                                     minXall = ent.Bounds.Value.MinPoint.X;
                                 }
-                                if (ent.Bounds.Value.MinPoint.Y < minYall) 
+                                if (ent.Bounds.Value.MinPoint.Y < minYall)
                                 {
                                     minYall = ent.Bounds.Value.MinPoint.Y;
                                 }
                             }
 
-                            
+
                         }
                         catch (Exception)
                         {
@@ -290,7 +288,7 @@ namespace AutoCADTools.Tools
 
             // Set the current document active again
             Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument = acDoc;
-            
+
             // Lock the new document
             using (acDoc.LockDocument())
             {
@@ -317,7 +315,7 @@ namespace AutoCADTools.Tools
                         {
                             acDoc.Database.WblockCloneObjects(acObjIdColl, importBlock.ObjectId, acIdMap, DuplicateRecordCloning.Ignore, false);
                         }
-                        
+
                         // Set origin to the minimum values of the imported objects
                         importBlock.Origin = new Point3d(minXall, minYall, 0);
 
@@ -329,7 +327,7 @@ namespace AutoCADTools.Tools
                             newBlock = new BlockReference(new Point3d(0, 0, 0), acTrans.GetObject(acBlkTbl[dummyBlockName], OpenMode.ForRead).ObjectId);
                             newBlock.SetDatabaseDefaults();
                             newBlock.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(Autodesk.AutoCAD.Colors.ColorMethod.ByLayer, 0);
-                            
+
                             // Get the wanted rotation and apply to the new block reference
                             double rotate = 0;
                             if (rotation == Direction.LeftRotate)
@@ -363,7 +361,7 @@ namespace AutoCADTools.Tools
                                     }
                                 }
                             }
-                            
+
                             importBlock.Erase();
                             newBlock.Dispose();
 
@@ -398,7 +396,7 @@ namespace AutoCADTools.Tools
         class BlockJig : EntityJig
         {
             private Point3d insertionPoint;
-            
+
             /// <summary>
             /// Initiates a new BlockJig for the given BlockReference.
             /// </summary>

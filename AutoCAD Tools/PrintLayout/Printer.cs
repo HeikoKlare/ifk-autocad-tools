@@ -1,12 +1,12 @@
-﻿using Autodesk.AutoCAD.DatabaseServices;
+﻿using AutoCADTools.Properties;
+using AutoCADTools.Utils;
+using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.Geometry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoCADTools.Utils;
 using System.Runtime.ExceptionServices;
 using System.Windows.Forms;
-using AutoCADTools.Properties;
-using Autodesk.AutoCAD.Geometry;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -76,7 +76,7 @@ namespace AutoCADTools.PrintLayout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Printer"/> class with the specified name.
-        /// <see cref="Printer.InitializePaperformats()"/> has to be called afterwards to load the available paperformats.
+        /// <see cref="Printer.InitializePaperformats(IProgressMonitor)"/> has to be called afterwards to load the available paperformats.
         /// </summary>
         /// <param name="name">The name of the printer.</param>
         /// <exception cref="System.ArgumentException">Is thrown if the name is null, empty or if the specified printer does not exist.</exception>
@@ -159,7 +159,7 @@ namespace AutoCADTools.PrintLayout
 
         private static PaperformatDescription FindAndMarkOptimizedPaperformat(PaperformatExtractionState paperformatExtractionState, string targetPaperformatName, IEnumerable<PaperformatDescription> candidatePaperformatDescriptions)
         {
-            var foundFormat = FindAndMarkOptimizedPngPaperformat(paperformatExtractionState, targetPaperformatName, candidatePaperformatDescriptions);
+            var foundFormat = FindAndMarkOptimizedPngPaperformat(targetPaperformatName, candidatePaperformatDescriptions);
             if (foundFormat == null)
             {
                 foundFormat = FindAndMarkOptimizedNonPngPaperformat(paperformatExtractionState, targetPaperformatName, candidatePaperformatDescriptions);
@@ -167,7 +167,7 @@ namespace AutoCADTools.PrintLayout
             return foundFormat;
         }
 
-        private static PaperformatDescription FindAndMarkOptimizedPngPaperformat(PaperformatExtractionState paperformatExtractionState, string targetPaperformatName, IEnumerable<PaperformatDescription> candidatePaperformatDescriptions)
+        private static PaperformatDescription FindAndMarkOptimizedPngPaperformat(string targetPaperformatName, IEnumerable<PaperformatDescription> candidatePaperformatDescriptions)
         {
             if (targetPaperformatsNamesToPng.ContainsKey(targetPaperformatName))
             {
@@ -216,7 +216,6 @@ namespace AutoCADTools.PrintLayout
         {
             public string CanonicalName { get; }
             public string LocaleName { get; }
-
             public bool Optimal { get; set; }
 
             public PaperformatDescription(string canonicalName, string localeName)

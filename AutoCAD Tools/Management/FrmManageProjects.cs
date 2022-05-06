@@ -1,8 +1,8 @@
-﻿using System;
+﻿using AutoCADTools.Data;
+using System;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
-using AutoCADTools.Data;
 
 
 namespace AutoCADTools.Management
@@ -14,7 +14,7 @@ namespace AutoCADTools.Management
     public partial class FrmManageProjects : Form
     {
         #region Attributes
-        
+
         /// <summary>
         /// The Sql connection doing the connection stuff to the global database.
         /// </summary>
@@ -43,7 +43,7 @@ namespace AutoCADTools.Management
         #endregion
 
         #region Load/Unload
-        
+
         /// <summary>
         /// Initates a new GUI for managing projects and the needed database connection and data tables.
         /// </summary>
@@ -91,7 +91,7 @@ namespace AutoCADTools.Management
         #endregion
 
         #region Methods
-        
+
         /// <summary>
         /// Refreshes the employers table by getting recent updates from the global database
         /// and updates the data bindings for an up-to-date GUI presentation.
@@ -105,7 +105,7 @@ namespace AutoCADTools.Management
             String saveEmployer = cboEmployer.Text;
             employersTable.Clear();
             connection.FillEmployers(employersTable);
-            
+
             // Reset data binding of employers list
             cboEmployer.BeginUpdate();
             cboEmployer.DataSource = null;
@@ -130,7 +130,7 @@ namespace AutoCADTools.Management
             if (state == EditState.projectSelected || state == EditState.editing) lastProject = txtNumber.Text;
             projectsTable.Clear();
             connection.FillProjects(projectsTable);
-            
+
             // Refill the projects list
             lvwProjects.BeginUpdate();
             lvwProjects.Items.Clear();
@@ -147,11 +147,11 @@ namespace AutoCADTools.Management
             lvwProjects.Columns[0].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             lvwProjects.Columns[1].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
             lvwProjects.Columns[2].AutoResize(ColumnHeaderAutoResizeStyle.ColumnContent);
-                        
+
             lvwProjects.EndUpdate();
-            
+
             // Restore last chosen project
-            if (state == EditState.projectSelected || state == EditState.editing) 
+            if (state == EditState.projectSelected || state == EditState.editing)
                 lvwProjects.SelectedIndices.Add(projectsTable.Rows.IndexOf(projectsTable.Rows.Find(lastProject)));
         }
 
@@ -171,7 +171,7 @@ namespace AutoCADTools.Management
             butModify.Enabled = (state != EditState.input);
             butUseForNew.Enabled = (state == EditState.projectSelected);
             butRemove.Enabled = (state == EditState.projectSelected || state == EditState.editing);
-            switch (state) 
+            switch (state)
             {
                 case EditState.projectSelected:
                     butModify.Text = LocalData.ModifyEdit;
@@ -408,7 +408,7 @@ namespace AutoCADTools.Management
         #endregion
 
         #region ErrorHandling
-        
+
         /// <summary>
         /// Calls the validate method of this formular when the project number has to be validated.
         /// </summary>
@@ -440,14 +440,14 @@ namespace AutoCADTools.Management
 
             errorProvider.SetError(txtNumber, String.Empty);
 
-            if ((state == EditState.addable || state== EditState.input) && String.IsNullOrEmpty(txtNumber.Text))
+            if ((state == EditState.addable || state == EditState.input) && String.IsNullOrEmpty(txtNumber.Text))
             {
                 errorProvider.SetError(txtNumber, LocalData.ErrorEmptyProjectnumber);
                 state = EditState.input;
                 UpdateControlStates();
                 result = false;
             }
-            else if ((state == EditState.addable || state== EditState.input) && projectsTable.Rows.Contains(txtNumber.Text))
+            else if ((state == EditState.addable || state == EditState.input) && projectsTable.Rows.Contains(txtNumber.Text))
             {
                 errorProvider.SetError(txtNumber, LocalData.ErrorUsedProjectnumber);
                 state = EditState.input;
@@ -481,6 +481,6 @@ namespace AutoCADTools.Management
         }
 
         #endregion
-        
+
     }
 }
