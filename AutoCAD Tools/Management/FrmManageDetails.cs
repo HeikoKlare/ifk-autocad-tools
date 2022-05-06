@@ -211,26 +211,24 @@ namespace AutoCADTools.Management
 
             this.Hide();
 
-            using (IProgressMonitor progress = new ProgressDialog(LocalData.PNGPlotTitle, LocalData.PNGPlotText))
+            using (IProgressMonitor progressMonitor = new ProgressDialog(LocalData.PNGPlotTitle, LocalData.PNGPlotText))
             {
-                progress.SetCurrentActionDescription(LocalData.PNGPlotCreateLayout);
+                progressMonitor.SetCurrentActionDescription(LocalData.PNGPlotCreateLayout);
 
                 // If not in model space, switch there
                 if (LayoutManager.Current.CurrentLayout != "Model") LayoutManager.Current.CurrentLayout = "Model";
 
                 // Create the layout using the function of the UFlayout form
-                progress.SetProgress(0.05);
+                progressMonitor.Progress = 0.05;
 
                 if (!PrintLayout.QuickLayoutCreation.CreatePngLayout())
                 {
-                    progress.Finish();
                     this.Show();
                     return false;
                 }
 
-
-                progress.SetCurrentActionDescription(LocalData.PNGPlotInitialize);
-                progress.SetProgress(0.2);
+                progressMonitor.SetCurrentActionDescription(LocalData.PNGPlotInitialize);
+                progressMonitor.Progress = 0.2;
 
                 // Get the active document
                 Document acDoc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
@@ -258,7 +256,7 @@ namespace AutoCADTools.Management
 
                         using (PlotEngine pe = PlotFactory.CreatePublishEngine())
                         {
-                            progress.SetProgress(0.3);
+                            progressMonitor.Progress = 0.3;
 
                             pe.BeginPlot(null, null);
 
@@ -282,8 +280,8 @@ namespace AutoCADTools.Management
                 }
                 // Start the waiting thread and disable changing details, show the main window
 
-                progress.SetCurrentActionDescription(LocalData.PNGPlotWaiting);
-                double progressValue = 0.4;
+                progressMonitor.SetCurrentActionDescription(LocalData.PNGPlotWaiting);
+                progressMonitor.Progress = 0.4;
                 bool accessable = false;
                 while (!accessable)
                 {
@@ -296,15 +294,12 @@ namespace AutoCADTools.Management
                         }
                         catch (Exception) { }
                     }
-                    progressValue += 0.01;
-                    progress.SetProgress(progressValue);
+                    progressMonitor.Progress += 0.01;
                     System.Threading.Thread.Sleep(500);
                 }
 
                 LayoutManager.Current.CurrentLayout = "Model";
                 LayoutManager.Current.DeleteLayout("PNG");
-
-                progress.Finish();
             }
 
             return true;

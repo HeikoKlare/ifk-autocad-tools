@@ -11,6 +11,19 @@ namespace AutoCADTools.Utils
     {
         private readonly string _windowTitle;
 
+        private double _progress;
+        double IProgressMonitor.Progress
+        {
+            get { return _progress; }
+            set {
+                _progress = value < 0 ? 0 : value > 1 ? 1 : value;
+                var progressInPercent = (int)(_progress * 100);
+                this.Text = _windowTitle + " (" + progressInPercent + " %)";
+                progressBar.Value = progressInPercent;
+                Update();
+            }
+        }
+
         /// <summary>
         /// Initialises the dialog with the given window name and text.
         /// </summary>
@@ -23,18 +36,7 @@ namespace AutoCADTools.Utils
             InitializeComponent();
             this._windowTitle = windowTitle;
             lblMain.Text = mainText;
-            SetProgress(0);
             Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(this);
-        }
-
-        public void SetProgress(double progress)
-        {
-            if (progress < 0) progress = 0;
-            if (progress > 1) progress = 1;
-            var progressInPercent = (int)(progress * 100);
-            this.Text = _windowTitle + " (" + progressInPercent + " %)";
-            progressBar.Value = progressInPercent;
-            Update();
         }
 
         public void SetCurrentActionDescription(String text)
@@ -54,9 +56,5 @@ namespace AutoCADTools.Utils
             e.Cancel = true;
         }
 
-        public void Finish()
-        {
-            Dispose();
-        }
     }
 }

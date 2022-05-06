@@ -12,21 +12,18 @@ namespace AutoCADTools.Utils
     interface IProgressMonitor : IDisposable
     {
         /// <summary>
+        /// The current progress of the monitored action between 0 and 1. Setting a value outside of 0 to 1 trims the value to that interval.
+        /// </summary>
+        double Progress
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// Updates the description for the current action of the monitored action.
         /// </summary>
         /// <param name="actionDescription">the description of the current action, must not be <code>null</code></param>
         void SetCurrentActionDescription(string actionDescription);
-
-        /// <summary>
-        /// Updates the progress of the monitored action. The given value will be trimmed to the valid interval
-        /// between 0 and 1.
-        /// </summary>
-        /// <param name="value">the current progress value between 0 and 1</param>
-        void SetProgress(double value);
-
-        /// <summary>
-        /// Indicates that the monitored action has been finished.
-        /// </summary>
-        void Finish();
-    }
+    }       
 }

@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="SqlConnectionLogin" Type="System.String" Scope="User">
-      <Value Profile="(Default)"></Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SqlConnectionPassword" Type="System.String" Scope="User">
-      <Value Profile="(Default)"></Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SqlConnectionPort" Type="System.String" Scope="User">
       <Value Profile="(Default)">3306</Value>
@@ -34,6 +34,14 @@
     </Setting>
     <Setting Name="SqlConnectionPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">SERVER_URL</Value>
+    </Setting>
+    <Setting Name="OrdinaryPaperformats" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;A0&lt;/string&gt;
+  &lt;string&gt;A3&lt;/string&gt;
+  &lt;string&gt;A4&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

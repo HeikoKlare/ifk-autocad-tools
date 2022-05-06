@@ -5,6 +5,8 @@ using System.Linq;
 using AutoCADTools.Utils;
 using System.Runtime.ExceptionServices;
 using System.Windows.Forms;
+using AutoCADTools.Properties;
+using Autodesk.AutoCAD.Geometry;
 
 namespace AutoCADTools.PrintLayout
 {
@@ -18,6 +20,12 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public const string printerConfigurationFileExtension = ".pc3";
 
+        private const double optimizedFormatMarginMinimum = 3.8;
+        private const double optimizedFormatMarginMaximum = 4.2;
+
+        private static readonly IEnumerable<string> targetPaperformatsNames = Settings.Default.OrdinaryPaperformats.Cast<string>();
+        private static readonly Dictionary<string, string> targetPaperformatsNamesToPng = new Dictionary<string, string> { { "A4", "UserDefinedRaster (2100.00 x 2970.00Pixel)" }, { "A3", "UserDefinedRaster (2970.00 x 4200.00Pixel)" } };
+
         /// <summary>
         /// Returns whether the printer has been initialized.
         /// </summary>
@@ -26,10 +34,6 @@ namespace AutoCADTools.PrintLayout
             get;
             private set;
         }
-
-
-        private readonly IEnumerable<string> ordinaryPaperFormats = new List<string>() { "A0", "A1", "A2", "A3", "A4" };
-        private readonly Dictionary<string, string> ordinaryPaperFormatsToPng = new Dictionary<string, string> { { "A4", "UserDefinedRaster (2100.00 x 2970.00Pixel)" }, { "A3", "UserDefinedRaster (2970.00 x 4200.00Pixel)" } };
 
         /// <summary>
         /// Gets the name of the printer.
@@ -104,58 +108,27 @@ namespace AutoCADTools.PrintLayout
             {
                 using (IProgressMonitor progressMonitor = new ProgressDialog(LocalData.LoadPaperformatsTitle + " " + Name, LocalData.LoadPaperformatsText))
                 {
-                    var numberOfOrdinaryPaperFormats = ordinaryPaperFormats.Count();
                     progressMonitor.SetCurrentActionDescription(LocalData.LoadPaperformatsInitialization);
-
-                    PlotSettingsValidator psv = PlotSettingsValidator.Current;
-                    using (PlotSettings acPlSet = new PlotSettings(true))
+                    using (PlotSettings plotSettings = new PlotSettings(true))
                     {
-                        psv.SetPlotConfigurationName(acPlSet, Name + printerConfigurationFileExtension, null);
-                        psv.RefreshLists(acPlSet);
-                        var paperFormats = psv.GetCanonicalMediaNameList(acPlSet).Cast<string>();
-
+                        var paperformatExtractionState = new PaperformatExtractionState(PlotSettingsValidator.Current, plotSettings, progressMonitor);
+                        IEnumerable<PaperformatDescription> printerPaperformatDescriptions = FindAvailablePaperformatsOfPrinter(paperformatExtractionState);
                         var paperFormatNumber = 0;
-                        foreach (var ordinaryPaperformat in ordinaryPaperFormats)
+                        foreach (var targetPaperformatName in targetPaperformatsNames)
                         {
-                            var isOptimal = false;
-                            String foundFormat = null;
-                            var candidateFormats = paperFormats.Where(format => psv.GetLocaleMediaName(acPlSet, format).Contains(ordinaryPaperformat));
-
-                            if (ordinaryPaperFormatsToPng.ContainsKey(ordinaryPaperformat) && candidateFormats.Contains(ordinaryPaperFormatsToPng[ordinaryPaperformat]))
+                            var candidatePrinterPaperformatDescriptions = printerPaperformatDescriptions.Where(format => format.LocaleName.Contains(targetPaperformatName));
+                            var foundPaperformatDescription = FindAndMarkOptimizedPaperformat(paperformatExtractionState, targetPaperformatName, candidatePrinterPaperformatDescriptions);
+                            if (foundPaperformatDescription == null)
                             {
-                                isOptimal = true;
-                                foundFormat = ordinaryPaperFormatsToPng[ordinaryPaperformat];
+                                foundPaperformatDescription = candidatePrinterPaperformatDescriptions.Last();
                             }
-                            else
+                            if (foundPaperformatDescription != null)
                             {
-                                var numberOfCandidateFormats = candidateFormats.Count();
-                                var candidateNumber = 0;
-                                foreach (var candidate in candidateFormats)
-                                {
-                                    var progress = (paperFormatNumber + (double)candidateNumber / numberOfCandidateFormats) / numberOfOrdinaryPaperFormats;
-                                    UpdateProgressMonitor(progressMonitor, ordinaryPaperformat, progress);
-                                    foundFormat = candidate;
-                                    psv.SetCanonicalMediaName(acPlSet, candidate);
-                                    Extents2d margins = acPlSet.PlotPaperMargins;
-                                    if (Math.Abs(margins.MinPoint.X) < 4.2 && Math.Abs(margins.MinPoint.Y) < 4.2
-                                        && Math.Abs(margins.MaxPoint.X) < 4.2 && Math.Abs(margins.MaxPoint.Y) < 4.2
-                                        && Math.Abs(margins.MinPoint.X) > 3.8 && Math.Abs(margins.MinPoint.Y) > 3.8
-                                        && Math.Abs(margins.MaxPoint.X) > 3.8 && Math.Abs(margins.MaxPoint.Y) > 3.8)
-                                    {
-                                        isOptimal = true;
-                                        break;
-                                    }
-                                    candidateNumber++;
-                                }
-                            }
-                            if (foundFormat != null)
-                            {
-                                paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
+                                this.paperformats.Add(new PrinterPaperformat(targetPaperformatName, foundPaperformatDescription.CanonicalName, this, foundPaperformatDescription.Optimal));
                             }
                             paperFormatNumber++;
-                            UpdateProgressMonitor(progressMonitor, ordinaryPaperformat, (double)paperFormatNumber / numberOfOrdinaryPaperFormats);
+                            progressMonitor.Progress = (double)paperFormatNumber / targetPaperformatsNames.Count();
                         }
-                        progressMonitor.Finish();
                     }
                 }
             }
@@ -164,17 +137,106 @@ namespace AutoCADTools.PrintLayout
                 // There may be different reasons for the initialization to fail. In particular,
                 // changing the document in between will lead to access violation errors, such that
                 // we abort and return false to enfore restart initialization.
+                this.paperformats.Clear();
                 return false;
             }
             Initialized = true;
             return true;
         }
 
-        private static void UpdateProgressMonitor(IProgressMonitor progressMonitor, string paperFormatName, double progress)
+        private IEnumerable<PaperformatDescription> FindAvailablePaperformatsOfPrinter(PaperformatExtractionState paperformatExtractionState)
         {
-            progressMonitor.SetCurrentActionDescription(String.Format("{0} {1} ({2} %)", LocalData.LoadPaperformatsDescription, paperFormatName, (int)(100 * progress)));
-            progressMonitor.SetProgress(progress);
+            var plotSettingsValidator = paperformatExtractionState.PlotSettingsValidator;
+            var plotSettings = paperformatExtractionState.PlotSettings;
+            plotSettingsValidator.SetPlotConfigurationName(plotSettings, Name + printerConfigurationFileExtension, null);
+            plotSettingsValidator.RefreshLists(plotSettings);
+            return plotSettingsValidator.GetCanonicalMediaNameList(plotSettings).Cast<string>().Select(formatName =>
+                new PaperformatDescription(formatName, plotSettingsValidator.GetLocaleMediaName(plotSettings, formatName)));
         }
+
+        private static PaperformatDescription FindAndMarkOptimizedPaperformat(PaperformatExtractionState paperformatExtractionState, string targetPaperformatName, IEnumerable<PaperformatDescription> candidatePaperformatDescriptions)
+        {
+            var foundFormat = FindAndMarkOptimizedPngPaperformat(paperformatExtractionState, targetPaperformatName, candidatePaperformatDescriptions);
+            if (foundFormat == null)
+            {
+                foundFormat = FindAndMarkOptimizedNonPngPaperformat(paperformatExtractionState, targetPaperformatName, candidatePaperformatDescriptions);
+            }
+            return foundFormat;
+        }
+
+        private static PaperformatDescription FindAndMarkOptimizedPngPaperformat(PaperformatExtractionState paperformatExtractionState, string targetPaperformatName, IEnumerable<PaperformatDescription> candidatePaperformatDescriptions)
+        {
+            if (targetPaperformatsNamesToPng.ContainsKey(targetPaperformatName))
+            {
+                var paperformatName = targetPaperformatsNamesToPng[targetPaperformatName];
+                var potentialResultPaperformatDescriptions = candidatePaperformatDescriptions.Where(description => description.CanonicalName == paperformatName);
+                if (potentialResultPaperformatDescriptions.Any())
+                {
+                    var resultPaperformatDescription = potentialResultPaperformatDescriptions.First();
+                    resultPaperformatDescription.Optimal = true;
+                    return resultPaperformatDescription;
+                }
+            }
+            return null;
+        }
+
+        private static PaperformatDescription FindAndMarkOptimizedNonPngPaperformat(PaperformatExtractionState paperformatExtractionState, string targetPaperformatName, IEnumerable<PaperformatDescription> candidatePaperformatDescriptions)
+        {
+            foreach (var candidatePaperformatDescription in candidatePaperformatDescriptions)
+            {
+                UpdateProgressMonitor(paperformatExtractionState.ProgressMonitor, targetPaperformatName,
+                    1.0 / candidatePaperformatDescriptions.Count() / targetPaperformatsNames.Count());
+                paperformatExtractionState.PlotSettingsValidator.SetCanonicalMediaName(paperformatExtractionState.PlotSettings, candidatePaperformatDescription.CanonicalName);
+                Extents2d margins = paperformatExtractionState.PlotSettings.PlotPaperMargins;
+                if (IsOptimizedPaperformatMargin(margins.MinPoint) && IsOptimizedPaperformatMargin(margins.MaxPoint))
+                {
+                    candidatePaperformatDescription.Optimal = true;
+                    return candidatePaperformatDescription;
+                }
+            }
+            return null;
+        }
+
+        private static bool IsOptimizedPaperformatMargin(Point2d marginSize)
+        {
+            return Math.Abs(marginSize.X) >= optimizedFormatMarginMinimum && Math.Abs(marginSize.X) <= optimizedFormatMarginMaximum &&
+                Math.Abs(marginSize.Y) >= optimizedFormatMarginMinimum && Math.Abs(marginSize.Y) <= optimizedFormatMarginMaximum;
+        }
+
+        private static void UpdateProgressMonitor(IProgressMonitor progressMonitor, string paperFormatName, double addedProgress)
+        {
+            progressMonitor.Progress += addedProgress;
+            progressMonitor.SetCurrentActionDescription(String.Format("{0} {1})", LocalData.LoadPaperformatsDescription, paperFormatName));
+        }
+
+        private class PaperformatDescription
+        {
+            public string CanonicalName { get; }
+            public string LocaleName { get; }
+
+            public bool Optimal { get; set; }
+
+            public PaperformatDescription(string canonicalName, string localeName)
+            {
+                this.CanonicalName = canonicalName;
+                this.LocaleName = localeName;
+            }
+        }
+
+        private class PaperformatExtractionState
+        {
+            public PlotSettingsValidator PlotSettingsValidator { get; }
+            public PlotSettings PlotSettings { get; }
+            public IProgressMonitor ProgressMonitor { get; }
+
+            public PaperformatExtractionState(PlotSettingsValidator plotSettingsValidator, PlotSettings plotSettings, IProgressMonitor progressMonitor)
+            {
+                this.PlotSettingsValidator = plotSettingsValidator;
+                this.PlotSettings = plotSettings;
+                this.ProgressMonitor = progressMonitor;
+            }
+        }
+
     }
 
     /// <summary>
@@ -183,7 +245,7 @@ namespace AutoCADTools.PrintLayout
     public class PrinterPaperformat
     {
         /// <summary>
-        /// Gets the readable name of the format.
+        /// The readable name of the format.
         /// </summary>
         /// <value>
         /// The readable name of the format.
@@ -191,7 +253,7 @@ namespace AutoCADTools.PrintLayout
         public String Name { get; }
 
         /// <summary>
-        /// Gets the name of the format as it is used to adress the format.
+        /// The canonical name of the format as it is used to adress the format.
         /// </summary>
         /// <value>
         /// The original name of the format.
@@ -199,7 +261,7 @@ namespace AutoCADTools.PrintLayout
         public String FormatName { get; }
 
         /// <summary>
-        /// Gets the printer this format belongs to.
+        /// The printer this format belongs to.
         /// </summary>
         /// <value>
         /// The printer.
@@ -207,7 +269,7 @@ namespace AutoCADTools.PrintLayout
         public Printer Printer { get; }
 
         /// <summary>
-        /// Returns whether the printer paperformat is optimal
+        /// Whether the printer paperformat is optimal, i.e., has margins of almost 4 mm.
         /// </summary>
         public bool Optimal { get; }
 
