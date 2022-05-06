@@ -1,38 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="AutoCAD Tools" Language="1031" Version="3.3.0" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{6E78AB5F-8167-43D7-B7F7-8FD1A7BB6E14}">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64"/>
+  <Product Id="*" Name="AutoCAD Tools" Language="1031" Version="3.3.0" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{6E78AB5F-8167-43D7-B7F7-8FD1A7BB6E14}">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64"/>
 
     <!-- IMPORTANT
           When creating a new version only the version property has to be changed. There is automatically a new product id created while
           the upgrade code, which is used to identify the product series, stays the same. -->
-    
-		<MajorUpgrade DowngradeErrorMessage="Eine neuere Version von [ProductName] ist bereits installiert." AllowSameVersionUpgrades="no" AllowDowngrades="no" />
-		<MediaTemplate EmbedCab="yes"/>
-    
+
+    <MajorUpgrade DowngradeErrorMessage="Eine neuere Version von [ProductName] ist bereits installiert." AllowSameVersionUpgrades="no" AllowDowngrades="no" />
+    <MediaTemplate EmbedCab="yes"/>
+
     <!-- SET ICONS -->
     <Icon Id="icon.ico" SourceFile="Data/IFK.ico"/>
     <Property Id="ARPPRODUCTICON" Value="icon.ico" />
 
     <!-- AUTOCAD DATA -->
-    <!-- AUTOCAD 2012 -->
-    <!-- <Property Id="AutoCadVersionString" Value="R18.2\ACAD-A001:407" />
-    <Property Id="AutoCadVersion" Value="AutoCAD 2012" />-->
-    
-    <!-- AUTOCAD 2013 -->
-    <!--<Property Id="AutoCadVersionString2013" Value="R19.0\ACAD-B001:407" />
-    <Property Id="AutoCadVersion2013" Value="AutoCAD 2013" />-->
-
-    <!-- AUTOCAD 2014 -->
-    <!--<Property Id="AutoCadVersionString" Value="R19.1\ACAD-D001:407" />
-    <Property Id="AutoCadVersion" Value="AutoCAD 2014" />-->
-
     <!-- AUTOCAD 2015 -->
     <Property Id="AutoCadVersionString2015" Value="R20.0\ACAD-E001:407" />
     <Property Id="AutoCadVersion2015" Value="AutoCAD 2015" />
-    
+
     <Property Id="AssemblyName" Value="AutoCAD Tools.dll" />
-            
+
     <!-- READ REGISTRY VALUES -->
     <Property Id="AUTOCADINSTALLDIR2015">
       <RegistrySearch Id="AutocadLocation2015"
@@ -42,7 +30,7 @@
                       Type="raw"
                       Win64="yes"/>
     </Property>
-    
+
     <!-- REGISTER REGISTRY COMPONENT -->
     <DirectoryRef Id="TARGETDIR">
       <Component Id="RegistryEntries2015" Guid="{018707EF-6D01-4D2B-82FF-7D44499D2A68}" Win64="yes">
@@ -56,7 +44,6 @@
       </Component>
     </DirectoryRef>
 
-       
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id ="AUTOCADINSTALLDIR2015" Name="PFiles">
         <Component Id="AutoCadToolsDLL2015" Win64="yes" Guid="{64500DA2-9167-4756-A109-433161A4E973}">
@@ -123,7 +110,7 @@
     <Feature Id="CuiFeatures" Title="Benutzeroberflächenerweiterung für IFK Tools" Level="1">
       <ComponentRef Id="CustomizationFiles"/>
     </Feature>
-    
+
     <Feature Id="PlotterFeatures" Title="Plotter" Level="1">
       <ComponentRef Id="KonicaPc3Files" />
       <ComponentRef Id="PlotterPc3Files"/>
@@ -131,31 +118,16 @@
       <ComponentRef Id="KonicaPmpFiles" />
       <ComponentRef Id="PlotterPmpFiles"/>
       <ComponentRef Id="PngPmpFiles"/>
-		</Feature>
+    </Feature>
 
     <Feature Id="TemplateFeatures" Title="Zeichnungsvorlage" Level="1">
       <ComponentRef Id="TemplateFiles"/>
     </Feature>
 
-    <!-- CONDITION FOR AUTOCAD BEING INSTALLED -->    
+    <!-- CONDITION FOR AUTOCAD BEING INSTALLED -->
     <Condition Message="Für die Installation muss [AutoCadVersion2015] installiert sein.">
       <![CDATA[Installed or AUTOCADINSTALLDIR2015]]>
     </Condition>
-    
-    <!--<Binary Id="CloseAutoCadFile"
-		SourceFile="$(var.CloseAutoCAD.TargetPath)" />
-
-    <CustomAction Id="CloseAutoCad"
-              BinaryKey="CloseAutoCadFile"
-              ExeCommand=""
-              Execute="immediate"
-              Return="check"
-              HideTarget="no"
-              Impersonate="yes" />
-
-    <InstallExecuteSequence>
-      <Custom Action="CloseAutoCad" Before="InstallInitialize"/>
-    </InstallExecuteSequence>-->
 
     <!-- USE UI BASED SETUP -->
     <WixVariable Id="WixUILicenseRtf" Value="Data/Readme.rtf" />
@@ -184,9 +156,9 @@
       <DialogRef Id="FeaturesDlg"/>
       <DialogRef Id="WelcomeDlg"/>
       <DialogRef Id="VerifyReadyDlg"/>
-      
+
       <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
-      
+
       <Publish Dialog="FeaturesDlg" Control="Back" Event="NewDialog" Value="LicenseAgreementDlg">1</Publish>
       <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="FeaturesDlg">1</Publish>
       <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
@@ -206,5 +178,5 @@
 
     <UIRef Id="WixUI_Common" />
   </Fragment>
-  
+
 </Wix>
