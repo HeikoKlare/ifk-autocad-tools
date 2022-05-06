@@ -117,20 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 20</value>
-  </data>
-  <data name="lblMain.Text" xml:space="preserve">
-    <value>Detail wird erstellt.</value>
-  </data>
-  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 20</value>
-  </data>
-  <data name="lblDescription.Text" xml:space="preserve">
-    <value>Dieser Vorgang kann bis zu 30 Sekunden dauern.</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Detail erstellen</value>
-  </data>
 </root>

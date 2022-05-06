@@ -160,6 +160,24 @@ namespace AutoCADTools.PrintLayout {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die An error occurred when loading paperformats for printer ähnelt.
+        /// </summary>
+        internal static string LoadPaperformatsErrorMessage {
+            get {
+                return ResourceManager.GetString("LoadPaperformatsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Error loading paperformats ähnelt.
+        /// </summary>
+        internal static string LoadPaperformatsErrorTitle {
+            get {
+                return ResourceManager.GetString("LoadPaperformatsErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Initialize loading ähnelt.
         /// </summary>
         internal static string LoadPaperformatsInitialization {

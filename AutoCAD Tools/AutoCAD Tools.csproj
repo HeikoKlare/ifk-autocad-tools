@@ -246,11 +246,11 @@
     <Compile Include="Utils\AutocadMainWindow.cs" />
     <Compile Include="Utils\EntitiesJig.cs" />
     <Compile Include="Utils\NativeMethods.cs" />
-    <Compile Include="Utils\Progress.cs">
+    <Compile Include="Utils\ProgressDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Utils\Progress.Designer.cs">
-      <DependentUpon>Progress.cs</DependentUpon>
+    <Compile Include="Utils\ProgressDialog.Designer.cs">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -284,6 +284,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utils\IProgressMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="LocalData.de.resx" />
@@ -392,11 +393,8 @@
     <EmbeddedResource Include="Tools\FrmTrussImport.de.resx">
       <DependentUpon>FrmTrussImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utils\Progress.de.resx">
-      <DependentUpon>Progress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Utils\Progress.resx">
-      <DependentUpon>Progress.cs</DependentUpon>
+    <EmbeddedResource Include="Utils\ProgressDialog.resx">
+      <DependentUpon>ProgressDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

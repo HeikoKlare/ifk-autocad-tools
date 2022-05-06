@@ -102,15 +102,10 @@ namespace AutoCADTools.PrintLayout
             }
             try
             {
-                using (UFProgress progressWindow = new UFProgress())
+                using (IProgressMonitor progressMonitor = new ProgressDialog(LocalData.LoadPaperformatsTitle + " " + Name, LocalData.LoadPaperformatsText))
                 {
                     var numberOfOrdinaryPaperFormats = ordinaryPaperFormats.Count();
-                    progressWindow.setName(LocalData.LoadPaperformatsTitle);
-                    progressWindow.setMain(LocalData.LoadPaperformatsText);
-                    progressWindow.setDescription(LocalData.LoadPaperformatsInitialization);
-                    progressWindow.setProgress(0);
-                    progressWindow.Update();
-                    Autodesk.AutoCAD.ApplicationServices.Application.ShowModelessDialog(progressWindow);
+                    progressMonitor.SetCurrentActionDescription(LocalData.LoadPaperformatsInitialization);
 
                     PlotSettingsValidator psv = PlotSettingsValidator.Current;
                     using (PlotSettings acPlSet = new PlotSettings(true))
@@ -137,8 +132,8 @@ namespace AutoCADTools.PrintLayout
                                 var candidateNumber = 0;
                                 foreach (var candidate in candidateFormats)
                                 {
-                                    var progress = (100 * paperFormatNumber + 100 * candidateNumber / numberOfCandidateFormats) / numberOfOrdinaryPaperFormats;
-                                    UpdateProgressWindow(progressWindow, ordinaryPaperformat, progress);
+                                    var progress = (paperFormatNumber + (double)candidateNumber / numberOfCandidateFormats) / numberOfOrdinaryPaperFormats;
+                                    UpdateProgressMonitor(progressMonitor, ordinaryPaperformat, progress);
                                     foundFormat = candidate;
                                     psv.SetCanonicalMediaName(acPlSet, candidate);
                                     Extents2d margins = acPlSet.PlotPaperMargins;
@@ -158,9 +153,9 @@ namespace AutoCADTools.PrintLayout
                                 paperformats.Add(new PrinterPaperformat(ordinaryPaperformat, foundFormat, this, isOptimal));
                             }
                             paperFormatNumber++;
-                            UpdateProgressWindow(progressWindow, ordinaryPaperformat, 100 * paperFormatNumber / numberOfOrdinaryPaperFormats);
+                            UpdateProgressMonitor(progressMonitor, ordinaryPaperformat, (double)paperFormatNumber / numberOfOrdinaryPaperFormats);
                         }
-                        progressWindow.Hide();
+                        progressMonitor.Finish();
                     }
                 }
             }
@@ -175,11 +170,10 @@ namespace AutoCADTools.PrintLayout
             return true;
         }
 
-        private static void UpdateProgressWindow(UFProgress progressWindow, string paperFormatName, int progress)
+        private static void UpdateProgressMonitor(IProgressMonitor progressMonitor, string paperFormatName, double progress)
         {
-            progressWindow.setDescription(String.Format("{0} {1} ({2} %)", LocalData.LoadPaperformatsDescription, paperFormatName, progress));
-            progressWindow.setProgress(progress);
-            progressWindow.Update();
+            progressMonitor.SetCurrentActionDescription(String.Format("{0} {1} ({2} %)", LocalData.LoadPaperformatsDescription, paperFormatName, (int)(100 * progress)));
+            progressMonitor.SetProgress(progress);
         }
     }
 
