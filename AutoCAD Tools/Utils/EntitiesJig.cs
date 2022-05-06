@@ -10,10 +10,13 @@ namespace AutoCADTools.Utils
     /// </summary>
     public class EntitiesJig : Autodesk.AutoCAD.EditorInput.DrawJig
     {
-        private IList<Entity> entities;
+        private const double ToleranceValue = 0.0001;
+
+        private readonly IEnumerable<Entity> entities;
+        private readonly string promptMessage;
+
         private Point3d referencePoint;
         private Vector3d movement;
-        private string promptMessage;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntitiesJig"/> class for the specified entities,
@@ -22,12 +25,12 @@ namespace AutoCADTools.Utils
         /// <param name="entities">The entities to move.</param>
         /// <param name="referencePoint">The reference point for movement.</param>
         /// <param name="promptMessage">The prompt message for the user.</param>
-        public EntitiesJig(IList<Entity> entities, Point3d referencePoint, string promptMessage)
+        public EntitiesJig(IEnumerable<Entity> entities, Point3d referencePoint, string promptMessage)
         {
             this.entities = entities;
+            this.promptMessage = promptMessage;
             this.referencePoint = referencePoint;
             this.movement = new Vector3d(0, 0, 0);
-            this.promptMessage = promptMessage;
         }
 
         /// <summary>
@@ -37,12 +40,12 @@ namespace AutoCADTools.Utils
         /// <returns><c>true</c></returns>
         protected override bool WorldDraw(Autodesk.AutoCAD.GraphicsInterface.WorldDraw draw)
         {
-            foreach (Entity ent in entities)
+            foreach (Entity entity in entities)
             {
-                ent.TransformBy(Matrix3d.Displacement(movement));
-                draw.Geometry.Draw(ent);
+                entity.TransformBy(Matrix3d.Displacement(movement));
+                draw.Geometry.Draw(entity);
             }
-            
+
             movement = new Vector3d(0, 0, 0);
             return true;
         }
@@ -59,7 +62,7 @@ namespace AutoCADTools.Utils
             PromptPointResult res = prompts.AcquirePoint(jigOpt);
             if (res.Status != PromptStatus.OK)
                 return SamplerStatus.Cancel;
-            if (res.Value.IsEqualTo(referencePoint, new Tolerance(0.0001, 0.0001)))
+            if (res.Value.IsEqualTo(referencePoint, new Tolerance(ToleranceValue, ToleranceValue)))
                 return SamplerStatus.NoChange;
             movement = referencePoint.GetVectorTo(res.Value);
             referencePoint = res.Value;
