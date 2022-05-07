@@ -56,7 +56,7 @@ namespace AutoCADTools.PrintLayout
         {
             if (!InitializePaperformats(progressMonitor))
             {
-                MessageBox.Show(LocalData.LoadPaperformatsErrorTitle, LocalData.LoadPaperformatsErrorMessage + " " + Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(String.Format("{0} {1}.", LocalData.LoadPaperformatsErrorMessage, Name), LocalData.LoadPaperformatsErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return GetPaperformats(optimized);
         }
