@@ -152,6 +152,8 @@ namespace AutoCADTools.PrintLayout
             paperformat = new PaperformatTextfieldA4Vertical(drawingData.Version < 2);
             orientation = PaperOrientation.Landscape;
             layoutName = Properties.Settings.Default.DefaultLayoutName;
+            scale = 1.0;
+            drawingUnit = 1;
         }
 
         #endregion
