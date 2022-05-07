@@ -18,7 +18,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// File extension for printer configuration files
         /// </summary>
-        public const string printerConfigurationFileExtension = ".pc3";
+        public const string PrinterConfigurationFileExtension = ".pc3";
 
         private const double optimizedFormatMarginMinimum = 3.8;
         private const double optimizedFormatMarginMaximum = 4.2;
@@ -83,7 +83,7 @@ namespace AutoCADTools.PrintLayout
         public Printer(String name)
         {
             PlotSettingsValidator psv = PlotSettingsValidator.Current;
-            if (String.IsNullOrEmpty(name) || !psv.GetPlotDeviceList().Contains(name + printerConfigurationFileExtension))
+            if (String.IsNullOrEmpty(name) || !psv.GetPlotDeviceList().Contains(name + PrinterConfigurationFileExtension))
             {
                 throw new System.ArgumentException(LocalData.PrinterNameException + name);
             }
@@ -151,7 +151,7 @@ namespace AutoCADTools.PrintLayout
         {
             var plotSettingsValidator = paperformatExtractionState.PlotSettingsValidator;
             var plotSettings = paperformatExtractionState.PlotSettings;
-            plotSettingsValidator.SetPlotConfigurationName(plotSettings, Name + printerConfigurationFileExtension, null);
+            plotSettingsValidator.SetPlotConfigurationName(plotSettings, Name + PrinterConfigurationFileExtension, null);
             plotSettingsValidator.RefreshLists(plotSettings);
             return plotSettingsValidator.GetCanonicalMediaNameList(plotSettings).Cast<string>().Select(formatName =>
                 new PaperformatDescription(formatName, plotSettingsValidator.GetLocaleMediaName(plotSettings, formatName)));

@@ -36,16 +36,18 @@ namespace AutoCADTools.PrintLayout
                 return false;
             }
 
-            var creation = new LayoutTextfield(paperformat);
-            SetDrawingArea(creation, drawingArea);
-            creation.LayoutName = Properties.Settings.Default.DefaultLayoutName;
+            var creationSpecification = new LayoutCreationSpecification
+            {
+                Paperformat = paperformat
+            };
+            SetDrawingArea(creationSpecification, drawingArea);
             using (var progressDialog = new ProgressDialog())
             {
-                creation.Printerformat = paperformat.GetFittingPaperformat(printer, true, progressDialog);
+                creationSpecification.Printerformat = paperformat.GetFittingPaperformat(printer, true, progressDialog);
             }
-            if (creation.Printerformat != null)
+            if (creationSpecification.Printerformat != null)
             {
-                return creation.CreateLayout();
+                return new LayoutCreator(creationSpecification).CreateLayout();
             }
             else
             {
@@ -68,13 +70,15 @@ namespace AutoCADTools.PrintLayout
             }
 
             var paperformat = drawingArea.Format;
-            var creation = new LayoutTextfield(paperformat);
-            SetDrawingArea(creation, drawingArea);
+            var creationSpecification = new LayoutCreationSpecification
+            {
+                Paperformat = paperformat,
+                LayoutName = "PNG"
+            };
+            SetDrawingArea(creationSpecification, drawingArea);
+            creationSpecification.Printerformat = paperformat.GetFittingPaperformat(printer, true, new ProgressDialog());
 
-            creation.LayoutName = "PNG";
-            creation.Printerformat = paperformat.GetFittingPaperformat(printer, true, new ProgressDialog());
-
-            return creation.CreateLayout();
+            return new LayoutCreator(creationSpecification).CreateLayout();
         }
 
         /// <summary>
@@ -94,7 +98,7 @@ namespace AutoCADTools.PrintLayout
         /// <param name="creation">The creation process object.</param>
         /// <param name="drawingArea">The drawing area.</param>
         /// <exception cref="System.ArgumentNullException">Is thrown if an argument is null</exception>
-        private static void SetDrawingArea(LayoutCreation creation, DrawingArea drawingArea)
+        private static void SetDrawingArea(LayoutCreationSpecification creation, DrawingArea drawingArea)
         {
             if (creation == null || drawingArea == null || !drawingArea.IsValid)
             {
@@ -112,7 +116,7 @@ namespace AutoCADTools.PrintLayout
 
             creation.DrawingUnit = drawingData.DrawingUnit;
             creation.Scale = drawingArea.Scale / drawingData.DrawingUnit;
-            creation.Orientation = creation.Paperformat is PaperformatTextfieldA4Vertical ? LayoutCreation.PaperOrientation.Portrait : LayoutCreation.PaperOrientation.Landscape;
+            creation.Orientation = creation.Paperformat is PaperformatTextfieldA4Vertical ? LayoutCreationSpecification.PaperOrientation.Portrait : LayoutCreationSpecification.PaperOrientation.Landscape;
         }
 
     }

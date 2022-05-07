@@ -19,6 +19,7 @@ namespace AutoCADTools.PrintLayout
     {
         #region Fields
         private const string AutoCadAnnotationScalesDatabaseEntryName = "ACDB_ANNOTATIONSCALES";
+        private const string AutoCadCursorsizeSystemVariableName = "CURSORSIZE";
 
         // Instance fields
         private readonly bool oldTextfieldUsed;
@@ -114,8 +115,8 @@ namespace AutoCADTools.PrintLayout
         {
             var interact = document.Editor.StartUserInteraction(this.Handle);
 
-            object oldCrossWidth = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable("CURSORSIZE");
-            Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", 100);
+            object oldCrossWidth = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable(AutoCadCursorsizeSystemVariableName);
+            Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(AutoCadCursorsizeSystemVariableName, 100);
 
             // Define to points to get from user
             Point3d p1;
@@ -132,7 +133,7 @@ namespace AutoCADTools.PrintLayout
             else
             {
                 // On error stop
-                Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", oldCrossWidth);
+                Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(AutoCadCursorsizeSystemVariableName, oldCrossWidth);
                 interact.End();
                 return;
             }
@@ -144,7 +145,7 @@ namespace AutoCADTools.PrintLayout
             };
             getPointResult = document.Editor.GetCorner(endpointOpts);
             // Set cursorsize to normal
-            Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable("CURSORSIZE", oldCrossWidth);
+            Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(AutoCadCursorsizeSystemVariableName, oldCrossWidth);
             if (getPointResult.Status == PromptStatus.OK)
             {
                 p2 = getPointResult.Value;
@@ -185,7 +186,7 @@ namespace AutoCADTools.PrintLayout
                 if (format.Name == cboPaperformat.Text) printerformat = format;
             }
 
-            LayoutCreation.PaperOrientation orientation = optLandscape.Checked ? LayoutCreation.PaperOrientation.Landscape : LayoutCreation.PaperOrientation.Portrait;
+            LayoutCreationSpecification.PaperOrientation orientation = optLandscape.Checked ? LayoutCreationSpecification.PaperOrientation.Landscape : LayoutCreationSpecification.PaperOrientation.Portrait;
             double drawingUnit = (double)updDrawingUnit.Value;
             double scale = 1.0 / int.Parse(cboScale.Text);
 
@@ -199,23 +200,18 @@ namespace AutoCADTools.PrintLayout
                 extractLowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
             }
 
-            LayoutCreation creation;
-            if (chkTextfield.Checked)
+            LayoutCreationSpecification creationSpecification = new LayoutCreationSpecification
             {
-                creation = new LayoutTextfield((PaperformatTextfield)currentPaperformat);
-            }
-            else
-            {
-                creation = new LayoutPlain(currentPaperformat);
-            }
-            creation.DrawingUnit = drawingUnit;
-            creation.ExtractLowerRightPoint = extractLowerRightPoint;
-            creation.LayoutName = txtLayoutName.Text;
-            creation.Orientation = orientation;
-            creation.Printerformat = printerformat;
-            creation.Scale = scale;
+                Paperformat = currentPaperformat,
+                DrawingUnit = drawingUnit,
+                ExtractLowerRightPoint = extractLowerRightPoint,
+                LayoutName = txtLayoutName.Text,
+                Orientation = orientation,
+                Printerformat = printerformat,
+                Scale = scale
+            };
 
-            creation.CreateLayout();
+            new LayoutCreator(creationSpecification).CreateLayout();
         }
 
         private double SetPaperformatForExactExtract()
