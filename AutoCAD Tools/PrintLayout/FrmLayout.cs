@@ -56,7 +56,6 @@ namespace AutoCADTools.PrintLayout
             LoadTextfield();
             LoadPrinters();
             LoadAnnotationScales();
-            LoadDrawingArea();
             CalculateCurrentPaperformat();
             SelectDefaultPrinter();
             ValidateCreationAvailable();
@@ -95,6 +94,10 @@ namespace AutoCADTools.PrintLayout
         {
             DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
             chkUseDrawingArea.Enabled = drawingAreaWrapper.DrawingArea.IsValid;
+            if (chkUseDrawingArea.Enabled)
+            {
+                chkUseDrawingArea.Checked = true;
+            }
         }
 
         private bool LoadDrawingArea()
