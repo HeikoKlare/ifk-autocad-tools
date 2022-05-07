@@ -193,12 +193,6 @@ namespace AutoCADTools.PrintLayout
 
             this.Close();
 
-            PrinterPaperformat printerformat = null;
-            foreach (var format in selectablePaperformats)
-            {
-                if (format.Name == cboPaperformat.Text) printerformat = format;
-            }
-
             layoutCreationSpecification.Orientation = optLandscape.Checked ? LayoutCreationSpecification.PaperOrientation.Landscape : LayoutCreationSpecification.PaperOrientation.Portrait;
             layoutCreationSpecification.Scale = 1.0 / int.Parse(cboScale.Text);
 
@@ -214,7 +208,7 @@ namespace AutoCADTools.PrintLayout
 
             layoutCreationSpecification.ExtractLowerRightPoint = extractLowerRightPoint;
             layoutCreationSpecification.Paperformat = currentPaperformat;
-            layoutCreationSpecification.Printerformat = printerformat;
+            layoutCreationSpecification.Printerformat = cboPaperformat.SelectedItem as PrinterPaperformat;
             new LayoutCreator(layoutCreationSpecification).CreateLayout();
         }
 
@@ -295,7 +289,8 @@ namespace AutoCADTools.PrintLayout
                 this.selectablePaperformats = new List<PrinterPaperformat>().ToArray();
             }
             cboPaperformat.Items.Clear();
-            cboPaperformat.Items.AddRange(selectablePaperformats.Select(format => format.Name).ToArray());
+            cboPaperformat.DisplayMember = nameof(PrinterPaperformat.Name);
+            cboPaperformat.Items.AddRange(selectablePaperformats.ToArray());
             int index = cboPaperformat.FindStringExact(oldFormat);
             cboPaperformat.SelectedIndex = index != -1 || cboPaperformat.Items.Count == 0 ? index : 0;
             ValidatePaperformats();
@@ -442,8 +437,7 @@ namespace AutoCADTools.PrintLayout
 
         private void ValidatePrinterPaperformatFitting()
         {
-            var matchingPaperformats = selectablePaperformats.Where(format => format.Name == cboPaperformat.Text);
-            PrinterPaperformat printerformat = matchingPaperformats.Any() ? matchingPaperformats.First() : null;
+            PrinterPaperformat printerformat = cboPaperformat.SelectedItem as PrinterPaperformat;
             using (var progressDialog = new ProgressDialog())
             {
                 if (!chkExactExtract.Checked && !PaperformatPrinterMapping.IsFormatFitting(printerformat, currentPaperformat, progressDialog))
@@ -517,14 +511,9 @@ namespace AutoCADTools.PrintLayout
             PrinterChanged();
             if (chkExactExtract.Checked && currentPaperformat != null)
             {
-                PrinterPaperformat printerformat = null;
-                foreach (var format in selectablePaperformats)
-                {
-                    if (format.Name == cboPaperformat.Text) printerformat = format;
-                }
                 using (var progressDialog = new ProgressDialog())
                 {
-                    if (!PaperformatPrinterMapping.IsFormatFitting(printerformat, currentPaperformat, progressDialog))
+                    if (!PaperformatPrinterMapping.IsFormatFitting(cboPaperformat.SelectedItem as PrinterPaperformat, currentPaperformat, progressDialog))
                     {
                         SelectOptimalPaperformat();
                     }
