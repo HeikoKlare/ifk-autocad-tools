@@ -89,10 +89,9 @@ namespace AutoCADTools.PrintLayout
             cboScale.SelectedItem = document.Database.Cannoscale.DrawingUnits;
         }
 
-        private void LoadDrawingArea()
+        private bool LoadDrawingArea()
         {
             DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            chkUseDrawingArea.Enabled = drawingAreaWrapper.DrawingArea.IsValid;
             if (drawingAreaWrapper.DrawingArea.IsValid)
             {
                 var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
@@ -104,8 +103,11 @@ namespace AutoCADTools.PrintLayout
                     extractLowerRightPoint = new Point(point.X, point.Y);
                 }
                 cboScale.Text = Math.Round(drawingData.DrawingUnit / drawingAreaWrapper.DrawingArea.Scale).ToString();
-                chkUseDrawingArea.Checked = true;
+                chkUseDrawingArea.Enabled = true;
+                if (!chkUseDrawingArea.Checked) chkUseDrawingArea.Checked = true;
+                return true;
             }
+            return false;
         }
 
         #endregion
@@ -164,6 +166,7 @@ namespace AutoCADTools.PrintLayout
 
             interact.End();
 
+            chkUseDrawingArea.Checked = false;
             CalculatePaperformatAndValidateSelectedPrinterPaperformat();
             SelectDefaultPrinter();
         }
@@ -548,7 +551,11 @@ namespace AutoCADTools.PrintLayout
 
         private void ChkUseDrawingArea_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkUseDrawingArea.Checked) SelectDefaultPrinter();
+            if (chkUseDrawingArea.Checked)
+            {
+                LoadDrawingArea();
+                SelectDefaultPrinter();
+            }
         }
 
         private void CboScale_KeyPress(object sender, KeyPressEventArgs e)
