@@ -26,6 +26,7 @@ namespace AutoCADTools.PrintLayout
         private Document document;
 
         // State fields
+        private readonly LayoutCreationSpecification layoutCreationSpecification = new LayoutCreationSpecification();
         private Printer selectedPrinter;
         private IReadOnlyList<PrinterPaperformat> selectablePaperformats;
         private Point extractLowerRightPoint;
@@ -49,7 +50,7 @@ namespace AutoCADTools.PrintLayout
         private void FrmLayout_Load(object sender, EventArgs e)
         {
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            txtLayoutName.Text = Properties.Settings.Default.DefaultLayoutName;
+            txtLayoutName.DataBindings.Add(nameof(txtLayoutName.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.LayoutName), false, DataSourceUpdateMode.OnPropertyChanged);
             LoadTextfield();
             LoadPrinters();
             LoadAnnotationScales();
@@ -172,7 +173,7 @@ namespace AutoCADTools.PrintLayout
             ValidateCreationAvailable();
             if (!butCreate.Enabled) return;
 
-            if (!LayoutManager.Current.GetLayoutId(txtLayoutName.Text).IsNull)
+            if (!LayoutManager.Current.GetLayoutId(layoutCreationSpecification.LayoutName).IsNull)
             {
                 if (MessageBox.Show(LocalData.DuplicateLayoutNameText, LocalData.DuplicateLayoutNameTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                     return;
