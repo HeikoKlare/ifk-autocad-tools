@@ -47,7 +47,7 @@ namespace AutoCADTools.PrintLayout
         private void FrmLayout_Load(object sender, EventArgs e)
         {
             this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
+            
             cboPrinter.DataSource = PrinterRepository.Instance.PrinterNames;
             txtLayoutName.Text = Properties.Settings.Default.DefaultLayoutName;
             currentPaperformat = new PaperformatTextfieldA4Vertical(oldTextfieldUsed);
@@ -333,12 +333,12 @@ namespace AutoCADTools.PrintLayout
 
         private void SelectOptimalPaperformat()
         {
-            if (!chkExactExtract.Checked && currentPaperformat != null && selectedPrinter != null)
+            if (!chkExactExtract.Checked && currentPaperformat != null && selectedPrinter != null && selectedPrinter.Initialized)
             {
                 using (var progressDialog = new ProgressDialog())
                 {
-                    var paperformat = currentPaperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked, progressDialog);
-                    int formatIndex = paperformat != null ? cboPaperformat.FindStringExact(paperformat.Name) : -1;
+                    var printerPaperformat = currentPaperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked, progressDialog);
+                    int formatIndex = printerPaperformat != null ? cboPaperformat.FindStringExact(printerPaperformat.Name) : -1;
                     if (formatIndex != -1)
                     {
                         cboPaperformat.SelectedIndex = formatIndex;
@@ -532,7 +532,6 @@ namespace AutoCADTools.PrintLayout
 
         private void ChkUseDrawingArea_CheckedChanged(object sender, EventArgs e)
         {
-            if (!chkUseDrawingArea.Checked) chkUseDrawingArea.Checked = true;
             if (chkUseDrawingArea.Checked) SelectDefaultPrinter();
         }
 
