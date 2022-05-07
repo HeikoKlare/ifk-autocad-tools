@@ -34,44 +34,13 @@ namespace AutoCADTools.PrintLayout
 
         #region Attributes
 
-        private Paperformat paperformat;
+        private readonly Document document;
         /// <summary>
-        /// The paperformat for the layout.
+        /// The document the layout is created in.
         /// </summary>
-        public Paperformat Paperformat
+        public Document Document
         {
-            get { return paperformat; }
-            set { paperformat = value; }
-        }
-
-        private double drawingUnit;
-        /// <summary>
-        /// The drawing unit (millimeters represented by a unit in the drawing).
-        /// </summary>
-        public double DrawingUnit
-        {
-            get { return drawingUnit; }
-            set { drawingUnit = value; }
-        }
-
-        private PrinterPaperformat printerformat;
-        /// <summary>
-        /// The printer paperformat used for printing.
-        /// </summary>
-        public PrinterPaperformat Printerformat
-        {
-            get { return printerformat; }
-            set { printerformat = value; }
-        }
-
-        private Point extractLowerRightPoint;
-        /// <summary>
-        /// The lower right point of the extract to create the layout for.
-        /// </summary>
-        public Point ExtractLowerRightPoint
-        {
-            get { return extractLowerRightPoint; }
-            set { extractLowerRightPoint = value; }
+            get { return document; }
         }
 
         private string layoutName;
@@ -84,6 +53,16 @@ namespace AutoCADTools.PrintLayout
             set { layoutName = value; }
         }
 
+        private double drawingUnit;
+        /// <summary>
+        /// The drawing unit (millimeters represented by a unit in the drawing).
+        /// </summary>
+        public double DrawingUnit
+        {
+            get { return drawingUnit; }
+            set { drawingUnit = value; }
+        }
+
         private double scale;
         /// <summary>
         /// The scale factor the extract shell be printed with.
@@ -94,6 +73,26 @@ namespace AutoCADTools.PrintLayout
             set { scale = value; }
         }
 
+        private Paperformat paperformat;
+        /// <summary>
+        /// The paperformat for the layout.
+        /// </summary>
+        public Paperformat Paperformat
+        {
+            get { return paperformat; }
+            set { paperformat = value; }
+        }
+        
+        private PrinterPaperformat printerformat;
+        /// <summary>
+        /// The printer paperformat used for printing.
+        /// </summary>
+        public PrinterPaperformat Printerformat
+        {
+            get { return printerformat; }
+            set { printerformat = value; }
+        }
+
         /// <summary>
         /// Whether the viewport has to be rotated.
         /// </summary>
@@ -102,24 +101,34 @@ namespace AutoCADTools.PrintLayout
             get { return paperformat is PaperformatTextfieldA4Horizontal; }
         }
 
-        private readonly Document document;
-        /// <summary>
-        /// The document the layout is created in.
-        /// </summary>
-        public Document Document
-        {
-            get { return document; }
-        }
-
-        private PaperOrientation orientation;
         /// <summary>
         /// The orientation for the paper.
         /// </summary>
         public PaperOrientation Orientation
         {
-            get { return orientation; }
-            set { orientation = RotateViewport ? PaperOrientation.Portrait : value; }
+            get { return RotateViewport || Paperformat is PaperformatA4Vertical || Paperformat is PaperformatTextfieldA4Vertical ? PaperOrientation.Portrait : PaperOrientation.Landscape; }
         }
+
+        /// <summary>
+        /// Defines a frame by one point and its size.
+        /// </summary>
+        public class Frame
+        {
+            /// <summary>
+            /// The point at the lower right edge of the frame.
+            /// </summary>
+            public Point LowerRightPoint { get; set; }
+            
+            /// <summary>
+            /// The size of the frame.
+            /// </summary>
+            public Size Size { get; set; }
+        }
+
+        /// <summary>
+        /// The area in the model to be printed.
+        /// </summary>
+        public Frame PrintArea { get; }
 
         /// <summary>
         /// Whether the layout is valid, i.e., all properties have been set.
@@ -130,7 +139,7 @@ namespace AutoCADTools.PrintLayout
             {
                 return DrawingUnit != 0 &&
                     Scale != 0 &&
-                    ExtractLowerRightPoint != null &&
+                    PrintArea.LowerRightPoint != null &&
                     Paperformat != null &&
                     Printerformat != null &&
                     !String.IsNullOrEmpty(LayoutName);
@@ -150,7 +159,7 @@ namespace AutoCADTools.PrintLayout
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
             paperformat = new PaperformatTextfieldA4Vertical(drawingData.Version < 2);
-            orientation = PaperOrientation.Landscape;
+            PrintArea = new Frame();
             layoutName = Properties.Settings.Default.DefaultLayoutName;
             scale = 1.0;
             drawingUnit = 1;

@@ -107,6 +107,7 @@ namespace AutoCADTools.PrintLayout
             {
                 var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
                 layoutCreationSpecification.DrawingUnit = drawingData.DrawingUnit;
+                updDrawingUnit.Value = drawingData.DrawingUnit;
                 extractSize = 1 / drawingAreaWrapper.DrawingArea.Scale * drawingAreaWrapper.DrawingArea.Format.ViewportSizeModel;
                 using (Transaction trans = document.TransactionManager.StartTransaction())
                 {
@@ -193,7 +194,6 @@ namespace AutoCADTools.PrintLayout
 
             this.Close();
 
-            layoutCreationSpecification.Orientation = optLandscape.Checked ? LayoutCreationSpecification.PaperOrientation.Landscape : LayoutCreationSpecification.PaperOrientation.Portrait;
             layoutCreationSpecification.Scale = 1.0 / int.Parse(cboScale.Text);
 
             if (chkExactExtract.Checked)
@@ -206,7 +206,7 @@ namespace AutoCADTools.PrintLayout
                 extractLowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
             }
 
-            layoutCreationSpecification.ExtractLowerRightPoint = extractLowerRightPoint;
+            layoutCreationSpecification.PrintArea.LowerRightPoint = extractLowerRightPoint;
             layoutCreationSpecification.Paperformat = currentPaperformat;
             layoutCreationSpecification.Printerformat = cboPaperformat.SelectedItem as PrinterPaperformat;
             new LayoutCreator(layoutCreationSpecification).CreateLayout();
@@ -218,7 +218,7 @@ namespace AutoCADTools.PrintLayout
             {
                 if (chkTextfield.Checked)
                 {
-                    if (optLandscape.Checked)
+                    if (extractSize.Width > extractSize.Height)
                     {
                         currentPaperformat = new PaperformatTextfieldA4Horizontal(oldTextfieldUsed);
                     }
@@ -229,7 +229,7 @@ namespace AutoCADTools.PrintLayout
                 }
                 else
                 {
-                    if (optLandscape.Checked)
+                    if (extractSize.Width > extractSize.Height)
                     {
                         currentPaperformat = new PaperformatA4Horizontal();
                     }
@@ -297,12 +297,6 @@ namespace AutoCADTools.PrintLayout
             ValidateSelectedPrinterPaperformat();
         }
 
-        private void UpdatePaperOrientations()
-        {
-            optLandscape.Visible = (chkExactExtract.Checked || !chkTextfield.Checked) && cboPaperformat.Text == "A4";
-            optPortrait.Visible = (chkExactExtract.Checked || !chkTextfield.Checked) && cboPaperformat.Text == "A4";
-        }
-
         private void CalculateCurrentPaperformat()
         {
             if (!chkExactExtract.Checked && String.IsNullOrEmpty(errorProvider.GetError(cboScale)) && String.IsNullOrEmpty(errorProvider.GetError(updDrawingUnit)) && extractSize != null)
@@ -357,14 +351,6 @@ namespace AutoCADTools.PrintLayout
                     {
                         cboPaperformat.SelectedIndex = formatIndex;
                     }
-                }
-                if (currentPaperformat is PaperformatA4Vertical || currentPaperformat is PaperformatTextfieldA4)
-                {
-                    optPortrait.Checked = true;
-                }
-                else
-                {
-                    optLandscape.Checked = true;
                 }
             }
         }
@@ -496,7 +482,6 @@ namespace AutoCADTools.PrintLayout
         private void CboPaperformat_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalculatePaperformatAndValidateSelectedPrinterPaperformat();
-            UpdatePaperOrientations();
             ValidateSelectedPrinterPaperformat();
             bool exactExtractPossible = cboPaperformat.Text == "A4" || cboPaperformat.Text == "A3";
             chkExactExtract.Enabled = exactExtractPossible;
@@ -527,13 +512,11 @@ namespace AutoCADTools.PrintLayout
             updDrawingUnit.Enabled = !chkExactExtract.Checked;
             ValidateScale();
             ValidatePrinterPaperformatFitting();
-            UpdatePaperOrientations();
         }
 
         private void ChkTextfield_CheckedChanged(object sender, EventArgs e)
         {
             CalculatePaperformatAndValidateSelectedPrinterPaperformat();
-            UpdatePaperOrientations();
             SelectOptimalPaperformat();
         }
 

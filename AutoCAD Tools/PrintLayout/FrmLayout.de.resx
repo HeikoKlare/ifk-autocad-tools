@@ -117,8 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="butCreate.Error" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="butCreate.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="butCreate.Text" xml:space="preserve">
     <value>Layout erstellen</value>
+  </data>
+  <data name="chkUseDrawingArea.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkUseDrawingArea.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="chkUseDrawingArea.Size" type="System.Drawing.Size, System.Drawing">
@@ -127,8 +140,26 @@
   <data name="chkUseDrawingArea.Text" xml:space="preserve">
     <value>Zeichenbereich nutzen</value>
   </data>
+  <data name="butDefineExtract.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="butDefineExtract.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="butDefineExtract.Text" xml:space="preserve">
     <value>Ausschnitt festlegen</value>
+  </data>
+  <data name="txtLayoutName.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtLayoutName.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="cboPrinter.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cboPrinter.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="cboPrinter.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 132</value>
@@ -136,11 +167,35 @@
   <data name="cboPrinter.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 21</value>
   </data>
+  <data name="lblLayoutName.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblLayoutName.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblPrinter.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblPrinter.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="lblPrinter.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 13</value>
   </data>
   <data name="lblPrinter.Text" xml:space="preserve">
     <value>Drucker:</value>
+  </data>
+  <data name="updDrawingUnit.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="updDrawingUnit.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkExactExtract.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkExactExtract.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="chkExactExtract.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 18</value>
@@ -148,17 +203,53 @@
   <data name="chkExactExtract.Text" xml:space="preserve">
     <value>Exakter Ausschnitt ohne Maßstab</value>
   </data>
+  <data name="lblDrawingUnitMm.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDrawingUnitMm.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDrawingUnit.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDrawingUnit.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="lblDrawingUnit.Size" type="System.Drawing.Size, System.Drawing">
     <value>112, 13</value>
   </data>
   <data name="lblDrawingUnit.Text" xml:space="preserve">
     <value>1 Zeichnungseinheit =</value>
   </data>
+  <data name="cboScale.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cboScale.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblScaleText.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblScaleText.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblScale.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblScale.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="lblScale.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 13</value>
   </data>
   <data name="lblScale.Text" xml:space="preserve">
     <value>Druckmaßstab:</value>
+  </data>
+  <data name="grpScale.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grpScale.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="grpScale.Text" xml:space="preserve">
     <value>Skalierung</value>
@@ -222,26 +313,32 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
+  <data name="chkTextfield.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkTextfield.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="chkTextfield.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 18</value>
   </data>
   <data name="chkTextfield.Text" xml:space="preserve">
     <value>Textfeld</value>
   </data>
-  <data name="optPortrait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 18</value>
+  <data name="cboPaperformat.Error" xml:space="preserve">
+    <value />
   </data>
-  <data name="optPortrait.Text" xml:space="preserve">
-    <value>Hochformat</value>
-  </data>
-  <data name="optLandscape.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 18</value>
-  </data>
-  <data name="optLandscape.Text" xml:space="preserve">
-    <value>Querformat</value>
+  <data name="cboPaperformat.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="cboPaperformat.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 57</value>
+  </data>
+  <data name="lblPaperformat.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblPaperformat.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lblPaperformat.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 13</value>
@@ -249,11 +346,23 @@
   <data name="lblPaperformat.Text" xml:space="preserve">
     <value>Papierformat:</value>
   </data>
+  <data name="chkOptimizedPaperformats.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkOptimizedPaperformats.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
   <data name="chkOptimizedPaperformats.Size" type="System.Drawing.Size, System.Drawing">
     <value>165, 40</value>
   </data>
   <data name="chkOptimizedPaperformats.Text" xml:space="preserve">
     <value>Nur optimierte Papierformate</value>
+  </data>
+  <data name="grpPaperformat.Error" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grpPaperformat.IconPadding" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="grpPaperformat.Text" xml:space="preserve">
     <value>Papierformat</value>

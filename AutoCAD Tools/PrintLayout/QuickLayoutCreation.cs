@@ -111,12 +111,11 @@ namespace AutoCADTools.PrintLayout
             using (Transaction trans = doc.TransactionManager.StartOpenCloseTransaction())
             {
                 var point = (trans.GetObject(drawingArea.DrawingAreaId, OpenMode.ForRead) as BlockReference).Position;
-                creation.ExtractLowerRightPoint = new Point(point.X, point.Y);
+                creation.PrintArea.LowerRightPoint = new Point(point.X, point.Y);
             }
 
             creation.DrawingUnit = drawingData.DrawingUnit;
             creation.Scale = drawingArea.Scale / drawingData.DrawingUnit;
-            creation.Orientation = creation.Paperformat is PaperformatTextfieldA4Vertical ? LayoutCreationSpecification.PaperOrientation.Portrait : LayoutCreationSpecification.PaperOrientation.Landscape;
         }
 
     }

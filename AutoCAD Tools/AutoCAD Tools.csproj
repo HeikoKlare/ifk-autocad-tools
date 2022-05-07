@@ -120,11 +120,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalData.resx</DependentUpon>
     </Compile>
+    <Compile Include="PrintLayout\LayoutCreator.cs" />
     <Compile Include="PrintLayout\DrawingAreaDocumentWrapper.cs" />
     <Compile Include="PrintLayout\Formats.cs" />
-    <Compile Include="PrintLayout\LayoutCreation.cs" />
-    <Compile Include="PrintLayout\LayoutPlain.cs" />
-    <Compile Include="PrintLayout\LayoutTextfield.cs" />
+    <Compile Include="PrintLayout\LayoutCreationSpecification.cs" />
     <Compile Include="PrintLayout\FrmLayout.cs">
       <SubType>Form</SubType>
     </Compile>
