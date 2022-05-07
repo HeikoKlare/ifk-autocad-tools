@@ -18,6 +18,7 @@ namespace AutoCADTools.PrintLayout
     public partial class FrmLayout : Form
     {
         #region Fields
+        private const string AutoCadAnnotationScalesDatabaseEntryName = "ACDB_ANNOTATIONSCALES";
 
         // Instance fields
         private readonly bool oldTextfieldUsed;
@@ -46,33 +47,63 @@ namespace AutoCADTools.PrintLayout
 
         private void FrmLayout_Load(object sender, EventArgs e)
         {
-            this.document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            
-            cboPrinter.DataSource = PrinterRepository.Instance.PrinterNames;
+            document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             txtLayoutName.Text = Properties.Settings.Default.DefaultLayoutName;
-            currentPaperformat = new PaperformatTextfieldA4Vertical(oldTextfieldUsed);
-            SelectDefaultPrinter();
-
-            // Get the annotation scales an add them to the scale combobox
-            ObjectContextCollection occ = document.Database.ObjectContextManager.GetContextCollection("ACDB_ANNOTATIONSCALES");
-            cboScale.DataSource = occ.Cast<AnnotationScale>().ToList<AnnotationScale>();
-            cboScale.DisplayMember = "DrawingUnits";
-            cboScale.SelectedIndex = cboScale.FindStringExact(document.Database.Cannoscale.DrawingUnits.ToString());
-
-            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            chkUseDrawingArea.Enabled = drawingAreaWrapper.DrawingArea.IsValid;
+            LoadTextfield();
+            LoadPrinters();
+            LoadAnnotationScales();
             LoadDrawingArea();
+            CalculateCurrentPaperformat();
+            SelectDefaultPrinter();
+            ValidateCreationAvailable();
+        }
 
-            using (var trans = document.Database.TransactionManager.StartOpenCloseTransaction())
+        private void LoadTextfield()
+        {
+            using (var transaction = document.Database.TransactionManager.StartOpenCloseTransaction())
             {
-                var blockTable = trans.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                var blockTable = transaction.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
                 if (!blockTable.Has(PaperformatTextfieldA4.TEXTFIELD_BLOCK_NAME) || !blockTable.Has(PaperformatTextfieldFullTextfield.TEXTFIELD_BLOCK_NAME))
                 {
                     chkTextfield.Enabled = false;
                     chkTextfield.Checked = false;
                 }
             }
-            ValidateCreationAvailable();
+        }
+
+        private void LoadPrinters()
+        {
+            cboPrinter.SelectedIndexChanged -= CboPrinter_SelectedIndexChanged;
+            cboPrinter.DataSource = PrinterRepository.Instance.PrinterNames;
+            cboPrinter.SelectedIndex = -1;
+            cboPrinter.SelectedIndexChanged += CboPrinter_SelectedIndexChanged;
+        }
+
+        private void LoadAnnotationScales()
+        {
+            ObjectContextCollection annotationScalesContextCollection = document.Database.ObjectContextManager.GetContextCollection(AutoCadAnnotationScalesDatabaseEntryName);
+            IList<double> annotationScales = annotationScalesContextCollection.Cast<AnnotationScale>().Select(scale => scale.DrawingUnits).ToList();
+            cboScale.DataSource = annotationScales;
+            cboScale.SelectedItem = document.Database.Cannoscale.DrawingUnits;
+        }
+
+        private void LoadDrawingArea()
+        {
+            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            chkUseDrawingArea.Enabled = drawingAreaWrapper.DrawingArea.IsValid;
+            if (drawingAreaWrapper.DrawingArea.IsValid)
+            {
+                var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+                updDrawingUnit.Value = drawingData.DrawingUnit;
+                extractSize = 1 / drawingAreaWrapper.DrawingArea.Scale * drawingAreaWrapper.DrawingArea.Format.ViewportSizeModel;
+                using (Transaction trans = document.TransactionManager.StartTransaction())
+                {
+                    var point = (drawingAreaWrapper.DrawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
+                    extractLowerRightPoint = new Point(point.X, point.Y);
+                }
+                cboScale.Text = Math.Round(drawingData.DrawingUnit / drawingAreaWrapper.DrawingArea.Scale).ToString();
+                chkUseDrawingArea.Checked = true;
+            }
         }
 
         #endregion
@@ -131,7 +162,7 @@ namespace AutoCADTools.PrintLayout
 
             interact.End();
 
-            UpdateSelectedPaperformat();
+            CalculatePaperformatAndValidateSelectedPrinterPaperformat();
             SelectDefaultPrinter();
         }
 
@@ -248,27 +279,6 @@ namespace AutoCADTools.PrintLayout
 
         #region Methods
 
-        private void LoadDrawingArea()
-        {
-            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            if (drawingAreaWrapper.DrawingArea.IsValid)
-            {
-                var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-                updDrawingUnit.Value = drawingData.DrawingUnit;
-                extractSize = 1 / drawingAreaWrapper.DrawingArea.Scale * drawingAreaWrapper.DrawingArea.Format.ViewportSizeModel;
-                using (Transaction trans = document.TransactionManager.StartTransaction())
-                {
-                    var point = (drawingAreaWrapper.DrawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
-                    extractLowerRightPoint = new Point(point.X, point.Y);
-                }
-                cboScale.Text = Math.Round(drawingData.DrawingUnit / drawingAreaWrapper.DrawingArea.Scale).ToString();
-                UpdateSelectedPaperformat();
-                SelectDefaultPrinter();
-                chkUseDrawingArea.Checked = true;
-            }
-            ValidateExtract();
-        }
-
         private void PrinterChanged()
         {
             var oldFormat = cboPaperformat.Text;
@@ -289,7 +299,7 @@ namespace AutoCADTools.PrintLayout
             int index = cboPaperformat.FindStringExact(oldFormat);
             cboPaperformat.SelectedIndex = index != -1 || cboPaperformat.Items.Count == 0 ? index : 0;
             ValidatePaperformats();
-            ValidateSelectedPaperformat();
+            ValidateSelectedPrinterPaperformat();
         }
 
         private void UpdatePaperOrientations()
@@ -298,7 +308,7 @@ namespace AutoCADTools.PrintLayout
             optPortrait.Visible = (chkExactExtract.Checked || !chkTextfield.Checked) && cboPaperformat.Text == "A4";
         }
 
-        private void UpdateSelectedPaperformat()
+        private void CalculateCurrentPaperformat()
         {
             if (!chkExactExtract.Checked && String.IsNullOrEmpty(errorProvider.GetError(cboScale)) && String.IsNullOrEmpty(errorProvider.GetError(updDrawingUnit)) && extractSize != null)
             {
@@ -313,7 +323,12 @@ namespace AutoCADTools.PrintLayout
                 }
             }
             ValidateExtract();
-            ValidateSelectedPaperformat();
+        }
+
+        private void CalculatePaperformatAndValidateSelectedPrinterPaperformat()
+        {
+            CalculateCurrentPaperformat();
+            ValidateSelectedPrinterPaperformat();
         }
 
         private void SelectDefaultPrinter()
@@ -328,6 +343,10 @@ namespace AutoCADTools.PrintLayout
                     cboPrinter.SelectedIndex = printerIndex;
                 }
                 SelectOptimalPaperformat();
+            }
+            else if (selectedPrinter == null)
+            {
+                cboPrinter.SelectedIndex = 0;
             }
         }
 
@@ -421,7 +440,7 @@ namespace AutoCADTools.PrintLayout
             ValidateCreationAvailable();
         }
 
-        private void ValidatePaperformatFitting()
+        private void ValidatePrinterPaperformatFitting()
         {
             var matchingPaperformats = selectablePaperformats.Where(format => format.Name == cboPaperformat.Text);
             PrinterPaperformat printerformat = matchingPaperformats.Any() ? matchingPaperformats.First() : null;
@@ -439,9 +458,9 @@ namespace AutoCADTools.PrintLayout
             ValidateCreationAvailable();
         }
 
-        private void ValidateSelectedPaperformat()
+        private void ValidateSelectedPrinterPaperformat()
         {
-            ValidatePaperformatFitting();
+            ValidatePrinterPaperformatFitting();
             ValidateCreationAvailable();
         }
 
@@ -468,12 +487,12 @@ namespace AutoCADTools.PrintLayout
         private void CboScale_Validating(object sender, CancelEventArgs e)
         {
             ValidateScale();
-            UpdateSelectedPaperformat();
+            CalculatePaperformatAndValidateSelectedPrinterPaperformat();
         }
 
         private void UpdDrawingUnit_ValueChanged(object sender, EventArgs e)
         {
-            UpdateSelectedPaperformat();
+            CalculatePaperformatAndValidateSelectedPrinterPaperformat();
         }
 
         private void CboPrinter_SelectedIndexChanged(object sender, EventArgs e)
@@ -483,9 +502,9 @@ namespace AutoCADTools.PrintLayout
 
         private void CboPaperformat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateSelectedPaperformat();
+            CalculatePaperformatAndValidateSelectedPrinterPaperformat();
             UpdatePaperOrientations();
-            ValidateSelectedPaperformat();
+            ValidateSelectedPrinterPaperformat();
             bool exactExtractPossible = cboPaperformat.Text == "A4" || cboPaperformat.Text == "A3";
             chkExactExtract.Enabled = exactExtractPossible;
             if (!exactExtractPossible)
@@ -519,13 +538,13 @@ namespace AutoCADTools.PrintLayout
             cboScale.Enabled = !chkExactExtract.Checked;
             updDrawingUnit.Enabled = !chkExactExtract.Checked;
             ValidateScale();
-            ValidatePaperformatFitting();
+            ValidatePrinterPaperformatFitting();
             UpdatePaperOrientations();
         }
 
         private void ChkTextfield_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateSelectedPaperformat();
+            CalculatePaperformatAndValidateSelectedPrinterPaperformat();
             UpdatePaperOrientations();
             SelectOptimalPaperformat();
         }
