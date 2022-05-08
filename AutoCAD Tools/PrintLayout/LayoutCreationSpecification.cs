@@ -292,6 +292,7 @@ namespace AutoCADTools.PrintLayout
             DrawingArea = new Frame(NotifyPropertyChanged);
             Scale = 0.01;
             DrawingUnit = 1000;
+            UseTextfield = true;
         }
 
         #endregion
