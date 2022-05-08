@@ -1,10 +1,8 @@
 ﻿using AutoCADTools.Tools;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
 using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Runtime.CompilerServices;
 
 namespace AutoCADTools.PrintLayout
@@ -37,7 +35,7 @@ namespace AutoCADTools.PrintLayout
         #region Properties
 
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
         // parameter causes the property name of the caller to be substituted as an argument.
@@ -46,7 +44,7 @@ namespace AutoCADTools.PrintLayout
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
+
         private readonly Document document;
         /// <summary>
         /// The document the layout is created in.
@@ -99,7 +97,8 @@ namespace AutoCADTools.PrintLayout
         public double Scale
         {
             get => scale;
-            set {
+            set
+            {
                 if (scale != value)
                 {
                     scale = value;
@@ -240,8 +239,9 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The area in the model to be printed.
         /// </summary>
-        public Frame DrawingArea { 
-            get => drawingArea; 
+        public Frame DrawingArea
+        {
+            get => drawingArea;
             set
             {
                 if (drawingArea != value)

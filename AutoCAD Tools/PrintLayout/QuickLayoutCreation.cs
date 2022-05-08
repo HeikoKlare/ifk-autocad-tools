@@ -1,6 +1,4 @@
-﻿using AutoCADTools.Tools;
-using AutoCADTools.Utils;
-using Autodesk.AutoCAD.DatabaseServices;
+﻿using AutoCADTools.Utils;
 using System;
 using System.Windows.Forms;
 
@@ -23,7 +21,7 @@ namespace AutoCADTools.PrintLayout
                 creationSpecification.Document.Editor.WriteMessage(Environment.NewLine + LocalData.NoDrawingAreaMessage);
                 MessageBox.Show(AutocadMainWindow.Instance, LocalData.NoDrawingAreaMessage, "Layout");
                 return false;
-            }          
+            }
             creationSpecification.LoadDataForPredefinedDrawingArea();
 
             var printer = creationSpecification.Paperformat.GetDefaultPrinter();

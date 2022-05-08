@@ -36,7 +36,8 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public IReadOnlyList<string> PreferenceOrderedPrinterNames => preferenceOrderedPrinterNames;
 
-        private PrinterRepository() {
+        private PrinterRepository()
+        {
             PlotSettingsValidator psv = PlotSettingsValidator.Current;
             var defaultPrinters = new List<string> { Properties.Settings.Default.DefaultPrinterCustom, Properties.Settings.Default.DefaultPrinterA3, Properties.Settings.Default.DefaultPrinterA4 };
             preferenceOrderedPrinterNames = psv.GetPlotDeviceList().Cast<string>()
@@ -63,7 +64,8 @@ namespace AutoCADTools.PrintLayout
                 if (printerNamesToPrinters.ContainsKey(name))
                 {
                     return printerNamesToPrinters[name];
-                } else
+                }
+                else
                 {
                     return null;
                 }

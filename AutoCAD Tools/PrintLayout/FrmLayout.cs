@@ -1,12 +1,9 @@
-﻿using AutoCADTools.Tools;
-using AutoCADTools.Utils;
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using AutoCADTools.Utils;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using static AutoCADTools.PrintLayout.LayoutCreationSpecification;
