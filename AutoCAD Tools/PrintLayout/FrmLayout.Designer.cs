@@ -38,7 +38,7 @@
             System.Windows.Forms.Label lblScale;
             System.Windows.Forms.Label lblLayoutName;
             System.Windows.Forms.Label lblPrinter;
-            this.chkTextfield = new System.Windows.Forms.CheckBox();
+            this.chkUseTextfield = new System.Windows.Forms.CheckBox();
             this.cboPrinterPaperformat = new System.Windows.Forms.ComboBox();
             this.lblPaperformat = new System.Windows.Forms.Label();
             this.chkOptimizedPaperformats = new System.Windows.Forms.CheckBox();
@@ -72,7 +72,7 @@
             // 
             // grpPaperformat
             // 
-            grpPaperformat.Controls.Add(this.chkTextfield);
+            grpPaperformat.Controls.Add(this.chkUseTextfield);
             grpPaperformat.Controls.Add(this.cboPrinterPaperformat);
             grpPaperformat.Controls.Add(this.lblPaperformat);
             grpPaperformat.Controls.Add(this.chkOptimizedPaperformats);
@@ -83,13 +83,13 @@
             // 
             // chkTextfield
             // 
-            resources.ApplyResources(this.chkTextfield, "chkTextfield");
-            this.chkTextfield.Checked = true;
-            this.chkTextfield.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.errorProvider.SetIconAlignment(this.chkTextfield, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkTextfield.IconAlignment"))));
-            this.chkTextfield.Name = "chkTextfield";
-            this.chkTextfield.UseVisualStyleBackColor = true;
-            this.chkTextfield.CheckStateChanged += new System.EventHandler(this.ValidateInputs);
+            resources.ApplyResources(this.chkUseTextfield, "chkTextfield");
+            this.chkUseTextfield.Checked = true;
+            this.chkUseTextfield.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.errorProvider.SetIconAlignment(this.chkUseTextfield, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkTextfield.IconAlignment"))));
+            this.chkUseTextfield.Name = "chkTextfield";
+            this.chkUseTextfield.UseVisualStyleBackColor = true;
+            this.chkUseTextfield.CheckStateChanged += new System.EventHandler(this.ValidateInputs);
             // 
             // cboPrinterPaperformat
             // 
@@ -321,7 +321,7 @@
         private System.Windows.Forms.NumericUpDown updDrawingUnit;
         private System.Windows.Forms.Button butCreate;
         private System.Windows.Forms.Button butDefineExtract;
-        private System.Windows.Forms.CheckBox chkTextfield;
+        private System.Windows.Forms.CheckBox chkUseTextfield;
         private System.Windows.Forms.CheckBox chkOptimizedPaperformats;
         private System.Windows.Forms.ComboBox cboPrinter;
         private System.Windows.Forms.GroupBox grpExtract;

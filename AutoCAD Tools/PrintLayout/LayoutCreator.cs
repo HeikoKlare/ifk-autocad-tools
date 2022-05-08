@@ -22,7 +22,7 @@ namespace AutoCADTools.PrintLayout
         private PaperOrientation Orientation { get { return _specification.Orientation; } }
         private PrinterPaperformat PrinterPaperformat { get { return _specification.Printerformat; } }
         private Paperformat Paperformat { get { return _specification.Paperformat; } }
-        private Point LowerRightPoint { get { return _specification.DrawingArea.LowerRightPoint; } }
+        private Point CenterPoint { get { return _specification.DrawingArea.CenterPoint; } }
         private bool RotateViewport { get { return _specification.RotateViewport; } }
 
         public LayoutCreator(LayoutCreationSpecification specification)
@@ -156,13 +156,13 @@ namespace AutoCADTools.PrintLayout
                     if (RotateViewport)
                     {
                         // Take care of the turned viewport, x-axis is the original y and the y-axis is the inverted original x
-                        PVport.ViewCenter = new Point2d(-(LowerRightPoint.Y + Paperformat.ViewportSizeModel.Height / DrawingUnit / Scale / 2), LowerRightPoint.X - Paperformat.ViewportSizeModel.Width / DrawingUnit / Scale / 2);
+                        PVport.ViewCenter = new Point2d(-CenterPoint.Y, CenterPoint.X);
                         PVport.ViewHeight = Paperformat.ViewportSizeModel.Width / DrawingUnit / Scale;
                     }
                     else
                     {
                         // Set the view of the viewport
-                        PVport.ViewCenter = new Point2d(LowerRightPoint.X - Paperformat.ViewportSizeModel.Width / DrawingUnit / Scale / 2, LowerRightPoint.Y + Paperformat.ViewportSizeModel.Height / DrawingUnit / Scale / 2);
+                        PVport.ViewCenter = new Point2d(CenterPoint.X, CenterPoint.Y);
                         PVport.ViewHeight = Paperformat.ViewportSizeModel.Height / DrawingUnit / Scale;
                     }
 

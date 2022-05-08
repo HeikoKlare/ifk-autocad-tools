@@ -130,8 +130,8 @@ namespace AutoCADTools.PrintLayout
 
         private void InitializeAndBindPaperformatElements()
         {
-            chkTextfield.DataBindings.Add(nameof(chkTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
-            chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
+            chkUseTextfield.DataBindings.Add(nameof(chkUseTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
+            chkUseTextfield.DataBindings.Add(nameof(chkUseTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
             cboPrinter.SelectedIndexChanged -= CboPrinter_SelectedIndexChanged;
             cboPrinter.DataSource = PrinterRepository.Instance.Printers;
             cboPrinter.DisplayMember = nameof(Printer.Name);
