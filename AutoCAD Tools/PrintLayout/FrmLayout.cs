@@ -268,7 +268,7 @@ namespace AutoCADTools.PrintLayout
             using (var progressDialog = new ProgressDialog())
             {
                 if (!UseExactExtract && layoutCreationSpecification.Paperformat != null && selectedPrinter != null && selectedPrinter.Initialized &&
-                    PaperformatPrinterMapping.IsFormatFitting(layoutCreationSpecification.Printerformat, layoutCreationSpecification.Paperformat, progressDialog))
+                    (optimizeIfFitting || !PaperformatPrinterMapping.IsFormatFitting(layoutCreationSpecification.Printerformat, layoutCreationSpecification.Paperformat, progressDialog)))
                 {
                     var printerPaperformat = layoutCreationSpecification.Paperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked, progressDialog);
                     if (printerPaperformat != null)
