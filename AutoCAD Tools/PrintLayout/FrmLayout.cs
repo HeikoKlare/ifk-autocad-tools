@@ -137,8 +137,8 @@ namespace AutoCADTools.PrintLayout
             cboPrinter.DisplayMember = nameof(Printer.Name);
             cboPrinter.SelectedIndex = -1;
             cboPrinter.SelectedIndexChanged += CboPrinter_SelectedIndexChanged;
-            cboPaperformat.DisplayMember = nameof(PrinterPaperformat.Name);
-            cboPaperformat.ValueMember = nameof(PrinterPaperformat.Name);
+            cboPrinterPaperformat.DisplayMember = nameof(PrinterPaperformat.Name);
+            cboPrinterPaperformat.ValueMember = nameof(PrinterPaperformat.Name);
         }
 
         #endregion
@@ -230,64 +230,28 @@ namespace AutoCADTools.PrintLayout
             new LayoutCreator(layoutCreationSpecification).CreateLayout();
         }
 
-        private void CalculateAndSetAreaAndScaleForExactExtract()
-        {
-            if (layoutCreationSpecification.DrawingArea == null || string.IsNullOrEmpty(cboPaperformat.Text))
-            {
-                throw new InvalidOperationException("cannot calculate scale for extract when drawing area or paperformat is undefined");
-            }
-
-            Size viewportSize = null;
-            if (cboPaperformat.Text == "A4")
-            {
-                viewportSize = layoutCreationSpecification.UseTextfield ? PaperformatTextfieldA4Horizontal.MaximumViewportSize : PaperformatA4Horizontal.MaximumViewportSize;
-                if (layoutCreationSpecification.DrawingArea.Size.Width < layoutCreationSpecification.DrawingArea.Size.Height)
-                {
-                    viewportSize = viewportSize.Rotate();
-                }                        
-            }
-            else if (cboPaperformat.Text == "A3")
-            {
-                viewportSize = layoutCreationSpecification.UseTextfield ? PaperformatTextfieldA3.MaximumViewportSize : PaperformatA3.MaximumViewportSize;
-            }
-            if (viewportSize == null)
-            {
-                throw new InvalidOperationException("cannot calculate scale for other formats than A4 and A3");
-            }
-
-            Size drawingAreaSize = layoutCreationSpecification.DrawingArea.Size;
-            Point drawingAreaCenter = layoutCreationSpecification.DrawingArea.LowerRightPoint + 0.5 * new Size(-drawingAreaSize.Width, drawingAreaSize.Height);
-            double scaleWidth = viewportSize.Width / drawingAreaSize.Width;
-            double scaleHeight = viewportSize.Height / drawingAreaSize.Height;
-            double minimumScaleFactor = Math.Min(scaleHeight, scaleWidth);
-            var size = 1 / minimumScaleFactor * viewportSize;
-            var lowerRightPoint = drawingAreaCenter + 0.5 * new Size(size.Width, -size.Height);
-            layoutCreationSpecification.DrawingArea = new Frame(lowerRightPoint, size);
-            layoutCreationSpecification.Scale = minimumScaleFactor / layoutCreationSpecification.DrawingUnit;
-        }
-
         #endregion
 
         #region Methods
 
         private void ReloadPrinterPaperformats()
         {
-            string oldFormatName = (string)cboPaperformat.SelectedValue;
+            string oldFormatName = (string)cboPrinterPaperformat.SelectedValue;
             using (var progressDialog = new ProgressDialog())
             {
                 SelectablePaperformats = selectedPrinter != null ? selectedPrinter.InitializeAndGetPaperformats(chkOptimizedPaperformats.Checked, progressDialog).ToList() : new List<PrinterPaperformat>();
             }
-            // Rebind paperformats
-            cboPaperformat.DataSource = null;
-            cboPaperformat.DataSource = SelectablePaperformats;
-            cboPaperformat.DisplayMember = nameof(PrinterPaperformat.Name);
+            // Rebind printer paperformats
+            cboPrinterPaperformat.DataSource = null;
+            cboPrinterPaperformat.DataSource = SelectablePaperformats;
+            cboPrinterPaperformat.DisplayMember = nameof(PrinterPaperformat.Name);
             if (!string.IsNullOrEmpty(oldFormatName))
             {
-                cboPaperformat.SelectedValue = oldFormatName;
+                cboPrinterPaperformat.SelectedValue = oldFormatName;
             }
-            if (cboPaperformat.SelectedIndex == 0 && cboPaperformat.Items.Count > 0)
+            if (cboPrinterPaperformat.SelectedIndex == 0 && cboPrinterPaperformat.Items.Count > 0)
             {
-                cboPaperformat.SelectedIndex = 0;
+                cboPrinterPaperformat.SelectedIndex = 0;
             }
             InputChanged();
         }
@@ -319,7 +283,7 @@ namespace AutoCADTools.PrintLayout
                     var printerPaperformat = layoutCreationSpecification.Paperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked, progressDialog);
                     if (printerPaperformat != null)
                     {
-                        cboPaperformat.SelectedItem = printerPaperformat;
+                        cboPrinterPaperformat.SelectedItem = printerPaperformat;
                     }
                     InputChanged();
                 }
@@ -335,6 +299,42 @@ namespace AutoCADTools.PrintLayout
             ValidateExtract();
             ValidatePrinterPaperformats();
             ValidateCreationAvailable();
+        }
+
+        private void CalculateAndSetAreaAndScaleForExactExtract()
+        {
+            if (layoutCreationSpecification.DrawingArea == null || string.IsNullOrEmpty(cboPrinterPaperformat.Text))
+            {
+                throw new InvalidOperationException("cannot calculate scale for extract when drawing area or paperformat is undefined");
+            }
+
+            Size viewportSize = null;
+            if (cboPrinterPaperformat.Text == "A4")
+            {
+                viewportSize = layoutCreationSpecification.UseTextfield ? PaperformatTextfieldA4Horizontal.MaximumViewportSize : PaperformatA4Horizontal.MaximumViewportSize;
+                if (layoutCreationSpecification.DrawingArea.Size.Width < layoutCreationSpecification.DrawingArea.Size.Height)
+                {
+                    viewportSize = viewportSize.Rotate();
+                }
+            }
+            else if (cboPrinterPaperformat.Text == "A3")
+            {
+                viewportSize = layoutCreationSpecification.UseTextfield ? PaperformatTextfieldA3.MaximumViewportSize : PaperformatA3.MaximumViewportSize;
+            }
+            if (viewportSize == null)
+            {
+                throw new InvalidOperationException("cannot calculate scale for other formats than A4 and A3");
+            }
+
+            Size drawingAreaSize = layoutCreationSpecification.DrawingArea.Size;
+            Point drawingAreaCenter = layoutCreationSpecification.DrawingArea.LowerRightPoint + 0.5 * new Size(-drawingAreaSize.Width, drawingAreaSize.Height);
+            double scaleWidth = viewportSize.Width / drawingAreaSize.Width;
+            double scaleHeight = viewportSize.Height / drawingAreaSize.Height;
+            double minimumScaleFactor = Math.Min(scaleHeight, scaleWidth);
+            var size = 1 / minimumScaleFactor * viewportSize;
+            var lowerRightPoint = drawingAreaCenter + 0.5 * new Size(size.Width, -size.Height);
+            layoutCreationSpecification.DrawingArea = new Frame(lowerRightPoint, size);
+            layoutCreationSpecification.Scale = minimumScaleFactor / layoutCreationSpecification.DrawingUnit;
         }
 
         #endregion
@@ -357,7 +357,7 @@ namespace AutoCADTools.PrintLayout
         {
             if (this.SelectablePaperformats.Count == 0)
             {
-                errorProvider.SetError(cboPaperformat, LocalData.PaperformatListEmptyError);
+                errorProvider.SetError(cboPrinterPaperformat, LocalData.PaperformatListEmptyError);
             }
             else
             {
@@ -371,11 +371,11 @@ namespace AutoCADTools.PrintLayout
             {
                 if (!UseExactExtract && !PaperformatPrinterMapping.IsFormatFitting(layoutCreationSpecification.Printerformat, layoutCreationSpecification.Paperformat, progressDialog))
                 {
-                    errorProvider.SetError(cboPaperformat, LocalData.PaperformatNotFitting);
+                    errorProvider.SetError(cboPrinterPaperformat, LocalData.PaperformatNotFitting);
                 }
                 else
                 {
-                    errorProvider.SetError(cboPaperformat, String.Empty);
+                    errorProvider.SetError(cboPrinterPaperformat, String.Empty);
                 }
             }
         }
@@ -395,14 +395,14 @@ namespace AutoCADTools.PrintLayout
             ReloadPrinterPaperformats();
         }
 
-        private void CboPaperformat_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboPrinterPaperformat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            chkExactExtract.Enabled = cboPaperformat.Text == "A4" || cboPaperformat.Text == "A3";
+            chkExactExtract.Enabled = cboPrinterPaperformat.Text == "A4" || cboPrinterPaperformat.Text == "A3";
             if (!chkExactExtract.Enabled)
             {
                 chkExactExtract.Checked = false;
             }
-            layoutCreationSpecification.Printerformat = cboPaperformat.SelectedItem as PrinterPaperformat;
+            layoutCreationSpecification.Printerformat = cboPrinterPaperformat.SelectedItem as PrinterPaperformat;
             InputChanged();
         }
 

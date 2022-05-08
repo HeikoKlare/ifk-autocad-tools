@@ -39,7 +39,7 @@
             System.Windows.Forms.Label lblLayoutName;
             System.Windows.Forms.Label lblPrinter;
             this.chkTextfield = new System.Windows.Forms.CheckBox();
-            this.cboPaperformat = new System.Windows.Forms.ComboBox();
+            this.cboPrinterPaperformat = new System.Windows.Forms.ComboBox();
             this.lblPaperformat = new System.Windows.Forms.Label();
             this.chkOptimizedPaperformats = new System.Windows.Forms.CheckBox();
             this.updDrawingUnit = new System.Windows.Forms.NumericUpDown();
@@ -73,7 +73,7 @@
             // grpPaperformat
             // 
             grpPaperformat.Controls.Add(this.chkTextfield);
-            grpPaperformat.Controls.Add(this.cboPaperformat);
+            grpPaperformat.Controls.Add(this.cboPrinterPaperformat);
             grpPaperformat.Controls.Add(this.lblPaperformat);
             grpPaperformat.Controls.Add(this.chkOptimizedPaperformats);
             resources.ApplyResources(grpPaperformat, "grpPaperformat");
@@ -92,13 +92,13 @@
             // 
             // cboPaperformat
             // 
-            this.cboPaperformat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPaperformat.DropDownWidth = 60;
-            resources.ApplyResources(this.cboPaperformat, "cboPaperformat");
-            this.cboPaperformat.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.errorProvider.SetIconAlignment(this.cboPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPaperformat.IconAlignment"))));
-            this.cboPaperformat.Name = "cboPaperformat";
-            this.cboPaperformat.SelectedIndexChanged += new System.EventHandler(this.CboPaperformat_SelectedIndexChanged);
+            this.cboPrinterPaperformat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPrinterPaperformat.DropDownWidth = 60;
+            resources.ApplyResources(this.cboPrinterPaperformat, "cboPaperformat");
+            this.cboPrinterPaperformat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.errorProvider.SetIconAlignment(this.cboPrinterPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPaperformat.IconAlignment"))));
+            this.cboPrinterPaperformat.Name = "cboPaperformat";
+            this.cboPrinterPaperformat.SelectedIndexChanged += new System.EventHandler(this.CboPrinterPaperformat_SelectedIndexChanged);
             // 
             // lblPaperformat
             // 
@@ -312,7 +312,7 @@
         #endregion
 
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.ComboBox cboPaperformat;
+        private System.Windows.Forms.ComboBox cboPrinterPaperformat;
         private System.Windows.Forms.Label lblPaperformat;
         private System.Windows.Forms.CheckBox chkExactExtract;
         private System.Windows.Forms.ComboBox cboScale;
