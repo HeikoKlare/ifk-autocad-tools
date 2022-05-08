@@ -7,13 +7,13 @@ namespace AutoCADTools.Utils
     /// </summary>
     public partial class ProgressDialog : Form, IProgressMonitor
     {
-        private double _progress;
+        private double progress;
         double IProgressMonitor.Progress
         {
-            get { return _progress; }
+            get { return progress; }
             set
             {
-                _progress = value < 0 ? 0 : value > 1 ? 1 : value;
+                progress = value < 0 ? 0 : value > 1 ? 1 : value;
                 progressBar.Value = ProgressInPercent();
                 UpdateWindowTitle();
             }
@@ -21,22 +21,22 @@ namespace AutoCADTools.Utils
 
         private int ProgressInPercent()
         {
-            return (int)(_progress * 100);
+            return (int)(progress * 100);
         }
 
-        private string _windowTitle;
+        private string windowTitle;
         string IProgressMonitor.Title
         {
             set
             {
-                _windowTitle = value;
+                windowTitle = value;
                 UpdateWindowTitle();
             }
         }
 
         private void UpdateWindowTitle()
         {
-            this.Text = _windowTitle + " (" + ProgressInPercent() + " %)";
+            this.Text = windowTitle + " (" + ProgressInPercent() + " %)";
             Update();
         }
 

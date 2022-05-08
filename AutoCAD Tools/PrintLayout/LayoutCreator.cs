@@ -9,21 +9,21 @@ namespace AutoCADTools.PrintLayout
 {
     class LayoutCreator
     {
-        private readonly LayoutCreationSpecification _specification;
+        private readonly LayoutCreationSpecification specification;
 
-        private Document Document { get { return _specification.Document; } }
-        private string LayoutName { get { return _specification.LayoutName; } }
-        private double DrawingUnit { get { return (_specification.DrawingUnit); } }
-        private double Scale { get { return _specification.Scale; } }
-        private PaperOrientation Orientation { get { return _specification.Orientation; } }
-        private PrinterPaperformat PrinterPaperformat { get { return _specification.Printerformat; } }
-        private Paperformat Paperformat { get { return _specification.Paperformat; } }
-        private Point CenterPoint { get { return _specification.DrawingArea.CenterPoint; } }
-        private bool RotateViewport { get { return _specification.RotateViewport; } }
+        private Document Document { get { return specification.Document; } }
+        private string LayoutName { get { return specification.LayoutName; } }
+        private double DrawingUnit { get { return (specification.DrawingUnit); } }
+        private double Scale { get { return specification.Scale; } }
+        private PaperOrientation Orientation { get { return specification.Orientation; } }
+        private PrinterPaperformat PrinterPaperformat { get { return specification.Printerformat; } }
+        private Paperformat Paperformat { get { return specification.Paperformat; } }
+        private Point CenterPoint { get { return specification.DrawingArea.CenterPoint; } }
+        private bool RotateViewport { get { return specification.RotateViewport; } }
 
         public LayoutCreator(LayoutCreationSpecification specification)
         {
-            this._specification = specification;
+            this.specification = specification;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace AutoCADTools.PrintLayout
         /// <returns><c>true</c> if the layout was successfully created, <c>false</c> otherwise.</returns>
         public bool CreateLayout()
         {
-            if (!_specification.IsValid)
+            if (!specification.IsValid)
             {
                 return false;
             }
@@ -104,9 +104,7 @@ namespace AutoCADTools.PrintLayout
                     else
                     {
                         psv.SetPlotRotation(layout, PlotRotation.Degrees090);
-                        Double temp = width;
-                        width = height;
-                        height = temp;
+                        (height, width) = (width, height);
                         margin = margin.Rotate();
                     }
 
