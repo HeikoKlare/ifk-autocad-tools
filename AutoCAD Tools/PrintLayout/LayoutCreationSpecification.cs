@@ -3,14 +3,16 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using System;
+using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
 namespace AutoCADTools.PrintLayout
 {
     /// <summary>
     /// This class represent a specification for the layout creation.
     /// </summary>
-    public class LayoutCreationSpecification
+    public class LayoutCreationSpecification : INotifyPropertyChanged
     {
         #region Enums
 
@@ -32,7 +34,18 @@ namespace AutoCADTools.PrintLayout
 
         #endregion
 
-        #region Attributes
+        #region Properties
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        // This method is called by the Set accessor of each property.
+        // The CallerMemberName attribute that is applied to the optional propertyName
+        // parameter causes the property name of the caller to be substituted as an argument.
+        // From: https://docs.microsoft.com/en-us/dotnet/desktop/winforms/how-to-implement-the-inotifypropertychanged-interface?view=netframeworkdesktop-4.8&redirectedfrom=MSDN
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private readonly Document document;
         /// <summary>
@@ -50,17 +63,30 @@ namespace AutoCADTools.PrintLayout
         public string LayoutName
         {
             get { return layoutName; }
-            set { layoutName = value; }
+            set
+            {
+                if (layoutName != value)
+                {
+                    layoutName = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
-        private double drawingUnit;
+        private decimal drawingUnit;
         /// <summary>
         /// The drawing unit (millimeters represented by a unit in the drawing).
         /// </summary>
-        public double DrawingUnit
+        public decimal DrawingUnit
         {
             get { return drawingUnit; }
-            set { drawingUnit = value; }
+            set {
+                if (drawingUnit != value)
+                {
+                    drawingUnit = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
         private double scale;
@@ -82,7 +108,7 @@ namespace AutoCADTools.PrintLayout
             get { return paperformat; }
             set { paperformat = value; }
         }
-        
+
         private PrinterPaperformat printerformat;
         /// <summary>
         /// The printer paperformat used for printing.
@@ -118,7 +144,7 @@ namespace AutoCADTools.PrintLayout
             /// The point at the lower right edge of the frame.
             /// </summary>
             public Point LowerRightPoint { get; set; }
-            
+
             /// <summary>
             /// The size of the frame.
             /// </summary>
