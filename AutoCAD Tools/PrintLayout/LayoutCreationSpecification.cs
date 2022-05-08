@@ -51,10 +51,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The document the layout is created in.
         /// </summary>
-        public Document Document
-        {
-            get { return document; }
-        }
+        public Document Document => document;
 
         private string layoutName;
         /// <summary>
@@ -62,7 +59,7 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public string LayoutName
         {
-            get { return layoutName; }
+            get => layoutName;
             set
             {
                 if (layoutName != value)
@@ -79,8 +76,9 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public decimal DrawingUnit
         {
-            get { return drawingUnit; }
-            set {
+            get => drawingUnit;
+            set
+            {
                 if (drawingUnit != value)
                 {
                     drawingUnit = value;
@@ -95,8 +93,45 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public double Scale
         {
-            get { return scale; }
+            get => scale;
             set { scale = value; }
+        }
+
+        private bool useTextfield;
+        /// <summary>
+        /// Whether the layout uses a textfield or not. Can only be set to true if the document <see cref="CanUseTextfield"/>.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">if set to true but no textfield is present</exception>
+        public bool UseTextfield
+        {
+            get => useTextfield;
+            set
+            {
+                if (!CanUseTextfield)
+                {
+                    throw new InvalidOperationException("cannot use textfield as it is not present in the document");
+                }
+                if (useTextfield != value)
+                {
+                    useTextfield = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns whether the necessary data to use a textfield is present in the <see cref="Document"/>.
+        /// </summary>
+        public bool CanUseTextfield
+        {
+            get
+            {
+                using (var transaction = document.Database.TransactionManager.StartOpenCloseTransaction())
+                {
+                    var blockTable = transaction.GetObject(document.Database.BlockTableId, OpenMode.ForRead) as BlockTable;
+                    return blockTable.Has(PaperformatTextfieldA4.TEXTFIELD_BLOCK_NAME) && blockTable.Has(PaperformatTextfieldFullTextfield.TEXTFIELD_BLOCK_NAME);
+                }
+            }
         }
 
         private Paperformat paperformat;
@@ -105,8 +140,8 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public Paperformat Paperformat
         {
-            get { return paperformat; }
-            set { paperformat = value; }
+            get => paperformat;
+            set => paperformat = value;
         }
 
         private PrinterPaperformat printerformat;
@@ -115,25 +150,19 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public PrinterPaperformat Printerformat
         {
-            get { return printerformat; }
-            set { printerformat = value; }
+            get => printerformat;
+            set => printerformat = value;
         }
 
         /// <summary>
         /// Whether the viewport has to be rotated.
         /// </summary>
-        public bool RotateViewport
-        {
-            get { return paperformat is PaperformatTextfieldA4Horizontal; }
-        }
+        public bool RotateViewport => paperformat is PaperformatTextfieldA4Horizontal;
 
         /// <summary>
         /// The orientation for the paper.
         /// </summary>
-        public PaperOrientation Orientation
-        {
-            get { return RotateViewport || Paperformat is PaperformatA4Vertical || Paperformat is PaperformatTextfieldA4Vertical ? PaperOrientation.Portrait : PaperOrientation.Landscape; }
-        }
+        public PaperOrientation Orientation => RotateViewport || Paperformat is PaperformatA4Vertical || Paperformat is PaperformatTextfieldA4Vertical ? PaperOrientation.Portrait : PaperOrientation.Landscape;
 
         /// <summary>
         /// Defines a frame by one point and its size.
@@ -159,18 +188,12 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// Whether the layout is valid, i.e., all properties have been set.
         /// </summary>
-        public bool IsValid
-        {
-            get
-            {
-                return DrawingUnit != 0 &&
+        public bool IsValid => DrawingUnit != 0 &&
                     Scale != 0 &&
                     DrawingArea.LowerRightPoint != null &&
                     Paperformat != null &&
                     Printerformat != null &&
                     !String.IsNullOrEmpty(LayoutName);
-            }
-        }
 
         #endregion
 
