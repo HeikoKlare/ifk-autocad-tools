@@ -67,9 +67,6 @@ namespace AutoCADTools.PrintLayout
             Binding cboScaleEnabledBinding = new Binding(nameof(cboScale.Enabled), chkExactExtract, nameof(CheckBox.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
             cboScaleEnabledBinding.Format += (sender, eventArgs) => { eventArgs.Value = !(bool)eventArgs.Value; };
             cboScale.DataBindings.Add(cboScaleEnabledBinding);
-            Binding updDrawingUnitEnabledBinding = new Binding(nameof(updDrawingUnit.Enabled), chkExactExtract, nameof(CheckBox.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
-            updDrawingUnitEnabledBinding.Format += (sender, eventArgs) => { eventArgs.Value = !(bool)eventArgs.Value; };
-            updDrawingUnit.DataBindings.Add(updDrawingUnitEnabledBinding);
             updDrawingUnit.DataBindings.Add(nameof(updDrawingUnit.Value), layoutCreationSpecification, nameof(LayoutCreationSpecification.DrawingUnit), false, DataSourceUpdateMode.OnPropertyChanged);
             LoadAndBindAnnotationScales();
         }
@@ -281,9 +278,8 @@ namespace AutoCADTools.PrintLayout
                 }
             }
 
-            double drawingUnit = (double)updDrawingUnit.Value;
-            double scaleWidth = temporaryPaperformat.ViewportSizeModel.Width / (layoutCreationSpecification.DrawingArea.Size.Width * drawingUnit);
-            double scaleHeight = temporaryPaperformat.ViewportSizeModel.Height / (layoutCreationSpecification.DrawingArea.Size.Height * drawingUnit);
+            double scaleWidth = temporaryPaperformat.ViewportSizeModel.Width / (layoutCreationSpecification.DrawingArea.Size.Width * (double)layoutCreationSpecification.DrawingUnit);
+            double scaleHeight = temporaryPaperformat.ViewportSizeModel.Height / (layoutCreationSpecification.DrawingArea.Size.Height * (double)layoutCreationSpecification.DrawingUnit);
             Size addition = scaleHeight < scaleWidth ? new Size(layoutCreationSpecification.DrawingArea.Size.Width * (scaleWidth / scaleHeight - 1), 0) : new Size(0, layoutCreationSpecification.DrawingArea.Size.Height * (scaleHeight / scaleWidth - 1));
             layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(addition.Width, -addition.Height);
             layoutCreationSpecification.DrawingArea.Size += addition;
