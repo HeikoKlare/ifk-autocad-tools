@@ -64,6 +64,10 @@ namespace AutoCADTools.PrintLayout
             get => layoutName;
             set
             {
+                if (string.IsNullOrEmpty(value))
+                {
+                    return;
+                }
                 if (layoutName != value)
                 {
                     layoutName = value;
@@ -228,8 +232,11 @@ namespace AutoCADTools.PrintLayout
                     if (lowerRightPoint != value)
                     {
                         lowerRightPoint = value;
-                        notifyPropertyChanged();
-                        notifyPropertyChanged(nameof(Paperformat));
+                        if (notifyPropertyChanged != null)
+                        {
+                            notifyPropertyChanged();
+                            notifyPropertyChanged(nameof(Paperformat));
+                        }
                     }
                 }
             }
@@ -245,8 +252,11 @@ namespace AutoCADTools.PrintLayout
                     if (size != value)
                     {
                         size = value;
-                        notifyPropertyChanged();
-                        notifyPropertyChanged(nameof(Paperformat));
+                        if (notifyPropertyChanged != null)
+                        {
+                            notifyPropertyChanged();
+                            notifyPropertyChanged(nameof(Paperformat));
+                        }
                     }
                 }
             }
@@ -280,8 +290,8 @@ namespace AutoCADTools.PrintLayout
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             LayoutName = Properties.Settings.Default.DefaultLayoutName;
             DrawingArea = new Frame(NotifyPropertyChanged);
-            Scale = 1.0;
-            DrawingUnit = 1;
+            Scale = 0.01;
+            DrawingUnit = 1000;
         }
 
         #endregion

@@ -142,15 +142,6 @@ namespace AutoCADTools.PrintLayout {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Layoutname must not be empty..
-        /// </summary>
-        internal static string LayoutNameEmptyError {
-            get {
-                return ResourceManager.GetString("LayoutNameEmptyError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Processing paperformat.
         /// </summary>
         internal static string LoadPaperformatsDescription {
@@ -246,24 +237,6 @@ namespace AutoCADTools.PrintLayout {
         internal static string PrinterNameException {
             get {
                 return ResourceManager.GetString("PrinterNameException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Scale factor must not be empty..
-        /// </summary>
-        internal static string ScaleEmptyError {
-            get {
-                return ResourceManager.GetString("ScaleEmptyError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Scale factor must be a number..
-        /// </summary>
-        internal static string ScaleNoNumberError {
-            get {
-                return ResourceManager.GetString("ScaleNoNumberError", resourceCulture);
             }
         }
     }

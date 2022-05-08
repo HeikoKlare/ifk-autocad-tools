@@ -144,9 +144,6 @@
   <data name="ExtractStartPointText" xml:space="preserve">
     <value>Startpunkt</value>
   </data>
-  <data name="LayoutNameEmptyError" xml:space="preserve">
-    <value>Layoutname darf nicht leer sein.</value>
-  </data>
   <data name="LoadPaperformatsDescription" xml:space="preserve">
     <value>Initialisiere Papierformat</value>
   </data>
@@ -179,11 +176,5 @@
   </data>
   <data name="PrinterNameException" xml:space="preserve">
     <value>Es existiert kein Drucker mit dem angegebenen Namen:</value>
-  </data>
-  <data name="ScaleEmptyError" xml:space="preserve">
-    <value>Der Maßstab darf nicht null sein.</value>
-  </data>
-  <data name="ScaleNoNumberError" xml:space="preserve">
-    <value>Der Maßstab muss eine Zahl sein.</value>
   </data>
 </root>
