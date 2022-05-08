@@ -46,30 +46,18 @@ namespace AutoCADTools.PrintLayout
 
         private void FrmLayout_Load(object sender, EventArgs e)
         {
-            txtLayoutName.DataBindings.Add(nameof(txtLayoutName.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.LayoutName), false, DataSourceUpdateMode.OnValidation);
-            chkTextfield.DataBindings.Add(nameof(chkTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
-            chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
-            chkExactExtract.DataBindings.Add(nameof(chkExactExtract.Checked), this, nameof(FrmLayout.UseExactExtract), false, DataSourceUpdateMode.OnPropertyChanged);
-            BindExtractElements();
-            BindPapersizeLabel();
-            SetInitialValues();
+            InitializeAndBindScaleElements();
+            InitializeAndBindExtractElements();
+            InitializeAndBindPaperformatElements();
+            InitializeAndBindTopLevelElements();
             LoadPrinters();
             SelectDefaultPrinterAndOptimalFormat();
             InputChanged();
         }
 
-        private void BindExtractElements()
+        private void InitializeAndBindTopLevelElements()
         {
-            optExtractDrawingArea.DataBindings.Add(nameof(optExtractDrawingArea.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.HasPredefinedDrawingArea), false);
-            Binding cboScaleEnabledBinding = new Binding(nameof(cboScale.Enabled), chkExactExtract, nameof(CheckBox.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
-            cboScaleEnabledBinding.Format += (sender, eventArgs) => { eventArgs.Value = !(bool)eventArgs.Value; };
-            cboScale.DataBindings.Add(cboScaleEnabledBinding);
-            updDrawingUnit.DataBindings.Add(nameof(updDrawingUnit.Value), layoutCreationSpecification, nameof(LayoutCreationSpecification.DrawingUnit), false, DataSourceUpdateMode.OnPropertyChanged);
-            LoadAndBindAnnotationScales();
-        }
-
-        private void BindPapersizeLabel()
-        {
+            txtLayoutName.DataBindings.Add(nameof(txtLayoutName.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.LayoutName), false, DataSourceUpdateMode.OnValidation);
             var calculatedPapersizeBinding = new Binding(nameof(lblCalculatedPapersize.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.Paperformat), false, DataSourceUpdateMode.OnPropertyChanged);
             calculatedPapersizeBinding.Format += (sender, eventArgs) =>
             {
@@ -77,7 +65,6 @@ namespace AutoCADTools.PrintLayout
             };
             lblCalculatedPapersize.DataBindings.Add(calculatedPapersizeBinding);
         }
-
         private static string GenerateTextForPaperformat(Paperformat paperformat)
         {
             if (paperformat == null)
@@ -96,17 +83,9 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
-        private void LoadPrinters()
+        private void InitializeAndBindScaleElements()
         {
-            cboPrinter.SelectedIndexChanged -= CboPrinter_SelectedIndexChanged;
-            cboPrinter.DataSource = PrinterRepository.Instance.Printers;
-            cboPrinter.DisplayMember = nameof(Printer.Name);
-            cboPrinter.SelectedIndex = -1;
-            cboPrinter.SelectedIndexChanged += CboPrinter_SelectedIndexChanged;
-        }
-
-        private void LoadAndBindAnnotationScales()
-        {
+            chkExactExtract.DataBindings.Add(nameof(chkExactExtract.Checked), this, nameof(FrmLayout.UseExactExtract), false, DataSourceUpdateMode.OnPropertyChanged);
             ObjectContextCollection annotationScalesContextCollection = layoutCreationSpecification.Document.Database.ObjectContextManager.GetContextCollection(AutoCadAnnotationScalesDatabaseEntryName);
             IList<double> annotationScales = annotationScalesContextCollection.Cast<AnnotationScale>().Select(scale => scale.DrawingUnits).ToList();
             cboScale.DataSource = annotationScales;
@@ -130,10 +109,30 @@ namespace AutoCADTools.PrintLayout
             cboScale.DataBindings.Add(scaleBinding);
         }
 
-        private void SetInitialValues()
+        private void InitializeAndBindExtractElements()
         {
+            optExtractDrawingArea.DataBindings.Add(nameof(optExtractDrawingArea.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.HasPredefinedDrawingArea), false);
+            Binding cboScaleEnabledBinding = new Binding(nameof(cboScale.Enabled), chkExactExtract, nameof(CheckBox.Checked), false, DataSourceUpdateMode.OnPropertyChanged);
+            cboScaleEnabledBinding.Format += (sender, eventArgs) => { eventArgs.Value = !(bool)eventArgs.Value; };
+            cboScale.DataBindings.Add(cboScaleEnabledBinding);
+            updDrawingUnit.DataBindings.Add(nameof(updDrawingUnit.Value), layoutCreationSpecification, nameof(LayoutCreationSpecification.DrawingUnit), false, DataSourceUpdateMode.OnPropertyChanged);
             optExtractDrawingArea.Checked = optExtractDrawingArea.Enabled;
             optExtractManual.Checked = !optExtractDrawingArea.Enabled;
+        }
+
+        private void InitializeAndBindPaperformatElements()
+        {
+            chkTextfield.DataBindings.Add(nameof(chkTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
+            chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        private void LoadPrinters()
+        {
+            cboPrinter.SelectedIndexChanged -= CboPrinter_SelectedIndexChanged;
+            cboPrinter.DataSource = PrinterRepository.Instance.Printers;
+            cboPrinter.DisplayMember = nameof(Printer.Name);
+            cboPrinter.SelectedIndex = -1;
+            cboPrinter.SelectedIndexChanged += CboPrinter_SelectedIndexChanged;
         }
 
         #endregion
