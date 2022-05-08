@@ -154,7 +154,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// The area in the model to be printed.
         /// </summary>
-        public Frame PrintArea { get; }
+        public Frame DrawingArea { get; }
 
         /// <summary>
         /// Whether the layout is valid, i.e., all properties have been set.
@@ -165,7 +165,7 @@ namespace AutoCADTools.PrintLayout
             {
                 return DrawingUnit != 0 &&
                     Scale != 0 &&
-                    PrintArea.LowerRightPoint != null &&
+                    DrawingArea.LowerRightPoint != null &&
                     Paperformat != null &&
                     Printerformat != null &&
                     !String.IsNullOrEmpty(LayoutName);
@@ -185,10 +185,48 @@ namespace AutoCADTools.PrintLayout
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
             paperformat = new PaperformatTextfieldA4Vertical(drawingData.Version < 2);
-            PrintArea = new Frame();
+            DrawingArea = new Frame();
             layoutName = Properties.Settings.Default.DefaultLayoutName;
             scale = 1.0;
             drawingUnit = 1;
+        }
+
+        #endregion
+
+        #region Functionality
+
+        /// <summary>
+        /// Returns whether there is a predefined drawing area that can be loaded by calling <see cref="LoadDataForPredefinedDrawingArea"/>.
+        /// </summary>
+        /// <returns>whether there is a predefined drawing area</returns>
+        public bool HasPredefinedDrawingArea()
+        {
+            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            return drawingAreaWrapper.DrawingArea.IsValid;
+        }
+
+        /// <summary>
+        /// Loads the data from the predefined drawing area. This affects <see cref="DrawingUnit"/>, <see cref="Scale"/> and <see cref="DrawingArea"/>.
+        /// Ensure before calling that there is a predefined drawing area by calling <see cref="HasPredefinedDrawingArea"/>.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">is thrown if there is not predefined drawing area</exception>
+        public void LoadDataForPredefinedDrawingArea()
+        {
+            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
+            if (!drawingAreaWrapper.DrawingArea.IsValid)
+            {
+                throw new InvalidOperationException("drawing area can only be loaded if there is a drawing area");
+            }
+
+            var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+            DrawingUnit = drawingData.DrawingUnit;
+            DrawingArea.Size = 1 / drawingAreaWrapper.DrawingArea.Scale * drawingAreaWrapper.DrawingArea.Format.ViewportSizeModel;
+            using (Transaction trans = document.TransactionManager.StartTransaction())
+            {
+                var point = (drawingAreaWrapper.DrawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
+                DrawingArea.LowerRightPoint = new Point(point.X, point.Y);
+            }
+            Scale = Math.Round(drawingData.DrawingUnit / drawingAreaWrapper.DrawingArea.Scale);
         }
 
         #endregion

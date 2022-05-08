@@ -29,8 +29,6 @@ namespace AutoCADTools.PrintLayout
         private readonly LayoutCreationSpecification layoutCreationSpecification = new LayoutCreationSpecification();
         private Printer selectedPrinter;
         private IReadOnlyList<PrinterPaperformat> selectablePaperformats = new List<PrinterPaperformat>();
-        private Point extractLowerRightPoint;
-        private Size extractSize;
         private Paperformat currentPaperformat;
 
         #endregion
@@ -92,32 +90,11 @@ namespace AutoCADTools.PrintLayout
 
         private void ActivateDrawingAreaSelectionIfAvailable()
         {
-            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            chkUseDrawingArea.Enabled = drawingAreaWrapper.DrawingArea.IsValid;
+            chkUseDrawingArea.Enabled = layoutCreationSpecification.HasPredefinedDrawingArea();
             if (chkUseDrawingArea.Enabled)
             {
                 chkUseDrawingArea.Checked = true;
             }
-        }
-
-        private bool LoadDrawingArea()
-        {
-            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            if (drawingAreaWrapper.DrawingArea.IsValid)
-            {
-                var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-                layoutCreationSpecification.DrawingUnit = drawingData.DrawingUnit;
-                updDrawingUnit.Value = drawingData.DrawingUnit;
-                extractSize = 1 / drawingAreaWrapper.DrawingArea.Scale * drawingAreaWrapper.DrawingArea.Format.ViewportSizeModel;
-                using (Transaction trans = document.TransactionManager.StartTransaction())
-                {
-                    var point = (drawingAreaWrapper.DrawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
-                    extractLowerRightPoint = new Point(point.X, point.Y);
-                }
-                cboScale.Text = Math.Round(drawingData.DrawingUnit / drawingAreaWrapper.DrawingArea.Scale).ToString();
-                return true;
-            }
-            return false;
         }
 
         #endregion
@@ -171,8 +148,8 @@ namespace AutoCADTools.PrintLayout
             }
 
             // Set startpoint to minimum extends and endpoint to maximum extends
-            extractLowerRightPoint = new Point(Math.Max(p1.X, p2.X), Math.Min(p1.Y, p2.Y));
-            extractSize = new Size(Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
+            layoutCreationSpecification.DrawingArea.LowerRightPoint = new Point(Math.Max(p1.X, p2.X), Math.Min(p1.Y, p2.Y));
+            layoutCreationSpecification.DrawingArea.Size = new Size(Math.Abs(p1.X - p2.X), Math.Abs(p1.Y - p2.Y));
 
             interact.End();
 
@@ -202,11 +179,10 @@ namespace AutoCADTools.PrintLayout
             }
             else if (!chkTextfield.Checked)
             {
-                Size difference = (1 / layoutCreationSpecification.Scale / layoutCreationSpecification.DrawingUnit) * currentPaperformat.ViewportSizeLayout - extractSize;
-                extractLowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
+                Size difference = 1 / layoutCreationSpecification.Scale / ((double)layoutCreationSpecification.DrawingUnit) * currentPaperformat.ViewportSizeLayout - layoutCreationSpecification.DrawingArea.Size;
+                layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
             }
 
-            layoutCreationSpecification.PrintArea.LowerRightPoint = extractLowerRightPoint;
             layoutCreationSpecification.Paperformat = currentPaperformat;
             layoutCreationSpecification.Printerformat = cboPaperformat.SelectedItem as PrinterPaperformat;
             new LayoutCreator(layoutCreationSpecification).CreateLayout();
@@ -218,7 +194,7 @@ namespace AutoCADTools.PrintLayout
             {
                 if (chkTextfield.Checked)
                 {
-                    if (extractSize.Width > extractSize.Height)
+                    if (layoutCreationSpecification.DrawingArea.Size.Width > layoutCreationSpecification.DrawingArea.Size.Height)
                     {
                         currentPaperformat = new PaperformatTextfieldA4Horizontal(oldTextfieldUsed);
                     }
@@ -229,7 +205,7 @@ namespace AutoCADTools.PrintLayout
                 }
                 else
                 {
-                    if (extractSize.Width > extractSize.Height)
+                    if (layoutCreationSpecification.DrawingArea.Size.Width > layoutCreationSpecification.DrawingArea.Size.Height)
                     {
                         currentPaperformat = new PaperformatA4Horizontal();
                     }
@@ -252,12 +228,12 @@ namespace AutoCADTools.PrintLayout
             }
 
             double drawingUnit = (double)updDrawingUnit.Value;
-            double scaleWidth = currentPaperformat.ViewportSizeModel.Width / (extractSize.Width * drawingUnit);
-            double scaleHeight = currentPaperformat.ViewportSizeModel.Height / (extractSize.Height * drawingUnit);
-            Size addition = scaleHeight < scaleWidth ? new Size(extractSize.Width * (scaleWidth / scaleHeight - 1), 0) : new Size(0, extractSize.Height * (scaleHeight / scaleWidth - 1));
-            extractLowerRightPoint += 0.5 * new Size(addition.Width, -addition.Height);
-            extractSize += addition;
-            var viewportSize = Math.Min(scaleHeight, scaleWidth) * drawingUnit * extractSize;
+            double scaleWidth = currentPaperformat.ViewportSizeModel.Width / (layoutCreationSpecification.DrawingArea.Size.Width * drawingUnit);
+            double scaleHeight = currentPaperformat.ViewportSizeModel.Height / (layoutCreationSpecification.DrawingArea.Size.Height * drawingUnit);
+            Size addition = scaleHeight < scaleWidth ? new Size(layoutCreationSpecification.DrawingArea.Size.Width * (scaleWidth / scaleHeight - 1), 0) : new Size(0, layoutCreationSpecification.DrawingArea.Size.Height * (scaleHeight / scaleWidth - 1));
+            layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(addition.Width, -addition.Height);
+            layoutCreationSpecification.DrawingArea.Size += addition;
+            var viewportSize = Math.Min(scaleHeight, scaleWidth) * drawingUnit * layoutCreationSpecification.DrawingArea.Size;
             if (chkTextfield.Checked)
             {
                 currentPaperformat = PaperformatFactory.GetPaperformatTextfield(viewportSize, oldTextfieldUsed);
@@ -299,9 +275,9 @@ namespace AutoCADTools.PrintLayout
 
         private void CalculateCurrentPaperformat()
         {
-            if (!chkExactExtract.Checked && String.IsNullOrEmpty(errorProvider.GetError(cboScale)) && String.IsNullOrEmpty(errorProvider.GetError(updDrawingUnit)) && extractSize != null)
+            if (!chkExactExtract.Checked && String.IsNullOrEmpty(errorProvider.GetError(cboScale)) && String.IsNullOrEmpty(errorProvider.GetError(updDrawingUnit)) && layoutCreationSpecification.DrawingArea.Size != null)
             {
-                Size viewportSize = 1.0 / int.Parse(cboScale.Text) * (double)updDrawingUnit.Value * extractSize;
+                Size viewportSize = 1.0 / int.Parse(cboScale.Text) * (double)updDrawingUnit.Value * layoutCreationSpecification.DrawingArea.Size;
                 if (chkTextfield.Checked)
                 {
                     this.currentPaperformat = PaperformatFactory.GetPaperformatTextfield(viewportSize, oldTextfieldUsed);
@@ -361,7 +337,7 @@ namespace AutoCADTools.PrintLayout
 
         private void ValidateExtract()
         {
-            if (extractLowerRightPoint == null)
+            if (layoutCreationSpecification.DrawingArea.LowerRightPoint == null)
             {
                 errorProvider.SetError(butDefineExtract, LocalData.NoExtractDefinedError);
             }
@@ -449,7 +425,7 @@ namespace AutoCADTools.PrintLayout
             invalid |= !String.IsNullOrEmpty(errorProvider.GetError(cboScale));
             invalid |= !String.IsNullOrEmpty(errorProvider.GetError(cboPaperformat));
             invalid |= !String.IsNullOrEmpty(errorProvider.GetError(txtLayoutName));
-            invalid |= extractLowerRightPoint == null;
+            invalid |= layoutCreationSpecification.DrawingArea.LowerRightPoint == null;
 
             butCreate.Enabled = !invalid;
         }
@@ -524,7 +500,7 @@ namespace AutoCADTools.PrintLayout
         {
             if (chkUseDrawingArea.Checked)
             {
-                LoadDrawingArea();
+                layoutCreationSpecification.LoadDataForPredefinedDrawingArea();
             }
         }
 

@@ -17,12 +17,12 @@ namespace AutoCADTools.PrintLayout
 
         private Document Document { get { return _specification.Document; } }
         private string LayoutName { get { return _specification.LayoutName; } }
-        private double DrawingUnit { get { return _specification.DrawingUnit; } }
+        private double DrawingUnit { get { return ((double)_specification.DrawingUnit); } }
         private double Scale { get { return _specification.Scale; } }
         private PaperOrientation Orientation { get { return _specification.Orientation; } }
         private PrinterPaperformat PrinterPaperformat { get { return _specification.Printerformat; } }
         private Paperformat Paperformat { get { return _specification.Paperformat; } }
-        private Point LowerRightPoint { get { return _specification.PrintArea.LowerRightPoint; } }
+        private Point LowerRightPoint { get { return _specification.DrawingArea.LowerRightPoint; } }
         private bool RotateViewport { get { return _specification.RotateViewport; } }
 
         public LayoutCreator(LayoutCreationSpecification specification)
