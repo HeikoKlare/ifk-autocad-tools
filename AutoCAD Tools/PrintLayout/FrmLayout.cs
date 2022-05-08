@@ -203,9 +203,9 @@ namespace AutoCADTools.PrintLayout
             interact.End();
 
             // Set startpoint to minimum extends and endpoint to maximum extends
-            var lowerRightPoint = new Point(Math.Max(firstPoint.X, secondPoint.X), Math.Min(firstPoint.Y, secondPoint.Y));
             var size = new Size(Math.Abs(firstPoint.X - secondPoint.X), Math.Abs(firstPoint.Y - secondPoint.Y));
-            return new Frame(lowerRightPoint, size);
+            var centerPoint = new Point(Math.Max(firstPoint.X, secondPoint.X), Math.Min(firstPoint.Y, secondPoint.Y)) + 0.5 * new Size(-size.Width, size.Height);
+            return new Frame(centerPoint, size);
         }
 
         private void ButCreate_Click(object sender, EventArgs e)
@@ -220,13 +220,6 @@ namespace AutoCADTools.PrintLayout
             }
 
             this.Close();
-
-            if (!layoutCreationSpecification.UseTextfield)
-            {
-                Size difference = 1 / layoutCreationSpecification.Scale / (layoutCreationSpecification.DrawingUnit) * layoutCreationSpecification.Paperformat.ViewportSizeLayout - layoutCreationSpecification.DrawingArea.Size;
-                layoutCreationSpecification.DrawingArea = new Frame(layoutCreationSpecification.DrawingArea.LowerRightPoint + 0.5 * new Size(difference.Width, -difference.Height), layoutCreationSpecification.DrawingArea.Size);
-            }
-
             new LayoutCreator(layoutCreationSpecification).CreateLayout();
         }
 
@@ -305,7 +298,7 @@ namespace AutoCADTools.PrintLayout
         {
             if (layoutCreationSpecification.DrawingArea == null || string.IsNullOrEmpty(cboPrinterPaperformat.Text))
             {
-                throw new InvalidOperationException("cannot calculate scale for extract when drawing area or paperformat is undefined");
+                return;
             }
 
             Size viewportSize = null;
@@ -327,13 +320,11 @@ namespace AutoCADTools.PrintLayout
             }
 
             Size drawingAreaSize = layoutCreationSpecification.DrawingArea.Size;
-            Point drawingAreaCenter = layoutCreationSpecification.DrawingArea.LowerRightPoint + 0.5 * new Size(-drawingAreaSize.Width, drawingAreaSize.Height);
             double scaleWidth = viewportSize.Width / drawingAreaSize.Width;
             double scaleHeight = viewportSize.Height / drawingAreaSize.Height;
             double minimumScaleFactor = Math.Min(scaleHeight, scaleWidth);
             var size = 1 / minimumScaleFactor * viewportSize;
-            var lowerRightPoint = drawingAreaCenter + 0.5 * new Size(size.Width, -size.Height);
-            layoutCreationSpecification.DrawingArea = new Frame(lowerRightPoint, size);
+            layoutCreationSpecification.DrawingArea = new Frame(layoutCreationSpecification.DrawingArea.CenterPoint, size);
             layoutCreationSpecification.Scale = minimumScaleFactor / layoutCreationSpecification.DrawingUnit;
         }
 

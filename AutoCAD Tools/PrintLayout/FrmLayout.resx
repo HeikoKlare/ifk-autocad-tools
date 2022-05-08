@@ -899,37 +899,37 @@
   <data name="&gt;&gt;chkTextfield.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="cboPaperformat.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="cboPrinterPaperformat.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="cboPaperformat.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="cboPrinterPaperformat.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="cboPaperformat.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+  <data name="cboPrinterPaperformat.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>TopLeft</value>
   </data>
-  <data name="cboPaperformat.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="cboPrinterPaperformat.Location" type="System.Drawing.Point, System.Drawing">
     <value>89, 50</value>
   </data>
-  <data name="cboPaperformat.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="cboPrinterPaperformat.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
-  <data name="cboPaperformat.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cboPrinterPaperformat.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 21</value>
   </data>
-  <data name="cboPaperformat.TabIndex" type="System.Int32, mscorlib">
+  <data name="cboPrinterPaperformat.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.Name" xml:space="preserve">
-    <value>cboPaperformat</value>
+  <data name="&gt;&gt;cboPrinterPaperformat.Name" xml:space="preserve">
+    <value>cboPrinterPaperformat</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.Type" xml:space="preserve">
+  <data name="&gt;&gt;cboPrinterPaperformat.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cboPrinterPaperformat.Parent" xml:space="preserve">
     <value>grpPaperformat</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cboPrinterPaperformat.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="lblPaperformat.AutoSize" type="System.Boolean, mscorlib">

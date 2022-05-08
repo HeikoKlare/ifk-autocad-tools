@@ -212,17 +212,22 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public class Frame
         {
-            public Frame(Point lowerRightPoint, Size size)
+            /// <summary>
+            /// Initializes a frame with a center point and its size.
+            /// </summary>
+            /// <param name="centerPoint">The point describing the center of the frame, must not be null</param>
+            /// <param name="size">The size of the frame, must not be null</param>
+            public Frame(Point centerPoint, Size size)
             {
-                this.lowerRightPoint = lowerRightPoint;
+                this.centerPoint = centerPoint;
                 this.size = size;
             }
 
-            private readonly Point lowerRightPoint;
+            private readonly Point centerPoint;
             /// <summary>
             /// The point at the lower right edge of the frame.
             /// </summary>
-            public Point LowerRightPoint { get => lowerRightPoint; }
+            public Point CenterPoint { get => centerPoint; }
 
             private readonly Size size;
             /// <summary>
@@ -298,8 +303,8 @@ namespace AutoCADTools.PrintLayout
             {
                 var size = 1 / drawingArea.Scale * drawingArea.Format.ViewportSizeModel;
                 var point = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
-                var lowerRightPoint = new Point(point.X, point.Y);
-                DrawingArea = new Frame(lowerRightPoint, size);
+                var centerPoint = new Point(point.X, point.Y) + 0.5 * new Size(-size.Width, size.Height);
+                DrawingArea = new Frame(centerPoint, size);
             }
             Scale = drawingArea.Scale / DrawingUnit;
             UseTextfield = true;

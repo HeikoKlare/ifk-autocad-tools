@@ -89,15 +89,16 @@
             this.errorProvider.SetIconAlignment(this.chkTextfield, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkTextfield.IconAlignment"))));
             this.chkTextfield.Name = "chkTextfield";
             this.chkTextfield.UseVisualStyleBackColor = true;
+            this.chkTextfield.CheckStateChanged += new System.EventHandler(this.ValidateInputs);
             // 
-            // cboPaperformat
+            // cboPrinterPaperformat
             // 
             this.cboPrinterPaperformat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPrinterPaperformat.DropDownWidth = 60;
-            resources.ApplyResources(this.cboPrinterPaperformat, "cboPaperformat");
+            resources.ApplyResources(this.cboPrinterPaperformat, "cboPrinterPaperformat");
             this.cboPrinterPaperformat.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.errorProvider.SetIconAlignment(this.cboPrinterPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPaperformat.IconAlignment"))));
-            this.cboPrinterPaperformat.Name = "cboPaperformat";
+            this.errorProvider.SetIconAlignment(this.cboPrinterPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPrinterPaperformat.IconAlignment"))));
+            this.cboPrinterPaperformat.Name = "cboPrinterPaperformat";
             this.cboPrinterPaperformat.SelectedIndexChanged += new System.EventHandler(this.CboPrinterPaperformat_SelectedIndexChanged);
             // 
             // lblPaperformat
@@ -159,7 +160,7 @@
             this.errorProvider.SetIconAlignment(this.chkExactExtract, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkExactExtract.IconAlignment"))));
             this.chkExactExtract.Name = "chkExactExtract";
             this.chkExactExtract.UseVisualStyleBackColor = true;
-            this.chkExactExtract.CheckedChanged += new System.EventHandler(this.ValidateInputs);
+            this.chkExactExtract.CheckStateChanged += new System.EventHandler(this.ValidateInputs);
             // 
             // lblDrawingUnitMm
             // 
