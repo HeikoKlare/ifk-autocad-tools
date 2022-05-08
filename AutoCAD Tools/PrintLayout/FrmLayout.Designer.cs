@@ -238,7 +238,6 @@
             this.cboPrinter.FormattingEnabled = true;
             this.errorProvider.SetIconAlignment(this.cboPrinter, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPrinter.IconAlignment"))));
             this.cboPrinter.Name = "cboPrinter";
-            this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.CboPrinter_SelectedIndexChanged);
             // 
             // grpExtract
             // 

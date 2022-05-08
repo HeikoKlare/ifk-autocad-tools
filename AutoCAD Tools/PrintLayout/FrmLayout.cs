@@ -19,6 +19,7 @@ namespace AutoCADTools.PrintLayout
     public partial class FrmLayout : Form
     {
         #region Fields
+
         private const string AutoCadAnnotationScalesDatabaseEntryName = "ACDB_ANNOTATIONSCALES";
         private const string AutoCadCursorsizeSystemVariableName = "CURSORSIZE";
         private const string PaperformatDescriptionA4Horizontal = "A4 horizontal";
@@ -26,10 +27,18 @@ namespace AutoCADTools.PrintLayout
         private const string PaperformatDescriptionA3 = "A3";
         private const string PaperformatDescriptionA0 = "A0";
 
-        // State fields
         private readonly LayoutCreationSpecification layoutCreationSpecification = new LayoutCreationSpecification();
         private Printer selectedPrinter;
-        private IReadOnlyList<PrinterPaperformat> selectablePaperformats = new List<PrinterPaperformat>();
+        private readonly List<PrinterPaperformat> selectablePaperformats = new List<PrinterPaperformat>();
+        private IReadOnlyList<PrinterPaperformat> SelectablePaperformats
+        {
+            get => selectablePaperformats;
+            set
+            {
+                selectablePaperformats.Clear();
+                selectablePaperformats.AddRange(value);
+            }
+        }
         public bool UseExactExtract { get; set; }
 
         #endregion
@@ -50,7 +59,6 @@ namespace AutoCADTools.PrintLayout
             InitializeAndBindExtractElements();
             InitializeAndBindPaperformatElements();
             InitializeAndBindTopLevelElements();
-            LoadPrinters();
             SelectDefaultPrinterAndOptimalFormat();
             InputChanged();
         }
@@ -124,15 +132,13 @@ namespace AutoCADTools.PrintLayout
         {
             chkTextfield.DataBindings.Add(nameof(chkTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
             chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
-        }
-
-        private void LoadPrinters()
-        {
             cboPrinter.SelectedIndexChanged -= CboPrinter_SelectedIndexChanged;
             cboPrinter.DataSource = PrinterRepository.Instance.Printers;
             cboPrinter.DisplayMember = nameof(Printer.Name);
             cboPrinter.SelectedIndex = -1;
             cboPrinter.SelectedIndexChanged += CboPrinter_SelectedIndexChanged;
+            cboPaperformat.DisplayMember = nameof(PrinterPaperformat.Name);
+            cboPaperformat.ValueMember = nameof(PrinterPaperformat.Name);
         }
 
         #endregion
@@ -270,23 +276,23 @@ namespace AutoCADTools.PrintLayout
 
         private void ReloadPrinterPaperformats()
         {
-            var oldFormatName = cboPaperformat.Text;
-            if (selectedPrinter != null)
+            string oldFormatName = (string)cboPaperformat.SelectedValue;
+            using (var progressDialog = new ProgressDialog())
             {
-                using (var progressDialog = new ProgressDialog())
-                {
-                    this.selectablePaperformats = selectedPrinter.InitializeAndGetPaperformats(chkOptimizedPaperformats.Checked, progressDialog);
-                }
+                SelectablePaperformats = selectedPrinter != null ? selectedPrinter.InitializeAndGetPaperformats(chkOptimizedPaperformats.Checked, progressDialog).ToList() : new List<PrinterPaperformat>();
             }
-            else
-            {
-                this.selectablePaperformats = new List<PrinterPaperformat>().ToArray();
-            }
-            cboPaperformat.Items.Clear();
+            // Rebind paperformats
+            cboPaperformat.DataSource = null;
+            cboPaperformat.DataSource = SelectablePaperformats;
             cboPaperformat.DisplayMember = nameof(PrinterPaperformat.Name);
-            cboPaperformat.Items.AddRange(selectablePaperformats.ToArray());
-            int index = cboPaperformat.FindStringExact(oldFormatName);
-            cboPaperformat.SelectedIndex = index != -1 || cboPaperformat.Items.Count == 0 ? index : 0;
+            if (!string.IsNullOrEmpty(oldFormatName))
+            {
+                cboPaperformat.SelectedValue = oldFormatName;
+            }
+            if (cboPaperformat.SelectedIndex == 0 && cboPaperformat.Items.Count > 0)
+            {
+                cboPaperformat.SelectedIndex = 0;
+            }
             InputChanged();
         }
 
@@ -359,7 +365,7 @@ namespace AutoCADTools.PrintLayout
 
         private void ValidatePrinterPaperformats()
         {
-            if (this.selectablePaperformats.Count == 0)
+            if (this.SelectablePaperformats.Count == 0)
             {
                 errorProvider.SetError(cboPaperformat, LocalData.PaperformatListEmptyError);
             }

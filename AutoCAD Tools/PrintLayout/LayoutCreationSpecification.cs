@@ -320,7 +320,7 @@ namespace AutoCADTools.PrintLayout
                 var point = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
                 DrawingArea.LowerRightPoint = new Point(point.X, point.Y);
             }
-            Scale = drawingArea.Scale / (double)DrawingUnit;
+            Scale = drawingArea.Scale / DrawingUnit;
             UseTextfield = true;
         }
 
