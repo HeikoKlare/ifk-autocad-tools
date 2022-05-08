@@ -36,6 +36,9 @@ namespace AutoCADTools.PrintLayout
                 selectablePaperformats.AddRange(value);
             }
         }
+        /// <summary>
+        /// Defines whether the drawing area shall be used as an exact extract, disabling a predefined scale.
+        /// </summary>
         public bool UseExactExtract { get; set; }
 
         #endregion

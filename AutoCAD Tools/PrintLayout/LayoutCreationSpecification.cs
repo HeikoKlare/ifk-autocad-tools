@@ -34,6 +34,9 @@ namespace AutoCADTools.PrintLayout
 
         #region Properties
 
+        /// <summary>
+        /// An event for properties of this specification being modified.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
         // This method is called by the Set accessor of each property.
@@ -188,7 +191,15 @@ namespace AutoCADTools.PrintLayout
         public PrinterPaperformat Printerformat
         {
             get => printerformat;
-            set => printerformat = value;
+            set
+            {
+                if (printerformat != value)
+                {
+                    printerformat = value;
+                    NotifyPropertyChanged();
+                    NotifyPropertyChanged(nameof(Paperformat));
+                }
+            }
         }
 
         /// <summary>

@@ -202,6 +202,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// Draws additional parts in the layout: textfield, borders and fold lines.
         /// </summary>
+        /// <param name="paperformat">The used paparformat.</param>
         /// <param name="margin">The margin of the used paper.</param>
         /// <param name="layoutRecord">The layout record of the created layout.</param>
         /// <returns></returns>
