@@ -48,7 +48,7 @@ namespace AutoCADTools.PrintLayout
         {
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             txtLayoutName.DataBindings.Add(nameof(txtLayoutName.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.LayoutName), false, DataSourceUpdateMode.OnPropertyChanged);
-            chkUseDrawingArea.DataBindings.Add(nameof(chkUseDrawingArea.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.HasPredefinedDrawingArea), false);
+            optExtractDrawingArea.DataBindings.Add(nameof(optExtractDrawingArea.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.HasPredefinedDrawingArea), false);
             updDrawingUnit.DataBindings.Add(nameof(updDrawingUnit.Value), layoutCreationSpecification, nameof(LayoutCreationSpecification.DrawingUnit), false, DataSourceUpdateMode.OnPropertyChanged);
             chkTextfield.DataBindings.Add(nameof(chkTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
             chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -86,7 +86,8 @@ namespace AutoCADTools.PrintLayout
 
         private void SetInitialValues()
         {
-            chkUseDrawingArea.Checked = chkUseDrawingArea.Enabled;
+            optExtractDrawingArea.Checked = optExtractDrawingArea.Enabled;
+            optExtractManual.Checked = !optExtractManual.Enabled;
         }
 
         #endregion
@@ -145,7 +146,7 @@ namespace AutoCADTools.PrintLayout
 
             interact.End();
 
-            chkUseDrawingArea.Checked = false;
+            optExtractManual.Checked = true;
             CalculatePaperformatAndValidateSelectedPrinterPaperformat();
             SelectDefaultPrinter();
         }
@@ -465,9 +466,9 @@ namespace AutoCADTools.PrintLayout
             SelectOptimalPaperformat();
         }
 
-        private void ChkUseDrawingArea_CheckedChanged(object sender, EventArgs e)
+        private void OptExtractDrawingArea_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkUseDrawingArea.Checked)
+            if (optExtractDrawingArea.Checked)
             {
                 layoutCreationSpecification.LoadDataForPredefinedDrawingArea();
             }
