@@ -94,7 +94,13 @@ namespace AutoCADTools.PrintLayout
         public double Scale
         {
             get => scale;
-            set { scale = value; }
+            set {
+                if (scale != value)
+                {
+                    scale = value;
+                    NotifyPropertyChanged();
+                }
+            }
         }
 
         private bool useTextfield;
@@ -134,14 +140,39 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
-        private Paperformat paperformat;
         /// <summary>
-        /// The paperformat for the layout.
+        /// Whether the drawing uses an old version of the textfield.
+        /// </summary>
+        private bool UsesOldTextfield
+        {
+            get
+            {
+                var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
+                return drawingData?.Version < 2;
+            }
+        }
+
+        /// <summary>
+        /// The calculated paperformat for the defined viewport size. Is <code>null</code> if <see cref="Size"/> is not set.
         /// </summary>
         public Paperformat Paperformat
         {
-            get => paperformat;
-            set => paperformat = value;
+            get
+            {
+                if (DrawingArea.Size == null)
+                {
+                    return null;
+                }
+                Size viewportSize = Scale * (double)DrawingUnit * DrawingArea.Size;
+                if (UseTextfield)
+                {
+                    return PaperformatFactory.GetPaperformatTextfield(viewportSize, UsesOldTextfield);
+                }
+                else
+                {
+                    return PaperformatFactory.GetPlainPaperformat(viewportSize);
+                }
+            }
         }
 
         private PrinterPaperformat printerformat;
@@ -157,7 +188,7 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// Whether the viewport has to be rotated.
         /// </summary>
-        public bool RotateViewport => paperformat is PaperformatTextfieldA4Horizontal;
+        public bool RotateViewport => Paperformat != null && Paperformat is PaperformatTextfieldA4Horizontal;
 
         /// <summary>
         /// The orientation for the paper.
@@ -211,12 +242,10 @@ namespace AutoCADTools.PrintLayout
         public LayoutCreationSpecification()
         {
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-            paperformat = new PaperformatTextfieldA4Vertical(drawingData.Version < 2);
+            LayoutName = Properties.Settings.Default.DefaultLayoutName;
             DrawingArea = new Frame();
-            layoutName = Properties.Settings.Default.DefaultLayoutName;
-            scale = 1.0;
-            drawingUnit = 1;
+            Scale = 1.0;
+            DrawingUnit = 1;
         }
 
         #endregion
@@ -230,11 +259,11 @@ namespace AutoCADTools.PrintLayout
         /// <exception cref="InvalidOperationException">is thrown if there is not predefined drawing area</exception>
         public void LoadDataForPredefinedDrawingArea()
         {
-            DrawingArea drawingArea = (document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper).DrawingArea;
             if (!HasPredefinedDrawingArea)
             {
                 throw new InvalidOperationException("drawing area can only be loaded if there is a drawing area");
             }
+            DrawingArea drawingArea = (document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper).DrawingArea;
 
             var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
             DrawingUnit = drawingData.DrawingUnit;
@@ -244,7 +273,7 @@ namespace AutoCADTools.PrintLayout
                 var point = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
                 DrawingArea.LowerRightPoint = new Point(point.X, point.Y);
             }
-            Scale = Math.Round(drawingData.DrawingUnit / drawingArea.Scale);
+            Scale = drawingArea.Scale / (double)DrawingUnit;
             UseTextfield = true;
         }
 

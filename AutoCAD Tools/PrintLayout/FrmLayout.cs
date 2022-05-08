@@ -29,7 +29,6 @@ namespace AutoCADTools.PrintLayout
         private readonly LayoutCreationSpecification layoutCreationSpecification = new LayoutCreationSpecification();
         private Printer selectedPrinter;
         private IReadOnlyList<PrinterPaperformat> selectablePaperformats = new List<PrinterPaperformat>();
-        private Paperformat currentPaperformat;
 
         #endregion
 
@@ -74,6 +73,14 @@ namespace AutoCADTools.PrintLayout
             ObjectContextCollection annotationScalesContextCollection = document.Database.ObjectContextManager.GetContextCollection(AutoCadAnnotationScalesDatabaseEntryName);
             IList<double> annotationScales = annotationScalesContextCollection.Cast<AnnotationScale>().Select(scale => scale.DrawingUnits).ToList();
             cboScale.DataSource = annotationScales;
+            Binding scaleBinding = new Binding(nameof(cboScale.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.Scale));
+            scaleBinding.Format += (s, e) => {
+                e.Value = (int)(1 / (double)e.Value); 
+            };
+            scaleBinding.Parse += (s, e) => { 
+                e.Value = 1.0 / int.Parse((string)e.Value);
+            };
+            cboScale.DataBindings.Add(scaleBinding);
             cboScale.SelectedItem = document.Database.Cannoscale.DrawingUnits;
         }
 
@@ -156,47 +163,45 @@ namespace AutoCADTools.PrintLayout
 
             this.Close();
 
-            layoutCreationSpecification.Scale = 1.0 / int.Parse(cboScale.Text);
-
             if (chkExactExtract.Checked)
             {
                 layoutCreationSpecification.Scale = SetPaperformatForExactExtract();
             }
             else if (!layoutCreationSpecification.UseTextfield)
             {
-                Size difference = 1 / layoutCreationSpecification.Scale / ((double)layoutCreationSpecification.DrawingUnit) * currentPaperformat.ViewportSizeLayout - layoutCreationSpecification.DrawingArea.Size;
+                Size difference = 1 / layoutCreationSpecification.Scale / ((double)layoutCreationSpecification.DrawingUnit) * layoutCreationSpecification.Paperformat.ViewportSizeLayout - layoutCreationSpecification.DrawingArea.Size;
                 layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
             }
 
-            layoutCreationSpecification.Paperformat = currentPaperformat;
             layoutCreationSpecification.Printerformat = cboPaperformat.SelectedItem as PrinterPaperformat;
             new LayoutCreator(layoutCreationSpecification).CreateLayout();
         }
 
         private double SetPaperformatForExactExtract()
         {
+            Paperformat temporaryPaperformat = null;
             if (cboPaperformat.Text == "A4")
             {
                 if (chkTextfield.Checked)
                 {
                     if (layoutCreationSpecification.DrawingArea.Size.Width > layoutCreationSpecification.DrawingArea.Size.Height)
                     {
-                        currentPaperformat = new PaperformatTextfieldA4Horizontal(oldTextfieldUsed);
+                        temporaryPaperformat = new PaperformatTextfieldA4Horizontal(oldTextfieldUsed);
                     }
                     else
                     {
-                        currentPaperformat = new PaperformatTextfieldA4Vertical(oldTextfieldUsed);
+                        temporaryPaperformat = new PaperformatTextfieldA4Vertical(oldTextfieldUsed);
                     }
                 }
                 else
                 {
                     if (layoutCreationSpecification.DrawingArea.Size.Width > layoutCreationSpecification.DrawingArea.Size.Height)
                     {
-                        currentPaperformat = new PaperformatA4Horizontal();
+                        temporaryPaperformat = new PaperformatA4Horizontal();
                     }
                     else
                     {
-                        currentPaperformat = new PaperformatA4Vertical();
+                        temporaryPaperformat = new PaperformatA4Vertical();
                     }
                 }
             }
@@ -204,29 +209,20 @@ namespace AutoCADTools.PrintLayout
             {
                 if (chkTextfield.Checked)
                 {
-                    currentPaperformat = new PaperformatTextfieldA3(oldTextfieldUsed);
+                    temporaryPaperformat = new PaperformatTextfieldA3(oldTextfieldUsed);
                 }
                 else
                 {
-                    currentPaperformat = new PaperformatA3();
+                    temporaryPaperformat = new PaperformatA3();
                 }
             }
 
             double drawingUnit = (double)updDrawingUnit.Value;
-            double scaleWidth = currentPaperformat.ViewportSizeModel.Width / (layoutCreationSpecification.DrawingArea.Size.Width * drawingUnit);
-            double scaleHeight = currentPaperformat.ViewportSizeModel.Height / (layoutCreationSpecification.DrawingArea.Size.Height * drawingUnit);
+            double scaleWidth = temporaryPaperformat.ViewportSizeModel.Width / (layoutCreationSpecification.DrawingArea.Size.Width * drawingUnit);
+            double scaleHeight = temporaryPaperformat.ViewportSizeModel.Height / (layoutCreationSpecification.DrawingArea.Size.Height * drawingUnit);
             Size addition = scaleHeight < scaleWidth ? new Size(layoutCreationSpecification.DrawingArea.Size.Width * (scaleWidth / scaleHeight - 1), 0) : new Size(0, layoutCreationSpecification.DrawingArea.Size.Height * (scaleHeight / scaleWidth - 1));
             layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(addition.Width, -addition.Height);
             layoutCreationSpecification.DrawingArea.Size += addition;
-            var viewportSize = Math.Min(scaleHeight, scaleWidth) * drawingUnit * layoutCreationSpecification.DrawingArea.Size;
-            if (chkTextfield.Checked)
-            {
-                currentPaperformat = PaperformatFactory.GetPaperformatTextfield(viewportSize, oldTextfieldUsed);
-            }
-            else
-            {
-                currentPaperformat = PaperformatFactory.GetPlainPaperformat(viewportSize);
-            }
             return Math.Min(scaleHeight, scaleWidth);
         }
 
@@ -260,18 +256,6 @@ namespace AutoCADTools.PrintLayout
 
         private void CalculateCurrentPaperformat()
         {
-            if (!chkExactExtract.Checked && String.IsNullOrEmpty(errorProvider.GetError(cboScale)) && String.IsNullOrEmpty(errorProvider.GetError(updDrawingUnit)) && layoutCreationSpecification.DrawingArea.Size != null)
-            {
-                Size viewportSize = 1.0 / int.Parse(cboScale.Text) * (double)updDrawingUnit.Value * layoutCreationSpecification.DrawingArea.Size;
-                if (chkTextfield.Checked)
-                {
-                    this.currentPaperformat = PaperformatFactory.GetPaperformatTextfield(viewportSize, oldTextfieldUsed);
-                }
-                else
-                {
-                    this.currentPaperformat = PaperformatFactory.GetPlainPaperformat(viewportSize);
-                }
-            }
             ValidateExtract();
         }
 
@@ -283,9 +267,9 @@ namespace AutoCADTools.PrintLayout
 
         private void SelectDefaultPrinter()
         {
-            if (!chkExactExtract.Checked && currentPaperformat != null)
+            if (!chkExactExtract.Checked && layoutCreationSpecification.Paperformat != null)
             {
-                var defaultPrinter = currentPaperformat.GetDefaultPrinter();
+                var defaultPrinter = layoutCreationSpecification.Paperformat.GetDefaultPrinter();
                 int printerIndex = defaultPrinter == null ? -1 : cboPrinter.FindStringExact(defaultPrinter.Name);
 
                 if (printerIndex != -1)
@@ -302,11 +286,11 @@ namespace AutoCADTools.PrintLayout
 
         private void SelectOptimalPaperformat()
         {
-            if (!chkExactExtract.Checked && currentPaperformat != null && selectedPrinter != null && selectedPrinter.Initialized)
+            if (!chkExactExtract.Checked && layoutCreationSpecification.Paperformat != null && selectedPrinter != null && selectedPrinter.Initialized)
             {
                 using (var progressDialog = new ProgressDialog())
                 {
-                    var printerPaperformat = currentPaperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked, progressDialog);
+                    var printerPaperformat = layoutCreationSpecification.Paperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked, progressDialog);
                     int formatIndex = printerPaperformat != null ? cboPaperformat.FindStringExact(printerPaperformat.Name) : -1;
                     if (formatIndex != -1)
                     {
@@ -387,7 +371,7 @@ namespace AutoCADTools.PrintLayout
             PrinterPaperformat printerformat = cboPaperformat.SelectedItem as PrinterPaperformat;
             using (var progressDialog = new ProgressDialog())
             {
-                if (!chkExactExtract.Checked && !PaperformatPrinterMapping.IsFormatFitting(printerformat, currentPaperformat, progressDialog))
+                if (!chkExactExtract.Checked && !PaperformatPrinterMapping.IsFormatFitting(printerformat, layoutCreationSpecification.Paperformat, progressDialog))
                 {
                     errorProvider.SetError(cboPaperformat, LocalData.PaperformatNotFitting);
                 }
@@ -455,11 +439,11 @@ namespace AutoCADTools.PrintLayout
         private void ChkOptimizedPaperformats_CheckedChanged(object sender, EventArgs e)
         {
             PrinterChanged();
-            if (chkExactExtract.Checked && currentPaperformat != null)
+            if (chkExactExtract.Checked && layoutCreationSpecification.Paperformat != null)
             {
                 using (var progressDialog = new ProgressDialog())
                 {
-                    if (!PaperformatPrinterMapping.IsFormatFitting(cboPaperformat.SelectedItem as PrinterPaperformat, currentPaperformat, progressDialog))
+                    if (!PaperformatPrinterMapping.IsFormatFitting(cboPaperformat.SelectedItem as PrinterPaperformat, layoutCreationSpecification.Paperformat, progressDialog))
                     {
                         SelectOptimalPaperformat();
                     }
