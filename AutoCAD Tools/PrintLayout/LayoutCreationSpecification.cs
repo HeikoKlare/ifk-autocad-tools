@@ -76,11 +76,11 @@ namespace AutoCADTools.PrintLayout
             }
         }
 
-        private decimal drawingUnit;
+        private double drawingUnit;
         /// <summary>
         /// The drawing unit (millimeters represented by a unit in the drawing).
         /// </summary>
-        public decimal DrawingUnit
+        public double DrawingUnit
         {
             get => drawingUnit;
             set
@@ -291,7 +291,7 @@ namespace AutoCADTools.PrintLayout
             LayoutName = Properties.Settings.Default.DefaultLayoutName;
             DrawingArea = new Frame(NotifyPropertyChanged);
             Scale = 0.01;
-            DrawingUnit = 1000;
+            DrawingUnit = Document.Database.Cannoscale.DrawingUnits;
             UseTextfield = true;
         }
 

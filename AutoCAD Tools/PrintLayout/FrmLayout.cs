@@ -133,8 +133,7 @@ namespace AutoCADTools.PrintLayout
         private void SetInitialValues()
         {
             optExtractDrawingArea.Checked = optExtractDrawingArea.Enabled;
-            optExtractManual.Checked = !optExtractManual.Enabled;
-            cboScale.SelectedItem = layoutCreationSpecification.Document.Database.Cannoscale.DrawingUnits;
+            optExtractManual.Checked = !optExtractDrawingArea.Enabled;
         }
 
         #endregion
@@ -224,7 +223,7 @@ namespace AutoCADTools.PrintLayout
 
             if (!layoutCreationSpecification.UseTextfield)
             {
-                Size difference = 1 / layoutCreationSpecification.Scale / ((double)layoutCreationSpecification.DrawingUnit) * layoutCreationSpecification.Paperformat.ViewportSizeLayout - layoutCreationSpecification.DrawingArea.Size;
+                Size difference = 1 / layoutCreationSpecification.Scale / (layoutCreationSpecification.DrawingUnit) * layoutCreationSpecification.Paperformat.ViewportSizeLayout - layoutCreationSpecification.DrawingArea.Size;
                 layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
             }
 
@@ -263,7 +262,7 @@ namespace AutoCADTools.PrintLayout
             double minimumScaleFactor = Math.Min(scaleHeight, scaleWidth);
             layoutCreationSpecification.DrawingArea.Size = 1 / minimumScaleFactor * viewportSize;
             layoutCreationSpecification.DrawingArea.LowerRightPoint = drawingAreaCenter + 0.5 * new Size(drawingAreaSize.Width, -drawingAreaSize.Height);
-            layoutCreationSpecification.Scale = minimumScaleFactor / (double)layoutCreationSpecification.DrawingUnit;
+            layoutCreationSpecification.Scale = minimumScaleFactor / layoutCreationSpecification.DrawingUnit;
         }
 
         #endregion

@@ -17,7 +17,7 @@ namespace AutoCADTools.PrintLayout
 
         private Document Document { get { return _specification.Document; } }
         private string LayoutName { get { return _specification.LayoutName; } }
-        private double DrawingUnit { get { return ((double)_specification.DrawingUnit); } }
+        private double DrawingUnit { get { return (_specification.DrawingUnit); } }
         private double Scale { get { return _specification.Scale; } }
         private PaperOrientation Orientation { get { return _specification.Orientation; } }
         private PrinterPaperformat PrinterPaperformat { get { return _specification.Printerformat; } }
