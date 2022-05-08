@@ -27,8 +27,7 @@ namespace AutoCADTools.PrintLayout
 
         // Instance fields
         private readonly bool oldTextfieldUsed;
-        private Document document;
-
+        
         // State fields
         private readonly LayoutCreationSpecification layoutCreationSpecification = new LayoutCreationSpecification();
         private Printer selectedPrinter;
@@ -50,7 +49,6 @@ namespace AutoCADTools.PrintLayout
 
         private void FrmLayout_Load(object sender, EventArgs e)
         {
-            document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             txtLayoutName.DataBindings.Add(nameof(txtLayoutName.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.LayoutName), false, DataSourceUpdateMode.OnPropertyChanged);
             optExtractDrawingArea.DataBindings.Add(nameof(optExtractDrawingArea.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.HasPredefinedDrawingArea), false);
             updDrawingUnit.DataBindings.Add(nameof(updDrawingUnit.Value), layoutCreationSpecification, nameof(LayoutCreationSpecification.DrawingUnit), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -102,7 +100,8 @@ namespace AutoCADTools.PrintLayout
 
         private void LoadAnnotationScales()
         {
-            ObjectContextCollection annotationScalesContextCollection = document.Database.ObjectContextManager.GetContextCollection(AutoCadAnnotationScalesDatabaseEntryName);
+            var documentDatabase = layoutCreationSpecification.Document.Database;
+            ObjectContextCollection annotationScalesContextCollection = documentDatabase.ObjectContextManager.GetContextCollection(AutoCadAnnotationScalesDatabaseEntryName);
             IList<double> annotationScales = annotationScalesContextCollection.Cast<AnnotationScale>().Select(scale => scale.DrawingUnits).ToList();
             cboScale.DataSource = annotationScales;
             Binding scaleBinding = new Binding(nameof(cboScale.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.Scale), false, DataSourceUpdateMode.OnPropertyChanged);
@@ -113,7 +112,7 @@ namespace AutoCADTools.PrintLayout
                 eventArgs.Value = 1.0 / int.Parse((string)eventArgs.Value);
             };
             cboScale.DataBindings.Add(scaleBinding);
-            cboScale.SelectedItem = document.Database.Cannoscale.DrawingUnits;
+            cboScale.SelectedItem = documentDatabase.Cannoscale.DrawingUnits;
         }
 
         private void SetInitialValues()
@@ -128,7 +127,8 @@ namespace AutoCADTools.PrintLayout
 
         private void ButDefineExtract_Click(object sender, EventArgs e)
         {
-            var interact = document.Editor.StartUserInteraction(this.Handle);
+            var editor = layoutCreationSpecification.Document.Editor;
+            var interact = editor.StartUserInteraction(this.Handle);
 
             object oldCrossWidth = Autodesk.AutoCAD.ApplicationServices.Application.GetSystemVariable(AutoCadCursorsizeSystemVariableName);
             Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(AutoCadCursorsizeSystemVariableName, 100);
@@ -140,7 +140,7 @@ namespace AutoCADTools.PrintLayout
             PromptPointResult getPointResult;
 
             // Get the first point of the layout extends
-            getPointResult = document.Editor.GetPoint(Environment.NewLine + LocalData.ExtractStartPointText);
+            getPointResult = editor.GetPoint(Environment.NewLine + LocalData.ExtractStartPointText);
             if (getPointResult.Status == PromptStatus.OK)
             {
                 p1 = getPointResult.Value;
@@ -158,7 +158,7 @@ namespace AutoCADTools.PrintLayout
             {
                 UseDashedLine = true
             };
-            getPointResult = document.Editor.GetCorner(endpointOpts);
+            getPointResult = editor.GetCorner(endpointOpts);
             // Set cursorsize to normal
             Autodesk.AutoCAD.ApplicationServices.Application.SetSystemVariable(AutoCadCursorsizeSystemVariableName, oldCrossWidth);
             if (getPointResult.Status == PromptStatus.OK)
