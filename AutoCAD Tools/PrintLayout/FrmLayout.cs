@@ -49,10 +49,11 @@ namespace AutoCADTools.PrintLayout
         {
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             txtLayoutName.DataBindings.Add(nameof(txtLayoutName.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.LayoutName), false, DataSourceUpdateMode.OnPropertyChanged);
+            chkUseDrawingArea.DataBindings.Add(nameof(chkUseDrawingArea.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.HasPredefinedDrawingArea), false);
             updDrawingUnit.DataBindings.Add(nameof(updDrawingUnit.Value), layoutCreationSpecification, nameof(LayoutCreationSpecification.DrawingUnit), false, DataSourceUpdateMode.OnPropertyChanged);
-            chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
             chkTextfield.DataBindings.Add(nameof(chkTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
-            ActivateDrawingAreaSelectionIfAvailable();
+            chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
+            SetInitialValues();
             LoadPrinters();
             LoadAnnotationScales();
             CalculateCurrentPaperformat();
@@ -76,13 +77,9 @@ namespace AutoCADTools.PrintLayout
             cboScale.SelectedItem = document.Database.Cannoscale.DrawingUnits;
         }
 
-        private void ActivateDrawingAreaSelectionIfAvailable()
+        private void SetInitialValues()
         {
-            chkUseDrawingArea.Enabled = layoutCreationSpecification.HasPredefinedDrawingArea();
-            if (chkUseDrawingArea.Enabled)
-            {
-                chkUseDrawingArea.Checked = true;
-            }
+            chkUseDrawingArea.Checked = chkUseDrawingArea.Enabled;
         }
 
         #endregion
@@ -180,7 +177,7 @@ namespace AutoCADTools.PrintLayout
         {
             if (cboPaperformat.Text == "A4")
             {
-                if (layoutCreationSpecification.UseTextfield)
+                if (chkTextfield.Checked)
                 {
                     if (layoutCreationSpecification.DrawingArea.Size.Width > layoutCreationSpecification.DrawingArea.Size.Height)
                     {
@@ -205,7 +202,7 @@ namespace AutoCADTools.PrintLayout
             }
             else if (cboPaperformat.Text == "A3")
             {
-                if (layoutCreationSpecification.UseTextfield)
+                if (chkTextfield.Checked)
                 {
                     currentPaperformat = new PaperformatTextfieldA3(oldTextfieldUsed);
                 }
@@ -222,7 +219,7 @@ namespace AutoCADTools.PrintLayout
             layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(addition.Width, -addition.Height);
             layoutCreationSpecification.DrawingArea.Size += addition;
             var viewportSize = Math.Min(scaleHeight, scaleWidth) * drawingUnit * layoutCreationSpecification.DrawingArea.Size;
-            if (layoutCreationSpecification.UseTextfield)
+            if (chkTextfield.Checked)
             {
                 currentPaperformat = PaperformatFactory.GetPaperformatTextfield(viewportSize, oldTextfieldUsed);
             }
@@ -266,7 +263,7 @@ namespace AutoCADTools.PrintLayout
             if (!chkExactExtract.Checked && String.IsNullOrEmpty(errorProvider.GetError(cboScale)) && String.IsNullOrEmpty(errorProvider.GetError(updDrawingUnit)) && layoutCreationSpecification.DrawingArea.Size != null)
             {
                 Size viewportSize = 1.0 / int.Parse(cboScale.Text) * (double)updDrawingUnit.Value * layoutCreationSpecification.DrawingArea.Size;
-                if (layoutCreationSpecification.UseTextfield)
+                if (chkTextfield.Checked)
                 {
                     this.currentPaperformat = PaperformatFactory.GetPaperformatTextfield(viewportSize, oldTextfieldUsed);
                 }

@@ -165,6 +165,11 @@ namespace AutoCADTools.PrintLayout
         public PaperOrientation Orientation => RotateViewport || Paperformat is PaperformatA4Vertical || Paperformat is PaperformatTextfieldA4Vertical ? PaperOrientation.Portrait : PaperOrientation.Landscape;
 
         /// <summary>
+        /// Whether there is a predefined drawing area and the required textfield is available (<see cref="CanUseTextfield"/>) that can be loaded by calling <see cref="LoadDataForPredefinedDrawingArea"/>.
+        /// </summary>
+        public bool HasPredefinedDrawingArea => (document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper).DrawingArea.IsValid && CanUseTextfield;
+
+        /// <summary>
         /// Defines a frame by one point and its size.
         /// </summary>
         public class Frame
@@ -219,37 +224,28 @@ namespace AutoCADTools.PrintLayout
         #region Functionality
 
         /// <summary>
-        /// Returns whether there is a predefined drawing area that can be loaded by calling <see cref="LoadDataForPredefinedDrawingArea"/>.
-        /// </summary>
-        /// <returns>whether there is a predefined drawing area</returns>
-        public bool HasPredefinedDrawingArea()
-        {
-            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            return drawingAreaWrapper.DrawingArea.IsValid;
-        }
-
-        /// <summary>
         /// Loads the data from the predefined drawing area. This affects <see cref="DrawingUnit"/>, <see cref="Scale"/> and <see cref="DrawingArea"/>.
         /// Ensure before calling that there is a predefined drawing area by calling <see cref="HasPredefinedDrawingArea"/>.
         /// </summary>
         /// <exception cref="InvalidOperationException">is thrown if there is not predefined drawing area</exception>
         public void LoadDataForPredefinedDrawingArea()
         {
-            DrawingAreaDocumentWrapper drawingAreaWrapper = document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            if (!drawingAreaWrapper.DrawingArea.IsValid)
+            DrawingArea drawingArea = (document.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper).DrawingArea;
+            if (!HasPredefinedDrawingArea)
             {
                 throw new InvalidOperationException("drawing area can only be loaded if there is a drawing area");
             }
 
             var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
             DrawingUnit = drawingData.DrawingUnit;
-            DrawingArea.Size = 1 / drawingAreaWrapper.DrawingArea.Scale * drawingAreaWrapper.DrawingArea.Format.ViewportSizeModel;
+            DrawingArea.Size = 1 / drawingArea.Scale * drawingArea.Format.ViewportSizeModel;
             using (Transaction trans = document.TransactionManager.StartTransaction())
             {
-                var point = (drawingAreaWrapper.DrawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
+                var point = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
                 DrawingArea.LowerRightPoint = new Point(point.X, point.Y);
             }
-            Scale = Math.Round(drawingData.DrawingUnit / drawingAreaWrapper.DrawingArea.Scale);
+            Scale = Math.Round(drawingData.DrawingUnit / drawingArea.Scale);
+            UseTextfield = true;
         }
 
         #endregion
