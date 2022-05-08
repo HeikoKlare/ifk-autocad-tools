@@ -182,9 +182,7 @@ namespace AutoCADTools
         [CommandMethod("CreateLayout", CommandFlags.NoPaperSpace)]
         public static void CreateLayout()
         {
-            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-            using (Form createLayout = new FrmLayout(drawingData.Version < 2))
+            using (Form createLayout = new FrmLayout())
             {
 
                 Autodesk.AutoCAD.ApplicationServices.Application.ShowModalDialog(createLayout);

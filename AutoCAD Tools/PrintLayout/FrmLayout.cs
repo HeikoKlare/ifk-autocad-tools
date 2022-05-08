@@ -26,9 +26,6 @@ namespace AutoCADTools.PrintLayout
         private const string PaperformatDescriptionA3 = "A3";
         private const string PaperformatDescriptionA0 = "A0";
 
-        // Instance fields
-        private readonly bool oldTextfieldUsed;
-        
         // State fields
         private readonly LayoutCreationSpecification layoutCreationSpecification = new LayoutCreationSpecification();
         private Printer selectedPrinter;
@@ -42,11 +39,9 @@ namespace AutoCADTools.PrintLayout
         /// <summary>
         /// Initializes a new instance of the <see cref="FrmLayout"/> class.
         /// </summary>
-        /// <param name="oldTextfieldUsed">if set to <c>true</c> the old textfield is used.</param>
-        public FrmLayout(bool oldTextfieldUsed)
+        public FrmLayout()
         {
             InitializeComponent();
-            this.oldTextfieldUsed = oldTextfieldUsed;
         }
 
         private void FrmLayout_Load(object sender, EventArgs e)
