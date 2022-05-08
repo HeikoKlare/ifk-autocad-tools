@@ -37,16 +37,18 @@ namespace AutoCADTools.PrintLayout
         #region Properties
 
         public event PropertyChangedEventHandler PropertyChanged;
+        
+        public delegate void OnNotifyPropertyChanged([CallerMemberName] String propertyName = "");
 
         // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
         // parameter causes the property name of the caller to be substituted as an argument.
-        // From: https://docs.microsoft.com/en-us/dotnet/desktop/winforms/how-to-implement-the-inotifypropertychanged-interface?view=netframeworkdesktop-4.8&redirectedfrom=MSDN
+        // From: https://docs.microsoft.com/en-us/dotnet/desktop/winforms/how-to-implement-the-inotifypropertychanged-interface?view=netframeworkdesktop-4.8&redirectedfrom=MSDN        
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
+        
         private readonly Document document;
         /// <summary>
         /// The document the layout is created in.
@@ -83,6 +85,7 @@ namespace AutoCADTools.PrintLayout
                 {
                     drawingUnit = value;
                     NotifyPropertyChanged();
+                    NotifyPropertyChanged(nameof(Paperformat));
                 }
             }
         }
@@ -99,6 +102,7 @@ namespace AutoCADTools.PrintLayout
                 {
                     scale = value;
                     NotifyPropertyChanged();
+                    NotifyPropertyChanged(nameof(Paperformat));
                 }
             }
         }
@@ -121,6 +125,7 @@ namespace AutoCADTools.PrintLayout
                 {
                     useTextfield = value;
                     NotifyPropertyChanged();
+                    NotifyPropertyChanged(nameof(Paperformat));
                 }
             }
         }
@@ -205,15 +210,46 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public class Frame
         {
+            private readonly OnNotifyPropertyChanged notifyPropertyChanged;
+
+            public Frame(OnNotifyPropertyChanged notifyPropertyChanged)
+            {
+                this.notifyPropertyChanged = notifyPropertyChanged;
+            }
+
+            private Point lowerRightPoint;
             /// <summary>
             /// The point at the lower right edge of the frame.
             /// </summary>
-            public Point LowerRightPoint { get; set; }
+            public Point LowerRightPoint {
+                get => lowerRightPoint;
+                set
+                {
+                    if (lowerRightPoint != value)
+                    {
+                        lowerRightPoint = value;
+                        notifyPropertyChanged();
+                        notifyPropertyChanged(nameof(Paperformat));
+                    }
+                }
+            }
 
+            private Size size;
             /// <summary>
             /// The size of the frame.
             /// </summary>
-            public Size Size { get; set; }
+            public Size Size {
+                get => size;
+                set
+                {
+                    if (size != value)
+                    {
+                        size = value;
+                        notifyPropertyChanged();
+                        notifyPropertyChanged(nameof(Paperformat));
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -243,7 +279,7 @@ namespace AutoCADTools.PrintLayout
         {
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             LayoutName = Properties.Settings.Default.DefaultLayoutName;
-            DrawingArea = new Frame();
+            DrawingArea = new Frame(NotifyPropertyChanged);
             Scale = 1.0;
             DrawingUnit = 1;
         }

@@ -20,6 +20,10 @@ namespace AutoCADTools.PrintLayout
         #region Fields
         private const string AutoCadAnnotationScalesDatabaseEntryName = "ACDB_ANNOTATIONSCALES";
         private const string AutoCadCursorsizeSystemVariableName = "CURSORSIZE";
+        private const string PaperformatDescriptionA4Horizontal = "A4 horizontal";
+        private const string PaperformatDescriptionA4Vertical = "A4 vertical";
+        private const string PaperformatDescriptionA3 = "A3";
+        private const string PaperformatDescriptionA0 = "A0";
 
         // Instance fields
         private readonly bool oldTextfieldUsed;
@@ -52,12 +56,40 @@ namespace AutoCADTools.PrintLayout
             updDrawingUnit.DataBindings.Add(nameof(updDrawingUnit.Value), layoutCreationSpecification, nameof(LayoutCreationSpecification.DrawingUnit), false, DataSourceUpdateMode.OnPropertyChanged);
             chkTextfield.DataBindings.Add(nameof(chkTextfield.Enabled), layoutCreationSpecification, nameof(LayoutCreationSpecification.CanUseTextfield), false);
             chkTextfield.DataBindings.Add(nameof(chkTextfield.Checked), layoutCreationSpecification, nameof(LayoutCreationSpecification.UseTextfield), false, DataSourceUpdateMode.OnPropertyChanged);
+            BindPapersizeLabel();
             SetInitialValues();
             LoadPrinters();
             LoadAnnotationScales();
             CalculateCurrentPaperformat();
             SelectDefaultPrinter();
             ValidateCreationAvailable();
+        }
+
+        private void BindPapersizeLabel()
+        {
+            var calculatedPapersizeBinding = new Binding(nameof(lblCalculatedPapersize.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.Paperformat), false, DataSourceUpdateMode.OnPropertyChanged);
+            calculatedPapersizeBinding.Format += (sender, eventArgs) => {
+                eventArgs.Value = GenerateTextForPaperformat(eventArgs.Value as Paperformat);
+            };
+            lblCalculatedPapersize.DataBindings.Add(calculatedPapersizeBinding);
+        }
+
+        private static string GenerateTextForPaperformat(Paperformat paperformat)
+        {
+            if (paperformat == null)
+            {
+                return "-";
+            }
+            switch(paperformat.GetType().Name)
+            {
+                case nameof(PaperformatA4Horizontal):
+                case nameof(PaperformatTextfieldA4Horizontal): return PaperformatDescriptionA4Horizontal;
+                case nameof(PaperformatA4Vertical):
+                case nameof(PaperformatTextfieldA4Vertical): return PaperformatDescriptionA4Vertical;
+                case nameof(PaperformatA3):
+                case nameof(PaperformatTextfieldA3): return PaperformatDescriptionA3;
+                default: return PaperformatDescriptionA0;
+            }
         }
 
         private void LoadPrinters()
@@ -73,12 +105,12 @@ namespace AutoCADTools.PrintLayout
             ObjectContextCollection annotationScalesContextCollection = document.Database.ObjectContextManager.GetContextCollection(AutoCadAnnotationScalesDatabaseEntryName);
             IList<double> annotationScales = annotationScalesContextCollection.Cast<AnnotationScale>().Select(scale => scale.DrawingUnits).ToList();
             cboScale.DataSource = annotationScales;
-            Binding scaleBinding = new Binding(nameof(cboScale.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.Scale));
-            scaleBinding.Format += (s, e) => {
-                e.Value = (int)(1 / (double)e.Value); 
+            Binding scaleBinding = new Binding(nameof(cboScale.Text), layoutCreationSpecification, nameof(LayoutCreationSpecification.Scale), false, DataSourceUpdateMode.OnPropertyChanged);
+            scaleBinding.Format += (sender, eventArgs) => {
+                eventArgs.Value = (int)(1 / (double)eventArgs.Value); 
             };
-            scaleBinding.Parse += (s, e) => { 
-                e.Value = 1.0 / int.Parse((string)e.Value);
+            scaleBinding.Parse += (sender, eventArgs) => {
+                eventArgs.Value = 1.0 / int.Parse((string)eventArgs.Value);
             };
             cboScale.DataBindings.Add(scaleBinding);
             cboScale.SelectedItem = document.Database.Cannoscale.DrawingUnits;
