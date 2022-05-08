@@ -147,9 +147,7 @@ namespace AutoCADTools.PrintLayout
 
         private void ButDefineExtract_Click(object sender, EventArgs e)
         {
-            var promptedFrame = PromptExtractExtends();
-            layoutCreationSpecification.DrawingArea.LowerRightPoint = promptedFrame.LowerRightPoint;
-            layoutCreationSpecification.DrawingArea.Size = promptedFrame.Size;
+            layoutCreationSpecification.DrawingArea = PromptExtractExtends();
             optExtractManual.Checked = true;
             SelectOptimalPrinterPaperformat(false);
             InputChanged();
@@ -205,12 +203,9 @@ namespace AutoCADTools.PrintLayout
             interact.End();
 
             // Set startpoint to minimum extends and endpoint to maximum extends
-            var result = new Frame(null)
-            {
-                LowerRightPoint = new Point(Math.Max(firstPoint.X, secondPoint.X), Math.Min(firstPoint.Y, secondPoint.Y)),
-                Size = new Size(Math.Abs(firstPoint.X - secondPoint.X), Math.Abs(firstPoint.Y - secondPoint.Y))
-            };
-            return result;
+            var lowerRightPoint = new Point(Math.Max(firstPoint.X, secondPoint.X), Math.Min(firstPoint.Y, secondPoint.Y));
+            var size = new Size(Math.Abs(firstPoint.X - secondPoint.X), Math.Abs(firstPoint.Y - secondPoint.Y));
+            return new Frame(lowerRightPoint, size);
         }
 
         private void ButCreate_Click(object sender, EventArgs e)
@@ -229,7 +224,7 @@ namespace AutoCADTools.PrintLayout
             if (!layoutCreationSpecification.UseTextfield)
             {
                 Size difference = 1 / layoutCreationSpecification.Scale / (layoutCreationSpecification.DrawingUnit) * layoutCreationSpecification.Paperformat.ViewportSizeLayout - layoutCreationSpecification.DrawingArea.Size;
-                layoutCreationSpecification.DrawingArea.LowerRightPoint += 0.5 * new Size(difference.Width, -difference.Height);
+                layoutCreationSpecification.DrawingArea = new Frame(layoutCreationSpecification.DrawingArea.LowerRightPoint + 0.5 * new Size(difference.Width, -difference.Height), layoutCreationSpecification.DrawingArea.Size);
             }
 
             new LayoutCreator(layoutCreationSpecification).CreateLayout();
@@ -237,7 +232,7 @@ namespace AutoCADTools.PrintLayout
 
         private void CalculateAndSetAreaAndScaleForExactExtract()
         {
-            if (layoutCreationSpecification.DrawingArea.Size == null || string.IsNullOrEmpty(cboPaperformat.Text))
+            if (layoutCreationSpecification.DrawingArea == null || string.IsNullOrEmpty(cboPaperformat.Text))
             {
                 throw new InvalidOperationException("cannot calculate scale for extract when drawing area or paperformat is undefined");
             }
@@ -265,8 +260,9 @@ namespace AutoCADTools.PrintLayout
             double scaleWidth = viewportSize.Width / drawingAreaSize.Width;
             double scaleHeight = viewportSize.Height / drawingAreaSize.Height;
             double minimumScaleFactor = Math.Min(scaleHeight, scaleWidth);
-            layoutCreationSpecification.DrawingArea.Size = 1 / minimumScaleFactor * viewportSize;
-            layoutCreationSpecification.DrawingArea.LowerRightPoint = drawingAreaCenter + 0.5 * new Size(drawingAreaSize.Width, -drawingAreaSize.Height);
+            var size = 1 / minimumScaleFactor * viewportSize;
+            var lowerRightPoint = drawingAreaCenter + 0.5 * new Size(size.Width, -size.Height);
+            layoutCreationSpecification.DrawingArea = new Frame(lowerRightPoint, size);
             layoutCreationSpecification.Scale = minimumScaleFactor / layoutCreationSpecification.DrawingUnit;
         }
 
@@ -347,7 +343,7 @@ namespace AutoCADTools.PrintLayout
 
         private void ValidateExtract()
         {
-            if (layoutCreationSpecification.DrawingArea.LowerRightPoint == null)
+            if (layoutCreationSpecification.DrawingArea == null)
             {
                 errorProvider.SetError(butDefineExtract, LocalData.NoExtractDefinedError);
             }

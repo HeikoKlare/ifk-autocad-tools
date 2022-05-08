@@ -38,8 +38,6 @@ namespace AutoCADTools.PrintLayout
 
         public event PropertyChangedEventHandler PropertyChanged;
         
-        public delegate void OnNotifyPropertyChanged([CallerMemberName] String propertyName = "");
-
         // This method is called by the Set accessor of each property.
         // The CallerMemberName attribute that is applied to the optional propertyName
         // parameter causes the property name of the caller to be substituted as an argument.
@@ -168,7 +166,7 @@ namespace AutoCADTools.PrintLayout
         {
             get
             {
-                if (DrawingArea.Size == null)
+                if (DrawingArea == null)
                 {
                     return null;
                 }
@@ -214,65 +212,48 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public class Frame
         {
-            private readonly OnNotifyPropertyChanged notifyPropertyChanged;
-
-            public Frame(OnNotifyPropertyChanged notifyPropertyChanged)
+            public Frame(Point lowerRightPoint, Size size)
             {
-                this.notifyPropertyChanged = notifyPropertyChanged;
+                this.lowerRightPoint = lowerRightPoint;
+                this.size = size;
             }
 
-            private Point lowerRightPoint;
+            private readonly Point lowerRightPoint;
             /// <summary>
             /// The point at the lower right edge of the frame.
             /// </summary>
-            public Point LowerRightPoint {
-                get => lowerRightPoint;
-                set
-                {
-                    if (lowerRightPoint != value)
-                    {
-                        lowerRightPoint = value;
-                        if (notifyPropertyChanged != null)
-                        {
-                            notifyPropertyChanged();
-                            notifyPropertyChanged(nameof(Paperformat));
-                        }
-                    }
-                }
-            }
+            public Point LowerRightPoint { get => lowerRightPoint; }
 
-            private Size size;
+            private readonly Size size;
             /// <summary>
             /// The size of the frame.
             /// </summary>
-            public Size Size {
-                get => size;
-                set
-                {
-                    if (size != value)
-                    {
-                        size = value;
-                        if (notifyPropertyChanged != null)
-                        {
-                            notifyPropertyChanged();
-                            notifyPropertyChanged(nameof(Paperformat));
-                        }
-                    }
-                }
-            }
+            public Size Size { get => size; }
         }
 
+        private Frame drawingArea;
         /// <summary>
         /// The area in the model to be printed.
         /// </summary>
-        public Frame DrawingArea { get; }
+        public Frame DrawingArea { 
+            get => drawingArea; 
+            set
+            {
+                if (drawingArea != value)
+                {
+                    drawingArea = value;
+                    NotifyPropertyChanged();
+                    NotifyPropertyChanged(nameof(Paperformat));
+                }
+            }
+        }
 
         /// <summary>
         /// Whether the layout is valid, i.e., all properties have been set.
         /// </summary>
         public bool IsValid => DrawingUnit != 0 &&
                     Scale != 0 &&
-                    DrawingArea.LowerRightPoint != null &&
+                    DrawingArea != null &&
                     Paperformat != null &&
                     Printerformat != null &&
                     !String.IsNullOrEmpty(LayoutName);
@@ -289,7 +270,6 @@ namespace AutoCADTools.PrintLayout
         {
             document = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
             LayoutName = Properties.Settings.Default.DefaultLayoutName;
-            DrawingArea = new Frame(NotifyPropertyChanged);
             Scale = 0.01;
             DrawingUnit = Document.Database.Cannoscale.DrawingUnits;
             UseTextfield = true;
@@ -314,11 +294,12 @@ namespace AutoCADTools.PrintLayout
 
             var drawingData = document.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
             DrawingUnit = drawingData.DrawingUnit;
-            DrawingArea.Size = 1 / drawingArea.Scale * drawingArea.Format.ViewportSizeModel;
             using (Transaction trans = document.TransactionManager.StartTransaction())
             {
+                var size = 1 / drawingArea.Scale * drawingArea.Format.ViewportSizeModel;
                 var point = (drawingArea.DrawingAreaId.GetObject(OpenMode.ForRead) as BlockReference).Position;
-                DrawingArea.LowerRightPoint = new Point(point.X, point.Y);
+                var lowerRightPoint = new Point(point.X, point.Y);
+                DrawingArea = new Frame(lowerRightPoint, size);
             }
             Scale = drawingArea.Scale / DrawingUnit;
             UseTextfield = true;
