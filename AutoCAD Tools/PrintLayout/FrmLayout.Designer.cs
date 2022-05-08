@@ -254,6 +254,7 @@
             this.optExtractManual.Name = "optExtractManual";
             this.optExtractManual.TabStop = true;
             this.optExtractManual.UseVisualStyleBackColor = true;
+            this.optExtractManual.CheckedChanged += new System.EventHandler(this.OptExtractManual_CheckedChanged);
             // 
             // optExtractDrawingArea
             // 

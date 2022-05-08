@@ -151,7 +151,7 @@ namespace AutoCADTools.PrintLayout
             layoutCreationSpecification.DrawingArea.LowerRightPoint = promptedFrame.LowerRightPoint;
             layoutCreationSpecification.DrawingArea.Size = promptedFrame.Size;
             optExtractManual.Checked = true;
-            SelectDefaultPrinterAndOptimalFormat();
+            SelectOptimalPrinterPaperformat(false);
             InputChanged();
         }
 
@@ -301,11 +301,9 @@ namespace AutoCADTools.PrintLayout
             if (!UseExactExtract && layoutCreationSpecification.Paperformat != null)
             {
                 var defaultPrinter = layoutCreationSpecification.Paperformat.GetDefaultPrinter();
-                int printerIndex = defaultPrinter == null ? -1 : cboPrinter.FindStringExact(defaultPrinter.Name);
-
-                if (printerIndex != -1)
+                if (defaultPrinter != null)
                 {
-                    cboPrinter.SelectedIndex = printerIndex;
+                    cboPrinter.SelectedItem = defaultPrinter;
                 }
                 SelectOptimalPrinterPaperformat(true);
             }
@@ -317,23 +315,19 @@ namespace AutoCADTools.PrintLayout
 
         private void SelectOptimalPrinterPaperformat(bool optimizeIfFitting)
         {
-            if (!UseExactExtract && layoutCreationSpecification.Paperformat != null && selectedPrinter != null && selectedPrinter.Initialized)
+            using (var progressDialog = new ProgressDialog())
             {
-                using (var progressDialog = new ProgressDialog())
+                if (!UseExactExtract && layoutCreationSpecification.Paperformat != null && selectedPrinter != null && selectedPrinter.Initialized &&
+                    PaperformatPrinterMapping.IsFormatFitting(layoutCreationSpecification.Printerformat, layoutCreationSpecification.Paperformat, progressDialog))
                 {
-                    if (!optimizeIfFitting && PaperformatPrinterMapping.IsFormatFitting(layoutCreationSpecification.Printerformat, layoutCreationSpecification.Paperformat, progressDialog))
-                    {
-                        return;
-                    }
                     var printerPaperformat = layoutCreationSpecification.Paperformat.GetFittingPaperformat(selectedPrinter, chkOptimizedPaperformats.Checked, progressDialog);
-                    int formatIndex = printerPaperformat != null ? cboPaperformat.FindStringExact(printerPaperformat.Name) : -1;
-                    if (formatIndex != -1)
+                    if (printerPaperformat != null)
                     {
-                        cboPaperformat.SelectedIndex = formatIndex;
+                        cboPaperformat.SelectedItem = printerPaperformat;
                     }
+                    InputChanged();
                 }
             }
-            InputChanged();
         }
 
         private void InputChanged()
@@ -428,9 +422,18 @@ namespace AutoCADTools.PrintLayout
             if (optExtractDrawingArea.Checked)
             {
                 layoutCreationSpecification.LoadDataForPredefinedDrawingArea();
+                SelectDefaultPrinterAndOptimalFormat();
+                InputChanged();
             }
-            SelectDefaultPrinterAndOptimalFormat();
-            InputChanged();
+        }
+
+        private void OptExtractManual_CheckedChanged(object sender, EventArgs e)
+        {
+            if (optExtractManual.Checked)
+            {
+                SelectOptimalPrinterPaperformat(false);
+                InputChanged();
+            }
         }
 
         private void ValidateInputs(object sender, EventArgs e)
