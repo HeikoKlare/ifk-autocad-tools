@@ -12,7 +12,6 @@ namespace AutoCADTools.PrintLayout
         private static readonly IReadOnlyList<string> excludedNames = new List<string>() { "Default" };
 
         private static readonly PrinterRepository instance = new PrinterRepository();
-
         /// <summary>
         /// Gets the singleton instance of the cache.
         /// </summary>
@@ -24,27 +23,30 @@ namespace AutoCADTools.PrintLayout
             get { return PrinterRepository.instance; }
         }
 
-        private readonly Dictionary<string, Printer> printer = new Dictionary<string, Printer>();
-
+        private readonly Dictionary<string, Printer> printerNamesToPrinters = new Dictionary<string, Printer>();
         /// <summary>
-        /// Gets the names of the available printers.
+        /// The printers in this repository.
         /// </summary>
-        public IReadOnlyList<string> PrinterNames
-        {
-            get
-            {
-                PlotSettingsValidator psv = PlotSettingsValidator.Current;
-                var defaultPrinters = new List<string> { Properties.Settings.Default.DefaultPrinterCustom, Properties.Settings.Default.DefaultPrinterA3, Properties.Settings.Default.DefaultPrinterA4 };
-                return psv.GetPlotDeviceList().Cast<string>()
-                       .Where(device => device.EndsWith(Printer.printerConfigurationFileExtension))
-                       .Select(device => device.Replace(Printer.printerConfigurationFileExtension, ""))
-                       .Where(device => excludedNames.ToList().TrueForAll(name => !device.Contains(name)))
-                       .OrderByDescending(name => defaultPrinters.IndexOf(name))
-                       .ToList().AsReadOnly();
-            }
-        }
+        public IReadOnlyList<Printer> Printers => printerNamesToPrinters.Values.ToList();
 
-        private PrinterRepository() { }
+
+        private readonly IReadOnlyList<string> preferenceOrderedPrinterNames;
+        /// <summary>
+        /// The names of the available printers.
+        /// </summary>
+        public IReadOnlyList<string> PreferenceOrderedPrinterNames => preferenceOrderedPrinterNames;
+
+        private PrinterRepository()
+        {
+            PlotSettingsValidator psv = PlotSettingsValidator.Current;
+            var defaultPrinters = new List<string> { Properties.Settings.Default.DefaultPrinterCustom, Properties.Settings.Default.DefaultPrinterA3, Properties.Settings.Default.DefaultPrinterA4 };
+            preferenceOrderedPrinterNames = psv.GetPlotDeviceList().Cast<string>()
+                   .Where(device => device.EndsWith(Printer.PrinterConfigurationFileExtension))
+                   .Select(device => device.Replace(Printer.PrinterConfigurationFileExtension, ""))
+                   .Where(device => excludedNames.ToList().TrueForAll(name => !device.Contains(name)))
+                   .OrderByDescending(name => defaultPrinters.IndexOf(name)).ToList().AsReadOnly();
+            Clear();
+        }
 
         /// <summary>
         /// Gets the <see cref="Printer"/> with the specified name.
@@ -59,18 +61,14 @@ namespace AutoCADTools.PrintLayout
         {
             get
             {
-                if (!printer.ContainsKey(name))
+                if (printerNamesToPrinters.ContainsKey(name))
                 {
-                    if (PrinterNames.Contains(name))
-                    {
-                        printer.Add(name, new Printer(name));
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return printerNamesToPrinters[name];
                 }
-                return printer[name];
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -79,7 +77,11 @@ namespace AutoCADTools.PrintLayout
         /// </summary>
         public void Clear()
         {
-            printer.Clear();
+            printerNamesToPrinters.Clear();
+            foreach (var printerName in preferenceOrderedPrinterNames)
+            {
+                printerNamesToPrinters.Add(printerName, new Printer(printerName));
+            }
         }
 
     }

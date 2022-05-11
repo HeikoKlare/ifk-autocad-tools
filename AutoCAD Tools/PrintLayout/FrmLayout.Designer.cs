@@ -38,10 +38,8 @@
             System.Windows.Forms.Label lblScale;
             System.Windows.Forms.Label lblLayoutName;
             System.Windows.Forms.Label lblPrinter;
-            this.chkTextfield = new System.Windows.Forms.CheckBox();
-            this.optPortrait = new System.Windows.Forms.RadioButton();
-            this.optLandscape = new System.Windows.Forms.RadioButton();
-            this.cboPaperformat = new System.Windows.Forms.ComboBox();
+            this.chkUseTextfield = new System.Windows.Forms.CheckBox();
+            this.cboPrinterPaperformat = new System.Windows.Forms.ComboBox();
             this.lblPaperformat = new System.Windows.Forms.Label();
             this.chkOptimizedPaperformats = new System.Windows.Forms.CheckBox();
             this.updDrawingUnit = new System.Windows.Forms.NumericUpDown();
@@ -51,8 +49,12 @@
             this.butDefineExtract = new System.Windows.Forms.Button();
             this.txtLayoutName = new System.Windows.Forms.TextBox();
             this.butCreate = new System.Windows.Forms.Button();
-            this.chkUseDrawingArea = new System.Windows.Forms.CheckBox();
             this.cboPrinter = new System.Windows.Forms.ComboBox();
+            this.grpExtract = new System.Windows.Forms.GroupBox();
+            this.optExtractManual = new System.Windows.Forms.RadioButton();
+            this.optExtractDrawingArea = new System.Windows.Forms.RadioButton();
+            this.lblCalculatedPapersizeCaption = new System.Windows.Forms.Label();
+            this.lblCalculatedPapersize = new System.Windows.Forms.Label();
             grpPaperformat = new System.Windows.Forms.GroupBox();
             grpScale = new System.Windows.Forms.GroupBox();
             lblDrawingUnitMm = new System.Windows.Forms.Label();
@@ -65,14 +67,13 @@
             grpScale.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.updDrawingUnit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            this.grpExtract.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpPaperformat
             // 
-            grpPaperformat.Controls.Add(this.chkTextfield);
-            grpPaperformat.Controls.Add(this.optPortrait);
-            grpPaperformat.Controls.Add(this.optLandscape);
-            grpPaperformat.Controls.Add(this.cboPaperformat);
+            grpPaperformat.Controls.Add(this.chkUseTextfield);
+            grpPaperformat.Controls.Add(this.cboPrinterPaperformat);
             grpPaperformat.Controls.Add(this.lblPaperformat);
             grpPaperformat.Controls.Add(this.chkOptimizedPaperformats);
             resources.ApplyResources(grpPaperformat, "grpPaperformat");
@@ -82,39 +83,23 @@
             // 
             // chkTextfield
             // 
-            resources.ApplyResources(this.chkTextfield, "chkTextfield");
-            this.chkTextfield.Checked = true;
-            this.chkTextfield.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.errorProvider.SetIconAlignment(this.chkTextfield, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkTextfield.IconAlignment"))));
-            this.chkTextfield.Name = "chkTextfield";
-            this.chkTextfield.UseVisualStyleBackColor = true;
-            this.chkTextfield.CheckedChanged += new System.EventHandler(this.ChkTextfield_CheckedChanged);
+            resources.ApplyResources(this.chkUseTextfield, "chkTextfield");
+            this.chkUseTextfield.Checked = true;
+            this.chkUseTextfield.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.errorProvider.SetIconAlignment(this.chkUseTextfield, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkTextfield.IconAlignment"))));
+            this.chkUseTextfield.Name = "chkTextfield";
+            this.chkUseTextfield.UseVisualStyleBackColor = true;
+            this.chkUseTextfield.CheckStateChanged += new System.EventHandler(this.ValidateInputs);
             // 
-            // optPortrait
+            // cboPrinterPaperformat
             // 
-            resources.ApplyResources(this.optPortrait, "optPortrait");
-            this.errorProvider.SetIconAlignment(this.optPortrait, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("optPortrait.IconAlignment"))));
-            this.optPortrait.Name = "optPortrait";
-            this.optPortrait.UseVisualStyleBackColor = true;
-            // 
-            // optLandscape
-            // 
-            resources.ApplyResources(this.optLandscape, "optLandscape");
-            this.optLandscape.Checked = true;
-            this.errorProvider.SetIconAlignment(this.optLandscape, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("optLandscape.IconAlignment"))));
-            this.optLandscape.Name = "optLandscape";
-            this.optLandscape.TabStop = true;
-            this.optLandscape.UseVisualStyleBackColor = true;
-            // 
-            // cboPaperformat
-            // 
-            this.cboPaperformat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPaperformat.DropDownWidth = 60;
-            resources.ApplyResources(this.cboPaperformat, "cboPaperformat");
-            this.cboPaperformat.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.errorProvider.SetIconAlignment(this.cboPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPaperformat.IconAlignment"))));
-            this.cboPaperformat.Name = "cboPaperformat";
-            this.cboPaperformat.SelectedIndexChanged += new System.EventHandler(this.CboPaperformat_SelectedIndexChanged);
+            this.cboPrinterPaperformat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPrinterPaperformat.DropDownWidth = 60;
+            resources.ApplyResources(this.cboPrinterPaperformat, "cboPrinterPaperformat");
+            this.cboPrinterPaperformat.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.errorProvider.SetIconAlignment(this.cboPrinterPaperformat, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPrinterPaperformat.IconAlignment"))));
+            this.cboPrinterPaperformat.Name = "cboPrinterPaperformat";
+            this.cboPrinterPaperformat.SelectedIndexChanged += new System.EventHandler(this.CboPrinterPaperformat_SelectedIndexChanged);
             // 
             // lblPaperformat
             // 
@@ -167,7 +152,7 @@
             0,
             0,
             0});
-            this.updDrawingUnit.ValueChanged += new System.EventHandler(this.UpdDrawingUnit_ValueChanged);
+            this.updDrawingUnit.Validated += new System.EventHandler(this.ValidateInputs);
             // 
             // chkExactExtract
             // 
@@ -175,7 +160,7 @@
             this.errorProvider.SetIconAlignment(this.chkExactExtract, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkExactExtract.IconAlignment"))));
             this.chkExactExtract.Name = "chkExactExtract";
             this.chkExactExtract.UseVisualStyleBackColor = true;
-            this.chkExactExtract.CheckedChanged += new System.EventHandler(this.ChkExactExtract_CheckedChanged);
+            this.chkExactExtract.CheckStateChanged += new System.EventHandler(this.ValidateInputs);
             // 
             // lblDrawingUnitMm
             // 
@@ -195,8 +180,7 @@
             this.cboScale.FormattingEnabled = true;
             this.errorProvider.SetIconAlignment(this.cboScale, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboScale.IconAlignment"))));
             this.cboScale.Name = "cboScale";
-            this.cboScale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CboScale_KeyPress);
-            this.cboScale.Validating += new System.ComponentModel.CancelEventHandler(this.CboScale_Validating);
+            this.cboScale.Validated += new System.EventHandler(this.ValidateInputs);
             // 
             // lblScaleText
             // 
@@ -239,7 +223,6 @@
             resources.ApplyResources(this.txtLayoutName, "txtLayoutName");
             this.errorProvider.SetIconAlignment(this.txtLayoutName, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("txtLayoutName.IconAlignment"))));
             this.txtLayoutName.Name = "txtLayoutName";
-            this.txtLayoutName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLayoutName_Validating);
             // 
             // butCreate
             // 
@@ -249,14 +232,6 @@
             this.butCreate.UseVisualStyleBackColor = true;
             this.butCreate.Click += new System.EventHandler(this.ButCreate_Click);
             // 
-            // chkUseDrawingArea
-            // 
-            resources.ApplyResources(this.chkUseDrawingArea, "chkUseDrawingArea");
-            this.errorProvider.SetIconAlignment(this.chkUseDrawingArea, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("chkUseDrawingArea.IconAlignment"))));
-            this.chkUseDrawingArea.Name = "chkUseDrawingArea";
-            this.chkUseDrawingArea.UseVisualStyleBackColor = true;
-            this.chkUseDrawingArea.CheckedChanged += new System.EventHandler(this.ChkUseDrawingArea_CheckedChanged);
-            // 
             // cboPrinter
             // 
             this.cboPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -264,15 +239,50 @@
             this.cboPrinter.FormattingEnabled = true;
             this.errorProvider.SetIconAlignment(this.cboPrinter, ((System.Windows.Forms.ErrorIconAlignment)(resources.GetObject("cboPrinter.IconAlignment"))));
             this.cboPrinter.Name = "cboPrinter";
-            this.cboPrinter.SelectedIndexChanged += new System.EventHandler(this.CboPrinter_SelectedIndexChanged);
+            // 
+            // grpExtract
+            // 
+            this.grpExtract.Controls.Add(this.optExtractManual);
+            this.grpExtract.Controls.Add(this.optExtractDrawingArea);
+            this.grpExtract.Controls.Add(this.butDefineExtract);
+            resources.ApplyResources(this.grpExtract, "grpExtract");
+            this.grpExtract.Name = "grpExtract";
+            this.grpExtract.TabStop = false;
+            // 
+            // optExtractManual
+            // 
+            resources.ApplyResources(this.optExtractManual, "optExtractManual");
+            this.optExtractManual.Name = "optExtractManual";
+            this.optExtractManual.TabStop = true;
+            this.optExtractManual.UseVisualStyleBackColor = true;
+            this.optExtractManual.CheckedChanged += new System.EventHandler(this.OptExtractManual_CheckedChanged);
+            // 
+            // optExtractDrawingArea
+            // 
+            resources.ApplyResources(this.optExtractDrawingArea, "optExtractDrawingArea");
+            this.optExtractDrawingArea.Name = "optExtractDrawingArea";
+            this.optExtractDrawingArea.TabStop = true;
+            this.optExtractDrawingArea.UseVisualStyleBackColor = true;
+            this.optExtractDrawingArea.CheckedChanged += new System.EventHandler(this.OptExtractDrawingArea_CheckedChanged);
+            // 
+            // lblCalculatedPapersizeCaption
+            // 
+            resources.ApplyResources(this.lblCalculatedPapersizeCaption, "lblCalculatedPapersizeCaption");
+            this.lblCalculatedPapersizeCaption.Name = "lblCalculatedPapersizeCaption";
+            // 
+            // lblCalculatedPapersize
+            // 
+            resources.ApplyResources(this.lblCalculatedPapersize, "lblCalculatedPapersize");
+            this.lblCalculatedPapersize.Name = "lblCalculatedPapersize";
             // 
             // FrmLayout
             // 
             this.AcceptButton = this.butCreate;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.chkUseDrawingArea);
-            this.Controls.Add(this.butDefineExtract);
+            this.Controls.Add(this.lblCalculatedPapersize);
+            this.Controls.Add(this.lblCalculatedPapersizeCaption);
+            this.Controls.Add(this.grpExtract);
             this.Controls.Add(this.butCreate);
             this.Controls.Add(this.txtLayoutName);
             this.Controls.Add(this.cboPrinter);
@@ -286,13 +296,15 @@
             this.MinimizeBox = false;
             this.Name = "FrmLayout";
             this.Load += new System.EventHandler(this.FrmLayout_Load);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.LayoutUI_KeyPress);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FrmLayout_KeyPress);
             grpPaperformat.ResumeLayout(false);
             grpPaperformat.PerformLayout();
             grpScale.ResumeLayout(false);
             grpScale.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.updDrawingUnit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.grpExtract.ResumeLayout(false);
+            this.grpExtract.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,9 +313,7 @@
         #endregion
 
         private System.Windows.Forms.ErrorProvider errorProvider;
-        private System.Windows.Forms.RadioButton optPortrait;
-        private System.Windows.Forms.RadioButton optLandscape;
-        private System.Windows.Forms.ComboBox cboPaperformat;
+        private System.Windows.Forms.ComboBox cboPrinterPaperformat;
         private System.Windows.Forms.Label lblPaperformat;
         private System.Windows.Forms.CheckBox chkExactExtract;
         private System.Windows.Forms.ComboBox cboScale;
@@ -311,9 +321,13 @@
         private System.Windows.Forms.NumericUpDown updDrawingUnit;
         private System.Windows.Forms.Button butCreate;
         private System.Windows.Forms.Button butDefineExtract;
-        private System.Windows.Forms.CheckBox chkTextfield;
+        private System.Windows.Forms.CheckBox chkUseTextfield;
         private System.Windows.Forms.CheckBox chkOptimizedPaperformats;
-        private System.Windows.Forms.CheckBox chkUseDrawingArea;
         private System.Windows.Forms.ComboBox cboPrinter;
+        private System.Windows.Forms.GroupBox grpExtract;
+        private System.Windows.Forms.RadioButton optExtractManual;
+        private System.Windows.Forms.RadioButton optExtractDrawingArea;
+        private System.Windows.Forms.Label lblCalculatedPapersize;
+        private System.Windows.Forms.Label lblCalculatedPapersizeCaption;
     }
 }

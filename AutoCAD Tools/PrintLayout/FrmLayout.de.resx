@@ -121,20 +121,38 @@
     <value>Layout erstellen</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chkUseDrawingArea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 18</value>
+  <data name="lblCalculatedPapersize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>166, 215</value>
   </data>
-  <data name="chkUseDrawingArea.Text" xml:space="preserve">
-    <value>Zeichenbereich nutzen</value>
+  <data name="lblCalculatedPapersizeCaption.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 13</value>
+  </data>
+  <data name="lblCalculatedPapersizeCaption.Text" xml:space="preserve">
+    <value>Berechnete Papiergröße:</value>
+  </data>
+  <data name="optExtractManual.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 17</value>
+  </data>
+  <data name="optExtractManual.Text" xml:space="preserve">
+    <value>Manueller Ausschnitt</value>
+  </data>
+  <data name="optExtractDrawingArea.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 17</value>
+  </data>
+  <data name="optExtractDrawingArea.Text" xml:space="preserve">
+    <value>Zeichenbereich</value>
   </data>
   <data name="butDefineExtract.Text" xml:space="preserve">
     <value>Ausschnitt festlegen</value>
   </data>
+  <data name="grpExtract.Text" xml:space="preserve">
+    <value>Ausschnitt</value>
+  </data>
   <data name="cboPrinter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 132</value>
+    <value>331, 41</value>
   </data>
   <data name="cboPrinter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 21</value>
+    <value>167, 21</value>
   </data>
   <data name="lblPrinter.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 13</value>
@@ -228,29 +246,11 @@
   <data name="chkTextfield.Text" xml:space="preserve">
     <value>Textfeld</value>
   </data>
-  <data name="optPortrait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 18</value>
-  </data>
-  <data name="optPortrait.Text" xml:space="preserve">
-    <value>Hochformat</value>
-  </data>
-  <data name="optLandscape.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 18</value>
-  </data>
-  <data name="optLandscape.Text" xml:space="preserve">
-    <value>Querformat</value>
-  </data>
-  <data name="cboPaperformat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 57</value>
-  </data>
   <data name="lblPaperformat.Size" type="System.Drawing.Size, System.Drawing">
     <value>69, 13</value>
   </data>
   <data name="lblPaperformat.Text" xml:space="preserve">
     <value>Papierformat:</value>
-  </data>
-  <data name="chkOptimizedPaperformats.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 40</value>
   </data>
   <data name="chkOptimizedPaperformats.Text" xml:space="preserve">
     <value>Nur optimierte Papierformate</value>

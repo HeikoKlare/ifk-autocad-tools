@@ -35,8 +35,8 @@ namespace AutoCADTools.Utils
 
     class NullProgressMonitor : IProgressMonitor
     {
-        private double _progress;
-        public double Progress { get => _progress; set => _progress = value < 0 ? 0 : value > 1 ? 1 : value; }
+        private double progress;
+        public double Progress { get => progress; set => progress = value < 0 ? 0 : value > 1 ? 1 : value; }
         public string Title { set { } }
         public string MainText { set { } }
         public string CurrentActionDescription { set { } }

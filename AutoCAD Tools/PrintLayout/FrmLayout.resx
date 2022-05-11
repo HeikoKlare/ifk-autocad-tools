@@ -151,13 +151,13 @@
     <value>TopLeft</value>
   </data>
   <data name="butCreate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>293, 198</value>
+    <value>281, 201</value>
   </data>
   <data name="butCreate.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="butCreate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 34</value>
+    <value>217, 32</value>
   </data>
   <data name="butCreate.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
@@ -175,64 +175,157 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;butCreate.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>491, 246</value>
+    <value>509, 245</value>
   </data>
-  <data name="chkUseDrawingArea.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblCalculatedPapersize.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="chkUseDrawingArea.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
+  <data name="lblCalculatedPapersize.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
-  <data name="chkUseDrawingArea.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>TopLeft</value>
+  <data name="lblCalculatedPapersize.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="chkUseDrawingArea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 207</value>
+  <data name="lblCalculatedPapersize.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 215</value>
   </data>
-  <data name="chkUseDrawingArea.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+  <data name="lblCalculatedPapersize.Size" type="System.Drawing.Size, System.Drawing">
+    <value>10, 13</value>
   </data>
-  <data name="chkUseDrawingArea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 18</value>
+  <data name="lblCalculatedPapersize.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
   </data>
-  <data name="chkUseDrawingArea.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="lblCalculatedPapersize.Text" xml:space="preserve">
+    <value>-</value>
   </data>
-  <data name="chkUseDrawingArea.Text" xml:space="preserve">
-    <value>Use Drawing Area</value>
+  <data name="&gt;&gt;lblCalculatedPapersize.Name" xml:space="preserve">
+    <value>lblCalculatedPapersize</value>
   </data>
-  <data name="&gt;&gt;chkUseDrawingArea.Name" xml:space="preserve">
-    <value>chkUseDrawingArea</value>
+  <data name="&gt;&gt;lblCalculatedPapersize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;chkUseDrawingArea.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkUseDrawingArea.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblCalculatedPapersize.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;chkUseDrawingArea.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblCalculatedPapersize.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="lblCalculatedPapersizeCaption.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCalculatedPapersizeCaption.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblCalculatedPapersizeCaption.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 215</value>
+  </data>
+  <data name="lblCalculatedPapersizeCaption.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 13</value>
+  </data>
+  <data name="lblCalculatedPapersizeCaption.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="lblCalculatedPapersizeCaption.Text" xml:space="preserve">
+    <value>Calculated Papersize:</value>
+  </data>
+  <data name="&gt;&gt;lblCalculatedPapersizeCaption.Name" xml:space="preserve">
+    <value>lblCalculatedPapersizeCaption</value>
+  </data>
+  <data name="&gt;&gt;lblCalculatedPapersizeCaption.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCalculatedPapersizeCaption.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblCalculatedPapersizeCaption.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="optExtractManual.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="optExtractManual.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="optExtractManual.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="optExtractManual.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 44</value>
+  </data>
+  <data name="optExtractManual.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 17</value>
+  </data>
+  <data name="optExtractManual.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="optExtractManual.Text" xml:space="preserve">
+    <value>Manual Extract</value>
+  </data>
+  <data name="&gt;&gt;optExtractManual.Name" xml:space="preserve">
+    <value>optExtractManual</value>
+  </data>
+  <data name="&gt;&gt;optExtractManual.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optExtractManual.Parent" xml:space="preserve">
+    <value>grpExtract</value>
+  </data>
+  <data name="&gt;&gt;optExtractManual.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="optExtractDrawingArea.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="optExtractDrawingArea.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="optExtractDrawingArea.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 22</value>
+  </data>
+  <data name="optExtractDrawingArea.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="optExtractDrawingArea.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="optExtractDrawingArea.Text" xml:space="preserve">
+    <value>Drawing Area</value>
+  </data>
+  <data name="&gt;&gt;optExtractDrawingArea.Name" xml:space="preserve">
+    <value>optExtractDrawingArea</value>
+  </data>
+  <data name="&gt;&gt;optExtractDrawingArea.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;optExtractDrawingArea.Parent" xml:space="preserve">
+    <value>grpExtract</value>
+  </data>
+  <data name="&gt;&gt;optExtractDrawingArea.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="butDefineExtract.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
+  </data>
+  <data name="butDefineExtract.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="butDefineExtract.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>TopLeft</value>
   </data>
   <data name="butDefineExtract.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 198</value>
+    <value>145, 21</value>
   </data>
   <data name="butDefineExtract.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="butDefineExtract.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 34</value>
+    <value>89, 42</value>
   </data>
   <data name="butDefineExtract.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -247,10 +340,37 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;butDefineExtract.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>grpExtract</value>
   </data>
   <data name="&gt;&gt;butDefineExtract.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="grpExtract.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt, style=Bold</value>
+  </data>
+  <data name="grpExtract.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="grpExtract.Size" type="System.Drawing.Size, System.Drawing">
+    <value>245, 73</value>
+  </data>
+  <data name="grpExtract.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="grpExtract.Text" xml:space="preserve">
+    <value>Extract</value>
+  </data>
+  <data name="&gt;&gt;grpExtract.Name" xml:space="preserve">
+    <value>grpExtract</value>
+  </data>
+  <data name="&gt;&gt;grpExtract.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpExtract.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpExtract.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="txtLayoutName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
@@ -259,13 +379,13 @@
     <value>TopLeft</value>
   </data>
   <data name="txtLayoutName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 165</value>
+    <value>351, 12</value>
   </data>
   <data name="txtLayoutName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="txtLayoutName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 20</value>
+    <value>147, 20</value>
   </data>
   <data name="txtLayoutName.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -280,7 +400,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtLayoutName.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cboPrinter.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -292,13 +412,13 @@
     <value>TopLeft</value>
   </data>
   <data name="cboPrinter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 132</value>
+    <value>323, 41</value>
   </data>
   <data name="cboPrinter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="cboPrinter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 21</value>
+    <value>175, 21</value>
   </data>
   <data name="cboPrinter.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -313,7 +433,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cboPrinter.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <metadata name="lblLayoutName.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -328,7 +448,7 @@
     <value>TopLeft</value>
   </data>
   <data name="lblLayoutName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 168</value>
+    <value>278, 15</value>
   </data>
   <data name="lblLayoutName.Size" type="System.Drawing.Size, System.Drawing">
     <value>68, 13</value>
@@ -349,7 +469,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLayoutName.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <metadata name="lblPrinter.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -364,7 +484,7 @@
     <value>TopLeft</value>
   </data>
   <data name="lblPrinter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 135</value>
+    <value>278, 44</value>
   </data>
   <data name="lblPrinter.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 13</value>
@@ -385,7 +505,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPrinter.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <metadata name="grpScale.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -397,7 +517,7 @@
     <value>TopLeft</value>
   </data>
   <data name="updDrawingUnit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 76</value>
+    <value>132, 22</value>
   </data>
   <data name="updDrawingUnit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -433,7 +553,7 @@
     <value>TopLeft</value>
   </data>
   <data name="chkExactExtract.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 22</value>
+    <value>15, 79</value>
   </data>
   <data name="chkExactExtract.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -472,7 +592,7 @@
     <value>TopLeft</value>
   </data>
   <data name="lblDrawingUnitMm.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 77</value>
+    <value>201, 23</value>
   </data>
   <data name="lblDrawingUnitMm.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 13</value>
@@ -508,7 +628,7 @@
     <value>TopLeft</value>
   </data>
   <data name="lblDrawingUnit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 77</value>
+    <value>12, 24</value>
   </data>
   <data name="lblDrawingUnit.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 13</value>
@@ -538,7 +658,7 @@
     <value>TopLeft</value>
   </data>
   <data name="cboScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 47</value>
+    <value>132, 51</value>
   </data>
   <data name="cboScale.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -580,7 +700,7 @@
     <value>TopLeft</value>
   </data>
   <data name="lblScaleText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>121, 50</value>
+    <value>111, 54</value>
   </data>
   <data name="lblScaleText.Size" type="System.Drawing.Size, System.Drawing">
     <value>16, 13</value>
@@ -616,7 +736,7 @@
     <value>TopLeft</value>
   </data>
   <data name="lblScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 50</value>
+    <value>12, 54</value>
   </data>
   <data name="lblScale.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 13</value>
@@ -646,13 +766,13 @@
     <value>TopLeft</value>
   </data>
   <data name="grpScale.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 15</value>
+    <value>11, 90</value>
   </data>
   <data name="grpScale.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="grpScale.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 106</value>
+    <value>245, 112</value>
   </data>
   <data name="grpScale.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -670,7 +790,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;grpScale.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -753,7 +873,7 @@
     <value>TopLeft</value>
   </data>
   <data name="chkTextfield.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 138</value>
+    <value>17, 78</value>
   </data>
   <data name="chkTextfield.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
@@ -779,116 +899,38 @@
   <data name="&gt;&gt;chkTextfield.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="optPortrait.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="optPortrait.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+  <data name="cboPrinterPaperformat.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <data name="optPortrait.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="cboPrinterPaperformat.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt</value>
   </data>
-  <data name="optPortrait.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
+  <data name="cboPrinterPaperformat.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
     <value>TopLeft</value>
   </data>
-  <data name="optPortrait.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 107</value>
+  <data name="cboPrinterPaperformat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 50</value>
   </data>
-  <data name="optPortrait.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="cboPrinterPaperformat.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
-  <data name="optPortrait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 18</value>
+  <data name="cboPrinterPaperformat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 21</value>
   </data>
-  <data name="optPortrait.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="optPortrait.Text" xml:space="preserve">
-    <value>Portrait</value>
-  </data>
-  <data name="&gt;&gt;optPortrait.Name" xml:space="preserve">
-    <value>optPortrait</value>
-  </data>
-  <data name="&gt;&gt;optPortrait.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optPortrait.Parent" xml:space="preserve">
-    <value>grpPaperformat</value>
-  </data>
-  <data name="&gt;&gt;optPortrait.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="optLandscape.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="optLandscape.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="optLandscape.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
-  </data>
-  <data name="optLandscape.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>TopLeft</value>
-  </data>
-  <data name="optLandscape.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 85</value>
-  </data>
-  <data name="optLandscape.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="optLandscape.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 18</value>
-  </data>
-  <data name="optLandscape.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="optLandscape.Text" xml:space="preserve">
-    <value>Landscape</value>
-  </data>
-  <data name="&gt;&gt;optLandscape.Name" xml:space="preserve">
-    <value>optLandscape</value>
-  </data>
-  <data name="&gt;&gt;optLandscape.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;optLandscape.Parent" xml:space="preserve">
-    <value>grpPaperformat</value>
-  </data>
-  <data name="&gt;&gt;optLandscape.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="cboPaperformat.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="cboPaperformat.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8pt</value>
-  </data>
-  <data name="cboPaperformat.IconAlignment" type="System.Windows.Forms.ErrorIconAlignment, System.Windows.Forms">
-    <value>TopLeft</value>
-  </data>
-  <data name="cboPaperformat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 57</value>
-  </data>
-  <data name="cboPaperformat.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
-  </data>
-  <data name="cboPaperformat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 21</value>
-  </data>
-  <data name="cboPaperformat.TabIndex" type="System.Int32, mscorlib">
+  <data name="cboPrinterPaperformat.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.Name" xml:space="preserve">
-    <value>cboPaperformat</value>
+  <data name="&gt;&gt;cboPrinterPaperformat.Name" xml:space="preserve">
+    <value>cboPrinterPaperformat</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.Type" xml:space="preserve">
+  <data name="&gt;&gt;cboPrinterPaperformat.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cboPrinterPaperformat.Parent" xml:space="preserve">
     <value>grpPaperformat</value>
   </data>
-  <data name="&gt;&gt;cboPaperformat.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;cboPrinterPaperformat.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="lblPaperformat.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -900,7 +942,7 @@
     <value>TopLeft</value>
   </data>
   <data name="lblPaperformat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 60</value>
+    <value>14, 53</value>
   </data>
   <data name="lblPaperformat.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 13</value>
@@ -921,7 +963,7 @@
     <value>grpPaperformat</value>
   </data>
   <data name="&gt;&gt;lblPaperformat.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="chkOptimizedPaperformats.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -936,13 +978,13 @@
     <value>NoControl</value>
   </data>
   <data name="chkOptimizedPaperformats.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
+    <value>17, 22</value>
   </data>
   <data name="chkOptimizedPaperformats.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="chkOptimizedPaperformats.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 40</value>
+    <value>192, 23</value>
   </data>
   <data name="chkOptimizedPaperformats.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -960,7 +1002,7 @@
     <value>grpPaperformat</value>
   </data>
   <data name="&gt;&gt;chkOptimizedPaperformats.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="grpPaperformat.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 8pt, style=Bold</value>
@@ -969,13 +1011,13 @@
     <value>TopLeft</value>
   </data>
   <data name="grpPaperformat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>293, 15</value>
+    <value>281, 79</value>
   </data>
   <data name="grpPaperformat.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 2, 2, 2</value>
   </data>
   <data name="grpPaperformat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 170</value>
+    <value>217, 112</value>
   </data>
   <data name="grpPaperformat.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -993,6 +1035,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;grpPaperformat.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
 </root>

@@ -1,6 +1,4 @@
-﻿using AutoCADTools.Tools;
-using AutoCADTools.Utils;
-using Autodesk.AutoCAD.DatabaseServices;
+﻿using AutoCADTools.Utils;
 using System;
 using System.Windows.Forms;
 
@@ -17,35 +15,30 @@ namespace AutoCADTools.PrintLayout
         /// <returns><c>true</c> if the layout was created successfully, <c>false</c> otherwise</returns>
         public static bool CreateDefaultLayout()
         {
-            var drawingArea = GetDrawingArea();
-            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-
-            if (!drawingArea.IsValid)
+            var creationSpecification = new LayoutCreationSpecification();
+            if (!creationSpecification.HasPredefinedDrawingArea)
             {
-                doc.Editor.WriteMessage(Environment.NewLine + LocalData.NoDrawingAreaMessage);
+                creationSpecification.Document.Editor.WriteMessage(Environment.NewLine + LocalData.NoDrawingAreaMessage);
                 MessageBox.Show(AutocadMainWindow.Instance, LocalData.NoDrawingAreaMessage, "Layout");
                 return false;
             }
+            creationSpecification.LoadDataForPredefinedDrawingArea();
 
-            var paperformat = drawingArea.Format;
-            var printer = paperformat.GetDefaultPrinter();
+            var printer = creationSpecification.Paperformat.GetDefaultPrinter();
             if (printer == null)
             {
-                doc.Editor.WriteMessage(Environment.NewLine + LocalData.DefaultPrinterInvalid);
+                creationSpecification.Document.Editor.WriteMessage(Environment.NewLine + LocalData.DefaultPrinterInvalid);
                 MessageBox.Show(AutocadMainWindow.Instance, LocalData.DefaultPrinterInvalid, "Layout");
                 return false;
             }
 
-            var creation = new LayoutTextfield(paperformat);
-            SetDrawingArea(creation, drawingArea);
-            creation.LayoutName = Properties.Settings.Default.DefaultLayoutName;
             using (var progressDialog = new ProgressDialog())
             {
-                creation.Printerformat = paperformat.GetFittingPaperformat(printer, true, progressDialog);
+                creationSpecification.Printerformat = creationSpecification.Paperformat.GetFittingPaperformat(printer, true, progressDialog);
             }
-            if (creation.Printerformat != null)
+            if (creationSpecification.Printerformat != null)
             {
-                return creation.CreateLayout();
+                return new LayoutCreator(creationSpecification).CreateLayout();
             }
             else
             {
@@ -59,60 +52,26 @@ namespace AutoCADTools.PrintLayout
         /// <returns><c>true</c> if the layout was created successfully, <c>false</c> otherwise</returns>
         public static bool CreatePngLayout()
         {
-            var drawingArea = GetDrawingArea();
+            var creationSpecification = new LayoutCreationSpecification()
+            {
+                LayoutName = "PNG"
+            };
+            if (!creationSpecification.HasPredefinedDrawingArea)
+            {
+                creationSpecification.Document.Editor.WriteMessage(Environment.NewLine + LocalData.NoDrawingAreaMessage);
+                MessageBox.Show(AutocadMainWindow.Instance, LocalData.NoDrawingAreaMessage, "Layout");
+                return false;
+            }
+            creationSpecification.LoadDataForPredefinedDrawingArea();
 
             Printer printer = PrinterRepository.Instance["PNG"];
-            if (!drawingArea.IsValid || drawingArea.Format is PaperformatTextfieldCustom || printer == null)
+            if (creationSpecification.Paperformat is PaperformatTextfieldCustom || printer == null)
             {
                 return false;
             }
+            creationSpecification.Printerformat = creationSpecification.Paperformat.GetFittingPaperformat(printer, true, new ProgressDialog());
 
-            var paperformat = drawingArea.Format;
-            var creation = new LayoutTextfield(paperformat);
-            SetDrawingArea(creation, drawingArea);
-
-            creation.LayoutName = "PNG";
-            creation.Printerformat = paperformat.GetFittingPaperformat(printer, true, new ProgressDialog());
-
-            return creation.CreateLayout();
-        }
-
-        /// <summary>
-        /// Gets the drawing area in the drawing.
-        /// </summary>
-        /// <returns>The drawing area in the drawing.</returns>
-        private static DrawingArea GetDrawingArea()
-        {
-            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            var drawingAreaWrapper = doc.UserData[DrawingAreaDocumentWrapper.DICTIONARY_NAME] as DrawingAreaDocumentWrapper;
-            return drawingAreaWrapper.DrawingArea;
-        }
-
-        /// <summary>
-        /// Sets the default values for the specified drawing area in the given creation process.
-        /// </summary>
-        /// <param name="creation">The creation process object.</param>
-        /// <param name="drawingArea">The drawing area.</param>
-        /// <exception cref="System.ArgumentNullException">Is thrown if an argument is null</exception>
-        private static void SetDrawingArea(LayoutCreation creation, DrawingArea drawingArea)
-        {
-            if (creation == null || drawingArea == null || !drawingArea.IsValid)
-            {
-                throw new ArgumentNullException();
-            }
-
-            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
-            var drawingData = doc.UserData[DrawingData.DICTIONARY_NAME] as DrawingData;
-
-            using (Transaction trans = doc.TransactionManager.StartOpenCloseTransaction())
-            {
-                var point = (trans.GetObject(drawingArea.DrawingAreaId, OpenMode.ForRead) as BlockReference).Position;
-                creation.ExtractLowerRightPoint = new Point(point.X, point.Y);
-            }
-
-            creation.DrawingUnit = drawingData.DrawingUnit;
-            creation.Scale = drawingArea.Scale / drawingData.DrawingUnit;
-            creation.Orientation = creation.Paperformat is PaperformatTextfieldA4Vertical ? LayoutCreation.PaperOrientation.Portrait : LayoutCreation.PaperOrientation.Landscape;
+            return new LayoutCreator(creationSpecification).CreateLayout();
         }
 
     }
