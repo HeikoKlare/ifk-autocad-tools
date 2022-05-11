@@ -95,14 +95,5 @@ namespace AutoCADTools {
                 return ResourceManager.GetString("NoConnectionTitle", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Printers &apos;{0}&apos; could not be initialized correctly. Please restart the application. If the error occurs again, please contact the developer..
-        /// </summary>
-        internal static string PrinterInitializationErrorMessage {
-            get {
-                return ResourceManager.GetString("PrinterInitializationErrorMessage", resourceCulture);
-            }
-        }
     }
 }

@@ -120,9 +120,6 @@
   <data name="CompressionWoodAngle" xml:space="preserve">
     <value>Winkel</value>
   </data>
-  <data name="CompressionWoodBlockPrefix" xml:space="preserve">
-    <value>Druckholz</value>
-  </data>
   <data name="CompressionWoodHeight" xml:space="preserve">
     <value>Höhe</value>
   </data>
