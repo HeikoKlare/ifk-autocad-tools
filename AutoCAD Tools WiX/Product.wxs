@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="AutoCAD Tools" Language="1031" Version="3.4.1" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{6E78AB5F-8167-43D7-B7F7-8FD1A7BB6E14}">
+  <Product Id="*" Name="AutoCAD Tools" Language="1031" Version="3.5.0" Manufacturer="Ingenieurbüro Klare" UpgradeCode="{6E78AB5F-8167-43D7-B7F7-8FD1A7BB6E14}">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x64"/>
 
     <!-- IMPORTANT
