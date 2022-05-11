@@ -6,16 +6,16 @@ To this end, the tools can be connected to a MySQL database storing the accordin
 ## Dependencies:
 For execution:
 * AutoCAD 2015
-* .NET 4.5.2
+* .NET Framework 4.8
 
 For development:
 * Visual Studio 2022
-* MySQL Connector for Visual Studio
-* WiX toolset for Visual Studio
+* MySQL Connector for .NET (Minimum 8.0.29)
+* WiX Toolset and Extension for Visual Studio (Minimum 3.11)
 
 ## Setup for Development
 To develop and compile the tools, ensure that the dependencies are installed and simply clone the repository and open the Visual Studio solution file.
-When compiling the project, the generated DLLs are placed in the standard AutoCAD install directory, such that they are automatically loaded by AutoCAD.
-Ensure that you have placed the additional data, such as customization files, plotter configurations etc., provided by the WiX installer at the according places (most simply by generating a setup file and executing it).
+When compiling the project, the generated DLLs are placed in the standard AutoCAD install directory. You can load the DLLs by hand after opening AutoCAD or you can run an installer of a released version before, which registers the DLL in the Windows registry to load it on startup.
+Ensure that you have placed the additional data, such as customization files, plotter configurations etc., provided by the WiX installer, at the according places (most simply by running an installer of a released version).
 
 To setup a database with a proper scheme to which the tools can be connected, use the SQL script within the _Setup_ folder.
