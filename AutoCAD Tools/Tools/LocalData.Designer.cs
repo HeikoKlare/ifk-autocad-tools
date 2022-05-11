@@ -70,15 +70,6 @@ namespace AutoCADTools.Tools {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CompressionWood.
-        /// </summary>
-        internal static string CompressionWoodBlockPrefix {
-            get {
-                return ResourceManager.GetString("CompressionWoodBlockPrefix", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
         internal static string CompressionWoodHeight {
@@ -255,15 +246,6 @@ namespace AutoCADTools.Tools {
         internal static string InsertionPoint {
             get {
                 return ResourceManager.GetString("InsertionPoint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        internal static string Name {
-            get {
-                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

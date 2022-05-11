@@ -129,7 +129,4 @@
   <data name="NoConnectionTitle" xml:space="preserve">
     <value>Keine Datenbankverbindung</value>
   </data>
-  <data name="PrinterInitializationErrorMessage" xml:space="preserve">
-    <value>Die Drucker '{0}' konnten nicht korrekt initialisiert werden. Bitte starten Sie die Anwendung neu. Sollte der Fehler erneut auftreten. kontaktieren Sie den Entwickler.</value>
-  </data>
 </root>

@@ -120,9 +120,6 @@
   <data name="CompressionWoodAngle" xml:space="preserve">
     <value>Angle</value>
   </data>
-  <data name="CompressionWoodBlockPrefix" xml:space="preserve">
-    <value>CompressionWood</value>
-  </data>
   <data name="CompressionWoodHeight" xml:space="preserve">
     <value>Height</value>
   </data>
@@ -182,9 +179,6 @@
   </data>
   <data name="InsertionPoint" xml:space="preserve">
     <value>Specify insertion point</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Name</value>
   </data>
   <data name="PositionnumberPrompt" xml:space="preserve">
     <value>Positionnumber</value>
