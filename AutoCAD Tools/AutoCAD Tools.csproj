@@ -122,7 +122,6 @@
     </Compile>
     <Compile Include="PrintLayout\LayoutCreator.cs" />
     <Compile Include="PrintLayout\DrawingAreaDocumentWrapper.cs" />
-    <Compile Include="PrintLayout\Formats.cs" />
     <Compile Include="PrintLayout\LayoutCreationSpecification.cs" />
     <Compile Include="PrintLayout\FrmLayout.cs">
       <SubType>Form</SubType>
@@ -378,10 +377,13 @@
     <EmbeddedResource Include="Tools\FrmDrawingSettings.de.resx">
       <DependentUpon>FrmDrawingSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tools\LocalData.de.resx" />
+    <EmbeddedResource Include="Tools\LocalData.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tools\LocalData.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LocalData.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Tools\FrmDetails.de.resx">
       <DependentUpon>FrmDetails.cs</DependentUpon>
