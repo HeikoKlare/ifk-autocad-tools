@@ -1,0 +1,62 @@
+<svg width="680" height="680" viewBox="0 0 680 680" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>IFK AutoCAD Tools icon</title>
+  <desc>Blueprint-style icon on deep navy: a Fink truss, CAD crosshair top-right, and a clean dimension line below.</desc>
+
+  <defs>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#FFFFFF" stroke-width="0.3" opacity="0.07"/>
+    </pattern>
+  </defs>
+
+  <rect width="680" height="680" rx="100" fill="#0D1B2A"/>
+  <rect width="680" height="680" rx="100" fill="url(#grid)"/>
+
+  <!-- FINK TRUSS -->
+  <line x1="70"  y1="470" x2="610" y2="470" stroke="#4FC3F7" stroke-width="7" stroke-linecap="round"/>
+  <line x1="70"  y1="470" x2="340" y2="210" stroke="#4FC3F7" stroke-width="7" stroke-linecap="round"/>
+  <line x1="610" y1="470" x2="340" y2="210" stroke="#4FC3F7" stroke-width="7" stroke-linecap="round"/>
+  <line x1="340" y1="210" x2="340" y2="470" stroke="#4FC3F7" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="205" y1="470" x2="205" y2="340" stroke="#4FC3F7" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="475" y1="470" x2="475" y2="340" stroke="#4FC3F7" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="205" y1="340" x2="340" y2="470" stroke="#4FC3F7" stroke-width="4.5" stroke-linecap="round"/>
+  <line x1="475" y1="340" x2="340" y2="470" stroke="#4FC3F7" stroke-width="4.5" stroke-linecap="round"/>
+
+  <circle cx="70"  cy="470" r="7"   fill="#0D1B2A" stroke="#4FC3F7" stroke-width="3"/>
+  <circle cx="610" cy="470" r="7"   fill="#0D1B2A" stroke="#4FC3F7" stroke-width="3"/>
+  <circle cx="340" cy="210" r="7"   fill="#0D1B2A" stroke="#4FC3F7" stroke-width="3"/>
+  <circle cx="205" cy="470" r="5.5" fill="#0D1B2A" stroke="#4FC3F7" stroke-width="2.5"/>
+  <circle cx="340" cy="470" r="5.5" fill="#0D1B2A" stroke="#4FC3F7" stroke-width="2.5"/>
+  <circle cx="475" cy="470" r="5.5" fill="#0D1B2A" stroke="#4FC3F7" stroke-width="2.5"/>
+  <circle cx="205" cy="340" r="5.5" fill="#0D1B2A" stroke="#4FC3F7" stroke-width="2.5"/>
+  <circle cx="475" cy="340" r="5.5" fill="#0D1B2A" stroke="#4FC3F7" stroke-width="2.5"/>
+
+  <!-- DIMENSION LINE -->
+  <line x1="70"  y1="518" x2="70"  y2="548" stroke="#80DEEA" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="610" y1="518" x2="610" y2="548" stroke="#80DEEA" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="70" y1="533" x2="610" y2="533" stroke="#80DEEA" stroke-width="2.5" stroke-linecap="butt"/>
+  <polygon points="70,533 90,525 90,541" fill="#80DEEA"/>
+  <polygon points="610,533 590,525 590,541" fill="#80DEEA"/>
+  <text x="340" y="572" text-anchor="middle"
+        font-family="'Arial Narrow','Arial',sans-serif"
+        font-weight="500" font-size="22" letter-spacing="1.5"
+        fill="#80DEEA">42&#x2032;</text>
+
+  <!-- CAD CROSSHAIR — top right -->
+  <g transform="translate(556,116)" stroke="#FFB74D" stroke-linecap="round" fill="none">
+    <circle cx="0" cy="0" r="46" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="8"  stroke-width="2"/>
+    <line x1="-72" y1="0"  x2="-52" y2="0"/>
+    <line x1="52"  y1="0"  x2="72"  y2="0"/>
+    <line x1="0" y1="-72"  x2="0"  y2="-52"/>
+    <line x1="0" y1="52"   x2="0"  y2="72"/>
+    <line x1="-46" y1="0"  x2="-10" y2="0"/>
+    <line x1="10"  y1="0"  x2="46"  y2="0"/>
+    <line x1="0" y1="-46"  x2="0"  y2="-10"/>
+    <line x1="0" y1="10"   x2="0"  y2="46"/>
+    <line x1="39"  y1="-24" x2="46"  y2="-28" stroke-width="1.5" opacity="0.5"/>
+    <line x1="39"  y1="24"  x2="46"  y2="28"  stroke-width="1.5" opacity="0.5"/>
+    <line x1="-39" y1="-24" x2="-46" y2="-28" stroke-width="1.5" opacity="0.5"/>
+    <line x1="-39" y1="24"  x2="-46" y2="28"  stroke-width="1.5" opacity="0.5"/>
+  </g>
+
+</svg>
